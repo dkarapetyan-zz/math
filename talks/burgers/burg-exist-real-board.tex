@@ -1,0 +1,1097 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{pdfsync}
+\usepackage{cancel}
+\usepackage{amsxtra}
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+
+\def\refer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%
+\begin{document}
+%\begin{titlepage}
+\title{ Existence of a Solution to Burger's Equation on the Real Line.}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+         University  of Notre Dame\\
+		          Notre Dame, IN 46556 }
+				  \date{09/15/09}
+				  %
+				  \maketitle
+				  %
+				  %
+				  \parindent0in
+				  \parskip0.1in
+				  %
+				  %\end{titlepage}
+				  %
+				  %
+				  %
+				  \section{A Fundamental Lemma}
+				  \setcounter{equation}{0}
+\begin{lemma}
+		\label{hr_wp}
+		Let  $u_0(x) \in  H^s(\rr)$, $s >3/2$. Then for any $\ee\in (0, 1]$
+		the i.v.p. for the molified Burgers equation 
+		%
+		\begin{equation} 
+			\label{hr-moli-2}
+			\partial_t  u_\ee 
+			=
+			- J_\ee(J_\ee u_\ee \partial_x  J_\ee  u_\ee) 
+			\end{equation} 
+		%
+		\begin{equation} 
+			\label{burgers-moli-data-2} 
+			u_\ee(x, 0) = u_0 (x),
+		\end{equation}
+		%
+		has a unique solution $u_\ee( t)\in C([0, T]; H^s(\rr))$. 
+		In particular,
+		%
+		\begin{equation} 
+			\label{life-est}
+			T
+			=
+			\frac{1}{2 c_s \|u_0\|_{H^s(\rr)}},
+		\end{equation}
+		%
+		is independent of $\ee$ and
+		is a lower bound for the lifespan of $u_\ee( t)$ and
+		%
+		\begin{equation}
+			\label{u-e-Hs-bound}
+			\|u_\ee(t)\|_{H^s(\rr)}
+			\le
+			2 \|u_0 \|_{H^s(\rr)},
+			\quad
+			0\le t \le T.
+		\end{equation}
+		%
+		Furthermore,  $u_\ee( t)\in C^1([0, T]; H^{s-1}(\rr))$ and 
+		satisfies
+		\begin{equation}
+			\label{dt-u-e-Hs-bound}
+			\|\p_tu_\ee(t)\|_{H^{s-1}(\rr)}
+			\le
+			2 \|u_0 \|_{H^s(\rr)}^2,
+			\quad
+			0\le t \le T.
+		\end{equation}
+		% 
+		Here  $c_s$ is a constant depending only on $s$.
+	\end{lemma}
+	%
+	%
+	{\bf Proof.} We have derived \eqref{u-e-Hs-bound} previously; hence, it
+ suffices to prove  \eqref{dt-u-e-Hs-bound}.
+	Using equation \eqref{hr-moli-2}, for any $t\in [0, T]$ we have
+	%
+	\begin{equation*}
+		\begin{split}
+			\| \partial_t u_\varepsilon(t) \|_{H^{s-1}(\rr)}  
+			& = 
+			\| J_\ee(J_\ee u_\ee \partial_x  J_\ee  u_\ee)\|_{H^{s-1}(\rr)}
+			\\
+			& \le  
+			\| J_\ee u_\ee \partial_x  J_\ee  u_\ee \|_{H^{s-1}(\rr)}
+			\\
+			& =\frac{1}{2}\|\p_x([J_\varepsilon u_\varepsilon (t)]^2)\|_{H^{s-1}(\rr)}
+			\\
+			& \le \frac{1}{2}\|[J_\varepsilon u_\varepsilon (t)]^2\|_{H^s(\rr)}.
+			\end{split}
+		\end{equation*}
+		Using the  $H^s$-algebra property and estimate \eqref{u-e-Hs-bound},
+		from the last inequality we obtain
+		%
+		\begin{equation}
+			\label{deriv1}
+			\begin{split}
+				\| \partial_t u_\varepsilon(t) \|_{H^{s-1}(\rr)}  
+				& \le
+				\frac{1}{2}\|J_\varepsilon u_\varepsilon (t)\|_{H^s(\rr)}^2
+				\\
+				&\le
+				\frac{1}{2} \| u_\varepsilon (t)\|_{H^s(\rr)}^2
+				\\
+				&\le
+				2 \|u_0\|_{H^s(\rr)}^2
+			\end{split}
+		\end{equation}
+		completing the proof. $\quad \Box$
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%     Choosing  a convergent subsequence
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%
+
+		\section{Choosing  a convergent subsequence.}
+		%
+		Next we shall show that  the family $\{ u_\ee\}$ has a convergent subsequence
+		whose limit $u$ solves the Burgers i.v.p. 
+		Let
+		$$
+		I= [0, T].
+		$$
+		By Lemma \ref{hr_wp} we have 
+		%
+		\begin{equation}
+			\label{C-1-fam}
+			\{u_\ee\}\subset C(I, H^s(\rr))\cap C^1(I, H^{s-1}(\rr))
+		\end{equation}
+		%
+		and bounded. Since $I$ is compact, we have  
+		%
+		\begin{equation}
+			\label{Lip-1-fam}
+			\{u_\ee\}\subset L^{\infty}(I, H^s(\rr))\cap C^1(I,
+			H^{s-1}(\rr)).
+		\end{equation}
+		%
+		Now, note that the map $$<\cdot \ , \ \cdot>:\  H^s(\rr) \times H^{-s}(\rr)
+		\to \cc$$ defined by $$<u,w> = \int_{\rr} \hat{u} (\xi)
+		\hat{w} (\xi) \ d \xi$$ is a bilinear form on $H^s(\rr) \times H^{-s}(\rr)$
+		which allows us to identify $H^{-s}$ with the dual of $H^s$.
+		Therefore, by the Riesz Representation Theorem it follows that we
+		can identify $L^\infty(I, H^s(\rr)) $ with the dual space of
+		$L^1(I, H^{-s}(\rr)$, where for $v\in L^\infty(I, H^s(\rr)) $ and
+		$ \varphi \in L^1(I, H^{-s}(\rr))$ the duality is defined by  
+		%
+		\begin{equation}
+			T_v(\varphi) = \int_I <v (t), \varphi (t)> dt  = \int_I
+			 \int_\rr
+			 \widehat{v}(\xi, t) \widehat{\varphi}(\xi, t) \ d \xi \; dt.
+		\end{equation}
+		%
+		Next, we recall Aloaglu's Theorem:
+		\begin{theorem}
+			If $X$ is a normed vector space,
+			the closed unit ball $B^* = \{f \in X^* : \|f\| \le
+			1\}$ in $X^*$ is compact in the $weak^*$ topology.
+		\end{theorem}
+		Therefore the bounded family $\{u_\ee\}$ is compact 
+		in the weak* topology of $L^\infty(I, H^{s}(\rr))$. More precisely,
+		there is a sequence  $\{ u_{\ee_n} \}$ converging
+		weak* to a $ u\in L^{\infty}(I, H^s(\rr))$;
+		that is 
+		%
+		\begin{equation*}
+			\label{weak-conv}
+			\lim_{n\to \infty} T_{u_{\ee_n}}(\varphi)  =  T_u (\varphi) 
+			\; \;		
+			\text{ for all } \;\;  \varphi \in L^1(I, H^{-s}(\rr)).
+		\end{equation*}
+		%
+%		In fact, at this stage we have a slight improvement on the smoothness of $u$:
+%		\begin{lemma}
+%			\begin{equation*}
+%			\begin{split}
+%				u \in L^\infty(I, H^s(\rr)) \cap Lip(I, H^{s-1}(\rr)).
+%			\end{split}
+%		\end{equation*}
+%		\end{lemma}
+%		{\bf Proof.} It is enough to show that $u \in Lip(I, H^{s-1}(\rr))$. Let
+%		$\varphi \in L^1([t, t'], H^{s-1}(\rr))$, where $[t, t'] \subset I$; then 
+%		\begin{equation*}
+%			\begin{split}
+%				T_{u_{\ee_n}}(\varphi)
+%				& = \int_{t}^{t'} \Big [\sum_{\xi \in \zz}
+%				u_{\ee_n}(\xi,t) \widehat{\varphi}(\xi,t) \Big ]  dt 
+%				\\
+%				& \le \int_{t}^{t'} \|u_{\ee_n}(\cdot \, , \, t) \|_{H^{s-1}(\rr)}
+%				\cdot \|\varphi(\cdot \, , \, t) \|_{H^{-s +1}} \ dt
+%			\end{split}
+%		\end{equation*}
+%		Applying \ref{dt-u-e-Hs-bound} and the Mean Value Theorem, we obtain
+%		\begin{equation}
+%			\label{1y}
+%			\begin{split}
+%				T_{u_{\ee_n}}(\varphi)
+%				& \le C|t'-t| \int_t^{t'} \|\varphi(\cdot \,  , \,  t)
+%				\|_{H^{-s+1}(\rr)} \ dt.
+%			\end{split}
+%		\end{equation}
+%		Taking $n \to \infty$ in \eqref{1y} completes the proof. $\qquad
+%		\Box$	
+%
+%
+%
+%
+%
+%
+		In order to show that $u$ solves the Burgers i.v.p., it would
+		suffice to obtain a stronger convergence for  $u_{\ee_n}$ so that 
+		we could take the limit in the mollified Burgers equation. However,
+		this is difficult, and unnecessary; rather, our approach will be
+		to show
+		%
+		\begin{equation}
+			\label{strong-conv}
+			\varphi u_{\ee_n}\longrightarrow \varphi u
+			\quad
+			\text{ in } \,\,   C(I, H^{s-\sigma}(\rr)), \ \ 0< \sigma < 1
+		\end{equation}
+		%
+		which will then be applied to a rewritten version of the Burgers
+		i.v.p. To prove \eqref{strong-conv}, we will need the following
+		interpolation result:
+
+
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		%                 Interpolation Lemma
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+		\begin{lemma}
+			\label{interpolation-lem}
+			(Interpolation)     Let  $s > \frac{3}{2}$.
+			If $v \in C(I, H^s(\rr)) \cap C^1(I, H^{s-1}(\rr))$
+			then $v \in C^\sigma (I, H^{s- \sigma}(\rr))$ for  $0 < \sigma < 1$.
+		\end{lemma}
+		%
+		{\bf Proof.}  We have%
+		\begin{equation*}
+			\begin{split}
+				\frac{\|v(t) - v(t')\|^2_{H^{s - \sigma}}}{|t - t'|^{2\sigma}}
+				& = 
+				\int_{\rr} (1 + \xi^2)^{s- \sigma} 
+				\frac{|\hat{v}(\xi, t) - \hat{v}(\xi, t')|^2}{|t-t'|^{2\sigma}} d\xi\\
+				& = \int_{\rr} (1+\xi^2)^s 
+				\bigg(\frac{1}{(1+ \xi^2)|t - t'|^2} \bigg)^\sigma |\hat{v}(\xi, t)- \hat{v}(\xi, t')|^2 d\xi\\
+				& \leq \int_{\rr}(1+\xi^2)^s \bigg( 1 + \frac{1}{(1+\xi^2)|t-t'|^2} \bigg)
+				|\hat{v}(\xi,t) - \hat{v}(\xi,t')|^2 d\xi \\
+				& \leq \int_{\rr} (1+ \xi^2)^s |\hat{v}(\xi, t)- \hat{v}(\xi, t')|^2 d\xi
+				\\
+				& + \int_{\rr} (1+ \xi^2)^{s-1} \frac{|\hat{v}(\xi, t) -
+				\hat{v} (\xi, t')|^2}{|t-t'|^2} d\xi \\
+				& \leq  \sup_t \|v(t)\|_{H^s(\rr)}^2 + \sup_t
+				\| \partial_t v(t) \|_{H^{s-1}(\rr)}^2
+				\\
+				& < \infty. \qquad \Box
+			\end{split}
+		\end{equation*}
+		%
+		%
+		\vskip0.1in
+		Next, using this lemma we will show that the family $\{\varphi u_\ee\}$
+		is equicontinuous in $C(I, H^{s-\sigma}(\rr))$ for
+		$0 < \sigma < 1$ and $\varphi = \varphi(x) \in \mathcal{S}(\rr)$.
+		We will follow this by proving that
+		there exists a sub-family $\{\varphi u_{\ee_n}(t)\}$ that is precompact in
+		$H^{s-\sigma}(\rr)$ for $\sigma > 0$. 
+		These two facts, in conjunction with Ascoli's Theorem, will
+		yield
+		\begin{equation*}
+			\label{strong-conv2}
+			\varphi u_{\ee_n} \to \tilde{u}
+			\; \; \text{in} \; \; C(I,H^{s-\sigma}(\rr)).
+		\end{equation*}
+		for $0 < \sigma < 1$.
+		We will then show that $\tilde{u} = \varphi u$, from which it will
+		follow that
+		\begin{equation*}
+			\label{phiplus}
+			\begin{split}
+				\vp u_{\ee_n} \to \vp u
+			\; \; \text{in} \; \; C(I,H^{s-\sigma}(\rr)).
+			\end{split}
+		\end{equation*}
+		A series of computations relying on \eqref{phiplus} will then allow us
+		to deduce that $u$ is a solution to the Burgers i.v.p.
+					
+		
+
+		%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		%       Equicontinuity
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%
+
+		%
+		\vskip0.1in
+		\nin
+		{\bf  Equicontinuity of $\{ \varphi u_\ee\}$  in $C(I, H^{s-\sigma}(\rr)$}).
+		Since $\varphi \in \mathcal{S}(\rr)$, we have the estimate
+		\begin{equation}
+			\begin{split}
+				\|\varphi u\|_{H^s(\rr)} \le C(s, \varphi) \|u\|_{H^s(\rr)}.
+				\label{schwartz-estimate}
+			\end{split}
+		\end{equation}
+		Applying  \eqref{schwartz-estimate} and Lemma
+		\ref{interpolation-lem} 
+		gives 
+		%
+		\begin{equation*}
+			\begin{split}
+			\label{equic-1}
+			\sup_{t \neq t'} \frac { \| \varphi u_\ee(t) - \varphi u_\ee(t') \|_{H^{s -
+			\sigma }(\rr)}}{|t - t'|^{\sigma }}
+			& \le \sup_{t \neq t'} \frac { \| u_\ee(t) - u_\ee(t') \|_{H^{s -
+			\sigma }(\rr)}}{|t - t'|^{\sigma }}
+			\\
+			&< c
+		\end{split}
+		\end{equation*}
+		%
+		or
+		%
+		\begin{equation*}
+			\label{equic-2}
+			\|u_\ee(t) - u_\ee(t') \|_{H^{s - \sigma}}< c|t -
+			t'|^{\sigma }, 
+			\text{ for all }  \,\,  t, t'\in I,
+		\end{equation*}
+		%
+		which shows that  the family  $\{\vp u_\ee\}$ is equicontinuous in 
+		$C(I, H^{s-\sigma }(\rr))$.  $\qquad \Box$
+		%
+		\vskip0.1in
+		\nin
+		%
+		%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		%      PreCompactness
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		%
+		%
+		%		
+		{\bf Precompactness of $\{\vp u_\ee (t)\}$ in $H^{s-\sigma
+		}(\rr)$}.
+		Applying Lemma \ref{hr_wp} we have
+		\begin{equation*}
+			\label{compact-1}
+			\|u_\ee(t)\|_{H^{s}(\rr)}
+			\le
+			2 \|u_0 \|_{H^s(\rr)}, \,
+			\quad
+			t\in I.
+		\end{equation*}
+		%
+		Therefore, by Reillich's Theorem, the family $\left\{ \varphi u_\ee \right\}$ is
+		precompact in $H^{s- \sigma}(\rr)$ for all $\ee > 0$. $\quad
+		\Box$. 
+		\vskip0.1in
+		We are now in a position to apply Ascoli's Theorem: 
+		\begin{theorem}
+			\label{Ascoli}
+			(Ascoli)  Let $X$ be a Banach space, $M$ be a compact metric space,
+			and $C(M,X)$  be the set of continuous functions $f: M\longrightarrow X$.
+			Suppose $S \subset C(M,X)$  has the following properties:
+			%
+			\begin{itemize}
+				\item[(1)]   $S$ is  equicontinuous.
+				\item[(2)]  For each $x \in M$ that the set $S(x) = \{f(x)\}$  is  precomact in $X$.
+			\end{itemize} 
+			%
+			Then $S$  is  precompact  in  $C(M,X)$.
+		\end{theorem}
+		Compiling our previous results on equicontinuity and precompactness
+		and applying Theorem \ref{Ascoli}, we
+		conclude that we can find $\tilde{u}$ and a subfamily $\left\{ \varphi
+		u_{\ee_n}
+		\right\}$ such that
+		\begin{equation}
+			\label{strong-conv-of-u_ep}
+			\varphi u_{\ee_n} \to \tilde{u}
+			\; \; \text{in} \; \; C(I, H^{s-\sigma}(\rr)).
+		\end{equation}
+		%
+		%
+		
+		\vskip0.1in
+		We would like to now find out what $\tilde{u}$ is:
+		%
+		%
+		%
+		\vskip0.1in
+		\begin{lemma}
+			\label{lem:crit-conv}
+			\begin{equation}
+				\begin{split}
+					\varphi u_{\ee_n} \xrightarrow{weak^*}
+					\varphi u \ \ \text{on} \ \ L^\infty(I, H^{s-\sigma}(\rr)).
+					\label{crit-conv-est}
+				\end{split}
+			\end{equation}
+		\end{lemma}
+		{\bf Proof.} 
+		Recall that $T_{u_{\ee_n}}(f) \to T_u (f)$ for arbitrary $f \in
+		L^1(I, H^{-s}(\rr)$; i.e.
+		\begin{equation}
+			\begin{split}
+				\int_I <u - u_{\ee_n}, f> dt \to 0.
+				\label{0aa}
+			\end{split}
+		\end{equation}
+		We consider
+		\begin{equation}
+			\begin{split}
+				T_{\varphi u}(f) - T_{\varphi u_{\ee_n}}(f)
+				& = \int_I \int_\rr \mathcal{F}\left (\varphi u - \varphi
+				u_\ee \right )(\xi, t) \cdot \widehat{f}(\xi, t) \ d \xi dt
+				\\
+				& = \int_I \int_\rr \mathcal{F}\left (\varphi u - \varphi
+				u_{\ee_n} \right) (\xi, t) \cdot \widehat{f}(\xi, t)(1 + \xi^2)^{-s}
+				(1+\xi^2)^s \ d \xi dt.
+				\label{1aa}
+			\end{split}
+		\end{equation}
+		%
+		%
+		Let $v \in L^1(I,H^s(\rr)$ be defined by 
+		\begin{equation}
+			\begin{split}
+				\widehat{v}(\xi, t) = \overline{\widehat{f}} (\xi, t) (1 +
+				\xi^2)^{-s}.
+				\label{2aa}
+			\end{split}
+		\end{equation}
+		Note that the operator 
+		\begin{equation*}
+			\begin{split}
+			 & T_\varphi: H^s(\rr) \to H^s(\rr),
+			 \\
+		 	& T_\varphi u = \varphi u
+		\end{split}
+	\end{equation*} is continuous;
+		therefore 
+		\begin{equation*}
+			(T_\varphi)^*: H^s(\rr) \to H^s(\rr) 
+		\end{equation*}
+		continuously. Identifying
+		$\varphi$ with $T_\varphi$ (for notational clarity), and 
+		applying \eqref{1aa} and \eqref{2aa}, we can write
+		\begin{equation}
+			\begin{split}
+				T_{\vp u}(f) - T_{\vp u_{\ee_n}}(f)
+				& = \int_I (\vp u - \vp u_{\ee_n}, v)_{H^s(\rr)} \ dt
+				\\
+				& = \int_I (u - u_{\ee_n}, \vp^* v)_{H^s(\rr)} \ dt
+				\\
+				& = \int_I \int_\rr \widehat{u - u_{\ee_n}}(\xi) \cdot
+				\vp^* \widehat{f}(\xi) (1+\xi^2)^{-s}(1 + \xi^2)^s \ d\xi
+				dt.
+				\label{3aa}
+			\end{split}
+		\end{equation}
+		Define $w: I \to \mathcal{S'}(\rr)$ by
+		\begin{equation*}
+			\begin{split}
+				\widehat{w}(t, \xi) = \vp^* \widehat{f}(\xi) (1 +
+				\xi^2)^{-s}.
+			\end{split}
+		\end{equation*}
+		Since $\vp^*: H^s(\rr) \to H^s(\rr)$ is a bounded operator, it follows that 
+		\begin{equation*}
+			\begin{split}
+				w \in L^1(I, H^s(\rr)),
+			\end{split}
+		\end{equation*}
+		which implies
+		\begin{equation*}
+			\begin{split}
+				\Lambda^s w \in L^1(I, H^{-s}(\rr)).
+			\end{split}
+		\end{equation*}
+		Recalling that \eqref{0aa} holds for arbitrary $f \in L^1(I,
+		H^{-s}(\rr))$, we conclude from \eqref{3aa} that
+		\begin{equation*}
+			\begin{split}
+				T_{\vp u}(f) - T_{\vp u_{\ee_n}}(f) = \int_I <u - u_\ee, \
+				\Lambda^s w> \ dt \to 0
+			\end{split}
+		\end{equation*}
+		completing the proof. $\quad \Box$
+		\vskip0.1in
+		%
+		%
+		Recalling \eqref{strong-conv-of-u_ep} and applying Lemma
+		\ref{lem:crit-conv}, we obtain
+		\begin{theorem}
+			For arbitrary $\vp \in \mathcal{S}(\rr)$
+			\label{thm:crit0}
+			\begin{equation}
+			\begin{split}
+				\vp u_{\ee_n} \to \vp u \ \ \text{in}  \ \ C(I,
+				H^{s-\sigma}(\rr)).
+				\label{vp_u_ep_conv}
+			\end{split}
+		\end{equation}
+	\end{theorem}
+	Retracing our steps in proving Theorem \ref{thm:crit0}, and applying
+	the same techniques to the family $\left\{ \vp \p_x u_{\ee_n} \right\}
+	\subset L^\infty(I, H^{s-\sigma - 1}(\rr))$, we obtain
+	\begin{theorem}
+		\label{thm:crit1}
+			\begin{equation}
+			\begin{split}
+				\vp \p_x u_{\ee_n} \to \vp \p_x u \ \ \text{in}  \ \ C(I,
+				H^{s-\sigma - 1}(\rr)).
+				\label{dx_vp_u_ep_conv}
+			\end{split}
+		\end{equation}
+	\end{theorem}
+
+
+		\vskip0.1in
+		{\bf Verifying that the weak* limit $u$ solves the Burgers equation.} 
+		We recall the mollified Burgers i.v.p
+		\begin{align}
+			& \p_t u_{\ee_n}  = -J_{\ee_n} (J_{\ee_n} u_{\ee_n} \cdot \p_x
+			J_{\ee_n} u_{\ee_n})
+			\label{1gr}
+			\\
+			& u(x,0) = u_0(x).
+			\label{2gr}
+		\end{align}
+		Multiplying both sides of \eqref{1gr} by $\varphi$ and rewriting,
+		we obtain
+		\begin{equation}
+			\label{3}
+			\begin{split}
+				\p_t(u_{\ee_n} \varphi) = -\vp J_{\ee_n}(J_{\ee_n} u_{\ee_n} \cdot
+				J_{\ee_n} \p_x u_{\ee_n}).
+			\end{split}
+		\end{equation}
+		The following lemma will play a crucial role in our proof of the
+		existence of a solution to the Burgers i.v.p.
+		\begin{lemma}
+			\label{lem:cc}
+			We have
+			\begin{equation}
+				\begin{split}
+					\label{burgers_and_nonlocal_conv}
+				& \vp J_{\varepsilon_n} (J_{\varepsilon_n} u_{\varepsilon_n} 
+				\cdot J_{\varepsilon_n}\partial_x u_{\varepsilon_n}) 
+				\to \vp u \partial_x u \; \; 
+				\text{in} \; \;
+				C(I, H^{s-\sigma-1}(\rr)). 
+			\end{split}
+			\end{equation}
+		\end{lemma}
+		%
+		{\bf Proof.} Note that
+		\begin{equation}
+			\begin{split}
+				& \|\vp u \p_x u - \vp J_{\ee_n} (J_{\ee_n} u_{\ee_n} \cdot
+				J_{\ee_n} \p_x u_{\ee_n} ) \|_{C(I, H^{s-\sigma -1}(\rr)}
+				\\
+				& = \|\vp u \p_x u - \vp J_{\ee_n} (J_{\ee_n} u_{\ee_n} \cdot
+				J_{\ee_n} \p_x u_{\ee_n} ) \pm \vp ( J_{\ee_n} u_{\ee_n}
+				\cdot J_{\ee_n} \p_x u_{\ee_n}\|_{C(I, H^{s-\sigma -1}(\rr)}
+				\\
+				& = \|\vp u \p_x u - \vp (J_{\ee_n} u_{\ee_n} \cdot
+				J_{\ee_n} \p_x u_{\ee_n} ) \|_{C(I, H^{s-\sigma -1}(\rr)}
+				\\
+				& + \|\vp (I-J_{\ee_n}) (J_{\ee_n} u_{\ee_n} - J_{\ee_n}
+				\p_x u_{\ee_n}) \|_{C(I, H^{s-\sigma -1}(\rr)}.
+				\label{0cc}
+			\end{split}
+		\end{equation}
+		Applying estimates \eqref{schwartz-estimate} and
+		\begin{equation*}
+			\begin{split}
+				\|I - J_{\ee_n} \|_{L(H^{s-\sigma}(\rr),
+				H^{s-\sigma}(\rr))} = o(1)
+			\end{split}
+		\end{equation*}
+		to \eqref{0cc}, we obtain
+		\begin{equation}
+			\begin{split}
+				& \|\vp (I-J_{\ee_n}) (J_{\ee_n} u_{\ee_n} - J_{\ee_n}
+				\p_x u_{\ee_n}) \|_{C(I, H^{s-\sigma -1}(\rr))}
+				\\
+				& \le C(s, \vp) \|I-J_{\ee_n}\|_{L(H^{s-\sigma}(\rr), H^{s-
+				\sigma}(\rr))} \|J_{\ee_n} u_{\ee_n} \cdot J_{\ee_n} \p_x
+				u_{\ee_n} \|_{C(I, H^{s-\sigma -1}(\rr))}
+				\\
+				& = o(1) \cdot
+				\|\p_x (J_{\ee_n} u_{\ee_n})^2 \|_{C(I, H^{s-\sigma
+				-1}(\rr))}
+				\\
+				& \le o(1) \cdot
+				\|(J_{\ee_n} u_{\ee_n})^2 \|_{C(I, H^{s-\sigma -1}(\rr))}.
+				\label{1cc}
+			\end{split}
+		\end{equation}
+		Restricting $\sigma$ such that $(s - \sigma) > 3/2$, we can apply
+		the algebra property of Sobolev spaces and the estimate
+		\begin{equation*}
+			\begin{split}
+				\|u_{\ee_n} \|_{H^{s-\sigma}(\rr)} \le 2
+				\|u_0\|_{H^{s-\sigma}(\rr)}, 
+			\end{split}
+		\end{equation*}
+		%
+		to \eqref{1cc} yields
+		\begin{equation}
+			\begin{split}
+				& \|\vp (I-J_{\ee_n}) (J_{\ee_n} u_{\ee_n} - J_{\ee_n}
+				\p_x u_{\ee_n}) \|_{C(I, H^{s-\sigma -1}(\rr))}
+				\\
+				& \le o(1)\cdot  \|J_{\ee_n} u_{\ee_n} \|^2_{C(I, H^{s-\sigma -1}(\rr))}
+				\\
+				& \le o(1)\cdot  \|u_{\ee_n} \|_{C(I, H^{s-\sigma -1}(\rr))}^2
+				\\
+				& \le o(1)\cdot \|u_0\|_{H^{s-\sigma}(\rr)}^2.
+				\label{2cc}
+			\end{split}
+		\end{equation}
+		Hence, applying \eqref{2cc} to \eqref{0cc}, we see that to prove
+		Lemma \ref{lem:cc} it will be sufficient to
+		show
+		\begin{equation}
+			\label{3cc}
+			\begin{split}
+				\vp(J_{\ee_n} u_{\ee_n} \cdot J_{\ee_n} \p_x u_{\ee_n}) \to \vp u
+				\p_x u \ \ \text{in} \ \ C(I, H^{s-\sigma -1}(\rr)).
+			\end{split}
+		\end{equation}
+		To do so, we will need a couple of propositions:
+		\begin{proposition}
+			For arbitrary $\vp \in \mathcal{S}(\rr)$
+			\label{prop:1aa}
+			\begin{equation}
+				\begin{split}
+					\vp J_{\ee_n} u_{\ee_n} \to \vp u \ \ \text{in} \ \
+					C(I, H^{s-\sigma}(\rr)).
+					\label{}
+				\end{split}
+			\end{equation}
+		\end{proposition}
+			{\bf Proof.} Note that
+			\begin{equation}
+				\begin{split}
+					& \|\vp u - \vp J_{\ee_n} u_{\ee_n}
+					\|_{C(I, H^{s-\sigma}(\rr))}
+					\\
+					&= \|\vp u - \vp J_{\ee_n} u_{\ee_n} \pm \vp
+					u_{\ee_n} \|_{C(I, H^{s-\sigma}(\rr))}
+					\\
+					& = \|\vp u - \vp u_{\ee_n}
+					\|_{H^{s-\sigma}(\rr)} + \|\vp (I - J_{\ee_n})
+					u_{\ee_n} \|_{C(I, H^{s-\sigma}(\rr))}.
+					\label{1bb}
+				\end{split}
+			\end{equation}
+			Applying \eqref{schwartz-estimate} and the estimates
+			\begin{equation*}
+				\begin{split}
+					& \|I-J_{\ee_n} \|_{L(H^{s-\sigma}(\rr), H^{s -
+					\sigma}(\rr)} = o(1),
+					\\
+					& \|u_{\ee_n}\|_{H^{s-\sigma}} \le 2
+					\|u_0\|_{H^{s-\sigma}(\rr)},
+				\end{split}
+			\end{equation*}
+			to \eqref{1bb} gives
+			\begin{equation}
+				\label{2bb}
+				\begin{split}
+					\|\vp u - \vp J_{\ee_n} u_{\ee_n}\|_{H^{s-\sigma}(\rr)}
+					\le \left( \|\vp u - \vp u_{\ee_n}
+					\|_{C(I, H^{s-\sigma}(\rr))} + o(1) \cdot \|u_0
+					\|_{H^{s-\sigma}(\rr)} \right).
+				\end{split}
+			\end{equation}
+			Letting $\ee \to 0$ in \eqref{2bb} and applying Theorem
+			\ref{thm:crit0} completes the proof. $\quad \Box$
+			%
+			%
+			\begin{proposition}
+				\label{prop:dd}
+				For arbitrary $ \vp \in \mathcal{S}(\rr)$,
+				\begin{equation}
+					\begin{split}
+						\vp J_{\ee_n} \p_x u_{\ee_n} \to \vp u \ \
+						\text{in} \ \ C(I, H^{s-\sigma-1}(\rr)).
+						\label{0dd}
+					\end{split}
+				\end{equation}
+			\end{proposition}
+			{\bf Proof.} The result follows from Theorem \ref{thm:crit1}.
+			The proof is nearly identical to that of
+			Proposition \ref{prop:1aa}, with $s-1$ substituted for $s$
+			and $\p_x u_{\ee_n}$ substituted for $u_{\ee_n}$. $\quad \Box$
+			%
+			%
+			\vskip0.1in
+			We now have enough tools to prove \eqref{3cc}. Restrict the
+			choice of $\vp$ such that $\vp^\frac{1}{2} \in S(\rr)$
+			(Such Schwartz functions exist; as an example, take the square
+			of the Gaussian). Using this fact, and applying Proposition
+			\ref{prop:1aa} and Proposition \ref{prop:dd}, we conclude that
+			\begin{equation*}
+				\begin{split}
+					\vp J_{\ee_n} u_{\ee_n} \p_x J_{\ee_n} u_{\ee_n} 
+					& = \vp^\frac{1}{2} J_{\ee_n} u_{\ee_n} \cdot
+					\vp^\frac{1}{2} \p_x J_{\ee_n} u_{\ee_n}
+					\\
+					& \to \vp^\frac{1}{2} u \cdot \vp^\frac{1}{2} \p_x u = \vp
+					u \p_x u
+				\end{split}
+			\end{equation*}
+			which proves \eqref{3cc}, completing the proof of Lemma
+			\ref{lem:cc}. $\quad \Box$
+
+\vskip0.1in
+		%
+		Next, we note that the convergence  
+		%
+		\begin{equation}
+			\label{weak-conv-2}
+			T_{\vp u_{\ee_n}}(f)  \longrightarrow  T_{\vp u} (f) \;
+			\text{ for all } \;  f \in L^1(I, H^{-s}(\rr))
+		\end{equation}
+		%
+		can be restated as 
+		%
+		\begin{equation}
+			\vp u_{\ee_n}  \longrightarrow  \vp u
+			\quad
+			\text{ in }  \,\,
+			\mathcal{D}'(I\times \rr).
+		\end{equation}
+		%
+		This implies 
+		%
+		\begin{equation}
+			\label{distib-conv-2}
+			\p_t(\vp u_{\ee_n})  \longrightarrow  \p_t (\vp u)
+			\quad
+			\text{ in }  \,\, \mathcal{D}'(I\times \rr).
+		\end{equation}
+		%
+		Since for all $n$ we have 
+		%
+		\begin{equation}
+			\p_t (\vp u_{\ee_n}) 
+			=
+			-\vp
+			J_{\varepsilon_n} (J_{\varepsilon_n} u_{\varepsilon_n}  \cdot
+			J_{\varepsilon_n}\partial_x u_{\varepsilon_n}) 
+		\end{equation}
+		%
+		and Lemma \ref{lem:cc} and the Sobolev Imbedding Theorem give
+		\begin{equation}
+			\begin{split}
+				-\vp
+			J_{\varepsilon_n} (J_{\varepsilon_n} u_{\varepsilon_n}  \cdot
+			J_{\varepsilon_n}\partial_x u_{\varepsilon_n}) \to - \vp u \p_x
+			u \ \ \text{in} \ \ C(I, C(\rr))
+				\label{adone}
+			\end{split}
+		\end{equation}
+		it follows that
+		%
+		\begin{equation}
+			\label{1yy}
+			\partial_t (\vp u) =-\vp u \partial_x u.
+		\end{equation}
+		%
+		Further restricting $\vp \in \mathcal{S}(\rr)$ to be nonzero in
+		$\rr$, we
+		can divide both sides of \eqref{1yy} by $\vp$ to obtain
+		\begin{equation}
+			\label{2yy}
+			\partial_t u = -u \partial_x u.
+		\end{equation}
+		Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
+		to the Burgers i.v.p. 
+		\vskip0.1in
+
+		%Applying \eqref{4yt}, \eqref{strong-conv-of-u_ep}
+		%and recalling Reillich's Theorem, we see that there exists a
+		%subfamily $\left\{ u_{\ee_{n_k}} \right\}$ such that
+		%\begin{equation}
+		%	\begin{split}
+		%		\|\varphi(x) u(t) - \varphi(x) u_{\ee_{k_n}}(t) \|_{H^{s-\sigma -
+		%		\ee - \ee'}(\rr)
+		%		\label{<++>}
+		%	\end{split}
+		%\end{equation}
+		%<++>
+
+
+		
+
+
+
+		%
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		%     Verifying that the limit $u$ solves Burgers equation
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+		%{\bf Verifying that the limit $u$ solves the Burgers equation.} 
+		%The following lemma will prove crucial: 
+		%\begin{lemma}
+		%	We have
+		%	\begin{equation}
+		%		\begin{split}
+		%			\label{burgers_and_nonlocal_conv}
+		%		& J_{\varepsilon_n} (J_{\varepsilon_n} u_{\varepsilon_n} 
+		%		\cdot J_{\varepsilon_n}\partial_x u_{\varepsilon_n}) 
+		%		+
+		%		\Lambda^{-1} \left[ \frac{3-}{2} u_{\ee_n}^2 + 
+		%		\frac{}{2} \left( \p_x u_{\ee_n} \right)^2 \right]
+		%		\\
+		%		& \to u \partial_x u + \Lambda^{-1} \left[ \frac{3-}{2}
+		%		u^2 + \frac{}{2} \left( \p_x u \right)^2 \right]
+		%		\; \; 
+		%		\text{in} \; \;
+		%		C(I, C(\rr)).
+		%	\end{split}
+		%	\end{equation}
+		%\end{lemma}
+		%%
+		%{\bf Proof.} From  we obtain
+		%\begin{equation}
+		%	\begin{split}
+		%		\label{J-ep-conv}
+		%		\|J_{\ee_n}(u-u_{\ee_n}	) \|_{C(I,C^1(\rr)} 
+		%		& \le \|J_{\ee_n} (u-u_{\ee_n})\|_{C(I,H^{s-\sigma}(\rr))}
+		%		\\
+		%		& \le \|u -u_\ee\|_{C(I,H^{s-\sigma}(\rr))} \to 0.
+		%	\end{split}
+		%\end{equation}
+		%Since
+		%\begin{equation}
+		%	J_{\ee_n} u \to u \; \text{in} \; C(I, C^1(\rr))
+		%\end{equation}
+		%we apply \eqref{J-ep-conv} to obtain
+		%\begin{equation}
+		%	\label{est1}
+		%	J_{\ee_n} u_{\ee_n} \to u \; \; \text{in} \; \; C(I, C^1(\rr))
+		%\end{equation}
+		%which implies
+		%\begin{equation}
+		%	\label{est2}
+		%	J_{\ee_n} \p_x u_{\ee_n} \to \p_x u \; \; \text{in} \; \; C(I,
+		%	C(\rr)).
+		%\end{equation}
+		%Combining \eqref{est1} and \eqref{est2}, we have 
+		%\begin{equation}
+		%	\label{moli_burgers_conv}
+		%	J_{\ee_n} u_{\ee_n} J_{\ee_n} \p_x u_{\ee_n} \to u \p_x u \; \;
+		%	\text{in} \; \; C(I, C(\rr)).
+		%\end{equation}
+		%On the other hand, for suitably small $\sigma > 0$, $\ee > 0$, 
+		%\begin{equation*}
+		%	\begin{split}
+		%	& \big \| \Lambda^{-1} \left[((3-)/2) u^2 +
+		%	(/2)\left( \p_x u \right)^2 \right]
+		%	\\
+		%	&- \Lambda^{-1} \left[((3-)/2)  u_{\ee_n}^2 + (/2)\left(
+		%	\p_x u_{\ee_n} \right)^2\right] \big \|_{C(I,C(\rr))}
+		%	\\
+		%	& \lesssim \big \| \Lambda^{-1} \left[((3-)/2) u^2 +
+		%	(/2)\left( \p_x u \right)^2 \right]
+		%	\\
+		%	& - \Lambda^{-1} \left[((3-)/2)  u_{\ee_n}^2 + (/2)\left(
+		%	\p_x u_{\ee_n} \right)^2\right] \big \|_{C(I,H^{\frac12 +
+		%	\ee})(\rr))}.
+		%\end{split}
+		%	\end{equation*}
+		%	By  we have
+		%	\begin{equation*}
+		%		u_{\ee_n} \to u \; \; \text{in} \; \; C(I, H^{s-\sigma}(\rr),
+		%	\end{equation*}
+		%	hence
+		%	\begin{equation}
+		%		\begin{split}
+		%		\label{deriv_uep_to_deriv_u}
+		%	 & \p_x u_{\ee_n} \to \p_x u \; \; \text{in} \; \; C(I,H^{s-\sigma
+		%	 -1}(\rr)) \; \; \text{and} \\
+		%	& u_{\ee_n} \to u \; \; \text{in} \; \; C(I, H^{s-\sigma
+		%	-1}(\rr)).
+		%\end{split}
+		%\end{equation}
+		%Since $s > 3/2$, we can use \eqref{deriv_uep_to_deriv_u} to obtain
+		%\begin{equation*}
+		%	\begin{split}
+		%	& \big \|  ((3-)/2) u^2 +
+		%	(/2) ( \p_x u )^2 
+		%	\\
+		%	&- ((3-)/2)  u_{\ee_n}^2 - (/2)\left(
+		%	\p_x u_{\ee_n} \right)^2 \big \|_{C(I,H^{\frac12 +
+		%	\ee}(\rr))}	
+		%	\\
+		%	& \lesssim \big \|  ((3-)/2) u^2 +
+		%	(/2)\left( \p_x u \right)^2 
+		%	\\
+		%	& -  ((3-)/2)  u_{\ee_n}^2 - (/2)\left(
+		%	\p_x u_{\ee_n} \right)^2 \big \|_{C(I,H^{s -\sigma -1}(\rr))} .
+		%\end{split}
+		%	\end{equation*}
+		%for suitable $\sigma > 0$, $\ee > 0$. We now apply
+		%\eqref{deriv_uep_to_deriv_u} and see that
+		%\begin{equation*}
+		%	\begin{split}
+		%	& \big \|  ((3-)/2) u^2 +
+		%	(/2)\left( \p_x u \right)^2 
+		%	\\
+		%	& -  ((3-)/2)  u_{\ee_n}^2 - (/2)\left(
+		%	\p_x u_{\ee_n} \right)^2 \big \|_{C(I,H^{s -\sigma -1}(\rr))} 
+		%	\to 0.
+		%\end{split}
+		%\end{equation*}
+		%	Hence
+		%	\begin{equation}
+		%		\label{non-local-conv}
+		%		\Lambda^{-1} \left[ \frac{3-}{2} u_{\ee_n}^2 +
+		%		\frac{}{2} \left( \p_x u_{\ee_n} \right)^2\right]
+		%		\to \Lambda^{-1} \left[ \frac{3-}{2} u^2 +
+		%		\frac{}{2} \left( \p_x u \right)^2\right] \; \; \text{in} \;
+		%		\; C(I, C(\rr)).
+		%\end{equation}
+		%Combining \eqref{moli_burgers_conv} and \eqref{non-local-conv}, we obtain
+		%\eqref{burgers_and_nonlocal_conv}, as desired. $\qquad \Box $
+		%\vskip0.1in
+		%%
+		%Next, we note that the convergence  
+		%%
+		%\begin{equation}
+		%	\label{weak-conv-2}
+		%	T_{u_{\ee_n}}(\varphi)  \longrightarrow  T_u(\varphi) \;
+		%	\text{ for all } \;  \varphi \in L^1(I, H^{-s}(\rr))
+		%\end{equation}
+		%%
+		%can be restated as 
+		%%
+		%\begin{equation}
+		%	u_{\ee_n}  \longrightarrow  u
+		%	\quad
+		%	\text{ in }  \,\,
+		%	\mathcal{D}'(I\times \rr).
+		%\end{equation}
+		%%
+		%This implies 
+		%%
+		%\begin{equation}
+		%	\label{distib-conv-2}
+		%	\p_tu_{\ee_n}  \longrightarrow  \p_tu
+		%	\quad
+		%	\text{ in }  \,\, \mathcal{D}'(I\times \rr).
+		%\end{equation}
+		%%
+		%Since for all $n$ we have 
+		%%
+		%\begin{equation}
+		%	\p_tu_{\ee_n} 
+		%	=
+		%	-
+		%	J_{\varepsilon_n} (J_{\varepsilon_n} u_{\varepsilon_n}  \cdot
+		%	J_{\varepsilon_n}\partial_x u_{\varepsilon_n}) - \Lambda^{-1} \left
+		%	[\frac{3-}{2}u_\ee^2 + \frac{}{2}(\p_x u_\ee)^2 \right ] 
+		%\end{equation}
+		%%
+		%by the uniqueness  of the limit in \eqref{burgers_and_nonlocal_conv} we must have
+		%%
+		%\begin{equation}
+		%	\label{1000y}
+		%	\partial_t u =- u \partial_x u- \Lambda^{-1} \left
+		%	[\frac{3-}{2}u^2 + \frac{}{2}(\p_x u)^2 \right ].
+		%\end{equation}
+		%%
+		%Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
+		%to the Burgers i.v.p. $\qquad \Box$
+		%\vskip0.1in
+		%It remains to prove that $u \in C(I, H^s(\rr)).$
+
+
+				  \end{document}
+
+

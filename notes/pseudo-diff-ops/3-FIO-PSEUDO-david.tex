@@ -1,0 +1,391 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{pdfsync}
+\usepackage{cancel}
+\usepackage{amsxtra}
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\def\refer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation*}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}[subsection]{conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newcommand{\ve}{\varepsilon} 
+\newcommand{\nin}{\noindent}
+\newcommand{\oL}{\bar L}
+\newcommand{\vph}{\varphi}
+\begin{document}
+\title{Pseudodifferential and Fourier Integral Operators}
+\author{Alex Himonas, {\it Summer 2009}}
+\maketitle
+\setcounter{section}{2}
+\section{Fourier Integral and Pseudodifferential Operators}
+\nin
+Let $X, Y$ be open subsets of $\Bbb R^n$ and $\varphi (x,y, \xi)$ be a phase on $X
+\times Y \times \Bbb R^N, $
+i.e.
+$$d_{x, y, \xi}\  \varphi(x,y, \xi) \ne 0 \; \; \text{on} \; \; X \times Y \times
+\dot{\Bbb R^N}.$$ 
+If $ p\in S^m(X \times Y \times \Bbb R^N)$ then the operator
+$$P : C^\infty_0 (Y) \longrightarrow \mathcal D'(X)$$
+defined by $u \in C^\infty_0 (Y) \longmapsto Pu$ with
+$$<Pu,v> \overset{osc.}{=} \iiint e^{i(x,y,\xi)} p(x,y,\xi)u(y)
+v(x)dydxd \xi$$ 
+is called a {\bf Fourier integral operator (FIO)} with phase $\vph$ and symbol $p$.
+\medskip
+\nin
+Note that:
+$$|<Pu,v> |\le c (\sup_{\substack{|\alpha| \le k \\ x \in K}} |D^\alpha u|)
+(\sup_{\substack{|\alpha| \le k\\ y\in K}} |D^\alpha v|)$$
+i.e. $P$ is continuous.
+\medskip
+\nin
+If $u \in C^\infty_0 (Y)$ then $Pu \in \mathcal D'(X)$ is defined by
+$$Pu(x) = \int_{R^N} \int_Y e^{i\vph(x,y,\xi)} p(x,y,\xi) u(y)dyd\xi.$$
+The {\bf kernel} of $P$ is given by the distribution $K_P(x,y) \in \mathcal D'(X \times
+Y)$ defined by 
+$$K_P(x,y)= \int_{\Bbb R^N}e^{i\vph(x,y,\xi)}p(x,y,\xi)d\xi.$$
+The {\bf transpose}  ${}^tP$ of $P$ is defined by
+$$\langle Pu(x),v(x)\rangle = \langle u(y),{}^tP v(y)\rangle,\ u\in
+C^\infty_0(Y),\ v\in C^\infty_0(X).$$
+We have that
+$${}^tP:C^\infty_0 \xrightarrow{cont.} \mathcal D'(Y)$$
+with 
+$${}^tPv(y) = \int_{\Bbb R^N} \int_Xe^{i\vph(x,y,\xi)}p(x,y,\xi)v(x)dxd\xi.$$
+Note that
+$${}^t({}^tP)=P.$$
+\begin{theorem}
+The following hold:
+\vskip0.1in
+\nin {\bf 1)} $\text{ sing supp } K_P \subset\{(x,y) \in X \times Y:
+\exists \xi \in \dot{\Bbb R}^N \; \text{with} \;\; d_\xi \vph(x,y,\xi) = 0\}$
+\vskip0.1in
+\nin
+{\bf 2)} If $d_{y,\xi} \ \vph(x,y,\xi) \ne 0$ on $X\times Y \times
+\dot{\Bbb R}^N$ then $$P:C^\infty_0 (Y) \xrightarrow{cont.} C^\infty(X)$$
+with
+$$(Pu)(x) \overset{osc.}{=} \int_{\Bbb R^N} \int_{\Bbb R^n} e^{i\vph
+(x,y,\xi)} p(x,y,\xi)u(y)dyd\xi,\  u \in C^\infty_0(Y).$$    
+\smallskip
+\nin
+{\bf 3)}  If $d_{x,\xi}\ \vph(x,y,\xi)\ne 0$ on $X \times Y \times
+\dot{\Bbb R}^N$ then
+$${}^tP:C^\infty_0(X) \xrightarrow{cont.} C^\infty(Y)$$
+and $P$ extends as a continuous operator from $\mathcal E'(Y)$ into $\mathcal D'(X)$; i.e.
+$$P:  \mathcal E' (Y) \xrightarrow{cont.}  \mathcal D'(X).$$
+\end{theorem}
+\nin
+{\bf Proof.} It follows from the properties of the oscillatory
+integrals depending on parameters.$ \qquad \Box$
+\vskip0.2in
+\begin{definition}  If $\vph(x,y,\xi)=(x-y) \cdot \xi$ on $X\times X \times
+\Bbb R^n$ and $p(x,y,\xi) \in S^m(X \times X \times \Bbb R^n)$ then  a Fourier
+integral operator with phase $\vph$ and symbol $p$ is called a
+{\bf  pseudodifferential} operator $(\psi do)$ on $X, $ i.e. 
+$$P: C^\infty_0(X) \xrightarrow{ cont.}  C^\infty(X)$$
+with
+$$(Pu) (x) \overset{osc.}{=} \frac{1}{(2\pi)^n}\int_{\Bbb R^n} \int_{\Bbb R^n}
+e^{i(x-y)\xi} p(x,y,\xi) u(y) dyd\xi,\ u\in
+C^\infty_0(X).$$
+\end{definition}
+\nin
+This is because $d_{y,\xi}\ \vph(x,y,\xi) = 
+- (\xi,y-x)\ne 0$ on $X \times X \times \dot{\Bbb R}^n$.  
+Since we also have $d_{x,\xi}\ \vph =- (\xi,x-y) \ne 0$ on $X \times X
+\times \dot{\Bbb R}^n,\ P$ extends continuously from $\mathcal E'(X)$ into $\mathcal D'(X)$.
+The kernel of $P$ is 
+$$K_P(x,y) =  \frac{1}{(2\pi)^n}\int_{\Bbb R^n} e^{i(x-y)\xi} p(x,y,\xi)d\xi$$
+with
+$$\text{sing supp } K_P \subset \text{diag } (X \times X).$$
+The transpose of $P$ is given by
+$$({}^tPu)(x)\overset{osc.}{=} \iint\limits_{\Bbb R^n \Bbb R^n} e^{i(x-y)\xi}
+p(y,x, -\xi)u(y) dyd\xi.$$
+\medskip
+\nin
+{\bf Examples:}
+\vskip0.1in
+\nin
+{\bf 1)} \quad   $\vph = (x-y)\xi, \ p=1$.  Then
+ $$(Iu)(x) = \frac{1}{(2\pi)^n} \underset{\Bbb R^n \Bbb R^n}{\iint} e^{i(x-y)\xi}
+u(y)dyd\xi$$
+is the identity operator.
+\vskip0.1in
+\nin
+{\bf 2)} \quad $\vph = (x-y)\xi, \ p(x,\xi) = \sum\limits_{|\alpha| \le m}
+a_\alpha (x) \xi^\alpha,\  a_\alpha \in C^\infty(X).$
+Then $P$ is a linear partial differential operator with symbol $p(x,\xi)$.
+\vskip0.1in
+\nin
+{\bf 3)} \quad Let  $X$ be an open set in $\Bbb R^q$ and $Y$ be an open set in
+$\Bbb R^n $, and $f: X \longrightarrow Y$ be a $C^\infty$ function. 
+If $u \in C^\infty_0 (Y)$ then  its  pullback by $f$ is defined by
+\begin{align*}
+f^*(u)(x) &= u(f(x))\\
+&= \frac{1}{(2\pi)^n} \underset{\Bbb R^n \Bbb R^n}{{\iint}} e^{i(f(x) -y) \cdot
+\xi} u(y)dyd\xi
+\end{align*}
+and it is a Fourier integral operator with symbol $p=1$ and phase
+$$\vph(x,y,\xi) = (f(x) - y)  \xi.$$
+Since $d_{y,\xi} \ \vph =-(\xi, y)\ne 0$ on $X \times Y \times \dot{\Bbb
+R}^n$
+we have that $f^*: C^\infty_0 (Y)\longrightarrow  C^\infty_0(X)$.
+Since  
+$$d_{x,\xi} \ \vph = (f^t_x(x)\xi,f(x)-y)\ne 0\text{ on }X \times Y \times
+\dot{\Bbb R}^n $$
+if ${}^tf_x$ is one-to-one, or equivalently if for each fixed $x$ 
+$$f'_x(x): \Bbb R^q
+\xrightarrow{onto} \Bbb R^n,$$ we have that $f^*$ extends continuously from
+$$\mathcal E'(Y) \longrightarrow \mathcal D'(X),$$
+since $f^*={}^t({}^tf^*)$.
+\vskip0.1in
+\nin
+{\bf 4.)}\quad{\bf  Trace:}\quad  Let $q<n$ and $Y$ open
+$\subset \Bbb R^n, \ X = Y \cap \Bbb R^q \ne \emptyset$ and
+$f:X \longrightarrow Y$
+with $x \overset{f}{\longmapsto} (x,0) \in \Bbb R^n$.
+Then $f^*$ is the trace operator with phase
+$$\vph(x,y,\xi) = ((x,0) - y)  \xi.$$
+{\bf 5)} \quad   Let the following initial problem
+for the wave operator in $\Bbb R^{n+1}$:
+\begin{equation*}
+	\begin{split}
+	\begin{cases} (\partial^2_t-\Delta_x)u(x,t) = 0\\ 
+u(0,x) = f(x),\ f \in \mathcal
+S(\Bbb R^n)\\ 
+\frac{\partial u}{\partial t} (0,x) = 0.
+\end{cases} 
+\end{split}
+\end{equation*}
+By taking the Fourier transform in $x$ we obtain 
+\begin{equation*}
+	\begin{split}
+		\begin{cases} \partial^2_t \hat u + |\xi|^2
+			\hat u = 0\\ \hat u (0,\xi) = \hat f(\xi).
+		\end{cases}
+		\end{split}
+	\end{equation*}
+Thus
+$$\hat u(t,\xi) = A(\xi) \cos (t|\xi|) + B(\xi) \sin (t|\xi|).$$
+Since $A(\xi) = \hat f(\xi)$,  and $B=0$
+$$\hat u(t,\xi) = \hat f(\xi) \frac{e^{it|\xi|} + e^{-it|\xi|}}{2}.$$
+Therefore
+\begin{align*}
+u(t,\xi) &= \frac{1}{(2\pi)^n} \int_{\Bbb R^n} e^{ix\xi}\hat f(\xi) 
+\frac{e^{it|\xi|} + e^{-it|\xi|}}{2} d\xi\\
+&= \frac{1}{(2\pi)^n} \iint e^{i(x-y)\xi+it|\xi|} \frac 12 f(y)dyd\xi +
+\frac{1}{(2\pi)^n} \iint e^{i(x-y)\xi-it|\xi|} \frac 12
+f(y)dyd\xi.\end{align*}
+\nin
+Thus for fixed $t$ we obtain two Fourier integral operators with phases
+$$\vph_+(x,y,\xi) = (x-y) \xi + t|\xi|,\quad \text { and }
+ \quad \vph_-(x,y,\xi) = (x-y) \xi - t|\xi|.$$
+\bigskip
+\begin{proposition} Pseudodifferential operators are pseudolocal; i.e
+$$\text{sing supp } Pu \subset \text{sing supp } u,\quad u \in \mathcal
+E'(X).$$
+\end{proposition}
+\nin
+{\bf Proof.}
+Let $x_0 \notin $ sing supp $ u.$
+Since sing supp $ u $ is compact there exist open sets $U$ and $V$ such that 
+$x_0 \in U$, sing supp $u \subset V$, and
+$$(U \times V) \cap \text{ sing supp } K_P = \emptyset$$
+Let $\varphi \in C_0^\infty (V)$ with $\varphi \equiv 1$ on sing supp $ u$.
+Then
+\begin{align*}
+Pu &=P(\varphi u + (1 - \varphi)u) \\
+&=P(\varphi u) + P ((1- \varphi)u).
+\end{align*}
+Since $(1 - \varphi) u \in C_0^\infty (X)$ we have $P((1 - \varphi)u) \in C^\infty$.
+Since
+$$K_P|_{U\times V} \in C^\infty$$
+we have $P(\varphi u)|_U \in C^\infty (U)$.
+Thus $x_0 \notin $ sing supp $Pu$, and this completes the proof of the
+Proposition.
+\vskip0.1in
+\centerline{\bf Notation}
+\vskip0.1in
+\nin
+The following notation is used in the literature:
+\begin{align*}
+\Psi^m(X) \text{ or }L^m(X) &= \text{Pseudodifferential operators with 
+symbol in}\; S^m (X
+\times X \times \Bbb R^n) \\ 
+\Psi^\infty(X) \text{ or }L^\infty(X) &= \cup_m \Psi^m \\
+\Psi^{-\infty}(X) \text{ or }L^{-\infty}(X) &= \cap_m \Psi^m
+\end{align*} 
+Also 
+\begin{align*}
+R(X) &= \text{ operators with
+kernel } K(x,y) \in C^\infty (X\times X)\\ &\Updownarrow \\
+&=\text{ Linear continuous maps from }  \mathcal E'(X) \longrightarrow C^\infty (X)
+\end{align*} 
+\begin{lemma}  $ R(X) = \Psi^{- \infty} (X)$.
+\end{lemma}
+\nin
+{\bf Proof.}  If $P\in \Psi^{-\infty} (X)$ then for any $k \in \Bbb N$ its
+kernel is
+$$K(x,y) = \frac{1}{(2 \pi)^n} \int e^{i(x-y)\xi} p(x,y, \xi)d\xi$$
+with $p \in S^{-n-1-k}$. Therefore $K \in C^k (X \times X)$ for any $k$, which
+implies that $K \in C^\infty (X \times X)$. Conversely let
+ $K \in C^\infty (X \times X)$. Then choose
+$\varphi(\xi)\in C_0^\infty (\Bbb R^n)$ with
+$$\frac{1}{(2\pi)^n} \int_{\Bbb R^n}  \varphi(\xi)d\xi=1.$$
+Then for $u \in C_0^\infty (\Bbb R^n)$ we
+have 
+\begin{align*}
+Pu(x) &=\int K(x,y)u(y)dy = \frac{1}{(2\pi)^n} \iint \varphi(\xi) K (x,y)u(y)dy d\xi
+\\ 
+&=\frac{1}{(2\pi)^n} \iint e^{i(x-y)\xi} [e^{-i(x-y) \cdot \xi}\  \varphi(\xi)
+K(x,y)] u(y) dy d\xi
+\end{align*}
+and
+$$e^{-i(x-y)\cdot \xi}\  \varphi(\xi)k(x,y) \in S^{-\infty}(X \times X \times \Bbb
+R^n).$$
+Therefore  $P\in\Psi^{-\infty}(X)$, and this completes the proof of the
+Lemma. $\qquad \Box$
+\vskip0.2in
+\centerline{\bf Properly Supported Pseudodifferential Operators}
+\begin{definition} Let $P\in \Psi^m (X)$ with distribution kernel $K(x,y)$. 
+Then  $P$ is {\bf properly supported} if the projections
+$$pr_1 : \text{supp } K \longrightarrow X$$
+and
+$$pr_2 : \text{supp } K \longrightarrow X$$
+are proper maps; i.e if $F$ is compact in $X$ then
+$$(F \times X) \cap \text{ supp } K \text{ and } (X \times F) \cap \text{ supp } K$$
+are compact in $X$.
+\end{definition}
+\nin
+This is equivalent to:
+\vskip0.1in
+\nin
+{\bf 1.} For  any  compact set $ F$ of $X$ there exists another compact
+set  $F' $ of $X$ such that 
+$$ \text{ supp }u\subset F \  \Longrightarrow \text{ supp }Pu\subset F'
+\text{ and  if }  u =0\text{ on }F'\text{ then } Pu = 0  \text{ on  }F$$
+and {\bf (1)} is equivalent to:
+\vskip0.1in
+\nin
+{\bf 2.} For  any  compact set $ F$ of $X$ there exists another compact
+set  $F' $ of $X$ such that 
+$$ \text{ supp }u\subset F \  \Longrightarrow \text{ supp }Pu\subset F'$$
+and
+$$\text{ supp }u\subset F \  \Longrightarrow \text{ supp }{}^tPu\subset F'.$$
+\nin
+{\bf Examples:}
+\vskip0.1in
+\nin
+{\bf 1.)}\quad If $P$ is a  pdo then it is proper. 
+\vskip0.1in
+\nin
+{\bf 2.)}\quad Convolution operators are not properly supported. For example, if  $f \in C^\infty (\Bbb R) $ then 
+$$ (Pu) (x) =\int f (x-y) u (y) dy $$
+is not properly supported if $ f\not\equiv 0$. If say,
+$f(x) = e^{-x^2}$  then supp  $K = \Bbb R^2.$
+\begin{proposition} If $P \in \Psi^m (X)$ then
+$$P = P' + R,$$
+where $P' $ is properly supported, and $ R $ is smoothing.
+\end{proposition}
+\nin
+{\bf Proof.} Let $\{\psi_j\}$ be a locally finite partition of unity on $X$;
+i.e. $\psi_j \in C_0^\infty (X)$, 
+$1 = \sum_{j=1}^{\infty} \psi_j$, and locally finite.
+Then define
+$$P' u (x) = \sum_{\text{supp} \psi_j \cap \text{supp} \psi_k \ne 0} \psi_j (x)
+P(\psi_ku).$$ 
+The  operator $P'$ is properly supported, and the symbol of $P - P'$ is given
+by 
+$$\sum_{\text{supp} \psi_j \cap \text{supp} \psi_k = 0} \psi_j (x) p(x, y, \xi)
+\psi_k (y)$$ 
+which is equal to zero in a neighborhood of the diagonal of $X \times X$. Thus
+$P-P'$ is smoothing. $\qquad \Box$
+\vskip0.1in
+\begin{proposition} If $P \in \Psi^m (X)$ is properly supported then:
+	\begin{enumerate}
+		\item $P: C^\infty_0 (X) \xrightarrow{cont.} C_0^\infty (X)$
+\item $P: C^\infty (X) \xrightarrow{cont.} C^\infty (X)$
+\item $P: \mathcal E' (X) \xrightarrow{cont.} \mathcal E' (X)$
+\item $P: \mathcal D'(X) \xrightarrow{cont.} \mathcal D' (X)$
+\end{enumerate}
+Also the same conclusions hold  for ${}^tP$.
+\end{proposition}
+\nin
+{\bf Proof.} It follows from the definition and
+ transposition. $\qquad \Box$
+ \vskip0.1in
+\noindent
+{\bf Remark:  } If $P$ and  $Q$ are two properly supported
+ $\psi$ do's then $P \circ Q$ and $Q \circ P$ are well defined.
+\end{document}
+                                                                                                                                                                   
+
+                                                                                                                                                                                                                                                                            
+ 
+

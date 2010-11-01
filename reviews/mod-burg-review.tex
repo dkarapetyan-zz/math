@@ -1,0 +1,458 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage{amsxtra}
+\synctex=1
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\tf}{\tilde{f}}
+\newcommand{\ti}{\tilde}
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\def\autorefer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+\newtheorem{definition}{Definition}
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{addend}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{mainthm}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{corol}{Corollary}
+\makeautorefname{coro}{Corollary}
+\makeautorefname{cor}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{lemm}{Lemma}
+\makeautorefname{lem}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{sublem}{Sublemma}
+\makeautorefname{subl}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{proposit}{Proposition}
+\makeautorefname{propos}{Proposition}
+\makeautorefname{propo}{Proposition}
+\makeautorefname{prop}{Proposition}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{proper}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{conject}{Conjecture}
+\makeautorefname{conj}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{questn}{Question}
+\makeautorefname{quest}{Question}
+\makeautorefname{ques}{Question}
+\makeautorefname{qn}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{defin}{Definition}
+\makeautorefname{defi}{Definition}
+\makeautorefname{def}{Definition}
+\makeautorefname{dfn}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{nota}{Notation}
+\makeautorefname{notn}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{rema}{Remark}
+\makeautorefname{rem}{Remark}
+\makeautorefname{rmk}{Remark}
+\makeautorefname{rk}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{rems}{Remarks}
+\makeautorefname{rmks}{Remarks}
+\makeautorefname{rks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{examp}{Example}
+\makeautorefname{exmp}{Example}
+\makeautorefname{exam}{Example}
+\makeautorefname{exa}{Example}
+\makeautorefname{algorithm}{Algorith}
+\makeautorefname{algo}{Algorith}
+\makeautorefname{alg}{Algorith}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{axi}{Axiom}
+\makeautorefname{ax}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{clm}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{assumpt}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{concl}{Conclusion}
+\makeautorefname{conc}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{condit}{Condition}
+\makeautorefname{cond}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{construct}{Construction}
+\makeautorefname{const}{Construction}
+\makeautorefname{cons}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{criter}{Criterion}
+\makeautorefname{crit}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{exer}{Exercise}
+\makeautorefname{exe}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{problm}{Problem}
+\makeautorefname{probm}{Problem}
+\makeautorefname{prob}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{soln}{Solution}
+\makeautorefname{sol}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{summ}{Summary}
+\makeautorefname{sum}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{oper}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{observn}{Observation}
+\makeautorefname{obser}{Observation}
+\makeautorefname{obs}{Observation}
+\makeautorefname{ob}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{convent}{Convention}
+\makeautorefname{conv}{Convention}
+\makeautorefname{cvn}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{warn}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+%
+\begin{document}
+%\begin{titlepage}
+\title{Blowup of $C^2$ Solutions for a Modified Burgers Equation }
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+University  of Notre Dame\\
+Notre Dame, IN 46556 }
+\date{11/16/09}
+%
+\maketitle
+%
+%
+\parindent0in
+\parskip0.1in
+%
+%\end{titlepage}
+%
+%
+%
+\setcounter{equation}{0}
+We consider a modified Burgers equation (mB)
+%
+%
+\begin{gather}
+	\label{mbeq}
+	\p_t u + u \p_x u - \gamma \p_x^2 u = 0,
+	\\
+	\label{mbeq-init-cond}
+	u(0,x) = u_0(x), \quad x \in \rr,  \ \ t \in \rr
+\end{gather}
+%
+%
+and prove the following result:
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Main Theorem	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+	\label{thm:main}
+	The compactly supported $C^2$ solutions of the mB Cauchy problem
+	\eqref{mbeq}-\eqref{mbeq-init-cond} blow up on or
+	before
+	%
+	%
+	\begin{equation}
+		\label{lifespan}
+		\begin{split}
+			T = -\frac{1}{\gamma} \ln\left( \frac{H_0}{|K|}\left[
+			\frac{H_0}{|K|} - \frac{2\gamma}{\sup_{x \in K} x^2}
+			\right]^{-1} \right)
+		\end{split}
+	\end{equation}
+	%
+	%
+	provided that
+	%
+	%
+	\begin{equation}
+		\label{blowup-cond}
+		\begin{split}
+			H_0 = \int_K \p_x u(0, x(0)) \ dx < 0
+		\end{split}
+	\end{equation}
+	%
+	%
+	where $K= K(t)$ is the support of the solution $u(t,x(t))$ and $|K|$ is the
+	volume of $K$.
+\end{theorem}
+%
+%
+{\bf Proof.}
+%
+%
+Multiplying both sides of \eqref{mbeq} by $x$ and integrating gives
+%
+%
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_K (\p_t u + u \p_x u) \cdot x \ dx - \gamma \int_K	\p_x^2 u \cdot 
+		x \ dx = 0.
+	\end{split}
+\end{equation*}
+%
+%
+Integrating by parts and recalling that $u$ is compactly supported, we 
+obtain
+%
+%
+\begin{equation}
+	\label{before-char}
+	\begin{split}
+		\frac{1}{2} \int_K x^2 \p_x (\p_t u + u \p_x u) \ dx - \gamma \int_K 
+		\p_x u \ dx = 0.
+	\end{split}
+\end{equation}
+%
+%
+Since \eqref{mbeq} is quasi-linear and the real line is 
+non-characteristic, we can find characteristic curves $x(t)$
+extending from the real line into the $tx$ plane along which $u(t, x(t))$ is 
+constant. Hence, \eqref{before-char} can be viewed as a function of $t$ 
+along the characteristic curves. That is
+\begin{equation}
+	\label{after-char}
+	\begin{split}
+		\frac{1}{2} \int_K x^2 \p_x (\p_t u(t, x(t)) + u(t, x(t)) \p_x u(t, 
+		x(t)) \ dx - \gamma \int_K 
+		\p_x u(t,x(t)) \ dx = 0.
+	\end{split}
+\end{equation}
+
+Next, note that since $u \in C^2$ a priori, $\p_x^2 u$ is continuous. Hence, we can 
+find a $T >0$ sufficiently small such that $ \p_x^2$ which by the mean value theorem for integrals takes the form
+%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{\bar{x}^2}{2} \int_K \p_x (\p_t u + u \p_x u) \ dx - \gamma 
+		\int_K \p_x u \ dx = 0	
+	\end{split}
+\end{equation*}
+%
+%
+where $\bar{x} = \bar{x}(t) \in K(t)$. Expanding the $\p_x (\p_t u + u \p_x 
+u)$ term yields
+%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{\bar{x}^2}{2} \int_K \left[ \p_t \p_x u + u \p_x^2 u + (\p_x 
+		u)^2 \right]  dx - \gamma \int_K \p_x u \ dx = 0.	
+	\end{split}
+\end{equation*}
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \frac{\bar{x}^2}{2} \left [ \p_t H(t) +  \int_K u(t,x(t)) 
+		\p_x^2 u(t,x(t)) \ dx + \int_K \left \{\p_x u(t,x(t)) \right \}^2  dx 
+		\right ]
+		- \gamma H(t) = 0
+	\end{split}
+\end{equation*}
+where
+%
+%
+\begin{equation*}
+	\label{H-def}
+	\begin{split}
+		H(t) \doteq \int_K \p_x u(t, x(t)) \ dx.
+	\end{split}
+\end{equation*}
+%
+%
+Since $u(t, x(t))$ is a function only of $t$, we can pull the operator $u(t, x(t)) \p_x$ 
+outside of the first integral to obtain
+\begin{equation}
+	\begin{split}
+		\label{bar-x-to-sup}
+		& \frac{\bar{x}^2}{2} \left [ \p_t H(t) + u(t, x(t)) \p_x H(t) +
+		\int_K \left \{\p_x u(t,x(t)) \right \}^2  dx 
+		\right ]
+		- \gamma H(t) = 0.
+	\end{split}
+\end{equation}
+Note that since $u \in C^2(K)$ a priori, we have $H \in C^1(0, T)$. 
+Furthermore, by continuity and the bound $H_0 < 0$, we have 
+$H(t) <0$ for all non-negative $t$ in a sufficiently small neighborhood of 
+$0$. Hence, \eqref{bar-x-to-sup} implies
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \frac{\bar{x}^2}{2} \left [ \p_t H(t) + u(t, x(t)) \p_x H(t) +
+		\int_K \left \{\p_x u(t,x(t)) \right \}^2  dx 
+		\right ] = \gamma H(t) \le 0
+	\end{split}
+\end{equation*}
+%
+%
+which gives
+\begin{equation}
+	\label{after-char-est}
+	\begin{split}
+		& \frac{\sup x^2}{2} \left [ \p_t H(t) + u(t, x(t)) \p_x H(t) +
+		\int_K \left \{\p_x u(t,x(t)) \right \}^2  dx 
+		\right ] 		 \\
+		& - \gamma H(t) \le 0
+	\end{split}
+\end{equation}
+where $\sup x^2 = \sup_{x \in K} x^2$. We wish to obtain an ODE in $H(t)$ 
+from \eqref{after-char-est}. By Cauchy-Schwartz, we have 
+%
+%
+\begin{equation*}
+	\begin{split}
+		| H(t) |
+		& \le \left( \int_K \left[  
+		\p_x u(t, x(t,x)) \right]^2 \ dx
+		\right)^{1/2} \left( \int_K 1 \ dx \right)^{1/2}
+		\\
+		& = |K|^{1/2} \left( \int_K \left[  
+		\p_x u(t, x(t,x)) \right]^2 \ dx
+		\right)^{1/2} 
+	\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation}
+	\label{cauchy-schwartz-est}
+	\begin{split}
+		\frac{H(t)^2}{|K|} \le \int_K \left[ \p_x u(t, x(t)) \right]^2 dx .
+	\end{split}
+\end{equation}
+%
+%
+Applying \eqref{cauchy-schwartz-est} to \eqref{after-char-est}, we obtain the ODE-like 
+expression
+%
+%
+\begin{equation}
+	\label{ode}
+	\frac{dH}{dt} + u(t, x(t)) \p_x H + 
+	\frac{H^2}{|K|} - \frac{2\gamma}{\sup x^2}H \le 0.
+\end{equation}
+%
+%
+%
+%
+%
+%
+
+
+\end{document}
+
+

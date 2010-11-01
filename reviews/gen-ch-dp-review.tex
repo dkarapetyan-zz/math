@@ -1,0 +1,277 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage[alphabetic, msc-links]{amsrefs} %for the bibliography; uses cite pkg
+%\usepackage[notcite, notref]{showkeys}
+\usepackage[margin=3cm]{geometry}  %page layout
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\synctex=1
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\quod}{\qquad \qedsymbol}
+%
+%
+\theoremstyle{plain}  
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}[subsection]{conjecture}
+%
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+%
+%
+%
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{algorithm}{Algorithm}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+%
+\begin{document}
+%\begin{titlepage}
+\title{Report on ``A model containing both the Camassa-Holm and
+Degasperis-Procesi equations''}
+\author{David Karapetyan \\ University of Notre Dame}
+\address{Department of Mathematics  \\
+         University  of Notre Dame\\
+         Notre Dame, IN 46556 }
+				  \date{08/04/10}
+				  %
+				  \maketitle
+				  %
+				  %
+				  \parindent0in
+				  \parskip0.1in
+				  %
+				  %\end{titlepage}
+				  %
+				  %
+				  %
+				  \setcounter{equation}{0}
+				  The paper in question deals with a generalized 
+				  Camassa-Holm and Degasperis-Procesi (gCD) initial 
+				  value problem%
+%
+\begin{gather}
+	\label{gch}
+	u_t - u_{xxt} + 2ku_x + mu u_x=au_x u_{xx} + buu_{xxx}, 		\\
+		\label{gch-init-data}
+		u(x,0) = u_0(x), \quad x \in \rr,
+\end{gather}
+%
+%
+where $a,b,k,m$ are constants. Note that for $m=4, a=3, b=1$ one obtains the
+Degasperis-Procesi equation
+\cite{Degasperis-Procesi-1999-Asymptotic-integrability}, while $k =0, m=3, a=2,
+b=1$ yields the Camassa Holm equation
+\cite{Camassa-Holm-1993-An-integrable-shallow-water}. The main result consists of two parts: a proof of local existence and uniqueness of solutions $u(x,t) \in C([0, T], H^s(\rr)) \cap 
+C^1([0, T], H^{s-1}(\rr))$, $s > 3/2$
+given initial data $u_0 \in H^s$, 
+where $T = T(\|u_0\|_{H^s})$, and a proof of the existence of weak 
+solutions $u(x,t) \in L^2([0,T], H^s(\rr))$ for $1 < s \le 3/2$ if $u_0 \in 
+H^s(\rr)$ and $u_{0x} \in L^\infty(\rr)$. The authors prove well-posedness
+for $s>3/2$ by verifying that equation \eqref{gch} satisfies the
+requirements of Kato's semi-group theory
+\cite{Kato-1975-Quasi-linear-equations-of-evolution}. For the proof of the existence of weak
+solutions for $1 <s \le 3/2$, the authors consider \eqref{gch}, with initial data given by a mollification of
+\eqref{gch-init-data}
+%
+	\begin{gather}
+	\label{gch-regular}
+	u_t - u_{xxt} + 2ku_x + mu u_x=au_x u_{xx} + buu_{xxx}, 		\\
+		\label{gch-init-data-moll}
+		u(x,0) = u_{\ee 0} (x), \quad x \in \rr.
+	\end{gather}
+	They then show that there exists $T>0$ such that if
+	$\|u_{0x}\|_{L^\infty} <\infty$, then the family
+$\{\p_x u_{\ee} \}$ is uniformly bounded in $L^\infty$ for $t \in [0, T]$. 
+Using this fact, they are then able to bound the $H^r$ norms of $u_{\ee}$ and
+$u_{\ee t}$, for $r \in (0, s-1)$. An application of Aubin's and Aloaglu's
+compactness lemmas then completes the proof.
+\\
+\\
+Equation \eqref{gch} first appeared in the work
+of Constantin and Lannes
+\cite{Constantin-Lannes-2009-The-hydrodynamical-relevance-of-the-Camassa-Holm}
+on the Camassa-Holm \cite{Camassa-Holm-1993-An-integrable-shallow-water} and
+Degasperis-Procesi \cite{Degasperis-Procesi-1999-Asymptotic-integrability}
+equations. 
+Unlike the Camassa-Holm and Degasperis-Procesi equations, \eqref{gch} is not
+integrable. However, for $a =2b$, the $H^1$ norm of
+solutions are conserved, as in the Camassa-Holm equation. For the general case, the authors show that, for initial data $u_0 \in H^s, s \ge4$, the
+following holds 
+%
+%
+\begin{equation}
+	\label{semi-conservation-law}
+	\begin{split}
+		\|u\|_{H^1}^2 \le \int_{\rr}\left( u_0^2 + u_{0x}^2 \right)dx + | a - 2b
+		|\int_{0}^t \|u_x\|_{L^\infty} \|u\|_{H^1}^2 d \tau
+	\end{split}
+\end{equation}
+%
+%
+which plays an important role in the proof of existence for weak solutions for
+$1 < s \le 3/2$. While the techniques are not new, the argumentation is clear,
+and proper credit is given to other authors where needed. Since the
+gCD ivp \eqref{gch}-\eqref{gch-init-data} subsumes both the Camassa-Holm
+and Degasperis-Procesi equations, it is important in its own right.
+Therefore, the reader recommends this paper for publication, pending the
+following comments and suggestions: %
+%
+\begin{enumerate}
+	\item Three theorems are stated, but it is clear that the main results of 
+		the paper are Theorem 1 and Theorem 3. Theorem 2 should be renamed as a
+		lemma or proposition, as it is used to prove Theorem 3 and is not important
+		enough in its own right. 
+		\item Due to the spacing, it is unclear at times when a proof is complete.
+			A qed symbol at the end of a proof or adjusting spacing would
+			improve the clarity of the article. 
+		\item In the section containing the proofs of Theorem 2 and Theorem 3,
+			it would aid the reader if lemmas were introduced at the precise moment
+			they are needed, rather than being introduced en masse at the beginning of
+			the section.
+\end{enumerate}
+	% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Camassa-Holm-1993-An-integrable-shallow-water}{article}{
+      author={Camassa, Roberto},
+      author={Holm, Darryl~D.},
+       title={An integrable shallow water equation with peaked solitons},
+        date={1993},
+        ISSN={0031-9007},
+     journal={Phys. Rev. Lett.},
+      volume={71},
+      number={11},
+       pages={1661\ndash 1664},
+         url={http://dx.doi.org/10.1103/PhysRevLett.71.1661},
+      review={\MR{MR1234453 (94f:35121)}},
+}
+
+\bib{Constantin-Lannes-2009-The-hydrodynamical-relevance-of-the-Camassa-Holm}{%
+article}{
+      author={Constantin, Adrian},
+      author={Lannes, David},
+       title={The hydrodynamical relevance of the {C}amassa-{H}olm and
+  {D}egasperis-{P}rocesi equations},
+        date={2009},
+        ISSN={0003-9527},
+     journal={Arch. Ration. Mech. Anal.},
+      volume={192},
+      number={1},
+       pages={165\ndash 186},
+         url={http://dx.doi.org/10.1007/s00205-008-0128-2},
+      review={\MR{MR2481064 (2010f:35334)}},
+}
+
+\bib{Degasperis-Procesi-1999-Asymptotic-integrability}{incollection}{
+      author={Degasperis, A.},
+      author={Procesi, M.},
+       title={Asymptotic integrability},
+        date={1999},
+   booktitle={Symmetry and perturbation theory ({R}ome, 1998)},
+   publisher={World Sci. Publ., River Edge, NJ},
+       pages={23\ndash 37},
+      review={\MR{MR1844104 (2002f:37112)}},
+}
+
+\bib{Kato-1975-Quasi-linear-equations-of-evolution}{incollection}{
+      author={Kato, Tosio},
+       title={Quasi-linear equations of evolution, with applications to partial
+  differential equations},
+        date={1975},
+   booktitle={Spectral theory and differential equations ({P}roc. {S}ympos.,
+  {D}undee, 1974; dedicated to {K}onrad {J}{\"o}rgens)},
+   publisher={Springer},
+     address={Berlin},
+       pages={25\ndash 70. Lecture Notes in Math., Vol. 448},
+      review={\MR{MR0407477 (53 \#11252)}},
+}
+
+\end{biblist}
+\end{bibdiv}	
+%\bibliography{/Users/davidkarapetyan/Documents/math/bib-files/review.bib}
+
+
+				  \end{document}
+
+

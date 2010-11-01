@@ -1,0 +1,1602 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage{amsxtra}
+\synctex=1
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%\setcounter{secnumdepth}{1} 
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\tf}{\tilde{f}}
+\newcommand{\ti}{\tilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\def\autorefer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+\newtheorem{definition}{Definition}
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{addend}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{mainthm}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{corol}{Corollary}
+\makeautorefname{coro}{Corollary}
+\makeautorefname{cor}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{lemm}{Lemma}
+\makeautorefname{lem}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{sublem}{Sublemma}
+\makeautorefname{subl}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{proposit}{Proposition}
+\makeautorefname{propos}{Proposition}
+\makeautorefname{propo}{Proposition}
+\makeautorefname{prop}{Proposition}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{proper}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{conject}{Conjecture}
+\makeautorefname{conj}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{questn}{Question}
+\makeautorefname{quest}{Question}
+\makeautorefname{ques}{Question}
+\makeautorefname{qn}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{defin}{Definition}
+\makeautorefname{defi}{Definition}
+\makeautorefname{def}{Definition}
+\makeautorefname{dfn}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{nota}{Notation}
+\makeautorefname{notn}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{rema}{Remark}
+\makeautorefname{rem}{Remark}
+\makeautorefname{rmk}{Remark}
+\makeautorefname{rk}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{rems}{Remarks}
+\makeautorefname{rmks}{Remarks}
+\makeautorefname{rks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{examp}{Example}
+\makeautorefname{exmp}{Example}
+\makeautorefname{exam}{Example}
+\makeautorefname{exa}{Example}
+\makeautorefname{algorithm}{Algorith}
+\makeautorefname{algo}{Algorith}
+\makeautorefname{alg}{Algorith}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{axi}{Axiom}
+\makeautorefname{ax}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{clm}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{assumpt}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{concl}{Conclusion}
+\makeautorefname{conc}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{condit}{Condition}
+\makeautorefname{cond}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{construct}{Construction}
+\makeautorefname{const}{Construction}
+\makeautorefname{cons}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{criter}{Criterion}
+\makeautorefname{crit}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{exer}{Exercise}
+\makeautorefname{exe}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{problm}{Problem}
+\makeautorefname{probm}{Problem}
+\makeautorefname{prob}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{soln}{Solution}
+\makeautorefname{sol}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{summ}{Summary}
+\makeautorefname{sum}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{oper}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{observn}{Observation}
+\makeautorefname{obser}{Observation}
+\makeautorefname{obs}{Observation}
+\makeautorefname{ob}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{convent}{Convention}
+\makeautorefname{conv}{Convention}
+\makeautorefname{cvn}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{warn}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+%
+\begin{document}
+%\begin{titlepage}
+\title{Well-Posedness for the Cubic Nonlinear Schr\"{o}dinger Equation }
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+         University  of Notre Dame\\
+		          Notre Dame, IN 46556 }
+				  \date{02/28/10}
+				  %
+				  \maketitle
+				  %
+				  %
+				  \parindent0in
+				  \parskip0.1in
+				  %
+				  %\end{titlepage}
+				  %
+				  %
+				  %
+				  \section{Introduction}
+				  \setcounter{equation}{0}
+				  We consider the cubic nonlinear Schr\"{o}dinger (NLS) 
+				  initial value problem (ivp)
+%
+%
+\begin{gather}
+	\label{NLS-eq}
+		i \p_t u = - \p_x^2 u - |u|^{2} u,
+		\\
+		\label{NLS-init-data}
+		u(x,0) = \vp(x), \ \ x \in \ci, \ \ t \in \rr.
+\end{gather}
+%
+%
+and prove the following result.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%	Main Result				
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+	\label{thm:main}
+	For any $s \ge 0$, the initial value problem 
+	\eqref{NLS-eq}-\eqref{NLS-init-data} is locally well-posed for 
+	initial data $\vp(x) \in H^s(\ci)$.
+%
+%
+\end{theorem} 
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Outline
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Outline of the Proof of \autoref{thm:main}}
+\setcounter{equation}{1}
+%
+%
+%
+%
+%
+We first derive a weak formulation of the NLS ivp. Without loss of 
+generality we let $\ci = [-2B, 2B]$, and use
+the following notation for the Fourier transform
+%
+%
+%
+%
+\begin{equation*}
+	\begin{split}
+		\widehat{f}(n) = \int_{\ci} e^{-ix n} f(x) \ dx.
+	\end{split}
+\end{equation*}
+Assume 
+$u(x,t)$ is a classical solution of \eqref{NLS-eq}-\eqref{NLS-init-data}.
+Then $u(\cdot ,   t): \rr \to C^2(\ci)$ and is $C^1$ in time; hence, applying 
+the Fourier transform to the NLS ivp in the space variable we obtain 
+%
+%
+\begin{gather*}
+	\p_t \widehat{u}(n, t) = -i n^2 \widehat{u}(n, t) + i  
+	\widehat{|u|^{2} u} (n, t),
+	\\
+	\widehat{u} (n,0) = \widehat{\vp}(n)
+\end{gather*}
+%
+%
+which is a globally well-defined relation in $t$ 
+and $n$. Multiplication by the integrating factor $e^{itn^2}$ then yields
+%%
+%%
+\begin{equation*}
+	\begin{split}
+		\left[ e^{it n^2} \widehat{u}(n) \right]_t = i
+		 e^{it n^2} \widehat{|u|^{2} u} (n, t).	
+	\end{split}
+\end{equation*}
+%
+%
+Integrating from $0$ to $t$, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{u}(n, t) = \wh{\vp}(n) e^{-it n^2} + i  
+		\int_0^t e^{i(t' - t)n^2} \wh{|u|^{2} u}(n, t') \ 
+		dt'
+	\end{split}
+\end{equation*}
+%
+%
+which by Fourier inversion yields 
+%
+%
+\begin{equation}
+	\label{NLS-integral-form}
+	\begin{split}
+		u(x,t) & = \sum_{n \in \zz} \wh{\vp}(n) e^{i\left( xn - t n^2 
+		\right)} 
+		 + i \sum_{n \in \zz} \int_0^t e^{i\left[ xn + \left( t' - t 
+		\right)n^2 \right]} \wh{|u|^2 u}(n, t') \ dt'.
+	\end{split}
+\end{equation}
+%
+%
+Here we remark that \eqref{NLS-integral-form} is a weaker 
+restatement of the Cauchy-problem \eqref{NLS-eq}-\eqref{NLS-init-data}, 
+since by construction any classical solution of the NLS ivp is a solution to 
+\eqref{NLS-integral-form}. This motivates the following.
+
+
+
+\begin{definition}
+	%
+	%
+	We say $u(x,t)$ is a \emph{local solution} of the NLS ivp
+\eqref{NLS-eq}-\eqref{NLS-init-data} if it satisfies the weak formulation 
+\eqref{NLS-integral-form} for $t \in I \subset \rr$. If $I = \rr$, then we say 
+$u$ is a \emph{global solution}. 
+%
+%
+\end{definition}
+%
+%
+Restrict $t \in [0, 2\delta]$, where $\delta = \pi/m_0$ for some $m_0 \in 
+\mathbb{N}$. We now derive an integral 
+equation global in $t$ and equivalent to \eqref{NLS-integral-form} for $t 
+\in [0, \delta]$. Let $\psi_1(t)$ be a cutoff function symmetric about the 
+origin such that $\psi_1(t) = 1$ for $|t| \le \delta$ and $\text{supp} \, \psi_1 
+= 
+[-2\delta, 2\delta ]$. Multiplying the right hand side of expression 
+$\eqref{NLS-integral-form}$ by $\psi_1(t)$, we obtain
+%
+%
+\begin{equation}
+	\begin{split}
+		\label{cutoff-int-eq}
+		u(x, t)
+		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn - tn^{2
+		})} \widehat{\vp}(n) 
+		\\
+		& + \frac{i }{2 \pi} \psi_1(t) \int_0^t \sum_{n \in \zz} 
+		e^{i\left[ xn + (t - t')n^2 \right]} \wh{w}(n, t') \ dt'
+	\end{split}
+\end{equation}
+%
+%
+where $w(x, t) \doteq |u|^2 u$. Periodically extend $u(x, t)$ in the time 
+variable, and assume a priori that $u \in 
+L^4(\ci^2)$. 
+\\
+\hrule
+Claim: Therefore, by Fourier inversion (makes sense if we view $w$ as a 
+distribution, which we are permitted to do since $w \in L^{4/3}$) and 
+Fubini-Tonelli (does not make sense to me--what guarantee 
+do we have that $\wh{w} \in \ell^1$? \textbf{these questions have been resolved 
+in mNLS document--in process of copying them over})
+\\
+\hrule
+%
+\begin{equation}
+	\label{prim-int-form}
+	\begin{split}
+		& \frac{i }{2 \pi} \psi_1(t) \int_0^t \sum_{n \in \zz} 
+		e^{i\left[ xn + (t - t')n^2 \right]} \wh{w}(n, t') \ dt'
+		\\
+		& = \frac{i }{4 \pi^2} \psi_1(t)
+		\int_0^t 
+		e^{it'(\tau - n^2)} \ dt' 
+		\sum_{n, \tau \in \zz} e^{i(xn + tn^2)} \wh{w}(n, \tau) .
+	\end{split}
+\end{equation}
+%%
+%%
+Since
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_0^t e^{it'(\tau - n^2)} \ dt' = -i \frac{e^{it(\tau - n^{2  
+		})}- 1}{\tau - n^2}
+	\end{split}
+\end{equation*}
+%%
+%%
+expression \eqref{prim-int-form} gives
+%
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \frac{i }{2 \pi} \psi_1(t) \int_0^t \sum_{n \in \zz} 
+		e^{i\left[ xn + (t - t')n^2 \right]} \wh{w}(n, t') \ dt'
+		\\
+		& = \frac{1}{4 \pi^2} \psi_1(t) \sum_{n, \tau \in \zz} 
+		e^{i(xn + tn^2)} \frac{e^{it(\tau - n^2)}- 1}{\tau - n^2} 
+		\wh{w}(n, \tau)  
+		\end{split}
+\end{equation*}
+%
+%
+which we substitute
+into \eqref{cutoff-int-eq} to obtain
+%
+%
+\begin{equation}
+	\begin{split}
+		\label{cutoff-int-eq-2}
+		u(x, t)
+		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn - tn^{2  
+		})} \widehat{\vp}(n) 
+		\\
+		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n, \tau \in \zz} 
+		e^{i(xn + tn^2)} \frac{e^{it(\tau - n^2)}- 1}{\tau - n^2} \wh{w}(n, 
+		\tau). 
+	\end{split}
+\end{equation}
+%
+%
+Next, we localize near the singular curve $\tau = n^2$. Let $\psi_2(t)$ be a cutoff function symmetric about the origin such that 
+$\psi_2(t) = 1$ for $|t| \le B$ and $\text{supp} \, \psi_2 = 
+[-2B, 2 B]$.
+Multiplying the summand of the second term of \eqref{cutoff-int-eq-2} by $1 \pm \psi_2(\tau - n^2)$ and rearranging 
+terms, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		 u(x, t)
+		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn + tn^{2 
+		})} \widehat{\vp}(n) 
+		\\
+		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz} e^{ixn} \sum_{\tau \in \zz} 
+		e^{it \tau} \frac{ 1 - \psi_2(\tau - n^2) 
+		}{\tau - n^2} \wh{w}(n, \tau) 
+		\\
+		& - \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz} e^{i(xn + 
+		tn^2)}
+		\sum_{\tau \in \zz} \frac{1- \psi_2(\tau - n^2)}{\tau - n^2} \wh{w}(n, \tau) \ 
+		d\tau
+		\\
+		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz}
+		e^{i(xn + tn^2)}
+		\sum_{\tau \in \zz} 
+		\frac{\psi_2(\tau - n^2)\left[ e^{it(\tau - n^2)}-1 
+		\right]}{\tau - n^2} \wh{w}(n, \tau) 
+	\end{split}
+\end{equation*}
+%
+%
+which by a power series expansion of $[e^{it(\tau - n^2)}-1]$ simplifies  to
+%
+%
+\begin{align}
+	\label{main-int-expression-1}
+	& u(x, t) \notag
+		\\
+		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn + tn^{2 
+		j})} \widehat{\vp}(n) 
+		\\
+		\label{main-int-expression-2}
+		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz} e^{ixn} \sum_{\tau \in \zz} 
+		e^{it \tau} \frac{ 1 - \psi_2(\tau - n^2) 
+		}{\tau - n^2} \wh{w}(n, \tau) 
+		\\
+		\label{main-int-expression-3}
+		& - \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz} e^{i(xn + 
+		tn^2)}
+		\sum_{\tau \in \zz} \frac{1- \psi_2(\tau - n^2)}{\tau - n^2} \wh{w}(n, \tau) 
+		\\
+		\label{main-int-expression-4}
+		& + \frac{1}{8 B \pi^2} \psi_1(t) \sum_{k \ge 1} \frac{i^k (2Bt)^k}{k!}
+		\sum_{n \in \zz} e^{i(xn + tn^2 )}
+		\sum_{\tau \in \zz}	\psi_2 (\tau - n^2) \left(\frac{\tau - 
+		n^2}{2B} \right)^{k -1} \wh{w}(n, \tau) 
+		\\
+		& \doteq T(u). \notag
+\end{align}
+where $T = T(\vp)$. Note that 
+\eqref{main-int-expression-1}-\eqref{main-int-expression-4} is a global 
+relation in $t$; furthermore, the fixed point solution $Tu=u$ gives rise to a 
+local solution of the NLS ivp by simply restricting the time 
+variable to 
+the $[0, \delta]$ interval. Hence, we focus our attention on 
+\eqref{main-int-expression-1}-\eqref{main-int-expression-4}. In 
+Section 3 we will show that for initial data $\vp \in H^s(\ci)$, $T$ is 
+a contraction on $B_M 
+\subset L^4(\ci^2)$, where $B_M$ is the ball centered at 
+the origin of radius $M = M(\vp) > 0$, by estimating the $L^4(\ci^2)$
+norm of 
+\eqref{main-int-expression-1}-\eqref{main-int-expression-4}. The Picard 
+fixed point theorem and time restriction will
+then yield a unique local solution to the NLS ivp in the time interval
+$I = [0, \delta]$. Continuous 
+dependence will follow from estimates used to establish the contraction 
+mapping.  In Section 4 a similar argument for handling well-posedness for 
+\eqref{NLS-integral-form} in $H^s(\ci)$, $s > 0$ will be discussed.
+%In the 
+%appendix we establish necessary conditions under which a local solution to 
+%\eqref{NLS-integral-form} can be viewed as a distributional solution of 
+%\eqref{NLS-eq}-\eqref{NLS-init-data}.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%	Case \ell^2			
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{The case $\vp \in L^2(\ci)$}
+\label{sec:s=0}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%		Estimation of Integral Equality Part 1		
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\vskip0.1in
+{\bf Estimate for \eqref{main-int-expression-1}.}
+Letting $f(x,t) = \psi(t) \sum_{n \in \zz} e^{i(xn + tn^2)} 
+\wh{\vp}(n)$, we have $\wh{f}(n,t) = \psi(t) \wh{\vp}(n) e^{itn^2}$,
+from which we obtain
+%
+%
+\begin{equation}
+	\label{fourier-trans-calc}
+	\begin{split}
+		\wh{f}(n, \tau)
+		& = \wh{\vp}(n) \int_\rr e^{-it( \tau - n^2}) 
+		\wh{\psi_1}(\tau) \ d\tau
+		= \wh{\psi_1}(\tau - n^2) \wh{\vp}(n).
+	\end{split}
+\end{equation}
+%
+%
+We now require the following multiplier estimate, whose proof can be found in 
+\cite{Bourgain-Fourier-transfo-1}. %
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Fourier Multiplier Estimate	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Bourgain]
+	\label{lem:four-mult-est}
+	Let $(x, t) \in \ci^2$ and let $(n, \tau) \in \zz^2$ 
+	be the dual variables. Then for $h \in L^2(\ci^2)$,
+%
+\begin{equation}
+	\label{four-mult-est}
+	\begin{split}
+		\|h\|_{L^4(\ci^2)} \le c \|(1 + |\tau - 
+		n^2|)^{3/8} \, \wh{h}(n, \tau) \|_{\ell^2(\zz^2)}.
+	\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+%
+%
+%
+%
+%
+%
+Applying \autoref{lem:four-mult-est} and \eqref{schwartz-bound} to
+\eqref{fourier-trans-calc}, we obtain
+%
+%
+\begin{equation}
+	\label{main-int-est-part-1}
+	\begin{split}
+		\|\eqref{main-int-expression-1}\|_{L^4(\ci^2)} 
+		& \le c  \|(1 + |\tau - 
+		n^2|)^{3/8} \wh{\psi}(\tau - n^2) 		\wh{\vp}(n) \|_{\ell^2(\zz^2)}
+		\\
+		& \le c \|(1 + |\xi|)  \wh{\psi_1}(\xi)\|_{L^\infty(\zz)} 
+		\|\wh{\vp} \|_{\ell^2(\zz)}
+		\\
+		& \lesssim \|\vp \|_{L^2(\ci)}.
+	\end{split}
+\end{equation}
+where the last step follows from Plancharel and the estimate
+%
+%
+\begin{equation}
+	\label{schwartz-bound}
+	\begin{split}
+		\|\left( 1 + |\lambda| \right)^k \wh{\psi_1}(\lambda) 
+		\|_{L^\infty(\zz)} \le c_k , \qquad k\ge0
+	\end{split}
+\end{equation}
+%
+%
+whose proof is provided in the appendix.
+%
+%
+\vskip0.1in
+%
+%
+%
+%
+%
+%
+\vskip0.1in
+{\bf Estimate for \eqref{main-int-expression-2}.}
+We have
+%
+%
+\begin{equation}
+	\label{1ag}
+	\begin{split}
+		\|\eqref{main-int-expression-2}\|_{L^4(\ci^2)} 
+		& \lesssim \| \sum_{n \in \zz} e^{ixn} \sum_{\tau \in
+		\zz} e^{it \tau} \frac{1- \psi_2\left( \tau - n^2 \right)}{\tau - 
+		n^2} \wh{w}\left( n, \tau \right) \|_{L^4(\ci^2)}
+		\\
+		& \lesssim  \|\left( 1 + |\tau - n^2| \right)^{3/8}
+		\frac{1- \psi_2\left( \tau - n^2 \right)}{\tau - 
+		n^2} \wh{w}(n, \tau) \|_{\ell^2(\zz^2)}
+	\end{split}
+\end{equation}
+%
+%
+where the last step follows from \autoref{lem:four-mult-est}. Applying the 
+estimate
+%
+%
+\begin{equation}
+	\label{2ag}
+	\begin{split}
+		\left[ 1 - \psi_2\left( \tau - n^2 \right) \right]
+		\left( \tau - n^2 \right)^{-1}
+		& \le \left( 1 + 1 /B \right)\left( 1 + |\tau - n^2| 
+		\right)^{-1}
+		\\
+		& = \left( 1 + 1/B \right)\left( 1 + B \right)^{-k }
+		\left( 1 + B \right)^k \left( 1 + |\tau - n^2| \right)^{-1} 
+				\\
+		& \le \left( 1 + 1/B \right)\left( 1 + B \right)^{-k 
+		} \left( 1 + |\tau - n^2| \right)^{k-1}
+		\\
+		& = \frac{\left( 1 + B \right)^{1-k }}{B} \left( 1 + |\tau - 
+		n^2|
+		\right)^{k - 1}
+		\\
+		& \le 2^{k -1} B^{-k } \left( 1 + |\tau - n^2| \right)^{k - 1}, 
+		\qquad k \le 1
+	\end{split}
+\end{equation}
+%
+%
+with $k = 1/4$ to \eqref{1ag}, we obtain 
+%
+%
+\begin{equation}
+	\label{3ag}
+	\begin{split}
+		\|\eqref{main-int-expression-2}\|_{L^4(\ci^2)}
+		& \lesssim  
+		B^{-1/4} \|\left( 1 + |\tau - n^2| \right)^{-3/8} \wh{w} (n, 
+		\tau) \|_{\ell^2(\zz^2)}.
+	\end{split}
+\end{equation}
+%
+%
+We now need the following dual estimate of 
+\autoref{lem:four-mult-est}, whose proof is provided in the appendix:
+%
+%
+\begin{corollary}
+	\label{cor:four-mult-est-dual}
+Let $(n, \tau) \in \zz^2$ and let  $(x, t) \in \ci^2$
+be the dual variables. Then for $h \in L^2(\ci^2)$
+%
+%
+\begin{equation}
+	\label{four-mult-est-dual}
+	\|(1 + |\tau - 
+	n^2|)^{-3/8} \wh{h}(n, \tau) \|_{\ell^2(\zz^2)} \le 
+	c \|h\|_{L^{4/3}(\ci^2)}.
+\end{equation}
+%
+%
+\end{corollary}
+%%
+%%
+Applying \autoref{cor:four-mult-est-dual} to \eqref{3ag}, we conclude that 
+%
+%
+\begin{equation}
+	\label{main-int-est-2}
+	\begin{split}
+		\|\eqref{main-int-expression-2}\|_{L^4(\ci^2)} 
+		& \le c B^{-1/4} \|w\|_{L^{4/3}(\ci^2)}
+		\\
+		& = c B^{-1/4} \|u^3\|_{L^{4/3}(\ci^2)}
+		\\
+		& = c B^{-1/4} \|u\|^3_{L^4(\ci^2)}.
+	\end{split}
+\end{equation}
+%%
+%%
+
+\vskip0.1in
+{\bf Estimate for \eqref{main-int-expression-3}.} 
+Letting $$f(x,t) = \psi(t) \sum_{n \in \zz} e^{i\left( xn + tn^2 \right)} 
+\sum_{\lambda \in \zz} \frac{1 - \psi\left( \tau - n^2 \right)}{\tau - n^2} 
+\wh{w} \left( n, \tau \right),$$ we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \wh{f^x}(n, t) = \psi(t) e^{itn^2} \sum_{\lambda \in \zz} 
+		\frac{1 - \psi\left( \lambda - n^2 \right)}{\lambda - n^2} 
+		\wh{w}(n, \lambda)
+	\end{split}
+\end{equation*}
+and
+\begin{equation*}
+	\begin{split}
+		 \wh{f}\left( n, \tau \right)
+		 & = \int_\ci e^{-it\left( \tau - n^2 
+		\right)} \psi(t) \sum_{\lambda \in \zz} \frac{1 - \psi\left( 
+		\lambda - n^2 
+		\right)}{\lambda - n^2} \wh{w}(n, \lambda)
+		\\
+		& = \wh{\psi_1}\left( \tau - n^2 \right) \sum_{\lambda \in \zz}
+		\frac{1 - \psi\left( 
+		\lambda - n^2 
+		\right)}{\lambda - n^2} \wh{w}(n, \lambda).
+	\end{split}
+\end{equation*}
+%
+%
+Therefore, applying \autoref{lem:four-mult-est} and 
+\eqref{schwartz-bound} gives 
+%
+%
+\begin{equation}
+	\label{4hh}
+	\begin{split}
+		\|f\|_{L^4(\ci^2)}
+		& \lesssim \|\left( 1 + | \tau - n^2| \right)^{3/8} 
+		\wh{\psi_1}\left( \tau - n^2 \right) \sum_{\lambda \in \zz} 
+		\frac{1 - \psi_2\left( \lambda - n^2 \right)}{\lambda - n^2} 
+		\wh{w}\left( n, \lambda \right) 
+		\|_{\ell^2\left( \zz^2 \right)}
+		\\
+		& \lesssim \|\sum_{\lambda \in \zz}
+		\frac{1 - \psi_2\left( \lambda - n^2 \right)}{\lambda - n^2} \wh{w} 
+		\left( n, \lambda \right) \|_{\ell^2\left( \zz \right)}.
+	\end{split}
+\end{equation}
+%
+%
+Next, note 
+that 
+%
+%
+\begin{equation}
+	\label{apply-ortho}
+	\begin{split}
+		\|\sum_{\lambda \in \zz}
+		\frac{1 - \psi_2\left( \lambda - n^2 \right)}{\lambda - n^2} \wh{w} 
+		\left( n, \lambda \right) \|_{\ell^2\left( \zz \right)}
+		& = \left( \sum_{n \in \zz}  | \sum_{\lambda \in \zz}
+		\frac{1 - \psi_2\left( \lambda - n^2 \right)}{\lambda - n^2} \wh{w} 
+		\left( n, \lambda \right) |^2 \right )^{1/2}
+		\\
+		& \lesssim \left( \sum_{n \in \zz} \sum_{\lambda \in \zz} |
+		\frac{1 - \psi_2\left( \lambda - n^2 \right)}{\lambda - n^2} 
+		\wh{w}\left( n, \lambda \right) |^2 
+		\right)^{1/2} 
+	\end{split}
+\end{equation}
+%
+%
+\hrule
+Claim [Bourgain]: where the last step follows from orthogonality. 
+\\
+Preliminary Explanation: I understand now how Bourgain does this; the work is in 
+my mNLS document. I am in the process of copying it over to this document.
+\\
+\hrule
+%
+%
+But by \eqref{2ag} and \autoref{cor:four-mult-est-dual}, we have
+\begin{equation*}
+	\begin{split}
+		\left( \sum_{n, \tau \in \zz} |
+		\frac{1 - \psi_2\left( \lambda - n^2 \right)}{\lambda - n^2} 
+		\wh{w}\left( n, \lambda \right) |^2 
+		\right)^{1/2}
+		& = \|\frac{1 - \psi_2 \left( \lambda - n^2 
+		\right)}{\lambda - n^2} \wh{w}\left( n, \lambda \right) 
+		\|_{\ell^2(\zz^2)}
+		\\
+		& \lesssim B^{-5/8} \|\left( 1 + |\tau - n^2| \right)^{-3/8} 
+		\wh{w}\left( n, \lambda \right) \|_{\ell^2(\zz^2)}
+		\\
+		& \lesssim B^{-5/8} \|w\|_{L^{4/3}(\ci^2)}
+		\\
+		& = B^{-5/8} \|u\|_{L^4(\ci^2)}^3.
+	\end{split}
+\end{equation*}
+%
+%
+Substituting back into \eqref{4hh}, and letting $c$ absorb all superficial 
+constants, we obtain
+%
+%
+\begin{equation}
+	\label{main-int-3-est}
+	\begin{split}
+		\|f\|_{L^4(\ci^2)} \le c \delta B^{-5/8} 
+		\|u\|_{L^4(\ci^2)}^3.
+	\end{split}
+\end{equation}
+%
+%
+{\bf Estimate for \eqref{main-int-expression-4}.}
+Noting that
+%
+%
+\begin{equation*}
+	\begin{split}
+		|\sum_{k \ge 1} \frac{i^k (2Bt)^k}{k!}| = |e^{2iBt} - 1| \le 2,
+	\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation}
+	\label{10aa}
+	\begin{split}
+		\|\eqref{main-int-expression-4}\|_{L^4(\ci^2)} 
+		\le 2 \sup_k \|f \|_{L^4(\ci^2)}
+	\end{split}
+\end{equation}
+%
+%
+where $$f(x,t) = \psi_1(t) \sum_{n \in \zz} e^{i\left( xn + tn^2 \right)} 
+		\sum_{\tau \in \zz} \psi_2\left( \tau - n^2 
+		\right)\left (\frac{ \tau - n^2}{2B}\right)^{k - 1} \wh{w}\left( n, \tau 
+		\right).$$
+%
+%
+Calculating the Fourier transform of $f(x, t)$, we have
+\begin{equation*}
+	\begin{split}
+		& \wh{f^x}(n, t) = \psi_1(t) e^{itn^2} \sum_{\tau \in \zz} 
+		\psi_2\left (\frac{ \tau - n^2}{2B}\right)^{k - 1}
+		\wh{w}\left( n, \tau \right)
+	\end{split}
+\end{equation*}
+which gives
+\begin{equation*}
+	\begin{split}
+		\wh{f}(n, \lambda)
+		& = \int_\ci e^{-it\left( \lambda - n^2 \right)} 
+		\psi_1(t) \ dt \sum_{\tau \in \zz} \psi_2
+		\left (\frac{ \tau - n^2}{2B}\right)^{k - 1}
+\wh{w}\left( n, \tau 
+		\right)
+		\\
+		&  = \wh{\psi_1}\left( \lambda - n^2 \right) \sum_{\tau \in \zz} 
+		\psi_2\left( \tau - n^2 \right)
+		\left (\frac{ \tau - n^2}{2B}\right)^{k - 1}
+		\wh{w} \left(n, \tau \right).
+	\end{split}
+\end{equation*}
+%
+%
+Therefore, applying \autoref{lem:four-mult-est} and 
+\eqref{schwartz-bound} to \eqref{10aa} yields
+%
+%
+\begin{equation}
+	\label{main-int-4-est-prelim}
+	\begin{split}
+		& \|f\|_{L^4(\ci^2)} 
+		\\
+		& \le c \sup_{k \ge 1} \|\left( 1 + |\tau - n^2| 
+		\right)^{3/8} \wh{\psi_1}\left( \tau - n^2 \right) \sum_{\lambda 
+		\in \zz} \psi_2\left( \lambda - n^2 \right)\left( \frac{\lambda - 
+		n^2}{2B} 
+		\right)^{k - 1} \wh{w}\left( n, \lambda \right) \|_{\ell^2(\zz^2)}
+		\\
+		& \le c \delta \| \sum_{\lambda \in \zz} 
+		\psi_2\left( \lambda - n^2 \right) \wh{w}\left( n, \lambda \right)\|_{\ell^2(\zz)}
+		\\
+		& = c \delta \left( \sum_{n \in \zz} | 
+		\sum_{\lambda \in \zz} \psi_2\left( \lambda - n^2 \right) 
+		\wh{w}\left( n, \lambda \right)|^2\right)^{1/2}
+		\\
+		& \lesssim \delta \left( \sum_{n \in \zz} \wh{w}(n, 
+		n^2) \right)^{1/2}
+	\end{split}
+\end{equation}
+%
+%
+\hrule
+Claim [Bourgain]: where the last step follows by the definition of 
+$\psi_2$. 
+\\
+Preliminary Explanation: Again, resolved in the mNLS document. It follows from a 
+duality argument, coupled with the first trilinear estimate proved there. \\
+\hrule
+Applying \autoref{cor:four-mult-est-dual}, and letting $c$ absorb all 
+superficial constants, we conclude
+that 
+%
+%
+\begin{equation}
+	\label{main-int-4-est}
+	\begin{split}
+		\|f\|_{L^4(\ci^2)}
+		& \le c \delta B \|w\|_{L^{4/3}(\ci^2)}
+		\\
+		& \le c \delta B \|u^3\|_{L^{4/3}(\ci^2)}
+		\\
+		& \le c \delta B |u\|_{L^4(\ci^2)}^3.
+	\end{split}
+\end{equation}
+%
+%
+Collecting estimates \eqref{main-int-est-part-1},\eqref{main-int-est-2}, 
+\eqref{main-int-3-est}, and \eqref{main-int-4-est}, we obtain
+%
+%
+\begin{equation}
+	\label{1gh}
+	\begin{split}
+		\|Tu\|_{L^4(\ci^2)} \le c\left( \|\vp\|_{L^2(\ci)}
+		+ B^{-1/4} \|u\|_{L^4(\ci^2)}^3 + \delta B \|u\|_{L^4(\ci^2)}^3 \right).
+	\end{split}
+\end{equation}
+%
+%
+Let $B_M = \left\{ u \in L^4(\ci^2): \|u\|_{L^4(\ci^2)} \le 2c \|\vp 
+\|_{L^2(\ci)} \right\}$. Setting $B = \delta^{-1/2}$ and restricting $u \in B_M$, we 
+obtain %
+%
+\begin{equation*}
+	\begin{split}
+		\|Tu\|_{L^4(\ci^2)}
+		& \le c \left[ \|\vp\|_{L^2(\ci)} + \left( \delta^{1/8} 
+		+ \delta^{1/2} \right) M^3 \right]
+		\\
+		& \le c \left[ \|\vp\|_{L^2(\ci)} + 2 \delta^{1/2} M^3 \right]
+		\\
+		& \le c \left[ \|\vp\|_{L^2(\ci)} + 16c^3 \delta^{1/2} \|\vp\|_{L^2(\ci)}^3 
+		\right].
+	\end{split}
+\end{equation*}
+ %
+%
+Recalling that  $\delta = \pi/n, \ n \in \mathbb{N}$ and choosing $n$ large enough 
+such that $\delta < 1/(10^6 c^6 \|\vp\|_{L^2(\ci)}^4)$ then gives
+%
+%
+\begin{equation}
+	\label{ball-to-ball}
+	\begin{split}
+		\|Tu\|_{L^4(\ci^2)} < 2c\|\vp\|_{L^2(\ci)} = M, \qquad u \in B_M.
+	\end{split}
+\end{equation}
+%
+%
+Hence, $T: B_M \to B_M$. Furthermore, from our definition of $T$ in 
+\eqref{main-int-expression-1}-\eqref{main-int-expression-4}, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		Tu - Tv = \eqref{main-int-expression-2} + 
+		\eqref{main-int-expression-3} + \eqref{main-int-expression-4}
+	\end{split}
+\end{equation*}
+%
+%
+where now $w = u|u|^2 - v|v|^2$. By the triangle inequality and generalized
+H\"{o}lder
+%
+%
+\begin{equation}
+	\label{gen-holder}
+	\begin{split}
+		\|u |u|^2 - v |v|^2\|_{4/3}
+		& = \| |u|^2\left( u -v \right) + v\left( |u|^2 - |v|^2 
+		\right)\|_{4/3}
+		\\
+		& \le \|u^2\left( u -v \right)\|_{4/3} + \|v\left( |u| + |v| 
+		\right)\left( |u| - |v| \right) \|_{4/3}
+		\\
+		& \le \|u\|_4^2 \|u -v \|_4 + \|v\|_4  \| |u| + |v| \|_4 
+		\| |u| - |v |\|_4 
+		\\
+		& \le \|u \|_4^2 \|u -v\|_4 + \|v\|_4\left( \|u\|_4 + \|v\|_4 
+		\right) \|u -v \|_4
+		\\
+		& \le 2 \|u -v \|_4 \left(  \|u\|_4 + \|v\|_4 \right)^2.
+	\end{split}
+\end{equation}
+%
+%
+Substituting $w = u|u|^2 - v|v|^2$ into the first line of \eqref{main-int-est-2}, 
+\eqref{main-int-3-est}, and \eqref{main-int-4-est}, and estimating using  
+\eqref{gen-holder}, we conclude that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|Tu - Tv\|_{L^4(\ci^2)}
+		& \le 2c\left( \delta B + B^{-1/4} 
+		\right)\left( \|u\|_{L^4(\ci^2)} +
+		\|v\|_{L^4(\ci^2)}\right)^2 \|u -v \|_{L^4(\ci^2)}
+		\\
+		& \le 8 c M^2(\delta B + B^{-1/4}) \|u - v\|_{L^4(\ci^2)}
+		\\
+		& \le 16cM^2 \delta^{1/2} \|u-v\|_{L^4(\ci^2)}
+		\\
+		& < 64 \cancel{c^3} \cancel{\|\vp\|_{L^2(\ci)}^2}
+		\times \frac{1}{10^3 \cancel{c^3} \cancel{\|\vp\|_{L^2(\ci)}^2}}
+		\|u-v\|_{L^4(\ci^2)}
+	\end{split}
+\end{equation*}
+%
+%
+which yields the estimate
+%
+%
+\begin{equation}
+	\label{contract-est}
+	\begin{split}
+		\|Tu - Tv\|_{L^4(\ci^2)} < \frac{1}{2} \|u -v \|_{L^4(\ci^2)}.
+	\end{split}
+\end{equation}
+%
+%
+By \eqref{ball-to-ball} and \eqref{contract-est}, we conclude that
+$T = T(\vp)$ is a contraction on $B_M \subset L^4(\ci^2)$. 
+%
+%
+
+%
+%
+\newpage
+
+
+
+\begin{appendices}
+
+\section{Proofs of Elementary Estimates}
+
+{\bf Proof of \eqref{schwartz-bound}.} We first observe that
+\begin{equation*}
+	\begin{split}
+		\wh{\psi_1}(0) = \int_\ci \psi_1 \ dt \le 2 \pi 
+	\end{split}
+\end{equation*}
+%
+%
+while for $k \ge 0$, we use integration by parts to express the 
+the Fourier transform of the periodic extension of $\psi_1$ 
+in the following form
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{\psi_1}(\lambda) 
+		& = \int_\ci e^{-i \lambda t} \psi_1 (t) \ dt
+		= \frac{1}{\left( i \lambda \right)^k } \int_\ci e^{-i \lambda t} 
+		\p_t^k \psi_1(t) \ dt
+	\end{split}
+\end{equation*}
+%
+%
+which in conjunction with the estimate $\left( 1 + |\lambda|  \right)^{k } \le |2 \lambda|^k$ for $\lambda \in \mathbb{N}$ 
+gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		\left( 1 + |\lambda| \right)^k |\wh{\psi_1}(\lambda)|
+		& \le |2 \lambda|^k | \int_\ci e^{-i \lambda t} \psi_1(t) \ dt |
+		\\
+		& \le 2 ^k | \int_\ci e^{-i \lambda t} \p_t^k \psi_1(t) \ dt|
+		\\
+		& \le 2^k \int_\ci | \p_t^k \psi(t) | \ dt 
+		\\
+		& \le 2^k \cdot 2 \pi  \|\p_t^k \psi_1(t) \|_{L^\infty(\ci)}
+		\\
+		& = c_k.  \qquad \qed
+	\end{split}
+\end{equation*}
+%
+%
+%
+%
+\vskip0.1in
+{\bf Proof of \autoref{cor:four-mult-est-dual}.}
+By duality,
+%
+%
+\begin{equation}
+	\label{1g}
+	\begin{split}
+		\|f\|_{L^{\frac{4}{3}}(\ci^2)}
+		& = \sup_{g \in L^4(\ci^2)} 
+		\frac{|\ \int_{\ci^2} f \bar{g} \ dx dt|}{\|g\|_{L^4(\ci^2)}}
+		\\
+		& \ge \frac{|\ \int_{\ci^2} f \bar{g} \ dx 
+		dt|}{\|g\|_{L^4(\ci^2)}}, \qquad g \in L^4(\ci^2)
+		\\
+		&  =   \frac{|\sum_{m,n} \wh{f}(m,n) 
+		\bar{\wh{g}}\left( m,n \right)| }{ 4 \pi^2 \|g\|_{L^4(\ci^2)}}
+	\end{split}
+\end{equation}
+%
+%
+where the last step follows from Parseval's theorem. Choose $g$ such that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{g}(m,n) = \left( 1 + |n - m^2| \right)^{-3/4} \wh{f}(m,n).
+	\end{split}
+\end{equation*}
+%
+%
+Then by \autoref{lem:four-mult-est},
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|g\|_{L^4(\ci^2)}
+		& \le \|\left( 1 + |n-m^2| \right)^{-3/8} 
+		\wh{g}(m,n) \|_{\ell^2(\zz^2)}
+		\\
+		& = \|\left( 1 + |n-m^2| \right)^{-3/8} 
+		\left( 1 + |n - m^2| \right)^{-3/4} \wh{f}(m,n)  \|_{\ell^2(\zz^2)}
+		\\
+		& \lesssim \|f\|_{\ell^2(\ci^2)} < \infty.
+	\end{split}
+\end{equation*}
+%
+%
+Therefore, substituting into \eqref{1g}, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|f\|_{L^{4/3}(\ci^2)}
+		& \ge \frac{\sum_{m,n} |\wh{f}(m,n)|^2 \left( 
+		1 + |n-m^2| \right)^{-3/4}}{4 \pi^2 \|g\|_{L^4(\ci^2)}}
+		\\
+		& \ge \frac{\sum_{m,n} |\wh{f}(m,n)|^2 \left( 
+		1 + |n-m^2| \right)^{-3/4}}{4 \pi^2 c \|\left( 1 + |n - m^2| 
+		\right)^{3/8} \wh{g}(n,m) \|_{\ell^2(\zz^2)}}
+		\\
+		& = \frac{ \sum_{m,n} |\wh{f}(m,n)|^2 \left( 1 + |n - m| 
+		\right)^{-3/4}}{4 \pi^2 c \left( \sum_{n,m} |\wh{f}(n,m)|^2 \left( 
+		1 + |n-m^2| \right)^{-3/4} \right)^{1/2}}
+		\\
+		& \simeq \|\left( 1 + |n-m^2| \right)^{-3/8} \wh{f}(m,n) \|_{\ell^2(\zz^2)}
+	\end{split}
+\end{equation*}
+%
+%
+completing the proof. \qquad \qedsymbol
+\vskip0.1in
+%
+\section{An Alternate Well-Posedness Theorem}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Alternate WP Theorem	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+{\bf Remarks.} We have introduced the spaces $Y_s$ in part because well-posedness
+in $H^s(\ci)$ for the mNLS becomes problematic as $s$ becomes small. 
+On the other hand, for $s > 1/2$, well-posedness in $H^s(\ci)$ is a direct 
+consequence of the algebra property of Sobolev spaces and the fact that the operator 
+$e^{it \p_x^2}$ isometrically preserves Sobolev spaces. Stated more 
+precisely, we have the following result:
+%
+%
+\begin{proposition}
+	Let $B_R \doteq \{f \in H^s : \|f\|_{H^s} < R \}$.
+	Then the generalized mNLS ivp
+\begin{gather}
+	\label{general-mNLS-eq}
+		i \p_t v = - \p_x^2 u - \lambda |u|^{\alpha -1} u, \ \ \alpha > 
+		1, \lambda > 1
+		\\
+		\label{general-mNLS-init-data}
+		u(x,0) = \vp(x), \ \ t \in \rr, \ \ x \in \ci \ \text{or} \ \rr
+\end{gather}
+	is locally well-posed in $H^s$ for $s > 1/2$ for 
+	sufficiently small initial data $\vp \in B_R$, where the lifespan $T$ 
+	satisfies 
+%
+%
+\begin{equation*}
+	\begin{split}
+		T < 1/c
+	\end{split}
+\end{equation*}
+%
+%
+for some constant $c = c(s, \lambda, \alpha, R, \vp)$.
+\end{proposition}
+%
+%
+{\bf Proof.} We will only provide a proof on the circle; the case on 
+the line is nearly identical. The key ingredient
+will be to establish that $L$ is a 
+contraction on $C([-T, T], B_R)$. For the sake of clarity, we let $H^s_x 
+= H^s_x(\ci)$. Let $e^{it \p_x^2}: \mathcal{E}'(\ci) \to 
+\mathcal{E}'(\ci)$ be an operator defined by  
+%
+%
+\begin{equation}
+	\label{unit-op}
+	\begin{split}
+		e^{it \p_x^2} f(x) = \left[ e^{(-1)^j i t n^2} \wh{f}(n)
+		\right]^{\vee} = 
+		\sum_{n \in \zz} e^{i(nx + (-1)^j it n^2)} \wh{f}(n).
+	\end{split}
+\end{equation}
+%
+%
+First, note that $e^{it \p_x^2}$ 
+is unitary on $H^s(\ci)$; that is
+%
+%
+\begin{equation}
+	\label{unitary-op}
+	\begin{split}
+		\|e^{it \p_x^2} f \|_{H^s_x} & = \sum_{n \in \zz} |e^{(-1)^j it n^2} 
+		\wh{f}(n)|^2 (1 + n^2)^s  
+		\\
+		& = \sum_{n \in \zz} |\wh{f}(n)|^2 (1 + n^2)^s 
+		\\
+		& = \|f\|_{H^s_x}.
+	\end{split}
+\end{equation}
+
+Rewriting \eqref{general-mNLS-eq}-\eqref{general-mNLS-init-data} in its 
+integral form
+%
+%
+\begin{equation}
+	\label{mNLS-int-form-with-op}
+	\begin{split}
+		u(x,t) = e^{it \p_x^2} \vp + i \lambda \int_0^t e^{i(t - 
+		t')\p_x^2} |u|^{\alpha -1} u(x, t') \ dt' 
+	\end{split}
+\end{equation}
+%
+%
+and applying the triangle inequality, Minkowski's inequality, and 
+\eqref{unitary-op}, we obtain
+%
+%
+\begin{equation}
+	\label{bound-for-L}
+	\begin{split}
+		& \|Lu\|_{L^\infty_t[-T, T] H^s_x}
+		\\
+		& \le \|e^{t \p_x^2}
+		\vp\|_{L^\infty_t[-T, T] H^s_x} + \|i \lambda \int_0^t e^{i(t - 
+		t')\p_x^2} |u|^{\alpha -1} u(x, t') \ dt' \|_{L^\infty_t[-T, T] 
+		H^s_x} 
+		\\
+		& \le \|\vp\|_{H^s_x} + |\lambda| \int_0^T \|e^{i(t 
+		-t')\p_x^2} |u|^{\alpha -1} u \|_{L^\infty_t[-T, T] H^s_x} \ 
+		dt'
+		\\
+		& = \|\vp\|_{H^s} + T |\lambda| \|u^\alpha \|_{L^\infty_t[-T, T] H^s_x}.
+	\end{split}
+\end{equation}
+%
+%
+We now need the following lemma, whose proof can be found in Taylor 
+\cite{Taylor_1991_Pseudodifferent}:
+%
+%
+%
+\begin{lemma}
+	\label{lem:algebra-prop}
+	The Sobolev space $H^s$ is an algebra for $s>1/2$. More precisely, 
+%
+%
+\begin{equation}
+	\label{algebra-prop}
+	\begin{split}
+		\|fg\|_{H^s} \le c_s \|f\|_{H^s} \|g\|_{H^s}.
+	\end{split}
+\end{equation}
+%
+%
+%
+\end{lemma}
+%
+%
+Applying \autoref{lem:algebra-prop} to estimate \eqref{bound-for-L} gives
+%
+%
+%
+%
+\begin{equation}
+	\label{Tu-space-bound}
+	\begin{split}
+		\|Lu\|_{L^\infty_t[-T, T] H^s_x}
+		& \le \|\vp\|_{H^s_x} + Tc_s | \lambda| \|u\|_{L^\infty_t[-T, T] 
+		H^s_x}^\alpha
+	\end{split}
+\end{equation}
+%
+%
+and since $u \in C([-T, T], B_R)$ a priori, it follows
+that for sufficiently small $\vp$ and $T = T(s, \lambda, \alpha, R, \vp)$ we must 
+have $Lu \in L^\infty([-T, T], B_R)$. To improve the regularity of 
+$Lu$, let $\{t_n\} \subset [-T, T]$ and suppose that $t_n \to t \in [-T, 
+T]$. Then
+%
+%
+\begin{equation}
+	\label{befo-dom}
+	\begin{split}
+		& \lim_{n \to \infty} \|Lu(\cdot, t) - Lu(\cdot, t_n)\|_{H^s_x} 
+		\\
+		& = \lim_{n \to \infty} \| \left \{ i \lambda \int_0^{t - t_n} e^{i(t  
+		- t') \p_x^2} \left [|u|^{\alpha -1}u( \cdot, t') \right ]
+		\ dt'\right \} \|_{H^s_x}
+		\\
+		& \le |\lambda|
+		\lim_{n \to \infty}  \left \{  \int_0^{t - t_n} \| e^{i(t  
+		- t') \p_x^2} \left [ |u|^{\alpha -1}u( \cdot, t') \right ]  
+		\|_{H^s_x} \ dt' \right \}
+		\\
+		& = |\lambda|
+		\lim_{n \to \infty}  \left[  \int_\rr \chi_{[0, t-t_n]}
+		\| u^{\alpha}(\cdot, t') \|_{H^s_x} \ dt' \right ]
+	\end{split}
+\end{equation}
+%
+%
+where the last step follows from \eqref{unitary-op}. 
+By the algebra property and our a priori
+assumption $u \in C([-T, T], B_R )$, we have 
+%
+%
+\begin{equation*}
+	\begin{split}
+		\chi_{[0,t-t_n]}	\|u^\alpha(\cdot, t')\|_{H^s_x}
+		\lesssim \chi_{[0,t-t_n]} 	\|u(\cdot, t')\|_{H^s_x}^\alpha 
+		\le \chi_{[0,T]}\|u\|^\alpha_{L^\infty_t(\rr) H^s_x} \in 
+		L^1_t(\rr).
+		\end{split}
+\end{equation*}
+%
+%
+%
+%
+Hence, applying dominated 
+convergence to \eqref{befo-dom}, we may pass the limit inside the integral,  
+giving
+%
+\begin{equation*}
+	\begin{split}
+		\lim_{n \to \infty} \|Lu(\cdot, t)  - Lu(\cdot, t_n)\|_{H^s_x} 
+		\le |\lambda|
+		\int_\rr \lim_{n \to \infty} \left [ \chi_{[0, t-t_n]}
+		\| u^{\alpha}(\cdot, t') \|_{H^s_x} \ dt' \right ]
+		= 0
+	\end{split}
+\end{equation*}
+%
+%
+which implies $Lu \in C([-T, T], B_R)$. Furthermore, for 
+$u, v \in C([-T, T], B_R)$, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \|Lu-Lv\|_{L^\infty_t[-T, T] H^s_x}
+		\\
+		& = \|i \lambda \int_0^t e^{i(t 
+		-t')\p_x^2} (|u|^{\alpha - 1}u -|v|^{\alpha -1} v ) \ dt'
+		\|_{L^\infty_t[-T, T] H^s_x}
+		\\
+		& \le |\lambda| \int_0^T \||u^{\alpha-1 }| u - | v^{\alpha - 1}| v
+		\|_{L^\infty_t[-T, T] H^s_x} \ dt'
+		\\
+		& = |\lambda| T \cdot \|(u-v)(|u^{\alpha -1}| + |v^{\alpha -1}|) 
+		+ |u^{\alpha -1}|v 
+		+ u |v^{\alpha -1}| \|_{L^\infty_t[-T, T] H^s_x}
+	\end{split}
+\end{equation*}
+%
+%
+which by the triangle inequality and algebra property simplifies to
+%
+%
+\begin{equation}
+	\label{L-contract}
+	\begin{split}
+		& \|Lu-Lv\|_{L^\infty_t[-T, T] H^s_x}
+		\\
+		& \le  T c_s |\lambda| \cdot \big [ \|u-v\|_{L^\infty_t[-T, T]
+		H^s_x}(\|u\|^{\alpha -1}_{L^\infty_t[-T, T] H^s_x} +
+		\|v\|^{\alpha -1}_{L^\infty_t[-T, T] H^s_x})
+		\\
+		& + \|u\|^{\alpha-1}_
+		{L^\infty_t[-T, T] H^s_x} \|v\|_{L^\infty_t[-T, T] H^s_x}
+		+ \|u\|_
+		{L^\infty_t[-T, T] H^s_x} \|v\|^{\alpha -1}_
+		{L^\infty_t[-T, T] H^s_x} \big ]
+		\\
+		& \le T c_s |\lambda| \cdot \left[  2R^{\alpha -1} 
+		\|u -v\|_{L^\infty_t[-T, T] H^s_x} + 2R^{\alpha} \right]
+		\\
+		& \le T c' \|u -v \|_{L^\infty_t[-T, T] 
+		H^s_x}
+	\end{split}
+\end{equation}
+%
+%
+where $c' = c'(s, \lambda, \alpha, R)$ is a constant.
+Since it was established earlier that $T = T(s, \lambda, \alpha, R, \vp)$,  
+we conclude that for $$T < 1/c,  \qquad c = c(s, \lambda, \alpha, R, 
+\vp),$$ $L$ is a 
+contraction on $C([-T, T], B_R)$. \qquad \qedsymbol
+
+\end{appendices}
+
+%\nocite{*}
+%\bibliographystyle{custom}
+%\bibliography{/Users/davidkarapetyan/Documents/Math/schrodinger}
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{Bourgain-Fourier-transfo-1}
+\textsc{J.~Bourgain}.
+\newblock \enquote{Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. {I}.
+  {S}chr{\"o}dinger equations.}
+\newblock \emph{Geom. Funct. Anal.}, \textbf{3} (1993), no.~2, 107--156.
+
+\bibitem{Bourgain-Fourier-transfo}
+---{}---{}---.
+\newblock \enquote{Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. {II}. {T}he
+  {K}d{V}-equation.}
+\newblock \emph{Geom. Funct. Anal.}, \textbf{3} (1993), no.~3, 209--262.
+
+\bibitem{Colliander_Keel_Staffilani_Takaoka_Tao-A-refined-globa}
+\textsc{J.~Colliander, M.~Keel, G.~Staffilani, H.~Takaoka, and T.~Tao}.
+\newblock \enquote{A refined global well-posedness result for {S}chr{\"o}dinger
+  equations with derivative.}
+\newblock \emph{SIAM J. Math. Anal.}, \textbf{34} (2002), no.~1, 64--86
+  (electronic).
+
+\bibitem{Colliander_Keel_Staffilani_Takaoka_Tao-Multilinear-est}
+---{}---{}---.
+\newblock \enquote{Multilinear estimates for periodic {K}d{V} equations, and
+  applications.}
+\newblock \emph{J. Funct. Anal.}, \textbf{211} (2004), no.~1, 173--218.
+
+\bibitem{Folland_1999_Real-analysis}
+\textsc{G.~B. Folland}.
+\newblock \emph{Real analysis}.
+\newblock Pure and Applied Mathematics (New York). John Wiley \& Sons Inc., New
+  York, second edn., 1999.
+\newblock Modern techniques and their applications, A Wiley-Interscience
+  Publication.
+
+\bibitem{Gorsky_2007_Well-posedness-}
+\textsc{J.~Gorsky and A.~Himonas}.
+\newblock \enquote{Well-posedness for a class of nonlinear dispersive
+  equations.}
+\newblock \emph{Dyn. Contin. Discrete Impuls. Syst. Ser. A Math. Anal.},
+  \textbf{14} (2007), no. Advances in Dynamical Systems, suppl. S2, 85--90.
+
+\bibitem{Himonas_Misioek-The-Cauchy-prob}
+\textsc{A.~Himonas and G.~Misio{\l}ek}.
+\newblock \enquote{The {C}auchy problem for a shallow water type equation.}
+\newblock \emph{Comm. Partial Differential Equations}, \textbf{23} (1998), no.
+  1-2, 123--139.
+
+\bibitem{Himonas_Misiolek-A-priori-estima}
+\textsc{A.~A. Himonas and G.~Misiolek}.
+\newblock \enquote{A priori estimates for {S}chr{\"o}dinger type multipliers.}
+\newblock \emph{Illinois J. Math.}, \textbf{45} (2001), no.~2, 631--640.
+
+\bibitem{Schlotthauer-Hannah-Well-posedness-}
+\textsc{H.~Schlotthauer-Hannah}.
+\newblock \emph{Well-posedness and Regularity for a Higher Order Periodic mKdV
+  Equation}.
+\newblock Dissertation, University of Notre Dame, Notre Dame, Indiana, April
+  2007.
+
+\bibitem{Tao-Multilinear-wei}
+\textsc{T.~Tao}.
+\newblock \enquote{Multilinear weighted convolution of {$L^2$}-functions, and
+  applications to nonlinear dispersive equations.}
+\newblock \emph{Amer. J. Math.}, \textbf{123} (2001), no.~5, 839--908.
+
+\bibitem{Taylor_1991_Pseudodifferent}
+\textsc{M.~E. Taylor}.
+\newblock \emph{Pseudodifferential operators and nonlinear {PDE}}, vol. 100 of
+  \emph{Progress in Mathematics}.
+\newblock Birkh{\"a}user Boston Inc., Boston, MA, 1991.
+
+\bibitem{Tzvetkov_2006_Ill-posedness-i}
+\textsc{N.~Tzvetkov}.
+\newblock \enquote{Ill-posedness issues for nonlinear dispersive equations.}
+\newblock In \emph{Lectures on nonlinear dispersive equations}, vol.~27 of
+  \emph{GAKUTO Internat. Ser. Math. Sci. Appl.}, pp. 63--103. Gakk\=otosho,
+  Tokyo, 2006.
+
+\end{thebibliography}
+				  \end{document}
+
+

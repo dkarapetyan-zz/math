@@ -1,0 +1,927 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
+%\usepackage{showkeys}  %shows source equation labels on the pdf
+\usepackage[margin=3cm]{geometry}  %page layout
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+\hypersetup{colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	urlcolor=blue,
+}
+\synctex=1
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+%
+%
+\theoremstyle{plain}  
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}[subsection]{conjecture}
+%
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+%
+%
+%
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{algorithm}{Algorithm}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+%
+\begin{document}
+\title{The Banach Space ODE Theorem}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+	University  of Notre Dame\\
+		Notre Dame, IN 46556 }
+		\date{}
+		%
+		\maketitle
+		%
+		%
+		%
+		%
+		%
+		%
+%
+%
+\section{Introduction}
+Our goal will be to prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Existence Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Banach Space ODE Theorem]
+	\label{ode-thm}
+	Let $X$ be Banach, $E \subset X$ open, $u_0 \in E$, and let $(-a, a)$ be an
+	open interval in $\rr$. If $f: (-a, a) \times E \to X$ is \emph{continuously
+	differentiable}, then for a sufficiently small $h > 0$ there exists a unique
+	differentiable map $u: (-h, h) \to E$ such that for all $t \in (-h, h)$,
+	%
+	%
+	\begin{gather}
+		\label{ode-thm-eq}
+			u'(t) = f(t, u(t)),
+			\\
+			\label{ode-thm-init-data}
+			u(0) = u_0.
+	\end{gather}
+\end{theorem}
+%
+%
+We remark that \autoref{ode-thm} also holds if we relax the assumption of continuous
+differentiability and require only Lipschitz continuity of $f(t)$ on $E$, where $t
+\in (-a, a)$. 
+Indeed, \autoref{ode-thm} is simply a 
+generalization of the following classical result.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Picard-Lindelof
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Picard-Lindel\"{o}f]
+	Let $f(t, x)$ be a continuous function on $(- a, a) \times (- b,
+	b)$ such that
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			| f(t, x) - f(t, y) | \le c| x - y |, \quad \forall t \in (-a, a),
+			\quad \forall x,y \in (- b, b).
+		\end{split}
+	\end{equation*}
+	%
+	%
+	Then for any $\xi \in (-b, b)$ there exists an interval $(-h, h)
+	\subset (-a, a)$ such that the initial value problem
+	%
+	%
+	\begin{gather}
+			\frac{dx}{dt} = f(t, x(t)),
+			\\
+			x(0) = \xi 
+	\end{gather}
+	%
+	%
+	has a unique solution $x(t)$ for all $t \in (-h, h)$.
+	%
+	%
+	\end{theorem}
+To prove \autoref{ode-thm}, we will first define what it means for a 
+mapping between two Banach spaces to be \emph{continuously differentiable}.
+We will then define integration over Banach spaces, which we will use to
+rewrite \eqref{ode-thm-eq} as an integral equation. A Banach fixed point
+argument will then complete the proof. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Differentiaion in Banach Spaces
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Differentiation in Banach Spaces}
+\begin{definition}
+	\label{def:diff}
+	Let $X,Y$ be Banach spaces, and consider the map $f: X \to Y$.
+	Then $f$ is differentiable at $x_0$ if there
+	is a continuous linear map $Df(x_0): X \to Y$ such that
+	%
+	%
+	%
+	%
+	\begin{equation}
+		\label{diff-limit}
+		\begin{split}
+			\lim_{h \to 0} \frac{\|f(x_0+ h) - f(x_0) -
+			Df(x_0)(h) \|_Y}{\|h\|_{X}} = 0
+		\end{split}
+	\end{equation}
+	%
+	%
+	This map, which we call the \emph{total derivative} of $f$ at $t_0$, is 
+	unique. If $Df(x_0)$ exists for all $x_0 \in X$,
+	then we say that $f$ is
+	\emph{differentiable} in $X$. If $f$ is differentiable in $X$, and 
+	$\|Df(x_0 + h) - Df(x_0) \|_Y \to 0$ as $\|h\|_{X} \to 0$ for all $x_0 \in X$,
+	then we say that $f$ is \emph{continuously differentiable in $X$}. 	
+\end{definition}
+	%
+	\begin{remark}
+		\label{rem:usual-diff}
+		Consider the map $f: \rr \to \rr$. Then \autoref{def:diff} 
+		coincides with the usual definitions of
+		differentiability and continuous differentiability for maps
+		from $\rr $ to $\rr$.
+		To see this, assume $f$ is differentiable at $x_0$.
+		Let us first verify that the map  $D(x_0): \rr ~\to~\rr$
+		defined by $Df(x_0)(x) =
+		xf'(x_0)$ is the total derivative of $f$. Assume without loss of generality
+		that $h \to 0^+$. Then
+		%
+		%
+		\begin{equation}
+			\label{2}
+			\begin{split}
+				& \lim_{h \to 0^+} \frac{| f( x_0 + h) - f(x_0) -
+				Df(x_0)(h) |}{|h|}
+				\\
+				= & \lim_{h\to 0^+} \left |\frac{f(x_0+h) -
+				f(x_0)}{h} - \frac{Df(x_0)(h)}{h}  \right |
+				\\
+				= & \lim_{h \to 0^+} \left |\frac{f(x_0+h) - f(x_0)}{h} -
+				f'(x_0) \right | = 0.
+			\end{split}
+		\end{equation}
+		%
+		%
+%
+%
+For any $a \in \rr$, define the map $T_{a} \in L(\rr , \rr)$ by
+$T_{a}(x) = ax$. Then the map $a \mapsto T_a$ is an isometric
+isomorphism from $\rr$ to $L( \rr, \rr)$. Hence, 
+we may identify $f'(x_0)$ with $T_{f'(x_0)} = Df(x_0)$,
+which by \eqref{2} is the total derivative of $f$.  Using this identification,
+it follows that $f$ is continuously
+differentiable in $\rr$ if and only if $f'$ is a continuous function of
+$x_0$, for all $x_0 \in \rr$. \qquad \qedsymbol
+%
+\end{remark}
+%
+%
+In general, for an arbitrary Banach space $X$, open interval $(a,b) \subset
+\rr$, and map $f:(a,b) \to X$, we can identify $Df(x_0)$ with an
+element of $X$ via the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Lemma Isometry	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+	\label{lem:isometry} Let $(a,b) \subset \rr$ be an open interval, $X$ a Banach
+	space, with $x \in X$. Define the map $T_x \in L\left ( (a,b) , X \right )$ by
+	$T_x(t_0) = x t_0$. Then the map $x \mapsto T_x$ is an
+	isometric isomorphism from
+	$X$ to $L((a,b) , X)$. 
+\end{lemma}
+%
+%
+{\bf Proof.} Note that 
+%
+%
+\begin{equation*}
+	\begin{split}
+		| | | T_x | | |
+		& = \sup_{|t_0| = 1} \| T_x (t_0) \|_X
+		= \| x t_0\|_X
+		= \|x\|_X.
+	\end{split}
+\end{equation*}
+%
+%
+Hence, the map $x \mapsto T_x$ is an isometry from $X$ into $L((a,b),
+X)$. It remains to show that it is onto. Let $U \in L( (a,b), X)$. Then
+by linearity
+%
+%
+\begin{equation*}
+	\begin{split}
+		U(t_0) = U(1)t_0. 
+	\end{split}
+\end{equation*}
+%
+%
+Hence, $U = T_{U(1)}$, completing the proof. \qquad \qedsymbol
+\\
+\\
+Applying the lemma, we see that if $Df(t_0)$ exists for a map $f: (a,b) \to X$,
+then it can be viewed as an
+element of $X$. Similarly, if $Df(t_0)$ exists for all $t_0 \in (a,b)$, then
+we may view the map $t_0 \to Df(t_0)$ as an
+element of $L( (a,b), X)$. Hence, for a
+map $f:(a,b) \to X$, we have the following equivalent reformulation of
+\autoref{def:diff}. 
+\begin{definition}
+	\label{def:diff-simp}
+	Let $X$ be Banach space, $(a,b) \subset \rr$ an open interval, and
+	consider the map $f: (a,b) \to X$.
+	Then $f$ is \emph{differentiable at $t_0$} if there exists a map
+	$f': (a,b) \to X$ such that 
+	%
+	%
+	%
+	%
+	\begin{equation}
+		\label{diff-limit-simp}
+		\begin{split}
+			\lim_{h \to 0} \| \frac{f(t_0+ h) - f(t_0) 
+			 }{h} - f'(t_0) \|_X = 0.
+		\end{split}
+	\end{equation}
+	%
+	%
+	We call $f'(t_0)$ the \emph{derivative of $f$ at $t_0$}.
+	If \eqref{diff-limit-simp}
+	holds for all $t_0 \in (a,b)$, then we say $f$ is \emph{differentiable in
+	$(a,b)$}, and call $f'$ the
+	\emph{derivative of $f$ in $(a,b)$}.  If the derivative of $f$ in $(a,b)$
+	exists and is continuous there, then we say that $f$ is
+	\emph{continuously differentiable in $(a,b)$}. 	
+\end{definition}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Notation
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\begin{example}
+Let $f: (a,b) \to \rr^2$ be defined by $f(t) = (1, t^2)$. Then $Df(1)$ maps
+$(a,b)$ to $\rr$ by the relation $Df(1)(t) = (0, 2t) = t[0, 2]$. Hence, $Df(1)$ is the $1
+\times 2$ matrix $[0,2]$, which we may also view as the point $(0,2) \in \rr^2$.
+That is, $f'(1) = (0,2)$. Similarly, $f'(t) = (0,2t)$.
+\end{example}
+
+Lastly, we include the following.
+%
+%
+\begin{proposition}
+		(Chain Rule) Let $X,Y,Z$ be Banach spaces, $g: Y \to Z$ and $f:
+		X \to Y$ continuously differentiable maps. Then for all $x_0,
+		x \in X$ we have \begin{equation*} (g \circ f)' (x_0) =
+			g'(f(x_0)) \circ (f'(x_0)).
+		\end{equation*} 
+	\end{proposition}
+			{\bf Proof.} Choose $0<\ee<1$. Since 
+			\begin{equation*}
+				\lim_{s \to 0} \frac{\|f (x_0 + s) - f(x_0) -
+				f'(x_0)(s)\|}{\|s\|} = 0
+			\end{equation*}
+			we can find $\delta > 0$ such that 
+			\begin{equation*}
+				\frac{\|f (x_0 + s) - f(x_0) -
+				f'(x_0)(s)\|}{\|s\|} < \ee
+			\end{equation*}
+			for $\|s\| < \delta$. This implies
+			\begin{equation*}
+				\|f(x_0 + s) - f(x_0) - f'(x_0)(h) \| < \ee \|s\|.
+			\end{equation*}
+			Hence, we can write
+			\begin{equation*}
+				f(x_0 + s) = f(x_0) + f'(x_0)(s) + O_1(s)
+			\end{equation*}
+			with $\|O_1(s)\| < \ee \|s\|$. Similarly, for $\|t\| <
+			\delta$ we have 
+			\begin{equation*}
+				g(x_0 + t) = g(x_0) + g'(x_0)(t)+ O_2(t)
+			\end{equation*}
+			with $\|O_2(t)\| < \ee \|t\|$. In addition, since $f'(x_0)$
+			and $g'(f(x_0))$ are continous linear operators, we have
+			\begin{equation*}
+				\begin{split}
+					&\|f'(x_0)(s) \| < a \|s \|,
+					\\
+					&\|g'(x_0)(t) \| < b \|t \|
+				\end{split}
+			\end{equation*}
+			for some constants $a , b$. Hence
+			\begin{equation*}
+				\|f'(x_0)(s) + O_1(s) \| < (a + 1) \|s\|
+			\end{equation*}
+			for $\|s\| < \delta$. Then for $\|s \| <
+			\delta/(a+1)$ we have
+			\begin{equation}
+				\label{key_estimate}
+				\begin{split}
+					&\| O_2 [f'(x_0)(h) + O_1(s)] \| < \ee(a+1)\|s \|,
+					\\
+					& \|g'(f(x_0))(O_1(s))\| < b \ee \|s\|.
+				\end{split}
+			\end{equation}
+			Hence
+			\begin{equation*}
+				\begin{split}
+					h(x_0 + s) &= g(f(x_0 +s)
+					\\
+					&= g(f(x_0) + f'(x_0)(s) + O_1(s))
+					\\
+					&= g(f(x_0)) + g'(f(x_0))(f'(x_0)(s) + O_1(s)) 
+					+ O_2(f'(x_0)(s) + O_1(s))
+					\\
+					&= g(f(x_0)) + g'(f(x_0))f'(x_0)(s) +
+					g'(f(x_0))(O_1(s)) + O_2(f'(x_0)(s) + O_1(s))
+				\end{split}
+			\end{equation*}
+			Applying \eqref{key_estimate}, we conclude that
+			\begin{equation*}
+				\begin{split}
+				&h(x_0 + s) = g(f(x_0)) + g'(f(x_0))(f'(x_0)(s)) +
+				O_3(s), \; 
+			\text{where}
+				\\
+				&\|O_3(s)\| < (a + b + 1) \ee \|s\|. \qquad \Box  
+			\end{split}
+			\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Integration in Banach Spaces
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Integration in Banach Spaces}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Definition of step functions
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Definition of step function
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{definition}
+	A mapping $f:(a,b) \to X$ is a \emph{step-function} if there exists a disjoint
+	partitioning $\left\{ (t_{j}, t_{j+1}) \right\}_{0}^{n-1}$ of $(a,b)$,
+	where $ t_{j +1} - t_{j} = (b-a)/n$, such that
+	%
+	%
+	\begin{equation}
+		\label{step-function}
+		\begin{split}
+			f(t)=\sum_{j=0}^{n-1} {\psi_j} \chi_{(t_{j}, t_{j+1})}(t).
+		\end{split}
+	\end{equation}
+	%
+	%
+\end{definition}
+%
+%
+\begin{example}
+	The map $f:(-1,1) \to L^2(\rr)$ given by 
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			f(t) = 
+			\begin{cases}
+				 e^{-x^2},  \quad & -1<t\le0 \\
+				 e^{-2x^2},  \quad & \phantom - 0 <t<1 \\
+				 0,  \quad & \phantom - \text{otherwise}
+			\end{cases}
+		\end{split}
+	\end{equation*}
+	%
+	%
+	\end{example}
+	is a step-function.
+%
+%
+\begin{definition}[Banach Space Integration for Step Functions]
+	Let $(a,b)$ be an open interval in $\rr$, $X$ a Banach space, $f: [a,b] \to
+	X$ a step function as in \eqref{step-function}. 
+	Then we call $\sum_{j=0}^{n-1} \psi_j (t_{j +1} - t_{j})$ the \emph{integral of f between $a$ and $b$}, and
+	adopt the notation
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			\int_a^b f(t) dt \doteq \sum_{j=0}^{n-1} \psi_j \frac{b-a}{n} =
+			\frac{b-a}{n} \sum_{j=0}^{n-1} \psi_j. 
+		\end{split}
+	\end{equation*}
+	%
+	%
+%
+\end{definition}
+%
+%
+We are now interested in extending integration to a larger class of functions. We will need the
+following. %
+%
+\begin{lemma}
+	\label{lem:dense}
+	Let $[a, b] \subset \rr$ be a closed interval in $\rr$, $X$ a Banach space, and
+	suppose the function $f:[a,b] \to X$ is continuous . Then
+	there exists a sequence of step functions $\left\{ f_n \right\}_n$
+	such that $\|f - f_n\|_{L^\infty( (a,b), X)} \to 0$. 
+\end{lemma}
+%
+%
+{\bf Proof.} Fix $n \in \mathbb{N}$. Since $f$ is continuous, for every $w \in
+\left[ a,b \right]$ there is an open interval $V_w$ such that $\|f(s) - f(t)
+\|_X \le 1/n$ for all $s, t \in V_w$. Clearly $\left\{ V_w \right\}_{w \in
+\left[ a,b \right]}$ is a connected
+open cover of $[a,b]$. Since $[a,b]$ is compact, and $\left\{ V_w \right\}_{w \in
+\left[ a,b \right]}$ is connected, we
+can extract
+a finite disjoint subcover $\left\{ (t_j, t_{j +1}) \right\}_j$ of $[a,b]$. For
+each interval $(t_j, t_{j +1})$
+choose $t_{j}^* \in (t_{j}, t_{j +1})$, and define the step-function
+%
+%
+\begin{equation*}
+	\begin{split}
+		f_n(t) =
+		\begin{cases}
+		f(s_i), \quad & t \in V_{w_i},
+		\\
+		0 & \text{otherwise}.
+	\end{cases}
+	\end{split}
+\end{equation*}
+%
+%
+Then by construction, 
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|f-f_n\|_{L^\infty( (a,b), X)} \le 1/n,
+	\end{split}
+\end{equation*}
+%
+%
+completing the proof. \qquad \qedsymbol
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Contraction Mapping Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Contraction Mapping Lemma}
+Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
+\emph{contraction} if there exists an $\alpha$, $0 < \alpha <1$ such that
+%
+%
+\begin{equation*}
+	\begin{split}
+		d(Tx, Ty) \le \alpha d(x,y), \qquad \forall x, y \in X.
+	\end{split}
+\end{equation*}
+%
+%
+\begin{remark}
+	Observe that a contraction mapping is always continuous.
+\end{remark}
+%
+%
+\begin{example}
+	The function $T(x) = 0.1x^2$ defines a contraction mapping in the metric space
+	$X = [-4, 4]$ with distance $d(x,y) = |x-y|$. 
+\end{example}
+	%
+	%
+	%
+	%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%
+	%
+	%				Banach Space Fixed Point Theorem 
+	%
+	%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%
+	%
+	\begin{lemma}[Contraction Mapping Lemma]
+		\label{lem:fixed-point}
+	Let $(X,d)$ be a complete metric space, and $T: X \to X$ a contraction
+	mapping. Then $T$ has a unique fixed point in $X$. That is, there is a unique
+	point $x^* \in X$ such that $Tx^* = x^*$. Furthermore, if $x_0$ is any point
+	in $X$, and we define the sequence $x_{n+1} = Tx_n$, then $x_n \to x^*$ as $n
+	\to \infty$.
+	\end{lemma}
+	%
+	%
+	{\bf Proof.} First we show uniqueness. If $x^*$ and $x^{**}$ are two fixed
+	points, then
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			d(x^*, x^{**}) = d(Tx^*, Tx^{**}) \le \alpha d(x^*, x^{**}) \implies d(x^*,
+			x^{**}) = 0 \implies x^* = x^{**}.
+		\end{split}
+	\end{equation*}
+	%
+	%
+To show that there is a fixed point $x^*$, it suffices to show that $\left\{ x_n
+\right\}$ converges to $x^*$. Since $X$ is complete it suffices to show that
+$\left\{ x_n \right\}$ is a Cauchy sequence. Note that a repeated application of the
+contraction inequality gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		d\left( x_{n+1},x_n \right)
+		& = d\left( Tx_n, Tx_{n-1} \right)
+		\\
+		& \le \alpha d\left( x_n, x_{n-1} \right)
+		\\
+		& \le \alpha^2 d\left( x_{n-1}, x_{n-2} \right)
+		\\
+		& \cdots
+		\\
+		& \le \alpha^n d\left( x_1, x_0 \right).
+	\end{split}
+\end{equation*}
+%
+%
+%Next let $n, k \in N$. The last inequality together with the triangle inequality
+%give
+%%
+%%
+%\begin{equation*}
+%	\begin{split}
+%		d(x_{n+k}, x_n)
+%		& \le \sum_{j=1}^k d\left( x_{n+j}, x_{n+j -1} \right)
+%		\\
+%		& \le \sum_{j =1}^{k}\alpha^{n+j -1}d\left( x_0, x_1 \right)
+%		\\
+%		& \le \frac{\alpha^n}{1- \alpha}d\left( x_0, x_1 \right) \to 0 \ \ \text{as}
+%		\ \ n \to \infty.
+%	\end{split}
+%\end{equation*}
+%%
+%%
+%Therefore $x_n$ is a Cauchy sequence. This completes the proof. \qquad \qedsymbol
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Proof of ODE Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Proof of \autoref{ode-thm}}
+	\label{sec:proof-ode-thm}
+We will in fact prove a stronger result.
+\begin{theorem}[Banach Space ODE Theorem]
+	\label{thm:stronger-ode}
+	Let $X$ be Banach, $E \subset X$ open, $u_0 \in E$, and let $(-a, a)$ be an
+	open interval in $\rr$. If $f: (-a, a) \times E \to X$ satisfies the
+	inequality
+	%
+	%
+	\begin{equation}
+		\label{stronger-ode}
+		\begin{split}
+			\|f(t, x) - f(t, y) \|_X \le c \|x - y\|_X, \qquad \forall t \in (-a, a),
+			\qquad \forall x, y \in E,
+		\end{split}
+	\end{equation}
+	%
+	%
+	then for a sufficiently small $h > 0$ there exists a unique
+	differentiable map $u: (-h, h) \to E$ such that for all $t \in (-h, h)$
+	%
+	%
+	\begin{gather}
+			u'(t) = f(t, u(t)),
+			\\
+			u(0) = u_0.
+	\end{gather}
+\end{theorem}
+	%
+	%
+	%
+	This is a stronger result than \autoref{ode-thm} due to the following
+	lemma, whose proof relies upon the mean value theorem in Banach spaces
+	and can be found in 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%
+	%
+	%				Cont Dif Implies Lip
+	%
+	%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%
+	%
+	\begin{lemma}
+		\label{lem:dif-implies-lip}
+		Let $X$ be Banach, $E \subset X$ open, and let $(-a, a)$ be an
+	open interval in $\rr$. If $f: (-a, a) \times E \to X$ is \emph{continuously
+	differentiable}, then for $t \in [-h, h] \subset (-a, a)$,
+	$f(t)$ is Lipschitz continuous on
+	$E$. That is
+	%
+	%
+	\begin{equation}
+		\label{dif-implies-lip}
+		\begin{split}
+			\|f(t, x) - f(t, y) \|_X \le c \|x - y\|_X, \qquad \forall t \in [-h, h],
+			\qquad \forall x, y \in E.
+		\end{split}
+	\end{equation}
+	%
+	%
+	\end{lemma}
+	%
+	%
+	{\bf Proof of \autoref{thm:stronger-ode}.}		
+	%
+	%
+	Since $f(t)$ is Lipschitz continuous on $E$ for $t \in (-a, a)$, it is
+	continuous on $E$. Hence, using the theory of Banach space integration
+	developed in the last section, it is easy to check that for $t \in (-a,
+	a)$, the initial value problem
+	\eqref{ode-thm-eq}-\eqref{ode-thm-init-data} is equivalent to the
+	integral equation
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			u(t) = u_0 + \int_0^t f(s, u(s) ) \ ds.
+		\end{split}
+	\end{equation*}
+	%
+	%
+	%
+	%
+	Let $[-h, h] \subset (-a, a)$ be a closed interval,
+	and choose $r$ such that
+	$$B_r(u_0) \doteq \left\{ u \in X: \|u - u_0\|_X \le r \right\}$$
+	is a subset of $E$. Define 
+	$$V_h = \left\{ \text{all maps} \; \;  v: [-h, h]
+		\to B_r(u_0)\right\}.$$ Then $V_h$ is a Banach
+		space under the norm $$| | | v | | | = \sup_{s \in [-h, h]} | |v(s) | |_{X}.$$ Let $T$ be a map
+	acting on $V_h$ via the relation $$Tv(t) = u_0 + \int_0^t f(s, v(s) ) \ ds.$$
+	Recalling \autoref{lem:fixed-point}, we see that to complete the proof it will be enough to show that $T$ is a contraction on
+	$V_h$, for suitably small $h >0$. First, note that for $v \in V_h$, we have
+	%
+	%
+\begin{equation}
+	\label{cont-map-into}
+	\begin{split}
+		| | | Tv - u_0| | |
+		& = | | | \int_0^t f(s, v(s) ) \ ds | | |
+		\\
+		& \le  \int_0^t | | | f(s, v(s) ) | | | ds
+		\\
+		& \le   \int_0^t M_1 ds
+		\\
+		& =  t M_1
+		\\
+		& \le  h M_1.
+	\end{split}
+\end{equation}
+%
+%
+Choosing $h \le r/M_1$, it follows that $T: V_h \to V_h$. 
+%Since $[-h, h] \subset (-a, a)$, we can find a compact set $C$ such that $(-h,
+%h) \subset C \subset (-a, a)$. Since $f$ is a continuous function of two
+%variables, $f( (C \times K) )$ is compact, and so \eqref{cont-map-into} gives
+%the estimate
+%%
+%%
+%\begin{equation*}
+%	\begin{split}
+%		| | | Tv | | | \le \|u_0\|_X + Mh < \infty
+%	\end{split}
+%\end{equation*}
+%
+%
+Next, note that for any two points $v_1, v_2 \in
+V_h$, we have
+%
+%
+\begin{equation}
+	\label{cont-part-1}
+	\begin{split}
+		| | | Tv_2 - Tv_1 | | | 
+		& = | | | \int_0^t \left[ f(s, v_2(s) ) - f(s, v_1 (s) ) \right]ds | | |
+		\\
+		& \le \int_0^t | | | f(s, v_2(s) ) - f(s, v_1 (s) ) | | | ds
+		\\
+		& = \int_0^t \sup_{s \in [-h, h]} \|f(s, v_2(s) ) - f(s, v_1 (s) )\|_X \ ds
+		\\
+		& \le \int_0^t M_2 \sup_{s \in [-h, h]} \| v_2(s) - v_1 (s)\|_X \
+		ds
+		\end{split}
+\end{equation}
+%
+%
+where the last step follows from \eqref{stronger-ode}.
+Hence
+\begin{equation*}
+	\begin{split}
+		| | | Tv_2 - Tv_1 | | | 
+		& \le M_2 h \sup_{s \in [-h, h]} \| v_2(s)  - v_1 (s) \|_{ X}
+		\\
+		& = M_2 h   | | | v_2 - v_1 | | |_X.  
+	\end{split}
+\end{equation*}
+%
+%
+Restricting $h < 1/(M_2)$, we obtain
+\begin{equation*}
+	\begin{split}
+		| | | Tv_2 - Tv_1 | | | & \le c | | | v_2 - v_1 | | |_X, \qquad c <1. 
+	\end{split}
+\end{equation*}
+Hence, for $h < \min\left\{r/M_1, 1/M_2  \right\}$, $T$ is a contraction on
+$V_h$.  This completes the proof. \qquad \qedsymbol
+%
+%
+%
+\begin{thebibliography}{Die60}
+\bibitem[Die60]{Dieudonne-1960-Foundations-of-modern-analysis}
+J.~Dieudonn{{\'e}}.
+\newblock {\em Foundations of modern analysis}.
+\newblock Pure and Applied Mathematics, Vol. X. Academic Press, New York, 1960.
+\bibitem[Fol99]{Folland-1999-Real-analysis}
+Gerald~B. Folland.
+\newblock {\em Real analysis}.
+\newblock Pure and Applied Mathematics (New York). John Wiley \& Sons Inc., New
+  York, second edition, 1999.
+\newblock Modern techniques and their applications, A Wiley-Interscience
+  Publication.
+\bibitem[Jos98]{Jost-1998-Postmodern-analysis}
+J{{\"u}}rgen Jost.
+\newblock {\em Postmodern analysis}.
+\newblock Universitext. Springer-Verlag, Berlin, 1998.
+\newblock Translated from the German manuscript by Hassan Azad.
+\end{thebibliography}
+%
+%
+%
+%\nocite{*}
+%\bibliography{/Users/davidkarapetyan/Documents/Math/bib-files/book.bib}
+%\bibliographystyle{alpha}
+\end{document}

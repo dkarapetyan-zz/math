@@ -1,0 +1,1674 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   
+%                  HR Peakon-antipeakon Interaction      
+%                 Alex Himonas & David Karapetyan
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,reqno]{amsart}
+
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[alphabetic, msc-links, abbrev]{amsrefs}
+\usepackage{cancel}
+%use \cancel{c}  OR  \cancelto{0}{c}
+%  \usepackage{ulem}
+% use the "sout" tag to "strike through" text
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{yhmath}
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\synctex=1
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\synctex=1
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+
+\definecolor{Red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{DarkGreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{Blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{Cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{Magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{DeepSkyBlue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{DarkGreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{SpringGreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{DarkOrange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{OrangeRed}{rgb}{1.00, 0.27, 0.00}
+\definecolor{DeepPink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{DarkViolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{SaddleBrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{Black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%§ § 
+%  For Importing Pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+
+
+%% Page Setup %%
+
+\setlength{\textheight}{21.8truecm}
+\setlength{\textwidth}{15.0truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+
+%% New Commands %%
+
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+
+
+\newcommand{\tor}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{algorithm}{Algorithm}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+
+
+\def\refer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+
+%% Equation Numbers %%
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+%% New Environments %%
+
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}[subsection]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+
+%\topmargin0.1truecm
+
+%%% Title %%%
+
+%\begin{titlepage}
+  \title{ HR Peakon-Antipeakon Interactions}
+
+  \author{{\it Alex Himonas \& David Karapetyan}}
+  %\author{Alex Himonas}
+  %\address{Department of Mathematics  \\
+  %       University of Notre Dame     \\
+  %         Notre Dame, IN 46556}
+
+
+
+
+  \date{October 22, 2010}
+
+
+
+
+  \maketitle
+  \markboth{HR Peakon-Antipeakon Interactions}
+  {Alex  Himonas    \& David Karapetyan}
+
+
+  \parindent0in
+  \parskip0.1in
+
+%\end{titlepage}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%      Introduction
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Objective}
+%
+%
+Let the hyperelastic-rod (HR) initial value problem (ivp) be written in the following local form
+%
+%
+%
+\begin{gather}
+  \label{HR-1}
+  \left( 1- \p_x^2 \right)\left( \p_t u + \frac{\gamma}{2} \p_x(u^2) \right) +
+  \p_x\left[ \frac{3-\gamma}{2}u^{2}  + \frac{\gamma}{2}  \left( \p_x u  \right)^2\right] = 0,
+  \\
+  \label{hr-eq-init-data}
+  u(x,0) = u_0(x), \quad x \in \ci \ \text{or} \ \rr, \quad t \in \rr.
+\end{gather}
+%
+%
+%
+%
+We wish to prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Main Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  The HR ivp is ill-posed for $1 < s < 3/2$. More precisely, for $\ee >0$, there
+  exists a solution $u \in C([0, T): H^s))$ to \eqref{HR-1}
+  with existence time $T \le \ee$, such that
+  %
+  %
+  \begin{equation*}
+    \begin{split}
+      \lim_{t \to T^{-}} \|u(t)\|_{H^s} = \infty \quad \text{and} \quad
+      \|u(0)\|_{H^s} \le \ee.
+    \end{split}
+  \end{equation*}
+  %
+  %
+\end{theorem}
+Following \cite{Byers-2006-Existence-time-for-the-Camassa-Holm}, we tackle the
+non-periodic and periodic cases separately.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Traveling Wave Solutions CH and HR
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Traveling Wave Solutions} 
+\label{sec:trav-wav-soln}
+We want to show that the following function
+%
+\begin{equation}
+  \label{trav-wav-HR-trav}
+  u(x,t)= p e^{-| x + q |}, 
+\end{equation}
+%
+is a traveling wave solution for the HR equation for suitable $p=p(t),
+q=q(t)$. We begin with the the definition
+%
+\begin{equation}
+  \label{sign-funct}
+  \sigma(x) \doteq \text{sign}(x) = \frac{|x|}{x} 
+  = 
+  \begin{cases}
+    1, \; \; \; \; \; x > 0 \\
+    -1, \; \; x < 0.
+  \end{cases}
+\end{equation}
+%
+We have the formula
+% 
+%
+\begin{equation}
+  \label{sign-deriv1}
+  \p_x e^{-|x|}= -\sigma(x) e^{-|x|}.
+\end{equation}
+%
+Also,  we have 
+%
+\begin{equation}
+  \label{sign-deriv2}
+  \p_x\sigma(x-q) = 2\delta_q,
+  \quad
+  \text{and}
+  \quad
+  \p_x\sigma(x+q) = 2\delta_{-q}.
+\end{equation}
+%
+We verify only the first relation. The second is similar.
+For this we choose a test function $\varphi(x)$ and we have
+%
+\begin{align*}
+  \langle
+  \p_x\sigma(x-q), \varphi(x)
+  \rangle
+  &=
+  -\langle
+  \sigma(x-q),  \p_x\varphi(x)
+  \rangle
+  \\
+  &=
+  -
+  \int_\rr
+  \sigma(x-q) \varphi'(x) dx 
+  \\
+  &=
+  -
+  \int_{-\infty}^q
+  \sigma(x-q) \varphi'(x) dx 
+  -
+  \int_q^\infty
+  \sigma(x-q) \varphi'(x) dx 
+  \\
+  &=
+  \int_{-\infty}^q \varphi'(x) dx 
+  -
+  \int_q^\infty \varphi'(x) dx 
+  \\
+  &=
+  \varphi(x)\Big|_{-\infty}^q
+  -
+  \varphi(x)\Big|_q^\infty 
+  \\
+  &=
+  \varphi(q)- \varphi(-\infty) 
+  -
+  [\varphi(\infty)- \varphi(q) ]
+  \\
+  &=
+  \varphi(q)- 0
+  -
+  [0- \varphi(q) ]
+  \\
+  &=
+  2\varphi(q)
+  \\
+  &=
+  \langle
+  \delta_q, \varphi(x)
+  \rangle.
+\end{align*}
+{\bf  Computing the term $\p_t u-\p_{x}^2\p_t u$:}  Using the above formulas we get
+%
+\begin{align*}
+  &\p_t u
+  =
+  p'e^{-|x+q|} 
+  -
+  pq'\sigma(x+q)e^{-|x+q|}.
+\end{align*}
+%
+Therefore, we have 
+%
+\begin{align*}
+  \p_x\p_t u
+  = 
+  &-p' \sigma(x+q) e^{-|x+q|}
+  + 
+  pq'e^{-|x+q|} 
+  -
+  2pq' \delta_{-q}
+\end{align*}
+%
+and 
+%
+\begin{align*}
+  \p_x^2\p_t u
+  &=
+  p'e^{-|x+q|}
+  -
+  pq'\sigma(x+q)e^{-|x+q|}
+  -2p' \delta_{-q} - 2pq'\delta_{-q}' 
+\end{align*}
+%
+We now observe that in fact
+%
+\begin{align}
+  \label{deriv-t-term-trav-wav}
+  u_t - u_{txx} = 2p' \delta_{-q} + 2pq'\delta_{-q}' 
+\end{align}
+%
+{\bf Computing the Term $\displaystyle \frac{3-\gamma}{2} \p_x (u^{2})$ and $\displaystyle \frac{\gamma}{2} \p_x (u^{2})$.}
+We have
+%
+%
+%
+%
+\begin{gather}
+  \notag \frac{3-\gamma}{2}\p_x (u^{2}) 
+  = -(3-\gamma) p^{2}e^{-2| x+q |} \sigma(x+q),
+  \\
+  \label{deriv-u-sq-HR-trav}
+  \frac{\gamma}{2}\p_x (u^{2}) 
+  = -\gamma p^{2}e^{-2| x+q |} \sigma(x+q). 
+\end{gather}
+%
+{\bf Computing the term $\displaystyle \frac{\gamma}{2} \p_x^3 (u^2)$.}
+Taking one derivative of the right hand side of \eqref{deriv-u-sq-HR-trav}, we obtain 
+%
+\begin{equation*}
+  \begin{split}
+    \frac{\gamma}{2}\p_x^2 (u^{2})
+    = \gamma p^{2}\left[ 2 e^{-2| x+q |} -2 \delta_{-q}  
+    \right].
+  \end{split}
+\end{equation*}
+%
+and hence
+\begin{equation}
+  \label{deriv-trip-u-sq-HR-trav}
+  \begin{split}
+    \frac{\gamma}{2}\p_x^3 (u^{2})
+    & = \gamma p^{2}\left[ -4 e^{-2| x+q |} \sigma(x+q) -2 \delta_{-q}'
+    \right].  
+  \end{split}
+\end{equation}
+%
+{\bf Computing the term $\displaystyle \frac{\gamma}{2}\p_x [(\p_x u)^2]$.}
+Since 
+%
+\begin{align*}
+  \p_x u = -p\sigma(x+q) e^{-|x+q|} 
+\end{align*}
+%
+we have
+%
+\begin{align*}
+  (\p_x u)^2
+  &= 
+  p^2 e^{-2|x+q|}.
+\end{align*}
+%
+%
+Therefore,
+%
+%
+\begin{equation}
+  \begin{split}
+    \label{deriv-deriv-u-sq2-HR-trav}
+    \frac{\gamma}{2}\p_x (\p_x u)^2
+    = -\gamma p^2 e^{-2 | x+q |} \sigma(x+q). 
+  \end{split}
+\end{equation}
+%
+{\bf Substituting into the HR equation.}
+%
+Applying \eqref{deriv-t-term-trav-wav}, \eqref{deriv-u-sq-HR-trav},
+\eqref{deriv-trip-u-sq-HR-trav}, and \eqref{deriv-deriv-u-sq2-HR-trav} to the
+the HR equation, we
+obtain
+%
+%
+%
+\begin{gather}
+  \label{ode-term-1-HR-trav}
+  2p'\delta_{-q} 
+  \\
+  \label{ode-term-2-HR-trav}
+  + \delta_{-q}'  \left [2 \gamma p^{2}  + 2pq' \right ]
+  \\
+  \label{problem-term-HR-trav}
+  +3(\gamma -1)p^{2} e^{-2| x+q |}\sigma(x+q) 
+\end{gather}
+%
+Notice that for $\gamma \neq 1$, we do not have an exact solution of form
+$\eqref{trav-wav-HR-trav}$. 
+%
+%
+\section{Peakon-Antipeakon Traveling Wave Solutions}
+\label{sec:peakon-antipeakon}
+We want to show that the following function
+%
+\begin{equation}
+  \label{peakon-anti}
+  u(x,t)= p e^{-| x + q |} - p e^{-| x-q |},
+\end{equation}
+%
+where $p=p(t)$ and  $q=q(t)$ are positive functions of $t$,
+is a peakon anti-peakon weak traveling wave solution if
+%
+\begin{align}
+  &p' = p^2 e^{-2q}, \\
+  &q' = p (e^{-2q} -1).
+\end{align}
+%
+%
+%
+%
+{\bf  Computing the term $\p_t u-\p_{x}^2\p_t u$:}  Using the above formulas we get
+%
+\begin{align*}
+  &\p_t u
+  =
+  p'e^{-|x+q|} 
+  - 
+  p'e^{-|x-q|}
+  -
+  pq'\sigma(x+q)e^{-|x+q|}
+  -
+  pq'\sigma(x-q)e^{-|x-q|}.
+\end{align*}
+%
+Therefore, we have 
+%
+\begin{align*}
+  \p_x\p_t u
+  = 
+  &-p' \sigma(x+q) e^{-|x+q|}
+  +
+  p'\sigma(x-q)e^{-|x-q|} 
+  + 
+  pq'e^{-|x+q|} 
+  +
+  pq' e^{-|x-q|}\\
+  &-
+  2pq' \delta_{-q}
+  -2pq'\delta_q
+\end{align*}
+%
+and 
+%
+\begin{align*}
+  \p_x^2\p_t u
+  &=
+  p'e^{-|x+q|}
+  -
+  p'e^{-|x-q|}
+  -
+  pq'\sigma(x+q)e^{-|x+q|}
+  -
+  pq'\sigma(x-q)e^{-|x-q|} \\
+  &-2p' \delta_{-q} + 2p'\delta_q - 2pq'\delta_{-q}' - 2pq'\delta_q'
+\end{align*}
+%
+We now observe that in fact
+%
+\begin{align}
+  \label{deriv-t-term}
+  u_t - u_{txx} = 2p' \delta_{-q} - 2p'\delta_q + 2pq'\delta_{-q}' + 2pq'\delta_q'
+\end{align}
+%
+\medno
+{\bf Computing the Term $\displaystyle \frac{3-\gamma}{2} \p_x (u^{2})$ and
+$\displaystyle \frac{\gamma}{2} \p_x (u^{2})$.}
+We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    u^{2} = p^{2}\left( e^{-2| x+q |} + e^{-2| x-q |} - 2e^{-| x+q
+    |}e^{-| x-q |} \right).
+  \end{split}
+\end{equation*}
+%
+%
+To compute the weak derivative of $u^{2}$, we need to compute the weak
+derivative of $e^{-| x+q |}e^{-| x-q |}$. That is
+%
+%
+%
+%
+\begin{equation*}
+  \begin{split}
+    & <\p_x\left( e^{-| x+q |}e^{-| x-q |}\right), \vp(x)>
+    \\
+    & = - <e^{-| x+q |} e^{| x-q |}, \vp'(x)>
+    \\
+    & = - \int_{\rr}e^{-| x+q |}e^{-| x-q |}\vp'(x) dx
+    \\
+    & = - \left[ \int_{-\infty}^{-q}e^{-| x+q |}e^{-| x-q |} \vp'(x) dx +
+    \int_{-q}^{q}e^{-| x+q |}e^{-| x-q |} \vp'(x) dx +
+    \int_{q}^{\infty}e^{-| x+q |}e^{-| x-q |}\vp'(x) dx \right]
+    \\
+    & = -\left[ \int_{-\infty}^{-q}e^{x+q}e^{x-q} \vp'(x) dx +
+    \int_{-q}^{q}e^{-(x+q)}e^{x-q}\vp'(x) dx +
+    \int_{q}^{\infty}e^{-(x+q)}e^{-(x-q)} \vp'(x) dx \right]
+    \\
+    & = -\left[ \int_{-\infty}^{-q}e^{2x}\vp'(x) dx +
+    \int_{-q}^{q}e^{-2q}\vp'(x) dx + \int_{q}^{\infty}e^{-2x} \vp'(x) dx \right]
+    \\
+    & = -\left\{ \cancel{e^{2x} \vp(x) \Big |_{-\infty}^{-q}} -2 \int_{-\infty}^{-q}
+    e^{2x} \vp(x) dx + \cancel{e^{-2q}\left[ \vp(q) - \vp(-q)
+    \right]} \right.
+    \\
+    & \left . \phantom{=} + \cancel{e^{-2x}\vp(x) \Big |_{q}^{\infty}} + 2
+    \int_{q}^{\infty}e^{-2x}\vp(x) dx \right\}
+    \\
+    & = 2 <e^{2x}\chi_{(-\infty, -q)}, \vp(x)>
+    - 2 <e^{-2x}\chi_{(q, \infty)}, \vp(x)>.
+  \end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation}
+  \label{deriv-u-sq}
+  \begin{split}
+    & \frac{3-\gamma}{2}\p_x (u^{2}) 
+    \\
+    & = (3-\gamma) p^{2}\left\{ - e^{-2| x+q |} \sigma(x+q) -  e^{-2| x-q
+    |}\sigma(x-q) - 2e^{2x}\chi_{(-\infty, -q)} + 2e^{-2x} \chi_{(q, \infty)}
+    \right \},
+    \\
+    & \frac{\gamma}{2}\p_x (u^{2}) 
+    \\
+    & = \gamma p^{2}\left\{ - e^{-2| x+q |} \sigma(x+q) -  e^{-2| x-q
+    |}\sigma(x-q) - 2e^{2x}\chi_{(-\infty, -q)} + 2e^{-2x} \chi_{(q, \infty)}
+    \right \}.
+  \end{split}
+\end{equation}
+%
+{\bf Computing the term $\displaystyle \frac{\gamma}{2} \p_x^3 (u^2)$.}
+It will be enough  
+to compute the weak second derivatives of all
+bracketed terms in \eqref{deriv-u-sq}. First, we note that
+%
+%
+%
+%
+%
+\begin{equation*}
+  \begin{split}
+    & \p_x \left[ e^{-2| x+q |} \sigma(x+q) \right]
+    \\
+    & = -2e^{-2| x+q |} + \left[ e^{-2| -q^{+} + q |} \sigma(-q^{+} + q) -
+    e^{-2| -q^{-} + q |} \sigma(-q^{-} + q) \right]\delta_{-q}
+    \\
+    & = -2e^{-2| x+q |} + 2 \delta_{-q}
+  \end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation}
+  \label{7aa}
+  \begin{split}
+    \p_x^2 \left[ e^{-2| x+q |} \sigma(x+q) \right] = 4e^{-2| x+q |}
+    \sigma(x+q) + 2 \delta'_{-q}.
+  \end{split}
+\end{equation}
+%
+%
+Similarly, 
+%
+%
+\begin{equation}
+  \label{8aa}
+  \begin{split}
+    \p_x^{2}\left[ e^{-2| x-q |}\sigma(x-q) \right] = 4e^{-2| x-q
+    |}\sigma(x-q) + 2 \delta'_{q}.
+  \end{split}
+\end{equation}
+%
+Furthermore, we have
+\begin{equation*}
+  \begin{split}
+    & \p_x(e^{2x} \chi_{(-\infty, -q)})
+    \\
+    & = 2e^{2x} \chi_{(-\infty, -q)} + \left[ e^{-2q^{+}}\chi_{(-\infty, -q)}
+    (-q^+) - e^{-2q^{-}} \chi_{(-\infty, -q)} (-q^{-}) \right]\delta_{-q}
+    \\
+    & = 2e^{2x} \chi_{(-\infty, -q)} - e^{-2q} \delta_{-q}
+  \end{split}
+\end{equation*}
+%
+%
+which gives
+%
+%
+\begin{equation}
+  \label{5aa}
+  \begin{split}
+    \p_x^{2}(e^{2x} \chi_{(-\infty, -q)}) = 4e^{2x} \chi_{(-\infty, -q)} -
+    2e^{-2q} \delta_{-q} - e^{-2q} \delta'_{-q}.
+  \end{split}
+\end{equation}
+%
+%
+We also have
+%
+%
+\begin{equation*}
+  \begin{split}
+    \p_x (e^{-2x} \chi_{(q, \infty)})
+    & = -2e^{-2x} \chi_{(q, \infty)} + \left[ e^{-2q^{+}} \chi_{(q,
+    \infty)}(q^{+}) - e^{-2q^{-}} \chi_{(q, \infty)}(q^{-})
+    \right]\delta_{q}
+    \\
+    & = -2e^{-2x} \chi_{(q, \infty)} + e^{-2q} \delta_{q}
+  \end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation}
+  \label{6aa}
+  \begin{split}
+    \p_x^2 (e^{-2x} \chi_{(q, \infty)})
+    & = 4e^{-2x} \chi_{(q, \infty)} - 2e^{-2q} \delta_{q} + e^{-2q}
+    \delta'_{q}.
+  \end{split}
+\end{equation}
+%
+%
+%
+%
+From \eqref{deriv-u-sq}-\eqref{8aa}, we conclude that
+%
+%
+\begin{equation}
+  \label{deriv-trip-u-sq}
+  \begin{split}
+    \frac{\gamma}{2}\p_x^3 (u^{2})
+    & = \gamma p^{2}\left[ -4 e^{-2| x+q |} \sigma(x+q) - 4e^{-2| x-q
+    |}\sigma(x-q) -2 (\delta_{-q}' + \delta_{q}') \right.
+    \\
+    & - 8e^{2x} \chi_{(-\infty, -q)} + 4e^{-2q} \delta_{-q} +
+    2e^{-2q} \delta_{-q}'
+    \\
+    & \left. + 8e^{-2x}\chi_{(q, \infty)} -4 e^{-2q}
+    \delta_{q} + 2e^{-2q} \delta_{q}' \right].
+  \end{split}
+\end{equation}
+%
+%
+{\bf Computing the term $\displaystyle \frac{\gamma}{2}\p_x [(\p_x u)^2]$.}
+Since 
+%
+\begin{align*}
+  u_x = -p\sigma(x+q) e^{-|x+q|} + p\sigma(x-q)e^{-|x-q|}
+\end{align*}
+%
+we have
+%
+\begin{align*}
+  (\p_x u)^2
+  &= 
+  p^2 e^{-2|x+q|} + p^2e^{-2|x-q|} \\
+  &-2p^2\sigma(x+q) \sigma(x-q) e^{-|x+q|} e^{-|x-q|}.
+\end{align*}
+%
+To compute   the weak derivative of $(\p_x u)^2$ we need 
+to compute the weak derivative of 
+$\sigma(x+q) \sigma(x-q) e^{-|x+q|} e^{-|x-q|}$, which we do next.
+For  $\varphi$ a test function we have
+%
+%
+%
+\begin{align*}
+  &\langle
+  \p_x[
+  \sigma(x+q) \sigma(x-q) e^{-|x+q|} e^{-|x-q|}], \varphi(x)
+  \rangle=
+  \\
+  &=
+  -
+  \langle
+  \sigma(x+q) \sigma(x-q) e^{-|x+q|} e^{-|x-q|}, \p_x\varphi(x)
+  \rangle
+  \\
+  &=
+  -\int_\rr
+  \Big[
+  \sigma(x+q) \sigma(x-q) e^{-|x+q|} e^{-|x-q|} 
+  \Big]
+  \varphi'(x) dx \\
+  &=
+  - \int_{-\infty}^{-q}
+  (-1)(-1) e^{-(-(x+q))} e^{-(-(x-q))} \varphi'(x) dx \\
+  &-
+  \int_{-q}^q
+  (+1)(-1) e^{-(x+q)} e^{-(-(x-q))} \varphi'(x) dx \\
+  &-
+  \int_q^{\infty} (+1)(+1) e^{-(x+q)} e^{-(x-q)} \varphi'(x) dx \\
+  &=
+  - e^{-2q} \varphi(-q)
+  +2 \int_{-\infty}^{-q} e^{2x} \varphi(x) dx  \\
+  &
+  +e^{-2q} \varphi(q) 
+  -e^{-2q}  \varphi(-q) \\
+  &+
+  e^{-2q}\varphi(q) 
+  -2 \int_q^{\infty} e^{-2x} \varphi(x) dx \\
+  &=
+  2 <
+  e^{2x} \chi_{(-\infty, -q)}, \varphi(x)> 
+  -2  < e^{-2x} \chi_{(q, \infty)}, \varphi(x)> \\
+  &
+  + 2 e^{-2q}\left( < \delta_q, \varphi(x)>
+  - < \delta_{-q}, \varphi(x)>\right).
+\end{align*}
+%
+Therefore,
+%
+%
+\begin{equation}
+  \begin{split}
+    \label{deriv-deriv-u-sq2}
+    \frac{\gamma}{2}\p_x (\p_x u)^2
+    = \gamma p^2 & \left\{ - e^{-2 | x+q |} \sigma(x+q) -  e^{-2| x-q
+    |}\sigma(x-q) \right.
+    \\
+    & \left. - 2 e^{2x} \chi_{(-\infty, -q)} 
+    + 2 e^{-2x} \chi_{(q, \infty)}
+    - 2e^{-2q}(\delta_{q} - \delta_{-q}) \right \}
+  \end{split}
+\end{equation}
+%
+%
+%
+%
+%
+%
+\medno
+{\bf Substituting into the HR equation.}
+Applying	\eqref{deriv-t-term},
+\eqref{deriv-u-sq}, \eqref{deriv-trip-u-sq}, and \eqref{deriv-deriv-u-sq2} to the
+HR equation \eqref{HR-1}, we
+obtain
+%
+%
+%
+\begin{gather}
+  \label{ode-term-1}
+  \delta_{q}\left [(4-2\gamma)p^{2}e^{-2q} - 2p' \right ]
+  + \delta_{-q} \left [2p' - (4-2 \gamma)p^{2}e^{-2q} \right ]
+  \\
+  \label{ode-term-2}
+  + \delta_{q}'\left [2\gamma p^2 - 2 \gamma p^2e^{-2q} + 2 pq' \right ]
+  + \delta_{-q}'  \left [2 \gamma p^{2} - 2 \gamma p^{2}e^{-2q} + 2pq' \right ]
+  \\
+  \label{problem-term}
+  3(\gamma -1)p^{2}\left[ e^{-2| x+q |}\sigma(x+q) + e^{-2| x-q |}
+  \sigma(x-q) \right.
+  \\
+  \notag
+  + \left. 2e^{2x} \chi_{(-\infty, -q)} - 2e^{-2x} \chi_{(q, \infty)} \right ].
+\end{gather}
+%
+Setting 
+\begin{equation}
+  \label{dif-eq}
+  \begin{split}
+    & p' =\frac{4-2\gamma}{2} p^2 e^{-2q}, 
+    \\
+    & q'=p\gamma(e^{-2q} -1).
+  \end{split}
+\end{equation}
+we see that terms \eqref{ode-term-1} and \eqref{ode-term-2} vanish. 
+%
+\textbf{TERM \eqref{problem-term} PREVENTS US FROM GETTING A USEFUL ODE FOR $\gamma
+\neq1$.}
+%
+\\
+\\
+Things are no better if we take
+%
+%
+\begin{equation*}
+  \begin{split}
+    u(x,t) = p e^{-c| x + q |} - p e^{-c| x-q |}
+  \end{split}
+\end{equation*}
+%
+%
+for some $c \in \rr$. To see why, we compute the term $\p_t u-\p_{x}^2\p_t u$.
+Following our earlier computations, we get 
+%
+\begin{align*}
+  &\p_t u
+  =
+  p'e^{-c|x+q|} 
+  - 
+  p'e^{-c|x-q|}
+  -
+  cpq'\sigma(x+q)e^{-c|x+q|}
+  -
+  cpq'\sigma(x-q)e^{-c|x-q|}.
+\end{align*}
+%
+Therefore, we have 
+%
+\begin{align*}
+  \p_x\p_t u
+  = 
+  &-cp' \sigma(x+q) e^{-c|x+q|}
+  +
+  cp'\sigma(x-q)e^{-c|x-q|} 
+  + 
+  c^2pq'e^{-c|x+q|} 
+  +
+  c^2pq' e^{-c|x-q|}\\
+  &-
+  2cpq' \delta_{-q}
+  -2cpq'\delta_q
+\end{align*}
+%
+and 
+%
+\begin{align*}
+  \p_x^2\p_t u
+  &=
+  c^2p'e^{-c|x+q|}
+  -
+  c^2p'e^{-c|x-q|}
+  -
+  c^3pq'\sigma(x+q)e^{-c|x+q|}
+  -
+  c^3pq'\sigma(x-q)e^{-c|x-q|} \\
+  &-2cp' \delta_{-q} + 2cp'\delta_q - 2cpq'\delta_{-q}' - 2cpq'\delta_q'.
+\end{align*}
+%
+We now observe that in fact
+%
+\begin{align}
+  u_t - u_{txx} &= 2p' \delta_{-q} - 2p'\delta_q + 2pq'\delta_{-q}' + 2pq'\delta_q'
+  \\
+  \label{prob-term}
+  & + (1-c^2)p'e^{-c| x+q |} - (1 -c^2)p'e^{-c| x-q |}
+  \\
+  & -c(1-c^{2})pq'\sigma(x+q)e^{-c| x+q |} - c(1-c^{2})pq' \sigma(x-q)e^{-c| x-q
+  |}.
+\end{align}
+We have no hope that \eqref{prob-term} will be cancelled by remaining terms of
+the HR equation, since none of them will have a $p'$ component.
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 A Simpler Computation, To check last section
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{A Simpler Computation, To Double Check
+\autoref{sec:peakon-antipeakon}.}	
+We consider the function \eqref{peakon-anti} as before, and assume $x >q$. Then
+%
+%
+\begin{equation*}
+  \begin{split}
+    u(x,t) & = p\left[ e^{-(x+q)} - e^{-(x-q)} \right]
+    \\
+    & = p e^{-x}\left[ e^{-q} - e^{q} \right].
+  \end{split}
+\end{equation*}
+%
+%
+{\bf Computing the term $ \displaystyle (1-\p_x^2) \p_t u$.}
+We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    \p_t u
+    & = pe^{-x}\left[ -q'e^{-q} - q' e^{q} \right] + p'e^{-x}\left[
+    e^{-q}-e^{q}
+    \right]
+    \\
+    & = -pe^{-x}q'\left[ e^{-q} + e^{q} \right] + p'e^{-x}\left[ e^{-q} -
+    e^{q}
+    \right]
+    \\
+    & = e^{-x}\left( e^{-q}-e^{q} \right)\left( p' - pq' \right).
+  \end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation}
+  \label{pseudo-dtu}
+  \begin{split}
+    \left( 1- \p_x^2 \right) \p_t u = 0.
+  \end{split}
+\end{equation}
+%
+%
+{\bf Computing the term $ \displaystyle \left( 1- \p_x^2 \right)\left[
+\frac{\gamma}{2} \p_x(u^2) \right] $.}
+We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    u^{2} = p^{2}e^{-2x}\left[ e^{-2q} + e^{2q}-2 \right]
+  \end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+  \begin{split}
+    \p_x(u^{2}) = -2p^{2}e^{-2x}\left[ e^{-2q} + e^{2q} -2 \right]
+  \end{split}
+\end{equation*}
+%
+%
+from which we obtain
+%
+%
+\begin{equation*}
+  \begin{split}
+    \frac{\gamma}{2} \p_{x}(u^{2}) = - \gamma p^{2}e^{-2x}\left[ e^{-2q} +
+    e^{2q} -2
+    \right].
+  \end{split}
+\end{equation*}
+%
+%
+Furthermore,
+%
+%
+\begin{equation*}
+  \begin{split}
+    \p_x(u^{2}) = -8p^{2}e^{-2x}\left[ e^{-2q} + e^{2q}-2 \right]
+  \end{split}
+\end{equation*}
+%
+%
+from which we obtain
+%
+%
+\begin{equation*}
+  \begin{split}
+    \frac{\gamma}{2} \p_x^3(u^{2}) = -4 \gamma p^{2}e^{-2x}\left[ e^{-2q}+
+    e^{2q} -2
+    \right].
+  \end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation}
+  \label{pseudo-dx-u-sq}
+  \begin{split}
+    \left( 1 - \p_x^2 \right)\left[ \frac{\gamma}{2} \p_x(u^{2}) \right] =
+    3\gamma p^{2} e^{-2x}\left[ e^{-2q} + e^{2q}-2 \right].
+  \end{split}
+\end{equation}
+%
+%
+{\bf Computing the term $ \displaystyle \p_x \left[ \frac{3-\gamma}{2}u^{2} \right] $.}
+We have
+%
+%
+\begin{equation}
+  \label{pseudo-dx-3-gam-u-sq}
+  \begin{split}
+    \p_x \left[ \frac{3-\gamma}{2}u^{2} \right] = -(3- \gamma)p^{2}e^{-2x}\left[
+    e^{-2q} + e^{2q}-2 \right].
+  \end{split}
+\end{equation}
+%
+%
+{\bf Computing the term $\displaystyle \p_x \left[ \frac{\gamma}{2}(\p_x
+u)^{2} \right]$.}
+We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    \p_x u = -p e^{-x}\left[ e^{-q} - e^{q} \right]
+  \end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+  \begin{split}
+    (\p_x u)^{2} = p^{2} e^{-2x}\left[ e^{-2q} + e^{2q} -2 \right].
+  \end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+%
+%
+\begin{equation}
+  \label{del-x-delx-u-sq}
+  \begin{split}
+    \p_x\left[ \frac{\gamma}{2}(\p_x u )^{2}\right] = - \gamma p^{2}e^{-2x}\left[
+    e^{-2q} + e^{2q} -2 \right].
+  \end{split}
+\end{equation}
+%
+%
+Substituting \eqref{pseudo-dtu}-\eqref{del-x-delx-u-sq} into the left-hand-side
+of the HR equation yields
+%
+%
+\begin{gather*}
+  3 \gamma p^{2}e^{-2x}\left[ e^{-2q} + e^{2q} -2 \right]
+  - (3 -\cancel{\gamma})p^{2}e^{-2x}\left[ e^{-2q} + e^{2q}-2 \right]
+  \\
+  - \cancel{\gamma
+  p^{2}e^{-2x}\left[ e^{-2q} + e^{2q}-2 \right]}
+\end{gather*}
+%
+%
+or
+%
+%
+\begin{equation}
+  \label{fund-relation-simp-case}
+  \begin{split}
+    3(\gamma -1)p^{2}e^{-2x}\left[ e^{-2q} + e^{2q}-2 \right].
+  \end{split}
+\end{equation}
+%
+%
+Hence, when $\gamma \neq 1$, and $p$ and $q$ are non-trivial, there are no solutions of form \eqref{peakon-anti}
+to the HR equation. Note that when $x > q$, \eqref{ode-term-1} and
+\eqref{ode-term-2} vanish (since $\delta_{c}(x) = 0$ for all $x \neq c$), while \eqref{problem-term}
+simplifies to \eqref{fund-relation-simp-case}.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Another Weak Deriv Computation
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Difference of Traveling Wave Solutions Computation} 
+\label{sec:dif-trav-wave-comp}
+Let $u(x,t), v(x,t)$ be solutions to the HR ivp. Then $u -v$ is a solution if
+and only if
+%
+%
+\begin{equation*}
+  \begin{split}
+    0 & = \p_t(u -v) - \p_t \p_x^{2}(u -v) + 3(u-v)\p_x(u-v)
+    \\
+    & - 2 \gamma
+    \p_x(u-v)\p_x^{2}(u-v) - \gamma (u-v)\p_x^{3}(u-v)
+    \\
+    & = -3(u \p_x v + v \p_x u) + 2\gamma(\p_x u \p_x^{2}v + \p_x v \p_x^2 u) +
+    \gamma(u \p_x^3 v + v \p_x^3 u).
+  \end{split}
+\end{equation*}
+%
+%
+or, equivalently,
+%
+%
+\begin{equation*}
+  \begin{split}
+    0
+    & = -3 \p_x(uv) + 2 \gamma \p_x\left( \p_x u \p_x v \right)
+    \\
+    & + \gamma \left[ \p_x(u \p_x^2v - \int \p_x u \p_x^2 v dx + v \p_x^2 u - \int
+    \p_x v \p_x^2 u dx) \right]
+    \\
+    & = -3 \p_x(uv) + 2 \gamma \p_x (\p_x u \p_x v)
+    \\
+    & + \gamma\left[ \p_x (u \p_x^2 v - \int \p_x(\p_x u \p_x v) + v \p_x^2 u) \right]
+    \\
+    & = - 3 \p_x(uv) + 2 \gamma \p_x(\p_x u \p_xv)
+    \\
+    & + \gamma \p_x(u \p_x^2 v - \p_x u \p_x v + v \p_x^2 u)
+    \\
+    & = - 3 \p_x(uv) + \gamma \p_x(u \p_x^2 v + \p_x u \p_x v + v \p_x^2 u).
+  \end{split}
+\end{equation*}
+%
+%
+or, equivalently (by integration)
+%
+%
+%
+\begin{equation*}
+  \begin{split}
+    f(t)=- 3 (uv) + \gamma (u \p_x^2 v + \p_x u \p_x v + v \p_x^2 u).
+  \end{split}
+\end{equation*}
+%
+%
+%Letting $u(x,t) = p(t)e^{-| x-q |}, v(x,t)=p(t)e^{-| x+q |}$, we see that
+%%
+%%
+%\begin{equation*}
+  %\begin{split}
+    %& - 3 \p_x(uv) + \gamma \p_x(u \p_x^2 v + \p_x u \p_x v + v \p_x^2 u)
+    %\\
+    %& = e^{-| x+q |}e^{-| x-q |}\left[ \sigma(x+q)\sigma(x-q) -1 \right]
+    %\\
+    %& = 
+    %\begin{cases}
+      %0, & \qquad x \le -q, 
+      %\\
+      %-2e^{-2q}, & \qquad q < x < q,
+      %\\
+      %0, & \qquad x \ge q.
+    %\end{cases}
+  %\end{split}
+%\end{equation*}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 The non-periodic Case
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{The Non-Periodic Case for CH}
+For any $\lambda \in \rr$, $b \in \rr \setminus \{0\}$, the differential system \eqref{dif-eq} has the
+solution
+%
+%
+\begin{equation}
+  \label{dif-eq-soln}
+  \begin{split}
+    & p(t) = - \lambda \coth (\lambda t - b),
+    \\
+    & q(t) = \ln \cosh (\lambda t - b).
+  \end{split}
+\end{equation}
+%
+%
+Hence, for $0 \le t < T$ where $T = b / \lambda$,
+%
+%
+\begin{equation}
+  \label{soln-CH}
+  \begin{split}
+    u(x,t)=-\lambda \coth(\lambda t -b)\left[ e^{-| x+ \ln \cosh(\lambda t -b)|} 
+    - e^{-| x - \ln \cosh(\lambda t -b) |} \right]
+  \end{split}
+\end{equation}
+%
+%
+is a solution to the CH equation. Next, we will show that for $1 <
+s < 3/2 $, the $H^s$ decay of the bracketed term as $t \to b / \lambda$ is
+dominated by the corresponding blowup of $p(t)$. First, we will need the
+following. 
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Norm Blowup
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  \label{lem:norm-blowup}
+  %
+  %
+  For $r < s < 3/2$,
+  %
+  %
+  \begin{equation}
+    \label{norm-blowup}
+    \begin{split}
+      \lim_{t \to T^{-}}
+      \frac{\|u(t)\|_{H^{r}(\rr)}}{\|u(t)\|_{H^{s}(\rr)}} = 0.
+    \end{split}
+  \end{equation}
+\end{lemma}
+%
+%
+{\bf Proof.} Using the definition of the Fourier transform and a change of
+variable, we obtain
+%
+%
+\begin{equation}
+  \label{1h}
+  \begin{split}
+    \widehat{e^{-| x-q |}}(\xi)
+    & = \int_{\rr} e^{-ix \xi} e^{-| x-q |}dx
+    \\
+    & = \int_{\rr} e^{-i(x+q)\xi} e^{-| x |} dx
+    \\
+    & = e^{-iq \xi} \int_{\rr} e^{-ix \xi} e^{-| x |}dx.
+  \end{split}
+\end{equation}
+%
+%
+Next, we write
+%
+%
+\begin{equation*}
+  \begin{split}
+    \int_{\rr}e^{-ix \xi} e^{-| x |}dx = \int_{0}^{\infty}e^{-ix \xi}
+    e^{-x} dx + \int_{-\infty}^{0}e^{-ix \xi} e^{x} dx.
+  \end{split}
+\end{equation*}
+%
+%
+Making the change of variable $x \to -x$ in the second integral, we obtain
+%
+%
+\begin{equation*}
+  \begin{split}
+    \int_{\rr}e^{-ix \xi} e^{-| x |}dx
+    & = \int_{0}^{\infty} \left( e^{-ix \xi} + e^{ix \xi} \right)e^{-x} dx
+    \\
+    & = 2 \int_{0}^{\infty} \cos(\xi x)e^{-x}dx.
+  \end{split}
+\end{equation*}
+%
+%
+Integration by parts then gives
+%
+%
+\begin{equation}
+  \label{2h}
+  \begin{split}
+    \int_{\rr}e^{-ix \xi} e^{-| x |}dx = \frac{2}{\xi^2 + 1}.
+  \end{split}
+\end{equation}
+%
+%
+Hence, from \eqref{1h} and \eqref{2h}, we obtain
+%
+%
+\begin{equation*}
+  \begin{split}
+    \widehat{e^{-| x-q |}} (\xi) = \frac{2 e^{-iq \xi}}{ \xi^2 + 1}
+  \end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+  \begin{split}
+    \widehat{e^{-| x + q |} - e^{-| x-q |}} (\xi) = \frac{2 \left( e^{i q \xi} -
+    e^{-i q \xi}
+    \right)}{ \xi^2 + 1}.
+  \end{split}
+\end{equation*}
+%
+%
+Therefore
+%
+%
+\begin{equation*}
+  \begin{split}
+    \|e^{-| x+q |} - e^{-| x-q |} \|^2_{H^s(\rr)}
+    & = \int_{\rr} \left( 1 + \xi^2 \right)^s  \left |
+    \frac{2\left( e^{i q \xi} - e^{-i q \xi} \right)}{\xi^2 + 1} \right |^2 d
+    \xi
+    \\
+    & = 4 \int_{\rr}\left( 1 + \xi^2 \right)^{s-2} |e^{i q \xi} - e^{-i q \xi}|^2
+    d \xi
+    \\
+    & = 8 \int_{\rr} \left( 1 + \xi^2 \right)^{s-2} \sin^2(q \xi) d \xi.
+  \end{split}
+\end{equation*}
+%
+%
+The change of variable $q \xi \to \xi'$ then gives
+%
+%
+\begin{equation*}
+  \begin{split}
+    \frac{8}{q} \int_{\rr} \left( 1 + \frac{\xi'^2}{q^2} \right)^{s-2}
+    \sin^2\xi' d \xi'
+  \end{split}
+\end{equation*}
+or
+\begin{equation}
+  \label{3h}
+  \begin{split}
+    8 q^{3 - 2s} \int_{\rr} \left( q^2 + \xi'^2 \right)^{s-2} \sin^2\xi' d \xi'. 
+  \end{split}
+\end{equation}
+%
+%
+Therefore,
+%
+%
+\begin{equation*}
+  \begin{split}
+    \lim_{t \to T^{-}}
+    \frac{\|u(t)\|_{H^r(\rr)}}{\|u(t)\|_{H^{s}(\rr)}}
+    & = \lim_{t \to T^{-}}
+    \frac{ p(t) \left[ 8 q^{3 - 2r} \int_{\rr} \left( q^2 + \xi'^2 \right)^{r-2}
+    \sin^2\xi'
+    d \xi' \right]^{1/2}}{ p(t) \left[8 q^{3 - 2s}
+    \int_{\rr} \left( q^2 + \xi'^2 \right)^{s-2} \sin^2\xi'd
+    \xi'\right]^{1/2}}
+    \\
+    & \le \lim_{t \to T^{-}} q^{s-r}, \qquad r < s < 3/2
+    \\
+    & = 0,
+  \end{split}
+\end{equation*}
+%
+%
+%
+%
+concluding the proof. \qquad \qedsymbol
+\\
+\\
+The blowup of the $H^s$ norm of $u(t)$ for $1 < s < 3/2$ is an immediate
+corollary. More precisely, we have the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Corollary 1
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{corollary}
+  \label{cor:h1-cons-rest-blowup}
+  For $b \neq 0$ and $1 < s < 3/2$,
+  \begin{equation*}
+    \begin{split}
+      \lim_{t \to T^{-}} \|u(t)\|_{H^s(\rr)} = \infty
+    \end{split}
+  \end{equation*}
+  where $u(x,t)$ is defined in \eqref{soln-CH}.
+\end{corollary}
+%
+%
+{\bf Proof.} Since the $H^1$ norm of solutions to the CH equation are conserved, and since
+$u_0$ is bounded when $b \neq 0$, taking $r = 1$ and $s >1$ in
+\autoref{lem:norm-blowup} completes the proof. \qquad \qedsymbol
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Hs bound for peakon antipeakon
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{corollary}
+  \label{cor:peakon-antipeakon-Hs-bound}
+  Let $ \ee >0$ and $ 1/2< s < 3/2$. If $q \le c_s \ee$, then 
+  %
+  %
+  \begin{equation}
+    \label{peakon-antipeakon-Hs-bound}
+    \begin{split}
+      \|e^{-| x+ c |} - e^{-| x- c |} \|_{H^{s}(\rr)} < \ee^{3/2 - s}.
+    \end{split}
+  \end{equation}
+  Here $c_s$ is a constant depending only on $s$. 
+  %
+  %
+\end{corollary}
+%
+%
+%
+{\bf Proof.}
+Repeating the calculations of \autoref{lem:norm-blowup}, we obtain %
+%
+\begin{equation*}
+  \begin{split}
+    \|e^{-| x+q |} - e^{-| x-q |} \|^2_{H^s(\rr)}
+    & = 8 \int_{\rr} \left( 1 + \xi^2 \right)^{s-2} \sin^2(q \xi) d \xi
+  \end{split}
+\end{equation*}
+%
+%
+which we estimate by splitting the domain of integration. We have
+%
+%
+%
+\begin{equation*}
+  \begin{split}
+    \int_{| \xi| \le 1/q } (1 + \xi^2)^{s-2} \sin^2(q \xi)d \xi
+    & \le \int _{| \xi| \le 1/q }\xi^{2s-4} \sin^2(q \xi)d \xi
+    \\
+    & \lesssim q^{2} \int_{0}^{1/q} \xi^{2s-2} d \xi
+    \\
+    & = \frac{q}{2s-1} \left[ \xi^{2s-1} \right] \Big |_0^{1/q}
+    \\
+    & = \frac{q^{3-2s}}{2s-1}, \qquad s > 1/2
+  \end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+  \begin{split}
+    \int_{| \xi | > 1/q }(1 + \xi^2)^{s-2} \sin^2(q \xi) d \xi
+    & \lesssim \int_{1/q}^{\infty} \xi^{2s-4} d \xi
+    \\
+    & = \frac{1}{2s-3} \left[ \xi^{2s-3} \right] \Big |_{1/q}^{\infty}
+    \\
+    & = \frac{q^{3-2s}}{3-2s}, \qquad s < 3/2
+  \end{split}
+\end{equation*}
+%
+%
+Taking square roots, and setting $c_s = \min \left\{ \sqrt{|2s-1|},
+\sqrt{|3-2s|} \right\}$ concludes the proof.
+\qquad \qedsymbol
+\\
+\\
+Next, fix $0<\ee<1$, and set $b = c_s \ee$. Then
+%
+%
+\begin{equation*}
+  \begin{split}
+    1 < \cosh(-b) = \frac{e^{-b}+ e^{b}}{2} < e^{b} = e^{c_s \ee^{3/2 - s}}
+  \end{split}
+\end{equation*}
+%
+%
+and hence by \autoref{cor:peakon-antipeakon-Hs-bound},
+%
+%
+%
+%
+\begin{equation}
+  \label{peak-antipeak-eps-bound}
+  \begin{split}
+    \|e^{-| x + \ln \cosh (-b) |} - e^{-| x - \ln \cosh(-b) |}\|_{H^{s}(\rr)} <
+    \ee^{3/2 - s}.
+  \end{split}
+\end{equation}
+%
+%
+Furthermore,
+%
+%
+\begin{equation}
+  \label{coth-bound}
+  \begin{split}
+    -\coth(-b) = \frac{e^{-2b + 1}}{e^{-2b - 1}} = \frac{1 +
+    e^{2b}}{e^{2b}-1} = \frac{1 + e^{2c_{s} \ee}}{e^{2c_{s}\ee} -1} \le
+    \frac{2}{e^{\ee} -1}, \qquad \ee <<1.
+  \end{split}
+\end{equation}
+%
+%
+Let $\eta_s = (3/2- s)/2$, and set $\lambda = c_{s}(e^{\ee}-1)\ee^{\eta_s + s-3/2}$. Then it follows from
+\eqref{peak-antipeak-eps-bound} and \eqref{coth-bound} that the corresponding solution
+$u(x,t)$ to the CH equation has lifespan
+%
+%
+\begin{equation}
+  \label{result-part-1}
+  \begin{split}
+    T = \frac{c_{s}\ee}{c_{s}(e^{\ee}-1)\ee^{\eta_s + s -3/2}} = \frac{\ee^{5/2
+    - s - \eta_s }}{\ee
+    + \ee^2/2! + \ee^3/3! + \cdots} < \ee^{3/2 -s - \eta_s} = \ee^{\eta_s}
+  \end{split}
+\end{equation}
+%
+%
+with  
+\begin{equation}
+  \label{result-part-2}
+  \begin{split}
+    \|u_0\|_{H^s(\rr)}< c_{s}(e^{\ee}-1)\ee^{\eta_s + s -3/2} \cdot \frac{2}{e^{\ee}-1}
+    \cdot \ee^{3/2 - s} < 2 \ee^{\eta_s}.  
+  \end{split}
+\end{equation}
+%
+%
+Since $\ee$ can be chosen independently of $\eta_s$, collecting
+\eqref{result-part-1}, \eqref{result-part-2}, and
+\autoref{cor:h1-cons-rest-blowup} completes the proof of the theorem in the
+non-periodic case. \quad \qedsymbol
+%
+%
+%
+\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+%
+%
+%
+%
+%
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+%\begin{bibdiv}
+  %\begin{biblist}
+
+    %\bib{Byers-2006-Existence-time-for-the-Camassa-Holm}{article}{
+    %author={Byers, Peter},
+    %title={Existence time for the {C}amassa-{H}olm equation and the critical
+    %{S}obolev index},
+    %date={2006},
+    %ISSN={0022-2518},
+    %journal={Indiana Univ. Math. J.},
+    %volume={55},
+    %number={3},
+    %pages={941\ndash 954},
+    %url={http://dx.doi.org/10.1512/iumj.2006.55.2710},
+    %review={\MR{MR2244592 (2007k:35395)}},
+    %}
+
+  %\end{biblist}
+%\end{bibdiv}
+
+\end{document}
+
+
+
+
+
+
+

@@ -1,0 +1,401 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %% 
+%% LaTeX to get the ``??'' replaced with the number of the last page  %% 
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{multicol}
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+\synctex=1
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+%% This gives us fun enumeration environments. compactitem will be nice.
+\usepackage{paralist}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+%
+% Usage: \makeheading{name}
+%
+% Place at top of document. It should be the first thing.
+\newcommand{\makeheading}[1]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+                {\large \bfseries #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+%
+% Follow this section IMMEDIATELY with the first line of the section
+% text. Do not put whitespace in between. That is, do this:
+%
+%       \section{My Information}
+%       Here is my information.
+%
+% and NOT this:
+%
+%       \section{My Information}
+%
+%       Here is my information.
+%
+% Otherwise the top of the section header will not line up with the top
+% of the section. Of course, using a single comment character (%) on
+% empty lines allows for the function of the first example with the
+% readability of the second example.
+\renewcommand{\section}[2]%
+        {\pagebreak[2]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section 
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{David Karapetyan}
+
+\section{Contact Information}
+%
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table 
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{2.50in}%
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+\href{http://math.nd.edu/}{University of Notre Dame} & \textit{Voice:} 574-631-5706 \\
+\href{http://math.nd.edu/}{Department of Mathematics}	& \textit{Fax:} 574-631-6579 \\
+255 Hurley Hall    & \textit{E-mail:} 
+dkarapet@nd.edu\\
+Notre Dame, IN 46556   & \textit{Website:}
+http://davidkarapetyan.com/\\
+\end{tabular}
+
+\section{Citizenship}
+%
+USA
+
+\section{Research Interests}
+%
+I am currently working in a variety of fields, including partial differential 
+equations, numerical analysis, and financial mathematics. I have recently 
+submitted a paper on sharp well-posedness for the hyperelastic-rod equation, a 
+famous model for the non-linear evolution of deformation waves in thin 
+cylindrical rods. The proof utilizes the recently developed method of 
+approximate solutions, as well as a new proof of local well-posedness. I have 
+since moved into studying a series of unexplored dispersive equations modeled 
+after the KDV and NLS. Specifically, I am interested in the relationship between 
+the degree of dispersion and the lowest Sobolev index for which local and global 
+well-posedness holds. In addition, motivated by the work of John Cochrane, I am 
+also investigating PDEs that arise from asset pricing and utility maximization 
+models.
+\section{Education}
+%
+\href{http://nd.edu/}{\textbf{University of Notre Dame}}, 
+Notre Dame, IN 
+\begin{innerlist}
+%
+\item Ph.D. (candidate),
+	\href{http://math.berkeley.edu/}{Mathematics}, May 2012  
+\end{innerlist} 
+%
+\blankline
+
+\href{http://berkeley.edu/}{\textbf{University of California, Berkeley}}, 
+Berkeley, CA 
+	\begin{innerlist}	
+\item B.S., 
+	\href{http://math.berkeley.edu/}
+	{Mathematics}, May 2004
+\item        \href{http://english.berkeley.edu/}
+	{ B.S., English}, May 2004
+\end{innerlist}
+%
+%
+\section{Awards} 
+%
+\href{http://berkeley.edu}
+{\textbf{University of California, Berkeley }}
+\begin{innerlist}
+\item \href{http://students.berkeley.edu/finaid/undergraduates/
+	types_regents.htm}{Regents Scholarship}, 2000-2004
+\end{innerlist}
+
+\blankline
+
+\href{http://nd.edu}{\textbf{University of Notre Dame}}
+\begin{innerlist}
+\item \href{http://graduateschool.nd.edu/admissions/financial-support/prestigious-fellowships/presidential-fellowships-arthur-j-schmitt-fellowships}
+           {Arthur J. Schmitt Presidential Fellowship}, 2007-2011
+\end{innerlist}
+
+
+\section{Publications}
+%
+\textit{Non-Uniform Dependence and well-posedness
+for the
+Hyperelastic Rod Equation.},\\ J. Differential Equations \textbf{249} (2010),
+796-826.
+
+%
+\section{Teaching Experience}
+\href{http://nd.edu/}{\textbf{University of Notre Dame}}, 
+Notre Dame, Indiana
+\begin{outerlist}
+
+\item[] Instructor \hfill \textbf{January 2010-May 2010}
+	\\ \textit{Elements of Calculus II for Business}% 
+%
+\begin{innerlist}
+\item Lectured three times a week
+\item Wrote and graded exams 
+\item Held office hours 
+\end{innerlist}
+%
+\item[] Teaching and Technology Assistant
+	\hfill \textbf{August 2008-December 2009}\\
+ \textit{Elements of Calculus I 
+	for Business}
+	\\
+	\textit{Elements of Calculus II 
+	for Business} 
+	\begin{innerlist}
+	\item Maintained online framework for quizzes, homework assignments, 
+		and course materials
+	\item Improved course webpage layout and online quiz infrastructure
+	\item Substituted for course lectures when needed
+	\item Assisted with lecturer office hours when needed
+	\end{innerlist}
+\end{outerlist}
+
+\blankline
+
+\section{Presentations}
+\textit{Topics in Analysis} \\
+``Four Classical PDEs'' \\
+September 20-December 2, 2008, University of Notre Dame, Indiana \\
+
+\textit{Mathematics Teaching Seminar} \\
+``Taylor Approximations'' \\
+April 7, 2009, University of Notre Dame, Indiana \\
+
+\textit{Notre Dame Analysis Seminar } \\
+``Pseudodifferential and Fourier Integral Operators'' \\
+June 15-August 3, 2009, University of 
+Notre Dame, Indiana \\
+
+\textit{Notre Dame Graduate Student Seminar} \\
+``On the Uniqueness of Solutions to the Burgers Equation in Sobolev Spaces'' \\
+November 23, 2009, University of Notre Dame, Indiana \\
+
+\textit{PDE, Complex Analysis and Differential Geometry Seminar} \\
+``Non-Uniform Dependence and Well-posedness for the Hyperelastic Rod Equation'' \\
+February 9, 2010, University of 
+Notre Dame, Indiana \\
+
+\textit{AIMS conference session \\ 
+Evolutionary Partial Differential Equations: Theory and Applications} \\
+``Sharp Well-posedness for the Hyperelastic Rod equation''\\ 
+May 25-28, 2010, Dresden University of Technology, Germany  \\
+
+%\textit{AMS Central Sectional Meeting \\ Nonlinear Evolution Equations} \\
+%``On the Cauchy problem for the Hyperelastic Rod equation'' \\
+%November 5-7, 2010, University of Notre Dame, Indiana 
+%
+\section{Professional Activities}
+\textit{The 4th Symposium on Analysis \& PDEs} \\
+May 26-29, 2009, Purdue University, Lafayette, Indiana \\
+
+\textit{AMS Joint Mathematics Meetings} \\
+January 13-16, 2010, San Francisco, California \\
+
+\textit{The 8th AIMS Conference on Dynamical Systems, Differential 
+Equations \\ and Applications} \\
+May 25-28, 2010, Dresden University of Technology, Germany \\
+
+\textit{Mathematical Problems in Hydrodynamics} \\
+June 14-25, 2010, Universit\'e de Cergy-Pontoise, France \\
+
+%\textit{AMS Central Sectional Meeting \\ Nonlinear Evolution Equations} \\
+%November 5-7, 2010, University of Notre Dame, Indiana 
+%
+\section{Professional Memberships}
+American Mathematical Society  
+\vspace{1em}
+
+\section{Service to Notre Dame}
+\textit{Graduate Student Union representative for the Department of 
+Mathematics} \\
+January 2009-present
+
+\section{Technical \\ Skills} 
+%
+Extensive knowledge of PC hardware. Expert proficiency in 
+Unix/Linux/FreeBSD, Mac OS X, Windows XP/Vista/7, Bash, C, C++, HTML, 
+JavaScript, Matlab, Ruby, \TeX{}, \LaTeX{}, B\textsc{ib}\TeX{}, Vim \\
+%
+%
+\newpage
+\section{References}
+\vspace{-2.35em}
+\begin{multicols}{2}
+	{ 
+Professor Alex Himonas (\textit{advisor}) \\
+Department of Mathematics \\
+University of Notre Dame  \\	
+274 Hurley \\
+Notre Dame, IN 46556-4618	\\
+574-631-7538  \\
+Alex.A.Himonas.1@nd.edu \\
+
+Professor Yongtao Zhang \\
+Department of Mathematics \\
+University of Notre Dame \\
+242 Hayes-Healy Hall \\
+Notre Dame, IN 46556-4618 \\
+574-631-6079 \\
+zhang.103@nd.edu \\
+
+Professor Gerard Misiolek \\
+Department of Mathematics \\
+University of Notre Dame \\
+218 Hayes-Healy Hall \\
+Notre Dame, IN 46556-4618 \\
+574-631-4179 \\
+Gerard.Misiolek.1@nd.edu \\
+\blankline \\
+\blankline \\
+\blankline \\
+\blankline \\
+\blankline \\
+\blankline \\
+\blankline \\
+
+}
+\end{multicols}
+
+\end{document}
+
+

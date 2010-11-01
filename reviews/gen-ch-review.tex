@@ -1,0 +1,374 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage{amsxtra}
+\synctex=1
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\tf}{\tilde{f}}
+\newcommand{\ti}{\tilde}
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\def\autorefer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+\newtheorem{definition}{Definition}
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{addend}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{mainthm}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{corol}{Corollary}
+\makeautorefname{coro}{Corollary}
+\makeautorefname{cor}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{lemm}{Lemma}
+\makeautorefname{lem}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{sublem}{Sublemma}
+\makeautorefname{subl}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{proposit}{Proposition}
+\makeautorefname{propos}{Proposition}
+\makeautorefname{propo}{Proposition}
+\makeautorefname{prop}{Proposition}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{proper}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{conject}{Conjecture}
+\makeautorefname{conj}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{questn}{Question}
+\makeautorefname{quest}{Question}
+\makeautorefname{ques}{Question}
+\makeautorefname{qn}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{defin}{Definition}
+\makeautorefname{defi}{Definition}
+\makeautorefname{def}{Definition}
+\makeautorefname{dfn}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{nota}{Notation}
+\makeautorefname{notn}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{rema}{Remark}
+\makeautorefname{rem}{Remark}
+\makeautorefname{rmk}{Remark}
+\makeautorefname{rk}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{rems}{Remarks}
+\makeautorefname{rmks}{Remarks}
+\makeautorefname{rks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{examp}{Example}
+\makeautorefname{exmp}{Example}
+\makeautorefname{exam}{Example}
+\makeautorefname{exa}{Example}
+\makeautorefname{algorithm}{Algorith}
+\makeautorefname{algo}{Algorith}
+\makeautorefname{alg}{Algorith}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{axi}{Axiom}
+\makeautorefname{ax}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{clm}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{assumpt}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{concl}{Conclusion}
+\makeautorefname{conc}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{condit}{Condition}
+\makeautorefname{cond}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{construct}{Construction}
+\makeautorefname{const}{Construction}
+\makeautorefname{cons}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{criter}{Criterion}
+\makeautorefname{crit}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{exer}{Exercise}
+\makeautorefname{exe}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{problm}{Problem}
+\makeautorefname{probm}{Problem}
+\makeautorefname{prob}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{soln}{Solution}
+\makeautorefname{sol}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{summ}{Summary}
+\makeautorefname{sum}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{oper}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{observn}{Observation}
+\makeautorefname{obser}{Observation}
+\makeautorefname{obs}{Observation}
+\makeautorefname{ob}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{convent}{Convention}
+\makeautorefname{conv}{Convention}
+\makeautorefname{cvn}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{warn}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+%
+\begin{document}
+%\begin{titlepage}
+\title{Report on ``The local well-posedness and existence of weak solutions  
+for a generalized Camassa-Holm equation''}
+\author{David Karapetyan \\ University of Notre Dame}
+\address{Department of Mathematics  \\
+         University  of Notre Dame\\
+         Notre Dame, IN 46556 }
+				  \date{11/18/09}
+				  %
+				  \maketitle
+				  %
+				  %
+				  \parindent0in
+				  \parskip0.1in
+				  %
+				  %\end{titlepage}
+				  %
+				  %
+				  %
+				  \setcounter{equation}{0}
+				  The paper in question deals with a generalized 
+				  Camassa-Holm (gCH) initial 
+				  value problem%
+%
+\begin{gather}
+	\label{gch}
+		u_t - u_{xxt} + 2k u_x + au^m = \big( nu^{n-1} 
+		\frac{u_x^2}{2} + u^n u_{xx} \big)_x + \beta \p_x \left 
+		[(u_x)^{2N-1} \right ],
+		\\
+		\label{gch-init-data}
+		u(x,0) = u_0(x), \quad x \in \rr,
+\end{gather}
+%
+%
+where $m \ge 1$, $n\ge1$, and $N \ge 1$ are natural numbers, and $a$, $k$, and 
+$\beta \ge 0$ are real constants. The main result consists of two parts: a proof of local existence and uniqueness of solutions $u(x,t) \in C([0, T], H^s(\rr)) \cap 
+C^1([0, T], H^{s-1}(\rr))$, $s > 3/2$, for gCH 
+given initial data $u_0 \in H^s$, 
+where $T = T(\|u_0\|_{H^s})$, and a proof of the existence of weak 
+solutions $u(x,t) \in L^2([0,T], H^s(\rr))$ for $1 < s \le 3/2$ if $u_0 \in 
+H^s(\rr)$ and $u_{0x} \in L^\infty(\rr)$. The method of proof relies upon an elliptic 
+regularization of \eqref{gch}, with initial data given by a mollification 
+of \eqref{gch-init-data}
+%
+%
+	\begin{gather}
+	\label{gch-regular}
+	u_t - u_{xxt} + 2k u_x + au^m + \ee u_{xxxxt} = \big( nu^{n-1} 
+		\frac{u_x^2}{2} + u^n u_{xx} \big)_x + \beta \p_x \left 
+		[(u_x)^{2N-1} \right ],
+		\\
+		\label{gch-init-data-moll}
+		u(x,0) = u_{\ee 0} (x), \quad x \in \rr.
+\end{gather}
+Using a Banach fixed point argument, the authors prove the existence of a 
+unique solution $u_\ee(x,t) \in C^\infty([0, \infty], 
+H^\infty(\rr))$ to the i.v.p 
+\eqref{gch-regular}-\eqref{gch-init-data-moll}. They then prove the 
+existence of a uniform bound for the family 
+$\{u_\ee\}$ for $0 \le t < T$, which is then used to show that the solutions $\{u_\ee
+\}$ are Cauchy in the space $C([0,T], H^s(\rr)) \cap C^1(\left[0,T \right], 
+H^{s-1}(\rr))$. Taking $\ee \to 0$ in \eqref{gch-regular}, the main result 
+follows.
+
+The motivation for the paper is the work
+of Hakkaev and Kirchev \cite{Hakkaev_Kirchev-Local-well-pose} and 
+Tian and Song \cite{Tian_Song-New-peaked-soli} on different generalized 
+versions of the Camassa-Holm. The version studied in 
+\cite{Tian_Song-New-peaked-soli}
+%
+%
+\begin{equation*}
+	\begin{split}
+		u_t + 2ku_x -u_{xxt} + au^m u_x = 2u_x u_{xx} + u u_{xxx}
+	\end{split}
+\end{equation*}
+%
+%
+with $a > 0$, $k \in \rr$, and $m \in \mathbb{N}$ has a higher order nonlinear term  
+than the Camassa-Holm, giving rise to new traveling wave, peakon, and 
+solitary wave solutions. In particular, compacton solutions arise. 
+Given this background on a related generalized Camassa-Holm equation, it is unclear 
+what the additional merits of gCH are; in particular,  
+what purpose does the modified non-linear dissipative term $\beta \p_x 
+[(u_x)^{2N-1}]$
+serve, other than to create a new generalized Camassa-Holm equation? This 
+is a key detail, and should be emphasized in a revision of the 
+introduction. Other comments and suggestions for improving the paper:
+%
+%
+\begin{enumerate}
+	\item Five theorems are stated, but it is clear that the main result of 
+		the paper is a proof of local existence and uniqueness of solutions 
+		for gCH for $s > 3/2$ 
+		and the existence of weak solutions for $1 < s \le 3/2$. This 
+		should be stated immediately after the introduction. 
+	\item An outline of the proof of the main result is in order.
+		For example, it is not stated clearly 
+		that theorems 1 and 4
+		serve merely as tools to prove Theorem 5 (local well-posedness for $s 
+		> 3/2$), while Theorem 2 is a tool to prove Theorem 3 (existence of weak 
+		solutions for $1 < s \le 3/2$). These preparatory theorems should be 
+		renamed as propositions or lemmas, as they are not the focal 
+		points of the paper. Grouping theorems 1,4, and 5 into one section   
+		dealing with local well-posedness for $s >3/2$, and theorems 2 and 
+		3 into a different section dealing with local well-posedness for 
+		lower Sobolev indexes would improve the flow and clarity of the 
+		paper.
+	\item Rather than stating a series of theorems and lemmas en masse 
+		before proceeding with the proof of the main result, it would be 
+		clearer to begin with the proof of the main result, and then 
+		introduce theorems and lemmas when needed. 
+	\item The results of this paper and the techniques used to obtain them
+		mirror those of Li and Olver 
+		\cite{Li_2000_Well-posedness-} and 
+		\cite{Hakkaev_Kirchev-Local-well-pose}, 
+		yet not enough credit is given. In particular, the organization of 
+		the proofs of all five theorems is very similar to the organization
+		of the proofs found 
+		in the references above. 
+	\item The spacing between equations and paragraphs can be reduced to 
+		make the paper more readable.
+
+\end{enumerate}
+		
+		
+	\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{Hakkaev_Kirchev-Local-well-pose}
+\textsc{S.~Hakkaev and K.~Kirchev}.
+\newblock \enquote{Local well-posedness and orbital stability of solitary wave
+  solutions for the generalized {C}amassa-{H}olm equation.}
+\newblock \emph{Comm. Partial Differential Equations}, \textbf{30} (2005), no.
+  4-6, 761--781.
+
+\bibitem{Li_2000_Well-posedness-}
+\textsc{Y.~A. Li and P.~J. Olver}.
+\newblock \enquote{Well-posedness and blow-up solutions for an integrable
+  nonlinearly dispersive model wave equation.}
+\newblock \emph{J. Differential Equations}, \textbf{162} (2000), no.~1, 27--63.
+
+\bibitem{Tian_Song-New-peaked-soli}
+\textsc{L.~Tian and X.~Song}.
+\newblock \enquote{New peaked solitary wave solutions of the generalized
+  {C}amassa-{H}olm equation.}
+\newblock \emph{Chaos Solitons Fractals}, \textbf{19} (2004), no.~3, 621--637.
+
+\end{thebibliography}	
+				  
+			  
+				  
+
+				  
+
+
+
+
+
+				  \end{document}
+
+

@@ -1,0 +1,433 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{pdfsync}
+\usepackage{cancel}
+\usepackage{amsxtra}
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\def\refer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}[subsection]{conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newcommand{\ve}{\varepsilon} 
+\newcommand{\nin}{\noindent}
+\newcommand{\oL}{\bar L}
+\newcommand{\vph}{\varphi}
+\begin{document}
+\title{Pseudodifferential and Fourier Integral Operators}
+\author{Alex Himonas, {\it Summer 2009}}
+\maketitle
+\setcounter{section}{1}
+\section{Oscillatory Integrals}
+\nin
+We have seen that a partial differential operator of 
+order $m,\  P = P(x,D)$  can be
+written in the form
+\begin{equation}
+	\begin{split}
+		P u(x)&= \frac{1}{(2\pi)^n}\int_{\rr^n} e^{ix\xi} p(x,\xi)\hat u(\xi) d\xi\\
+&= \frac{1}{(2\pi)^n} \int_{\rr^n}e^{ix\xi} p(x,\xi)\left(\int_{\rr^n}e^{-iy\xi}u(y)dy\right) d\xi\\
+&=\frac{1}{(2\pi)^n} \int_{\rr^n}
+ \int_{\rr^n}e^{i(x-y)\cdot\xi}p(x,\xi)u(y)dy
+d\xi, 
+\end{split}
+\end{equation}
+where $p(x,\xi)$ is the symbol of $P$.
+The last integral is an example of an oscillatory integral and it makes sense only
+as an iterated integral.  Below we shall express it as an absolutely convergent
+integral.  There are two methods for
+ this and we shall demonstrate them for the case
+where $ p = 1; $   i.e.  the identity operator,  and in the dimension 1.
+\vskip0.1in
+\nin
+{\bf Integration by Parts Method:}  For $ u \in C^\infty_0 (\rr) $ let
+\begin{equation}
+	\begin{split}
+		Pu(x) = \frac{1}{2\pi} \iint\limits_{\rr  \rr}
+e^{i(x-y)\xi}u(y)dyd\xi\quad (=u(x)).
+		\label{2}
+	\end{split}
+\end{equation}
+Here we  think of the variable $ x $ as a {\bf parameter}.
+Let $\chi \in C^\infty_0(\rr)$ such that $\chi=1$ near $0$
+and let 
+$$L=\frac{1-\chi(\xi)}{-\xi}D_y+ \chi(\xi).$$
+Then
+$$L(e^{i(x-y)\cdot\xi})=e^{i(x-y)\xi},$$
+and we have
+\begin{equation*}
+\begin{split}
+Pu(x)
+&= \iint\limits_{ \rr  \rr} L(e^{ i(x-y)\xi})u(y)dyd\xi
+\\
+& \overset{\text{integration}}{\underset{\text{by parts}}{=}} \iint\limits_{\rr  \rr} e^{i(x-y)\xi} \left(\frac{1-\chi(\xi)}{\xi}
+D_y u (y)+ \chi(\xi)u(y)\right) dy d\xi \\
+&= \iint\limits_{\rr  \rr} L(e^{i(x-y)\xi})\underbrace{
+{\left (\frac{1-\chi(\xi)}{\xi} D_y u (y) +  \chi(\xi)u(y) \right )}}_{^t
+Lu} dy d\xi\\ 
+&
+\overset{\text{integration}}{\underset{\text{by parts}}{=}}
+\iint\limits_{\rr  \rr} e^{i(x-y)\xi} \underbrace{
+\left [\frac{(1-\chi(\xi))^2}{\xi^2}D^2_y u + 2
+\frac{\chi(\xi)(1-\chi(\xi))}{\xi} D_y u + \chi^2(\xi) u (y) \right
+]}_{(^tL)^2u}
+d\xi .
+\end{split}
+\end{equation*}
+The last integral is absolutely convergent and it is equal with the original iterated
+integral. Thus we can define 
+\begin{equation}
+	\begin{split}
+		Pu(x) = \frac{1}{2\pi} \iint\limits_{\rr  \rr} e^{i(x-y)\xi} ({}^tL)^2
+u(y)dyd\xi \quad (=u(x)).  
+		\label{3}
+	\end{split}
+\end{equation}
+\vskip0.1in
+\nin
+{\bf Approximation of the Symbol Method}.  Let $ \chi\in
+C^\infty_0 (\rr)$ with $\chi =1$ near $0$.  Then we can write
+\begin{equation}
+	\begin{split}
+		Pu(x)=\lim_{j\to\infty} \frac{1}{2\pi}\iint\limits_{\rr  \rr}
+e^{i(x-y)} \chi (\xi/j) u (y)dyd\xi \quad (=u(x))  
+		\label{4}
+	\end{split}
+\end{equation}
+i.e. we can write the iterated integral as limit of absolutely convergent 
+integrals. \medskip
+\nin
+Next we shall consider more general integrals of the form
+$$I_\vph(pu) \doteq \iint e^{i\vph(x,\xi)} p (x,\xi) u (x) dxd\xi,u\in C^\infty_0(X),$$
+where $p\in S^m(X \times \rr^N)$ and $\vph$ is a phase.
+\bigskip
+\begin{definition}  A phase $\vph(x,\xi)$ is a real valued function in
+$C^\infty(X \times \dot \rr^N), \ \dot \rr^N =\rr^N-0$,  which is 
+positively homogeneous of degree 1 in $\xi$, i.e.
+$$\vph(x,t\xi)=t\vph(x,\xi),\ \ t>0$$
+and
+$$d_{x,\xi } \vph(x,\xi)\ne 0, \ \ x \in X,\ \xi \in \dot \rr^N.$$
+\medskip
+\end{definition}
+{\bf Example}:  $\vph (x,\xi) =x\xi.$
+\vskip0.1in
+\nin
+Next we will generalize the construction of the vector field $L$ used above.
+\begin{lemma}  If $\vph(x,\xi)$ is a phase on $X \times \dot \rr^N$ then there 
+exists a first order differential operator
+\begin{equation}
+	\begin{split}
+		L=\sum^N_{j=1}a_j(x,\xi)\frac{\partial}{\partial \xi_j} +
+\sum^n_{j=1}b_j(x,\xi)\frac{\partial}{\partial x_j}+c(x,\xi) 
+		\label{5}
+	\end{split}
+\end{equation}
+such that
+$$L(e^{i\vph})=e^{i\vph}$$
+and with $a_j\in S^0,b_j,c \in S^{-1}$.
+\end{lemma}
+\vskip0.1in
+\nin
+{\bf Proof.}  If $L$ is of the form \eqref{5} then we must have
+$$e^{-i\vph}L(e^{i\vph})= i\sum^N_{j=1} a_j \frac{\partial \vph}{\partial \xi_j} +
+i \sum^n_{j=1} b_j \frac{\partial \vph}{\partial x_j} + c(x,\xi) =1.$$
+ Let $ \chi \in C^\infty_0(\rr^N)$ with $ \chi = 1 $ near $\xi =0$, and choose 
+$$a_j = \frac{(1-\chi)|\xi|^2}{i \Phi} \ \frac{\partial \vph}{\partial \xi_j} \in S^0  
+\ b_j = \frac{1-\chi}{i \Phi} \ \frac{\partial \vph}{\partial x_j}\in S^{-1}
+ \text{ and
+}  c = \chi \in S^{-\infty}$$ 
+where 
+$$\Phi(x,\xi) = |\xi|^2|\vph_\xi|^2+|\vph_x|^2.$$
+Then $L$ is the desired operator.
+\vskip0.1in
+\nin
+{\bf Remark}:  The transpose ${}^tL$ of $L$ is given by
+$${}^tL = -\sum^N_{j=1}a_j\frac{\partial}{\partial
+\xi_j}-\sum^n_{j=1}b_j\frac{\partial}{\partial x_j}+c'(x, \xi),$$
+and  for any $m$
+$${}^tL:S^m \longrightarrow S^{m-1}.$$
+If $p \in S^m$ with $ m < -N$ then
+\begin{equation}
+	\begin{split}
+		I_\vph(pu) \doteq \int_{\rr^N} \int_{\rr^n} e^{i\vph(x,\xi)} p(x,\xi) u (x)
+dx d\xi,\ u \in C^\infty_0(X)
+		\label{6}
+	\end{split}
+\end{equation}
+is an absolutely convergent integral and for fixed $ u $ the linear form
+\begin{equation}
+	\begin{split}
+		p \in S^m \longmapsto I_\vph(pu) \in \Bbb C, \ m < -N, \text{ is continuous on }
+S^m.
+		\label{7}
+	\end{split}
+\end{equation}
+\nin
+\begin{theorem}  Let $\vph (x,\xi)$ be a phase in $ X \times \dot \rr^N$.
+Then:  
+\vskip0.1in
+\nin
+{\bf 1.} The linear form \eqref{7} extends uniquely into a linear form on
+$S^\infty(X \times \rr^N)$ which is continuous on $S^m$ for any given $m$.  
+This extension is called an {\bf oscillatory integral}.  If $k \in \Bbb N$ with
+$k>m+N$ then
+\begin{equation}
+	\begin{split}
+		I_\vph(pu) = \int_{\rr^N} \int_{\rr^n}  e^{i\vph(x,\xi)}
+({}^tL)^k [p(x,\xi)u(x)]dx d\xi
+		\label{8}
+	\end{split}
+\end{equation}
+and this integral is absolutely convergent.
+\vskip0.1in
+\nin
+{\bf 2.}   If $ \chi \in C^\infty_0 (\rr^N)$ with $\chi =1$ near $0$ then
+$$I_\vph(pu) = \lim_{j\to \infty} \int_{\rr^N} \int_{\rr^n} e^{i\vph(x,\xi)}
+\chi (\xi/j) p(x,\xi) u (x) dx d\xi$$
+and each integral is absolutely convergent.
+\vskip0.1in
+\nin
+{\bf 3.}  For fixed $p\in S^m$ the functional
+$$u \in C^\infty_0 (X) \longmapsto I_\vph (pu) \in \Bbb C$$
+is a distribution on $X$ of order $\le k$ for $k>m+N$.
+\end{theorem}
+\vskip0.1in
+\nin
+{\bf Proof.}  If $m<-N$ then for any $k \in \Bbb N_0$ we obtain \eqref{8} by
+integrating by parts.  If $m$ is arbitrary and we choose $k$ such that $k > m + N$ 
+then we define $ I_\vph (pu) $ by \eqref{8}, which is an absolutely convergent integral
+since $$({}^tL)^k [p(x,\xi) u (x)] \in S^{m-k}$$
+with $m - k < -N$ and it is compactly supported in $x$.  Thus we obtain an 
+extension  of $I_\vph(pu)$ on $S^\infty$.  For fixed $m$ this extension is
+continuous in $S^m$ since for fixed $u$
+$$ S^m
+\xrightarrow[\text{continuous}]{(^tL)^k}
+S^{m-k} \xrightarrow[\text{continuous}]{I_\vph (\bullet u)}\cc.$$
+To prove (2) and the uniqueness of the extension we notice that by Proposition 
+1 $$\chi (\xi/j)p(x,\xi) \longrightarrow p(x,\xi) \text{ in }
+S^{m+\ve}, \ \ve > 0.$$  
+Since $ \chi (\xi/j) p(x,\xi) \in S^{-\infty}$ we have
+$$\int_{\rr^N } \int_{\rr^n} e^{i\vph(x,\xi)} \chi  (\xi/j )p(x,\xi) u(x)dx
+d\xi = \int_{\rr^N} \int_{\rr^n}  e^{i\vph(x,\xi)}  ({}^tL)^k[ \chi (\xi/ j) p
+(x,\xi) u (x)] dx d\xi .$$  Since
+$$({}^tL)^k \left [\chi (\xi/ j) p(x,\xi) u (x)\right ] \longrightarrow
+({}^tL)^k[p(x,\xi)u(x)] \text{ in } S^{m-k+\ve}$$
+\vskip0.1in
+\nin
+if we choose $ k $  such that  $m-k+\ve < -N$ then
+\begin{equation*}
+	\begin{split}
+\int_{\rr^N} \int_{\rr^n}  e^{i\vph(x,\xi)} ({}^tL)^k [ \chi (\xi/j)p(x,\xi) u
+(x)] dx d\xi \xrightarrow[j\to \infty]{} &\int_{\rr^N} \int_{\rr^n}  e^{i\vph (x,\xi)}
+({}^tL)^k [p (x,\xi) u (x)]dx d\xi \\
+ &= I_\vph (pu).
+\end{split}
+\end{equation*}
+Therefore (2) holds.
+The uniqueness of the extension $I_\vph(\bullet u)$ from $S^{-\infty}$ to
+$S^m$  follows from (2) since all extensions must agree on 
+$\left \{\chi (\xi /j) p(x,\xi)\right \}$.
+It remains to prove (3).  If $p$ is fixed in $S^m$ and $k>m+N$ then for any 
+compact set $ K\subset X$ and $u\in C_0^\infty(K)$  we have
+$$|({}^tL)^k[p(x,\xi) u (x)]|\le C_1 \sup_{\substack{ |\alpha| \le k \\ x
+\in K}} |\partial^\alpha u(x)|(1+|\xi|)^{m-k},\  u \in C^\infty_0(K).$$
+Since $m - k < -N$ we have
+$$|I_\vph(pu)| \le \int_{x \in K} \int_{\xi \in \rr^N} C_1
+\sup_{\substack{|\alpha| \le k \\ x \in K}} |\partial^\alpha u (x)|(1+|\xi|)^{m-k} dx d\xi
+\le C_2 \sup_{\substack{|\alpha| \le k\\x \in K}}  |\partial^\alpha u(x)|$$
+Therefore $I_\vph(p \bullet) \in  \mathcal{D'}(X)$ of order $\le k$.
+\vskip0.1in
+\nin
+{\bf Example}:  If $\vph(x,\xi)=x \cdot \xi, n=N$ and $p=1$ then
+$$
+\int_{\rr^n} \int_{\rr^n} e^{ix\xi} u(x) dx d\xi = \int_{\rr^n} 
+\hat u(-\xi)d\xi = (2\pi)^nu(0)
+ =(2\pi)^n<\delta, u>.$$
+\nin
+We know that the order of $\delta$ is $0$ but the last theorem says that the
+order of $\delta$ is $\le k, \ k >n$.
+\medskip
+\nin
+Next we shall consider oscillatory integrals depending on {\bf parameters}.
+\begin{proposition}  Let $X$  an open  subset of $\rr^n$, $\  Y$ an open
+subset  of $\rr^\ell$, and $\vph$ be a phase function on $X \times Y \times
+\dot \rr^N$ such that $$d_{x,\xi} \vph(x,y,\xi) \ne 0 \text{ on } X \times Y
+\times \dot \rr^N.$$
+ If for $p \in S^m(X \times Y \times \rr^N)$ and
+$u(x,y) \in C^\infty_0(X \times Y)$ we let
+$$F(y) \overset{\text{osc.}}{=} \iint e^{i\vph(x,y,\xi)} p(x,y,\xi)u(x,y)dxd\xi$$
+with $ L = L(x,y,\xi,\partial_x, \partial_\xi),$
+then $ F \in C^\infty_0 (Y) $ with 
+\begin{equation}
+	\begin{split}
+		\partial^\gamma_y F \overset{\text{osc.}}{=} \iint
+\partial^\gamma_y (e^{i\vph} pu) dx d\xi  
+		\label{1a}
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\begin{split}
+		\int_Y F(y)dy \overset{\text{osc. }}{=}
+ \iiint e^{i\vph(x,y,\xi)}p(x,y,\xi)u(x,y)dxdyd\xi.
+		\label{2a}
+	\end{split}
+\end{equation}
+\end{proposition}
+\nin
+{\bf Proof of \ref{2a}.} Let  $L(x,y,\xi, \partial_x, \partial_\xi)$ constructed as
+before with 
+$$a_j \in S^0 (X \times Y \times \rr^N),\  b_j, c \in S^{-1}(X\times Y
+\times \rr^N).$$
+If $k > m+N$ then
+$$F(y) = \iint e^{i\vph(x,y,\xi)} ({}^tL)^k [p(x,y,\xi) u (x,y)] dx d\xi$$
+is an absolutely convergent integral.  Since $F(y)$ is bounded on supp$_y
+u(x,\cdot)$ we have
+\begin{equation*}
+	\begin{split}
+\int_Y F(y)dy &= \int_Y \left ( \iint e^{i\vph(x,y,\xi)}({}^tL)^k
+[p(x,y,\xi)u(x,y)]dxd\xi \right ]dy\\ 
+& \overset{\text{Fubini}}{=} \iiint e^{i\vph(x,y,\xi)}({}^tL)^k [p(x,y,\xi) u (x,y)]dx dy d\xi\\
+&\overset{\text{osc.}}{=} \iiint e^{i\vph(x,y,\xi)}p(x,y,\xi) u (x,y) dx dyd\xi.
+\end{split}
+\end{equation*}
+{\bf Proof of \ref{1a}.} Let $ \chi(\xi)$ as before and 
+$$F_j(y) = \iint e^{i \vph(x,y,\xi)} \chi (\xi/ j) p (x,y,\xi) u (x,y) dx
+d\xi.$$ Then
+\begin{equation*}
+	\begin{split}
+		\partial^{\gamma}_y F_j(y) &=\iint \partial^{\gamma}_y
+[e^{i\varphi(x,y,\xi)}p(x,y,\xi)u(x,y)] \chi (\xi/ j) dxd \xi \\
+&=\iint e^{i\varphi (x,y, \xi)} \chi (\xi/ j) q (x,y, \xi) d x d
+\xi , 
+\end{split}
+\end{equation*}
+where
+\begin{equation*}
+	\begin{split}
+		q(x,y, \xi) = e^{-i \varphi (x,y, \xi)} \partial^{\gamma}_y [e^{i \varphi (x,y, \xi)}
+p(x,y, \xi) u(x,y)].
+	\end{split}
+\end{equation*}
+Thus $q \in S^{m+\gamma} (X \times Y \times \rr^N).$
+We have
+$$\partial^\gamma_y F_j(y) \xrightarrow[\text{in } y ]{\text{unif.}} \int \int
+e^{i\vph} qu \; dxd\xi \overset{\text{osc.} }{=} \int \int \partial^\gamma_y
+(e^{i\vph}pu) d x d\xi, \text{ and }   F_j(y) \xrightarrow[\text{in } y ]{\text{unif.}} F(y).$$
+Therefore $F \in C^\infty (Y)$ and we can pass differentiation inside the
+oscillatory integral:
+\begin{corollary} Let $\varphi(x, \xi)$ be a phase function such that $d_{\xi}
+\varphi(x, \xi) \ne 0$ on $X \times \dot\rr^N$ and $ p \in S^\infty$. Then
+$$F(x) \overset{\text{osc.}}{=} \int_{\rr^N} e^{i \varphi(x, \xi)} p(x, \xi)
+d\xi \in C^\infty(X)$$
+Note in this case $L = L(x, \xi, \partial_\xi).$
+\end{corollary}
+\begin{proposition}  Let $\varphi(x, \xi)$ be a phase function  on $X \times
+\dot \rr^n$ and $p \in S^m (X \times \rr^n)$ and $T$ be the distribution
+defined by 
+$$T = \int_{\rr^N} e^{i \varphi(x, \xi)} p(x, \xi) d\xi.$$
+Then
+\vskip0.1in
+\nin 
+{\bf 1)} Singsupp $T \subset C \doteq \{x \in X : $ 
+there exists $ \xi \ne 0 \ $ 
+such that $   d_\xi \varphi(x, \xi) = 0 \}$
+\vskip0.1in
+\nin
+{\bf 2)} Let  $C_\varphi = \{(x, \xi) \in X \times \dot  \rr^N: \ d_\xi
+\ \varphi(x, \xi) = 0\}.$
+\vskip0.1in
+\nin
+If $p$ vanishes on $C_\varphi$ then $T \in C^\infty$ (X).
+\end{proposition}
+\nin
+{\bf Examples:}
+\vskip0.1in
+\nin
+{\bf 1)}
+\begin{equation*}
+	\begin{split}
+		\text{ dim } X &= \text{ dim } Y = n \\
+\varphi(x,y, \xi) &= (x - y) \cdot \xi,\  d_\xi \varphi = x - y \\
+C &= \text{diag} (X \times Y)
+\end{split}
+\end{equation*}
+\nin
+{\bf 2)}
+\begin{equation*}
+	\begin{split}
+\varphi(x,y,t,\xi) &= (x - y) \cdot \xi + t|\xi|\\
+d_\xi \varphi &= x - y + t \frac{\xi}{|\xi|}\\
+C &= \{(x,y) \in  X \times Y: \
+|x - y| = |t|\}
+\end{split}
+\end{equation*}
+\end{document}

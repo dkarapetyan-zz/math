@@ -1,0 +1,456 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{pdfsync}
+\usepackage{cancel}
+\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+\input epsf
+\input texdraw
+\input txdtools.tex
+\input xy
+\xyoption{all}
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{red}{rgb}{1.00, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
+\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
+\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
+\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
+\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
+\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
+\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
+\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
+\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
+\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
+\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
+\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
+\definecolor{black}{rgb}{0.00, 0.00, 0.00}
+\definecolor{dark-magenta}{rgb}{.5,0,.5}
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{darkgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.75}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  for importing pictures  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+% \usepackage{graphicx}
+%% page setup %%
+\setlength{\textheight}{20.8truecm}
+\setlength{\textwidth}{14.8truecm}
+\marginparwidth  0truecm
+\oddsidemargin   01truecm
+\evensidemargin  01truecm
+\marginparsep    0truecm
+\renewcommand{\baselinestretch}{1.1}
+%% new commands %%
+\newcommand{\tf}{\tilde{f}}
+\newcommand{\ti}{\tilde}
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+
+\def\refer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+%% equation numbers %%
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%% new environments %%
+%\swapnumbers
+\theoremstyle{plain}  % default
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%
+\begin{document}
+%\begin{titlepage}
+\title{ The Critical Operator Norm Estimate in $H^s$}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+         University  of Notre Dame\\
+		          Notre Dame, IN 46556 }
+				  \date{09/03/2009}
+				  %
+				  \maketitle
+				  %
+				  %
+				  \parindent0in
+				  \parskip0.1in
+				  %
+				  %\end{titlepage}
+				  %
+				  %
+				  %
+				  \setcounter{equation}{0}
+				 \begin{proposition}
+	\label{lem4r}
+	For $r \le s$ and $\ee>0$
+	\begin{equation}
+	\label{0r}
+		\begin{split}
+			\|I - J_\ee\|_{L(H^s, H^r)} \le o(\ee^{s-r}).
+		\end{split}
+	\end{equation}
+\end{proposition}
+%
+\vskip0.1in
+We will split our proof into two parts:
+\vskip0.1in
+{\bf Proof of Proposition \ref{0r} on $\ci$.}
+Pick a function $\widehat{j}(\xi) \in \mathcal{S}(\rr)$ such that
+	\begin{equation}
+		\label{0u}
+		\begin{split}
+			& 0 \le \widehat{j}(\xi) \le 1,
+			\\
+			& \widehat{j}(\xi) = 1 \ \ \text{if} \ \ |\xi| \le 1.
+		\end{split}
+	\end{equation}
+	Then by Parseval's identity, we can define
+	\begin{equation}
+		\begin{split}
+			j_\ee (x) \overset{L^2(\ci)}{=} \sum_{\xi \in \zz}
+			\widehat{j}(\ee \xi) e^{\pi i x}, \quad \ee > 0
+			\label{parseval-def}
+		\end{split}
+	\end{equation}
+	which is equivalent to stating that we can find $\left\{ j_\ee
+	\right\} \subset L^2(\ci)$ such that
+	\begin{equation}
+		\begin{split}
+			\widehat{j_\ee} = \widehat{j }(\ee \xi), \quad \ee > 0.
+			\label{widehat-def}
+		\end{split}
+	\end{equation}
+	Hence, we can define $J_\ee$ to be the Friedrichs mollifier 
+	\begin{equation}
+		\label{0'u}
+		\begin{split}
+			J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
+		\end{split}
+	\end{equation}
+Pick an arbitrary unit vector $u \in H^s(\ci)$ and
+	$r, s \in \rr$ such that $r \le s$. Using the fact that
+$\widehat{j_\ee}(\xi) = \widehat{j}(\ee \xi)$, we have
+\begin{equation}
+	\begin{split}
+		\|u - J_\ee u\|_{H^r(\ci)}^2 
+		& = \sum_{\xi \in \zz} |\widehat{u}(\xi) - \widehat{j_\ee * u}(\xi) |^2
+		(1+\xi^2)^r
+		\\
+		& = \sum_{\xi \in \zz} |\widehat{u}(\xi) - \widehat{j_\ee}(\xi)
+		\widehat{u}(\xi) |^2 (1+\xi^2)^r
+		\\
+		& = \sum_{\xi \in \zz} | [1- \widehat{j_\ee}(\xi] \widehat{u}(\xi) |^2
+		(1+\xi^2)^r
+		\\
+		& = \sum_{\xi \in \zz} | [1- \widehat{j}(\ee \xi)] \widehat{u}(\xi) |^2
+		(1+\xi^2)^r.
+		\label{1r}
+	\end{split}
+\end{equation}
+Assume $r \le s$. Then by construction we have
+\begin{equation*}
+	\begin{split}
+		|1 - \widehat{j } (\xi) | \le |\xi|^{s-r}
+	\end{split}
+\end{equation*}
+for all $\xi \in \rr$; hence
+\begin{equation}
+	\begin{split}
+		|1 - \widehat{ j }(\ee \xi)| \le |\ee \xi |^{s-r}, \quad \forall
+		\xi \in \rr, \ \ee > 0.
+		\label{2r}
+	\end{split}
+\end{equation}
+Applying \eqref{2r} to \eqref{1r} and recalling that $r \le s$, we obtain
+\begin{equation}
+	\label{2pr}
+	\begin{split}
+	\|u - J_\ee u\|_{H^r(\ci)}^2 
+	& \le \sum_{\xi \in \zz}  |\ee \xi |^{2(s-r)}
+	|\widehat{u}(\xi)|^2 (1 + \xi^2)^r
+	\\
+	& = \ee^{2(s-r)} \sum_{\xi \in \zz} |\widehat{u}(\xi)|^2  \cdot (\xi^2)^{s-r}
+	(1 + \xi^2)^{r-s} (1 + \xi^2)^{s}
+	\\
+	& \le \ee^{2(s-r)}
+	\sum_{\xi \in \zz} |\widehat{u}(\xi)|^2 (1 + \xi^2)^s
+	\\
+	& =  \ee^{2(s-r)}.
+	\end{split}
+\end{equation}
+Furthermore,
+\begin{equation*}
+	\begin{split}
+		& |[1- \widehat{j_\ee}(\xi)] \widehat{u}(\xi)|^2 (1 + \xi^2)^r \le
+		|\widehat{u}(\xi)|^2 (1 + \xi^2)^r, \quad \forall \ee > 0, \ 
+		\text{and}
+		\\
+		& \sum_{\xi \in \zz} |\widehat{u}(\xi)|^2 (1 + \xi^2)^r < \infty,
+		\quad r \le s;
+	\end{split}
+\end{equation*}
+therefore, by the dominated convergence theorem for series
+\begin{equation}
+	\label{o1}
+	\begin{split}
+		\lim_{\ee \to 0} \|u - J_\ee u \|_{H^r }^2 
+		& = \lim_{\ee \to 0} \sum_{\xi \in \zz} |[1-\widehat{j_\ee}(\xi)]
+		\widehat{u}(\xi) |^2 (1 + \xi^2)^r
+		\\
+		& = \lim_{\ee \to 0} \sum_{\xi \in \zz} |[1-\widehat{j}(\ee \xi)]
+		\widehat{u}(\xi) |^2 (1 + \xi^2)^r
+		\\
+		& = \sum_{\xi \in \zz} \lim_{\ee \to 0} |[1-\widehat{j}(\ee \xi)]
+		\widehat{u}(\xi) |^2 (1 + \xi^2)^r
+		\\
+		& = 0.
+	\end{split}
+\end{equation}
+To complete the proof of Proposition \ref{lem4r}, we take note of the following interpolation result:
+\begin{remark}
+	\label{lem2r}
+	For $\sigma < r \le s$ and arbitrary $u \in {S'}$,
+	\begin{equation}
+		\begin{split}
+			\|u\|_{H^{r}} \le
+			\|u\|_{H^\sigma}^{(r-s)/(\sigma -s)}
+			\|u\|_{H^s}^{1 - (r-s)/(\sigma -s)}.
+			\label{16u}
+		\end{split}
+	\end{equation}
+\end{remark}
+%
+%
+%
+%
+We have two cases:
+
+{\bf Proof of Remark \ref{lem2r} on $\ci$.}
+Assuming $u \in \mathcal{S'(\ci)}$,
+we rewrite and apply Holder's inequality:
+\begin{equation*}
+	\begin{split}
+		\|u\|_{H^{r}(\ci)}^2
+		& = \sum_{\xi \in \zz} |\widehat{u}(\xi)|^2 (1 + \xi^2)^{r}
+		\\
+		& = \sum_{\xi \in \zz}
+		\left [|\widehat{u}(\xi)|^2 (1 + \xi^2)^\sigma \right ]^{(r-s)/(\sigma -s)}
+		\cdot \left [ |\widehat{u}(\xi )
+		|^2 (1+ \xi^2)^s \right ] ^{1 - (r-s)/(\sigma -s)} 
+		\\
+		& \le \|\left[ |\widehat{u}(\xi)|^2 (1 + \xi^2)^\sigma
+		\right]^{(r-s)/(\sigma -s)} \|_{l^{(\sigma -s)/(r-s)}(\zz)}
+		\\
+		& \cdot \|\left[ |\widehat{u}(\xi)|^2 (1 + \xi^2)^\sigma
+		\right]^{1- (r-s)/(\sigma -s)} \|_{l^{1/[1 -(\sigma -s)/(r-s)]}(\zz)}
+		\\
+		& = \|v\|_{H^\sigma(\ci)}^{2(r-s)/(\sigma -s)}
+		\|v\|_{H^s(\ci)}^{2[1 - (r-s)/(\sigma -s)]}
+	\end{split}
+\end{equation*}
+from which the result follows.
+\vskip0.1in
+{\bf Proof of Remark \ref{lem2r} on $\rr$.}
+Assuming $u \in \mathcal{S'(\rr)}$,
+we rewrite and apply Holder's inequality:
+\begin{equation*}
+	\begin{split}
+		&\|u\|_{H^{r}(\rr)}^2
+		\\
+		& = \int_\rr |\widehat{u}(\xi)|^2 (1 + \xi^2)^{r}
+		\\
+		& = \int_\rr
+		\left [|\widehat{u}(\xi)|^2 (1 + \xi^2)^\sigma \right ]^{(r-s)/(\sigma -s)}
+		\cdot \left [ |\widehat{u}(\xi )
+		|^2 (1+ \xi^2)^s \right ] ^{1 - (r-s)/(\sigma -s)} 
+		\\
+		& \le \|\left[ |\widehat{u}(\xi)|^2 (1 + \xi^2)^\sigma
+		\right]^{(r-s)/(\sigma -s)} \|_{L^{(\sigma -s)/(r-s)}(\rr)}
+		\\
+		& \cdot \|\left[ |\widehat{u}(\xi)|^2 (1 + \xi^2)^\sigma
+		\right]^{1- (r-s)/(\sigma -s)} \|_{L^{1/[1 -(\sigma 
+		-s)/(r-s)]}(\rr)}
+		\\
+		& = \|v\|_{H^\sigma(\rr)}^{2(r-s)/(\sigma -s)}
+		\|v\|_{H^s(\rr)}^{2[1 - (r-s)/(\sigma -s)]}
+	\end{split}
+\end{equation*}
+from which the result follows. This completes the proof of Remark 
+\ref{lem2r}. $\quad \Box$
+\vskip0.1in
+Applying Remark \ref{lem2r}, and estimates \eqref{2pr} and \eqref{o1}, we conclude that
+\begin{equation*}
+	\begin{split}
+		\|u - J_\ee u \|_{H^r(\ci)}^2
+		& \le \|u - J_\ee u
+		\|_{L^2(\ci)}^{(s-r)/s} \|u - J_\ee u \|_{H^s(\ci)}^{1 -
+		(s-r)/s}
+		\\
+		& = \left( \ee^{2s} \right)^{(s-r)/s} \cdot o(1)
+		\\
+		& = o(\ee^{2(s-r)})
+	\end{split}
+\end{equation*}
+fom which \eqref{0r} follows (on $\ci$).
+\vskip0.1in
+%
+%
+%
+{\bf Proof of Proposition \ref{0r} on $\rr$.}
+Pick a function $\widehat{j}(\xi) \in \mathcal{S}(\rr)$ such that
+	\begin{equation}
+		\label{p0u}
+		\begin{split}
+			& 0 \le \widehat{j}(\xi) \le 1,
+			\\
+			& \widehat{j}(\xi) = 1 \ \ \text{if} \ \ |\xi| \le 1.
+		\end{split}
+	\end{equation}
+	Then by the Fourier Inversion Theorem, we can define
+	\begin{equation}
+		\begin{split}
+			j_\ee (x) {=} \int_{\rr}
+			\widehat{j}(\ee \xi) e^{\pi i x}, \quad \ee > 0
+			\label{pparseval-def}
+		\end{split}
+	\end{equation}
+	which is equivalent to stating that we can find $\left\{ j_\ee
+	\right\} \subset \mathcal{S}(\rr)$ such that
+	\begin{equation}
+		\begin{split}
+			\widehat{j_\ee} = \widehat{j }(\ee \xi), \quad \ee > 0.
+			\label{pwidehat-def}
+		\end{split}
+	\end{equation}
+	Hence, we can define $J_\ee$ to be the Friedrichs mollifier 
+	\begin{equation}
+		\label{p0'u}
+		\begin{split}
+			J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
+		\end{split}
+	\end{equation}
+Pick an arbitrary unit vector $u \in H^s(\rr)$ and
+	$r, s \in \rr$ such that $r \le s$. Using the fact that
+$\widehat{j_\ee}(\xi) = \widehat{j}(\ee \xi)$, we have
+\begin{equation}
+	\begin{split}
+		\|u - J_\ee u\|_{H^r(\rr)}^2 
+		& = \int_{\rr} |\widehat{u}(\xi) - \widehat{j_\ee * u}(\xi) |^2
+		(1+\xi^2)^r
+		\\
+		& = \int_{\rr} |\widehat{u}(\xi) - \widehat{j_\ee}(\xi)
+		\widehat{u}(\xi) |^2 (1+\xi^2)^r
+		\\
+		& = \int_{\rr} | [1- \widehat{j_\ee}(\xi] \widehat{u}(\xi) |^2
+		(1+\xi^2)^r
+		\\
+		& = \int_{\rr} | [1- \widehat{j}(\ee \xi)] \widehat{u}(\xi) |^2
+		(1+\xi^2)^r.
+		\label{p1r}
+	\end{split}
+\end{equation}
+Assume $r \le s$. Then by construction we have
+\begin{equation*}
+	\begin{split}
+		|1 - \widehat{j } (\xi) | \le |\xi|^{s-r}
+	\end{split}
+\end{equation*}
+for all $\xi \in \rr$; hence
+\begin{equation}
+	\begin{split}
+		|1 - \widehat{ j }(\ee \xi)| \le |\ee \xi |^{s-r}, \quad \forall
+		\xi \in \rr, \ \ee > 0.
+		\label{p2r}
+	\end{split}
+\end{equation}
+Applying \eqref{p2r} to \eqref{p1r} and recalling that $r \le s$, we obtain
+\begin{equation}
+	\label{p2pr}
+	\begin{split}
+	\|u - J_\ee u\|_{H^r(\rr)}^2 
+	& \le \int_{\rr}  |\ee \xi |^{2(s-r)}
+	|\widehat{u}(\xi)|^2 (1 + \xi^2)^r
+	\\
+	& = \ee^{2(s-r)} \int_{\rr} |\widehat{u}(\xi)|^2  \cdot (\xi^2)^{s-r}
+	(1 + \xi^2)^{r-s} (1 + \xi^2)^{s}
+	\\
+	& \le \ee^{2(s-r)}
+	\int_{\rr} |\widehat{u}(\xi)|^2 (1 + \xi^2)^s
+	\\
+	& =  \ee^{2(s-r)}.
+	\end{split}
+\end{equation}
+Furthermore,
+\begin{equation*}
+	\begin{split}
+		& |[1- \widehat{j_\ee}(\xi)] \widehat{u}(\xi)|^2 (1 + \xi^2)^r \le
+		|\widehat{u}(\xi)|^2 (1 + \xi^2)^r, \quad \forall \ee > 0, \ 
+		\text{and}
+		\\
+		& \int_{\rr} |\widehat{u}(\xi)|^2 (1 + \xi^2)^r < \infty,
+		\quad r \le s;
+	\end{split}
+\end{equation*}
+therefore, by the dominated convergence theorem
+\begin{equation}
+	\label{po1}
+	\begin{split}
+		\lim_{\ee \to 0} \|u - J_\ee u \|_{H^r }^2 
+		& = \lim_{\ee \to 0} \int_{\rr} |[1-\widehat{j_\ee}(\xi)]
+		\widehat{u}(\xi) |^2 (1 + \xi^2)^r
+		\\
+		& = \lim_{\ee \to 0} \int_{\rr} |[1-\widehat{j}(\ee \xi)]
+		\widehat{u}(\xi) |^2 (1 + \xi^2)^r
+		\\
+		& = \int_{\rr} \lim_{\ee \to 0} |[1-\widehat{j}(\ee \xi)]
+		\widehat{u}(\xi) |^2 (1 + \xi^2)^r
+		\\
+		& = 0.
+	\end{split}
+\end{equation}
+Applying Remark \ref{lem2r}, and estimates \eqref{p2pr} and \eqref{po1}, we 
+conclude that
+\begin{equation*}
+	\begin{split}
+		\|u - J_\ee u \|_{H^r(\rr)}^2
+		& \le \|u - J_\ee u
+		\|_{L^2(\rr)}^{(s-r)/s} \|u - J_\ee u \|_{H^s(\rr)}^{1 -
+		(s-r)/s}
+		\\
+		& = \left( \ee^{2s} \right)^{(s-r)/s} \cdot o(1)
+		\\
+		& = o(\ee^{2(s-r)})
+	\end{split}
+\end{equation*}
+from which \eqref{0r} follows (on $\rr$).
+This completes the proof of Proposition
+\ref{lem4r}.  $\quad \Box$
+\vskip0.1in
+ 
+
+				  \end{document}
+
+

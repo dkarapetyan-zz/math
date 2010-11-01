@@ -1,0 +1,261 @@
+\documentclass[12pt]{article}
+
+\textheight= 9in
+\textwidth= 6.5in
+
+%\hoffset = -1.1in
+%\voffset= -0.75in
+%\voffset= -1.25in
+%\voffset= -.75in
+%\voffset=-1.40in
+\voffset=-.8in
+\hoffset = -.55in
+
+\parindent= 0.0in
+\pagestyle{empty}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand\kreis[1]{\ensuremath{\mathbin{\settowidth{\dimen6}{\mbox{$\bigcirc$}}%
+              \makebox[0pt][l]{$\bigcirc$}\makebox[\dimen6]{#1}}}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+\centerline{\bf \large  STATEMENT OF RESEARCH}
+\vspace{0.2in}
+\centerline{ JENNIFER M.\ GORSKY}
+\vspace{0.3in}
+
+
+
+
+
+
+
+\noindent
+{\bf Well-posedness of nonlinear evolution equations in Sobolev spaces}.
+The main  focus of my research thus far has been the
+  periodic initial value problem for a modified
+Camassa-Holm (mCH) equation
+\begin{equation}
+\label{eq:EpsmCH}
+\partial_t u + u\partial_x u +\varepsilon \partial^3_x u +
+(1-\partial_x^2)^{-1}\partial_x[u^2+\frac 12(\partial_x u)^2]= 0,
+\end{equation}
+\vskip -.4in
+\begin{equation}
+\label{eq:EpsmCHdata} u(x, 0) = \varphi (x),\quad
+\ t \in \mathbb{R},  \;\; \ x \in \mathbb{T}.
+\end{equation}
+Equation (\ref{eq:EpsmCH}) is obtained by adding the term
+$\varepsilon \partial^3_x u$
+to the Camassa-Holm (CH) equation.  Inserting this
+stronger dispersive term and investigating
+both the modified equation and its (dispersive) limit as $\varepsilon
+\rightarrow 0$, has  been motivated by other
+works in the  literature.
+For instance, in  [LL] Lax and Levermore considered
+the zero dispersion limit of the initial value problem for the KdV equation
+$\partial_t u + u\partial_x u +\varepsilon \partial^3_x u=0$.
+
+
+\quad For $\varepsilon = 1$, Himonas and Misio\l ek proved
+well-posedness of (\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata}) for initial data
+in the Sobolev space $H^s(\mathbb{T})$, $s>1/2$
+(see [HM1]), by extending the techniques Bourgain used to prove
+well-posedness
+  for the KdV equation for $s\ge0$ (see [B]).  I have
+improved this result by   showing  local well-posedness of
+(\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata}) for $\varphi \in H^s(\mathbb{T})$,
+$s\ge 1/2$.  For this, I have extended the method
+used by Kenig, Ponce and Vega for  proving well-posedness for the KdV equation
+when $s\ge -1/2$ (see [KPV]).   Using this alternative approach enabled 
+me to lower
+the Sobolev exponent to $s=1/2$.
+Also, in my dissertation I have shown  that the bilinear estimates used
+previously in proving well-posedness fail when $s<1/2$.
+This indicates that  $s=1/2$ might be the critical exponent for
+local well-posedness of the mCH equation in Sobolev spaces.
+However, this must be proved, and this is thus one of the
+research problems I would like to work on.
+Ill-posedness results for the KdV and CH equations rely on
+explicit traveling wave solutions.
+Therefore, as a starting point, I intend
+to study the ODE that traveling wave
+solutions of the mCH equation must satisfy.
+
+
+\quad   Studying more general evolution equations with stronger
+nonlinearities is also of interest. For example,  Himonas and Misio\l ek
+have shown that the Cauchy problem
+\begin{equation}
+\label{eq:HigherOrdermCH}
+\partial_t u - \partial^2_x \partial_t u + \partial^{2j+1}_x u
+-\partial^{2j+3}_x u + 3u
+\partial_x u - 2\partial_x u \partial^2_x u - u \partial^3_x u = 0,
+\end{equation}
+\vskip -.4in
+\begin{equation}
+\label{eq:HigherOrdermCHdata} u(x, 0) = \varphi (x),\quad
+\ t \in \mathbb{R},  \;\; \ x \in \mathbb{T},
+\end{equation}
+is locally well-posed for $s>\frac{2-j}{2}$, where $j$ is a positive
+integer (see [HM2]).  I would like to explore proving this result for a
+lower
+$s$.
+
+\vskip .1in
+\noindent
+{\bf {The Cauchy Problem for Analytic Initial Data}.}
+  Another problem I am interested in is the
+study of the Cauchy problem (\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata})
+when the initial data are analytic. 
+Is the solution
+then also analytic in the space variable?
+What about analyticity in the time variable?
+
+
+
+\quad   In collaboration with Alex Himonas, I have constructed non-analytic
+solutions to the Cauchy problem for the generalized KdV equation  with
+appropriate analytic initial data.   It is well-known that solutions to the
+KdV equation are analytic in the space variable, but 
+not 
+
+
+
+ 
+
+
+
+
+
+ \newpage
+
+{\bf Jennifer M.\ Gorsky, page 2}
+
+
+
+
+
+
+\vskip 0.3in
+
+
+
+in the time
+variable. The question then is the following: Is the situation concerning
+analyticity of solutions to the mCH equation similar to that of the KdV
+equation?   Concerning analyticity in the space variable, the answer is
+yes.  I have recently shown, in a preprint entitled {\em The Cauchy problem
+for a modified Camassa-Holm equation with analytic initial data}, that
+(\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata}) with analytic initial data is
+analytic in the space variable $x$ for all time.  
+
+\quad  I plan to continue my investigation of the regularity of solutions
+problem for other nonlinear evolution
+equations with analytic initial data.
+
+
+
+\vskip 0.1in
+\noindent
+{\bf {Numerical Analysis.}}
+I am also interested in investigating the
+behavior of solutions of (\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata}) as
+$\varepsilon$ goes to zero.
+For a given $\varphi$, a natural question to ask is whether solutions
+of (\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata}) converge to solutions of
+the CH Cauchy problem as $\varepsilon \rightarrow 0$.  Using
+numerical methods, I have explored this question.
+My results indeed indicate that for certain
+initial data, solutions of (\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata}) converge
+to solutions of the CH Cauchy problem as $\varepsilon \rightarrow 0$.  I am
+interested in strengthening my numerical findings by proving  results
+which state that solutions of (\ref{eq:EpsmCH})--(\ref{eq:EpsmCHdata})
+converge to solutions of the CH Cauchy problem for appropriate initial data.
+
+
+
+
+
+
+
+\begin{thebibliography}{ABCDE}
+
+\bibitem[B]{b} J. Bourgain, {\em Fourier transform restriction
+phenomena  for certain lattice subsets  and applications to
+nonlinear evolution equations.  Part 2: KdV equation}, Geom.
+Funct. Anal. {\bf 3} (1993).
+
+\bibitem[CKSTT]{ckstt1} J. Colliander, M. Keel, G. Staffilani,
+H. Takaoka, and T. Tao,
+{\em Sharp global well-posedness for KdV and modified KdV on $\mathbb R$ and
+$\mathbb T$},
+    J. Amer. Math. Soc. {\bf 16}, No. 3, (2003), 705--749.
+
+
+\bibitem[HM1]{hm} A. A. Himonas and G. Misio\l ek,  {\em Well-posedness of
+the Cauchy problem for a shallow water equation on the circle},  Journal of
+Differential Equations {\bf 161} (2000).
+
+
+\bibitem[HM2]{hm} A. A. Himonas and G. Misio\l ek,  {\em The
+Cauchy problem for a shallow water type equation},  Comm.
+Partial Differential Equations {\bf 23} (1998).
+
+\bibitem[KPV]{kpv3} C. Kenig, G. Ponce and L. Vega,  {\em A bilinear
+estimate with applications to the KdV equation},
+Journal A.M.S. {\bf 9} (1996).
+
+\bibitem[LL]{kpv3} P. Lax and D. Levermore,  {\em The zero dispersion
+limit for the Korteweg-de Vries (KdV) equation},  Proc. Nat. Acad.
+Sci. U.S.A. {\bf 76} (1979).
+
+
+
+\end{thebibliography}
+
+
+
+
+\end{document}
+
+
+
+
+
