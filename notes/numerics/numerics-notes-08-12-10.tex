@@ -1,0 +1,395 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage[alphabetic, msc-links]{amsrefs} %for the bibliography; uses cite pkg
+%\usepackage{showkeys}  %shows source equation labels on the pdf
+\usepackage[margin=3cm]{geometry}  %page layout
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\synctex=1
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+%
+%
+\theoremstyle{plain}  
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}[subsection]{conjecture}
+%
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+%
+%
+%
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+\makeautorefname{equation}{Equation}
+\makeautorefname{footnote}{footnote}
+\makeautorefname{item}{item}
+\makeautorefname{figure}{Figure}
+\makeautorefname{table}{Table}
+\makeautorefname{part}{Part}
+\makeautorefname{appendix}{Appendix}
+\makeautorefname{chapter}{Chapter}
+\makeautorefname{section}{Section}
+\makeautorefname{subsection}{Section}
+\makeautorefname{subsubsection}{Section}
+\makeautorefname{paragraph}{Paragraph}
+\makeautorefname{subparagraph}{Paragraph}
+\makeautorefname{theorem}{Theorem}
+\makeautorefname{theo}{Theorem}
+\makeautorefname{thm}{Theorem}
+\makeautorefname{addendum}{Addendum}
+\makeautorefname{add}{Addendum}
+\makeautorefname{maintheorem}{Main theorem}
+\makeautorefname{corollary}{Corollary}
+\makeautorefname{lemma}{Lemma}
+\makeautorefname{sublemma}{Sublemma}
+\makeautorefname{proposition}{Proposition}
+\makeautorefname{property}{Property}
+\makeautorefname{scholium}{Scholium}
+\makeautorefname{step}{Step}
+\makeautorefname{conjecture}{Conjecture}
+\makeautorefname{question}{Question}
+\makeautorefname{definition}{Definition}
+\makeautorefname{notation}{Notation}
+\makeautorefname{remark}{Remark}
+\makeautorefname{remarks}{Remarks}
+\makeautorefname{example}{Example}
+\makeautorefname{algorithm}{Algorithm}
+\makeautorefname{axiom}{Axiom}
+\makeautorefname{case}{Case}
+\makeautorefname{claim}{Claim}
+\makeautorefname{assumption}{Assumption}
+\makeautorefname{conclusion}{Conclusion}
+\makeautorefname{condition}{Condition}
+\makeautorefname{construction}{Construction}
+\makeautorefname{criterion}{Criterion}
+\makeautorefname{exercise}{Exercise}
+\makeautorefname{problem}{Problem}
+\makeautorefname{solution}{Solution}
+\makeautorefname{summary}{Summary}
+\makeautorefname{operation}{Operation}
+\makeautorefname{observation}{Observation}
+\makeautorefname{convention}{Convention}
+\makeautorefname{warning}{Warning}
+\makeautorefname{note}{Note}
+\makeautorefname{fact}{Fact}
+%
+\begin{document}
+\title{Notes on Numerical Computation }
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+         University  of Notre Dame\\
+				          Notre Dame, IN 46556 }
+									\date{08/12/10}
+									%
+									\maketitle
+									%
+									%
+									%
+									%
+									%
+									%
+									\section{Hermite Interpolation}
+Let $f(x) \in C^m(\rr)$ with 
+%
+%
+\begin{equation}
+	\label{hinterp-data}
+	\begin{split}
+		f^i(x_j) = b_{i j }, \qquad 0 \le j \le k, \ 0 \le i \le n_j
+	\end{split}
+\end{equation}
+%
+%
+where $b_{j k}$ is a constant. Can we find a polynomial $p(x)$ such that
+%
+%
+\begin{equation}
+	\label{h-poly-data}
+	\begin{split}
+		p^i(x_j) = b_{i j}, \qquad 0 \le j \le k, \ 0 \le i \le n_j, 
+	\end{split}
+\end{equation}
+%
+%
+holds? If so, we call $p(x)$ a \emph{Hermite polynomial}, and we say that $p(x)$
+\emph{interpolates} $f(x)$ at the \emph{nodes} $x_k$. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Unique Hermite Poly Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+	If $\sum_{j=0}^{k} n_{j} = m-k$, then there exists a unique polynomial of
+	degree less than or equal to $m$ satisfying \eqref{h-poly-data}.
+\end{theorem}
+%
+%
+%
+{\bf Proof.} Write
+%
+%
+\begin{equation*}
+	\begin{split}
+		p(x) = a_0 + a_{1}x + a_{2}x^2 +\cdots+ a_{m}x^m
+	\end{split}
+\end{equation*}
+%
+%
+where the constants $\{a_i\}_{0 \le i \le m}$ are to be determined. We wish to solve
+the system given by
+%
+%
+
+\begin{gather*}
+	a_{0}+a_{1}x_{j} + a_{2}x_{j}^2 +\cdots+a_{m}x_{j}^{m} = b_{0 j}
+	\\
+	a_{1} + 2 a_{2}x_{j} + 3a_{3}x_{j}^2 + \cdots+ m a_{m}x_{j}^{m-1} =
+	b_{1j}
+	\\
+	\vdots
+	\\
+	n_j! a_{ n_{j}} x_{j}^{m -n_{j}} +
+	(n_j + 1)! a_{n_{j}+1}
+	x_{j}^{m - n_{j}-1} + \cdots + \frac{m!}{(m-n_j)!} a_{m}x_{j} = b_{n_j j}
+\end{gather*}
+ranging over $0 \le j \le k$. In matrix form, this is expressed by $A\vec{a}=B$, where
+%
+%
+%
+%
+\begin{gather*}
+		A= \begin{bmatrix}
+		A_1
+		\\
+		A_2
+		\\
+		\vdots
+		\\
+		A_k
+	\end{bmatrix}
+	, \ A_j=\begin{bmatrix}
+		1 & x_{j} & x_{j}^{2} & \cdots &\cdots &\cdots & \cdots &x_{j}^{m}\\
+	0 &1 &2x_{j} & \cdots &\cdots &\cdots &\cdots &mx_{j}^{m-1}\\
+	0 &0 &2 & \cdots &\cdots &\cdots &\cdots &m(m-1)x_{j}^{m-2}\\
+	\vdots & \vdots &\vdots &\ddots &\\
+	0 &0 &0 &\cdots & n_j! \  & (n_j + 1)! x_j & \cdots &\frac{m!}{(m-n_{j})!} x_j^{m -n_{j}}
+\end{bmatrix},
+\\
+	 \vec{a}=\begin{bmatrix}
+		a_{0}\\
+	a_{2}\\
+	\vdots\\
+	a_{m}
+\end{bmatrix}
+\\
+ B = \begin{bmatrix}
+	B_1\\
+	B_2\\
+	\vdots \\
+	B_k
+\end{bmatrix}
+, \ B_j=
+	\begin{bmatrix}
+	b_{0j}\\
+	b_{1j}\\
+	\vdots \\
+	b_{n_j j}.
+\end{bmatrix}
+\end{gather*}
+%
+%
+%
+%
+Note that $A$ is a square $(m+1) \times (m+1)$ matrix. Therefore, to complete
+the proof it will be enough to show that $A$ is invertible, or, equivalently,
+that if $A \vec{a}=\vec{0}$, then $\vec{a} = \vec{0}$. Proceeding, suppose
+$A \vec{a}=\vec{0}$. Then $\vec{a}$ defines a polynomial $p(x)$ with root $x_j$ of
+multiplicity $n_j +1$. Hence,
+%
+%
+\begin{equation*}
+	\begin{split}
+		p(x) = q(x) \prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}.
+	\end{split}
+\end{equation*}
+%
+%
+However, note that $\prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}$ is of order $m+1$,
+whereas the coefficients of $\vec{a}$ define $p(x)$ to be of order at most $m$.
+It follows that $q \equiv 0$. \qquad \qedsymbol
+%
+%
+\section{Finite Difference Method}
+\subsection{Burgers Equation}
+Recall the Burgers initial value problem (ivp)
+%
+%
+\begin{gather}
+	\label{burgers-eqn}
+	u_{t} = \frac{1}{2}(u^{2})_{x},
+	\\
+	\label{burgers-init-data}
+	u(x, 0) = u_{0}(x), \qquad x, t \in \rr.
+\end{gather}
+%
+%
+Note that for small \emph{stepsize} (or \emph{mesh}) $h, k >0$, 
+%
+%
+\begin{equation*}
+	\begin{split}
+		 u_{t}(x,t) &\approx \frac{u(x, t+k) - u(x, t)}{k},
+		\\
+		 u_{x}(x, t) & \approx \frac{u(x+h, t) - u(x, t)}{k}.
+	\end{split}
+\end{equation*}
+%
+%
+Set
+\begin{gather*}
+	x_i = ih, \quad i \in \mathbb{Z}
+	\\
+	t_{j}=jk, \quad j \in \mathbb{N}
+\end{gather*}
+and let
+\begin{gather*}
+	u_{i,j} = u(x_{i}, t_{j}).
+\end{gather*}
+%
+%
+Then the discretized Burgers ivp takes the form
+%
+%
+\begin{gather*}
+	\frac{u_{i, j+1}- u_{i,j}}{k}=\frac{1}{2h}\left( u_{i+1,j}^{2} -
+	u_{i,j}^{2} \right),
+	\\
+	u_{i,0} = u_{0}(ih)
+\end{gather*}
+%
+%
+or
+\begin{gather}
+	\label{burgers-discrete}
+	u_{i, j+1}=u_{i,j} + \frac{k}{2h}\left( u_{i+1,j}^{2} -
+	u_{i,j}^{2} \right),
+	\\
+	\label{burgers-discrete-init}
+	u_{i,0} = u_{0}(ih).
+\end{gather}
+Note that \eqref{burgers-discrete}-\eqref{burgers-discrete-init} gives us an
+explicit numerical solution to the Burgers ivp
+\eqref{burgers-eqn}-\eqref{burgers-init-data}. To illustrate this, we set
+$j=0$, and obtain
+%
+%
+\begin{equation}
+	\label{case-j=0}
+	\begin{split}
+		u_{i,1} = \underbrace{u_{i,0} + \frac{k}{2h}\left( u_{i+1,0}^{2} -
+		u_{i,0}^{2} \right)}_{\text{known from initial data
+		\eqref{burgers-discrete-init}}}.
+	\end{split}
+\end{equation}
+%
+%
+Similarly, for $j=1$, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		u_{i,2} = \underbrace{u_{i,1}}_{\text{known from
+		\eqref{case-j=0}}} + \frac{k}{2h}\left(
+		\underbrace{u_{i+1,1}^{2}}_{?} -
+		\underbrace{u_{i,1}^{2}}_{\text{known from
+		\eqref{case-j=0}}} \right).
+	\end{split}
+\end{equation*}
+%
+%
+But \eqref{case-j=0} implies that
+\begin{equation*}
+	\begin{split}
+		u_{i+1,1} = \underbrace{u_{i+1,0} + \frac{k}{2h}\left( u_{i+2,0}^{2} -
+		u_{i+1,0}^{2} \right)}_{\text{known from \eqref{burgers-discrete-init}}}.
+	\end{split}
+\end{equation*}
+Hence, \eqref{burgers-discrete-init} and \eqref{case-j=0} give us the value of $u_{i,2}$. This process can be
+continued indefinitely to find $u_{i, j}$ for any $j \in \mathbb{N}$, and is
+called an \emph{explicit finite difference method} for numerically solving the
+Burgers ivp. An important drawback to this method is that it converges very
+slowly to solutions of the Burgers ivp. 
+%
+%
+%\nocite{*}
+%\bibliography{/Users/davidkarapetyan/Documents/math/bib-files/numerics}
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Kincaid-Cheney-1996-Numerical-analysis}{book}{
+      author={Kincaid, David},
+      author={Cheney, Ward},
+       title={Numerical analysis},
+     edition={Second},
+   publisher={Brooks/Cole Publishing Co.},
+     address={Pacific Grove, CA},
+        date={1996},
+        ISBN={0-534-33892-5},
+        note={Mathematics of scientific computing},
+      review={\MR{MR1388777 (97g:65003)}},
+}
+
+\bib{LeVeque-1992-Numerical-methods-for-conservation}{book}{
+      author={LeVeque, Randall~J.},
+       title={Numerical methods for conservation laws},
+     edition={Second},
+      series={Lectures in Mathematics ETH Z{\"u}rich},
+   publisher={Birkh{\"a}user Verlag},
+     address={Basel},
+        date={1992},
+        ISBN={3-7643-2723-5},
+      review={\MR{MR1153252 (92m:65106)}},
+}
+
+\end{biblist}
+\end{bibdiv}
+									\end{document}  
+
