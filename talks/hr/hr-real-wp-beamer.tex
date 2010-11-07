@@ -76,24 +76,24 @@
 \title{On the Cauchy Problem for the Hyperelastic Rod Equation}
 \author{\it David Karapetyan}
 \begin{document}
- %
- \begin{frame}
-	 \titlepage
- \end{frame}
+%
+\begin{frame}
+\titlepage
+\end{frame}
 
- \begin{frame}
-	 \frametitle{Abstract}
-	 We consider the Cauchy problem for the Hyperelastic Rod (HR) equation
-	 \begin{equation*} 
-		 \label{hr}
-		 \partial_t u + \gamma u\partial_x u + (1-\p_x^2)^{-1} \p_x \left
-		 [\frac{3- \gamma}{2} u^2 + \frac{\gamma}{2}(\p_x u)^2 \right ] = 0,
-		 \ x \in  \mathbb{T} \  \text{or}  \ \rr,  \ t \in \mathbb{R},
-	 \end{equation*}
-	 \begin{equation*} 
-		 \label{hr-data} 
-		 u(x, 0) = u_0 (x)
-	 \end{equation*}
+\begin{frame}
+\frametitle{Abstract}
+We consider the Cauchy problem for the Hyperelastic Rod (HR) equation
+\begin{equation*} 
+\label{hr}
+\partial_t u + \gamma u\partial_x u + (1-\p_x^2)^{-1} \p_x \left
+[\frac{3- \gamma}{2} u^2 + \frac{\gamma}{2}(\p_x u)^2 \right ] = 0,
+\ x \in  \mathbb{T} \  \text{or}  \ \rr,  \ t \in \mathbb{R},
+\end{equation*}
+\begin{equation*} 
+\label{hr-data} 
+u(x, 0) = u_0 (x)
+\end{equation*}
 %
 and prove a portion of the following result:
 %
@@ -101,7 +101,7 @@ and prove a portion of the following result:
 %
 %
 %
-	\frametitle{Well-Posedness}
+\frametitle{Well-Posedness}
 \end{frame}
 \begin{frame}
 \begin{theorem}
@@ -114,28 +114,28 @@ The solution $u$ depends continuously on the initial data $u_0$
 in the sense that the mapping of the initial data to the solution 
 is continuous from the Sobolev space $H^s$ to the space $C([0, T]; H^s)$.
 Furthermore, the  lifespan (the maximal existence time)
- is greater than 
+is greater than 
 %
-     \begin{equation*}
-   T
-   \doteq
-   \frac{1}{2c_s}
-   \frac{1}{ \|u_0 \|_{H^s(\rr)}},
- \end{equation*}
+\begin{equation*}
+T
+\doteq
+\frac{1}{2c_s}
+\frac{1}{ \|u_0 \|_{H^s(\rr)}},
+\end{equation*}
 %
 where $c_s$  is a constant depending only on $s$.
 Also, we have 
 %
-  \begin{equation*}
-   \label{u-u0-Hs-bound}
+\begin{equation*}
+\label{u-u0-Hs-bound}
 \|u(t)\|_{H^s(\rr))}
-  \le
-  2
-  \|u_0 \|_{H^s(\rr)},
-  \quad
-  0\le t \le T.
-   \end{equation*}
-  %
+\le
+2
+\|u_0 \|_{H^s(\rr)},
+\quad
+0\le t \le T.
+\end{equation*}
+%
 \end{theorem}
 \end{frame}
 %
@@ -143,7 +143,7 @@ Also, we have
 %
 \section{Proof of Well-Posedness for HR}
 \begin{frame}[allowframebreaks]
-	\frametitle{Proof of Well-Posedness for HR}
+\frametitle{Proof of Well-Posedness for HR}
 %
 %
 %
@@ -256,7 +256,7 @@ we obtain
 %
 \begin{equation*} \begin{split}
 \label{B-moli-int}
- \frac 12
+\frac 12
 \frac{d}{dt} \|u_\ee \|_{H^s(\rr)}^2
 =
 & -
@@ -454,7 +454,7 @@ Furthermore,  $u_\ee( t)\in C^1([T, T], H^{s-1}(\rr))$ and satisfies
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Choosing  a convergent subsequence.}
+\frametitle{Choosing  a convergent subsequence.}
 %
 Next we shall show that the family $\{ u_\ee\}$ has a convergent 
 subsequence
@@ -476,7 +476,7 @@ By the Riesz Lemma, we can identify $H^s(\rr)$ with
 $(H^s(\rr))^*$, where for $w, \psi \in H^s(\rr)$ the duality is
 defined by 
 \begin{equation*}
-	T_w(\psi) = <w, \psi>_{H^s(\rr)} = \int_{\rr}
+T_w(\psi) = <w, \psi>_{H^s(\rr)} = \int_{\rr}
 \widehat{w}(\xi, t) \overline{\widehat{\psi}}(\xi, t) \cdot (1
 + \xi^2)^s \ d \xi.
 \end{equation*}
@@ -499,7 +499,7 @@ T_v(\phi) = \int_I <v (t), \phi (t)>_{H^s(\rr)} dt  = \int_I
 \end{frame}
 
 \begin{frame}
-	By Aloaglu's Theorem, the bounded family $\{u_\ee\}$ is compact in the weak$^*$ topology of $L^\infty(I, H^s(\rr))$. More precisely,
+By Aloaglu's Theorem, the bounded family $\{u_\ee\}$ is compact in the weak$^*$ topology of $L^\infty(I, H^s(\rr))$. More precisely,
 there is a subsequence  $\{ u_{\ee_k} \}$ converging
 weakly to a $ u\in L^{\infty}(I, H^s(\rr))$.
 That is 
@@ -513,31 +513,31 @@ all } \;\;  \phi \in L^1(I, H^{s}(\rr)).
 \end{equation*}
 %
 In order to show that $u$ solves the HR i.v.p., it would
-		suffice to obtain a stronger convergence for  $u_{\ee_n}$ so that 
-		we could take the limit in the mollified HR equation. However,
-		this is difficult, and unnecessary. Rather, our approach will be to
-		show that for any pseudo-differential operator
-		$P \in \Psi^0$ and arbitrary $\vp \in S(\rr)$, $k \in
-		\mathbb{N}$, $0< \sigma < 1$, we have
+suffice to obtain a stronger convergence for  $u_{\ee_n}$ so that 
+we could take the limit in the mollified HR equation. However,
+this is difficult, and unnecessary. Rather, our approach will be to
+show that for any pseudo-differential operator
+$P \in \Psi^0$ and arbitrary $\vp \in S(\rr)$, $k \in
+\mathbb{N}$, $0< \sigma < 1$, we have
 \end{frame}
 %
 \begin{frame}
-		%
-		%
-			\begin{align}
-			\label{hhstrong-conv}
-			& \varphi P [(u_{\ee_n})^k] \longrightarrow \varphi P [u^k]  
-			\quad
-			\text{ in } \,\,   C(I, H^{s-\sigma}(\rr)), \ \,
-			\\
-			\label{hhstrong-conv-next}
-			& \varphi P [(\p_x u_{\ee_n})^k] \longrightarrow \varphi P
-			[(\p_x u)^k]  
-			\quad
-			\text{ in } \,\,   C(I, H^{s-\sigma -1}(\rr)), \ \ 
-		\end{align}
-		%
-		\end{frame}
+%
+%
+\begin{align}
+\label{hhstrong-conv}
+& \varphi P [(u_{\ee_n})^k] \longrightarrow \varphi P [u^k]  
+\quad
+\text{ in } \,\,   C(I, H^{s-\sigma}(\rr)), \ \,
+\\
+\label{hhstrong-conv-next}
+& \varphi P [(\p_x u_{\ee_n})^k] \longrightarrow \varphi P
+[(\p_x u)^k]  
+\quad
+\text{ in } \,\,   C(I, H^{s-\sigma -1}(\rr)), \ \ 
+\end{align}
+%
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -546,7 +546,7 @@ In order to show that $u$ solves the HR i.v.p., it would
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Interpolation}
+\frametitle{Interpolation}
 \begin{lemma}
 \label{interpolation-lem}
 Let  $s > \frac{3}{2}$.
@@ -559,349 +559,349 @@ then $v \in C^\sigma (I, H^{s- \sigma}(\rr))$ for  $0 < \sigma < 1$.
 %
 \begin{frame}
 Fix $k \in \mathbb{N}$. Using the previous lemma, we
-		will show that the family
-		\begin{equation*}
-			\begin{split}
-			 \{\varphi P[(u_\ee)^k]\}_\ee
-		\end{split}
-	\end{equation*}
-		is equicontinuous in $C(I, H^{s-\sigma}(\rr))$ 
-		for $0 < \sigma < 1$ and $\varphi = \varphi(x) \in \mathcal{S}(\rr)$.
-		We will follow this by proving that
-		there exists a sub-family $\{\varphi P[(u_{\ee_n}(t))^k]\}_n$
-		that is precompact in $H^{s-\sigma}(\rr)$ for $\sigma > 0$. 
-		These two facts, in conjunction with Ascoli's Theorem, will
-		yield
-		\begin{equation*}
-			\label{hhstrong-conv2}
-			\varphi P[(u_\ee)^k] \to \tilde{u}
-			\; \; \text{in} \; \; C(I,H^{s-\sigma}(\rr))
-		\end{equation*}
-		for $0 < \sigma < 1$.
-		We will then show that $\tilde{u} = \varphi P[u^k]$, from which it will
-		follow that
-		\begin{equation*}
-			\label{hhphiplus}
-			\begin{split}
-				\varphi P[(u_\ee)^k] \to \varphi P[u^k]
-				\; \; \text{in} \; \; C(I,H^{s-\sigma}(\rr)).
-			\end{split}
-		\end{equation*}
-  \end{frame}
-
-		
-
-		%%%%%%%%%%%%%%%%%%%%%%
-		%
-		%
-		%       Equicontinuity
-		%
-		%
-		%%%%%%%%%%%%%%%%%%%%%%
-
-		%
-		\vskip0.1in
-		\nin
-    \begin{frame}
-		\frametitle{Equicontinuity of $\{ \varphi P [(u_\ee)^k]\}_\ee$  in $C(I,
-    H^{s-\sigma}(\rr))$}
-		%
-		%
-		Since $\varphi \in \mathcal{S}(\rr)$, the map $u \mapsto \vp u$
-		is a bounded linear function on $H^s(\rr)$, for arbitrary $s \in
-		\rr$, where  
-		\begin{equation}
-			\begin{split}
-				\|\varphi u\|_{H^s(\rr)} \le C(s, \varphi)
-				\|u\|_{H^s(\rr)}, \quad \forall s\in \rr.
-				\label{hhschwartz-estimate}
-			\end{split}
-		\end{equation}
-		Furthermore, $$P: H^s(\rr) \to H^s(\rr)$$ is bounded and linear,
-		with 
-		\begin{equation}
-			\label{operator-normaa}
-			\|P\|_{L(H^s(\rr), H^s(\rr))} \le 1.
-		\end{equation}
-		Hence, the map 
-		\begin{equation}
-			\label{the-map}
-			\begin{split}
-			& T: H^s(\rr) \to H^s(\rr),
-			\\
-			& T(u) = \vp P u 
-		\end{split}
-	\end{equation}
-	is bounded and linear, with 
-	\begin{equation}
-		\begin{split}
-			\|T\|_{L(H^s(\rr), H^s(\rr))} \le C(s, \vp).
-			\label{op-norm-product}
-		\end{split}
-	\end{equation}
-	Therefore, applying the interpolation lemma
-		gives 
-  \end{frame}
-  \begin{frame}
-		%
-		\begin{equation*}
-			\begin{split}
-			\label{hhequic-1}
-			& \sup_{t \neq t'} \frac {\| \varphi P [(u_\ee(t))^k] - \varphi
-			P [(u_\ee(t'))^k] \|_{H^{s -
-			\sigma  }(\rr)}}{|t - t'|}
-			\\
-			& \le \sup_{t \neq t'}  \frac { \|\vp P \|_{L(H^{s-\sigma}(\rr),
-			H^{s-\sigma}(\rr))} \cdot \|   [u_\ee(t)]^k  - 
-			[u_\ee(t')]^k \|_{H^{s -
-			\sigma }(\rr)}}{|t - t'|}
-			\\
-			& \le C(s, \vp) \cdot \sup_{t \neq t'}  \frac { \|   [u_\ee(t)]^k  - 
-			[u_\ee(t')]^k \|_{H^{s -
-			\sigma }(\rr)}}{|t - t'|}
-			\\
-			&< c
-		\end{split}
-		\end{equation*}
-		%
-		or
-		%
-		\begin{equation*}
-			\label{hhequic-2}
-			\|\varphi P [(u_\ee(t))^k] - \varphi
-			P [(u_\ee(t'))^k \|_{H^{s - \sigma }(\rr)}< c|t -
-			t'|, 
-			\text{ for all }  \,\,  t, t'\in I,
-		\end{equation*}
-		%
-		which shows that  the family  $\{\varphi P [(u_\ee)^k]\}_\ee$ is
-		equicontinuous in $C(I, H^{s-\sigma }(\rr))$.  $\quad \Box$
-		%
-		\vskip0.1in
-		\nin
-		%
-		%%%%%%%%%%%%%%%%%%%%%%
-		%
-		%
-		%      PreCompactness
-		%
-		%
-		%%%%%%%%%%%%%%%%%%%%%%%%%%
-		%
-		%
-		%
-		%
-		%		
-    \end{frame}
-    \begin{frame}
-      \frametitle{Precompactness of $\{\varphi P [(u_\ee(t))^k]\}_\ee$ in
-		$H^{s-\sigma  }(\rr)$}
-		Recalling the algebra property of Sobolev
-		spaces and our energy estimates, we have
-		\begin{equation*}
-			\begin{split}
-			\|P [(u_\ee(t))^k]\|_{H^{s}(\rr)}
-			\lesssim_s \|u_0 \|^k_{H^s(\rr)} < \infty.
-			\end{split}
-		\end{equation*}
-		Therefore, by Reillich's Theorem, the family $\left\{
-		\varphi P [(u_\ee(t))^k] \right\}_\ee$ is
-		precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. $\quad
-		\Box$ 
-		\vskip0.1in
-  \end{frame}
-  \begin{frame}
-		Hence, compiling our previous results on equicontinuity and precompactness
-		and applying Ascoli's Theorem, we
-		conclude that we can find $\tilde{u}$ and a subfamily 
-		\\ $\left\{
-		\varphi P [(u_{\ee_n})^k]
-		\right\}_n$ such that
-		\begin{equation}
-			\label{hhstrong-conv-of-u_ep}
-			\varphi P [(u_{\ee_n})^k] \to \tilde{u}
-			\; \; \text{in} \; \; C(I, H^{s-\sigma}(\rr)).
-		\end{equation}
-		%
-		%
-		
-		\vskip0.1in
-		We would now like to find out what $\tilde{u}$ is:
-  \end{frame}
-  \begin{frame}
-		%
-		%
-		%
-		\vskip0.1in
-		\begin{lemma}
-			\label{hhlem:crit-conv}
-			For arbitrary $k \in \mathbb{N}$,
-			\begin{equation}
-				\begin{split}
-					\varphi P [(u_{\ee_n})^k] \xrightarrow{weak^*}
-					\varphi P [u^k] \ \ \text{on} \ \ L^\infty(I,
-					H^{s-\sigma}(\rr)).
-					\label{hhcrit-conv-est}
-				\end{split}
-			\end{equation}
-		\end{lemma}
-		{\bf Proof.} 
-		Fix $k \in \mathbb{N}$ and recall that the operators 
-		\begin{equation*}
-			\begin{split}
-			 & T_\varphi: H^s(\rr) \to H^s(\rr)\\
-			 & T_\varphi u = \varphi u
-		\end{split}
-	\end{equation*}
-and 
+will show that the family
 \begin{equation*}
-	\begin{split}
-		P:H^s(\rr) \to H^s(\rr)
-	\end{split}
+\begin{split}
+\{\varphi P[(u_\ee)^k]\}_\ee
+\end{split}
 \end{equation*}
-	are continuous; therefore 
+is equicontinuous in $C(I, H^{s-\sigma}(\rr))$ 
+for $0 < \sigma < 1$ and $\varphi = \varphi(x) \in \mathcal{S}(\rr)$.
+We will follow this by proving that
+there exists a sub-family $\{\varphi P[(u_{\ee_n}(t))^k]\}_n$
+that is precompact in $H^{s-\sigma}(\rr)$ for $\sigma > 0$. 
+These two facts, in conjunction with Ascoli's Theorem, will
+yield
+\begin{equation*}
+\label{hhstrong-conv2}
+\varphi P[(u_\ee)^k] \to \tilde{u}
+\; \; \text{in} \; \; C(I,H^{s-\sigma}(\rr))
+\end{equation*}
+for $0 < \sigma < 1$.
+We will then show that $\tilde{u} = \varphi P[u^k]$, from which it will
+follow that
+\begin{equation*}
+\label{hhphiplus}
+\begin{split}
+\varphi P[(u_\ee)^k] \to \varphi P[u^k]
+\; \; \text{in} \; \; C(I,H^{s-\sigma}(\rr)).
+\end{split}
+\end{equation*}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%       Equicontinuity
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%
+\vskip0.1in
+\nin
+\begin{frame}
+\frametitle{Equicontinuity of $\{ \varphi P [(u_\ee)^k]\}_\ee$  in $C(I,
+H^{s-\sigma}(\rr))$}
+%
+%
+Since $\varphi \in \mathcal{S}(\rr)$, the map $u \mapsto \vp u$
+is a bounded linear function on $H^s(\rr)$, for arbitrary $s \in
+\rr$, where  
+\begin{equation}
+\begin{split}
+\|\varphi u\|_{H^s(\rr)} \le C(s, \varphi)
+\|u\|_{H^s(\rr)}, \quad \forall s\in \rr.
+\label{hhschwartz-estimate}
+\end{split}
+\end{equation}
+Furthermore, $$P: H^s(\rr) \to H^s(\rr)$$ is bounded and linear,
+with 
+\begin{equation}
+\label{operator-normaa}
+\|P\|_{L(H^s(\rr), H^s(\rr))} \le 1.
+\end{equation}
+Hence, the map 
+\begin{equation}
+\label{the-map}
+\begin{split}
+& T: H^s(\rr) \to H^s(\rr),
+\\
+& T(u) = \vp P u 
+\end{split}
+\end{equation}
+is bounded and linear, with 
+\begin{equation}
+\begin{split}
+\|T\|_{L(H^s(\rr), H^s(\rr))} \le C(s, \vp).
+\label{op-norm-product}
+\end{split}
+\end{equation}
+Therefore, applying the interpolation lemma
+gives 
 \end{frame}
 \begin{frame}
-	\begin{equation*}
-		\begin{split}
-			T_\vp P: H^s(\rr) \to H^s(\rr)
-		\end{split}
-	\end{equation*}
-	continuously. Hence, its adjoint  $(T_\varphi P)^*$
-	exists and
-		\begin{equation*}
-			(T_\varphi P)^*: H^s(\rr) \to H^s(\rr) 
-		\end{equation*}
-		continuously. Therefore, we conclude that
-		\begin{equation}
-			\label{widpseudo}
-			\begin{split}
-				& \int_I <\varphi P[u^k] - \varphi
-				P [(u_{\ee_n})^k],\  f>_{H^{s-\sigma }(\rr)} dt
-				\\
-				&= \int_I <u^k - 
-				 (u_{\ee_n})^k, \ (T_\vp P)^* f>_{H^{s-\sigma }(\rr)} \to 0
-			\end{split}
-		\end{equation}
-		completing the proof. $\quad \Box$
-		\vskip0.1in
-		%
-		%
-		We summarize our result below:
-  \end{frame}
-  \begin{frame}
-		\begin{proposition}
-		\label{hhthm:crit1}
-		Let $P \in \Psi^0$ be a pseudo-differential operator. Then for
-		arbitrary $k \in \mathbb{N}$, 
-			\begin{equation}
-			\begin{split}
-				& \vp P [(u_{\ee_n})^k] \to \vp P [u^k] \ \ \text{in}  \ \ C(I,
-				H^{s-\sigma }(\rr)),
-				\\
-				& 
-				\vp P [(\p_x u_{\ee_n})^k] \to \vp P [(\p_x u)^k] \ \
-				\text{in}  \ \ C(I,
-				H^{s-\sigma -1}(\rr)).
-				\label{hhdx_vp_u_ep_conv}
-			\end{split}
-		\end{equation}
-	\end{proposition}
-		\vskip0.1in
-  \end{frame}
-  \begin{frame}
-    \frametitle{Verifying that $u$ solves the HR equation.} 
-   	Restricting the
-		choice of $\vp$ such that $\vp^\frac{1}{2} \in S(\rr)$ and applying the
-    proposition it follows that
-		\begin{equation}
-			\begin{split}
-				& -\gamma \vp (J_{\ee_n} u_{\ee_n} \cdot J_{\ee_n} \p_x
-				u_{\ee_n}) -
-				\vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2}
-				(u_{\ee_n})^2
-				 + \frac{\gamma}{2} (\p_x u_{\ee_n})^2 \right )
-				 \\
-				 \to & -\gamma \vp u \p_x u -
-				 \vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
-				 + \frac{\gamma}{2} (\p_x u)^2 \right ) \ \
-				 \text{in} \ \ C(I, C(\rr)).
-				\label{llloc-non-loc-tog}
-			\end{split}
-		\end{equation}
-		%
-    \end{frame}
-    \begin{frame}
-		Next, we note that the convergence  
-		%
-		\begin{equation}
-			\label{hhweak-conv-2}
-			T_{\vp u_{\ee_n}}(f)  \longrightarrow  T_{\vp u} (f) \;
-			\text{ for all } \;  f \in L^1(I, H^{-s}(\rr))
-		\end{equation}
-		%
-		can be restated as 
-		%
-		\begin{equation}
-			\vp u_{\ee_n}  \longrightarrow  \vp u
-			\quad
-			\text{ in }  \,\,
-			\mathcal{D}'(I\times \rr).
-		\end{equation}
-		%
-    \end{frame}
-    \begin{frame}
-		This implies 
-		%
-		\begin{equation}
-			\label{hhdistib-conv-2}
-			\p_t(\vp u_{\ee_n})  \longrightarrow  \p_t (\vp u)
-			\quad
-			\text{ in }  \,\, \mathcal{D}'(I\times \rr).
-		\end{equation}
-		%
-		Since for all $n$ we have 
-		%
-		\begin{equation}
-			\begin{split}
-			 \p_t (\vp u_{\ee_n})
-			 = & -\gamma \vp
-			(J_{\varepsilon_n} u_{\varepsilon_n}  \cdot
-			J_{\varepsilon_n}\partial_x u_{\varepsilon_n})
-			\\
-			& -
-			\vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} (u_{\ee_n})^2
-			 + \frac{\gamma}{2} (\p_x u_{\ee_n})^2 \right )
-		 \end{split}
-		\end{equation}
-		%
-		it follows from the uniqueness of the weak limit on the left hand side
-    and the uniqueness of the
-		$C(I, C(\rr))$ limit of the right hand side that 
-		\begin{equation}
-			\begin{split}
-			 \p_t (\vp u)
-			 = & -\gamma \vp
-			u \p_x u - \vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
-			 + \frac{\gamma}{2} (\p_x u)^2 \right ).
-			\label{hhadone}
-			\end{split}
-		\end{equation}
-		Further restricting $\vp \in \mathcal{S}(\rr)$ to be nonzero in
-		$\rr$, we
-		can divide both sides by $\vp$ to obtain
-		\begin{equation}
-			\label{hh2yy}
-			\begin{split}
-			 \p_t  u
-			 = & -\gamma
-			u \p_x u - \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
-			 + \frac{\gamma}{2} (\p_x u)^2 \right ).
-			\end{split}
-		\end{equation}
-		Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
-		to the HR i.v.p. 
-		\vskip0.1in
+%
+\begin{equation*}
+\begin{split}
+\label{hhequic-1}
+& \sup_{t \neq t'} \frac {\| \varphi P [(u_\ee(t))^k] - \varphi
+P [(u_\ee(t'))^k] \|_{H^{s -
+\sigma  }(\rr)}}{|t - t'|}
+\\
+& \le \sup_{t \neq t'}  \frac { \|\vp P \|_{L(H^{s-\sigma}(\rr),
+H^{s-\sigma}(\rr))} \cdot \|   [u_\ee(t)]^k  - 
+[u_\ee(t')]^k \|_{H^{s -
+\sigma }(\rr)}}{|t - t'|}
+\\
+& \le C(s, \vp) \cdot \sup_{t \neq t'}  \frac { \|   [u_\ee(t)]^k  - 
+[u_\ee(t')]^k \|_{H^{s -
+\sigma }(\rr)}}{|t - t'|}
+\\
+&< c
+\end{split}
+\end{equation*}
+%
+or
+%
+\begin{equation*}
+\label{hhequic-2}
+\|\varphi P [(u_\ee(t))^k] - \varphi
+P [(u_\ee(t'))^k \|_{H^{s - \sigma }(\rr)}< c|t -
+t'|, 
+\text{ for all }  \,\,  t, t'\in I,
+\end{equation*}
+%
+which shows that  the family  $\{\varphi P [(u_\ee)^k]\}_\ee$ is
+equicontinuous in $C(I, H^{s-\sigma }(\rr))$.  $\quad \Box$
+%
+\vskip0.1in
+\nin
+%
+%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%      PreCompactness
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%		
+\end{frame}
+\begin{frame}
+\frametitle{Precompactness of $\{\varphi P [(u_\ee(t))^k]\}_\ee$ in
+$H^{s-\sigma  }(\rr)$}
+Recalling the algebra property of Sobolev
+spaces and our energy estimates, we have
+\begin{equation*}
+\begin{split}
+\|P [(u_\ee(t))^k]\|_{H^{s}(\rr)}
+\lesssim_s \|u_0 \|^k_{H^s(\rr)} < \infty.
+\end{split}
+\end{equation*}
+Therefore, by Reillich's Theorem, the family $\left\{
+\varphi P [(u_\ee(t))^k] \right\}_\ee$ is
+precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. $\quad
+\Box$ 
+\vskip0.1in
+\end{frame}
+\begin{frame}
+Hence, compiling our previous results on equicontinuity and precompactness
+and applying Ascoli's Theorem, we
+conclude that we can find $\tilde{u}$ and a subfamily 
+\\ $\left\{
+\varphi P [(u_{\ee_n})^k]
+\right\}_n$ such that
+\begin{equation}
+\label{hhstrong-conv-of-u_ep}
+\varphi P [(u_{\ee_n})^k] \to \tilde{u}
+\; \; \text{in} \; \; C(I, H^{s-\sigma}(\rr)).
+\end{equation}
+%
+%
+
+\vskip0.1in
+We would now like to find out what $\tilde{u}$ is:
+\end{frame}
+\begin{frame}
+%
+%
+%
+\vskip0.1in
+\begin{lemma}
+\label{hhlem:crit-conv}
+For arbitrary $k \in \mathbb{N}$,
+\begin{equation}
+\begin{split}
+\varphi P [(u_{\ee_n})^k] \xrightarrow{weak^*}
+\varphi P [u^k] \ \ \text{on} \ \ L^\infty(I,
+H^{s-\sigma}(\rr)).
+\label{hhcrit-conv-est}
+\end{split}
+\end{equation}
+\end{lemma}
+{\bf Proof.} 
+Fix $k \in \mathbb{N}$ and recall that the operators 
+\begin{equation*}
+\begin{split}
+& T_\varphi: H^s(\rr) \to H^s(\rr)\\
+& T_\varphi u = \varphi u
+\end{split}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{split}
+P:H^s(\rr) \to H^s(\rr)
+\end{split}
+\end{equation*}
+are continuous; therefore 
+\end{frame}
+\begin{frame}
+\begin{equation*}
+\begin{split}
+T_\vp P: H^s(\rr) \to H^s(\rr)
+\end{split}
+\end{equation*}
+continuously. Hence, its adjoint  $(T_\varphi P)^*$
+exists and
+\begin{equation*}
+(T_\varphi P)^*: H^s(\rr) \to H^s(\rr) 
+\end{equation*}
+continuously. Therefore, we conclude that
+\begin{equation}
+\label{widpseudo}
+\begin{split}
+& \int_I <\varphi P[u^k] - \varphi
+P [(u_{\ee_n})^k],\  f>_{H^{s-\sigma }(\rr)} dt
+\\
+&= \int_I <u^k - 
+(u_{\ee_n})^k, \ (T_\vp P)^* f>_{H^{s-\sigma }(\rr)} \to 0
+\end{split}
+\end{equation}
+completing the proof. $\quad \Box$
+\vskip0.1in
+%
+%
+We summarize our result below:
+\end{frame}
+\begin{frame}
+\begin{proposition}
+\label{hhthm:crit1}
+Let $P \in \Psi^0$ be a pseudo-differential operator. Then for
+arbitrary $k \in \mathbb{N}$, 
+\begin{equation}
+\begin{split}
+& \vp P [(u_{\ee_n})^k] \to \vp P [u^k] \ \ \text{in}  \ \ C(I,
+H^{s-\sigma }(\rr)),
+\\
+& 
+\vp P [(\p_x u_{\ee_n})^k] \to \vp P [(\p_x u)^k] \ \
+\text{in}  \ \ C(I,
+H^{s-\sigma -1}(\rr)).
+\label{hhdx_vp_u_ep_conv}
+\end{split}
+\end{equation}
+\end{proposition}
+\vskip0.1in
+\end{frame}
+\begin{frame}
+\frametitle{Verifying that $u$ solves the HR equation.} 
+Restricting the
+choice of $\vp$ such that $\vp^\frac{1}{2} \in S(\rr)$ and applying the
+proposition it follows that
+\begin{equation}
+\begin{split}
+& -\gamma \vp (J_{\ee_n} u_{\ee_n} \cdot J_{\ee_n} \p_x
+u_{\ee_n}) -
+\vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2}
+(u_{\ee_n})^2
++ \frac{\gamma}{2} (\p_x u_{\ee_n})^2 \right )
+\\
+\to & -\gamma \vp u \p_x u -
+\vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
++ \frac{\gamma}{2} (\p_x u)^2 \right ) \ \
+\text{in} \ \ C(I, C(\rr)).
+\label{llloc-non-loc-tog}
+\end{split}
+\end{equation}
+%
+\end{frame}
+\begin{frame}
+Next, we note that the convergence  
+%
+\begin{equation}
+\label{hhweak-conv-2}
+T_{\vp u_{\ee_n}}(f)  \longrightarrow  T_{\vp u} (f) \;
+\text{ for all } \;  f \in L^1(I, H^{-s}(\rr))
+\end{equation}
+%
+can be restated as 
+%
+\begin{equation}
+\vp u_{\ee_n}  \longrightarrow  \vp u
+\quad
+\text{ in }  \,\,
+\mathcal{D}'(I\times \rr).
+\end{equation}
+%
+\end{frame}
+\begin{frame}
+This implies 
+%
+\begin{equation}
+\label{hhdistib-conv-2}
+\p_t(\vp u_{\ee_n})  \longrightarrow  \p_t (\vp u)
+\quad
+\text{ in }  \,\, \mathcal{D}'(I\times \rr).
+\end{equation}
+%
+Since for all $n$ we have 
+%
+\begin{equation}
+\begin{split}
+\p_t (\vp u_{\ee_n})
+= & -\gamma \vp
+(J_{\varepsilon_n} u_{\varepsilon_n}  \cdot
+J_{\varepsilon_n}\partial_x u_{\varepsilon_n})
+\\
+& -
+\vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} (u_{\ee_n})^2
++ \frac{\gamma}{2} (\p_x u_{\ee_n})^2 \right )
+\end{split}
+\end{equation}
+%
+it follows from the uniqueness of the weak limit on the left hand side
+and the uniqueness of the
+$C(I, C(\rr))$ limit of the right hand side that 
+\begin{equation}
+\begin{split}
+\p_t (\vp u)
+= & -\gamma \vp
+u \p_x u - \vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
++ \frac{\gamma}{2} (\p_x u)^2 \right ).
+\label{hhadone}
+\end{split}
+\end{equation}
+Further restricting $\vp \in \mathcal{S}(\rr)$ to be nonzero in
+$\rr$, we
+can divide both sides by $\vp$ to obtain
+\begin{equation}
+\label{hh2yy}
+\begin{split}
+\p_t  u
+= & -\gamma
+u \p_x u - \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
++ \frac{\gamma}{2} (\p_x u)^2 \right ).
+\end{split}
+\end{equation}
+Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
+to the HR i.v.p. 
+\vskip0.1in
 
 %
 %
@@ -914,49 +914,49 @@ and
 %
 %\begin{thebibliography}{HKM09}
 
-    %\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+%\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 %\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 %% \MRhref is called by the amsart/book/proc definition of \MR.
 %\providecommand{\MRhref}[2]{%
-  %\href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+%\href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 %}
 %\providecommand{\href}[2]{#2}
 
 %\bibitem[Die69]{Dieudonne_1969_Foundations-of-}
 %J.~Dieudonn{{\'e}}, \emph{Foundations of modern analysis}, Academic Press, New
-  %York, 1969, Enlarged and corrected printing, Pure and Applied Mathematics,
-  %Vol. 10-I. \MR{MR0349288 (50 \#1782)}
+%York, 1969, Enlarged and corrected printing, Pure and Applied Mathematics,
+%Vol. 10-I. \MR{MR0349288 (50 \#1782)}
 
 %\bibitem[Fol99]{Folland_1999_Real-analysis}
 %Gerald~B. Folland, \emph{Real analysis}, second ed., Pure and Applied
-  %Mathematics (New York), John Wiley \& Sons Inc., New York, 1999, Modern
-  %techniques and their applications, A Wiley-Interscience Publication.
-  %\MR{MR1681462 (2000c:00001)}
+%Mathematics (New York), John Wiley \& Sons Inc., New York, 1999, Modern
+%techniques and their applications, A Wiley-Interscience Publication.
+%\MR{MR1681462 (2000c:00001)}
 
 %\bibitem[HK09]{Himonas_2009_Non-uniform-dep}
 %Alex Himonas and Carlos~E. Kenig, \emph{Non-uniform dependence on initial data
-  %for the ch equation on the line}, Differential Integral Equations \textbf{22}
-  %(2009), no.~3-4, 201--224.
+%for the ch equation on the line}, Differential Integral Equations \textbf{22}
+%(2009), no.~3-4, 201--224.
 
 %\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
 %Alex Himonas, Carlos~E. Kenig, and G.~Misio{\l}ek, \emph{Non-uniform dependence
-  %for the periodic ch equation.}, To appear in Communications in Partial
-  %Differential Equations (2009).
+%for the periodic ch equation.}, To appear in Communications in Partial
+%Differential Equations (2009).
 
 %\bibitem[KP88]{Kato_1988_Commutator-esti}
 %Tosio Kato and Gustavo Ponce, \emph{Commutator estimates and the {E}uler and
-  %{N}avier-{S}tokes equations}, Comm. Pure Appl. Math. \textbf{41} (1988),
-  %no.~7, 891--907. \MR{MR951744 (90f:35162)}
+%{N}avier-{S}tokes equations}, Comm. Pure Appl. Math. \textbf{41} (1988),
+%no.~7, 891--907. \MR{MR951744 (90f:35162)}
 
 %\bibitem[Tay91]{Taylor_1991_Pseudodifferent}
 %Michael~E. Taylor, \emph{Pseudodifferential operators and nonlinear {PDE}},
-  %Progress in Mathematics, vol. 100, Birkh{\"a}user Boston Inc., Boston, MA,
-  %1991. \MR{MR1121019 (92j:35193)}
+%Progress in Mathematics, vol. 100, Birkh{\"a}user Boston Inc., Boston, MA,
+%1991. \MR{MR1121019 (92j:35193)}
 
 %\bibitem[Tay03]{Taylor_2003_Commutator-esti}
 %Michael~Eugene Taylor, \emph{Commutator estimates}, Proc. Amer. Math. Soc.
-  %\textbf{131} (2003), no.~5, 1501--1507 (electronic). \MR{MR1949880
-  %(2003k:35261)}
+%\textbf{131} (2003), no.~5, 1501--1507 (electronic). \MR{MR1949880
+%(2003k:35261)}
 
 %\end{thebibliography}
 
@@ -965,6 +965,6 @@ and
 %\bibliography{/Users/davidkarapetyan/Documents/math/references.bib}
 %\nocite{*}
 
- \end{document}
+\end{document}
 
 
