@@ -1,41 +1,41 @@
 \documentclass{beamer}
 %\let\Tiny=\tiny
-\usepackage{amscd}
 \usepackage{mathtools}
 \mathtoolsset{showonlyrefs} %number only equations that are referenced
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{fancyhdr}
-\usepackage{latexsym}
+%\usepackage{amscd}
+%\usepackage{amsfonts}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
+%\usepackage{fancyhdr}
+%\usepackage{latexsym}
 \usepackage{lmodern}
 \synctex=1
-\input epsf
-\input texdraw
-\input txdtools.tex
-\input xy
-\xyoption{all}
-\usepackage{color}
+%\input epsf
+%\input texdraw
+%\input txdtools.tex
+%\input xy
+%\xyoption{all}
+%\usepackage{color}
 
-\definecolor{Red}{rgb}{1.00, 0.00, 0.00}
-\definecolor{DarkGreen}{rgb}{0.00, 1.00, 0.00}
-\definecolor{Blue}{rgb}{0.00, 0.00, 1.00}
-\definecolor{Cyan}{rgb}{0.00, 1.00, 1.00}
-\definecolor{Magenta}{rgb}{1.00, 0.00, 1.00}
-\definecolor{DeepSkyBlue}{rgb}{0.00, 0.75, 1.00}
-\definecolor{DarkGreen}{rgb}{0.00, 0.39, 0.00}
-\definecolor{SpringGreen}{rgb}{0.00, 1.00, 0.50}
-\definecolor{DarkOrange}{rgb}{1.00, 0.55, 0.00}
-\definecolor{OrangeRed}{rgb}{1.00, 0.27, 0.00}
-\definecolor{DeepPink}{rgb}{1.00, 0.08, 0.57}
-\definecolor{DarkViolet}{rgb}{0.58, 0.00, 0.82}
-\definecolor{SaddleBrown}{rgb}{0.54, 0.27, 0.07}
-\definecolor{Black}{rgb}{0.00, 0.00, 0.00}
-\definecolor{dark-magenta}{rgb}{.5,0,.5}
-\definecolor{myblack}{rgb}{0,0,0}
-\definecolor{darkgray}{gray}{0.5}
-\definecolor{lightgray}{gray}{0.75}
+%\definecolor{Red}{rgb}{1.00, 0.00, 0.00}
+%\definecolor{DarkGreen}{rgb}{0.00, 1.00, 0.00}
+%\definecolor{Blue}{rgb}{0.00, 0.00, 1.00}
+%\definecolor{Cyan}{rgb}{0.00, 1.00, 1.00}
+%\definecolor{Magenta}{rgb}{1.00, 0.00, 1.00}
+%\definecolor{DeepSkyBlue}{rgb}{0.00, 0.75, 1.00}
+%\definecolor{DarkGreen}{rgb}{0.00, 0.39, 0.00}
+%\definecolor{SpringGreen}{rgb}{0.00, 1.00, 0.50}
+%\definecolor{DarkOrange}{rgb}{1.00, 0.55, 0.00}
+%\definecolor{OrangeRed}{rgb}{1.00, 0.27, 0.00}
+%\definecolor{DeepPink}{rgb}{1.00, 0.08, 0.57}
+%\definecolor{DarkViolet}{rgb}{0.58, 0.00, 0.82}
+%\definecolor{SaddleBrown}{rgb}{0.54, 0.27, 0.07}
+%\definecolor{Black}{rgb}{0.00, 0.00, 0.00}
+%\definecolor{dark-magenta}{rgb}{.5,0,.5}
+%\definecolor{myblack}{rgb}{0,0,0}
+%\definecolor{darkgray}{gray}{0.5}
+%\definecolor{lightgray}{gray}{0.75}
 %
 \newcommand{\bigno}{\bigskip\noindent}
 \newcommand{\ds}{\displaystyle}
@@ -149,13 +149,11 @@ Also, we have
 %
 %
 %
-We will now prove well-posedness for HR on the line.
 %
 %
 %
 %
 %
-First, we will prove existence by using an abstract ODE theorem in $H^s$. 
 Consider the following mollification of the HR equation
 %
 %
@@ -183,9 +181,6 @@ J_\ee f(x) = j_\ee * f(x), \quad \ee>0
 \end{split}
 \end{equation*}
 %
-\end{frame}
-
-\begin{frame}
 with 
 %
 \begin{equation*}
@@ -195,39 +190,14 @@ j_\ee(x) = \frac{1}{\ee}j\left( \frac{x}{\ee} \right)
 \end{equation*}
 %
 for non-negative $j(x) \in
-\mathcal{S}(\rr)$. Notice that  $f_\ee$ given by 
-%
-%
-\begin{equation*}
-\label{f_ep}
-f_{\ee}(u) = - \gamma J_\ee(J_\varepsilon u \partial_x J_\varepsilon u)
-- \Lambda^{-1} \left
-[\frac{3-\gamma}{2}u^2 + \frac{\gamma}{2}(\p_x u)^2 \right ]
-\end{equation*}
-%
-is a map from $H^s(\rr)$  into $H^s(\rr)$. 
-Therefore, the mollified HR equation 
-is an ODE in $H^s$.
-%
-%
-Furthermore, $f_\ee$ has a continuous total derivative $D f_\ee (u): 
-H^s(\rr) \to H^s(\rr)$ given by
-\begin{equation*}
-	\label{total-deriv}
-	\begin{split}
-		[Df_{\ee}(u)](w)
-		=
-		& -\gamma J_\ee (J_\varepsilon w \partial_x J_\varepsilon u +
-		J_\varepsilon u \partial_x J_\varepsilon w)
-		\\
-		& - \Lambda^{-1} \left [(3-\gamma)w u + \gamma\p_x w \p_x u \right ].
-	\end{split}
-\end{equation*}
-Hence, by the Cauchy Existence Theorem, for each 
-$\ee > 0$ there exists a
-unique solution $u_\ee \in C(I, H^s(\rr))$ satisfying the mollified HR 
-Cauchy-problem.
+\mathcal{S}(\rr)$.
 \end{frame}
+%\begin{frame}
+%By the Cauchy Existence Theorem, for each 
+%$\ee > 0$ there exists a
+%unique solution $u_\ee \in C(I, H^s(\rr))$ satisfying the mollified HR 
+%Cauchy-problem.
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
 %     Estimates  for Lifespan and Sobolev norm of $u_\ee$
@@ -395,14 +365,14 @@ c_s \big(
 %
 \end{frame}
 
-\begin{frame}
-%
-The remaining integrals can be estimated using Cauchy-Schwartz, the algebra
-property, and Sobolev Imbedding. Grouping all the estimates, we obtain the
-desired ordinary differential inequality. Solving  it, we obtain the following:
-%
-%
-\end{frame}
+%\begin{frame}
+%%
+%The remaining integrals can be estimated using Cauchy-Schwartz, the algebra
+%property, and Sobolev Imbedding. Grouping all the estimates, we obtain the
+%desired ordinary differential inequality. Solving  it, we obtain the following:
+%%
+%%
+%\end{frame}
 %
 %
 %
@@ -726,24 +696,12 @@ Fix $k \in \mathbb{N}$. Using the previous lemma, we
     \begin{frame}
       \frametitle{Precompactness of $\{\varphi P [(u_\ee(t))^k]\}_\ee$ in
 		$H^{s-\sigma  }(\rr)$}
-		Applying the algebra property of Sobolev
-		Spaces, and recalling \eqref{the-map}-\eqref{op-norm-product}, we have
-		\begin{equation}
-			\begin{split}
-			\label{hhcompact-1}
-			 \|\varphi P [(u_\ee(t))^k]\|_{H^{s}(\rr)}
-			& \le  C(s, \vp) \cdot \|[u_\ee(t)]^k\|_{H^{s}(\rr)}
-			\\
-			& \le C(s, \vp) \cdot \|u_\ee(t)\|^k_{H^{s}(\rr)}.
-			\end{split}
-		\end{equation}
-		%
-		Letting $|t| \le T$, we now apply Lemma \ref{hr_wp} to
-		\eqref{hhcompact-1} to obtain
+		Recalling the algebra property of Sobolev
+		spaces and our energy estimates, we have
 		\begin{equation*}
 			\begin{split}
-			\|\varphi P [(u_\ee(t))^k]\|_{H^{s}(\rr)}
-			\le 2^k C(s, \vp) \cdot  \|u_0 \|^k_{H^s(\rr)} < \infty.
+			\|P [(u_\ee(t))^k]\|_{H^{s}(\rr)}
+			\lesssim_s \|u_0 \|^k_{H^s(\rr)} < \infty.
 			\end{split}
 		\end{equation*}
 		Therefore, by Reillich's Theorem, the family $\left\{
@@ -853,23 +811,7 @@ and
   \end{frame}
   \begin{frame}
     \frametitle{Verifying that $u$ solves the HR equation.} 
-    	By the previous proposition and Sobolev Imbedding it follows immediately that
-\end{frame}
-\begin{frame}
-		\begin{equation}
-			\begin{split}
-				& \vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2}
-				(u_{\ee_n})^2
-				 + \frac{\gamma}{2} (\p_x u_{\ee_n})^2 \right )
-				 \\
-				 & \to
-				 \vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
-				 + \frac{\gamma}{2} (\p_x u)^2 \right ) \ \
-				 \text{in} \ \ C(I, C(\rr)).
-				\label{llnon-local-convergence}
-			\end{split}
-		\end{equation}
-		Furthermore, restricting the
+   	Restricting the
 		choice of $\vp$ such that $\vp^\frac{1}{2} \in S(\rr)$ and applying the
     proposition it follows that
 		\begin{equation}
@@ -888,6 +830,8 @@ and
 			\end{split}
 		\end{equation}
 		%
+    \end{frame}
+    \begin{frame}
 		Next, we note that the convergence  
 		%
 		\begin{equation}
