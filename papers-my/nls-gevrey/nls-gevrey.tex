@@ -119,6 +119,7 @@
 \section{Introduction}
 \label{sec:introduction}
 We consider the Cauchy problem for the NLS equation
+%
 \begin{gather}
   \label{eqn:nls}
   i\partial_tu+\partial_x^2u+\lambda |u|^2u=0,
@@ -1769,6 +1770,105 @@ while \eqref{trilin-est-simp} gives the bound
 completing the proof.
 \qquad \qedsymbol
 %
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%                     $G^2$  regularity in time
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%
+\section{$G^2$  regularity in time} 
+\label{g2-rreg-3}
+%
+%
+Here we shall  follow the work of  Hannah, Himonas and Petronilho
+\cite{Hannah:2006uq}
+to move the analyticity in space to $G^2$ regularity in time.
+We have 
+%
+%
+\begin{gather}
+  \label{eqn:nls-t}
+  \partial_tu=i\partial_x^2u+i\lambda |u|^2u,
+  \\
+  \label{eqn:nls-t-data}
+  u(x,0)=\varphi(x) \in \mathcal{C}^\omega(\mathbb{T}),
+\end{gather}
+%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%                     $G^2$  regularity in time
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%
+\section{Construction of non-analytic in time solutions} 
+\label{g2-rreg}
+%
+%
+Here we would like to find an analog to the construction
+ of non-analytic in time solutions for KdV (or gKdV)
+ (see  Gorsky-Himonas \cite{Gorsky:2005fk} and Byers-Himonas
+ \cite{Byers-2006-Existence-time-for-the-Camassa-Holm})
+ for NLS. 
+ 
+ 
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%                     Appendix
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
 %
 \appendix
 \section{}
@@ -1993,102 +2093,6 @@ the proof. \qquad \qedsymbol
 
 
 %\nocite{*}
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 % \bib, bibdiv, biblist are defined by the amsrefs package.
-\begin{bibdiv}
-\begin{biblist}
-
-\bib{Bourgain-Fourier-transfo-1}{article}{
-      author={Bourgain, J.},
-       title={Fourier transform restriction phenomena for certain lattice
-  subsets and applications to nonlinear evolution equations. {I}.
-  {S}chr{\"o}dinger equations},
-        date={1993},
-        ISSN={1016-443X},
-     journal={Geom. Funct. Anal.},
-      volume={3},
-      number={2},
-       pages={107\ndash 156},
-         url={http://dx.doi.org/10.1007/BF01896020},
-      review={\MR{MR1209299 (95d:35160a)}},
-}
-
-\bib{Bourgain-Fourier-transfo}{article}{
-      author={Bourgain, J.},
-       title={Fourier transform restriction phenomena for certain lattice
-  subsets and applications to nonlinear evolution equations. {II}. {T}he
-  {K}d{V}-equation},
-        date={1993},
-        ISSN={1016-443X},
-     journal={Geom. Funct. Anal.},
-      volume={3},
-      number={3},
-       pages={209\ndash 262},
-         url={http://dx.doi.org/10.1007/BF01895688},
-      review={\MR{MR1215780 (95d:35160b)}},
-}
-
-\bib{Colliander:2003kx}{article}{
-      author={Colliander, J.},
-      author={Keel, M.},
-      author={Staffilani, G.},
-      author={Takaoka, H.},
-      author={Tao, T.},
-       title={Sharp global well-posedness for {K}d{V} and modified {K}d{V} on
-  {$\Bbb R$} and {$\Bbb T$}},
-        date={2003},
-        ISSN={0894-0347},
-     journal={J. Amer. Math. Soc.},
-      volume={16},
-      number={3},
-       pages={705\ndash 749 (electronic)},
-         url={http://dx.doi.org/10.1090/S0894-0347-03-00421-1},
-      review={\MR{1969209 (2004c:35352)}},
-}
-
-\bib{Gorsky:2005fk}{incollection}{
-      author={Gorsky, Jennifer},
-      author={Alexandrou~Himonas, A.},
-       title={On analyticity in space variable of solutions to the {K}d{V}
-  equation},
-        date={2005},
-   booktitle={Geometric analysis of {PDE} and several complex variables},
-      series={Contemp. Math.},
-      volume={368},
-   publisher={Amer. Math. Soc.},
-     address={Providence, RI},
-       pages={233\ndash 247},
-      review={\MR{2126473 (2007g:35210)}},
-}
-
-\bib{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}{article}{
-      author={Himonas, A.~Alexandrou},
-      author={Misiolek, Gerard},
-       title={A priori estimates for {S}chr{\"o}dinger type multipliers},
-        date={2001},
-        ISSN={0019-2082},
-     journal={Illinois J. Math.},
-      volume={45},
-      number={2},
-       pages={631\ndash 640},
-      review={\MR{MR1878623 (2002j:42018)}},
-}
-
-\bib{Kato:2000vn}{article}{
-      author={Kato, Keiichi},
-      author={Ogawa, Takayoshi},
-       title={Analyticity and smoothing effect for the {K}orteweg de {V}ries
-  equation with a single point singularity},
-        date={2000},
-        ISSN={0025-5831},
-     journal={Math. Ann.},
-      volume={316},
-      number={3},
-       pages={577\ndash 608},
-         url={http://dx.doi.org/10.1007/s002080050345},
-      review={\MR{1752786 (2001c:35217)}},
-}
-
-\end{biblist}
-\end{bibdiv}
 \end{document}
