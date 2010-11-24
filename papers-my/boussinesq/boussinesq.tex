@@ -6,14 +6,15 @@
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
+\usepackage{enumerate} %to change enumerate symbols
 %\usepackage{showkeys}  %shows source equation labels on the pdf
 \usepackage[margin=3cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \setcounter{secnumdepth}{1} %number only sections, not subsections
 \hypersetup{colorlinks=true,
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
 }
 \synctex=1
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
@@ -57,12 +58,12 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{no}[theorem]{Notation}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{examp}{Example}[section]
 \newtheorem {exercise}[theorem] {Exercise}
-
 %
 \def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
 \makeautorefname{equation}{Equation}
@@ -163,8 +164,8 @@
 
 Our object of investigation is the initial value problem for the periodic/non-periodic $1$-D ``good" Boussinesq equation, i.e.,
 \begin{equation}
-\aligned
-&u_{tt}-u_{xx}+u_{xxxx}+(u^2)_{xx}\,=\,0, \quad x\in \mathbb{T}\ \text{or} \ \mathbb{R}, \quad t>0,\\
+  \aligned
+  &u_{tt}-u_{xx}+u_{xxxx}+(u^2)_{xx}\,=\,0, \quad x\in \mathbb{T}\ \text{or} \ \mathbb{R}, \quad t>0,\\
 &u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x).\endaligned
 \label{main}
 \end{equation}
@@ -177,290 +178,686 @@ Results for these problems are usually formulated with $u_0=\phi \in H^s$ and $u
 
 Current state of the art in terms of local well-posedness/ill-posedness for the two problems is:
 \begin{itemize}
-\item LWP for both problems when $s>-\frac 14$(Farah '09, Farah-Scialom '10), with iteration done in
-the norm
-\[
-\|F\|_{X^{s,b}}\,=\,\|<|\tau|-\sqrt{\xi^2+\xi^4}>^b\,<\xi>^s \tilde{F}\|_{L^2_{\tau,\xi}};
-\]
+  \item LWP for both problems when $s>-\frac 14$(Farah '09, Farah-Scialom '10), with iteration done in
+    the norm
+    \[
+    \|F\|_{X^{s,b}}\,=\,\|<|\tau|-\sqrt{\xi^2+\xi^4}>^b\,<\xi>^s \tilde{F}\|_{L^2_{\tau,\xi}};
+    \]
 
-\item main IP result is for the non-periodic problem when $s<-2$, as the solution map 
-\[
-S: H^s\times H^{s-1} \to C([0,T]; H^s), \quad
-S(\phi,\psi)\,=\,u
-\]
-is not $C^2$ at zero (Farah '09);
+  \item main IP result is for the non-periodic problem when $s<-2$, as the solution map 
+    \[
+    S: H^s\times H^{s-1} \to C([0,T]; H^s), \quad
+    S(\phi,\psi)\,=\,u
+    \]
+    is not $C^2$ at zero (Farah '09);
 
-\item also, for the non-periodic problem, one can not find a space in which to run a contraction argument based on treating the nonlinearity as bilinear for $s<-2$ (see Theorem 1.4 in Farah '09);
+  \item also, for the non-periodic problem, one can not find a space in which to run a contraction argument based on treating the nonlinearity as bilinear for $s<-2$ (see Theorem 1.4 in Farah '09);
 
-\item finally, and really puzzling\footnote{for other dispersive equations (e.g., KdV, Schrodinger), there is usually a gap of $\frac 14$ between regularities for the two problems}, the crucial bilinear estimate (equation (5) in both papers) fails basically at the same threshold for both problems: $s\leq -\frac 14$ (non-periodic), $s<-\frac{1}{4}$ (periodic).
+  \item finally, and really puzzling\footnote{for other dispersive equations (e.g., KdV, Schrodinger), there is usually a gap of $\frac 14$ between regularities for the two problems}, the crucial bilinear estimate (equation (5) in both papers) fails basically at the same threshold for both problems: $s\leq -\frac 14$ (non-periodic), $s<-\frac{1}{4}$ (periodic).
 \end{itemize}
 
 The equation does not have an associated scaling, however one can do a formal scaling analysis by ignoring one of the two linear terms containing spatial derivatives:
 \begin{itemize}
-\item for 
-\[
-u_{tt}+u_{xxxx}+(u^2)_{xx}\,=\,0,
-\]
-one has 
-\[
-u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
-\]
-which leads to $s_c=-\frac 32$;
+  \item for 
+    \[
+    u_{tt}+u_{xxxx}+(u^2)_{xx}\,=\,0,
+    \]
+    one has 
+    \[
+    u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
+    \]
+    which leads to $s_c=-\frac 32$;
 
-\item for 
-\[
-u_{tt}-u_{xx}+(u^2)_{xx}\,=\,0,
-\]
-one has 
-\[
-u_{\lambda}(t,x)\,=\,u\left(\frac{t}{\lambda}, \frac{x}{\lambda}\right),
-\]
-which leads to $s_c=\frac 12$.
+  \item for 
+    \[
+    u_{tt}-u_{xx}+(u^2)_{xx}\,=\,0,
+    \]
+    one has 
+    \[
+    u_{\lambda}(t,x)\,=\,u\left(\frac{t}{\lambda}, \frac{x}{\lambda}\right),
+    \]
+    which leads to $s_c=\frac 12$.
 \end{itemize}
 
 This might suggest that the current results are not optimal.
 
 
- %
- 
-   %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        %             Fourth order Modified Boussinesq  equation
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
- 
-        %
-        \section{Fourth order Modified Boussinesq  equation}
-        \label{sec:intro-2}
-        We consider the initial value problem (ivp) for a modified Boussinesq
-        equation (MB) equation 
-        \begin{gather}
-          u_{tt}   + u_{xxxx} + (u^2)_{xx} = 0,
-          \label{eqn:mb-2}
-          \\
-          u(x,0) = u_{0}(x), \quad u_{0} \in H^{s}
-          \label{eqn:mb-init-data-2}
-        \end{gather}
-        and conjecture the following.
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        %                Main Theorem
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        \begin{theorem}
-        If $s>s_c$ then 
-        then the  i.v.p, for the fourth order modified Boussinesq  equation  is well-posed
-        is well-posed 
-        \begin{itemize}
-          \item In $H^s(\rr)$ if $s > s_c$
-          \item In $H^{s}(\ci)$ if $s > s_c + 1/4$,
-          \end{itemize}
-          and the data-to-solution map is  ?? (continuous?, Lip?, smooth, analytic?). 
-        \label{thm:wp-2}
-        \end{theorem}
-        %
-        
-        %
-        %
-        \begin{remark}
-          This equation admits no scaling. To see this, set $u_{a,b}(x,t) =
-          u(ax,bt)$ and substitute into \eqref{eqn:mb-2} to obtain
-          %
-          %
-          \begin{equation*}
-          \begin{split}
-            b^{2}u_{tt} + a^{4}u_{xxxx} + a^{2}(u^{2})_{xx} = 0.
-          \end{split}
-          \end{equation*}
-          %
-          %
-          Setting $b^{2} = a^{4} = a^{2}$ and seeking a non-trivial solution, we
-          find $a=b=1$. 
-        \label{rem:scaling}
-        \end{remark}
-        %
-        %
-        Since the scaling conserves data in $\dot{H}^{-3/2}$......
-        It seems that this equation is ``like KdV".
-        So one may expect KdV type theorems...
-        That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
-        if one uses bilinear estimates.
-        But, Kappeler and collaborators went all the way to $-1$ for KdV.
-        However KdV is integrable. Is this equation integrable?
-        Also, people conjecture that the critical index for KdV well-posedness 
-        in some appropriate sense should be the scaling index which is  $-3/2$.
-        
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        %                The Periodic Case
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        \section{The Periodic Case} 
-        \label{sec:periodic-case}
-        We will first rewrite the MB ivp
-        \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form. Consider
-        the linear MB
-        \begin{gather}
-          u_{tt} + u_{xxxx} = 0,
-          \label{lin-mb}
-          \\
-          u(x, 0)=u_{0}(x), \quad u_{t}(x,0) = u_{1}(x).
-          \label{lin-mb-init-data-1}
-        \end{gather}
-       Taking the spatial Fourier transform yields the ivp
-       \begin{gather*}
-         \wh{u_{tt}^{x}} + n^{4} \wh{u^{x}} = 0,
-         \\
-         \wh{u^{x}}(\cdot, 0) = \wh{u_{0}}(n), \quad
-         \wh{u_{t}^{x}}(\cdot, 0) = \wh{u_{1}}(n)
-       \end{gather*}
-       which admits the unique solution
-       %
-       %
-       \begin{equation*}
-       \begin{split}
-         \wh{u_{0}}(n) \cos(n^{2}t) + 
-         \frac{\wh{u_{1}}(n) \sin(n^{2}t)}{n^{2}} \doteq
-         \wh{R_{t} u_{0}} + \wh{S_{t} u_{1}}
-       \end{split}
-       \end{equation*}
-       %
-       %
-       where $R_{t}$ and $S_{t}$ are linear operators defined via the relation
-       %
-       %
-       \begin{gather*}
-         \wh{R_{t}\vp} = \wh{\vp}(n) \cos(n^{2}t), \quad 
-         \wh{S_{t}\vp} = \frac{\wh{\vp}(n) \sin(n^{2}t)}{n^{2}}.
-       \end{gather*}
-       %
-       %
-       Therefore,
-       %
-       %
-       \begin{equation*}
-       \begin{split}
-         u(x,t) = R_{t}u_{0} + S_{t}u_{1}
-       \end{split}
-       \end{equation*}
-       %
-       %
-       is the unique solution to the linear MB ivp. By Duhamel's principle, it
-       follows that the MB ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} can
-       be written in the integral form
-       %
-       %
-       \begin{equation}
-       \begin{split}
-         u(x,t) = R_{t}u_{0} + S_{t}u_{1} + \int_{0}^{t} S_{t-t'}
-         (u^{2})_{xx} dt'
-       \end{split}
-       \label{eqn:integral-form}
-       \end{equation}
-       %
-       %
-       
+%
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%             Fourth order Modified Boussinesq  equation
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%
+\section{Fourth order Modified Boussinesq  equation}
+\label{sec:intro-2}
+We consider the initial value problem (ivp) for a modified Boussinesq
+equation (MB) equation 
+\begin{gather}
+  u_{tt}   + u_{xxxx} + (u^2)_{xx} = 0,
+  \label{eqn:mb-2}
+  \\
+  u(x,0) = u_{0}(x), \quad u_{0} \in H^{s}
+  \label{eqn:mb-init-data-2}
+\end{gather}
+and conjecture the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Main Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  If $s>s_c$ then 
+  then the  i.v.p, for the fourth order modified Boussinesq  equation  is well-posed
+  is well-posed 
+  \begin{itemize}
+    \item In $H^s(\rr)$ if $s > s_c$
+    \item In $H^{s}(\ci)$ if $s > s_c + 1/4$,
+  \end{itemize}
+  and the data-to-solution map is  ?? (continuous?, Lip?, smooth, analytic?). 
+  \label{thm:wp-2}
+\end{theorem}
+%
+
+%
+%
+\begin{framed}
+\begin{remark}
+  This equation admits no scaling. To see this, set $u_{a,b}(x,t) =
+  u(ax,bt)$ and substitute into \eqref{eqn:mb-2} to obtain
+  %
+  %
+  \begin{equation*}
+    \begin{split}
+      b^{2}u_{tt} + a^{4}u_{xxxx} + a^{2}(u^{2})_{xx} = 0.
+    \end{split}
+  \end{equation*}
+  %
+  %
+  Setting $b^{2} = a^{4} = a^{2}$ and seeking a non-trivial solution, we
+  find $a=b=1$. 
+  \label{rem:scaling}
+\end{remark}
+\end{framed}
+%
+%
+Since the scaling conserves data in $\dot{H}^{-3/2}$......
+It seems that this equation is ``like KdV".
+So one may expect KdV type theorems...
+That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
+if one uses bilinear estimates.
+But, Kappeler and collaborators went all the way to $-1$ for KdV.
+However KdV is integrable. Is this equation integrable?
+Also, people conjecture that the critical index for KdV well-posedness 
+in some appropriate sense should be the scaling index which is  $-3/2$.
+
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                The Periodic Case
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{The Periodic Case} 
+\label{sec:periodic-case}
+We will first rewrite the MB ivp
+\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form. Consider
+the linear MB
+\begin{gather}
+  u_{tt} + u_{xxxx} = 0,
+  \label{lin-mb}
+  \\
+  u(x, 0)=u_{0}(x), \quad u_{t}(x,0) = u_{1}(x).
+  \label{lin-mb-init-data-1}
+\end{gather}
+Taking the spatial Fourier transform yields the ivp
+\begin{gather*}
+  \wh{u_{tt}^{x}} + n^{4} \wh{u^{x}} = 0,
+  \\
+  \wh{u^{x}}(\cdot, 0) = \wh{u_{0}}(n), \quad
+  \wh{u_{t}^{x}}(\cdot, 0) = \wh{u_{1}}(n)
+\end{gather*}
+which admits the unique solution
+%
+%
+\begin{equation*}
+  \begin{split}
+    \wh{u^{x}}(n, t) = \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{in^{2}t}}{2} + 
+    \wh{u_{1}}(n) \frac{e^{in^{2}t} - e^{-in^{2}t}}{2i n^{2}}.
+  \end{split}
+\end{equation*}
+%
+%
+%
+%
+\begin{framed}
+\begin{remark}
+  Note that $$g(n) \doteq \frac{e^{in^{2}t} - e^{-in^{2}t}}{2i n^{2}}$$ has a removable
+  singularity at $n=0$. Since $$\lim_{n \to 0} g(n) = 0$$ we may analytically
+  extend $g(n)$ to the entire complex plane. 
+\label{rem:analytic-extension}
+\end{remark}
+\end{framed}
+%
+%
+%
+Therefore,
+%
+%
+\begin{equation*}
+  \begin{split}
+    u(x,t) = R_t u_{0} + S_{t}u_{1}
+  \end{split}
+\end{equation*}
+%
+is the unique solution to the ivp
+\eqref{lin-mb}-\eqref{lin-mb-init-data-1}, where $R_{t}$ and $S_{t}$ are linear operators defined via the relation
+%
+%
+\begin{gather*}
+  \wh{R_{t}\vp} = \wh{\vp}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} , \quad 
+  \wh{S_{t}\vp} = \wh{\vp}(n) \frac{e^{in^{2}t} - e^{-in^{2}t}}{2i n^{2}}.
+\end{gather*}
+
+%
+By Duhamel's principle, it
+follows that the MB ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} can
+be written in the integral form
+%
+%
+\begin{equation}
+  \begin{split}
+    u(x,t) = R_{t}u_{0} + S_{t}u_{1} + \int_{0}^{t} S_{t-t'}
+    (u^{2})_{xx} dt'.
+  \end{split}
+  \label{eqn:integral-form}
+\end{equation}
+%
+%
+Let $\psi(t)$ be a cutoff function symmetric about the 
+origin such that $\psi(t) = 1$ for $|t| \le T$ and $\text{supp} \, \psi 
+= [-2T, 2T ]$. Multiplying the right hand side of expression
+$\eqref{eqn:integral-form}$ by $\psi(t)$, we obtain
+%
+%
+\begin{equation}
+  \begin{split}
+    \psi(t) u(x,t)
+    & = \psi(t) R_{t} u_{0} + \psi(t) S_{t}u_{1} +
+    \psi(t) \int_{0}^{t} S_{t-t'}
+    (u^{2})_{xx} dt'
+    \\
+    & \doteq Tu
+  \end{split}
+  \label{localized-int-eqn}
+\end{equation}
+where $T=T_{u_0, u_1}$.We now introduce the following spaces. 
+%
+%
+\begin{definition}
+  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
+  \begin{enumerate}[(i)]
+   \item{$F: \ci \times \rr \to \cc$ }.
+   \item{ $F(x, \cdot) \in S(\rr)$ for each $x \in \ci$}.
+   \item{ $F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
+  \end{enumerate}
+  For $s, b \in \rr$, $X_{s,b}$ denotes the completion of $\mathcal{Y}$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + n^{2})^{s}\| \int_{\rr}
+    1 + | | \tau | - n^{2} |^{2b} \wh{F}(n, \tau) d \tau\right)^{1/2}
+  \end{split}
+  \label{eqn:bous-norm}
+  \end{equation}
+  %
+  %
+  %
+  %
+\end{definition}
+%
+%
+We will 
+show that for initial data $\vp \in {H}^s(\ci)$, $T$ is a contraction on $B_M 
+\subset {X}_{s,b}$, where $B_M$ is the ball centered at the origin of radius $M = 
+M_{\vp}> 0$, by estimating the $X_{s,b}$
+norm of \eqref{localized-int-eqn}. The Picard fixed point theorem will
+then yield a unique solution to
+\eqref{localized-int-eqn}. An application of an embedding lemma
+will then imply the existence of a unique, local
+solution $u \in C([-T, T], H^s(\ci))$ to the MB ivp. Local Lipschitz continuity of the flow map will follow from estimates used to establish the contraction mapping. %
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Proof of Main Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Proof of Main Theorem} 
+\label{sec:pf-main-thm}
+%
+%
+
+\subsection{Estimate for $\psi(t) R_{t})u_{0}$.} 
+We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    \wh{\psi(t)R_{t}u_{0}}^{x}(n, t)
+    & = \psi(t) \wh{u_{0}}(n) \frac{e^{in^2 t} + e^{-in^{2}t}}{2}
+    \\
+    & = \frac{\psi(t) \wh{u_{0}}(n)e^{in^{2}t}}{2} + \frac{\psi(t)
+    \wh{u_{0}}(n)e^{-in^{2}t}}{2}  
+  \end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+  \begin{split}
+    \wh{\psi(t) R_{t}u_{0}}(n, \tau) = \frac{\wh{\psi}(\tau -
+    n^{2})\wh{u_{0}}(n)}{2} + \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}}(n)}{2}.
+  \end{split}
+\end{equation*}
+%
+%
+Hence,
+%
+%
+\begin{equation}
+  \begin{split}
+    \| \psi(t) R_{t}u_{0} \|_{X_{s,b}}^{2} 
+    & = \sum_{n \in \zz}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2} +
+    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{0}}(n)}{2} |^{2} d \tau
+    \\
+    & \simeq \sum_{n \in \zz}(1 + n^{2})^{s} | \wh{u_{0}(n)} |^{2} \int_{\rr}
+    \left( 1 + | | \tau | - n^{2} | \right)^{2b} | \wh{\psi}(\tau - n^{2}) +
+    \wh{\psi}(\tau + n^{2}) |^{2} d \tau
+    \\
+    & \le \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & + \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | 2\wh{\psi}(\tau - n^{2})\wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & + \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau.
+  \end{split}
+  \label{u-0-norm-comp}
+\end{equation}
+%
+Noting that
+\begin{equation}
+  \begin{split}
+    | | \tau | - n^{2} | \le \min\left\{ | \tau - n^{2} |, | \tau + n^{2} | \right\}
+  \end{split}
+  \label{eqn:norm-key-ineq}
+\end{equation}
+%
+%
+and that $\wh{\psi}$ is Schwartz, we bound the first term of
+\eqref{u-0-norm-comp}  
+%
+%
+\begin{equation*}
+  \begin{split}
+    & \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & \le  \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & = \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right)^{2b} d \tau
+    \\
+    & = c_{\psi, b} \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    |^{2} 
+    \\
+    & = c_{\psi, b} \| u_{0} \|_{H^{s}}^{2}
+  \end{split}
+\end{equation*}
+%
+%
+where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$. The
+remaining terms of \eqref{u-0-norm-comp} are bounded in similar fashion.  
+Therefore, 
+$\|\psi(t) R_{t} u_{0}\|_{X_{s,b}}^{2} = c_{\psi, b}
+\|u_{0}\|_{H^s}^2$ and
+taking square roots of both sides gives
+%
+%
+\begin{equation}
+  \begin{split}
+    \|\psi(t) R_{t} u_{0}\|_{X_{s,b}} = c_{\psi, b}
+    \|u_{0}\|_{H^s}.
+  \end{split}
+  \label{eqn:u-0-fin-est}
+\end{equation}
+%
+%
+
+\subsection{Estimate for $\psi(t) S_{t}u_{1}$.}
+We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    \wh{\psi(t)S_{t}u_{1}}^{x}(n, t)
+    & = \psi(t) \wh{u_{1}}(n) \frac{e^{in^2 t} - e^{-in^{2}t}}{2i n^{2}}
+    \\
+    & = \frac{\psi(t) \wh{u_{1}}(n)e^{in^{2}t}}{2i n^{2}} - \frac{\psi(t)
+    \wh{u_{1}}(n)e^{-in^{2}t}}{2i n^{2}}  
+  \end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+  \begin{split}
+    \wh{\psi(t) S_{t}u_{1}}(n, \tau) = \frac{\wh{\psi}(\tau -
+    n^{2})\wh{u_{1}}(n)}{2i n^{2}} + \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}}(n)}{2i
+    n^{2}}.
+  \end{split}
+\end{equation*}
+%
+%
+Hence,
+%
+%
+\begin{equation*}
+  \begin{split}
+    \| \psi(t) S_{t}u_{1} \|_{X_{s,b}}^{2} 
+    & = \sum_{n \in \zz}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
+    n^{2}} -
+    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau.
+    \end{split}
+\end{equation*}
+%
+Applying \ref{rem:analytic-extension}, this simplifies to
+%
+%
+\begin{equation}
+\begin{split}
+  & \sum_{n \in \dot{\dot{\zz}}}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
+    n^{2}} -
+    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
+    \\
+    & \lesssim \sum_{n \in \dot{\zz}}(1 + n^{2})^{s-1} | \wh{u_{1}(n)} |^{2} \int_{\rr}
+    \left( 1 + | | \tau | - n^{2} | \right)^{2b} | \wh{\psi}(\tau - n^{2}) -
+    \wh{\psi}(\tau + n^{2}) |^{2} d \tau
+    \\
+    & \le \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & + \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | 2\wh{\psi}(\tau - n^{2})\wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & + \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau.
+\end{split}
+\label{u-1-norm-comp}
+\end{equation}
+%
+%
+%
+Recalling \eqref{eqn:norm-key-ineq} 
+and that $\wh{\psi}$ is Schwartz, we bound the first term of
+\eqref{u-1-norm-comp}  
+%
+%
+\begin{equation*}
+  \begin{split}
+    & \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & \le  \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & = \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right)^{2b} d \tau
+    \\
+    & = c_{\psi, b} \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    |^{2} 
+    \\
+    & \le c_{\psi, b} \| u_{1} \|_{H^{s-1}}^{2}
+  \end{split}
+\end{equation*}
+%
+%
+where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$. The
+remaining terms of \eqref{u-1-norm-comp} are bounded in similar fashion.  
+Therefore, 
+$\|\psi(t) S_{t} u_{1}\|_{X_{s,b}}^{2} = c_{\psi, b}
+\|u_{1}\|_{H^{s-1}}^2$ and
+taking square roots of both sides gives
+%
+%
+\begin{equation}
+  \begin{split}
+    \|\psi(t) S_{t} u_{1}\|_{X_{s,b}} = c_{\psi, b}
+    \|u_{1}\|_{H^{s-1}}.
+  \end{split}
+  \label{eqn:u-1-fin-est}
+\end{equation}
+
+\subsection{Estimate for $\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'$.}
+Recall that
+%
+%
+\begin{equation*}
+  \begin{split}
+    \psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'
+    & = \psi(t) \int_{0}^{t}\widetilde{u^{2}}(n, t') \sin[n^{2}(t -t')] dt'
+    \\
+    & = \frac{\psi(t)}{2i} \int_{0}^{t}\widetilde{u^{2}}(n, t') \left[
+    e^{in^{2}(t-t')} - e^{-in^{2}(t-t')}.
+    \right] dt'
+  \end{split}
+\end{equation*}
+%
+%
+This is a \emph{global} relation in $t$. Therefore, applying the inverse Fourier
+transform in time gives
+\begin{equation*}
+  \begin{split}
+    & \psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'
+    \\
+    & = \frac{\psi(t)}{2i} \int_{\rr} \int_{0}^{t} e^{it'
+    \tau}\wh{u^{2}}(n, \tau) \left[
+    e^{in^{2}(t-t')} - e^{-in^{2}(t-t')}
+    \right] dt'
+    \\
+    & = \frac{\psi(t)e^{in^{2}t}}{2i} \int_{0}^{t} \int_{\rr} \wh{u^{2}}(n,
+    \tau)e^{it'(\tau - n^{2})}d\tau dt' 
+    - \frac{\psi(t)e^{-in^{2}t}}{2i} \int_{0}^{t} \int_{\rr} \wh{u^{2}}(n,
+    \tau)e^{it'(\tau + n^{2})}d\tau dt' 
+  \end{split}
+\end{equation*}
+%
+Applying Fubini and integrating then gives
+%
+%
+%
+%
+\begin{equation*}
+  \begin{split}
+    -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
+    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)d \tau +
+    \frac{\psi(t)e^{-in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau +
+    n^{2})}-1 \right)}{\tau + n^{2}} \wh{u^{2}}(n, \tau)d \tau.
+  \end{split}
+\end{equation*}
+%
+%
+We shall only estimate the first term. The estimates for the second term will be
+analogous. 
+We localize near the singular curve $\tau =  n^2$ 
+by multiplying the
+integrant of the first term  by $1 + \psi(\tau -
+n^2) - \psi(\tau -
+n^2) $, which gives 
+%
+%
+\begin{equation*}
+  \begin{split}
+    & -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
+    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)d \tau 
+    \\
+    & = -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
+    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)\left[ 1 - \psi(t) \right] d \tau 
+    \\
+    & -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
+    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)\psi(t) d \tau 
+  \end{split}
+\end{equation*}
+%
+%
 
 
 
-   %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        %             Secod order Modified Boussinesq  equation
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
- 
-        %
-        \section{Second order Modified Boussinesq  equation}
-        \label{sec:intro}
-        We consider the initial value problem (ivp) for a modified Boussinesq
-        equation (MB) equation 
-        \begin{gather}
-          u_{tt} - u_{xx} + (u^2)_{xx} = 0,
-          \label{eqn:mb}
-          \\
-          u(x,0) = u_{0}(x), \quad u_{0} \in H^{s}
-          \label{eqn:mb-init-data}
-        \end{gather}
-        and conjecture the following.
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        %                Main Theorem
-        %
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
-        %
-        \begin{theorem}
-        If $s>s_c$ then then the  i.v.p, for the fourth order modified
-        Boussinesq  equation is well-posed
-        \begin{itemize}
-          \item In $H^s(\rr)$ if $s > s_c$
-          \item In $H^{s}(\ci)$ if $s > s_c + 1/4$,
-          \end{itemize}
-          and the data-to-solution map is  ?? (continuous?, Lip?, smooth, analytic?). 
-        \label{thm:wp}
-        \end{theorem}
-        %
-        
-        %
-        %
-        \begin{remark}
-        This equation admits some scaling. To see this, set $u_{a,b}(x,t) =
-        u(ax,bt)$ and substitute into \eqref{eqn:mb-2} to obtain
-          %
-          %
-          \begin{equation*}
-          \begin{split}
-            b^{2}u_{tt} - a^{2}u_{xx} + a^{2}(u^{2})_{xx} = 0.
-          \end{split}
-          \end{equation*}
-          %
-          %
-          Setting $b^{2} = a^{2} = a^{2}$, we
-          find $a=b$. Therefore, we have the scaling relation
-          $u_{\lambda}(x,t) = u(\lambda x, \lambda t)$. 
-        \label{rem:}
-        \end{remark}
-        %
-        %
-        Since the scaling conserves data in $\dot{H}^{-3/2}$......
-        It seems that this equation is ``like KdV".
-        So one may expect KdV type theorems...
-        That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
-        if one uses bilinear estimates.
-        But, Kappeler and collaborators went all the way to $-1$ for KdV.
-        However KdV is integrable. Is this equation integrable?
-        Also, people conjecture that the critical index for KdV well-posedness 
-        in some appropriate sense should be the scaling index which is  $-3/2$.
-        
-        
 
 
-    %\nocite{*}
-     %\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%		Estimation of Integral Equality Part 1		
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+
+
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%             Secod order Modified Boussinesq  equation
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%
+\section{Second order Modified Boussinesq  equation}
+\label{sec:intro}
+We consider the initial value problem (ivp) for a modified Boussinesq
+equation (MB) equation 
+\begin{gather}
+  u_{tt} - u_{xx} + (u^2)_{xx} = 0,
+  \label{eqn:mb}
+  \\
+  u(x,0) = u_{0}(x), \quad u_{0} \in H^{s}
+  \label{eqn:mb-init-data}
+\end{gather}
+and conjecture the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Main Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  If $s>s_c$ then then the  i.v.p, for the fourth order modified
+  Boussinesq  equation is well-posed
+  \begin{itemize}
+    \item In $H^s(\rr)$ if $s > s_c$
+    \item In $H^{s}(\ci)$ if $s > s_c + 1/4$,
+  \end{itemize}
+  and the data-to-solution map is  ?? (continuous?, Lip?, smooth, analytic?). 
+  \label{thm:wp}
+\end{theorem}
+%
+
+%
+%
+\begin{framed}
+\begin{remark}
+  This equation admits some scaling. To see this, set $u_{a,b}(x,t) =
+  u(ax,bt)$ and substitute into \eqref{eqn:mb-2} to obtain
+  %
+  %
+  \begin{equation*}
+    \begin{split}
+      b^{2}u_{tt} - a^{2}u_{xx} + a^{2}(u^{2})_{xx} = 0.
+    \end{split}
+  \end{equation*}
+  %
+  %
+  Setting $b^{2} = a^{2} = a^{2}$, we
+  find $a=b$. Therefore, we have the scaling relation
+  $u_{\lambda}(x,t) = u(\lambda x, \lambda t)$. 
+  \label{rem:}
+\end{remark}
+\end{framed}
+%
+%
+Since the scaling conserves data in $\dot{H}^{-3/2}$......
+It seems that this equation is ``like KdV".
+So one may expect KdV type theorems...
+That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
+if one uses bilinear estimates.
+But, Kappeler and collaborators went all the way to $-1$ for KdV.
+However KdV is integrable. Is this equation integrable?
+Also, people conjecture that the critical index for KdV well-posedness 
+in some appropriate sense should be the scaling index which is  $-3/2$.
+
+
+
+
+%\nocite{*}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 
 
 \end{document}
