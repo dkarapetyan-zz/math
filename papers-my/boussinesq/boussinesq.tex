@@ -162,6 +162,8 @@ urlcolor=blue,
 
 \maketitle
 
+({\bf  Yes, there is scaling, see page 2.})
+
 Our object of investigation is the initial value problem for the periodic/non-periodic $1$-D ``good" Boussinesq equation, i.e.,
 \begin{equation}
   \aligned
@@ -292,6 +294,74 @@ and conjecture the following.
 \end{remark}
 \end{framed}
 %
+
+
+
+\vskip0.1in
+\hrule
+\vskip0.1in
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%           Scaling for B4
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{ \bf Scaling  for $B_4$.}
+%
+%
+Let $u(x, t)$ be a solution to the B4 equation, that is
+%
+$$
+B_4(u)=
+ \partial_t^2u + \partial^4_x u + \partial_x^2(u^2)  = 0
+$$
+%
+We would like to find the constants
+$a, b, c$ such that
+\[
+u_\lambda (x, t) = \lambda^a u(\lambda^b x, \lambda^c t)
+\]
+is also a solution to B4.  Since 
+$$
+B_4(u_\lambda)=
+\lambda^{a+2c} \partial_t^2u 
++
+ \lambda^{a+4b} \partial^4_x u 
+ +
+  \lambda^{2a+2b}
+  \partial_x^2(u^2),  
+$$
+we see that $u_\lambda$ is a B4 solution only if
+$$
+a+2c=a+4b=2a+2b,
+$$
+or
+$
+c= 2b =a.
+$
+  Thus
+\[
+u_\lambda (x, t) = \lambda^{2b} u(\lambda^{b}x,  \lambda^{2b} t).
+\]
+%
+%
+Therefore, replacing  $ \lambda^b$ with  $ \lambda$ gives the following scaling:
+%
+\begin{equation}
+\label{DP-scal}
+\boxed{
+u(x, t) \text{ solution to }  B_4 
+ \Longrightarrow 
+u_\lambda (x, t) = \lambda^2 u(\lambda x, \lambda^2 t)  \text { is also a solution to }  B_4. 
+}
+\end{equation}
+
+
+\hrule
+\vskip0.1in
 %
 Since the scaling conserves data in $\dot{H}^{-3/2}$......
 It seems that this equation is ``like KdV".
@@ -302,6 +372,8 @@ But, Kappeler and collaborators went all the way to $-1$ for KdV.
 However KdV is integrable. Is this equation integrable?
 Also, people conjecture that the critical index for KdV well-posedness 
 in some appropriate sense should be the scaling index which is  $-3/2$.
+
+
 
 %
 %
