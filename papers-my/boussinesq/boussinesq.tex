@@ -36,34 +36,35 @@ urlcolor=blue,
 \newcommand{\p}{\partial}
 \newcommand{\ee}{\varepsilon}
 \newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
 %
 %
-%\theoremstyle{plain}  
-%\newtheorem{theorem}{Theorem}
-%\newtheorem{proposition}{Proposition}
-%\newtheorem{lemma}{Lemma}
-%\newtheorem{corollary}{Corollary}
-%\newtheorem{claim}{Claim}
-%\newtheorem{conjecture}[subsection]{conjecture}
-%%
-%\theoremstyle{definition}
-%\newtheorem{definition}{Definition}
-%%
-%\theoremstyle{remark}
-%\newtheorem{remark}{Remark}
+\theoremstyle{plain}  
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}[subsection]{conjecture}
+%
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
 %
 %
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{prop}[theorem]{Proposition}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{no}[theorem]{Notation}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{examp}{Example}[section]
-\newtheorem {exercise}[theorem] {Exercise}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{prop}[theorem]{Proposition}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{no}[theorem]{Notation}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{examp}{Example}[section]
+%\newtheorem {exercise}[theorem] {Exercise}
 %
 \def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
 \makeautorefname{equation}{Equation}
@@ -161,9 +162,8 @@ urlcolor=blue,
 \keywords{local well-posedness; ill-posedness.}
 
 \maketitle
-
-({\bf  Yes, there is scaling, see page 2.})
-
+%
+\section{Introduction}
 Our object of investigation is the initial value problem for the periodic/non-periodic $1$-D ``good" Boussinesq equation, i.e.,
 \begin{equation}
   \aligned
@@ -209,6 +209,114 @@ The equation does not have an associated scaling, however one can do a formal sc
     u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
     \]
     which leads to $s_c=-\frac 32$;
+\begin{framed}
+\begin{remark}
+We now prove this.
+Let $u(x, t)$ be a solution to the $B_4$ equation, that is
+%
+$$
+B_4(u)=
+ \partial_t^2u + \partial^4_x u + \partial_x^2(u^2)  = 0
+$$
+%
+We would like to find the constants
+$a, b, c$ such that
+\[
+u_\lambda (x, t) = \lambda^a u(\lambda^b x, \lambda^c t)
+\]
+is also a solution to $B_4$.  Since 
+$$
+B_4(u_\lambda)=
+\lambda^{a+2c} \partial_t^2u 
++
+ \lambda^{a+4b} \partial^4_x u 
+ +
+  \lambda^{2a+2b}
+  \partial_x^2(u^2),  
+$$
+we see that $u_\lambda$ is a $B_4$ solution only if
+$$
+a+2c=a+4b=2a+2b,
+$$
+or
+$
+c= 2b =a.
+$
+  Thus
+\[
+u_\lambda (x, t) = \lambda^{2b} u(\lambda^{b}x,  \lambda^{2b} t).
+\]
+%
+%
+Therefore, replacing  $ \lambda^b$ with  $ \lambda$ gives the following scaling:
+%
+\begin{equation}
+\label{DP-scal}
+\boxed{
+u(x, t) \text{ solution to }  B_4
+ \Longrightarrow 
+u_\lambda (x, t) = \lambda^2 u(\lambda x, \lambda^2 t)  \text { is also a
+solution to }  B_4. 
+}
+\end{equation}
+  \label{rem:scaling}
+To find the critical Sobolev index, we compute
+%
+%
+\begin{equation}
+\begin{split}
+  \| u_{\lambda} \|_{\dot{H}^s(\ci)} 
+  & = \lambda^{2} \| u(\lambda x, \lambda^2 t) \|_{\dot{H}^{s}(\ci)}
+  \\
+  & = \lambda^{2} \left( \int_{\rr} | \xi |^{2s} | \wh{u(\lambda x,
+  \lambda^{2} t)}^x (\xi, t)| \right)^{1/2}.
+\end{split}
+\label{crit-ind-comp}
+\end{equation}
+%
+But
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{u(\lambda x, \lambda^{2}t)^x}(\xi, t)
+  & = \int_{\rr}e^{-i\xi x}u(\lambda x, \lambda^2 t) dx
+  \\
+  & = \frac{1}{\lambda} \int_{\rr}e^{-i \frac{n}{\lambda} x'}u(x',
+  \lambda^{2} t) dx'
+  \\
+  & = \frac{1}{\lambda} \wh{u(\cdot, \lambda^{2}t)}(\frac{\xi}{\lambda})
+\end{split}
+\end{equation*}
+%
+%
+Substituting back into \eqref{crit-ind-comp}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{\lambda} \|_{\dot{H}^s(\rr)} 
+  & = \lambda^{2} \left( \int_{\rr} | \xi |^{2s} |
+  \frac{1}{\lambda}\wh{u(\cdot, \lambda^{2}t)}(\frac{\xi}{\lambda}) |^2 d \xi
+  \right)^{1/2}
+  \\
+  & = \lambda \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
+  \lambda^{2}t)}(\frac{\xi}{\lambda}) |^2 d \xi  \right)^{1/2}
+  \\
+  & = \lambda \left( \int_{\rr} | \lambda \xi' |^{2s} 
+  \wh{u(\cdot, \lambda^{2}t)}(\xi') |^2 \lambda d \xi
+  \right)^{1/2}
+  \\
+  & = \lambda^{s + 3/2} \|u(\cdot, \lambda^{2}t) \|_{\dot{H}^s (\ci)}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore, $\| u_{\lambda(0)} \|_{\dot{H}^s(\rr)} = \lambda^{s + 3/2} \|
+u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=-3/2$ is the critical Sobolev index.
+\end{remark}
+\end{framed}
+
 
   \item for 
     \[
@@ -219,6 +327,117 @@ The equation does not have an associated scaling, however one can do a formal sc
     u_{\lambda}(t,x)\,=\,u\left(\frac{t}{\lambda}, \frac{x}{\lambda}\right),
     \]
     which leads to $s_c=\frac 12$.
+\begin{framed}
+\begin{remark}
+We now prove this. 
+Let $u(x, t)$ be a solution to the $B_2$ equation, that is
+%
+$$
+B_2(u)=
+ \partial_t^2u - \partial^2_x u + \partial_x^2(u^2)  = 0
+$$
+%
+We would like to find the constants
+$a, b, c$ such that
+\[
+u_\lambda (x, t) = \lambda^a u(\lambda^b x, \lambda^c t)
+\]
+is also a solution to $B_2$.  Since 
+$$
+B_2(u_\lambda)=
+\lambda^{a+2c} \partial_t^2u 
+-
+ \lambda^{a+2b} \partial^2_x u 
+ +
+  \lambda^{2a+2b}
+  \partial_x^2(u^2),  
+$$
+we see that $u_\lambda$ is a $B_2$ solution only if
+$$
+a+2c=a+2b=2a+2b,
+$$
+or
+$
+a=0, b=c.
+$
+  Thus
+\[
+u_\lambda (x, t) = u(\lambda^{b}x,  \lambda^{b} t).
+\]
+%
+%
+Therefore, replacing  $ \lambda^b$ with  $ \lambda$ gives the following scaling:
+%
+\begin{equation}
+\label{B2-scal}
+\boxed{
+u(x, t) \text{ solution to }  B_2
+ \Longrightarrow 
+u_\lambda (x, t) = u(\lambda x, \lambda t)  \text { is also a
+solution to }  B_2. 
+}
+\end{equation}
+  \label{rem:scaling-B2}
+To find the critical Sobolev index, we compute
+\\
+%
+%
+\begin{equation}
+\begin{split}
+  \| u_{\lambda} \|_{\dot{H}^s(\ci)} 
+  & =  \| u(\lambda x, \lambda t) \|_{\dot{H}^{s}(\ci)}
+  \\
+  & = \left( \int_{\rr} | \xi |^{2s} | \wh{u(\lambda x,
+  \lambda t)}^x (\xi, t)| \right)^{1/2}.
+\end{split}
+\label{crit-ind-comp-B2}
+\end{equation}
+%
+But
+%
+\\
+%
+\begin{equation*}
+\begin{split}
+  \wh{u(\lambda x, \lambda t)^x}(\xi, t)
+  & = \int_{\rr}e^{-i\xi x}u(\lambda x, \lambda t) dx
+  \\
+  & = \frac{1}{\lambda} \int_{\rr}e^{-i \frac{n}{\lambda} x'}u(x',
+  \lambda t) dx'
+  \\
+  & = \frac{1}{\lambda} \wh{u(\cdot, \lambda t)}(\frac{\xi}{\lambda})
+\end{split}
+\end{equation*}
+%
+%
+Substituting back into \eqref{crit-ind-comp-B2}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{\lambda} \|_{\dot{H}^s(\rr)} 
+  & = \left( \int_{\rr} | \xi |^{2s} |
+  \frac{1}{\lambda}\wh{u(\cdot, \lambda t)}(\frac{\xi}{\lambda}) |^2 d \xi
+  \right)^{1/2}
+  \\
+  & = \frac{1}{\lambda} \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
+  \lambda t)}(\frac{\xi}{\lambda}) |^2 d \xi  \right)^{1/2}
+  \\
+  & = \frac{1}{\lambda} \left( \int_{\rr} | \lambda \xi' |^{2s} 
+  \wh{u(\cdot, \lambda)}(\xi') |^2 \lambda d \xi
+  \right)^{1/2}
+  \\
+  & = \lambda^{s - 1/2} \|u(\cdot, t) \|_{\dot{H}^s (\rr)}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore, $\| u_{\lambda(0)} \|_{\dot{H}^s(\rr)} = \lambda^{s - 1/2} \|
+u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=1/2$ is the critical Sobolev index.
+\end{remark}
+\end{framed}
+
+
 \end{itemize}
 
 This might suggest that the current results are not optimal.
@@ -240,7 +459,7 @@ This might suggest that the current results are not optimal.
 \section{Fourth order Modified Boussinesq  equation}
 \label{sec:intro-2}
 We consider the initial value problem (ivp) for a modified Boussinesq
-equation (MB) equation 
+equation ($B_4$) equation 
 \begin{gather}
   u_{tt}   + u_{xxxx} + (u^2)_{xx} = 0,
   \label{eqn:mb-2}
@@ -275,33 +494,6 @@ and conjecture the following.
 
 %
 %
-\begin{framed}
-\begin{remark}
-  This equation admits no scaling. To see this, set $u_{a,b}(x,t) =
-  u(ax,bt)$ and substitute into \eqref{eqn:mb-2} to obtain
-  %
-  %
-  \begin{equation*}
-    \begin{split}
-      b^{2}u_{tt} + a^{4}u_{xxxx} + a^{2}(u^{2})_{xx} = 0.
-    \end{split}
-  \end{equation*}
-  %
-  %
-  Setting $b^{2} = a^{4} = a^{2}$ and seeking a non-trivial solution, we
-  find $a=b=1$. 
-  \label{rem:scaling}
-\end{remark}
-\end{framed}
-%
-
-
-
-\vskip0.1in
-\hrule
-\vskip0.1in
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -309,59 +501,8 @@ and conjecture the following.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-{ \bf Scaling  for $B_4$.}
 %
 %
-Let $u(x, t)$ be a solution to the B4 equation, that is
-%
-$$
-B_4(u)=
- \partial_t^2u + \partial^4_x u + \partial_x^2(u^2)  = 0
-$$
-%
-We would like to find the constants
-$a, b, c$ such that
-\[
-u_\lambda (x, t) = \lambda^a u(\lambda^b x, \lambda^c t)
-\]
-is also a solution to B4.  Since 
-$$
-B_4(u_\lambda)=
-\lambda^{a+2c} \partial_t^2u 
-+
- \lambda^{a+4b} \partial^4_x u 
- +
-  \lambda^{2a+2b}
-  \partial_x^2(u^2),  
-$$
-we see that $u_\lambda$ is a B4 solution only if
-$$
-a+2c=a+4b=2a+2b,
-$$
-or
-$
-c= 2b =a.
-$
-  Thus
-\[
-u_\lambda (x, t) = \lambda^{2b} u(\lambda^{b}x,  \lambda^{2b} t).
-\]
-%
-%
-Therefore, replacing  $ \lambda^b$ with  $ \lambda$ gives the following scaling:
-%
-\begin{equation}
-\label{DP-scal}
-\boxed{
-u(x, t) \text{ solution to }  B_4 
- \Longrightarrow 
-u_\lambda (x, t) = \lambda^2 u(\lambda x, \lambda^2 t)  \text { is also a solution to }  B_4. 
-}
-\end{equation}
-
-
-\hrule
-\vskip0.1in
 %
 Since the scaling conserves data in $\dot{H}^{-3/2}$......
 It seems that this equation is ``like KdV".
@@ -388,9 +529,9 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 %
 \section{The Periodic Case} 
 \label{sec:periodic-case}
-We will first rewrite the MB ivp
+We will first rewrite the $B_4$ ivp
 \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form. Consider
-the linear MB
+the linear $B_4$ ivp
 \begin{gather}
   u_{tt} + u_{xxxx} = 0,
   \label{lin-mb}
@@ -449,7 +590,7 @@ is the unique solution to the ivp
 
 %
 By Duhamel's principle, it
-follows that the MB ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} can
+follows that the $B_4$ ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} can
 be written in the integral form
 %
 %
@@ -462,6 +603,7 @@ be written in the integral form
 \end{equation}
 %
 %
+which we will now localize in time.
 Let $\psi(t)$ be a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le T$ and $\text{supp} \, \psi 
 = [-2T, 2T ]$. Multiplying the right hand side of expression
@@ -495,8 +637,8 @@ where $T=T_{u_0, u_1}$.We now introduce the following spaces.
   %
   \begin{equation}
   \begin{split}
-    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + n^{2})^{s}\| \int_{\rr}
-    1 + | | \tau | - n^{2} |^{2b} \wh{F}(n, \tau) d \tau\right)^{1/2}
+    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr}
+    (1 + | | \tau | - n^{2} |)^{2b} \wh{F}(n, \tau) d \tau\right)^{1/2}.
   \end{split}
   \label{eqn:bous-norm}
   \end{equation}
@@ -515,7 +657,7 @@ norm of \eqref{localized-int-eqn}. The Picard fixed point theorem will
 then yield a unique solution to
 \eqref{localized-int-eqn}. An application of an embedding lemma
 will then imply the existence of a unique, local
-solution $u \in C([-T, T], H^s(\ci))$ to the MB ivp. Local Lipschitz continuity of the flow map will follow from estimates used to establish the contraction mapping. %
+solution $u \in C([-T, T], H^s(\ci))$ to the $B_4$ ivp. Local Lipschitz continuity of the flow map will follow from estimates used to establish the contraction mapping. %
 %
 %
 %
@@ -563,31 +705,35 @@ and
 Hence,
 %
 %
-\begin{equation}
-  \begin{split}
-    \| \psi(t) R_{t}u_{0} \|_{X_{s,b}}^{2} 
+\begin{align}
+    & \| \psi(t) R_{t}u_{0} \|_{X_{s,b}}^{2} 
+    \notag
+    \\
     & = \sum_{n \in \zz}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
     |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2} +
     \frac{\wh{\psi}(\tau + n^{2})\wh{u_{0}}(n)}{2} |^{2} d \tau
+    \notag
     \\
     & \simeq \sum_{n \in \zz}(1 + n^{2})^{s} | \wh{u_{0}(n)} |^{2} \int_{\rr}
     \left( 1 + | | \tau | - n^{2} | \right)^{2b} | \wh{\psi}(\tau - n^{2}) +
     \wh{\psi}(\tau + n^{2}) |^{2} d \tau
+    \notag
     \\
     & \le \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau
+    \label{u-0-norm-comp-1}
     \\
     & + \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | 2\wh{\psi}(\tau - n^{2})\wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau
+    \label{u-0-norm-comp-2}
     \\
     & + \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau.
-  \end{split}
-  \label{u-0-norm-comp}
-\end{equation}
+    \label{u-0-norm-comp-3}
+\end{align}
 %
 Noting that
 \begin{equation}
@@ -598,8 +744,7 @@ Noting that
 \end{equation}
 %
 %
-and that $\wh{\psi}$ is Schwartz, we bound the first term of
-\eqref{u-0-norm-comp}  
+and that $\wh{\psi}$ is Schwartz, we bound \eqref{u-0-norm-comp-1}  
 %
 %
 \begin{equation*}
@@ -624,8 +769,7 @@ and that $\wh{\psi}$ is Schwartz, we bound the first term of
 %
 %
 where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$. The
-remaining terms of \eqref{u-0-norm-comp} are bounded in similar fashion.  
-Therefore, 
+terms \eqref{u-0-norm-comp-2}-\eqref{u-0-norm-comp-3} are bounded in similar fashion. Therefore, 
 $\|\psi(t) R_{t} u_{0}\|_{X_{s,b}}^{2} = c_{\psi, b}
 \|u_{0}\|_{H^s}^2$ and
 taking square roots of both sides gives
@@ -681,7 +825,7 @@ Hence,
     \end{split}
 \end{equation*}
 %
-Applying \ref{rem:analytic-extension}, this simplifies to
+Applying \autoref{rem:analytic-extension}, this simplifies to
 %
 %
 \begin{equation}
@@ -755,78 +899,377 @@ taking square roots of both sides gives
 \end{equation}
 
 \subsection{Estimate for $\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'$.}
-Recall that
+We define the spatial Fourier transform by 
 %
 %
 \begin{equation*}
-  \begin{split}
-    \psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'
-    & = \psi(t) \int_{0}^{t}\widetilde{u^{2}}(n, t') \sin[n^{2}(t -t')] dt'
-    \\
-    & = \frac{\psi(t)}{2i} \int_{0}^{t}\widetilde{u^{2}}(n, t') \left[
-    e^{in^{2}(t-t')} - e^{-in^{2}(t-t')}.
-    \right] dt'
-  \end{split}
+\begin{split}
+  \tilde{f}(n, t) = \int_{\ci} e^{-inx}f(x,t) dx
+\end{split}
 \end{equation*}
 %
 %
-This is a \emph{global} relation in $t$. Therefore, applying the inverse Fourier
-transform in time gives
+and the spacetime Fourier transform by
 \begin{equation*}
+\begin{split}
+  \wh{f}(n, \tau) = \int_{\rr} \int_{\ci} e^{-inx-it\tau}f(x,t) dx dt
+\end{split}
+\end{equation*}
+%
+%
+Let $f(x,t) \doteq \psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'$. 
+Then
+%
+%
+\begin{equation}
   \begin{split}
-    & \psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'
-    \\
-    & = \frac{\psi(t)}{2i} \int_{\rr} \int_{0}^{t} e^{it'
-    \tau}\wh{u^{2}}(n, \tau) \left[
+    \wt{f}(n, t)
+    & = \frac{\psi(t)}{2i} \int_{0}^{t}\wt{u^{2}}(n, t') \left[
     e^{in^{2}(t-t')} - e^{-in^{2}(t-t')}
     \right] dt'
     \\
-    & = \frac{\psi(t)e^{in^{2}t}}{2i} \int_{0}^{t} \int_{\rr} \wh{u^{2}}(n,
-    \tau)e^{it'(\tau - n^{2})}d\tau dt' 
-    - \frac{\psi(t)e^{-in^{2}t}}{2i} \int_{0}^{t} \int_{\rr} \wh{u^{2}}(n,
-    \tau)e^{it'(\tau + n^{2})}d\tau dt' 
+    & \simeq e^{in^{2}t} \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{-in^{2}t'}
+    dt' - 
+    e^{-in^{2}t} \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{in^{2}t'} dt'
+    \\
+    & \doteq e^{in^{2}t} \wt{w_1}(n, t) - e^{-in^{2}t} \wt{w_2}(n, t)
   \end{split}
-\end{equation*}
+  \label{space-four-trans}
+\end{equation}
 %
-Applying Fubini and integrating then gives
+where
 %
 %
+\begin{gather*}
+  w_{1}(x,t) = \frac{1}{2 \pi} \sum_{n \in \zz} e^{inx} \left[ \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{in^{2}t'}
+  dt'\right],
+  \\
+  w_{2}(x,t) = \frac{1}{2 \pi} \sum_{n \in \zz} e^{inx} \left[ \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{-in^{2}t'} dt'
+ \right].
+\end{gather*}
+%
+%
+%
+Notice that \eqref{space-four-trans} is a \emph{global} relation in $t$.
+Hence, taking its time Fourier transform gives
 %
 %
 \begin{equation*}
-  \begin{split}
-    -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
-    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)d \tau +
-    \frac{\psi(t)e^{-in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau +
-    n^{2})}-1 \right)}{\tau + n^{2}} \wh{u^{2}}(n, \tau)d \tau.
-  \end{split}
+\begin{split}
+  \wh{f}(n, \tau) = \wh{w_{1}}(n, \tau - n^{2}) - \wh{w_{2}}(n, \tau +
+  n^{2}).
+\end{split}
 \end{equation*}
 %
 %
-We shall only estimate the first term. The estimates for the second term will be
-analogous. 
-We localize near the singular curve $\tau =  n^2$ 
-by multiplying the
-integrant of the first term  by $1 + \psi(\tau -
-n^2) - \psi(\tau -
-n^2) $, which gives 
+Therefore,
 %
 %
 \begin{equation*}
-  \begin{split}
-    & -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
-    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)d \tau 
-    \\
-    & = -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
-    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)\left[ 1 - \psi(t) \right] d \tau 
-    \\
-    & -\frac{\psi(t)e^{in^{2}t}}{2} \int_{\rr}  \frac{\left( e^{it(\tau -
-    n^{2})}-1 \right)}{\tau - n^{2}} \wh{u^{2}}(n, \tau)\psi(t) d \tau 
-  \end{split}
+\begin{split}
+  \| f \|_{X_{s,b}}^{2}
+  & = \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) - \wh{w_{2}}(n, \tau +
+  n^{2}) |^{2} d \tau
+  \\
+  & \le  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) d \tau
+  \\
+  & + 2 \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) \wh{w_{2}}(n, \tau + n^{2})
+  d \tau
+  \\
+  & + \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau + n^{2}) d \tau
+\end{split}
 \end{equation*}
 %
 %
+\hrule
+{\bf Farah's paper says that the second term can be ignored. My guess is that $w_1(n,
+\tau - n^2)$ and $w_2(n, \tau + n^2)$ are orthogonal, but I am not yet able to
+show this.}
+\\
+\hrule
 
+Applying a change of variable implies
+%
+%
+%
+%
+\begin{equation}
+\begin{split}
+  \| f \|_{X_{s,b}}^{2}
+  & \le  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  | \tau + n^{2} | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau) |^2 d \tau
+  \\
+  & + \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  | \tau - n^{2} | - n^{2} |)^{2b} | \wh{w_{2}}(n, \tau )|^2 d \tau.
+\end{split}
+\label{comp-pre-lemma}
+\end{equation}
+%
+%
+We now need the following lemma, whose proof is provided in the appendix.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Bound for modified principal symbol
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+For any $n, \tau \in \rr$, we have
+\label{lem:mod-princ-symb-bound}
+%
+%
+\begin{equation*}
+\begin{split}
+  \max\left\{ | | \tau + n^{2} | - n^{2} |, | | \tau - n^{2} | - n^{2} |
+  \right\} \le | \tau |.
+\end{split}
+\end{equation*}
+%
+%
+\end{lemma}
+%
+%
+Applying \autoref{lem:mod-princ-symb-bound} to \eqref{comp-pre-lemma} yields
+%
+%
+\begin{equation*}
+\begin{split}
+\| f \|_{X_{s,b}}^{2}
+  & \le \sum_{j=1}^{2}  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  \tau|)^{2b} | \wh{w_{j}}(n, \tau)|^2 d \tau
+  \\
+  & = \sum_{j=1}^{2} \sum_{n \in \zz} (1 + n^{2})^{s} \|\wt{w_{j}}(n, t)
+  \|^{2}_{H_{t}^{b}}.
+\end{split}
+\end{equation*}
+%
+%
+Collecting estimates, and recalling, 
+we obtain the following.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% Contraction Proposition
+%				 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%
+\begin{proposition}
+\label{prop:contraction}
+Let $s \ge \frac{1-m}{4}$. Then
+%
+%%
+\begin{equation*}
+	\begin{split}
+    \|Tu\|_{X_{s,b}} \le c_{\psi, b} \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-1}(\ci)}
+    + \|u\|_{X_{s,b}}^2 
+		\right).
+	\end{split}
+\end{equation*}
+%
+%%
+\end{proposition}
+We will now use \autoref{prop:contraction} to prove local well-posedness for the 
+$B_4$ ivp. Let $c = c_{\psi}$. For given $u_0, u_1$, we may choose $\psi$ such
+that 
+%
+%%
+\begin{equation*}
+	\begin{split}
+    \|u_0\|_{H^s(\ci)} \le \frac{3}{32c^2}, \quad \|u_1\|_{H^{s-1}(\ci)} \le \frac{3}{32c^2}.
+	\end{split}
+\end{equation*}
+%
+%%
+Then if $\|u\|_{X_{s,b}} \le \frac{1}{4c}$, we have
+%
+%%
+\begin{equation*}
+	\begin{split}
+		\|T u \|_{X_{s,b}} 
+		& \le c \left[ \frac{3}{32c^2} + \frac{3}{32c^2}+ \left( 
+		\frac{1}{4c} \right)^2 \right]
+		=  \frac{1}{4c}.
+	\end{split}
+\end{equation*}
+%
+%%
+Hence, $T=T_{\vp}$ maps the ball $B\left( 0, \frac{1}{4c} \right) \subset X_{s,b}$ into 
+itself. Next, note that
+%
+%%
+\begin{equation*}
+	\begin{split}
+		Tu - Tv = 
+	\end{split}
+\end{equation*}
+%
+%%
+where now $w =  \p_x^2 (u^2 - v^2)$. Rewriting
+%
+%%
+\begin{equation*}
+	\begin{split}
+	\p_x^2 (u^2 - v^2)	
+		& = \p_x^2[(u-v)(u+v)]
+		\end{split}
+\end{equation*}
+%
+%%
+and repeating the arguments used to estimate 
+(in the
+bilinear estimates, we now set $f=u-v$ and $g = u+v$), we obtain
+%
+%%
+%%
+\begin{equation}
+	\label{20a}
+	\begin{split}
+		\|Tu - Tv \|_{X_{s,b}}  
+		& \le c_{\psi, b} \|u -v\|_{X_{s,b}} \|u + v \|_{X_{s,b}}
+		\\
+		& \le c_{\psi, b} \|u -v\|_{X_{s,b}} (\|u\|_{X_{s,b}}+ \|v \|_{X_{s,b}}).
+	\end{split}
+\end{equation}
+%
+%%
+If $u, v \in B(0, \frac{1}{4c}) \subset X_{s,b}$, it follows that
+%
+%%
+\begin{equation}
+	\label{21a}
+	\begin{split}
+		\|Tu - Tv \|_{X_{s,b}}
+		& \le c \|u -v \|_{X_{s,b}} \left( \frac{1}{4c} + 
+		\frac{1}{4c} \right)
+		\\
+		& = \frac{1}{2} \|u -v \|_{X_{s,b}}. 
+	\end{split}
+\end{equation}
+%
+%%
+We conclude that $T = T_{\vp}$ is a contraction on the ball $B(0, 
+\frac{1}{4c}) \subset X_{s,b}$. A Picard iteration and application of 
+then yield a unique, local
+solution to the $B_4$ ivp. 
+\begin{definition}
+  Let $X, Y$ be Banach spaces, and equip $X \times Y$ with the product
+  topology (i.e. if $\|(f, g)\|_{X \times Y} = \|f\|_{X} + \|g\|_{Y}$).
+  We say that the flow map $(u_0, u_1) \mapsto u(t)$
+  is \emph{locally Lipschitz} in $X \times Y$
+	if for
+  $$(u_0, u_1), (v_0, v_1) \in B_R \doteq \{(f,g) \in X \times Y: \|f\|_{X} +
+  \|g\|_{Y}< R\},$$ there exist $C, T>0$
+	depending on $R$ such that $$\|u(\cdot, t) - v(\cdot, t)
+  \|_X \le C \left( \|u_{0} - v_0 \|_{X} + \|u_{1} - v_1 \|_{Y}
+  \right) \ \ \text{for} \ \ t \in [-T, T].$$ We
+	say the flow map is \emph{locally uniformly
+	continuous} in $X$ if for
+	$u_0, v_0 \in B_R$ there exists $T >0$ depending on $R$ such that for
+	$t \in [-T, T]$, $\|u(\cdot, t) - v(\cdot, t) \|_{X} \to
+  0$ if $\|u_0 - v_0 \|_{X}, \|u_1 - v_1 \|_{Y} \to 0$. 
+\end{definition}
+%
+%
+Clearly any locally Lipschitz flow map is locally uniformly continuous. 
+Next, we shall establish local Lipschitz continuity in $X_{s,b}$ of the flow
+map. Let $\vp_1, \vp_2 \subset H^s(\ci)$ be given. Choose $\psi$ such that
+$\vp_1, \vp_2 \subset B(0, \frac{15}{64c^{3}})$.  Then there exist $u_1, u_2 \in
+X_{s,b}$ such that $u_1 = T_{\vp_1}$, $u_2 = T_{\vp_2}$, and so
+%
+%
+\begin{equation}
+	\label{gen-1a}
+	\begin{split}
+		T_{\vp_1}(u) - T_{\vp_2}(v)
+		& = \frac{1}{2\pi} \psi(t) \sum_{n \in
+		\zzdot}e^{i\left( xn + tn^m \right)} \wh{\vp_1 - \vp_2}(n)
+		\\
+		& + 	\end{split}
+\end{equation}
+%
+%
+where $w = \frac{1}{2} \p_x (u^2 - v^2)$. Using an argument similar to,
+we obtain
+%
+%
+\begin{equation}
+	\label{gen-2a}
+	\begin{split}
+		& \| R_t (u_0 - v_0)\|_{X_{s,b}}
+		\le c_{\psi, b} \|u_0 -v_0\|_{H^s},
+    \\
+    & \| S_t (u_1 - v_1)\|_{X_{s,b}}
+    \le c_{\psi, b} \|u_1 -v_1\|_{H^{s-1}}.
+	\end{split}
+\end{equation}
+%
+%
+Therefore, from \eqref{21a}-\eqref{gen-2a}, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+    \|u -v \|_{X_{s,b}}
+    & = \|T_{u_0, v_0}(u) - T_{u_1, v_1}(v) \|_{X_{s,b}}
+    \\
+    & \le
+    c_{\psi, b} \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-1}\left( \ci \right)} + \frac{1}{2} \|u -v \|_{X_{s,b}}\right)
+  \end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{1}{2} \|u-v\|_{X_{s,b}} \le
+    c_{\psi, b} \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-1}\left( \ci \right)} \right )
+      \end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|u -v \|_{X_{s,b}} \le 2 c_{\psi, b} \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-1}\left( \ci \right)} \right )
+	\end{split}
+\end{equation*}
+%
+%
+Applying, we then obtain
+%
+%
+	 %
+	 %
+	 \begin{equation*}
+		 \begin{split}
+			\|u(\cdot, t) -v(\cdot, t) \|_{H^s(\ci)} \le
+      2 c_{\psi, b} \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-1}\left( \ci \right)} \right ), \qquad t \in [-T, T].
+		 \end{split}
+	 \end{equation*}
+	 %
+	 %
+Hence, the flow map of the $B_4$ ivp is locally Lipschitz continuous in
+$H^s(\ci)$. This
+concludes the proof of. \qquad \qedsymbol
 
 
 
@@ -860,7 +1303,7 @@ n^2) $, which gives
 \section{Second order Modified Boussinesq  equation}
 \label{sec:intro}
 We consider the initial value problem (ivp) for a modified Boussinesq
-equation (MB) equation 
+equation ($B_4$) equation 
 \begin{gather}
   u_{tt} - u_{xx} + (u^2)_{xx} = 0,
   \label{eqn:mb}
@@ -891,28 +1334,8 @@ and conjecture the following.
   \label{thm:wp}
 \end{theorem}
 %
-
 %
 %
-\begin{framed}
-\begin{remark}
-  This equation admits some scaling. To see this, set $u_{a,b}(x,t) =
-  u(ax,bt)$ and substitute into \eqref{eqn:mb-2} to obtain
-  %
-  %
-  \begin{equation*}
-    \begin{split}
-      b^{2}u_{tt} - a^{2}u_{xx} + a^{2}(u^{2})_{xx} = 0.
-    \end{split}
-  \end{equation*}
-  %
-  %
-  Setting $b^{2} = a^{2} = a^{2}$, we
-  find $a=b$. Therefore, we have the scaling relation
-  $u_{\lambda}(x,t) = u(\lambda x, \lambda t)$. 
-  \label{rem:}
-\end{remark}
-\end{framed}
 %
 %
 Since the scaling conserves data in $\dot{H}^{-3/2}$......
@@ -926,7 +1349,40 @@ Also, people conjecture that the critical index for KdV well-posedness
 in some appropriate sense should be the scaling index which is  $-3/2$.
 
 
-
+\appendix
+\subsection{Proof of \autoref{lem:mod-princ-symb-bound}} 
+\label{ssec:pf-mod-princ}
+By the reverse triangle inequality, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  | \tau | = | \tau + n^{2} - n^{2} | \ge | | \tau + n^{2} | - n^{2} |.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, if $\tau - n^{2} < 0$, then
+%
+%
+\begin{equation*}
+\begin{split}
+  | | \tau - n^{2} | - n^{2} | = | n^{2} - \tau - n^{2} | = | \tau |
+\end{split}
+\end{equation*}
+%
+%
+while if $\tau - n^{2} > 0$, then
+%
+%
+\begin{equation*}
+\begin{split}
+  | | \tau - n^{2} | - n^{2} | \le n^{2} \le \tau = |\tau|
+\end{split}
+\end{equation*}
+%
+%
+completing the proof. \qquad \qedsymbol
 
 %\nocite{*}
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
