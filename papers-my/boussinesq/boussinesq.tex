@@ -1,7 +1,7 @@
 %
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
-\usepackage{mathtools} %upgrade to amsmath--can now do \right and \left on dif lines
+\usepackage{amsmath} 
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
@@ -10,7 +10,7 @@
 %\usepackage{showkeys}  %shows source equation labels on the pdf
 \usepackage[margin=3cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
-\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\setcounter{secnumdepth}{1} %number only sections, not subsections
 \hypersetup{colorlinks=true,
 linkcolor=blue,
 citecolor=blue,
@@ -316,6 +316,15 @@ Therefore, $\| u_{\lambda(0)} \|_{\dot{H}^s(\rr)} = \lambda^{s + 3/2} \|
 u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=-3/2$ is the critical Sobolev index.
 \end{remark}
 \end{framed}
+\nin Since the scaling conserves data in $\dot{H}^{-3/2}$......
+It seems that this equation is ``like KdV".
+So one may expect KdV type theorems...
+That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
+if one uses bilinear estimates.
+But, Kappeler and collaborators went all the way to $-1$ for KdV.
+However KdV is integrable. Is this equation integrable?
+Also, people conjecture that the critical index for KdV well-posedness 
+in some appropriate sense should be the scaling index which is  $-3/2$.
 
 
   \item for 
@@ -457,17 +466,22 @@ This might suggest that the current results are not optimal.
 
 %
 \section{Fourth order Modified Boussinesq  equation}
-\label{sec:intro-2}
-We consider the initial value problem (ivp) for a modified Boussinesq
-equation ($B_4$) equation 
+%
+We consider the initial value problem (ivp) for the fourth order modified Boussinesq
+($B_4$) equation 
 \begin{gather}
   u_{tt}   + u_{xxxx} + (u^2)_{xx} = 0,
   \label{eqn:mb-2}
   \\
-  u(x,0) = u_{0}(x), \quad u_{0} \in H^{s}
+  u(x,0) = u_{0}(x), \quad \p_t u(x, 0) = u_1(x), 
   \label{eqn:mb-init-data-2}
+  \\
+  \notag
+  (u_0, u_1) \in
+  H^{s}(\ci) \times
+  H^{s-1}(\ci)  
 \end{gather}
-and conjecture the following.
+and prove the following.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -480,14 +494,15 @@ and conjecture the following.
 %
 %
 \begin{theorem}
-  If $s>s_c$ then 
-  then the  i.v.p, for the fourth order modified Boussinesq  equation  is well-posed
-  is well-posed 
-  \begin{itemize}
+  If $s>s_c = -1/4$ then 
+  then the $B_{4}$ ivp is well-posed
+  \begin{enumerate}[(i)]
     \item In $H^s(\rr)$ if $s > s_c$
-    \item In $H^{s}(\ci)$ if $s > s_c + 1/4$,
-  \end{itemize}
-  and the data-to-solution map is  ?? (continuous?, Lip?, smooth, analytic?). 
+    \item In $H^{s}(\ci)$ if $s > s_c$,
+  \end{enumerate}
+  and the data-to-solution map is locally Lipschitz. Furthermore, these results
+  are optimal in the sense that uniform continuity of the flow map fails for $s
+  \le -1/4$. 
   \label{thm:wp-2}
 \end{theorem}
 %
@@ -504,15 +519,6 @@ and conjecture the following.
 %
 %
 %
-Since the scaling conserves data in $\dot{H}^{-3/2}$......
-It seems that this equation is ``like KdV".
-So one may expect KdV type theorems...
-That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
-if one uses bilinear estimates.
-But, Kappeler and collaborators went all the way to $-1$ for KdV.
-However KdV is integrable. Is this equation integrable?
-Also, people conjecture that the critical index for KdV well-posedness 
-in some appropriate sense should be the scaling index which is  $-3/2$.
 
 
 
@@ -527,8 +533,8 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{The Periodic Case} 
-\label{sec:periodic-case}
+\subsection{The Periodic Case} 
+\label{ssec:periodic-case}
 We will first rewrite the $B_4$ ivp
 \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form. Consider
 the linear $B_4$ ivp
@@ -597,7 +603,7 @@ be written in the integral form
 \begin{equation}
   \begin{split}
     u(x,t) = R_{t}u_{0} + S_{t}u_{1} + \int_{0}^{t} S_{t-t'}
-    (u^{2})_{xx} dt'.
+    (u^{2})_{xx} dt'
   \end{split}
   \label{eqn:integral-form}
 \end{equation}
@@ -648,6 +654,32 @@ where $T=T_{u_0, u_1}$.We now introduce the following spaces.
   %
 \end{definition}
 %
+The $X_{s,b}$ spaces have the following important embedding, whose proof is
+provided in the appendix.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Embedding 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  Let $b > 1/2$. Then $X_{s, b} \subset C(\rr, H^s)$ continuously. That is, there exists $c>0$ depending only on $b$ such that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u \|_{C(\rr, H^s) } \le c \| u \|_{X_{s,b}}.
+\end{split}
+\end{equation*}
+%
+\label{lem:embedding}
+\end{lemma}
+%
 %
 We will 
 show that for initial data $\vp \in {H}^s(\ci)$, $T$ is a contraction on $B_M 
@@ -655,28 +687,20 @@ show that for initial data $\vp \in {H}^s(\ci)$, $T$ is a contraction on $B_M
 M_{\vp}> 0$, by estimating the $X_{s,b}$
 norm of \eqref{localized-int-eqn}. The Picard fixed point theorem will
 then yield a unique solution to
-\eqref{localized-int-eqn}. An application of an embedding lemma
+\eqref{localized-int-eqn}. An application of \autoref{lem:embedding}
 will then imply the existence of a unique, local
 solution $u \in C([-T, T], H^s(\ci))$ to the $B_4$ ivp. Local Lipschitz continuity of the flow map will follow from estimates used to establish the contraction mapping. %
 %
 %
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%                Proof of Main Theorem
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
-\section{Proof of Main Theorem} 
-\label{sec:pf-main-thm}
-%
-%
-
-\subsection{Estimate for $\psi(t) R_{t})u_{0}$.} 
+\subsubsection{Estimate for $\psi(t) R_{t}u_{0}$.} 
+\label{sssec:est-init-term-1}
 We have
 %
 %
@@ -785,7 +809,8 @@ taking square roots of both sides gives
 %
 %
 
-\subsection{Estimate for $\psi(t) S_{t}u_{1}$.}
+\subsubsection{Estimate for $\psi(t) S_{t}u_{1}$.}
+\label{sssec:estimate-init-term-2}
 We have
 %
 %
@@ -898,7 +923,8 @@ taking square roots of both sides gives
   \label{eqn:u-1-fin-est}
 \end{equation}
 
-\subsection{Estimate for $\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'$.}
+\subsubsection{Estimate for $\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'$.}
+\label{sssec:non-lin-term}
 We define the spatial Fourier transform by 
 %
 %
@@ -954,15 +980,27 @@ Notice that \eqref{space-four-trans} is a \emph{global} relation in $t$.
 Hence, taking its time Fourier transform gives
 %
 %
-\begin{equation*}
+\begin{equation}
+  \label{full-fourier-trans-exp}
 \begin{split}
   \wh{f}(n, \tau) = \wh{w_{1}}(n, \tau - n^{2}) - \wh{w_{2}}(n, \tau +
   n^{2}).
 \end{split}
+\end{equation}
+%
+%
+Therefore, using the definition of the $X_{s,b}$ spaces, and applying the
+inequality 
+%
+%
+\begin{equation*}
+\begin{split}
+  (a + b)^{2} \le 4(a^{2} + b^{2})
+\end{split}
 \end{equation*}
 %
 %
-Therefore,
+gives 
 %
 %
 \begin{equation*}
@@ -972,26 +1010,15 @@ Therefore,
   | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) - \wh{w_{2}}(n, \tau +
   n^{2}) |^{2} d \tau
   \\
-  & \le  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & \lesssim  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
   | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) d \tau
   \\
-  & + 2 \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
-  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) \wh{w_{2}}(n, \tau + n^{2})
-  d \tau
-  \\
   & + \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
-  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau + n^{2}) d \tau
+  | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau + n^{2}) d \tau.
 \end{split}
 \end{equation*}
 %
 %
-\hrule
-{\bf Farah's paper says that the second term can be ignored. My guess is that $w_1(n,
-\tau - n^2)$ and $w_2(n, \tau + n^2)$ are orthogonal, but I am not yet able to
-show this.}
-\\
-\hrule
-
 Applying a change of variable implies
 %
 %
@@ -1000,7 +1027,7 @@ Applying a change of variable implies
 \begin{equation}
 \begin{split}
   \| f \|_{X_{s,b}}^{2}
-  & \le  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & \lesssim  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
   | \tau + n^{2} | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau) |^2 d \tau
   \\
   & + \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
@@ -1044,16 +1071,156 @@ Applying \autoref{lem:mod-princ-symb-bound} to \eqref{comp-pre-lemma} yields
 \begin{equation*}
 \begin{split}
 \| f \|_{X_{s,b}}^{2}
-  & \le \sum_{j=1}^{2}  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & \lesssim \sum_{j=1}^{2}  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
   \tau|)^{2b} | \wh{w_{j}}(n, \tau)|^2 d \tau
   \\
   & = \sum_{j=1}^{2} \sum_{n \in \zz} (1 + n^{2})^{s} \|\wt{w_{j}}(n, t)
-  \|^{2}_{H_{t}^{b}}.
+  \|^{2}_{H_{t}^{b}}
+  \\
+  & \simeq \sum_{n \in \zz}\left( \| \psi(t) \int_{0}^{t} \wt{u^2}(n, t')
+  e^{in^{2}t'}dt'  \|_{H_{t}^{b}} + \| \psi(t) \int_{0}^{t} \wt{u^2}(n, t')
+  e^{-in^{2}t'}dt'  \|_{H_{t}^{b}} \right).
+\end{split}
+\end{equation*}
+%
+We now need the following, whose proof if provided in the appendix.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Lemma to Reduce to Bilinear Est Form
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+Let $-1/2 < b' \le 0 < b \le b' + 1$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \psi(t) \int_{0}^{t} g(t') dt' \|_{H^{b}_{t}} \le T^{1-(b-b')} \| g
+  \|_{H_{t}^{b'}}.
 \end{split}
 \end{equation*}
 %
 %
-Collecting estimates, and recalling, 
+\label{lem:pre-bilin-est}
+\end{lemma}
+%
+%
+Applying the lemma, we bound the right hand side of \eqref{comp-pre-lemma} by
+%
+%
+\begin{equation*}
+\begin{split}
+  & T^{1-(b - b')} \left( \sum_{n \in \zz} (1 + |n|)^{s} \| \wt{u^{2}}(n, t')
+  e^{in^{2}t'} \|_{H_{t}^{b'}}  +
+  \sum_{n \in \zz} (1 + |n|)^{s} \| \wt{u^{2}}(n, t')
+  e^{-in^{2}t'} \|_{H_{t}^{b'}} \right)
+  \\
+  & = T^{1-(b -b')}\left( \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
+  |)^{2b'} \wh{u^{2}}(n, \tau - n^{2}) d \tau \right. 
+  \\
+  & +
+  \left . \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
+  |)^{2b'} \wh{u^{2}}(n, \tau + n^{2}) d \tau  \right)
+  \\
+  & = T^{1-(b -b')}\left( \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
+  + n^{2}
+  |)^{2b'} \wh{u^{2}}(n, \tau ) d \tau \right .
+  \\
+  & +
+  \left. \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
+  - n^{2} |)^{2b'} \wh{u^{2}}(n, \tau) d \tau  \right).
+\end{split}
+\end{equation*}
+%
+%
+Hence, applying \autoref{lem:mod-princ-symb-bound} we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  & \| f \|_{X_{s,b}}^{2} \lesssim T^{1-(b - b')} 
+  \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | |\tau|
+  - n^{2} |)^{2b'} \wh{u^{2}}(n, \tau) d \tau  
+  \\
+  & \simeq T^{(1-b - b')} \|u^{2} \|_{X_{s,b}}^{2}.
+\end{split}
+\end{equation*}
+%
+%
+Taking square roots and substituting back in for $f$ gives
+%
+%
+\begin{equation}
+\begin{split}
+  \|\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'\|_{X_{s,b}} \le c_{\psi, b,
+  b'} \| u^{2} \|_{X_{s,b'}}.
+\end{split}
+\label{eqn:non-lin-bound}
+\end{equation}
+%
+%
+To bound the right hand side, we now require a crucial bilinear
+estimate.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Bilinear Estimate
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+\label{prop:bilin-est}
+  Let $s > -1/4$ and $u,v \in X_{s, -a}$. If either
+  \begin{enumerate}[(i)]
+   \item{$s \ge 0$, $b > 1$, and $1/4 < a< 1/2$ }
+     \label{first-it}
+   \item{ $-1/4 < s< 0$, $b > 1/2$, and $1/4 < a < 1/2$ such that $| s | <
+     a/2$,}
+     \label{sec-item}
+  \end{enumerate}
+ then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| uv \|_{X_{s,-a}} \le c \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\end{proposition}
+%
+%
+Applying the bilinear estimate to \eqref{eqn:non-lin-bound}, we conclude that
+for given $s > -1/4$, we can choose $b, b'$ such that
+%
+%
+\begin{equation}
+\begin{split}
+\|\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'\|_{X_{s,b}} \le c_{\psi, b,
+  b'} \| u \|^2_{X_{s,b}}.
+\end{split}
+\label{eqn:nonlinear-term-bound}
+\end{equation}
+%
+%
+\subsubsection{Proof of Existence and Uniqueness in the Periodic Case}
+\label{sssec:proof-b4-per-case}
+%
+%
+Collecting estimates \eqref{eqn:u-0-fin-est}, \eqref{eqn:u-1-fin-est}, and
+\eqref{eqn:nonlinear-term-bound}, we 
 we obtain the following.
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1066,7 +1233,7 @@ we obtain the following.
 %
 \begin{proposition}
 \label{prop:contraction}
-Let $s \ge \frac{1-m}{4}$. Then
+Let $s > -\frac{1}{4}$. Then
 %
 %%
 \begin{equation*}
@@ -1080,7 +1247,7 @@ Let $s \ge \frac{1-m}{4}$. Then
 %%
 \end{proposition}
 We will now use \autoref{prop:contraction} to prove local well-posedness for the 
-$B_4$ ivp. Let $c = c_{\psi}$. For given $u_0, u_1$, we may choose $\psi$ such
+$B_4$ ivp. Let $c = c_{\psi, b}$. For given $u_0, u_1$, we may choose $\psi$ such
 that 
 %
 %%
@@ -1091,7 +1258,7 @@ that
 \end{equation*}
 %
 %%
-Then if $\|u\|_{X_{s,b}} \le \frac{1}{4c}$, we have
+Then $$\|u\|_{X_{s,b}} \le \frac{1}{4c}$$ implies
 %
 %%
 \begin{equation*}
@@ -1104,18 +1271,21 @@ Then if $\|u\|_{X_{s,b}} \le \frac{1}{4c}$, we have
 \end{equation*}
 %
 %%
-Hence, $T=T_{\vp}$ maps the ball $B\left( 0, \frac{1}{4c} \right) \subset X_{s,b}$ into 
-itself. Next, note that
+Hence, $T=T_{u_0, u_1}$ maps the ball $B\left( 0, \frac{1}{4c} \right) \subset
+X_{s,b}$ into itself. Next, note that 
 %
 %%
 \begin{equation*}
 	\begin{split}
 		Tu - Tv = 
-	\end{split}
+    \int_{0}^{t} S_{t-t'}
+    (u^{2} - v^{2})_{xx} dt'.
+  \end{split}
+  \label{eqn:integral-form-dif}
 \end{equation*}
 %
 %%
-where now $w =  \p_x^2 (u^2 - v^2)$. Rewriting
+Rewriting
 %
 %%
 \begin{equation*}
@@ -1126,9 +1296,8 @@ where now $w =  \p_x^2 (u^2 - v^2)$. Rewriting
 \end{equation*}
 %
 %%
-and repeating the arguments used to estimate 
-(in the
-bilinear estimates, we now set $f=u-v$ and $g = u+v$), we obtain
+and repeating the arguments used in \autoref{sssec:non-lin-term},
+we obtain
 %
 %%
 %%
@@ -1143,7 +1312,7 @@ bilinear estimates, we now set $f=u-v$ and $g = u+v$), we obtain
 \end{equation}
 %
 %%
-If $u, v \in B(0, \frac{1}{4c}) \subset X_{s,b}$, it follows that
+If $$ u, v \in B(0, \frac{1}{4c}) \subset X_{s,b},$$ then
 %
 %%
 \begin{equation}
@@ -1159,57 +1328,77 @@ If $u, v \in B(0, \frac{1}{4c}) \subset X_{s,b}$, it follows that
 %
 %%
 We conclude that $T = T_{\vp}$ is a contraction on the ball $B(0, 
-\frac{1}{4c}) \subset X_{s,b}$. A Picard iteration and application of 
-then yield a unique, local
-solution to the $B_4$ ivp. 
+\frac{1}{4c}) \subset X_{s,b}$. A Picard iteration then yields a unique solution
+$u \in X_{s,b}$ to \eqref{localized-int-eqn}. Applying
+\autoref{lem:embedding}, it follows that $u(x,t) \subset C( [-T, T], H^s$ is a unique
+solution of the B4 ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} for $t
+\in [-T, T]$.
+%
+%
+\subsubsection{Proof of Lipschitz Continuity in the Periodic Case} 
+\label{sssec:lip-continuity}
+%
+%
+We first define our notion of continuity.
+%
+%
 \begin{definition}
   Let $X, Y$ be Banach spaces, and equip $X \times Y$ with the product
-  topology (i.e. if $\|(f, g)\|_{X \times Y} = \|f\|_{X} + \|g\|_{Y}$).
-  We say that the flow map $(u_0, u_1) \mapsto u(t)$
-  is \emph{locally Lipschitz} in $X \times Y$
-	if for
-  $$(u_0, u_1), (v_0, v_1) \in B_R \doteq \{(f,g) \in X \times Y: \|f\|_{X} +
-  \|g\|_{Y}< R\},$$ there exist $C, T>0$
-	depending on $R$ such that $$\|u(\cdot, t) - v(\cdot, t)
+  topology (i.e. if $\|(f_0, f_1)\|_{X \times Y} = \|f_0\|_{X} + \|f_1\|_{Y}$).
+  We say that the data to solution
+  map $(f_0, f_1) \mapsto f(t)$ of the ivp $T_{f_0, f_1} f =
+  0$ is \emph{locally Lipschitz} in $X \times Y$ if for
+  $(u_0, u_1), (v_0, v_1) \in B_R \doteq \{(f_0,f_1) \in X \times Y: \|f_0\|_{X} +
+  \|f_1\|_{Y}< R\},$ there exist $C, T>0$ depending on $R$ and local solutions
+  $u(x,t), v(x,t)$
+  for $t \in [-T, T]$ of $T_{u_0, u_1}u=0, T_{v_0, v_1}v=0$ satisfying
+	$$\|u(\cdot, t) - v(\cdot, t)
   \|_X \le C \left( \|u_{0} - v_0 \|_{X} + \|u_{1} - v_1 \|_{Y}
-  \right) \ \ \text{for} \ \ t \in [-T, T].$$ We
+  \right), \quad t \in [-T, T].$$ We
 	say the flow map is \emph{locally uniformly
 	continuous} in $X$ if for
-	$u_0, v_0 \in B_R$ there exists $T >0$ depending on $R$ such that for
-	$t \in [-T, T]$, $\|u(\cdot, t) - v(\cdot, t) \|_{X} \to
-  0$ if $\|u_0 - v_0 \|_{X}, \|u_1 - v_1 \|_{Y} \to 0$. 
+	$u_0, v_0 \in B_R$ there exists $T >0$ depending on $R$ and local solutions
+  $u(x,t), v(x,t)$
+  for $t \in [-T, T]$ of $T_{u_0, u_1}u=0, T_{v_0, v_1}v=0$ such that 
+	$$ \|u(\cdot, t) - v(\cdot, t) \|_{X} \to
+  0 \ \ \text{if}  \ \ \|u_0 - v_0 \|_{X}, \|u_1 - v_1 \|_{Y} \to 0, \quad
+  t \in
+  [-T, T]. $$ 
 \end{definition}
 %
 %
-Clearly any locally Lipschitz flow map is locally uniformly continuous. 
+Notice that any locally Lipschitz flow map is locally uniformly continuous. 
 Next, we shall establish local Lipschitz continuity in $X_{s,b}$ of the flow
-map. Let $\vp_1, \vp_2 \subset H^s(\ci)$ be given. Choose $\psi$ such that
-$\vp_1, \vp_2 \subset B(0, \frac{15}{64c^{3}})$.  Then there exist $u_1, u_2 \in
-X_{s,b}$ such that $u_1 = T_{\vp_1}$, $u_2 = T_{\vp_2}$, and so
+map. Let $(u_0, u_1), (v_0, v_1) \subset \in H^{s}(\ci) \times H^{s-1}(\ci)  $
+be given. Choose $\psi$ such that $$(u_0, u_1), (v_0, v_1)  \subset B(0,
+\frac{15}{64c^{3}}).$$ Then there exist $u, v \in X_{s,b}$ such that $u =
+T_{u_0, u_1}$, $v = T_{v_0, v_1}$, and so
 %
 %
 \begin{equation}
 	\label{gen-1a}
 	\begin{split}
-		T_{\vp_1}(u) - T_{\vp_2}(v)
-		& = \frac{1}{2\pi} \psi(t) \sum_{n \in
-		\zzdot}e^{i\left( xn + tn^m \right)} \wh{\vp_1 - \vp_2}(n)
+		& T_{u_0, u_1}(u) - T_{v_0, v_1}(v)
 		\\
-		& + 	\end{split}
+    & = \psi(t ) R_{t}(u_{0} - v_0) + \psi(t) S_{t}(u_{1} - v_1)
+    + \psi(t) \int_{0}^{t} S_{t-t'}
+    (u^{2} - v^{2} )_{xx} dt'.
+		\end{split}
 \end{equation}
 %
 %
-where $w = \frac{1}{2} \p_x (u^2 - v^2)$. Using an argument similar to,
+Using arguments similar to those in 
+\autoref{sssec:est-init-term-1}-\autoref{sssec:estimate-init-term-2}
 we obtain
 %
 %
 \begin{equation}
 	\label{gen-2a}
 	\begin{split}
-		& \| R_t (u_0 - v_0)\|_{X_{s,b}}
+		& \| \psi(t ) R_t (u_0 - v_0)\|_{X_{s,b}}
 		\le c_{\psi, b} \|u_0 -v_0\|_{H^s},
     \\
-    & \| S_t (u_1 - v_1)\|_{X_{s,b}}
+    & \| \psi(t) S_t (u_1 - v_1)\|_{X_{s,b}}
     \le c_{\psi, b} \|u_1 -v_1\|_{H^{s-1}}.
 	\end{split}
 \end{equation}
@@ -1245,15 +1434,19 @@ which implies
 or
 %
 %
-\begin{equation*}
+\begin{equation}
 	\begin{split}
 		\|u -v \|_{X_{s,b}} \le 2 c_{\psi, b} \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
-        \|_{H^{s-1}\left( \ci \right)} \right )
+        \|_{H^{s-1}\left( \ci \right)} \right ).
 	\end{split}
-\end{equation*}
+  \label{pre-lem-estimate}
+\end{equation}
 %
 %
-Applying, we then obtain
+Applying  
+\autoref{lem:embedding} to \eqref{pre-lem-estimate}, we obtain 
+
+%
 %
 %
 	 %
@@ -1262,31 +1455,336 @@ Applying, we then obtain
 		 \begin{split}
 			\|u(\cdot, t) -v(\cdot, t) \|_{H^s(\ci)} \le
       2 c_{\psi, b} \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
-        \|_{H^{s-1}\left( \ci \right)} \right ), \qquad t \in [-T, T].
+        \|_{H^{s-1}\left( \ci \right)} \right ).
 		 \end{split}
 	 \end{equation*}
 	 %
 	 %
+Since $u,v$ are the unique solutions to the ivp
+\eqref{localized-int-eqn}, it follows that $u(x,t), v(x,t), t \in [-T, T]$ are unique
+local solutions to \eqref{eqn:mb-2} with
+initial data $(u_0, u_1), (v_0, v_1)$, respectively.
 Hence, the flow map of the $B_4$ ivp is locally Lipschitz continuous in
 $H^s(\ci)$. This
-concludes the proof of. \qquad \qedsymbol
+concludes the proof of well-posedness for the $B_4$ ivp
+\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2}. \qquad \qedsymbol
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%		Estimation of Integral Equality Part 1		
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
+%                Proof of Bilinear Estimate B4 Per
 %
 %
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\subsubsection{Proof of \autoref{prop:bilin-est}} 
+\label{sssec:proof-bilin-est}
+By
+duality, it suffices to show that when either \eqref{first-it} or
+\eqref{sec-item} are satisfied, we have
+%
+%%
+\begin{equation}
+	\label{duality-est}
+	\begin{split}
+	|	\sum_{n \in \zzdot}  (1 + |n|)^{s}
+		\int_{\rr} \phi(n, \tau) \wh{uv}(n, \tau)(1 
+    + | |\tau| - n^{2} |^{-a}) d \tau | \lesssim \|u\|_{X_{s,b}}
+    \|v\|_{X_{s,b}}
+    \|\phi \|_{L^{2}_{n, \tau}}.
+	\end{split}
+\end{equation}
+Note first that $|\wh{uv}(n, \tau) |  = | \wh{u} *  \wh{v} 
+(n, \tau)|$. From this it follows that
+%
+%
+\begin{equation}
+	\label{non-lin-rep}
+	\begin{split}
+		| \wh{uv}(n, \tau)|
+    & = | \sum_{n_{1} \in \zz }  \int
+    \wh{u}\left( n_1,  \tau_1 \right) \wh{v}\left( n - n_1 , \tau - \tau_1   
+\right) d \tau_1 |
+\\
+& \le  \sum_{n_{1} \in \zz }  \int
+    |\wh{u}\left( n_1,  \tau_1 \right)| |\wh{v}\left( n - n_1 , \tau - \tau_1   
+\right)| d \tau_1 
+\\
+& = \sum_{n_1 \in \zz } \int \frac{c_u\left( n_1, \tau_1 
+\right)}{\langle n_1 \rangle ^s \langle |\tau_1| - n_1^{2} | \rangle ^{b}}
+\\
+& \times \frac{c_{v}\left( n - n_1, \tau - \tau_1 \right)}{\langle n -
+n_1 \rangle ^s\ \langle |\tau - \tau_1 | -  (n - n_1)^{2} \rangle^{b}}
+  \ d \tau_1 
+\end{split}
+\end{equation}
+%
+%
+where for clarity of notation we have introduced 
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\langle k \rangle \doteq 1 + |k|
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+\begin{equation*}
+	\begin{split}
+		c_h(n, \tau) =
+			\langle n \rangle ^s \langle |\tau| - n^{2} \rangle ^{b} | \wh{h}\left( n, \tau \right) |.
+	\end{split}
+\end{equation*}
+%
+%
+From our work above, it follows that 
+%
+%
+\begin{equation}
+	\label{convo-est-starting-pnt}
+	\begin{split}
+		 & \langle n \rangle^s \langle \tau - n^{2} \rangle^{-a} | \wh{uv}\left( 
+		n, \tau \right) |
+		\\
+		& \le \langle |\tau| - n^{2} \rangle^{-a}
+		\sum_{n_1 \in \zz} \int \frac{\langle n \rangle^{s}}{\langle n_1 \rangle^s
+    \langle n - n_1 \rangle^s} 
+		\times \frac{c_f(n_1, \tau_1)}{\langle |\tau_1| - n_1^{2} \rangle ^{b}}
+		\\
+		& \times
+		\frac{c_g(n - n_1, \tau - \tau_1 )}{\langle |\tau - \tau_1| - (n - n_1)^{2}
+    \rangle^{b}}\ d \tau_1.
+	\end{split}
+\end{equation}
+%
+%
+Hence, 
+%
+%
+\begin{equation*}
+	\begin{split}
+    |\text{lhs of} \ \eqref{duality-est}|
+	& \lesssim \sum_{n \in \zz} \int_{\rr} \phi(n, \tau) \langle n \rangle^s \langle \tau - n^{2} \rangle^{-a}
+  \sum_{n_1 \in \zz}
+  \int_{\rr} c_f(n_1, \tau_1)
+		c_g(n - n_1, \tau - \tau_1 )
+		\\
+    & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
+    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau| - n^{2} \rangle
+    ^{b}\langle |\tau_{1}|-n_{1}^{2} \rangle ^{-b}\langle | \tau|-n_{2}^{2}
+    \rangle ^{b}} d \tau_1 d \tau
+	\end{split}
+\end{equation*}
+%
+%
+which by Cauchy-Schwartz is bounded by
+%
+%
+\begin{equation}
+	\label{10g}
+	\begin{split}
+    & \sum_{n \in \zz} \int_{\rr} \phi(n, \tau) \langle | \tau | - n^{2} \rangle
+    ^{-a} \langle n \rangle ^{s}
+    \\
+    & \times \left( \sum_{n_{1} \in \zz} \int_{\rr}
+    \frac{1}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle |
+    \tau_{1} | - n_{1}^{2}\rangle ^{2b} \langle | \tau - \tau_{1} | -
+    (n - n_{1})^{2} \rangle ^{2b}} d \tau_{1} \right)^{1/2}
+    \\
+    & \times \left( \sum_{n_{1} \in \zz} \int_{\rr} c_{u}^{2}(n, \tau_{1})
+    c_{v}^{2}(n - n_{1}, \tau - \tau_{1}) d \tau_{1} \right)^{1/2} d \tau
+  \end{split}
+\end{equation}
+%
+%
+Applying Cauchy-Schwartz again, \eqref{10g} is bounded by
+%
+%
+\begin{equation*}
+  \begin{split}
+  & \|\left( \sum_{n_{1} \in \zz }\int_{\rr } c_{u}^{2}(n_1, \tau_1)
+  c_{v}^{2} (n - n_1, \tau - \tau_{1} ) d \tau_1  \right)^{1/2} \|_{L^{2}(\zz \times
+		\rr)}
+		\\
+    & \times  \|\phi(n, \tau) \langle | \tau | - n^{2} \rangle ^{-a} \langle n
+    \rangle ^{s}
+		\\
+    & \times \left( \sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1}
+    \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2}
+    \rangle^{2b} \langle  |\tau -
+    \tau_{1} | -(n - n_{1}^{2}
+    \rangle^{2b} } d \tau_1 \right)^{1/2} \|_{L^2(\zz \times \rr)}
+		\\
+    & = \|u\|_{X_{s,b}} \|v\|_{X_{s,b}} \label{holder-term}
+     \|\phi(n, \tau)     \\
+    & \times \left( \langle | \tau | - n^{2} \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle
+n-n_{1} \rangle ^{2s}  \langle | \tau_{1}|-n_{1}^{2} \rangle^{2b} \langle  |\tau -
+    \tau_{1} | -(n - n_{1}^{2}
+    \rangle^{2b} } d \tau_1 \right)^{1/2} \|_{L^2(\zz \times \rr)}.
+  \end{split}
+\end{equation*}
+%
+Applying H{\"o}lder, we bound this by 
+%
+%
+\begin{equation*}
+	\begin{split}
+    & \|u\|_{X_{s,b}} \|v\|_{X_{s,b}} \| \phi \|_{L^{2}_{n, \tau}}
+    \\
+    & \times \|\left( \langle | \tau | - n^{2} \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle
+n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2b} \langle  |\tau -
+    \tau_{1} | -(n - n_{1}^{2}
+    \rangle ^{2b} } d \tau_1 \right)^{1/2} \|_{L^\infty_{n, \tau}}
+	\end{split}
+\end{equation*}
+%
+%
+Hence, to complete the proof, it will be enough
+to show that 
+%
+%
+%
+%
+\begin{equation}
+  \label{key-sup-estimate}
+	\begin{split}
+		 \| \langle | \tau | - n^{2} \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{  \langle n_{1} \rangle ^{2s} \langle
+n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2b}  \langle  |\tau -
+    \tau_{1} | -(n - n_{1}^{2}
+    \rangle ^{2b} } d \tau_1 \|_{L^\infty_{n, \tau}} < \infty.
+	\end{split}
+\end{equation}
+%
+%
+By the triangle inequality and the fact that 
+%
+%
+\begin{equation*}
+\begin{split}
+& | \tau | =
+\begin{cases}
+  - \tau, \quad & \tau < 0, 
+\\
+\tau, \quad & \tau > 0
+\end{cases}
+\end{split}
+\end{equation*}
+%
+%
+\eqref{key-sup-estimate} will be proved if we can bound the
+$L^{\infty}_{\tau, n}$ norm of the quantity
+%
+%
+\begin{equation}
+  \label{sup-est-gen}
+\begin{split}
+		  \langle \sigma \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
+d \tau_1 
+	\end{split}
+\end{equation}
+%
+for the following cases.
+\begin{enumerate}[(i)]
+    \item $ \sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau -
+      \tau_1+(n - n_1)^2$,
+\label{it-1}
+    \item $ \sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1+(n - n_1)^2$,
+\label{it-2}
+    \item  $\sigma=\tau+n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1+(n - n_1)^2$,
+      \label{it-3}
+    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$,
+\label{it-4}
+    \item $\sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$,
+\label{it-5}
+    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$.
+\label{it-6}
+\end{enumerate}
+%
+%
+\begin{framed}
+\begin{remark}
+Note that the cases $\sigma=\tau+n^2,\quad \sigma_1=\tau_1-n_1^2,\quad
+\sigma_2=\tau - \tau_1-(n - n_1)^2$ and $\sigma=\tau-n^2,\quad
+\sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1+(n - n_1)^2$ cannot occur, since
+$\tau_1< 0, \tau-\tau_1< 0$ implies $\tau<0$ and $\tau_1\geq 0, \tau-\tau_1\geq
+0$ implies $\tau\geq 0$.
+\end{remark}
+\end{framed}
+%
+Observe that the transformation $(n, \tau, n_{1}, \tau_{1}) \mapsto -(n, \tau,
+n_{1}, \tau_{1})$ reduces \eqref{it-3} to \eqref{it-4}, \eqref{it-2} to
+\eqref{it-5}, and \eqref{it-1} to \eqref{it-6}. Furthermore, the change of
+variables $\tau_{2} = \tau - \tau_{1}, n_{2} = n - n_{1}$, and the
+transformation $(n, \tau, n_{2}, \tau_{2}) \mapsto - (n, \tau, n_{2},
+\tau_{2})$ reduces \eqref{it-5} to \eqref{it-4}. Since $L^{2}$ is invariant
+under change of variables and reflections, we may without loss of generality
+restrict our attention to cases \eqref{it-4} and \eqref{it-6}.
+ \subsubsection{Case \eqref{it-6}} 
+\label{sssec:case-it-6}
+Let 
+%
+%
+\begin{align*}
+A_1&=\{(n, n_1, \tau, \tau_1)\in A: n=0\},\\
+A_2&=\{(n, n_1, \tau, \tau_1)\in A: n_1 = n \},\\
+A_3&=\{(n, n_1, \tau, \tau_1)\in A: n_1=0 \},\\
+A_4&=\{(n, n_1, \tau, \tau_1)\in A: n \neq 0, n_1 \neq 0 \text{ and } n_1 \neq n \}.
+\end{align*} 
+%
+%
+Then 
+%
+%
+\begin{equation}
+  \label{n=0}
+\begin{split}
+  |  \eqref{sup-est-gen} \chi_{A_{1}}| = | \langle \tau \rangle ^{-2a} \sum_{n_{1}} \langle
+  n_{1}\rangle ^{-4s} \int_{\rr} \frac{1}{\langle \tau_{1} - n_{1}^{2} \rangle ^{2b}\langle
+  \tau - \tau_{1} - n_{1}^{2}\rangle ^{2b}}d \tau_{1} |
+\end{split}
+\end{equation}
+%
+%
+Following Ginibre, Tsutsumi, Velo --- and Kenig \cite{Kenig:1996aa}, and others,
+we now need the following Calculus lemma.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Calculus Lemma
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+	\label{lem:calc}
+ %
+ %
+ For $p, q>0$ and $r=\min\{ p, q, p+q-1\}$ with $p+q>1$, there exists $c>0$ such that
+\begin{equation*}
+\int_{-\infty}^{+\infty}\frac{dx} {\langle x-\alpha\rangle^{p}\langle x-\beta\rangle^{q}}\leq\dfrac{c} {\langle \alpha-\beta\rangle^{r}}.
+\end{equation*}
+ %
+ %
+ \end{lemma}
 
 
 %
@@ -1298,8 +1796,589 @@ concludes the proof of. \qquad \qedsymbol
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+Applying the calculus lemma, it follows from \eqref{n=0} that
 %
+\begin{equation*}
+\begin{split}
+  |\eqref{sup-est-gen} \chi_{A_{1}} |  & \lesssim \| \langle \tau \rangle ^{-2a} \sum_{n_{1} \in \zz} \frac{\langle n_{1} \rangle
+  ^{-4s}}{ \langle \tau - 2n_{1}^{2}  \rangle ^{2b}} \|_{L^{\infty}_{\tau}}
+  \\
+  & \simeq \sum_{n_{1}} \langle n_{1} \rangle ^{-4s - 4b}
+  \\
+  & < \infty, \quad s > \frac{1-4b}{4}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%\begin{framed}
+%\begin{remark}
+%Later, we will see that we will need to assume $b>1/4$, which gives $s>0$. The
+%well-posedness result for the Boussinesq is $s>-1/4$. To see why, we note that
+%for the Boussinesq, the analogue of the left hand side of \eqref{sup-est-gen} is
+
+%\begin{equation}
+  %\label{sup-est-gen-Boussinesq}
+%\begin{split}
+		 %\| \langle \sigma \rangle ^{-2a} \langle n
+     %\rangle ^{2s} \frac{ n^{4}}{n^{2} + n^{4}}
+%\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+%\langle \sigma_{1} \rangle \langle  \sigma_{2} \rangle
+%d \tau_1} \|_{L^\infty_{n, \tau}} < \infty
+	%\end{split}
+%\end{equation}
+
+%\label{rem:difference-b4-boussinesq}
+%%
+%%
+%which for $n=0$ is trivially bounded, since $$\frac{n^{4}}{n^{2} +
+%n^{4}}=0$$ at $n=0$
+%($n=0$ is a removable singularity. See \autoref{rem:analytic-extension}). This is \emph{NOT} the case for the
+%$B_{4}$ ivp, since the Boussinesq
+%quantity $$\frac{n^{4}}{n^{2} + n^{4}}$$ is replaced by
+%the $B_{4}$ quantity $$\frac{n^{4}}{n^{4}}$$ which is equal to $1$ at
+%$n=0$. In short, we miss the extra smoothing coming from the Laplacian that is
+%available for the Boussinesq. This same pathological behavior occurs for the
+%NLS---lack of smoothing near the $0th$ Fourier mode is what makes us unable to get a well-posedness result better than
+%$s > 0$ in the periodic case--it CHEATS us out of the extra $1/4$ smoothing we
+%should be getting, and which is found in the case on the line.
+%%
+%%
+%\end{remark}
+%\end{framed}
+%
+%
+Similarly, substitution and \autoref{lem:calc} give
+%
+%
+\begin{equation}
+\begin{split}
+  |  \eqref{sup-est-gen} \chi_{A_{2}}|
+  & = | \langle \tau -n^{2} \rangle ^{-2a}\int_{\rr} \frac{1}{\langle \tau_{1} -
+  n^{2} \rangle ^{2b}\langle
+  \tau - \tau_{1}\rangle ^{2b}}d \tau_{1} |
+  \\
+  & \lesssim |  \langle \tau - n^{2} \rangle ^{-2a-2b} |
+  \\
+  & < \infty, \quad b \ge -a,
+\end{split}
+\end{equation}
+%
+%
+%
+%
+\begin{equation}
+\begin{split}
+  |  \eqref{sup-est-gen} \chi_{A_{3}}|
+  & = \langle \tau - n^{2} \rangle ^{-2a}
+  \int_{\rr} \frac{1}{ \langle \tau_{1} \rangle^{2b}  \langle \tau -
+  \tau_{1} - n^{2} \rangle^{2b}}
+d \tau_1 
+\\
+  & \lesssim |  \langle \tau - n^{2} \rangle ^{-2a-2b} |
+  \\
+  & < \infty, \quad b \ge -a.
+	\end{split}
+\end{equation}
+%
+%
+and
+%
+%
+\begin{equation*}
+\begin{split}
+  | \eqref{sup-est-gen} \chi_{A_{4}} |
+  & = 
+  \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A_{4}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\\
+& = \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{j=1}^{2} \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A_{4,j}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\end{split}
+\end{equation*}
+%
+%
+where we have partioned $ A_{4}$ into two parts
+\begin{align*}
+A_{4,1}&=\{(n, n_1, \tau, \tau_1)\in A_3: |\tau_1-n_1^2|\leq|\tau-n^2|\},\\
+A_{4,2}&=\{(n, n_1, \tau, \tau_1)\in A_3: |\tau-n^2|\leq|\tau_1-n_1^2| \}.
+\end{align*} 
+Furthermore, by the symmetry of the convolution, we may assume without loss of
+generality that
+$$|(\tau-\tau_1)-(n-n_1)^2|\leq|\tau_1-n_1^2|\}.$$
+Noting that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \tau - n^{2} - \left[ (\tau - n_{1}^{2}) + (\tau - \tau_{1}) - (n -
+  n_{1})^{2} \right] = 2n_{1}(n - n_{1}).
+\end{split}
+\end{equation*}
+%
+%
+we have in region $A_{4}$ 
+%
+%
+\begin{enumerate}[(i)]
+  \item{$\langle \tau - n^{2} \rangle  \gtrsim \langle n_{1}(n - n_{1}) \rangle$, or}
+    \\
+  \item{  $\langle \tau_{1} - n_{1}^{2} \rangle  \gtrsim \langle n_{1}(n -
+    n_{1}) \rangle$, or}
+    \\
+  \item{ $\langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle  \gtrsim \langle n_{1}(n -
+    n_{1}) \rangle$}.
+\end{enumerate}
+In region $A_{4,1}$, these reduce to the single case $ \langle \tau - n^{2} \rangle
+\gtrsim \langle n_{1}(n - n_{1}) \rangle$, and in region $A_{4,2}$ to the single
+case $ \langle \tau_{1} - n_{1}^{2} \rangle
+\gtrsim \langle n_{1}(n - n_{1}) \rangle$. Estimating first in region
+$A_{4,1}$, we apply \autoref{lem:calc} and obtain
+%
+%
+%
+%
+\begin{equation}
+  \label{region-a41}
+\begin{split}
+& \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A_{4,1}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\\
+& \lesssim \langle \tau - n^{2} \rangle ^{-2a} \langle n \rangle ^{2s}
+\sum_{n_{1} \in
+\zz}  \frac{\chi_{A_{4,1}}}{\langle n_{1} \rangle ^{2s} \langle n - n_{1} \rangle
+^{2s} \langle \tau - n^{2} - 2n_{1}^{2} + 2nn_{1}  \rangle ^{2b}}
+\\
+& \lesssim 
+\sum_{n_{1} \in
+\zz}  \frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}(n - n_{1}) \rangle
+^{2a}} \times \frac{\chi_{A_{4,1}}}{\langle \tau - n^{2} - 2n_{1}^{2} + 2nn_{1}
+\rangle ^{2b}}.
+\end{split}
+\end{equation}
+%
+%
+But
+%
+%
+\begin{equation}
+  \label{prelim-int-est}
+\begin{split}
+& \frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}(n - n_{1}) \rangle
+^{2a}}
+\\
+& \lesssim  \frac{| n_1 | ^{-2s} | n - n_{1} | ^{-2s}}{|
+n | ^{-2s} | n_{1}(n - n_{1}) |
+^{2a}}, \quad n \neq 0, n_1 \neq 0, n \neq n_1 
+\\
+& = | n - n_{1} |^{-2s-2a}|n_{1}|^{-2s-2a}| n |^{2s}
+\\
+& \lesssim \begin{cases}
+  | n |^{\cancel{-2s}-2a}| n_{1} |^{-2s-2a} | n_{1} |^{-2s-2a}\cancel{| n
+  |^{2s}}, \quad & s < 0, \quad a \ge -s
+\\
+| n - n_{1} |^{\cancel{-2s}-2a}|n_{1}|^{\cancel{-2s}-2a}{\cancel{| n
+-n_{1}|^{2s}}\cancel{| n_{1}
+|^{2s}}}, \quad & s \ge 0. 
+\end{cases}
+\end{split}
+\end{equation}
+%
+%
+where the last step follows from the following.
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Integer Bound
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  Let $n, n_1 \in \zz$ such that $n_{1} \neq 0$ and $n_{1} \neq n$.
+  Then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    | n | \le | n - n_{1} | | n_{1} |.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{lem:integer-bound}
+\end{lemma}
+%
+Since $a \ge 0$, it follows from \eqref{prelim-int-est} that 
+%
+\begin{equation*}
+\frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}(n - n_{1}) \rangle
+^{2a}} \lesssim 1, \quad s \ge 0 \text{ or } s < 0, a \ge s
+\end{equation*}
+%
+%
+which we use to bound the right hand side of \eqref{region-a41} by
+%
+%
+\begin{equation*}
+\begin{split}
+\sum_{n_{1} \in
+\zz} 
+\frac{1}{\langle \tau - n^{2} - 2n_{1}^{2} + 2nn_{1}  \rangle ^{2b}}
+\end{split}
+\end{equation*}
+%
+%
+%
+which is finite for $b > 1/4$, due to the following lemma, which can be found in. 
+\begin{lemma}
+  \label{lem:sum-estimate}
+If $\gamma>1/2$, then
+\begin{equation}\label{CI2}
+\sup_{(n,\tau)\in \zz \times \rr}\sum_{n_1\in \zz}\frac{1}{(1+|\tau\pm n_1(n-n_1)|)^{\gamma}}<\infty. 
+\end{equation}
+\end{lemma}
+%
+Recalling that 
+$$ \langle \tau_{1} - n_{1}^{2} \rangle
+\gtrsim \langle n_{1}(n - n_{1}) \rangle$$
+%
+in region $A_{4,2}$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+& \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A_{4,1}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\\
+& \lesssim \langle \tau - n^{2}  \rangle ^{-2a}     \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A_{4,1}} \langle n
+    \rangle ^{2s}
+}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle n_{1}(n - n_{1}) \rangle ^{2b} \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\end{split}
+\end{equation*}
+%
+%
+which by computation similar to \eqref{prelim-int-est}
+is bounded by
+%
+%
+\begin{equation}
+  \label{prelim-int-est-2}
+\begin{split}
+\langle \tau - n^{2}  \rangle ^{-2a} \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A_{4,1}} }{ \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle^{2b}}
+d \tau_1 
+\end{split}
+\end{equation}
+%
+%
+for $s \ge 0$ or $s \le 0, b \ge -2s$. If $b > 1/2$, then integrating in
+$\tau_{1}$ and discarding the  $\langle \tau - n^{2}  \rangle ^{-2a}$ term, we
+then bound \eqref{prelim-int-est-2} by
+%
+%
+\begin{equation*}
+\begin{split}
+  C \sum_{n_{1} \in \zz} \frac{\chi_{A_{4,1}}}{\langle \tau - (n -
+  n_{1})^{2} \rangle ^{2b -1}}
+  & \simeq
+  \sum_{n_{1} \in \zz} \frac{\chi_{A_{4,1}}}{\langle \tau - n^{2} +
+  2nn_{1} - n_{1}^{2}
+  \rangle ^{2b -1}}
+  \\
+  & < \infty, \quad b > 1/2
+\end{split}
+\end{equation*}
+%
+%
+where the last step follows from  \autoref{lem:sum-estimate}.
+\subsubsection{Case \eqref{it-4}} 
+\label{sssec:case-it-4}
+Let 
+%
+%
+\begin{align*}
+B_1&=\{(n, n_1, \tau, \tau_1)\in B: n=0\},\\
+B_2&=\{(n, n_1, \tau, \tau_1)\in B: n_1 = 0 \},\\
+B_3&=\{(n, n_1, \tau, \tau_1)\in B: n \neq 0, n_1 \neq 0 \}.
+\end{align*} 
+%
+%
+Then 
+%
+%
+\begin{equation}
+\begin{split}
+  |  \eqref{sup-est-gen} \chi_{B_{1}}| = | \langle \tau \rangle ^{-2a} \sum_{n_{1}} \langle
+  n_{1}\rangle ^{-4s} \int_{\rr} \frac{1}{\langle \tau_{1} + n_{1}^{2} \rangle ^{2b}\langle
+  \tau - \tau_{1} - n_{1}^{2}\rangle ^{2b}}d \tau_{1} |
+\end{split}
+\end{equation}
+Applying \autoref{lem:calc}, it follows that
+%
+\begin{equation*}
+\begin{split}
+  |\eqref{sup-est-gen} \chi_{B_{1}} |  & \lesssim \| \langle \tau \rangle ^{-2a} \sum_{n_{1} \in \zz} \frac{\langle n_{1} \rangle
+  ^{-4s}}{ \langle \tau - 2n_{1}^{2}  \rangle ^{2b}} \|_{L^{\infty}_{\tau}}
+  \\
+  & \simeq \sum_{n_{1}} \langle n_{1} \rangle ^{-4s - 4b}
+  \\
+  & < \infty, \quad s > \frac{1-4b}{4}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+\begin{framed}
+\begin{remark}
+Again, we have come across a pathological case, lowering our well-posedness
+result from $s > -1/4$ to $s \ge 0$. 
+%
+\end{remark}
+\end{framed}
+Similarly, substitution and \autoref{lem:calc} give
+%
+%
+\begin{equation}
+\begin{split}
+  |  \eqref{sup-est-gen} \chi_{B_{2}}|
+  & = | \langle \tau +n^{2} \rangle ^{-2a}\int_{\rr} \frac{1}{\langle \tau_{1}\rangle ^{2b}\langle
+  \tau - \tau_{1} - n^{2} \rangle ^{2b}}d \tau_{1} |
+  \\
+  & \lesssim |  \langle \tau - n^{2} \rangle ^{-2a-2b} |
+  \\
+  & < \infty, \quad b \ge -a.
+\end{split}
+\end{equation}
+and
+%
+%
+\begin{equation*}
+\begin{split}
+  | \eqref{sup-est-gen} \chi_{B_{3}} |
+  & = 
+  \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{B_{3}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\\
+& = \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{j=1}^{2} \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{B_{3,j}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\end{split}
+\end{equation*}
+%
+%
+where we have partioned $ B_{3}$ into two parts
+\begin{align*}
+B_{3,1}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau_1-n_1^2|\leq|\tau-n^2|\},\\
+B_{3,2}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau-n^2|\leq|\tau_1-n_1^2| \}.
+\end{align*} 
+Furthermore, by the symmetry of the convolution, we may assume without loss of
+generality that
+$$|(\tau-\tau_1)-(n-n_1)^2|\leq|\tau_1-n_1^2|\}.$$
+Noting that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \tau - n^{2} - \left[ (\tau + n_{1}^{2}) + (\tau - \tau_{1}) - (n -
+  n_{1})^{2} \right] = 2n_{1}n
+\end{split}
+\end{equation*}
+%
+%
+we have in region $B_{3}$ 
+%
+%
+\begin{enumerate}[(i)]
+  \item{$\langle \tau - n^{2} \rangle  \gtrsim \langle n_{1}n \rangle$, or}
+    \\
+  \item{  $\langle \tau_{1} - n_{1}^{2} \rangle  \gtrsim \langle n_{1}n \rangle$, or}
+    \\
+  \item{ $\langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle  \gtrsim \langle n_{1}n
+    \rangle$}.
+\end{enumerate}
+In region $B_{3,1}$, these reduce to the single case $ \langle \tau - n^{2} \rangle
+\gtrsim \langle n_{1}n \rangle$, and in region $B_{3,2}$ to the single
+case $ \langle \tau_{1} - n_{1}^{2} \rangle
+\gtrsim \langle n_{1}n \rangle$. Estimating first in region
+$B_{3,1}$, we apply \autoref{lem:calc} and obtain
+%
+%
+%
+%
+\begin{equation}
+  \label{region-b31}
+\begin{split}
+& \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{B_{3,1}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} + n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\\
+& \lesssim \langle \tau - n^{2} \rangle ^{-2a} \langle n \rangle ^{2s}
+\sum_{n_{1} \in
+\zz}  \frac{\chi_{B_{3,1}}}{\langle n_{1} \rangle ^{2s} \langle n - n_{1} \rangle
+^{2s} \langle \tau - n^{2} + 2nn_{1}  \rangle ^{2b}}
+\\
+& \lesssim 
+\sum_{n_{1} \in
+\zz}  \frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}n \rangle
+^{2a}} \times \frac{\chi_{B_{3,1}}}{\langle \tau - n^{2} + 2nn_{1}
+\rangle ^{2b}}.
+\end{split}
+\end{equation}
+%
+%
+But for $n = n_{1}$, 
+%
+%
+\begin{equation}
+  \label{prelim-int-est-b-1}
+\begin{split}
+\frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}n \rangle
+^{2a}} \le 1
+\end{split}
+\end{equation}
+while for $n \neq 0, n_{1} \neq 0, n \neq n_{1}$, 
+\begin{equation}
+  \begin{split}
+  \label{prelim-int-est-b-2}
+& \frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}n \rangle
+^{2a}} 
+\\
+& \le \begin{cases}
+  | n_{1} |^{-4s-2a} , \quad & s < 0
+\\
+1, \quad  & s \ge 0. 
+\end{cases}
+\end{split}
+\end{equation}
+%
+%
+where the last step follows from \autoref{lem:integer-bound}. Since $a \ge 0$,
+it follows from \eqref{prelim-int-est-b-1}-\eqref{prelim-int-est-b-2} that 
+%
+\begin{equation*}
+\frac{\langle n_1 \rangle ^{-2s} \langle n - n_{1} \rangle ^{-2s}}{\langle
+n \rangle ^{-2s} \langle n_{1}(n - n_{1}) \rangle
+^{2a}} \le 1, \quad s \ge 0 \text{ or } s<0, s \ge -a/2 
+\end{equation*}
+%
+%
+which we use to bound the right hand side of \eqref{region-b31} by
+%
+%
+\begin{equation*}
+\begin{split}
+\sum_{n_{1} \in
+\zz} 
+\frac{1}{\langle \tau - n^{2} + 2nn_{1}  \rangle ^{2b}}
+\end{split}
+\end{equation*}
+%
+%
+%
+which is finite for $b > 1/4$, due to \autoref{lem:sum-estimate}.
+Recalling that 
+$$ \langle \tau_{1} - n_{1}^{2} \rangle
+\gtrsim \langle n_{1}n \rangle$$
+%
+in region $B_{3,2}$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+& \langle \tau - n^{2}  \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{B_{3,1}}}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \tau_{1} + n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\\
+& \lesssim \langle \tau - n^{2}  \rangle ^{-2a}     \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{B_{3,1}} \langle n
+    \rangle ^{2s}
+}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle n_{1}n \rangle ^{2b} \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
+d \tau_1 
+\end{split}
+\end{equation*}
+%
+%
+which by computation similar to \eqref{prelim-int-est-b-2}
+is bounded by
+%
+%
+\begin{equation}
+  \label{prelim-int-est-2-b}
+\begin{split}
+\langle \tau - n^{2}  \rangle ^{-2a} \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{B_{3,1}} }{ \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle^{2b}}
+d \tau_1 
+\end{split}
+\end{equation}
+%
+%
+for $s \ge 0$ or $s \le 0, b \ge -2s$. If $b > 1/2$, then integrating in
+$\tau_{1}$ and discarding the  $\langle \tau - n^{2}  \rangle ^{-2a}$ term, we
+then bound \eqref{prelim-int-est-2-b} by
+%
+%
+\begin{equation*}
+\begin{split}
+  C \sum_{n_{1} \in \zz} \frac{\chi_{B_{3,1}}}{\langle \tau - (n -
+  n_{1})^{2} \rangle ^{2b -1}}
+  & \simeq
+  \sum_{n_{1} \in \zz} \frac{\chi_{B_{3,1}}}{\langle \tau - n^{2} +
+  2nn_{1} - n_{1}^{2}
+  \rangle ^{2b -1}}
+  \\
+  & < \infty, \quad b > 1/2
+\end{split}
+\end{equation*}
+%
+%
+where the last step follows from  \autoref{lem:sum-estimate}.
+
 \section{Second order Modified Boussinesq  equation}
 \label{sec:intro}
 We consider the initial value problem (ivp) for a modified Boussinesq
@@ -1351,6 +2430,59 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 \newpage
 \appendix
 \section{}
+%\subsection{Proof of \autoref{lem:embedding}}
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\| u(t) - u(t') \|_{H^s}^{2}
+  %& = \sum_{n \in \zz} (1 + n^{2})^{s} [\wt{u}(n, t) - \wt{u}(n, t')]
+  %\\
+  %& = \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (e^{it\tau} - e^{it'
+  %\tau})\wh{u}(n, \tau) d \tau
+  %\\
+  %& \le 2 \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} \wh{u}(n, \tau) d \tau
+  %\\
+  %& \simeq \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + | | \tau | -
+  %n^{2} |)^{b}(1 + | | \tau | - n^{2} |)^{-b} | \wh{u}(n, \tau) | d \tau.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%Applying Cauchy-Schwartz in $\tau$, we bound this by
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %& \sum_{n \in \zz} (1 + n^{2})^{s} \left[ \int_{\rr} (1 + | | \tau | -
+  %n^{2} |)^{2b} | \wh{u}(n, \tau) |^{2} d \tau \right]^{1/2} \left[ \int_{\rr}
+  %(1 + | | \tau | - n^{2} |)^{-2b} d \tau \right]^{1/2}
+  %\\
+  %& = \sum_{n \in \zz} (1 + n^{2})^{s} \left[ \int_{\rr} (1 + | | \tau | -
+  %n^{2} |)^{2b} | \wh{u}(n, \tau) |^{2} d \tau \right]^{1/2} \left[ \int_{\rr}
+  %(1 +  | \tau' | )^{-2b} d \tau' \right]^{1/2}
+  %\\
+  %& = c \sum_{n \in \zz} (1 + n^{2})^{s} \left[ \int_{\rr} (1 + | | \tau | -
+  %n^{2} |)^{2b} | \wh{u}(n, \tau) |^{2} d \tau \right]^{1/2} \qquad (b > 1/2). 
+%\end{split}
+%\end{equation*}
+%%
+%%
+%%
+%%
+%Applying Cauchy-Schwartz in $n$ then gives the bound
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + | | \tau | - n^{2}
+  %|)^{2b} \wh{u}(n, \tau) d \tau = \| u \|_{X_{s,b}}^{2}.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%An application of dominated convergence completes the proof. \qquad \qedsymbol
+%
 \subsection{Proof of \autoref{lem:mod-princ-symb-bound}} 
 \label{ssec:pf-mod-princ}
 By the reverse triangle inequality, we have
@@ -1384,9 +2516,32 @@ while if $\tau - n^{2} > 0$, then
 %
 %
 completing the proof. \qquad \qedsymbol
+%
+%
+
 
 %\nocite{*}
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%
+%
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
 
+\bib{Kenig:1996aa}{article}{
+      author={Kenig, Carlos~E.},
+      author={Ponce, Gustavo},
+      author={Vega, Luis},
+       title={A bilinear estimate with applications to the {K}d{V} equation},
+        date={1996},
+        ISSN={0894-0347},
+     journal={J. Amer. Math. Soc.},
+      volume={9},
+      number={2},
+       pages={573\ndash 603},
+         url={http://dx.doi.org/10.1090/S0894-0347-96-00200-7},
+      review={\MR{1329387 (96k:35159)}},
+}
 
-\end{document}
+\end{biblist}
+\end{bibdiv}\end{document}
