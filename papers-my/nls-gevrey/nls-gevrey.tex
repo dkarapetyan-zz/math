@@ -4,6 +4,7 @@
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate}
 %\usepackage{showkeys}  %shows source equation labels on the pdf
 \usepackage[margin=3cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
@@ -142,6 +143,135 @@ where $\lambda =\pm 1$, and prove the following theorem.
 \end{theorem}
 %
 %
+%
+%
+\begin{framed}
+\begin{remark}
+The cubic NLS has a number of invariances. 
+\begin{enumerate}[(i)]
+  \item{ $u_{\gamma} = \gamma u(\gamma x, \gamma^{2} t)$ with critical Sobolev index
+    $s_{c} = -1/2$}.
+    \label{invar-it-1}
+  \item{ $u_{a,b}(x,t) = u(x -a, t - b), a \in \rr, b \in \rr$}.
+    \label{invar-it-2}
+  \item{ $u_{\theta}(x,t) = e^{i \theta} u(x, t), \theta \in \rr$}.
+    \label{invar-it-3}
+  \item{ $u_{c}(x,t) = e^{icx - i| c^{2} |t}u(x -2tc, t), c \in \rr$}.
+    \label{invar-it-4}
+\end{enumerate}
+{\bf Proof of \eqref{invar-it-1}.}
+Let $u(x, t)$ be a solution to the $NLS$ equation, that is
+%
+$$
+NLS(u)=
+i \p_t u + \p_x^{2} u  + | u |^{2} u  = 0
+$$
+%
+We would like to find the constants
+$a, b, c$ such that
+\[
+u_\gamma (x, t) = \gamma^a u(\gamma^b x, \gamma^c t)
+\]
+is also a solution to $NLS$.  Since 
+$$
+NLS(u_\gamma)=
+i \gamma^{a + c} \p_t u + \gamma^{a + 2b} \p_x^{2} u  + \gamma^{3a} | u |^{2} u 
+$$
+we see that $u_\gamma$ is a $NLS$ solution only if
+$$
+a=b, c = 2a.
+$$
+Setting $a=1$ completes the proof. 
+To find the critical Sobolev index, we compute
+%
+%
+\begin{equation}
+\begin{split}
+  \| u_{\gamma} \|_{\dot{H}^s(\ci)} 
+  & = \gamma \| u(\gamma x, \gamma^2 t) \|_{\dot{H}^{s}(\ci)}
+  \\
+  & = \gamma \left( \int_{\rr} | \xi |^{2s} | \wh{u(\gamma x,
+  \gamma^{2} t)}^x (\xi, t)| \right)^{1/2}.
+\end{split}
+\label{crit-ind-comp}
+\end{equation}
+%
+But
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{u(\gamma x, \gamma^{2}t)^x}(\xi, t)
+  & = \int_{\rr}e^{-i\xi x}u(\gamma x, \gamma^2 t) dx
+  \\
+  & = \frac{1}{\gamma} \int_{\rr}e^{-i \frac{n}{\gamma} x'}u(x',
+  \gamma^{2} t) dx'
+  \\
+  & = \frac{1}{\gamma} \wh{u(\cdot, \gamma^{2}t)}(\frac{\xi}{\gamma})
+\end{split}
+\end{equation*}
+%
+%
+Substituting back into \eqref{crit-ind-comp}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{\gamma} \|_{\dot{H}^s(\rr)} 
+  & = \gamma\left( \int_{\rr} | \xi |^{2s} |
+  \frac{1}{\gamma}\wh{u(\cdot, \gamma^{2}t)}(\frac{\xi}{\gamma}) |^2 d \xi
+  \right)^{1/2}
+  \\
+  & = \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
+  \gamma^{2}t)}(\frac{\xi}{\gamma}) |^2 d \xi  \right)^{1/2}
+  \\
+  & = \left( \int_{\rr} | \gamma \xi' |^{2s} 
+  \wh{u(\cdot, \gamma^{2}t)}(\xi') |^2 \gamma d \xi
+  \right)^{1/2}
+  \\
+  & = \gamma^{s + 1/2} \|u(\cdot, \gamma^{2}t) \|_{\dot{H}^s (\ci)}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore, $\| u_{\gamma(0)} \|_{\dot{H}^s(\rr)} = \gamma^{s + 1/2} \|
+u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=-1/2$ is the critical Sobolev index.
+\label{rem:invariances}
+\\
+{\bf Proof of \eqref{invar-it-2}.} Let $u(x, t)$ be a solution to the $NLS$ equation.
+We would like to find constants
+$a, b \in \rr$ such that $$u_{a,b}(x,t) = u(x -a, t - b)$$ is a solution the NLS
+equation. Since
+%
+%
+\begin{equation*}
+\begin{split}
+  NLS(u_{a,b}) = i \p_t u + \p_x^{2} u  + | u |^{2} u 
+\end{split}
+\end{equation*}
+%
+%
+we see that $u_{a,b}$ is a solution to the NLS equation for all $a, b \in \rr$.
+This completes the proof.
+\\
+{\bf Proof of \eqref{invar-it-3}.}
+Let $u(x, t)$ be a solution to the $NLS$ equation.
+We would like to find a constant
+$c \in \cc$ such that
+\[
+u_c (x, t) = c u(x, t)
+\]
+is also a solution to $NLS$.  Since 
+$NLS(u_{c}) = c i \p_{t} u  + c \p_{x}^{2} u + |c|^2c | u |^{2}u$, we obtain
+$|c|^{2} = 1$, or $c = e^{i \theta}$, for any $\theta \in \rr$.
+\\
+{\bf Proof of \eqref{invar-it-4}.} Pending. Want to find a clever (i.e. natural)
+way of coming up with the galilean invariance, rather than just verifying the relation.
+\end{remark}
+\end{framed}
+%
+%
+
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
