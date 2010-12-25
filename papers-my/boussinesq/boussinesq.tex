@@ -494,20 +494,18 @@ and prove the following.
 %
 %
 \begin{theorem}
-  If $s>s_c = -1/4$ then 
-  then the $B_{4}$ ivp is well-posed
+  The $B_{4}$ ivp is well-posed
   \begin{enumerate}[(i)]
-    \item In $H^s(\rr)$ if $s > s_c$
-    \item In $H^{s}(\ci)$ if $s > s_c$,
+    \item In $H^s(\rr)$ if $s > -1/4$
+    \item In $H^{s}(\ci)$ if $s > 1/4$,
   \end{enumerate}
   and the data-to-solution map is locally Lipschitz. Furthermore, these results
   are optimal in the sense that uniform continuity of the flow map fails for $s
-  \le -1/4$. 
+  \le 1/4$ in the periodic case and $s < -1/4$ in the real case. 
   \label{thm:wp-2}
 \end{theorem}
 %
 
-%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1083,7 +1081,7 @@ Applying \autoref{lem:mod-princ-symb-bound} to \eqref{comp-pre-lemma} yields
 \end{split}
 \end{equation*}
 %
-We now need the following, whose proof if provided in the appendix.
+We now need the following, whose proof is provided in the appendix.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1181,15 +1179,8 @@ estimate.
 %
 \begin{proposition}
 \label{prop:bilin-est}
-  Let $s > -1/4$ and $u,v \in X_{s, -a}$. If either
-  \begin{enumerate}[(i)]
-   \item{$s \ge 0$, $b > 1$, and $1/4 < a< 1/2$ }
-     \label{first-it}
-   \item{ $-1/4 < s< 0$, $b > 1/2$, and $1/4 < a < 1/2$ such that $| s | <
-     a/2$,}
-     \label{sec-item}
-  \end{enumerate}
- then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
+  Let $s > 1/4$ and $u,v \in X_{s, -a}$. If $b > 1$, and $1/4 < a< 1/2$ 
+  then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
   %
   %
   \begin{equation*}
@@ -1233,7 +1224,7 @@ we obtain the following.
 %
 \begin{proposition}
 \label{prop:contraction}
-Let $s > -\frac{1}{4}$. Then
+Let $s > \frac{1}{4}$. Then
 %
 %%
 \begin{equation*}
@@ -1470,6 +1461,15 @@ concludes the proof of well-posedness for the $B_4$ ivp
 \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2}. \qquad \qedsymbol
 
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                The non-periodic Case
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1483,8 +1483,7 @@ concludes the proof of well-posedness for the $B_4$ ivp
 \subsubsection{Proof of \autoref{prop:bilin-est}} 
 \label{sssec:proof-bilin-est}
 By
-duality, it suffices to show that when either \eqref{first-it} or
-\eqref{sec-item} are satisfied, we have
+duality, it suffices to show that when $b>1$, $1/4 < a <1/2$ are satisfied, we have
 %
 %%
 \begin{equation}
@@ -1752,7 +1751,7 @@ Then
 %
 %
 \begin{equation}
-  \label{n=0}
+  \label{n=0-real}
 \begin{split}
   |  \eqref{sup-est-gen} \chi_{A_{1}}| = | \langle \tau \rangle ^{-2a} \sum_{n_{1}} \langle
   n_{1}\rangle ^{-4s} \int_{\rr} \frac{1}{\langle \tau_{1} - n_{1}^{2} \rangle ^{2b}\langle
@@ -1786,8 +1785,6 @@ we now need the following Calculus lemma.
  %
  %
  \end{lemma}
-
-
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1797,7 +1794,7 @@ we now need the following Calculus lemma.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Applying the calculus lemma, it follows from \eqref{n=0} that
+Applying the calculus lemma, it follows from \eqref{n=0-real} that
 %
 \begin{equation*}
 \begin{split}
@@ -2136,6 +2133,7 @@ Then
 %
 %
 \begin{equation}
+  \label{pathological-equality}
 \begin{split}
   |  \eqref{sup-est-gen} \chi_{B_{1}}| = | \langle \tau \rangle ^{-2a} \sum_{n_{1}} \langle
   n_{1}\rangle ^{-4s} \int_{\rr} \frac{1}{\langle \tau_{1} + n_{1}^{2} \rangle ^{2b}\langle
@@ -2157,15 +2155,37 @@ Applying \autoref{lem:calc}, it follows that
 \end{equation*}
 %
 %
+Note that we cannot improve our lower bound for $s$. To see this, we set $\tau = 0$
+in the right hand side of \eqref{pathological-equality} and obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+   \sum_{n_{1}} \langle
+  & n_{1}\rangle ^{-4s} \int_{\rr} \frac{1}{\langle \tau_{1} + n_{1}^{2} \rangle ^{2b}\langle
+   \tau_{1} + n_{1}^{2}\rangle ^{2b}}d \tau_{1} 
+   \\
+   & = \sum_{n_{1}} \langle
+  n_{1}\rangle ^{-4s} \int_{\rr} \frac{1}{\langle
+   \tau' \rangle ^{4b}}d \tau'
+   \\
+   & \simeq \sum_{n_{1}} \langle n_{1} \rangle ^{-4s}, \quad b > 1/4
+   \\
+   & < \infty, \quad s > 1/4.
+\end{split}
+\end{equation*}
+%
 %
 %
 \begin{framed}
 \begin{remark}
 This is a pathological case which does not exist for the Boussinesq. This is
 because  $$\frac{n^{2}}{n^{2} + n^{4}} |_{n=0} = 0$$ while
-$$\frac{n^{2}}{n^{2}} |_{n=0} = 1.$$ The existence of this term for the
-$B_{4}$ equation lowers our well-posedness result a full half-derivative, i.e.
-from $s > -1/4$ (Boussinesq periodic) to $s > 1/2$. 
+$$\frac{n^{2}}{n^{2}} |_{n=0} = 1.$$ Since the term
+\eqref{sup-est-gen}$\chi_{B_{1}}$ does not vanish for the $B_4$ equation, it
+lowers our well-posedness result a full half-derivative, i.e.
+from $s > -1/4$ (Boussinesq periodic) to $s > 1/4$ ($B_{4}$ periodic). 
 %
 \end{remark}
 \end{framed}
@@ -2382,7 +2402,319 @@ then bound \eqref{prelim-int-est-2-b} by
 \end{equation*}
 %
 %
-where the last step follows from  \autoref{lem:sum-estimate}.
+where the last step follows from  \autoref{lem:sum-estimate}. This completes the
+proof of \autoref{prop:bilin-est}. \qquad \qedsymbol
+\subsection{The Non-Periodic Case} 
+\label{ssec:non-periodic-case}
+We now introduce the following spaces. 
+%
+%
+\begin{definition}
+  Let $S(\rr^{2})$ denote the space of Schwartz functions on
+  $\rr^{2}$.  For $s, b \in \rr$, $\mathcal{X}_{s,b}$
+  denotes the completion of $S(\rr^{2})$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{\mathcal{X}_{s,b}} = \left( \sum_{n \in \zz} (1 + \xi^{2})^{s} \int_{\rr}
+    (1 + | | \tau | - \xi^{2} |)^{2b} \wh{F}(n, \tau) d \tau\right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm-real}
+  \end{equation}
+  %
+  %
+  %
+  %
+\end{definition}
+%
+%
+We need only establish the following bilinear estimate. All other arguments are
+analagous to those in the periodic case.
+%
+\begin{proposition}
+\label{prop:bilin-est-real}
+  Let $s > -1/4$ and $u,v \in \mathcal{X}_{s, -a}$. If either
+  \begin{enumerate}[(i)]
+   \item{$s \ge 0$, $b > 1$, and $1/4 < a< 1/2$ }
+     \label{first-it-real}
+   \item{ $-1/4 < s< 0$, $b > 1/2$, and $1/4 < a < 1/2$ such that $| s | <
+     a/2$,}
+     \label{sec-item-real}
+  \end{enumerate}
+ then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| uv \|_{\mathcal{X}_{s,-a}} \le c \| u \|_{\mathcal{X}_{s,b}} \| v \|_{\mathcal{X}_{s,b}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\end{proposition}
+
+
+\subsubsection{Proof of \autoref{prop:bilin-est-real}.} 
+\label{sssec:bilin-est-real}
+Analogously to the periodic case, it will be enough
+to show that 
+%
+%
+%
+%
+\begin{equation}
+  \label{key-sup-estimate-real}
+  \begin{split}
+     \| \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
+    \rangle ^{2s}
+    \int_{\rr} \int_{\rr} \frac{1}{ \langle \xi_{1} \rangle ^{2s} \langle
+\xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b}  \langle  |\tau -
+    \tau_{1} | -(\xi - \xi_{1}^{2}
+    \rangle ^{2b} } d \tau_1 d \xi_{1} \|_{L^\infty_{\xi, \tau}} < \infty.
+  \end{split}
+\end{equation}
+%
+%%
+By the triangle inequality and the fact that 
+%
+%
+\begin{equation*}
+\begin{split}
+& | \tau | =
+\begin{cases}
+  - \tau, \quad & \tau < 0, 
+\\
+\tau, \quad & \tau > 0
+\end{cases}
+\end{split}
+\end{equation*}
+%
+%
+\eqref{key-sup-estimate-real} will be proved if we can bound the
+$L^{\infty}_{\tau, \xi}$ norm of the quantity
+%
+%
+\begin{equation}
+  \label{sup-est-gen-real}
+\begin{split}
+      \langle \sigma \rangle ^{-2a} \langle \xi
+    \rangle ^{2s}
+    \int_{\rr} \int_{\rr} \frac{1}{ \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} 
+\langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
+d \tau_1 d \xi_{1} 
+  \end{split}
+\end{equation}
+%
+for the following cases.
+\begin{enumerate}[(i)]
+    \item $ \sigma=\tau+\xi^2,\quad \sigma_1=\tau_1+\xi_1^2,\quad \sigma_2=\tau -
+      \tau_1+(\xi - \xi_1)^2$,
+\label{it-real-1}
+    \item $ \sigma=\tau-\xi^2,\quad \sigma_1=\tau_1-\xi_1^2,\quad \sigma_2=\tau - \tau_1+(\xi - \xi_1)^2$,
+\label{it-real-2}
+    \item  $\sigma=\tau+\xi^2,\quad \sigma_1=\tau_1-\xi_1^2,\quad \sigma_2=\tau - \tau_1+(\xi - \xi_1)^2$,
+      \label{it-real-3}
+    \item $\sigma=\tau-\xi^2,\quad \sigma_1=\tau_1+\xi_1^2,\quad \sigma_2=\tau - \tau_1-(\xi - \xi_1)^2$,
+\label{it-real-4}
+    \item $\sigma=\tau+\xi^2,\quad \sigma_1=\tau_1+\xi_1^2,\quad \sigma_2=\tau - \tau_1-(\xi - \xi_1)^2$,
+\label{it-real-5}
+    \item $\sigma=\tau-\xi^2,\quad \sigma_1=\tau_1-\xi_1^2,\quad \sigma_2=\tau - \tau_1-(\xi - \xi_1)^2$.
+\label{it-real-6}
+\end{enumerate}
+%
+%
+\begin{framed}
+\begin{remark}
+Note that the cases $\sigma=\tau+\xi^2,\quad \sigma_1=\tau_1-\xi_1^2,\quad
+\sigma_2=\tau - \tau_1-(\xi - \xi_1)^2$ and $\sigma=\tau-\xi^2,\quad
+\sigma_1=\tau_1+\xi_1^2,\quad \sigma_2=\tau - \tau_1+(\xi - \xi_1)^2$ cannot occur, since
+$\tau_1< 0, \tau-\tau_1< 0$ implies $\tau<0$ and $\tau_1\geq 0, \tau-\tau_1\geq
+0$ implies $\tau\geq 0$.
+\end{remark}
+\end{framed}
+%
+Observe that the transformation $(\xi, \tau, \xi_{1}, \tau_{1}) \mapsto -(\xi, \tau,
+\xi_{1}, \tau_{1})$ reduces \eqref{it-real-3} to \eqref{it-real-4}, \eqref{it-real-2} to
+\eqref{it-real-5}, and \eqref{it-real-1} to \eqref{it-real-6}. Furthermore, the change of
+variables $\tau_{2} = \tau - \tau_{1}, \xi_{2} = \xi - \xi_{1}$, and the
+transformation $(\xi, \tau, \xi_{2}, \tau_{2}) \mapsto - (\xi, \tau, \xi_{2},
+\tau_{2})$ reduces \eqref{it-real-5} to \eqref{it-real-4}. Since $L^{2}$ is invariant
+under change of variables and reflections, we may without loss of generality
+restrict our attention to cases \eqref{it-real-4} and \eqref{it-real-6}.
+ \subsubsection{Case \eqref{it-real-6}} 
+\label{sssec:case-it-real-6}
+Noting that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \tau - \xi^{2} - \left[ (\tau + \xi_{1}^{2}) + (\tau - \tau_{1}) - (\xi -
+  \xi_{1})^{2} \right] = 2\xi_{1}\xi
+\end{split}
+\end{equation*}
+%
+%
+we have 
+%
+%
+\begin{enumerate}[(i)]
+  \item{$\langle \tau - \xi^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle$, or}
+    \\
+  \item{  $\langle \tau_{1} - \xi_{1}^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle$, or}
+    \\
+  \item{ $\langle \tau - \tau_{1} - (\xi - \xi_{1})^{2} \rangle  \gtrsim \langle \xi_{1}\xi
+    \rangle$}.
+\end{enumerate}
+%By the symmetry of the convolution, we assume without loss of generality
+%that
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\langle \tau_{1} - \xi_{1} \rangle \le  \langle \tau - \tau_{1} - (\xi - \xi_{1})^{2} \rangle 
+%\end{split}
+%\end{equation*}
+%
+%
+We now partition $\rr^{4}$ into three sets 
+%
+%
+%\begin{align*}
+%B_1&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: |\xi_1| \le 1\},\\
+%B_2&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: |\xi_1| \ge 1 \text{ and } | \xi
+%| \le 1 \},\\
+%B_3&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: |\xi_1| \ge 1, | \xi | \ge 1, \text{
+%and } | \xi | \ge | \xi_{1}|/2 \},\\
+%B_4&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: | \xi_{1} | \ge 1, | \xi| \ge 1 ,
+%\text{ and } | \xi | \le | \xi_{1} |/2 \}.
+%\end{align*} 
+%
+\begin{align*}
+B_1&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: \langle \tau - \xi^{2} \rangle
+\gtrsim \langle \xi_{1}\xi \rangle\},\\
+B_2&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: \langle \tau_{1} - \xi_{1}^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle \},\\
+B_3&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: \langle \tau - \tau_{1} - (\xi -
+\xi_{1})^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle \}.
+\end{align*} 
+
+%
+Then from the inequality
+%
+%
+\begin{equation*}
+\begin{split}
+  \langle \xi \rangle  \le \langle \xi_{1} \rangle \langle \xi - \xi_{1} \rangle 
+\end{split}
+\end{equation*}
+%
+we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \langle \xi \rangle ^{s} \le \langle \xi_{1} \rangle ^{\gamma(s)},
+  \quad 
+  \gamma(s) = 
+  \begin{cases} 0, \quad & s \ge 0
+    \\
+    4|s|, \quad & s < 0.
+  \end{cases}
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+and so
+%
+%
+\begin{equation}
+\begin{split}
+  |  \eqref{sup-est-gen-real} \chi_{B_{1}}|
+  & =  \langle \tau - \xi^{2} \rangle
+  ^{-2a} \langle \xi \rangle ^{2s} \int _{\rr} \int_{\rr} \frac{\chi_{B_{1}}}{
+  \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1}\rangle ^{2s} \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
+  \tau - \tau_{1} - (\xi -\xi_{1})^{2}\rangle ^{2b}}d \tau_{1} d \xi_{1} 
+  \\
+  & \le  \int_{\rr} \int_{\rr} \frac{\chi_{B_{1}}
+  \langle
+  \xi_{1}\rangle ^{\gamma(s) -2a} 
+}{ \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
+  \tau - \tau_{1} - (\xi - \xi_{1})^{2}\rangle ^{2b}}
+  d \tau_{1} d \xi_{1} 
+  \\
+  & \le \int_{\rr} \int_{\rr} \frac{\chi_{B_{1}}
+  }{ \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
+  \tau - \tau_{1} - (\xi - \xi_{1})^{2}\rangle ^{2b}}
+  d \tau_{1} d \xi_{1}, \quad s \ge 0 \text{ or } s \ge -a/2
+  \\
+  & \le \int _{\rr} 
+  \frac{\chi_{B_{1}}}{\langle \tau - \xi^{2} + 2 \xi
+  \xi_{1} - 2 \xi_{1}^{2} \rangle ^{2b}}d \xi_{1}, \quad (\autoref{lem:calc}) 
+  \\
+  & < \infty
+\end{split}
+\end{equation}
+%
+where the final step follows from a corollary to \autoref{lem:calc}.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Corollary to calculus lemma
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{corollary}
+  For $a_{0}, a_{1}, a_{2} \in \rr$ with $a_{2} \neq 0$ and $q > 1/2$
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \int_{\rr} \frac{1}{\langle a_{0} + a_{1}x + a_{2}x^{2} \rangle ^{q}} dx \le c
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{cor:integral-bound}
+\end{corollary}
+%
+%Similarly, 
+%%
+%%
+%\begin{equation}
+%\begin{split}
+  %|  \eqref{sup-est-gen-real} \chi_{B_{2}}|
+  %& =  \langle \tau - \xi^{2} \rangle
+  %^{-2a} \langle \xi \rangle ^{2s} \int _{\rr} \int_{\rr} \frac{\chi_{B_{1}}}{
+  %\langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1}\rangle ^{2s} \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
+  %\tau - \tau_{1} - (\xi -\xi_{1})^{2}\rangle ^{2b}}d \tau_{1} d \xi_{1} 
+  %\\
+  %& \le  \int_{\rr} \int_{\rr} \frac{\chi_{B_{1}}
+  %\langle
+  %\xi_{1}\rangle ^{\gamma(s) -2b} 
+%}{ \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
+  %\tau - \tau_{1} - (\xi - \xi_{1})^{2}\rangle ^{2b}}
+  %d \tau_{1} d \xi_{1} 
+  %\\
+  %& \le \int_{\rr} \int_{\rr} \frac{\chi_{B_{1}}
+  %}{ \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
+  %\tau - \tau_{1} - (\xi - \xi_{1})^{2}\rangle ^{2b}}
+  %d \tau_{1} d \xi_{1}, \quad s \ge 0 \text{ or } s \ge -a/2
+  %\\
+  %& \le \int _{\rr} 
+  %\frac{\chi_{B_{1}}}{\langle \tau - \xi^{2} + 2 \xi
+  %\xi_{1} - 2 \xi_{1}^{2} \rangle ^{2b}}d \xi_{1}, \quad (\autoref{lem:calc}) 
+  %\\
+  %& < \infty
+%\end{split}
+%\end{equation}
 
 \section{Second order Modified Boussinesq  equation}
 \label{sec:intro}
