@@ -550,7 +550,7 @@ Taking the spatial Fourier transform yields the ivp
   \wh{u^{x}}(\cdot, 0) = \wh{u_{0}}(n), \quad
   \wh{u_{t}^{x}}(\cdot, 0) = \wh{u_{1}}(n)
 \end{gather*}
-which admits the unique solution
+which admits the unique solution (see appendix)
 %
 %
 \begin{equation*}
@@ -566,7 +566,7 @@ which admits the unique solution
 \begin{framed}
 \begin{remark}
   Note that $$g(n) \doteq \frac{e^{in^{2}t} - e^{-in^{2}t}}{2i n^{2}}$$ has a removable
-  singularity at $n=0$. Since $$\lim_{n \to 0} g(n) = 0$$ we may analytically
+  singularity at $n=0$. Since $$\lim_{n \to 0} g(n) = t$$ we may analytically
   extend $g(n)$ to the entire complex plane. 
 \label{rem:analytic-extension}
 \end{remark}
@@ -587,20 +587,21 @@ is the unique solution to the ivp
 \eqref{lin-mb}-\eqref{lin-mb-init-data-1}, where $R_{t}$ and $S_{t}$ are linear operators defined via the relation
 %
 %
-\begin{gather*}
+\begin{gather}
+  \label{sin-cos-op}
   \wh{R_{t}\vp} = \wh{\vp}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} , \quad 
   \wh{S_{t}\vp} = \wh{\vp}(n) \frac{e^{in^{2}t} - e^{-in^{2}t}}{2i n^{2}}.
-\end{gather*}
-
+\end{gather}
+%
 %
 By Duhamel's principle, it
 follows that the $B_4$ ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} can
-be written in the integral form
+be written in the integral form (see appendix for all details)
 %
 %
 \begin{equation}
   \begin{split}
-    u(x,t) = R_{t}u_{0} + S_{t}u_{1} + \int_{0}^{t} S_{t-t'}
+    u(x,t) = R_{t}u_{0} + S_{t}u_{1} - \int_{0}^{t} S_{t-t'}
     (u^{2})_{xx} dt'
   \end{split}
   \label{eqn:integral-form}
@@ -617,7 +618,7 @@ $\eqref{eqn:integral-form}$ by $\psi(t)$, we obtain
 \begin{equation}
   \begin{split}
     \psi(t) u(x,t)
-    & = \psi(t) R_{t} u_{0} + \psi(t) S_{t}u_{1} +
+    & = \psi(t) R_{t} u_{0} + \psi(t) S_{t}u_{1} -
     \psi(t) \int_{0}^{t} S_{t-t'}
     (u^{2})_{xx} dt'
     \\
@@ -641,7 +642,7 @@ where $T=T_{u_0, u_1}$.We now introduce the following spaces.
   %
   \begin{equation}
   \begin{split}
-    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr}
+    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
     (1 + | | \tau | - n^{2} |)^{2b} \wh{F}(n, \tau) d \tau\right)^{1/2}.
   \end{split}
   \label{eqn:bous-norm}
@@ -724,34 +725,26 @@ and
 \end{equation*}
 %
 %
-Hence,
+Hence, substituting and applying the inequality $(a + b)^{2} \le 4(a^{2} +
+b^{2}),\ a, b \in \rr$, we have
+
 %
 %
 \begin{align}
     & \| \psi(t) R_{t}u_{0} \|_{X_{s,b}}^{2} 
     \notag
     \\
-    & = \sum_{n \in \zz}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
+    & = \sum_{n \in \zz}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
     |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2} +
     \frac{\wh{\psi}(\tau + n^{2})\wh{u_{0}}(n)}{2} |^{2} d \tau
     \notag
     \\
-    & \simeq \sum_{n \in \zz}(1 + n^{2})^{s} | \wh{u_{0}(n)} |^{2} \int_{\rr}
-    \left( 1 + | | \tau | - n^{2} | \right)^{2b} | \wh{\psi}(\tau - n^{2}) +
-    \wh{\psi}(\tau + n^{2}) |^{2} d \tau
-    \notag
-    \\
-    & \le \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    & \le \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau
     \label{u-0-norm-comp-1}
     \\
-    & + \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | 2\wh{\psi}(\tau - n^{2})\wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right)^{2b} d \tau
-    \label{u-0-norm-comp-2}
-    \\
-    & + \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    & + \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau.
     \label{u-0-norm-comp-3}
@@ -766,23 +759,19 @@ Noting that
 \end{equation}
 %
 %
-and that $\wh{\psi}$ is Schwartz, we bound \eqref{u-0-norm-comp-1}  
+we bound \eqref{u-0-norm-comp-1} by
 %
 %
 \begin{equation*}
   \begin{split}
-    & \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right)^{2b} d \tau
-    \\
-    & \le  \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    & \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
     n^{2} | \right)^{2b} d \tau
     \\
-    & = \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    & = \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right)^{2b} d \tau
     \\
-    & = c_{\psi, b} \sum_{n \in \zz} \left( 1 + n^{2} \right)^{s} | \wh{u_{0}}(n)
+    & = c_{\psi, b} \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} 
     \\
     & = c_{\psi, b} \| u_{0} \|_{H^{s}}^{2}
@@ -791,15 +780,15 @@ and that $\wh{\psi}$ is Schwartz, we bound \eqref{u-0-norm-comp-1}
 %
 %
 where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$. The
-terms \eqref{u-0-norm-comp-2}-\eqref{u-0-norm-comp-3} are bounded in similar fashion. Therefore, 
-$\|\psi(t) R_{t} u_{0}\|_{X_{s,b}}^{2} = c_{\psi, b}
+term \eqref{u-0-norm-comp-3} is bounded in similar fashion. Therefore, 
+$\|\psi(t) R_{t} u_{0}\|_{X_{s,b}}^{2} \le c_{\psi, b}
 \|u_{0}\|_{H^s}^2$ and
 taking square roots of both sides gives
 %
 %
 \begin{equation}
   \begin{split}
-    \|\psi(t) R_{t} u_{0}\|_{X_{s,b}} = c_{\psi, b}
+    \|\psi(t) R_{t} u_{0}\|_{X_{s,b}} \le c_{\psi, b}
     \|u_{0}\|_{H^s}.
   \end{split}
   \label{eqn:u-0-fin-est}
@@ -834,70 +823,100 @@ and
   \end{split}
 \end{equation*}
 %
+Note that 
 %
-Hence,
+\begin{equation*}
+  \begin{split}
+    \wh{\psi(t)S_{t}u_{1}}^{x}(0, t)
+    & = \psi(t) \wh{u_{1}}(0) t
+      \end{split}
+\end{equation*}
+and so 
 %
 %
 \begin{equation*}
   \begin{split}
-    \| \psi(t) S_{t}u_{1} \|_{X_{s,b}}^{2} 
-    & = \sum_{n \in \zz}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
-    n^{2}} -
-    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau.
-    \end{split}
+    \wh{\psi(t) S_{t}u_{1}}(0, \tau) = \frac{d}{d \tau} \wh{\psi}(\tau)
+    \wh{u_{1}}(0).
+  \end{split}
 \end{equation*}
 %
-Applying \autoref{rem:analytic-extension}, this simplifies to
+Hence, substituting and applying the inequality $(a + b)^{2} \le 4(a^{2} +
+b^{2}),\ a, b \in \rr$, we have
 %
 %
 \begin{equation}
-\begin{split}
-  & \sum_{n \in \dot{\dot{\zz}}}(1 + n^{2})^{s} \int_{\rr}\left( 1 + | | \tau
+  \begin{split}
+    \| \psi(t) S_{t}u_{1} \|_{X_{s,b}}^{2} 
+    & = \sum_{n \in \zzdot}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
     |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
     n^{2}} -
     \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
     \\
-    & \lesssim \sum_{n \in \dot{\zz}}(1 + n^{2})^{s-1} | \wh{u_{1}(n)} |^{2} \int_{\rr}
-    \left( 1 + | | \tau | - n^{2} | \right)^{2b} | \wh{\psi}(\tau - n^{2}) -
-    \wh{\psi}(\tau + n^{2}) |^{2} d \tau
+    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |)^{2b} \frac{d }{d \tau}
+    \wh{\psi}(\tau) d \tau
     \\
-    & \le \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    & \le \sum_{n \in \dot{\zz}} n^{-2s} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau
     \\
-    & + \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | 2\wh{\psi}(\tau - n^{2})\wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    & + \sum_{n \in \dot{\zz}} n^{-2s} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
     n^{2} | \right)^{2b} d \tau
     \\
-    & + \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |)^{2b} |\frac{d }{d \tau}
+    \wh{\psi}(\tau)|^2 d \tau.
+\end{split}
+\label{u-1-norm-comp-pre}
+\end{equation}
+%
+%
+Applying the inequality
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{(1 + |n|)^{2s}}{ n^{2}} \le \frac{(1 + |n|)^{2s}}{\frac{1}{4}(1 +
+  |n|)^{2}} = 4 (1 + | n |)^{2(s-1)},  \quad s \in \rr, \quad n \ge 1
+\end{split}
+\end{equation*}
+%
+to \eqref{u-1-norm-comp-pre} gives
+%
+\begin{equation}
+  \begin{split}
+    \| \psi(t) S_{t}u_{1} \|_{X_{s,b}}^{2} 
+    & \lesssim \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & + \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right)^{2b} d \tau.
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |)^{2b} |\frac{d }{d \tau}
+    \wh{\psi}(\tau)|^2 d \tau.
 \end{split}
 \label{u-1-norm-comp}
 \end{equation}
 %
 %
+Applying \eqref{eqn:norm-key-ineq},
+we bound the first term of
+\eqref{u-1-norm-comp} by
 %
-Recalling \eqref{eqn:norm-key-ineq} 
-and that $\wh{\psi}$ is Schwartz, we bound the first term of
-\eqref{u-1-norm-comp}  
 %
 %
 \begin{equation*}
   \begin{split}
-    & \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right)^{2b} d \tau
-    \\
-    & \le  \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
     n^{2} | \right)^{2b} d \tau
     \\
-    & = \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right)^{2b} d \tau
     \\
-    & = c_{\psi, b} \sum_{n \in \dot{\zz}} \left( 1 + n^{2} \right)^{s-1} | \wh{u_{1}}(n)
+    & = c_{\psi, b} \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
     |^{2} 
     \\
     & \le c_{\psi, b} \| u_{1} \|_{H^{s-1}}^{2}
@@ -905,17 +924,43 @@ and that $\wh{\psi}$ is Schwartz, we bound the first term of
 \end{equation*}
 %
 %
-where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$. The
-remaining terms of \eqref{u-1-norm-comp} are bounded in similar fashion.  
+where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$. Applying
+\eqref{eqn:norm-key-ineq} again, the
+second term of \eqref{u-1-norm-comp} is bounded by
+\begin{equation*}
+  \begin{split}
+    & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right)^{2b} d \tau
+    \\
+    & = c_{\psi, b} \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-1)} | \wh{u_{1}}(n)
+    |^{2} 
+    \\
+    & \le c_{\psi, b} \| u_{1} \|_{H^{s-1}}^{2}
+  \end{split}
+\end{equation*}
+while the third term is bounded by  
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{\psi, b} \| u_{1} \|_{H^{s-1}}^{2}.
+\end{split}
+\end{equation*}
+%
+%
 Therefore, 
-$\|\psi(t) S_{t} u_{1}\|_{X_{s,b}}^{2} = c_{\psi, b}
+$\|\psi(t) S_{t} u_{1}\|_{X_{s,b}}^{2} \le c_{\psi, b}
 \|u_{1}\|_{H^{s-1}}^2$ and
 taking square roots of both sides gives
 %
 %
 \begin{equation}
   \begin{split}
-    \|\psi(t) S_{t} u_{1}\|_{X_{s,b}} = c_{\psi, b}
+    \|\psi(t) S_{t} u_{1}\|_{X_{s,b}} \le c_{\psi, b}
     \|u_{1}\|_{H^{s-1}}.
   \end{split}
   \label{eqn:u-1-fin-est}
@@ -952,9 +997,9 @@ Then
     e^{in^{2}(t-t')} - e^{-in^{2}(t-t')}
     \right] dt'
     \\
-    & \simeq e^{in^{2}t} \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{-in^{2}t'}
+    & = \frac{1}{2i} e^{in^{2}t} \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{-in^{2}t'}
     dt' - 
-    e^{-in^{2}t} \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{in^{2}t'} dt'
+    \frac{1}{2i} e^{-in^{2}t} \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{in^{2}t'} dt'
     \\
     & \doteq e^{in^{2}t} \wt{w_1}(n, t) - e^{-in^{2}t} \wt{w_2}(n, t)
   \end{split}
@@ -965,10 +1010,10 @@ where
 %
 %
 \begin{gather*}
-  w_{1}(x,t) = \frac{1}{2 \pi} \sum_{n \in \zz} e^{inx} \left[ \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{in^{2}t'}
+  w_{1}(x,t) = \frac{1}{4 i \pi} \sum_{n \in \zz} e^{inx} \left[ \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{in^{2}t'}
   dt'\right],
   \\
-  w_{2}(x,t) = \frac{1}{2 \pi} \sum_{n \in \zz} e^{inx} \left[ \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{-in^{2}t'} dt'
+  w_{2}(x,t) = \frac{1}{4 i\pi} \sum_{n \in \zz} e^{inx} \left[ \int_{0}^{t} \psi(t) \wt{u^{2}}(n, t') e^{-in^{2}t'} dt'
  \right].
 \end{gather*}
 %
@@ -1004,14 +1049,14 @@ gives
 \begin{equation*}
 \begin{split}
   \| f \|_{X_{s,b}}^{2}
-  & = \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & = \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + |
   | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) - \wh{w_{2}}(n, \tau +
   n^{2}) |^{2} d \tau
   \\
-  & \lesssim  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & \le 4 \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + |
   | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau - n^{2}) d \tau
   \\
-  & + \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & + 4 \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + |
   | \tau | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau + n^{2}) d \tau.
 \end{split}
 \end{equation*}
@@ -1025,10 +1070,10 @@ Applying a change of variable implies
 \begin{equation}
 \begin{split}
   \| f \|_{X_{s,b}}^{2}
-  & \lesssim  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & \le 4 \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + |
   | \tau + n^{2} | - n^{2} |)^{2b} | \wh{w_{1}}(n, \tau) |^2 d \tau
   \\
-  & + \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & + 4 \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + |
   | \tau - n^{2} | - n^{2} |)^{2b} | \wh{w_{2}}(n, \tau )|^2 d \tau.
 \end{split}
 \label{comp-pre-lemma}
@@ -1069,19 +1114,21 @@ Applying \autoref{lem:mod-princ-symb-bound} to \eqref{comp-pre-lemma} yields
 \begin{equation*}
 \begin{split}
 \| f \|_{X_{s,b}}^{2}
-  & \lesssim \sum_{j=1}^{2}  \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + |
+  & \le 4 \sum_{j=1}^{2}  \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + |
   \tau|)^{2b} | \wh{w_{j}}(n, \tau)|^2 d \tau
   \\
-  & = \sum_{j=1}^{2} \sum_{n \in \zz} (1 + n^{2})^{s} \|\wt{w_{j}}(n, t)
+  & = 4 \sum_{j=1}^{2} \sum_{n \in \zz} (1 + |n|)^{2s} \|\wt{w_{j}}(n, t)
   \|^{2}_{H_{t}^{b}}
   \\
-  & \simeq \sum_{n \in \zz}\left( \| \psi(t) \int_{0}^{t} \wt{u^2}(n, t')
-  e^{in^{2}t'}dt'  \|_{H_{t}^{b}} + \| \psi(t) \int_{0}^{t} \wt{u^2}(n, t')
-  e^{-in^{2}t'}dt'  \|_{H_{t}^{b}} \right).
+  & = \sum_{n \in \zz} \| \psi(t) \int_{0}^{t} \wt{u^2}(n, t')
+  e^{in^{2}t'}dt'  \|_{H_{t}^{b}}
+  + 
+  \sum_{n \in \zz} \| \psi(t) \int_{0}^{t} \wt{u^2}(n, t')
+  e^{-in^{2}t'}dt'  \|_{H_{t}^{b}}.
 \end{split}
 \end{equation*}
 %
-We now need the following, whose proof is provided in the appendix.
+We now need the following, whose proof is provided in \cite{Ginibre:1996fk} and the appendix.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1143,11 +1190,12 @@ Hence, applying \autoref{lem:mod-princ-symb-bound} we obtain
 %
 \begin{equation*}
 \begin{split}
-  & \| f \|_{X_{s,b}}^{2} \lesssim T^{1-(b - b')} 
+  \| f \|_{X_{s,b}}^{2}
+  & \le T^{1-(b - b')} 
   \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | |\tau|
   - n^{2} |)^{2b'} \wh{u^{2}}(n, \tau) d \tau  
   \\
-  & \simeq T^{(1-b - b')} \|u^{2} \|_{X_{s,b}}^{2}.
+  & = T^{(1-b - b')} \|u^{2} \|_{X_{s,b'}}^{2}.
 \end{split}
 \end{equation*}
 %
@@ -1179,7 +1227,7 @@ estimate.
 %
 \begin{proposition}
 \label{prop:bilin-est}
-  Let $s > 1/4$ and $u,v \in X_{s, -a}$. If $b > 1$, and $1/4 < a< 1/2$ 
+  Let $s > 1/4$ and $u,v \in X_{s, -a}$. If $b > 1/2$, and $1/4 < a< 1/2$ 
   then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
   %
   %
@@ -1194,16 +1242,28 @@ estimate.
 %
 %
 Applying the bilinear estimate to \eqref{eqn:non-lin-bound}, we conclude that
-for given $s > -1/4$, we can choose $b, b'$ such that
+for given $s > -1/4$, we can choose $b$ and  $b'$ such that
 %
 %
 \begin{equation}
 \begin{split}
-\|\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'\|_{X_{s,b}} \le c_{\psi, b,
-  b'} \| u \|^2_{X_{s,b}}.
+\|\psi(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'\|_{X_{s,b}} \le c_{\psi, b
+  } \| u \|^2_{X_{s,b}}.
 \end{split}
 \label{eqn:nonlinear-term-bound}
 \end{equation}
+%
+%
+%
+\begin{framed}
+\begin{remark}
+  Note that, in order to apply \autoref{prop:bilin-est}, our choice of $b'$
+  depends on our choice of $b$. This is why the constant on the right hand side
+  of \eqref{eqn:nonlinear-term-bound} depends only on $\psi$ and $b$. 
+\label{rem:b'-fun-b}
+\end{remark}
+\end{framed}
+%
 %
 %
 \subsubsection{Proof of Existence and Uniqueness in the Periodic Case}
@@ -1567,7 +1627,8 @@ From our work above, it follows that
 Hence, 
 %
 %
-\begin{equation*}
+\begin{equation}
+  \label{pre-fubini-int-form}
 	\begin{split}
     |\text{lhs of} \ \eqref{duality-est}|
 	& \lesssim \sum_{n \in \zz} \int_{\rr} \phi(n, \tau) \langle n \rangle^s \langle \tau - n^{2} \rangle^{-a}
@@ -1578,9 +1639,9 @@ Hence,
     & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
     n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau| - n^{2} \rangle
     ^{b}\langle |\tau_{1}|-n_{1}^{2} \rangle ^{-b}\langle | \tau|-n_{2}^{2}
-    \rangle ^{b}} d \tau_1 d \tau
+    \rangle ^{b}} d \tau_1 d \tau.
 	\end{split}
-\end{equation*}
+\end{equation}
 %
 %
 which by Cauchy-Schwartz is bounded by
@@ -2458,8 +2519,338 @@ analagous to those in the periodic case.
 
 \subsubsection{Proof of \autoref{prop:bilin-est-real}.} 
 \label{sssec:bilin-est-real}
-Analogously to the periodic case, it will be enough
+By
+duality, it suffices to show that when $b>1/2$, $1/4 < a <1/2$ are satisfied, we have
+%
+%%
+\begin{equation}
+	\label{duality-est-real}
+	\begin{split}
+    |	\int_{\rr} \int_{\rr} (1 + |\xi|)^{s}
+		\phi(\xi, \tau) \wh{uv}(\xi, \tau)(1 
+    + | |\tau| - \xi^{2} |^{-a}) d \tau d \xi | \lesssim \|u\|_{\mathcal{X}_{s,b}}
+    \|v\|_{\mathcal{X}_{s,b}}
+    \|\phi \|_{L^{2}_{\xi, \tau}}.
+	\end{split}
+\end{equation}
+Note first that $|\wh{uv}(\xi, \tau) |  = | \wh{u} *  \wh{v} 
+(\xi, \tau)|$. From this it follows that
+%
+%
+\begin{equation}
+	\label{non-lin-rep-real}
+	\begin{split}
+		| \wh{uv}(\xi, \tau)|
+    & = | \sum_{\xi_{1} \in \zz }  \int
+    \wh{u}\left( \xi_1,  \tau_1 \right) \wh{v}\left( \xi - \xi_1 , \tau - \tau_1   
+\right) d \tau_1 |
+\\
+& \le  \sum_{\xi_{1} \in \zz }  \int
+    |\wh{u}\left( \xi_1,  \tau_1 \right)| |\wh{v}\left( \xi - \xi_1 , \tau - \tau_1   
+\right)| d \tau_1 
+\\
+& = \sum_{\xi_1 \in \zz } \int \frac{c_u\left( \xi_1, \tau_1 
+\right)}{\langle \xi_1 \rangle ^s \langle |\tau_1| - \xi_1^{2} | \rangle ^{b}}
+\\
+& \times \frac{c_{v}\left( \xi - \xi_1, \tau - \tau_1 \right)}{\langle \xi -
+\xi_1 \rangle ^s\ \langle |\tau - \tau_1 | -  (\xi - \xi_1)^{2} \rangle^{b}}
+  \ d \tau_1 
+\end{split}
+\end{equation}
+%
+%
+where for clarity of notation we have introduced 
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\langle k \rangle \doteq 1 + |k|
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+\begin{equation*}
+	\begin{split}
+		c_h(\xi, \tau) =
+			\langle \xi \rangle ^s \langle |\tau| - \xi^{2} \rangle ^{b} | \wh{h}\left( \xi, \tau \right) |.
+	\end{split}
+\end{equation*}
+%
+%
+From our work above, it follows that 
+%
+%
+\begin{equation}
+	\label{convo-est-starting-pnt-real}
+	\begin{split}
+		 & \langle \xi \rangle^s \langle \tau - \xi^{2} \rangle^{-a} | \wh{uv}\left( 
+		\xi, \tau \right) |
+		\\
+		& \le \langle |\tau| - \xi^{2} \rangle^{-a}
+		\sum_{\xi_1 \in \zz} \int \frac{\langle \xi \rangle^{s}}{\langle \xi_1 \rangle^s
+    \langle \xi - \xi_1 \rangle^s} 
+		\times \frac{c_f(\xi_1, \tau_1)}{\langle |\tau_1| - \xi_1^{2} \rangle ^{b}}
+		\\
+		& \times
+		\frac{c_g(\xi - \xi_1, \tau - \tau_1 )}{\langle |\tau - \tau_1| - (\xi - \xi_1)^{2}
+    \rangle^{b}}\ d \tau_1.
+	\end{split}
+\end{equation}
+%
+%
+Hence, 
+%
+%
+\begin{equation}
+  \label{pre-fubini-int-form-real}
+	\begin{split}
+    |\text{lhs of} \ \eqref{duality-est-real}|
+    & \lesssim \int_{\rr} \int_{\rr}     \int_{\rr}  \int_{\rr} \phi(\xi, \tau)
+    c_f(\xi_1, \tau_1)
+		c_g(\xi - \xi_1, \tau - \tau_1 )
+		\\
+    & \times \frac{\langle \xi \rangle ^{s}}{\langle \xi_{1} \rangle ^{s} \langle
+    \xi-\xi_{1} \rangle ^{s}} \times \frac{1}{ \langle \tau - \xi^{2} \rangle^{a}
+\langle |\tau| - \xi^{2} \rangle
+    ^{b}\langle |\tau_{1}|-\xi_{1}^{2} \rangle ^{-b}\langle | \tau|-\xi_{2}^{2}
+    \rangle ^{b}} d \tau_1 d \xi_{1} d \tau d \xi.
+	\end{split}
+\end{equation}
+%
+Let $A \subset \rr^{4}$, and $\chi_{A}(\xi, \tau, \xi_{1}, \tau_{1})$ be its
+characteristic function. Then by Cauchy-Schwartz in
+$\tau_{1}, \xi_{1}$, we bound
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  & \int_{\rr} \int_{\rr}     \int_{\rr}  \int_{\rr} \chi_{A} \phi(\xi, \tau)
+    c_f(\xi_1, \tau_1)
+		c_g(\xi - \xi_1, \tau - \tau_1 )
+		\\
+    & \times \frac{\langle \xi \rangle ^{s}}{\langle \xi_{1} \rangle ^{s} \langle
+    \xi-\xi_{1} \rangle ^{s}} \times \frac{1}{ \langle \tau - \xi^{2} \rangle^{a}
+\langle |\tau| - \xi^{2} \rangle
+    ^{b}\langle |\tau_{1}|-\xi_{1}^{2} \rangle ^{-b}\langle | \tau|-\xi_{2}^{2}
+    \rangle ^{b}} d \tau_1 d \xi_{1} d \tau d \xi
+\end{split}
+\end{equation*}
+%
+%
+by
+%
+%
+\begin{equation}
+	\label{10g-real}
+	\begin{split}
+    & \int_{\rr} \int_{\rr} \phi(\xi, \tau) \langle | \tau | - \xi^{2} \rangle
+    ^{-a} \langle \xi \rangle ^{s}
+    \\
+    & \times \left( \int_{\rr} \int_{\rr}
+    \frac{\chi_{A}}{\langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} \langle |
+    \tau_{1} | - \xi_{1}^{2}\rangle ^{2b} \langle | \tau - \tau_{1} | -
+    (\xi - \xi_{1})^{2} \rangle ^{2b}} d \tau_{1} d \xi_{1} \right)^{1/2}
+    \\
+    & \times \left( \int_{\rr} \int_{\rr} c_{u}^{2}(\xi, \tau_{1})
+    c_{v}^{2}(\xi - \xi_{1}, \tau - \tau_{1}) d \tau_{1} d \xi_{1}
+    \right)^{1/2} d \tau d
+    \xi.
+  \end{split}
+\end{equation}
+%
+%
+Applying Cauchy-Schwartz in $\tau, \xi$, \eqref{10g-real} is bounded by
+%
+%
+\begin{equation*}
+  \begin{split}
+    & \|\left( \int_{\rr} \int_{\rr } c_{u}^{2}(\xi_1, \tau_1)
+  c_{v}^{2} (\xi - \xi_1, \tau - \tau_{1} ) d \tau_1 d \xi_{1}  \right)^{1/2} \|_{L^{2}(\zz \times
+		\rr)}
+		\\
+    & \times  \|\phi(\xi, \tau) \langle | \tau | - \xi^{2} \rangle ^{-a} \langle \xi
+    \rangle ^{s}
+		\\
+    & \times \left( \int_{\rr} \int_{\rr} \frac{\chi_{A}}{ \langle \xi_{1}
+    \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2}
+    \rangle^{2b} \langle  |\tau -
+    \tau_{1} | -(\xi - \xi_{1}^{2}
+    \rangle^{2b} } d \tau_1 d \xi_{1} \right)^{1/2} \|_{L^2(\zz \times \rr)}
+		\\
+    & = \|u\|_{\mathcal{X}_{s,b}} \|v\|_{\mathcal{X}_{s,b}} \label{holder-term-real}
+     \|\phi(\xi, \tau)     \\
+    & \times \left( \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
+    \rangle ^{2s}
+    \int_{\rr} \int_{\rr} \frac{\chi_{A}}{ \langle \xi_{1} \rangle ^{2s} \langle
+\xi-\xi_{1} \rangle ^{2s}  \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b} \langle  |\tau -
+    \tau_{1} | -(\xi - \xi_{1}^{2}
+    \rangle^{2b} } d \tau_1 d \xi_{1} \right)^{1/2} \|_{L^2(\zz \times \rr)}.
+  \end{split}
+\end{equation*}
+%
+Applying H{\"o}lder, we bound this by 
+%
+%
+\begin{equation}
+  \label{integral-bound-1st-form}
+	\begin{split}
+    & \|u\|_{\mathcal{X}_{s,b}} \|v\|_{\mathcal{X}_{s,b}} \| \phi \|_{L^{2}_{\xi, \tau}}
+    \\
+    & \times \|\left( \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
+    \rangle ^{2s}
+    \sum_{n_{1} \in \zz} \int_{\rr} \frac{\chi_{A}}{ \langle \xi_{1} \rangle ^{2s} \langle
+\xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b} \langle  |\tau -
+    \tau_{1} | -(\xi - \xi_{1}^{2}
+    \rangle ^{2b} } d \tau_1 \right)^{1/2} \|_{L^\infty_{\xi, \tau}}.
+	\end{split}
+\end{equation}
+%
+%
+Hence, to complete the proof, it will be enough
 to show that 
+%
+%
+%
+%
+\begin{equation}
+  \label{key-sup-estimate-real-1}
+	\begin{split}
+		 \| \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
+    \rangle ^{2s}
+\sum_{\xi_{1} \in \zz} \int_{\rr} \frac{1}{  \langle \xi_{1} \rangle ^{2s} \langle
+\xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b}  \langle  |\tau -
+    \tau_{1} | -(\xi - \xi_{1}^{2}
+    \rangle ^{2b} } d \tau_1 \|_{L^\infty_{\xi, \tau}} < \infty.
+	\end{split}
+\end{equation}
+%
+%
+By the triangle inequality and the fact that 
+%
+%
+\begin{equation*}
+\begin{split}
+& | \tau | =
+\begin{cases}
+  - \tau, \quad & \tau < 0, 
+\\
+\tau, \quad & \tau > 0
+\end{cases}
+\end{split}
+\end{equation*}
+%
+%
+\eqref{key-sup-estimate-real} will be proved if we can bound the
+$L^{\infty}_{\tau, n}$ norm of the quantity
+%
+%
+\begin{equation}
+  \label{sup-est-gen-real}
+\begin{split}
+		  \langle \sigma \rangle ^{-2a} \langle n
+    \rangle ^{2s}
+\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+\langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
+d \tau_1 
+	\end{split}
+\end{equation}
+Let us now return to the right hand side of \eqref{pre-fubini-int-form-real}.
+Let $A \subset \rr^{4}$, and $\chi_{A}(\xi, \tau, \xi_{1}, \tau_{1})$ be its
+characteristic function, as before.  We seek to bound
+\begin{equation*}
+\begin{split}
+  & \int_{\rr} \int_{\rr}     \int_{\rr}  \int_{\rr} \chi_{A} \phi(\xi, \tau)
+    c_f(\xi_1, \tau_1)
+		c_g(\xi - \xi_1, \tau - \tau_1 )
+		\\
+    & \times \frac{\langle \xi \rangle ^{s}}{\langle \xi_{1} \rangle ^{s} \langle
+    \xi-\xi_{1} \rangle ^{s}} \times \frac{1}{ \langle \tau - \xi^{2} \rangle^{a}
+\langle |\tau| - \xi^{2} \rangle
+    ^{b}\langle |\tau_{1}|-\xi_{1}^{2} \rangle ^{-b}\langle | \tau|-\xi_{2}^{2}
+    \rangle ^{b}} d \tau_1 d \xi_{1} d \tau d \xi
+\end{split}
+\end{equation*}
+in a slightly different manner than before. First, we apply 
+Fubini, then Cauchy-Schwartz in $\xi_{1}, \tau_{1}$ to obtain the bound
+%
+%
+\begin{equation*}
+\begin{split}
+  & \left[ \int_{\rr} \int_{\rr} c_{f}^{2}(\xi_{1}, \tau_{1}) d \tau_{1} d
+  \xi_{1} \right]^{1/2}
+  \\
+  & \times \left \{ \int_{\rr} \int_{\rr}   
+ \left[
+  \int_{\rr} \int_{\rr}
+   \frac{\langle \xi \rangle ^{s}}{\langle \xi_{1} \rangle ^{s} \langle
+   \xi - \xi_{1}\rangle ^{s}} \times \frac{|\phi(\xi, \tau)| c_{g}(\xi -
+   \xi_{1}, \tau - \tau_{1})
+}{\langle | \tau | - \xi^{2} \rangle
+  ^{a} \langle | \tau_{1} | - \xi_{1}^{2} \rangle ^{b} \langle | \tau -
+  \tau_{1} | - (\xi - \xi_{1}^{2}) \rangle ^{b}} d \tau d \xi 
+  \right]^{2} \right \}^{1/2}
+  \\
+  & = \| f \|_{X_{s,b}}
+  \\
+  & \times \left \{ \int_{\rr} \int_{\rr}   
+ \left[
+  \int_{\rr} \int_{\rr}
+   \frac{\langle \xi \rangle ^{s}}{\langle \xi_{1} \rangle ^{s} \langle
+   \xi - \xi_{1}\rangle ^{s}} \times \frac{|\phi(\xi, \tau)| c_{g}(\xi -
+   \xi_{1}, \tau - \tau_{1})
+}{\langle | \tau | - \xi^{2} \rangle
+  ^{a} \langle | \tau_{1} | - \xi_{1}^{2} \rangle ^{b} \langle | \tau -
+  \tau_{1} | - (\xi - \xi_{1}^{2}) \rangle ^{b}} d \tau d \xi 
+  \right]^{2} d \tau_{1} d \xi_{1} \right \}^{1/2}
+\end{split}
+\end{equation*}
+%
+Applying Cauchy-Schwartz in $\tau, \xi$, we bound the last line by 
+%
+%
+\begin{equation*}
+\begin{split}
+& \left \{ \int_{\rr} \int_{\rr}   
+  \left [ \int_{\rr} \int_{\rr}
+  | \phi(\xi, \tau)|^{2} c_{g}^{2}(\xi - \xi_{1}, \tau - \tau_{1}) d \tau d \xi 
+    \right ] \right . 
+   \\
+   & \left. \times \left [ \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle
+   ^{2s}}{\langle \xi_{1} \rangle ^{2s} \langle \xi - \xi_{1}\rangle ^{2s}}
+   \times \frac{\chi_{A}}{\langle | \tau | - \xi^{2} \rangle ^{2a} \langle | \tau_{1} |
+   - \xi_{1}^{2} \rangle ^{2b} \langle | \tau - \tau_{1} | - (\xi - \xi_{1}^{2})
+   \rangle ^{2b}} d \tau d \xi \right ] \right \}^{1/2}d \tau_{1} d \xi_{1}
+\end{split}
+\end{equation*}
+%
+%
+which by Holder is bounded by 
+%
+%
+%
+\begin{equation}
+  \label{integral-bound-2nd-form}
+\begin{split}
+  & \| \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle \xi_{1} \rangle ^{2s} \langle
+  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A}}{\langle | \tau | - \xi^{2} \rangle
+  ^{2a} \langle | \tau_{1} | - \xi_{1}^{2} \rangle ^{2b} \langle | \tau -
+  \tau_{1} | - (\xi - \xi_{1}^{2}) \rangle ^{2b}} d \tau d \xi
+  \|_{L^{\infty}_{\xi_{1}, \tau_{1}}}^{1/2}
+  \\
+  & \times \|\phi\|_{L^{2}} \| g \|_{X_{s,b}}
+\end{split}
+\end{equation}
+%
+%
+Now consider the family $\{A_{j}\}_{1}^{n}, A_{j} \subset \rr^{4}$ with
+$$\bigcup_{1}^{n} A_{j}= \rr^{4}.$$ From \eqref{integral-bound-1st-form},
+\eqref{integral-bound-2nd-form}, and our preceding argumentation,
+we see that the proof of \autoref{prop:bilin-est-real} reduces to showing that
+either 
 %
 %
 %
@@ -2469,14 +2860,25 @@ to show that
   \begin{split}
      \| \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
     \rangle ^{2s}
-    \int_{\rr} \int_{\rr} \frac{1}{ \langle \xi_{1} \rangle ^{2s} \langle
+    \int_{\rr} \int_{\rr} \frac{\chi_{A_{j}}}{ \langle \xi_{1} \rangle ^{2s} \langle
 \xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b}  \langle  |\tau -
     \tau_{1} | -(\xi - \xi_{1}^{2}
     \rangle ^{2b} } d \tau_1 d \xi_{1} \|_{L^\infty_{\xi, \tau}} < \infty.
   \end{split}
 \end{equation}
 %
+or
 %%
+\begin{equation}
+\begin{split}
+  & \| \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle \xi_{1} \rangle ^{2s} \langle
+  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau | - \xi^{2} \rangle
+  ^{2a} \langle | \tau_{1} | - \xi_{1}^{2} \rangle ^{2b} \langle | \tau -
+  \tau_{1} | - (\xi - \xi_{1}^{2}) \rangle ^{2b}} d \tau d \xi
+  \|_{L^{\infty}_{\xi_{1}, \tau_{1}}}
+\end{split}
+\end{equation}
+for each $j \in \left\{ 0,1,\dots,n \right\}$. 
 By the triangle inequality and the fact that 
 %
 %
@@ -2497,7 +2899,7 @@ $L^{\infty}_{\tau, \xi}$ norm of the quantity
 %
 %
 \begin{equation}
-  \label{sup-est-gen-real}
+  \label{sup-est-gen-real-1}
 \begin{split}
       \langle \sigma \rangle ^{-2a} \langle \xi
     \rangle ^{2s}
@@ -2773,14 +3175,14 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 %\begin{equation*}
 %\begin{split}
   %\| u(t) - u(t') \|_{H^s}^{2}
-  %& = \sum_{n \in \zz} (1 + n^{2})^{s} [\wt{u}(n, t) - \wt{u}(n, t')]
+  %& = \sum_{n \in \zz} (1 + |n|)^{2s} [\wt{u}(n, t) - \wt{u}(n, t')]
   %\\
-  %& = \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (e^{it\tau} - e^{it'
+  %& = \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (e^{it\tau} - e^{it'
   %\tau})\wh{u}(n, \tau) d \tau
   %\\
-  %& \le 2 \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} \wh{u}(n, \tau) d \tau
+  %& \le 2 \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} \wh{u}(n, \tau) d \tau
   %\\
-  %& \simeq \sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + | | \tau | -
+  %& \simeq \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + | | \tau | -
   %n^{2} |)^{b}(1 + | | \tau | - n^{2} |)^{-b} | \wh{u}(n, \tau) | d \tau.
 %\end{split}
 %\end{equation*}
@@ -2791,15 +3193,15 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 %%
 %\begin{equation*}
 %\begin{split}
-  %& \sum_{n \in \zz} (1 + n^{2})^{s} \left[ \int_{\rr} (1 + | | \tau | -
+  %& \sum_{n \in \zz} (1 + |n|)^{2s} \left[ \int_{\rr} (1 + | | \tau | -
   %n^{2} |)^{2b} | \wh{u}(n, \tau) |^{2} d \tau \right]^{1/2} \left[ \int_{\rr}
   %(1 + | | \tau | - n^{2} |)^{-2b} d \tau \right]^{1/2}
   %\\
-  %& = \sum_{n \in \zz} (1 + n^{2})^{s} \left[ \int_{\rr} (1 + | | \tau | -
+  %& = \sum_{n \in \zz} (1 + |n|)^{2s} \left[ \int_{\rr} (1 + | | \tau | -
   %n^{2} |)^{2b} | \wh{u}(n, \tau) |^{2} d \tau \right]^{1/2} \left[ \int_{\rr}
   %(1 +  | \tau' | )^{-2b} d \tau' \right]^{1/2}
   %\\
-  %& = c \sum_{n \in \zz} (1 + n^{2})^{s} \left[ \int_{\rr} (1 + | | \tau | -
+  %& = c \sum_{n \in \zz} (1 + |n|)^{2s} \left[ \int_{\rr} (1 + | | \tau | -
   %n^{2} |)^{2b} | \wh{u}(n, \tau) |^{2} d \tau \right]^{1/2} \qquad (b > 1/2). 
 %\end{split}
 %\end{equation*}
@@ -2812,13 +3214,694 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 %%
 %\begin{equation*}
 %\begin{split}
-  %\sum_{n \in \zz} (1 + n^{2})^{s} \int_{\rr} (1 + | | \tau | - n^{2}
+  %\sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr} (1 + | | \tau | - n^{2}
   %|)^{2b} \wh{u}(n, \tau) d \tau = \| u \|_{X_{s,b}}^{2}.
 %\end{split}
 %\end{equation*}
 %%
 %%
 %An application of dominated convergence completes the proof. \qquad \qedsymbol
+\subsection{Deriving the Integral form of the $B_{4}$ ivp
+\eqref{lin-mb}-\eqref{lin-mb-init-data-1}.} 
+\label{ssec:integral-form-deriv}
+We will describe two different methods.
+\subsubsection{Variation of Parameters} 
+\label{sssec:var-param}
+Taking the spatial Fourier transform of the linear $B_{4}$ ivp
+\eqref{lin-mb}-\eqref{lin-mb-init-data-1} yields
+%
+%
+\begin{gather}
+  \wh{u_{tt}} + n^{4} \wh{u} = 0
+  \label{four-trans-lin-mb}
+  \\
+  \wh{u}(n, 0) = \wh{u_{0}}(n), \quad \wh{u_{t}}(n, 0) = \wh{u_{1}}(n)
+  \label{four-trans-lin-mb-data}
+\end{gather}
+Substituting the ansatz $e^{\lambda t}$ into \eqref{four-trans-lin-mb}, we
+obtain the characteristic equation
+%
+%
+\begin{equation*}
+\begin{split}
+  \lambda^{2} + n^{4} = 0
+\end{split}
+\end{equation*}
+%
+%
+which gives 
+%
+%
+\begin{equation*}
+\begin{split}
+  \lambda = \pm in^{2}.
+\end{split}
+\end{equation*}
+%
+Since
+\eqref{lin-mb} is second order, and $e^{in^{2}t}$ and $e^{-in^{2}t}$ are
+linearly independent solutions to \eqref{lin-mb}, it follows that $\left\{
+e^{in^{2}t}, e^{-in^{2}t}
+\right\}$ is a basis for all solutions of \eqref{lin-mb}. Therefore, the general
+solution of \eqref{lin-mb} takes the form
+%
+%
+\begin{equation}
+  \label{explicit-homog-soln}
+\begin{split}
+  \wh{u}(n,t) = c_{1}e^{in^{2}t} + c_{2}e^{-in^{2}t}.
+\end{split}
+\end{equation}
+%
+%
+which, in conjunction with initial data 
+\eqref{four-trans-lin-mb-data}, implies
+%
+%
+\begin{gather*}
+   c_{1} + c_{2} = \wh{u_{0}}(n)
+  \\
+   in^{2}c_{1} - in^{2}c_{2} = \wh{u_{1}}(n).
+\end{gather*}
+%
+%
+Solving for $c_{1}$ and $c_{2}$, we obtain
+%
+%
+\begin{gather*}
+  c_{1} = \frac{1}{2} \wh{u_{0}}(n) + \frac{1}{2in^{2}}\wh{u_{1}}(n),
+  \\
+  c_{2} = \frac{1}{2} \wh{u_{0}}(n) - \frac{1}{2in^{2}}\wh{u_{1}}(n).
+\end{gather*}
+%
+%
+Substituting into \eqref{explicit-homog-soln}, we obtain the unique solution to
+ivp \eqref{four-trans-lin-mb}-\eqref{four-trans-lin-mb-data}
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{u}(n, t) = \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} +
+  \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}}t}{2 i n^{2}}
+\end{split}
+\end{equation*}
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  u(x,t) = R_{t}u_{0} + S_{t}u_{1}
+\end{split}
+\end{equation*}
+%
+%
+where $R_{t}$ and $S_{t}$ are defined as in \eqref{sin-cos-op}.
+Turning our attention now to the $B_{4}$ ivp
+\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} and taking the spatial Fourier
+transform yields 
+%
+%
+\begin{gather}
+  \wh{u_{tt}} + n^{4} \wh{u} = -\wh{(u^{2})_{xx}}
+  \label{four-trans-mb}
+  \\
+  \wh{u}(n, 0) = \wh{u_{0}}(n), \quad \wh{u_{t}}(n, 0) = \wh{u_{1}}(n)
+  \label{four-trans-mb-data}
+\end{gather}
+which for fixed $t$ is a second order ODE in $n$. 
+We now need the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                General Solution NonHomog 2nd Order Eqn
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+\label{lem:nonhomog-ode-soln}
+The general solution of the $2$nd order nonhomogeneous ODE 
+%
+%
+\begin{equation}
+  \label{2nd-order-ode}
+\begin{split}
+y'' + p(t)y' + q(t)y = g(t)
+\end{split}
+\end{equation}
+%
+%
+can be written in the form
+%
+%
+\begin{equation*}
+\begin{split}
+  y = c_{1}y_{1}(t) + c_{2}y_{2}(t) + y_{p}(t),
+\end{split}
+\end{equation*}
+%
+%
+where $y_{1}$ and $y_{2}$ are linearly independent solutions to the
+corresponding homogeneous equation (i.e. $g(t) = 0$), $c_{1}$ and $c_{2}$ are
+arbitrary constants, and $y_{p}$ is some specific solution of the nonhomogeneous
+equation. Furthermore, one such $y_{p}$ is given by
+%
+%
+\begin{equation}
+  \label{2nd-order-ansatz}
+\begin{split}
+  y_{p} = y_{1}v_{1} + y_{2} v_{2}
+\end{split}
+\end{equation}
+%
+%
+where $v_{1}$ and $v_{2}$ are solutions to the system
+\begin{gather}
+  \label{cancel-rel-1}
+  y_{1} v_{1}' + y_{2} v_{2}' = 0
+  \\
+  \label{cancel-rel-2}
+  y_{1}' v_{1}' + y_{2}' v_{2}' = g(t).
+\end{gather}
+\end{lemma}
+%
+{\bf Proof.} Substituting the ansatz \eqref{2nd-order-ansatz} into
+the left hand side of \eqref{2nd-order-ode}, we obtain the expression
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  (y_{1}v_{1} + y_{2}v_{2})'' + p(t)(y_{1}v_{1} + y_{2}v_{2})' +
+  q(t)(y_{1}v_{1} + y_{2}v_{2}) 
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+  \begin{split}
+    & y_{1}'' v_{1} + 2y_{1}'v_{1}' + y_{1}v_{1}'' + y_{2}''v_{2} + 2y_{2}' v_{2}'
+  + y_{2} v_{2}'' + p(t)y_{1}'v_{1} + p(t)y_{1}v_{1}'
+  \\
+  & + p(t)y_{2}'v_{2} + p(t)y_{2}v_{2}' + q(t)y_{1}v_{1} + q(t)y_{2}v_{2} =g
+\end{split}
+\end{equation*}
+%
+Collecting terms, this can be rewritten as
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  & (y_{1}v_{1}'' + y_{1}' v_{1}') + (y_{2}v_{2}'' + y_{2}' v_{2}') + y_{1}''
+  v_{1} + y_{2}'' v_{2} + (y_{1}'v_{1}' + y_{2}' v_{2}')
+  \\
+  & + p(t)\left(
+  y_{1}'v_{1} + y_{2}' v_{2} + y_{1}v_{1}' + y_{2}v_{2}'
+  \right) + q(t)\left( y_{1}v_{1} + y_{2}v_{2} \right)
+  \end{split}
+\end{equation*}
+%
+or
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  & \cancel{(y_{1}v_{1}' + y_{2}v_{2}')'} + y_{1}''
+  v_{1} + y_{2}'' v_{2} + \overbrace{(y_{1}'v_{1}' + y_{2}' v_{2}')}^{g}
+  \\
+  & + p(t)\left(
+  y_{1}'v_{1} + y_{2}' v_{2} + y_{1}v_{1}' + y_{2}v_{2}'
+  \right) + q(t)\left( y_{1}v_{1} + y_{2}v_{2} \right)
+  \end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  g + \cancel{v_{1}\left[ y_{1}'' + p(t)y_{1}' + q(t)y_{1} \right]} +
+  \cancel{v_{2}\left[ y_{2}'' + p(t)y_{2}' + q(t)y_{2}
+  \right]}
+\end{split}
+\end{equation*}
+%
+%
+where the last cancellation is due to the fact that $y_{1}$ and $y_{2}$ are
+solutions to the corresponding homogeneous equation of \eqref{2nd-order-ode}
+(i.e. $g(t) = 0$). This concludes the proof. \qquad \qedsymbol
+%
+%
+\\
+Applying \autoref{lem:nonhomog-ode-soln}, we see that to find the analog of
+$y_p$ for the ODE \eqref{four-trans-mb}, we must solve the system
+%
+%
+\begin{gather*}
+  e^{in^{2}t}v_{1}' + e^{-in^{2}t}v_{2}'=0
+  \\
+  in^{2}e^{in^{2}t}v_{1}' - in^{2}e^{-in^{2}t}v_{2}' = -\wh{(u^{2})_{xx}}
+\end{gather*}
+%
+%
+or
+\begin{gather*}
+    \begin{bmatrix}
+      e^{in^{2}t} & e^{-in^{2}t}\\
+      in^{2}e^{in^{2}t} & -in^{2}e^{-in^{2}t}
+    \end{bmatrix}
+    \begin{bmatrix}
+      v_{1}' \\
+      v_{2}'
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    0\\
+    -\wh{(u^{2})_{xx}}
+    \end{bmatrix}.
+\end{gather*}
+This admits the solution
+\begin{gather*}
+    \begin{bmatrix}
+      v_{1}' \\
+      v_{2}'
+    \end{bmatrix}
+    =
+    \frac{1}{2in^{2}}
+    \begin{bmatrix}
+      \wh{(u^{2})_{xx}}e^{-in^{2}t}
+      \\
+      -\wh{(u^{2})_{xx}}e^{in^{2}t}
+    \end{bmatrix}, \quad
+\begin{bmatrix}
+      v_{1}(0) \\
+      v_{2}(0)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    0 \\
+     0
+    \end{bmatrix}
+\end{gather*}
+which we integrate from $0$ to $t$ to obtain
+\begin{gather*}
+    \begin{bmatrix}
+      v_{1} \\
+      v_{2}
+    \end{bmatrix}
+    =
+    \frac{1}{2in^{2}}
+    \begin{bmatrix}
+      \int_{0}^{t} \wh{(u^{2})_{xx}}e^{-in^{2}t'} dt'
+      \\
+      \int_{0}^{t} -\wh{(u^{2})_{xx}}e^{in^{2}t'} dt'
+    \end{bmatrix}
+\end{gather*}
+Using relation \eqref{2nd-order-ansatz}, we now see that
+%
+%
+\begin{equation*}
+\begin{split}
+  y_{p}= e^{in^{2}t}\int_{0}^{t}
+  \frac{\wh{(u^{2})_{xx}}e^{-in^{2}t'}}{2in^{2}} dt'
+  - e^{-in^{2}t}\int_{0}^{t} \frac{\wh{(u^{2})_{xx}}e^{in^{2}t'}}{2in^{2}} dt'
+\end{split}
+\end{equation*}
+%
+%
+which when rewritten gives
+%
+%
+\begin{equation*}
+\begin{split}
+  y_{p}= \int_{0}^{t}\frac{e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}}{2in^{2}}
+  \wh{(u^{2})_{xx}} dt'.
+\end{split}
+\end{equation*}
+%
+%
+Therefore, the unique solution to ivp
+\eqref{four-trans-mb}-\eqref{four-trans-mb-data} is given by
+%
+%
+\begin{equation*}
+\begin{split}
+\wh{u}(n, t) = \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} +
+  \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}}t}{2 i n^{2}} +
+  \int_{0}^{t}\frac{e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}}{2in^{2}}
+  \wh{(u^{2})_{xx}} dt'.
+\end{split}
+\end{equation*}
+%
+%
+Taking the inverse Fourier transform then gives
+%
+\begin{equation*}
+\begin{split}
+  u(x,t) = R_{t}u_{0} + S_{t}u_{1} + \int_{0}^{t} S_{t-t'}
+  \wh{(u^{2})_{xx}}dt'.
+\end{split}
+\end{equation*}
+%
+Hence, we have rewritten the $B_{4}$ ivp
+\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form, as desired. 
+%
+%
+\subsubsection{Reducing to a First Order ODE} 
+\label{sssec:first-order-ode}
+Taking the spatial Fourier transform of \eqref{lin-mb} yields
+the ivp
+%
+%
+\begin{gather*}
+  \wh{u_{tt}} + n^{4} \wh{u} = \wh{-u^{2}_{xx}},
+  \\
+  \wh{u}(n, 0) = \wh{u_{0}}(n), \quad \wh{u_{t}}(n, 0) = \wh{u_{1}}(n)
+\end{gather*}
+%
+%
+which we rewrite as 
+%
+%
+\begin{gather}
+  \label{eqn:lin-mb-ode}
+  y_{tt} + n^{4}y = -f,
+  \\
+  y(n, 0) = y_{0}(n), \quad y_{t}(n, 0) = y_{1}(n)
+\label{eqn:lin-mb-ode-init-data}
+\end{gather}
+%
+%
+where
+%
+%
+\begin{gather*}
+  \label{not-1}
+  y = y(n, t) \doteq \wh{u}(n, t), \quad f = f(n, t) \doteq
+  \wh{u^{2}_{xx}}(n,t),
+  \\
+  \label{not-2}
+  y_{0}(n) \doteq \wh{u_{0}}(n), \quad y_{1}(n) = \wh{u_{1}}(n).
+\end{gather*}
+%
+%
+Viewing $n$ as fixed, we see that \eqref{eqn:lin-mb-ode} is a second order
+linear nonhomogeneous ODE. To solve it, we set 
+%
+%
+\begin{equation*}
+  \label{not-3}
+\begin{split}
+   & v_{1} = y, 
+   \\
+   & v_{2} = y_{t}
+\end{split}
+\end{equation*}
+%
+%
+giving
+%
+%
+\begin{equation*}
+\begin{split}
+  & v_{1}' = v_{2},
+  \\
+  & v_{2}' = -n^{4}v_{1} - f.
+\end{split}
+\end{equation*}
+%
+%
+Using the notation
+%
+%
+\begin{equation*}
+  \vec v =
+  \begin{bmatrix}
+     v_{1}  \\
+     v_{2} 
+  \end{bmatrix},
+\end{equation*}
+%
+%
+we then obtain
+%
+%
+\begin{equation}
+\begin{split}
+\frac{d \vec v}{dt} = 
+\begin{bmatrix}
+0 & 1 \\
+-n^{4} & 0
+\end{bmatrix}
+\begin{bmatrix}
+  v_{1}\\
+  v_{2}
+\end{bmatrix}
+-
+\begin{bmatrix}
+0\\
+f
+\end{bmatrix}
+\doteq A \vec v - \vec f
+\end{split}
+\label{eqn:first-order-ode-reduction}
+\end{equation}
+%
+%
+Hence, we have reduced solving the $2$nd order ODE \eqref{eqn:lin-mb-ode} to
+solving the first order ODE \eqref{eqn:first-order-ode-reduction}. Multiplying
+by the integrating factor $e^{-At}$ on both sides of
+\eqref{eqn:first-order-ode-reduction}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d}{dt}(e^{-At} \vec v) = -e^{-At} \vec f.
+\end{split}
+\end{equation*}
+%
+%
+Integrating in time then gives
+%
+%
+\begin{equation*}
+\begin{split}
+  e^{-At} \vec v(n, t) = \vec v(n, 0) - \int_{0}^{t}e^{-At'} \vec f dt'
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation}
+  \label{ode-vec-soln}
+\begin{split}
+  \vec v(n, t) = e^{At} \vec v(n, 0) - \int_{0}^{t}e^{A(t - t')} \vec f dt'.
+\end{split}
+\end{equation}
+%
+%
+We wish to compute $e^{At}$. It is easy to check that $A$ has eigenvalues
+$\lambda = \pm in^{2}$, with corresponding eigenvectors 
+%
+%
+\begin{equation*}
+\begin{split}
+\pm \begin{bmatrix}
+1 \\
+in^{2}
+\end{bmatrix}.
+\end{split}
+\end{equation*}
+%
+%
+Since $A$ is a square matrix and has no repeated
+eigenvalues, it is diagonizable. More precisely,
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  A = Q D Q^{-1} = 
+  \begin{bmatrix}
+  1 & 1
+  \\
+  in^{2} & -in^{2}
+  \end{bmatrix}
+  \begin{bmatrix}
+    in^{2} & 0 
+    \\
+    0 & -in^{2}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \frac{1}{2} & \frac{1}{2i n^{2}} \\
+    \frac{1}{2} & -\frac{1}{2i n^{2} }
+  \end{bmatrix}
+\end{split}
+\end{equation*}
+%
+%
+where the column vectors of $Q$ are comprised of the eigenvectors of $A$.
+Recalling that 
+%
+%
+\begin{equation*}
+\begin{split}
+  e^{At} \doteq \sum_{n=0}^{\infty} \frac{A^{n}}{n}t^{n}
+\end{split}
+\end{equation*}
+%
+%
+it is easy to check that 
+%
+%
+\begin{equation*}
+\begin{split}
+  e^{Q D Q^{-1}} = 
+\begin{bmatrix}
+  1 & 1
+  \\
+  in^{2} & -in^{2}
+  \end{bmatrix}
+  \begin{bmatrix}
+    e^{in^{2}} & 0 
+    \\
+    0 & e^{-in^{2}}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \frac{1}{2} & \frac{1}{2i n^{2}} \\
+    \frac{1}{2} & -\frac{1}{2i n^{2} }
+  \end{bmatrix}
+\end{split}
+\end{equation*}
+%
+%
+and 
+\begin{equation}
+  \label{matrix-exp}
+\begin{split}
+  e^{Q D Q^{-1}t}
+  & = 
+\begin{bmatrix}
+  1 & 1
+  \\
+  in^{2} & -in^{2}
+  \end{bmatrix}
+  \begin{bmatrix}
+    e^{in^{2}t} & 0 
+    \\
+    0 & e^{-in^{2}t}
+  \end{bmatrix}
+\begin{bmatrix}
+    \frac{1}{2} & \frac{1}{2i n^{2}} \\
+    \frac{1}{2} & -\frac{1}{2i n^{2} }
+  \end{bmatrix}
+  \\
+  & =
+  \begin{bmatrix}
+    \frac{1}{2}(e^{in^{2}t} + e^{-in^{2}t}) & \frac{1}{2 i n^{2}} (e^{in^{2}t} -
+    e^{-in^{2}t})    \\
+    \frac{in^{2}}{2}(e^{in^{2}t} - e^{-in^{2}t}) & \frac{1}{2}(e^{in^{2}t} +
+    e^{-in^{2}t})
+  \end{bmatrix}.
+\end{split}
+\end{equation}
+%
+%
+\begin{framed}
+\begin{remark}
+If a matrix has repeated eigenvalues, it may no longer be diagonizable. However,
+any matrix can be written in Jordan canonical form. The above computations
+become slighly more complicated in this case. The important observation is that
+writing a matrix in Jordan canonical (or, ideally, diagonal) form allows us to
+easily compute its exponential. 
+\label{rem:jordan-form}
+\end{remark}
+\end{framed}
+%
+%
+%
+%
+\begin{framed}
+\begin{remark}
+  Since $A$ is a particularly simple matrix, i.e. $A^{2} = -n^{4} I$, one can
+  compute its exponential easily without the use of diagonalization (this is
+  not true in general). From the above equality, we obtain $A^{n} =
+  (-1)^{n/2} n^{2n} I$ for even $n$, and so
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    e^{At}
+    & = \sum_{n=0}^{\infty} \frac{(-1)^{n}n^{4n}t^{2n}}{(2n)!}I + A
+    \sum_{n=0}^{\infty} \frac{(-1)^{n} n^{4n} t^{2n + 1}}{(2n + 1)!} I 
+    \\
+    & = \cos n^{2}t \, I - \frac{\sin n^{2}t}{n^{2}}A
+    \\
+    & = 
+    \begin{bmatrix}
+      \cos n^{2}t &  -\frac{\sin n^{2}t}{n^{2}}
+      \\
+      - n^{2} \sin n^{2}t & \cos n^{2}t
+    \end{bmatrix}
+    \\
+    & = \text{rhs of }\eqref{matrix-exp}
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{rem:simpler-comp}
+\end{remark}
+\end{framed}
+%
+%
+Substituting \eqref{matrix-exp} into \eqref{ode-vec-soln} and recalling our notation, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  v_{1}(n, t) = (e^{in^{2}t} + e^{-in^{2}t})v_{1}(n, 0) + \frac{e^{in^{2}} -
+  e^{-in^{2}t}}{2 i n^{2}} v_{1}(n, 0) + \int_{0}^{t} \frac{e^{in^{2}(t - t')} -
+  e^{-in^{2}(t-t')}}{2 i n^{2}} f dt'
+\end{split}
+\end{equation*}
+%
+%
+or
+\begin{equation*}
+\begin{split}
+  y(n, t) = (e^{in^{2}t} + e^{-in^{2}t})y_{0} + \frac{e^{in^{2}} -
+  e^{-in^{2}t}}{2 i n^{2}} y_{1} + \int_{0}^{t} \frac{e^{in^{2}(t - t')} -
+  e^{-in^{2}(t-t')}}{2 i n^{2}} f dt'
+\end{split}
+\end{equation*}
+or
+\begin{equation*}
+\begin{split}
+  \wh{u}(n, t) = (e^{in^{2}t} + e^{-in^{2}t})\wh{u_0} + \frac{e^{in^{2}} -
+  e^{-in^{2}t}}{2 i n^{2}} \wh{u_1} + \int_{0}^{t} \frac{e^{in^{2}(t - t')} -
+  e^{-in^{2}(t-t')}}{2 i n^{2}} \wh{(u^{2})_{xx}} dt'.
+\end{split}
+\end{equation*}
+%
+Taking the inverse Fourier transform then yields \eqref{eqn:integral-form}, as
+desired.
+%
 %
 \subsection{Proof of \autoref{lem:mod-princ-symb-bound}} 
 \label{ssec:pf-mod-princ}
@@ -3003,27 +4086,7 @@ conclude that
 
 
 %\nocite{*}
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 %
 %
-% \bib, bibdiv, biblist are defined by the amsrefs package.
-\begin{bibdiv}
-\begin{biblist}
-
-\bib{Kenig:1996aa}{article}{
-      author={Kenig, Carlos~E.},
-      author={Ponce, Gustavo},
-      author={Vega, Luis},
-       title={A bilinear estimate with applications to the {K}d{V} equation},
-        date={1996},
-        ISSN={0894-0347},
-     journal={J. Amer. Math. Soc.},
-      volume={9},
-      number={2},
-       pages={573\ndash 603},
-         url={http://dx.doi.org/10.1090/S0894-0347-96-00200-7},
-      review={\MR{1329387 (96k:35159)}},
-}
-
-\end{biblist}
-\end{bibdiv}\end{document}
+\end{document}
