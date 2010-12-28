@@ -2710,54 +2710,54 @@ Applying H{\"o}lder, we bound this by
 \end{equation}
 %
 %
-Hence, to complete the proof, it will be enough
-to show that 
+%Hence, to complete the proof, it will be enough
+%to show that 
+%%
+%%
+%%
+%%
+%\begin{equation}
+  %\label{key-sup-estimate-real-1}
+	%\begin{split}
+		 %\| \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
+    %\rangle ^{2s}
+%\sum_{\xi_{1} \in \zz} \int_{\rr} \frac{1}{  \langle \xi_{1} \rangle ^{2s} \langle
+%\xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b}  \langle  |\tau -
+    %\tau_{1} | -(\xi - \xi_{1}^{2}
+    %\rangle ^{2b} } d \tau_1 \|_{L^\infty_{\xi, \tau}} < \infty.
+	%\end{split}
+%\end{equation}
 %
 %
-%
-%
-\begin{equation}
-  \label{key-sup-estimate-real-1}
-	\begin{split}
-		 \| \langle | \tau | - \xi^{2} \rangle ^{-2a} \langle \xi
-    \rangle ^{2s}
-\sum_{\xi_{1} \in \zz} \int_{\rr} \frac{1}{  \langle \xi_{1} \rangle ^{2s} \langle
-\xi-\xi_{1} \rangle ^{2s} \langle | \tau_{1}|-\xi_{1}^{2} \rangle^{2b}  \langle  |\tau -
-    \tau_{1} | -(\xi - \xi_{1}^{2}
-    \rangle ^{2b} } d \tau_1 \|_{L^\infty_{\xi, \tau}} < \infty.
-	\end{split}
-\end{equation}
-%
-%
-By the triangle inequality and the fact that 
-%
-%
-\begin{equation*}
-\begin{split}
-& | \tau | =
-\begin{cases}
-  - \tau, \quad & \tau < 0, 
-\\
-\tau, \quad & \tau > 0
-\end{cases}
-\end{split}
-\end{equation*}
-%
-%
-\eqref{key-sup-estimate-real} will be proved if we can bound the
-$L^{\infty}_{\tau, n}$ norm of the quantity
-%
-%
-\begin{equation}
-  \label{sup-est-gen-real}
-\begin{split}
-		  \langle \sigma \rangle ^{-2a} \langle n
-    \rangle ^{2s}
-\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-\langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
-d \tau_1 
-	\end{split}
-\end{equation}
+%By the triangle inequality and the fact that 
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+%& | \tau | =
+%\begin{cases}
+  %- \tau, \quad & \tau < 0, 
+%\\
+%\tau, \quad & \tau > 0
+%\end{cases}
+%\end{split}
+%\end{equation*}
+%%
+%%
+%\eqref{key-sup-estimate-real} will be proved if we can bound the
+%$L^{\infty}_{\tau, n}$ norm of the quantity
+%%
+%%
+%\begin{equation}
+  %\label{sup-est-gen-real}
+%\begin{split}
+			%\langle \sigma \rangle ^{-2a} \langle n
+    %\rangle ^{2s}
+%\sum_{n_{1} \in \zz} \int_{\rr} \frac{1}{ \langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
+%\langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
+%d \tau_1 
+	%\end{split}
+%\end{equation}
 Let us now return to the right hand side of \eqref{pre-fubini-int-form-real}.
 Let $A \subset \rr^{4}$, and $\chi_{A}(\xi, \tau, \xi_{1}, \tau_{1})$ be its
 characteristic function, as before.  We seek to bound
@@ -2774,7 +2774,7 @@ characteristic function, as before.  We seek to bound
     \rangle ^{b}} d \tau_1 d \xi_{1} d \tau d \xi
 \end{split}
 \end{equation*}
-in a slightly different manner than before. First, we apply 
+in a different manner than before. First, we apply 
 Fubini, then Cauchy-Schwartz in $\xi_{1}, \tau_{1}$ to obtain the bound
 %
 %
@@ -2871,9 +2871,10 @@ or
 %%
 \begin{equation}
 \begin{split}
-  & \| \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle \xi_{1} \rangle ^{2s} \langle
-  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau | - \xi^{2} \rangle
-  ^{2a} \langle | \tau_{1} | - \xi_{1}^{2} \rangle ^{2b} \langle | \tau -
+  & \| \frac{1}{\langle \xi_{1} \rangle ^{2s}
+  \langle | \tau_{1} | - \xi_{1}^{2} \rangle
+  ^{2a}} \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle
+  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau | - \xi^{2} \rangle ^{2b} \langle | \tau -
   \tau_{1} | - (\xi - \xi_{1}^{2}) \rangle ^{2b}} d \tau d \xi
   \|_{L^{\infty}_{\xi_{1}, \tau_{1}}}
 \end{split}
@@ -2894,20 +2895,34 @@ By the triangle inequality and the fact that
 \end{equation*}
 %
 %
-\eqref{key-sup-estimate-real} will be proved if we can bound the
-$L^{\infty}_{\tau, \xi}$ norm of the quantity
+it follows that the proof of \autoref{prop:bilin-est} reduces to showing that
+for any $j$, either 
 %
 %
 \begin{equation}
   \label{sup-est-gen-real-1}
-\begin{split}
-      \langle \sigma \rangle ^{-2a} \langle \xi
-    \rangle ^{2s}
-    \int_{\rr} \int_{\rr} \frac{1}{ \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} 
-\langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
-d \tau_1 d \xi_{1} 
+  \begin{split}
+    \| \frac{ \langle \xi
+    \rangle ^{2s}}{\langle \sigma \rangle ^{2a}}
+    \int_{\rr} \int_{\rr} \frac{\chi_{A_{j}}}{ \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} 
+    \langle \sigma_{1} \rangle^{2b} \langle  \sigma_{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1} \|_{L^{\infty}_{\xi, \tau}}
   \end{split}
 \end{equation}
+%
+%
+or 
+\begin{equation}
+\begin{split}
+  & \| \frac{1}{\langle \xi_{1} \rangle ^{2s}
+  \langle \sigma_{1} \rangle
+  ^{2a}} \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle
+  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle
+  \sigma \rangle ^{2b} \langle \sigma_{2} \rangle ^{2b}} d \tau d \xi
+  \|_{L^{\infty}_{\xi_{1}, \tau_{1}}}
+\end{split}
+\end{equation}
+%
 %
 for the following cases.
 \begin{enumerate}[(i)]
@@ -2947,121 +2962,127 @@ under change of variables and reflections, we may without loss of generality
 restrict our attention to cases \eqref{it-real-4} and \eqref{it-real-6}.
  \subsubsection{Case \eqref{it-real-6}} 
 \label{sssec:case-it-real-6}
-Noting that 
+We partition $\rr^{4}$ into the following three sets 
 %
 %
 \begin{equation*}
 \begin{split}
-  \tau - \xi^{2} - \left[ (\tau + \xi_{1}^{2}) + (\tau - \tau_{1}) - (\xi -
-  \xi_{1})^{2} \right] = 2\xi_{1}\xi
+  & A_{1} = \left\{ (\xi, \tau, \xi_{1}, \tau_{1}) \subset \rr^{4}: |
+  \xi_{1} \le 1 | \text{ or } | \xi - \xi_{1} | \le 1 \right\},
+  \\
+  & A_{2} = 
+  \begin{Bmatrix}
+    | \xi_{1} \ge 1 \text{ and } | \xi - \xi_{1} | \ge 1,
+    \\
+    \langle \tau_{1} - \xi_{1}^{2} \rangle  \le \langle \tau -
+  \xi^{2} \rangle
+\end{Bmatrix}
+  \\
+  & A_{3} = 
+  \begin{Bmatrix}
+    | \xi_{1} | \ge 1 \text{ and } | \xi - \xi_{1} | \ge 1,
+    \\
+    \langle \tau - \xi^{2} \rangle  \le \langle \tau_{1} - \xi_{1}^{2} \rangle 
+  \end{Bmatrix}.
 \end{split}
 \end{equation*}
 %
-%
-we have 
-%
-%
-\begin{enumerate}[(i)]
-  \item{$\langle \tau - \xi^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle$, or}
-    \\
-  \item{  $\langle \tau_{1} - \xi_{1}^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle$, or}
-    \\
-  \item{ $\langle \tau - \tau_{1} - (\xi - \xi_{1})^{2} \rangle  \gtrsim \langle \xi_{1}\xi
-    \rangle$}.
-\end{enumerate}
-%By the symmetry of the convolution, we assume without loss of generality
-%that
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\langle \tau_{1} - \xi_{1} \rangle \le  \langle \tau - \tau_{1} - (\xi - \xi_{1})^{2} \rangle 
-%\end{split}
-%\end{equation*}
+and first seek to bound
 %
 %
-We now partition $\rr^{4}$ into three sets 
-%
-%
-%\begin{align*}
-%B_1&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: |\xi_1| \le 1\},\\
-%B_2&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: |\xi_1| \ge 1 \text{ and } | \xi
-%| \le 1 \},\\
-%B_3&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: |\xi_1| \ge 1, | \xi | \ge 1, \text{
-%and } | \xi | \ge | \xi_{1}|/2 \},\\
-%B_4&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: | \xi_{1} | \ge 1, | \xi| \ge 1 ,
-%\text{ and } | \xi | \le | \xi_{1} |/2 \}.
-%\end{align*} 
-%
-\begin{align*}
-B_1&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: \langle \tau - \xi^{2} \rangle
-\gtrsim \langle \xi_{1}\xi \rangle\},\\
-B_2&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: \langle \tau_{1} - \xi_{1}^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle \},\\
-B_3&=\{(\xi, \xi_1, \tau, \tau_1)\in \rr^4: \langle \tau - \tau_{1} - (\xi -
-\xi_{1})^{2} \rangle  \gtrsim \langle \xi_{1}\xi \rangle \}.
-\end{align*} 
+\begin{equation}
+  \label{case-1-region-1}
+  \begin{split}
+    \frac{ \langle \xi
+    \rangle ^{2s}}{\langle \tau - \xi^{2} \rangle ^{2a}}
+    \int_{\rr} \int_{\rr} \frac{\chi_{A_{1}}}{ \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} 
+    \langle \tau_{1} - \xi_{1}^{2} \rangle^{2b} \langle  \tau - \tau_{1} -
+    (\xi - \xi_{1})^{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1}.
+  \end{split}
+\end{equation}
 
+In region $A_{1}$, we note that if $| \xi_{1} | \le 1$
 %
-Then from the inequality
+%
 %
 %
 \begin{equation*}
 \begin{split}
-  \langle \xi \rangle  \le \langle \xi_{1} \rangle \langle \xi - \xi_{1} \rangle 
+  (1 + | \xi_{1} |)(1 + | \xi - \xi_{1} |)
+  & \le (1 + | \xi_{1} |)(1 + | \xi | + \xi_{1})
+  \\
+  & \le 2 (2 + | \xi |)
+  \\
+  & \le 4 (1 + | \xi |).
 \end{split}
 \end{equation*}
 %
-we obtain
+%
+If $| \xi - \xi_{1} |\le 1$, then
 %
 %
 \begin{equation*}
 \begin{split}
-  \langle \xi \rangle ^{s} \le \langle \xi_{1} \rangle ^{\gamma(s)},
-  \quad 
-  \gamma(s) = 
-  \begin{cases} 0, \quad & s \ge 0
-    \\
-    4|s|, \quad & s < 0.
-  \end{cases}
+  (1 + | \xi_{1} |)(1 + | \xi - \xi_{1} |)
+  & \le 2 (1 + | \xi_{1} |)
+  \\
+  & \le 2 (1 + | \xi - \xi_{1} | + | \xi |)
+  \\
+  & \le 2(2 + | \xi |)
+  \\
+  & \le 4 (1 + | \xi |).
 \end{split}
 \end{equation*}
 %
 %
-%
-%
-%
-and so
+Hence, in region $A_{1}$, we have the estimate
 %
 %
 \begin{equation}
 \begin{split}
-  |  \eqref{sup-est-gen-real} \chi_{B_{1}}|
-  & =  \langle \tau - \xi^{2} \rangle
-  ^{-2a} \langle \xi \rangle ^{2s} \int _{\rr} \int_{\rr} \frac{\chi_{B_{1}}}{
-  \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1}\rangle ^{2s} \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
-  \tau - \tau_{1} - (\xi -\xi_{1})^{2}\rangle ^{2b}}d \tau_{1} d \xi_{1} 
+  \langle \xi_{1} \rangle \langle \xi - \xi_{1} \rangle  \le 4 \langle \xi \rangle 
+\end{split}
+\label{splitting-estimate}
+\end{equation}
+%
+%
+which we use to bound \eqref{case-1-region-1} by
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+    \frac{ 1}{\langle \tau - \xi^{2} \rangle ^{2a}}
+    \int_{\rr} \int_{\rr} \frac{\chi_{A_{1}}}{  
+    \langle \tau_{1} - \xi_{1}^{2} \rangle^{2b} \langle  \tau - \tau_{1} -
+    (\xi - \xi_{1})^{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1}.
+\end{split}
+\end{equation*}
+%
+%
+Applying \autoref{lem:calc}, this in turn is bounded by
+%
+%
+\begin{equation}
+  \label{uniform-bound-region-1}
+\begin{split}
+  & \frac{c_{1}}{\langle \tau - \xi^{2} \rangle^{2a}} \int_{\rr}
+  \frac{\chi_{A_{1}}}{\langle \tau - \xi^{2} + 2 \xi \xi_{1} - 2
+  \xi_{1}^{2} \rangle ^{2b}} d \xi_{1}
   \\
-  & \le  \int_{\rr} \int_{\rr} \frac{\chi_{B_{1}}
-  \langle
-  \xi_{1}\rangle ^{\gamma(s) -2a} 
-}{ \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
-  \tau - \tau_{1} - (\xi - \xi_{1})^{2}\rangle ^{2b}}
-  d \tau_{1} d \xi_{1} 
+  & \le c_{1} \int_{\rr}
+  \frac{\chi_{A_{1}}}{\langle \tau - \xi^{2} + 2 \xi \xi_{1} - 2
+  \xi_{1}^{2} \rangle ^{2b}} d \xi_{1}, \quad a > 0
   \\
-  & \le \int_{\rr} \int_{\rr} \frac{\chi_{B_{1}}
-  }{ \langle \tau_{1} - \xi_{1}^{2} \rangle ^{2b}\langle
-  \tau - \tau_{1} - (\xi - \xi_{1})^{2}\rangle ^{2b}}
-  d \tau_{1} d \xi_{1}, \quad s \ge 0 \text{ or } s \ge -a/2
-  \\
-  & \le \int _{\rr} 
-  \frac{\chi_{B_{1}}}{\langle \tau - \xi^{2} + 2 \xi
-  \xi_{1} - 2 \xi_{1}^{2} \rangle ^{2b}}d \xi_{1}, \quad (\autoref{lem:calc}) 
-  \\
-  & < \infty
+& < c, \quad b > 1/4
 \end{split}
 \end{equation}
 %
-where the final step follows from a corollary to \autoref{lem:calc}.
+%
+where the last line follows from a corollary to \autoref{lem:calc}.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3083,10 +3104,266 @@ where the final step follows from a corollary to \autoref{lem:calc}.
   \end{split}
   \end{equation*}
   %
+  where $c$ is a constant independent of the choice of $a_{0}, a_{1}$, and $a_{2}$.
   %
 \label{cor:integral-bound}
 \end{corollary}
+Note that for \eqref{uniform-bound-region-1}, the
+value of $c$ does not depend on the choice of $\tau$ or $\xi$. 
+Next we seek to bound
+\begin{equation}
+  \label{case-1-region-2}
+  \begin{split}
+    \frac{ \langle \xi
+    \rangle ^{2s}}{\langle \tau - \xi^{2} \rangle ^{2a}}
+    \int_{\rr} \int_{\rr} \frac{\chi_{A_{2}}}{ \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} 
+    \langle \tau_{1} - \xi_{1}^{2} \rangle^{2b} \langle  \tau - \tau_{1} -
+    (\xi - \xi_{1})^{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1}.
+  \end{split}
+\end{equation}
+Due to the symmetry of the convolution, we assume without loss of generality that
 %
+%
+\begin{equation*}
+\begin{split}
+  \langle \tau - \tau_{1} - (\xi - \xi_{1})^{2} \rangle \le \langle
+  \tau_{1} - \xi_{1}^{2}\rangle 
+\end{split}
+\end{equation*}
+%
+%
+Then in region $A_{2}$, we have the estimate
+%
+%
+\begin{equation}
+\begin{split}
+  | \tau - \xi^{2} |
+  & \ge \frac{1}{3}\left[ | \tau_{1} - \xi_{1}^{2} | + | \tau -
+  \tau_{1} - (\xi - \xi_{1})^{2}
+  | + | \tau - \xi^{2} | \right]
+  \\
+  & \ge \frac{1}{3} | - \xi_{1}^{2} - (\xi - \xi_{1})^{2} + \xi^{2} |
+  \\
+  & = \frac{2}{3} | \xi_{1} | | \xi - \xi_{1} |
+  \\
+  & \gtrsim | \xi_{1} | \quad (| \xi - \xi_{1} |\chi_{A_{2}} \ge 1).
+\end{split}
+\label{region-2-smoothing}
+\end{equation}
+%
+%
+Furthermore, from the inequality
+%
+%
+\begin{equation*}
+\begin{split}
+  \langle \xi \rangle  \le \langle \xi_{1} \rangle \langle \xi - \xi_{1} \rangle 
+\end{split}
+\end{equation*}
+%
+we obtain
+%
+%
+\begin{equation}
+  \label{growth-term}
+\begin{split}
+  \frac{\langle \xi \rangle ^{2s}}{\langle \xi_{1} \rangle ^{2s} \langle \xi -
+  \xi_{1} \rangle ^{2s}} \le \langle \xi_{1} \rangle ^{\gamma(s)},
+  \quad 
+  \gamma(s) = 
+  \begin{cases} 0, \quad & s \ge 0
+    \\
+    4|s|, \quad & s < 0.
+  \end{cases}
+\end{split}
+\end{equation}
+Applying \eqref{region-2-smoothing} and \eqref{growth-term}, we obtain 
+%
+%
+\begin{equation*}
+\begin{split}
+  \eqref{case-1-region-2}
+  & \le 
+  \int_{\rr} \int_{\rr}  \frac{\chi_{A_{2}} \langle \xi_{1} \rangle
+  ^{\gamma(s) -2a}}{ 
+  \langle \tau_{1} - \xi_{1}^{2} \rangle^{2b} \langle  \tau - \tau_{1} -
+    (\xi - \xi_{1})^{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1}
+    \\
+    & \le \int_{\rr} \int_{\rr}  \frac{\chi_{A_{2}}}{ 
+    \langle \tau_{1} - \xi_{1}^{2} \rangle^{2b} \langle  \tau - \tau_{1} -
+    (\xi - \xi_{1})^{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1}, \quad s \ge -\frac{a}{2}.
+  \end{split}
+\end{equation*}
+%
+%
+By \autoref{lem:calc} and \autoref{cor:integral-bound}, we bound the right hand
+side by
+%
+%
+\begin{equation*}
+\begin{split}
+  & c_{1} \int_{\rr}  \frac{1}{\langle \tau - \xi^{2} + 2 \xi \xi_{1} - 2
+  \xi_{1}^{2} \rangle ^{2b}}d \xi_{1}
+  \\
+  & \le  c, \quad b > 1/2
+\end{split}
+\end{equation*}
+%
+%
+where $c$ is independent of the value of $\tau$ and $\xi$. 
+%
+Lastly, we seek to bound
+\begin{equation*}
+\begin{split}
+  &  \frac{1}{\langle \xi_{1} \rangle ^{2s}
+  \langle \tau_{1} - \xi_{1}^{2}  \rangle
+  ^{2a}} \int_{\rr} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle
+  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3}}}{\langle
+  \tau - \xi^{2} \rangle ^{2a} \langle \tau - \tau_{1} - (\xi -
+  \xi_{1})^{2} \rangle ^{2b}} d \tau d \xi
+\end{split}
+\end{equation*}
+Applying Fubini and \autoref{lem:calc}, we bound this by
+%
+%
+\begin{equation*}
+\begin{split}
+  &  \frac{1}{\langle \xi_{1} \rangle ^{2s}
+  \langle \tau_{1} - \xi_{1}^{2}  \rangle
+  ^{2a}} \int_{\rr} \frac{\langle \xi \rangle ^{2s}}{\langle
+  \xi - \xi_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3}}}{\langle
+  \tau_{1} + 2 \xi \xi_{1} - \xi_{1}^{2} \rangle ^{2b}} d \xi, \quad a \le b.
+\end{split}
+\end{equation*}
+%
+%
+which by the change of variable
+%
+%
+\begin{equation*}
+\begin{split}
+  & \eta = \tau_{1} - \xi_{1}^{2} + 2 \xi \xi_{1},
+  \\
+  & d \eta = 2 \xi_{1} d \xi
+\end{split}
+\end{equation*}
+%
+%
+and inequality \eqref{growth-term}, is bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  & \frac{1}{2} \langle \xi_{1} \rangle ^{\gamma(s)}  \int_{\rr} 
+  \frac{1}{| \xi_{1} |\langle \eta \rangle ^{2a} }d \eta
+  \\
+  & = \langle \xi_{1} \rangle ^{\gamma(s)-1} \int_{0}^{\infty} \frac{1}{(1 + \eta
+  )^{2a}}d \eta
+  \\
+  & =  \langle \xi_{1}  \rangle ^{\gamma(s) -1} (-2a +1)\frac{1}{(1 + \eta
+  )^{2a-1}} \Big |_{0}^{\infty}
+  \\
+  & \simeq \langle \xi_{1} \rangle ^{\gamma(s)-1}
+  \\
+  & \le 1, \qquad s \ge -1/4.
+\end{split}
+\end{equation*}
+%
+%
+\subsubsection{Case \eqref{it-real-4}} 
+\label{sssec:case-it-real-4}
+We partition $\rr^{4}$ into the following three sets 
+%
+%
+\begin{equation*}
+\begin{split}
+  & A_{1} = \left\{ (\xi, \tau, \xi_{1}, \tau_{1}) \subset \rr^{4}: |
+  \xi_{1} \le 1 | \text{ or } | \xi - \xi_{1} | \le 1 \right\},
+  \\
+  & A_{2} = 
+  \begin{Bmatrix}
+    | \xi_{1} \ge 1 \text{ and } | \xi - \xi_{1} | \ge 1,
+    \\
+    \langle \tau_{1} + \xi_{1}^{2} \rangle  \le \langle \tau -
+  \xi^{2} \rangle
+\end{Bmatrix}
+  \\
+  & A_{3} = 
+  \begin{Bmatrix}
+    | \xi_{1} | \ge 1 \text{ and } | \xi - \xi_{1} | \ge 1,
+    \\
+    \langle \tau - \xi^{2} \rangle  \le \langle \tau_{1} + \xi_{1}^{2} \rangle 
+  \end{Bmatrix}.
+\end{split}
+\end{equation*}
+%
+and first seek to bound
+%
+%
+\begin{equation}
+  \label{case-2-region-1}
+  \begin{split}
+    \frac{ \langle \xi
+    \rangle ^{2s}}{\langle \tau - \xi^{2} \rangle ^{2a}}
+    \int_{\rr} \int_{\rr} \frac{\chi_{A_{1}}}{ \langle \xi_{1} \rangle ^{2s} \langle \xi-\xi_{1} \rangle ^{2s} 
+    \langle \tau_{1} - \xi_{1}^{2} \rangle^{2b} \langle  \tau - \tau_{1} -
+    (\xi - \xi_{1})^{2} \rangle^{2b} }
+    d \tau_1 d \xi_{1}.
+  \end{split}
+\end{equation}
+By inequality \eqref{splitting-estimate}, this is bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{1}{\langle \tau - \xi^{2} \rangle ^{2a}} \int_{\rr} \int_{\rr}
+  \frac{\chi_{A_{1}}}{\langle \tau_{1} + \xi_{1}^{2} \rangle ^{2b} \langle \tau
+  - \tau_{1} - ( \xi - \xi_{1})^{2}\rangle ^{2b}} d \tau_{1} d \xi_{1}
+\end{split}
+\end{equation*}
+%
+%
+Applying \autoref{lem:calc} then gives the bound
+%
+%
+\begin{equation}
+\begin{split}
+  \frac{1}{\langle \tau - \xi^{2} \rangle ^{2a}} \int_{\rr}
+  \frac{\chi_{A_{1}}}{\langle \tau - \xi^{2} + 2 \xi \xi_{1} \rangle ^{2b}} d
+  \xi_{1}.
+\end{split}
+\label{region-1-case-2-pre-est}
+\end{equation}
+%
+%
+If $| \xi  | \le 1$, then $| \xi_{1} | \le 2$ in $A_{1}$, and so
+\eqref{region-1-case-2-pre-est} is bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{| \xi_{1} | \le 2} d \xi_{1} \simeq 1.
+\end{split}
+\end{equation*}
+%
+%
+If $| \xi | \ge 1$, then using the change of variable
+%
+%
+\begin{equation*}
+\begin{split}
+  & \eta = \tau - \xi^{2} + 2 \xi \xi_{1}
+  \\
+  & d \eta = 2 \xi d \xi_{1}
+\end{split}
+\end{equation*}
+%
+%
+we bound \eqref{region-1-case-2-pre-est} by
+ 
 %Similarly, 
 %%
 %%
@@ -4086,7 +4363,41 @@ conclude that
 
 
 %\nocite{*}
-\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 %
 %
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Ginibre:1996fk}{article}{
+      author={Ginibre, Jean},
+       title={Le probl{\`e}me de {C}auchy pour des {EDP} semi-lin{\'e}aires
+  p{\'e}riodiques en variables d'espace (d'apr{\`e}s {B}ourgain)},
+        date={1996},
+        ISSN={0303-1179},
+     journal={Ast{\'e}risque},
+      number={237},
+       pages={Exp.\ No.\ 796, 4, 163\ndash 187},
+        note={S{{\'e}}minaire Bourbaki, Vol. 1994/95},
+      review={\MR{1423623 (98e:35154)}},
+}
+
+\bib{Kenig:1996aa}{article}{
+      author={Kenig, Carlos~E.},
+      author={Ponce, Gustavo},
+      author={Vega, Luis},
+       title={A bilinear estimate with applications to the {K}d{V} equation},
+        date={1996},
+        ISSN={0894-0347},
+     journal={J. Amer. Math. Soc.},
+      volume={9},
+      number={2},
+       pages={573\ndash 603},
+         url={http://dx.doi.org/10.1090/S0894-0347-96-00200-7},
+      review={\MR{1329387 (96k:35159)}},
+}
+
+\end{biblist}
+\end{bibdiv}
 \end{document}
