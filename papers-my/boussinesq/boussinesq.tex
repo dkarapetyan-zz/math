@@ -942,7 +942,7 @@ provided in the appendix.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{lemma}
+\begin{lemma}[Lemma 2.3 in \cite{Farah:2009uq}]
   Let $b > 1/2$. Then $X_{s, b} \subset C(\rr, H^s)$ continuously. That is, there exists $c>0$ depending only on $b$ such that
 %
 %
@@ -1411,7 +1411,7 @@ the appendix.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{lemma}
+\begin{lemma}[Lemma 2.2 in \cite{Farah:2009uq}]
 Let $-1/2 < -a \le 0 < b \le 1-a$. Then
 %
 %
@@ -1427,7 +1427,9 @@ Let $-1/2 < -a \le 0 < b \le 1-a$. Then
 \end{lemma}
 %
 %
-Applying the lemma with $b = 1 - a$, we bound the right hand side of \eqref{comp-pre-lemma} by
+Applying the lemma with $b = 1 - a$ (ATTENTION: Farah makes no mention of this--but it is
+ncessary to take $b = 1-a$ in order to obtain as much smoothing as possible,
+i.e. $H_t^{-a}$, want as large an $a$ as possible), we bound the right hand side of \eqref{comp-pre-lemma} by
 %
 %
 \begin{equation*}
@@ -1495,7 +1497,7 @@ estimate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{proposition}
+\begin{proposition}[Theorem 1.1 in \cite{Farah:2009uq}]
 \label{prop:bilin-est}
   If $a > 1/4$, $b > 1/2$, and $s \ge -a/2$, 
   then 
@@ -1512,7 +1514,7 @@ estimate.
 %
 %
 Applying the bilinear estimate to \eqref{eqn:non-lin-bound}, we conclude that
-for $s > -1/4$, $b = s/2 + 5/8$, we have 
+for $s > -1/4$, $b = 1 + 2s$, we have 
 %
 %
 \begin{equation}
@@ -1545,7 +1547,7 @@ Recalling \eqref{localized-int-eqn}, and collecting estimates \eqref{eqn:u-0-fin
 %
 \begin{proposition}
 \label{prop:contraction}
-Let  $s > -1/4$. Then for $b = s/2 + 5/8$, we have
+Let  $s > -1/4$. Then for $b = 1 + 2s$, we have
 %
 %%
 \begin{equation*}
@@ -3041,7 +3043,8 @@ hand side is bounded by
 %
 %
 which is finite for $b > 1/4$, due to \autoref{lem:sum-estimate}. 
-Working now in region $B_{3,2}$, we seek to estimate 
+Working now in region $B_{3,2}$ (ATTENTION: Farah estimates differently here. His
+way is convoluted, and unnecessary; see page 960 of Farah periodic), we seek to estimate 
 \begin{equation}
   \label{region-B-3-split-3}
 \begin{split}
@@ -3234,7 +3237,7 @@ We now introduce the following spaces.
 We need only establish the following bilinear estimate. All other arguments are
 analogous to those in the periodic case.
 %
-\begin{proposition}
+\begin{proposition}[Theorem 1.1 in Farah periodic]
 \label{prop:bilin-est-real}
 If $b > 1/2$, $a > 1/4$, and $s \ge -a/2$, 
   then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
@@ -3774,6 +3777,8 @@ We partition $\rr^{4}$ into the following three sets
 \end{split}
 \end{equation*}
 %
+[ATTENTION: Farah splits a bit differently. He in particular does not have a set
+like $A_1$-it is split into smaller pieces. This is redundant. Instead,  we follow KPV--makes things cleaner and easier.]
 and first seek to bound
 %
 %
@@ -3881,7 +3886,7 @@ where the last line follows from a corollary to \autoref{lem:calc}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{corollary}
+\begin{corollary}[Lemma 3.1 in \cite{Farah:2009uq}]
   For $a_{0}, a_{1}, a_{2} \in \rr$ with $a_{2} \neq 0$ and $q > 1/2$
   %
   %
@@ -5104,6 +5109,21 @@ conclude that
 \begin{bibdiv}
 \begin{biblist}
 
+\bib{Farah:2009uq}{article}{
+      author={Farah, Luiz~Gustavo},
+       title={Local solutions in {S}obolev spaces with negative indices for the
+  ``good'' {B}oussinesq equation},
+        date={2009},
+        ISSN={0360-5302},
+     journal={Comm. Partial Differential Equations},
+      volume={34},
+      number={1-3},
+       pages={52\ndash 73},
+         url={http://dx.doi.org/10.1080/03605300802682283},
+      review={\MR{2512853 (2010k:35404)}},
+}
+
+
 \bib{Ginibre:1996fk}{article}{
       author={Ginibre, Jean},
        title={Le probl{\`e}me de {C}auchy pour des {EDP} semi-lin{\'e}aires
@@ -5165,4 +5185,5 @@ conclude that
 
 \end{biblist}
 \end{bibdiv}
+% \bib, bibdiv, biblist are defined by the amsrefs package.
 \end{document}
