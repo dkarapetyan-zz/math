@@ -5,8 +5,8 @@
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
-\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
 \usepackage{enumerate} %to change enumerate symbols
+\usepackage{hyperref}
 %\usepackage{showkeys}  %shows source equation labels on the pdf
 \usepackage[margin=3cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
@@ -5103,87 +5103,6 @@ conclude that
 
 
 %\nocite{*}
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
-%
-% \bib, bibdiv, biblist are defined by the amsrefs package.
-\begin{bibdiv}
-\begin{biblist}
-
-\bib{Farah:2009uq}{article}{
-      author={Farah, Luiz~Gustavo},
-       title={Local solutions in {S}obolev spaces with negative indices for the
-  ``good'' {B}oussinesq equation},
-        date={2009},
-        ISSN={0360-5302},
-     journal={Comm. Partial Differential Equations},
-      volume={34},
-      number={1-3},
-       pages={52\ndash 73},
-         url={http://dx.doi.org/10.1080/03605300802682283},
-      review={\MR{2512853 (2010k:35404)}},
-}
-
-
-\bib{Ginibre:1996fk}{article}{
-      author={Ginibre, Jean},
-       title={Le probl{\`e}me de {C}auchy pour des {EDP} semi-lin{\'e}aires
-  p{\'e}riodiques en variables d'espace (d'apr{\`e}s {B}ourgain)},
-        date={1996},
-        ISSN={0303-1179},
-     journal={Ast{\'e}risque},
-      number={237},
-       pages={Exp.\ No.\ 796, 4, 163\ndash 187},
-        note={S{{\'e}}minaire Bourbaki, Vol. 1994/95},
-      review={\MR{1423623 (98e:35154)}},
-}
-
-\bib{Ginibre:1997fk}{article}{
-      author={Ginibre, J.},
-      author={Tsutsumi, Y.},
-      author={Velo, G.},
-       title={On the {C}auchy problem for the {Z}akharov system},
-        date={1997},
-        ISSN={0022-1236},
-     journal={J. Funct. Anal.},
-      volume={151},
-      number={2},
-       pages={384\ndash 436},
-         url={http://dx.doi.org/10.1006/jfan.1997.3148},
-      review={\MR{1491547 (2000c:35220)}},
-}
-
-\bib{Kenig:1996aa}{article}{
-      author={Kenig, Carlos~E.},
-      author={Ponce, Gustavo},
-      author={Vega, Luis},
-       title={A bilinear estimate with applications to the {K}d{V} equation},
-        date={1996},
-        ISSN={0894-0347},
-     journal={J. Amer. Math. Soc.},
-      volume={9},
-      number={2},
-       pages={573\ndash 603},
-         url={http://dx.doi.org/10.1090/S0894-0347-96-00200-7},
-      review={\MR{1329387 (96k:35159)}},
-}
-
-\bib{Kenig-Ponce-Vega-1996-Quadratic-forms-for-the-1-D-semilinear}{article}{
-      author={Kenig, Carlos~E.},
-      author={Ponce, Gustavo},
-      author={Vega, Luis},
-       title={Quadratic forms for the {$1$}-{D} semilinear {S}chr{\"o}dinger
-  equation},
-        date={1996},
-        ISSN={0002-9947},
-     journal={Trans. Amer. Math. Soc.},
-      volume={348},
-      number={8},
-       pages={3323\ndash 3353},
-         url={http://dx.doi.org/10.1090/S0002-9947-96-01645-5},
-      review={\MR{1357398 (96j:35233)}},
-}
-
-\end{biblist}
-\end{bibdiv}
-% \bib, bibdiv, biblist are defined by the amsrefs package.
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliographystyle{amsalpha}
 \end{document}
