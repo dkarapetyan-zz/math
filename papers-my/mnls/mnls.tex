@@ -268,10 +268,10 @@ Therefore, by Fourier inversion
 \begin{equation}
 	\label{mNLS-integral-form}
 	\begin{split}
-		u(x,t) & = \sum_{n \in \zz} \wh{\vp}(n) e^{i\left( xn - t n^m 
+		u(x,t) & = \frac{1}{2\pi} \sum_{n \in \zz} \wh{\vp}(n) e^{i\left( xn - t n^m 
 		\right)} 
 		\\
-		& + i \sum_{n \in \zz} \int_0^t e^{i\left[ xn + \left( t' - t 
+    & + \frac{i}{2 \pi} \sum_{n \in \zz} \int_0^t e^{i\left[ xn + \left( t' - t 
 		\right) n^m \right]} \wh{w}(n, t') \ dt'.
 	\end{split}
 \end{equation}
@@ -337,7 +337,7 @@ inversion
 		\right)} \int_0^t \int_\rr e^{it'\left( \tau - n^m \right) }
 		\wh{w}(n, \tau) d \tau dt'
 		\\
-		& = \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr 
+		& = \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr 
 		e^{i\left( xn + tn^m \right)} \frac{e^{it\left( \tau - n^m 
 		\right)}-1}{\tau - n^m} \wh{w}(n, \tau) d \tau
 	\end{split}
@@ -354,13 +354,11 @@ into \eqref{cutoff-int-eq} we obtain
 		u(x, t)
 		& = \frac{1}{2 \pi} \psi_{T}(t) \sum_{n \in \zz} e^{i(xn - tn^{m })} \widehat{\vp}(n) 
 		\\
-		& + \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr
+		& + \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr
 		e^{i(xn + t n^m)} \frac{e^{it(\tau - n^m)}- 1}{\tau - n^m} 
 		\wh{w}(n, \tau) \ d \tau.
 	\end{split}
 \end{equation}
-%
-%
 %
 %
 %
@@ -377,15 +375,15 @@ rearranging terms, we have
 		& = \frac{1}{2 \pi} \psi_{T}(t) \sum_{n \in \zz} e^{i(xn + t n^{m 
 		})} \widehat{\vp}(n) 
 		\\
-		& + \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr e^{ixn}  
+		& + \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{ 1 - \psi(\tau - n^m) 
 		}{\tau - n^m} \wh{w}(n, \tau) \ d \tau
 		\\
-		& - \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int _\rr e^{i(xn + 
+		& - \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int _\rr e^{i(xn + 
 		t n^m)}
 		 \frac{1- \psi(\tau - n^m)}{\tau - n^m} \wh{w}(n, \tau) \ d \tau
 		\\
-		& + \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr
+		& + \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr
 		e^{i(xn + t n^m)}
 		\frac{\psi(\tau - n^m)\left[ e^{it(\tau - n^m)}-1 
 		\right]}{\tau - n^m} \wh{w}(n, \tau) \ d \tau
@@ -406,17 +404,17 @@ to
 		})} \widehat{\vp}(n) 
 		\\
 		\label{main-int-expression-2}
-		& + \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
+		& + \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{ 1 - \psi(\tau -  n^m) 
 		}{\tau -  n^m} \wh{w}(n, \tau) \ d \tau
 		\\
 		\label{main-int-expression-3}
-		& - \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
+		& - \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
 		t n^m)}
 		 \frac{1- \psi(\tau -  n^m)}{\tau -  n^m} \wh{w}(n, \tau) \ d \tau
 		\\
 		\label{main-int-expression-4}
-		& + \frac{i}{4 \pi^2} \psi_{T}(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
+		& + \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
 		\sum_{n \in \zz} \int_\rr e^{i(xn + t n^m )}
 		\psi(\tau -  n^m) (\tau -  n^m)^{k-1} \wh{w}(n, \tau)  
 		\\
@@ -603,7 +601,7 @@ Therefore
 	\begin{split}
 	\label{main-int1-est}
 		\|\eqref{main-int-expression-1}\|_{Y^s}
-		& = \left (  \sum_{n\in \zz} \left (1 + |n| \right )^s \int_\rr \left( 1 + | \tau - n^{m} 
+		& \simeq \left (  \sum_{n\in \zz} \left (1 + |n| \right )^s \int_\rr \left( 1 + | \tau - n^{m} 
 		| \right )
     | \wh{\psi_{T}}(\tau - n^{m}) \wh{\vp}(n) |^2 d \tau \right)^{1/2} 
 		\\
@@ -752,7 +750,7 @@ Furthermore,
 	\begin{split}
     & \| \wh{\eqref{main-int-expression-2}}\|_{\ell^{2}_{n}L^{1}_{\tau}}
 		\\
-    & = \left[ \sum_{n \in \zz}(1 + | n |)^{2s} \left(
+    & \simeq \left[ \sum_{n \in \zz}(1 + | n |)^{2s} \left(
 		\int_{\rr}\frac{|1 - \psi(\tau - n^{m})|}{|\tau - n^{m}|} |\wh{w}(n, \tau)| d
 		\tau \right)^{2} \right]^{1/2}
 		\\
