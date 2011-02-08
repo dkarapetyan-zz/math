@@ -424,7 +424,7 @@ to
 %
 where $T = T_{\vp, \psi, T}$. 
 \begin{definition}
-  Given a Banach space $X$, denote $B_{X}(R) \doteq \left\{ f: \| f \|_{H^{s}(\ci)} < R
+  Given a Banach space $X$, denote $B_{X}(R) \doteq \left\{ f: \| f \|_{X} < R
       \right\}$. We say that the mNLS ivp \eqref{mNLS-eq}-\eqref{mNLS-init-data} is
 	\emph{locally well posed} in
 	$H^s(\ci)$ if 
@@ -470,7 +470,7 @@ where $T = T_{\vp, \psi, T}$.
 	\begin{split}
 		& \|u\|_{X^s}
 		= \left ( \sum_{n\in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left ( 1 + | 
-		\tau - n^{m } \right ) | \wh{u} ( n, \tau ) |^2
+		\tau - n^{m } | \right ) | \wh{u} ( n, \tau ) |^2
 		\right )^{1/2}
 	\end{split}
 \end{equation}
@@ -1332,7 +1332,7 @@ Therefore,
 \end{equation}
 %
 %%
-If $u, v \in B(0, \frac{1}{4c}) \subset Y^s$, it follows that
+If $u, v \in B_{Y^{s}}(\frac{1}{4c})$, it follows that
 %
 %%
 \begin{equation}
@@ -1347,8 +1347,8 @@ If $u, v \in B(0, \frac{1}{4c}) \subset Y^s$, it follows that
 \end{equation}
 %
 %%
-We conclude that $T = T_{\vp, \psi, T}$ is a contraction on the ball $B(0, 
-\frac{1}{4c}) \subset Y^s$. A Picard iteration, coupled with
+We conclude that $T = T_{\vp, \psi, T}$ is a contraction on the ball
+$B_{Y^{s}}(\frac{1}{4c})$. A Picard iteration, coupled with
 \autoref{lem:cutoff-loc-soln} then yields a unique solution $u \in C(\left[ -T,
 T
 \right], H^{s}(\ci))$ to the mNLS ivp \eqref{mNLS-eq}-\eqref{mNLS-init-data}.
@@ -1465,29 +1465,33 @@ Note first that $|\wh{w_{fgh}}(n, \tau) |  = | \wh{f} * ( \wh{g}
 \begin{equation}
 	\label{non-lin-rep}
 	\begin{split}
-		| \wh{w_{fgh}}(n, \tau)|
-    & = |  \sum_{n_1+ n_2+ n_3= n}  \int_{\tau_{1} + \tau_{2} + \tau_{3} = \tau} \wh{f}\left( n_1,  \tau_1 
-\right) \wh{g}\left( n_2, \tau_2  
-\right) \wh{\bar h}\left( n_3, \tau_3 \right) d \tau_1 d \tau_2 d \tau_3 |
+		& | \wh{w_{fgh}}(n, \tau)|
+    \\
+    & = |  \sum_{n_{1} } \int_{\tau_{1}} \sum_{n_{2}}
+    \int_{\tau_{2}} \wh{f}\left( n
+    -n_1,  \tau - \tau_1 \right) \wh{g}\left( n_{1} - n_2, \tau_{1} - \tau_2  
+\right) \wh{\bar h}\left( n_2, \tau_2 \right) d \tau_2 d \tau_1 |
 \\
-& \le \sum_{n_1+ n_2+ n_3= n}  \int_{\tau_{1} + \tau_{2} + \tau_{3} = \tau} | \wh{f}\left( n_1, \tau_1 
-\right) | \times  | \wh{g}\left( n_2, \tau_2 
-\right) | \times | \wh{\bar h}\left( n_3, \tau_3 \right) | d \tau_1 d \tau_2 d 
-\tau_3
+& \le \sum_{n_{1} } \int_{\tau_{1}} \sum_{n_{2}}
+\int_{\tau_{2}}  | \wh{f}\left( n - n_1, \tau - \tau_1 
+\right) | \times  | \wh{g}\left( n_1 - n_2, \tau_1 - \tau_2 
+\right) | \times | \wh{\bar h}\left( n_{2}, \tau_{2} \right) | d \tau_2 d \tau_1
 \\
-& = \sum_{n_1+ n_2+ n_3= n}  \int_{\tau_{1} + \tau_{2} + \tau_{3} = \tau} | \wh{f}\left( n_1, \tau_1 
-\right) | \times | \wh{g}\left( n_2, \tau_2 
-\right) | \times | \wh{h}\left( -n_3, - \tau_3 \right) | d \tau_1 d \tau_2 d 
-\tau_3
+& = \sum_{n_{1} } \int_{\tau_{1}} \sum_{n_{2}}
+\int_{\tau_{2}}  | \wh{f}\left( n - n_1, \tau - \tau_1 
+     \right) | \times | \wh{g}\left( n_{1} - n_2, \tau_{1} - \tau_2 
+\right) | \times | \wh{h}\left( -n_{2}, - \tau_2 \right) | d \tau_2 d \tau_1
 \\
-& = \sum_{n_1+ n_2+ n_3= n}  \int_{\tau_{1} + \tau_{2} + \tau_{3} = \tau}\frac{c_f\left( n_1, \tau_1 
-\right)}{\left (1 + |n_1| \right )^s \left( 1 + | \tau_1 - n_1^{m} | \right)^{b}}
+& = \sum_{n_{1} } \int_{\tau_{1}} \sum_{n_{2}}
+\int_{\tau_{2}} \frac{c_f\left( n - n_1, \tau - \tau_1 
+\right)}{\left (1 + |n - n_{1}| \right )^s \left( 1 + | \tau - \tau_1 - (n - n_{1})^{m} | \right)^{b}}
 \\
-& \times \frac{c_{g}\left( n_2, \tau_2 \right)}{\left (1 + |n_2| \right ) 
-^s\left( 1 + | \tau_2 -  n_2^{m }| 
+& \times \frac{c_{g}\left( n_1 - n_2, \tau_1 - \tau_2 \right)}{\left (1 + |n_1 -
+n_2| \right ) 
+^s\left( 1 + | \tau_1 - \tau_2 -  (n_1 - n_2)^{m }| 
 \right)^{b}}
- \times \frac{c_{h}\left( -n_3, -\tau_3 \right)}{\left (1 + |n_3| \right ) ^s\left( 1 + | 
-\tau_3 + n_3^{m } | \right)^{b}} \ d \tau_1 d \tau_2 d \tau_3
+ \times \frac{c_{h}\left( -n_{2}, -\tau_2 \right)}{\left (1 + |n_{2}| \right ) ^s\left( 1 + | 
+\tau_2 + n_{2}^{m } | \right)^{b}} \ d \tau_2 d \tau_1
 \end{split}
 \end{equation}
 %
@@ -1513,19 +1517,18 @@ Hence
 		n, \tau \right) |
 		\\
 		& \le \left( 1 + | \tau - n^{m } | \right)^{-b}
-		\sum_{n_1+ n_2+ n_3= n} 
-    \int_{\tau_{1} + \tau_{2} + \tau_{3} = \tau}
-    \\
+    \sum_{n_{1} } \int_{\tau_{1}} \sum_{n_{2}}
+    \int_{\tau_{2}}     \\
     & \frac{\left (1 + |n| \right )^s}{\left (1 +
-		|n_1| \right )^s \left (1 + | n_2| \right )^s \left (1 + |n_3| \right )^s} 
-		\times \frac{c_f(n_1, \tau_1)}{\left( 1 + | \tau_1 - n_1^{m } | 
+		|n - n_{1}| \right )^s \left (1 + | n_1 - n_2| \right )^s \left (1 + |n_{2}| \right )^s} 
+		\times \frac{c_f(n - n_{1}, \tau - \tau_1)}{\left( 1 + | \tau - \tau_1 - (n - n_{1})^{m } | 
 		\right)^{b}}
 		\\
 		& \times
-		\frac{c_g(n_2, \tau_2)}{\left( 1 + | \tau_2 - n_2^{m } | 
+		\frac{c_g(n_1 - n_2, \tau_1 - \tau_2)}{\left( 1 + | \tau_1 - \tau_2 - (n_1 - n_2)^{m } | 
 		\right)^{b}} \times
-		\frac{c_h(-n_3, -\tau_3)}{\left( 1 + | \tau_3 + n_3^{m } | 
-		\right)^{b}}\ d \tau_1 d \tau_2 d \tau_3.
+		\frac{c_h(-n_{2}, -\tau_2)}{\left( 1 + | \tau_2 + n_{2}^{m } | 
+		\right)^{b}}\ d \tau_2 d \tau_1 .
 	\end{split}
 \end{equation}
 %
@@ -1536,7 +1539,7 @@ For $s \ge 0$, observe that
 \begin{equation}
 	\label{deriv-bound-easy-s}
 	\begin{split}
-		\frac{\left (1 + |n| \right ) ^s}{\left (1 + |n_1| \right ) ^s \left (1 + |n_2| \right ) ^s \left (1 + |n_3| \right ) ^s} 
+		\frac{\left (1 + |n| \right ) ^s}{\left (1 + |n - n_{1}| \right ) ^s \left (1 + |n_1 - n_2| \right ) ^s \left (1 + |n_2| \right ) ^s} 
 		\le 3^{s}
 	\end{split}
 \end{equation}
@@ -1574,16 +1577,16 @@ obtain
 		| \tau - n^{m}| 
 		\right)^{b}}  
 		\times
-		\sum_{n_1+ n_2+ n_3= n} 
-    \int_{\tau_{1} + \tau_{2} + \tau_{3} = \tau} \frac{c_f\left( n_1, \tau_1 
-		\right)}{\left (1 + |n_1| \right )^s \left( 1 + | \tau_1 - n_1^{m} |
+    \sum_{n_{1} } \int_{\tau_{1}} \sum_{n_{2}}
+    \int_{\tau_{2}} \frac{c_f\left( n - n_{1}, \tau - \tau_1 
+		\right)}{\left (1 + |n - n_{1}| \right )^s \left( 1 + | \tau - \tau_1 - (n - n_{1})^{m} |
 		\right)^{b}}
 		\\
-		& \times \frac{c_{g}\left( n_2, \tau_2 \right)}{\left (1 + |n_2| \right ) 
-		^s\left( 1 + | \tau_2 -  n_2^{m }| 
+		& \times \frac{c_{g}\left( n_1 - n_2, \tau_1 - \tau_2 \right)}{\left (1 + |n_1 - n_2| \right ) 
+		^s\left( 1 + | \tau_1 - \tau_2 -  (n_1 - n_2)^{m }| 
 		\right)^{b}}
-    \times \frac{c_{h}\left( -n_3, -\tau_3 \right)}{\left (1 + |n_3| \right )
-    ^s\left( 1 + | \tau_3 + n_3^{m } | \right)^{b}} \ d \tau_1 d \tau_2 d \tau_3
+    \times \frac{c_{h}\left( -n_2, -\tau_2 \right)}{\left (1 + |n_2| \right )
+    ^s\left( 1 + | \tau_2 + n_2^{m } | \right)^{b}} \ d \tau_2 d \tau_1 
     \\
 		& = \left( 1 + | \tau - n^{m } | \right)^{-b}
 		\wh{C_f C_{g} C^+_{h}} \left( n, \tau \right)
