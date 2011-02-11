@@ -287,14 +287,14 @@ We now derive an integral
 equation global in $t$ and equivalent to \eqref{mNLS-integral-form} for $t 
 \in [-T, T]$. Let $\psi(t)$ be a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
-= [-1, 1 ]$. Define $\psi_{T}(t) = \psi(2t/T)$.  Multiplying the right hand side of expression
+= [-1, 1 ]$. Define $\psi_{T}(t) = \psi(2t/T)$.  Multiplying both sides of expression
 $\eqref{mNLS-integral-form}$ by $\psi_{T}(t)$, we obtain
 %
 %
 \begin{equation}
 	\begin{split}
 		\label{cutoff-int-eq}
-		u(x, t)
+    \psi_{T} u(x, t)
 		& = \frac{1}{2 \pi} \psi_{T}(t) \sum_{n \in \zz} e^{i(xn - t n^{m })} \widehat{\vp}(n) 
 		\\
 		& + \frac{i }{2 \pi} \psi_{T}(t) \int_0^t \sum_{n \in \zz} 
@@ -351,7 +351,7 @@ into \eqref{cutoff-int-eq} we obtain
 \begin{equation}
 	\begin{split}
 		\label{cutoff-int-eq-2}
-		u(x, t)
+    \psi_{T} u(x, t)
 		& = \frac{1}{2 \pi} \psi_{T}(t) \sum_{n \in \zz} e^{i(xn - tn^{m })} \widehat{\vp}(n) 
 		\\
 		& + \frac{1}{4 \pi^2} \psi_{T}(t) \sum_{n \in \zz} \int_\rr
@@ -371,7 +371,7 @@ rearranging terms, we have
 %
 \begin{equation*}
 	\begin{split}
-		 u(x, t)
+    \psi_{T} u(x, t)
 		& = \frac{1}{2 \pi} \psi_{T}(t) \sum_{n \in \zz} e^{i(xn + t n^{m 
 		})} \widehat{\vp}(n) 
 		\\
@@ -397,7 +397,7 @@ to
 %
 \begin{align}
 	\label{main-int-expression-0}
-	& u(x, t) 
+  & \psi_{T} u(x, t) 
 		\\
 		\label{main-int-expression-1}
 		& = \frac{1}{2 \pi} \psi_{T}(t) \sum_{n \in \zz} e^{i(xn + tn^{m 
@@ -540,11 +540,10 @@ $B_{Y^{s}}(M_{R})$ by estimating the $Y^s$
 norm of \eqref{main-int-expression-1}-\eqref{main-int-expression-4}. The 
 Picard fixed point theorem will
 then yield a unique solution to
-\eqref{main-int-expression-0}-\eqref{main-int-expression-4}. An application of
+$u = Tu$. An application of
 \autoref{lem:cutoff-loc-soln} will then imply the existence of a unique, local
 solution $u \in C([-T, T], H^s(\ci))$ to
-\eqref{main-int-expression-0}-\eqref{main-int-expression-4}.
-Lipschitz continuity of the flow map (and hence, uniform
+$\psi_{T} u = Tu$. Lipschitz continuity of the flow map (and hence, uniform
 continuity) will follow from estimates used to establish the contraction
 mapping. The proof of ill-posedness will follow via counterexample 
 by selecting an appropriate sequence of
@@ -1350,9 +1349,7 @@ If $u, v \in B_{Y^{s}}(\frac{1}{4c})$, it follows that
 We conclude that $T = T_{\vp, \psi, T}$ is a contraction on the ball
 $B_{Y^{s}}(\frac{1}{4c})$. A Picard iteration, coupled with
 \autoref{lem:cutoff-loc-soln} then yields a unique solution $u \in C(\left[ -T,
-T
-\right], H^{s}(\ci))$ to the mNLS ivp \eqref{mNLS-eq}-\eqref{mNLS-init-data}.
-\\
+T \right], H^{s}(\ci))$ to the integral equation $\psi_{T} u = Tu$.\\
 \\
 We now establish Lipschitz continuity of the flow map from
 $B_{H^{s}(\ci)}(\frac{15}{64c^{3}})$ to $C(\left[ -T, T \right], H^{s}(\ci))$.
@@ -1400,7 +1397,7 @@ Hence,
 %
 \begin{equation*}
 	\begin{split}
-		\|u -v \|_{Y^s} = \|T_{\vp_1}(u) - T_{\vp_2}(v) \|_{Y^s} \le c_{\psi,T}
+    \|\psi_{T} u - \psi_{T} v \|_{Y^s} = \|T_{\vp_1}(u) - T_{\vp_2}(v) \|_{Y^s} \le c_{\psi,T}
 		\|\vp_{1} - \vp_{2} \|_{H^{s}\left( \ci \right)}\| +
 		\frac{1}{4} \|u -v \|_{Y^s}
 	\end{split}
@@ -1412,7 +1409,7 @@ which implies
 %
 \begin{equation*}
 	\begin{split}
-		\frac{3}{4} \|u-v\|_{Y^s} \le c_{\psi,T} \|\vp_1 - \vp_2 \|_{H^s(\ci)}
+    \frac{3}{4} \|\psi_{T} u- \psi_{T} v\|_{Y^s} \le c_{\psi,T} \|\vp_1 - \vp_2 \|_{H^s(\ci)}
 	\end{split}
 \end{equation*}
 %
@@ -1422,7 +1419,7 @@ or
 %
 \begin{equation*}
 	\begin{split}
-		\|u -v \|_{Y^s} \le \frac{4}{3} c_{\psi,T} \|\vp_1 - \vp_2 \|_{H^{s}(\ci)}.
+    \|\psi_{T} u - \psi_{T} v \|_{Y^s} \le \frac{4}{3} c_{\psi,T} \|\vp_1 - \vp_2 \|_{H^{s}(\ci)}.
 	\end{split}
 \end{equation*}
 %
