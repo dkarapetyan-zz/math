@@ -5843,149 +5843,119 @@ completing the proof. \qquad \qedsymbol
 %
 \subsection{Proof of \autoref{lem:calc}}
 %
-%
-%
 By the change of variable $\theta \mapsto a/2 + x$, we have
 %
 %
 \begin{equation*}
 	\begin{split}
-		\int_{\rr} \frac{1}{(1 + | \theta |)(1 + | a - \theta |)}d \theta
-	= \int_{\rr} \frac{1}{(1 + |  a/2 + x |)(1 + | a/2 - x |)}d x.
+		\int_{\rr} \frac{1}{\langle \theta  \rangle \langle  a - \theta  \rangle}d \theta
+	= \int_{\rr} \frac{1}{ \langle   a/2 + x  \rangle \langle  a/2 - x  \rangle}d x.
 	\end{split}
 \end{equation*}
 %
 %
-Hence, it suffices to show that
+Hence, it suffices to estimate 
+%
+%
 %
 %
 \begin{equation*}
-	\begin{split}
-		\int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		\lesssim \frac{\log(2 + | a |)}{1 + | a |}.
-	\end{split}
+\begin{split}
+  \int_{\rr} \frac{1}{\langle a + \theta \rangle ^{p} \langle a - \theta \rangle
+  ^{q}} d \theta.
+\end{split}
 \end{equation*}
 %
-%
-Let us leave the case $a = 0$ for last. By symmetry, the cases $a<0$ and $a >0$
-are equivalent. Hence, to cover the case $a \neq0$, we may assume
-without loss of generality that $a >0$.
-%
-%
-Then
-\begin{equation}
-	\label{a1}
-	\begin{split}
-		& \int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		\\
-		& = \int_{| \theta| \le a+1 } \frac{1}{(1 + | a - \theta |)(1 + | a + \theta
-		|)}d \theta + \int_{| \theta| \ge a+1 } \frac{1}{(1 + | a - \theta |)(1 + |
-		a + \theta |)}d \theta.
-	\end{split}
-\end{equation}
-Estimating the second integral of \eqref{a1}, we have
-\begin{equation*}
-	\begin{split}
-		& \int_{| \theta| \ge a+1 } \frac{1}{(1 + | a - \theta |)(1 + | a + \theta
-		|)}d \theta 
-		\\
-		& = \int_{\theta \ge a + 1} \frac{1}{(1 + \theta-a)(1 + \theta+a)} d \theta
-		+ \int_{\theta \le -a -1} \frac{1}{(1 + \theta - a) (1 + \theta + a)}d \theta
-		\\
-		& = \frac{1}{2a} \int_{\theta \ge a + 1} \left[ \frac{1}{1 + \theta -a} -
-		\frac{1}{1 + \theta+a} \right] d \theta
-		+ \frac{1}{2a} \int_{\theta \le -a-1} \left[ \frac{1}{1 + \theta+a}
-		-\frac{1}{1 + \theta -a} \right] d \theta
-		\\
-		& = \frac{1}{a} \log(1+a)
-		\\
-		& \lesssim \frac{\log(2 + |a|)}{1 + | a |}.
-	\end{split}
-\end{equation*}
-To evaluate the first integral of \eqref{a1}, we split into the cases $a \le \theta \le
-a+1$, $-a \le \theta \le 0$, $0 \le \theta \le a$, and $a \le \theta \le a+1$.
-However, note that 
+We will handle the case $a = 0$ later.
+By symmetry, we may assume without loss of generality that $a > 0$. Furthermore,
+we may assume without loss of generality that $p \ge q$. 
+We split the integral above 
 %
 %
 \begin{equation*}
-	\begin{split}
-		& \int_{a}^{a+1} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta =
-		\int_{-a-1}^{-a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta,
-		\\
-		& \int_{0}^{a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta =
-		\int_{-a}^{0} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta.
-	\end{split}
+\begin{split}
+\int_{\rr} \frac{1}{\langle a + \theta \rangle ^{p} \langle a - \theta \rangle
+  ^{q}} d \theta
+  & = \int_{-2a}^{2a}
+  \frac{1}{\langle a + \theta \rangle ^{p} \langle a - \theta \rangle
+  ^{q}} d \theta
+  \\
+  & + \int_{| \theta | \ge 2a} 
+\frac{1}{\langle a + \theta \rangle ^{p} \langle a - \theta \rangle
+  ^{q}} d \theta
+  \\
+  & = I + II.
+\end{split}
 \end{equation*}
 %
 %
-Therefore, we need only consider the cases $a \le \theta \le a+1$ and $0 \le
-\theta \le a$.
-%
-%
-\subsubsection{Case $a \le \theta \le a+1$}
-We have
+and first estimate
 %
 %
 \begin{equation*}
-	\begin{split}
-		\int_{a}^{a+1} \frac{1}{(1 + | a-\theta |)(1 + | a + \theta |)}d \theta
-		& = \int_{a}^{a+1} \frac{1}{(1 + \theta -a)(1 + a + \theta)}d \theta
-		\\
-		& = \frac{1}{2a} \int_{a}^{a+1} \left[ \frac{1}{1 + \theta -a} -
-		\frac{1}{1 + \theta + a}  \right]d \theta
-		\\
-		& =\frac{1}{2a} \log\left( \frac{1 + \theta -a}{1 + \theta + a} \right) \Big
-		|_a^{a+1}
-		\\
-		& = \frac{1}{2a} \log\left( \frac{2a+1}{a+1} \right)
-		\\
-		& \lesssim\frac{\log 2}{2a}
-		\\
-		& \lesssim \frac{\log(2 + | a |)}{1 + | a |}.
-	\end{split}
+\begin{split}
+  I
+  & \le \sup_{-2a \le \theta \le 2a} \frac{1}{\langle a + \theta \rangle
+  ^{p}} \int_{-2a}^{2a} \frac{1}{\langle a - \theta \rangle ^{q}} d \theta
+  \\
+  & = \frac{1}{\langle a \rangle ^{p}} \int_{-2a}^{2a} \frac{1}{(1 + | a -
+  \theta
+  |)^{q}} d \theta
+  \\
+  & = \frac{4}{\langle a \rangle ^{p}} \int_{0}^{a} \frac{1}{(1 + a -
+  \theta)^{q}} d \theta.
+\end{split}
 \end{equation*}
 %
 %
-\subsubsection{Case $0 \le \theta \le a$}
-We have
+Integrating, we obtain
 %
 %
 \begin{equation*}
-	\begin{split}
-		\int_{0}^{a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		& = \int_{0}^{a} \frac{1}{(1 +  a - \theta )(1 +  a + \theta )}d \theta
-		\\
-		& = \frac{1}{2(1 + a)} \int_{0}^{a} \left[ \frac{1}{1 + a - \theta} +
-		\frac{1}{1 + a + \theta} \right]d \theta
-		\\
-		& = \frac{1}{2(1 + a)} \log \left( \frac{1 + a + \theta}{1 + a - \theta}
-		\right) \Big |_{0}^{a}
-		\\
-		& = \frac{\log\left( 1 + 2a \right)}{2\left( 1 + a \right)}
-		\\
-		& \lesssim \frac{\log(2 + | a |)}{1 + | a |}.
-	\end{split}
+ I
+ \le 
+  \frac{4 \log \langle a \rangle }{\langle a \rangle }, \qquad q =1
+\end{equation*}
+and
+\begin{equation*}
+  I \le \frac{4}{|q-1| \langle a \rangle ^{p +q -1}}, \qquad q \neq 1
 \end{equation*}
 %
 %
-This completes the proof for the case $a \neq 0$. Lastly, for the case
-$a =0$, we use dominated convergence and our preceding work to
-conclude that
+%
+%
+Also
 %
 %
 \begin{equation*}
-	\begin{split}
-		\int_{\rr} \frac{1}{(1 + | \theta|)^2} d \theta
-		& = \lim_{a \to 0}
-		\int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		\\
-		& \lesssim \lim_{a \to 0} \frac{\log(2 + | a |)}{1 + | a |}
-		\\
-		& =  \log 2
-		\\
-		& = \frac{\log(2 + | 0 |)}{1 + | 0 |}. \qquad \qed
-	\end{split}
+\begin{split}
+  II 
+  & \simeq \int_{\theta \ge 2a} \frac{1}{\langle a + \theta \rangle ^{p} \langle a
+  - \theta \rangle ^{q} d \theta}
+  \\ 
+  & = \int_{\theta \ge 2a} \frac{1}{(1 + \theta + a)^{p} (1 + \theta -
+  a)^{q}} d \theta
+  \\
+  & \le \int_{\theta \ge 2a} \frac{1}{(1 + \theta -a)^{p+q}} d \theta
+  \\
+  & = \frac{1}{[(p + q)-1] \langle a \rangle ^{p+q -1}}, \qquad p + q > 1.
+\end{split}
 \end{equation*}
+%
+%
+Collecting our estimates for $I$ and $II$, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} \frac{1}{\langle a + \theta \rangle ^{p} \langle a - \theta \rangle
+  ^{q}} d \theta \le \frac{c_{p,q}}{\langle a \rangle ^{r}}, \qquad r =
+  \min\left\{ p, q, p+q-1 \right\}.
+\end{split}
+\end{equation*}
+which concludes the proof. \qquad \qedsymbol
+%
+%
 \subsection{Proof of \eqref{simp-est-lower-bound}}
 \label{ssec:simp-est-proof}
 By symmetry, we may assume $ a \ge 0$, $x \ge 0$ without loss of generality.
@@ -6006,7 +5976,7 @@ f(x) =
 Since $f_{1}'(x) = 2 + 2x$, $f_{1}(x)$ has a critical point at $x=-1$. Since
 $f'(x) < 0$ for $x <-1$, and $f'(x) > 0$ for $x > -1$, $x=-1$ is the absolute
 minimum of $f_{1}(x)$ for all $x \in \rr$. Since $f$ is increasing for $x > -1$,
-it follows that $x=a$ is the absolute mimimum of $f_{1}$ in the region $x \ge
+it follows that $x=a$ is the absolute minimum of $f_{1}$ in the region $x \ge
 a$. Furthermore, we have
 %
 %
@@ -6021,7 +5991,7 @@ Next, note that $f_{2}'(x) = -2x$, which gives the critical point $x = 0$. Since
 $f_{2}' < 0$ for $x>0$ and $f_{2}' > 0$ for $x < 0$, we see that $x=0$ is
 the absolute maximum of $f_{2}'$ for  $x \in \rr$. Since $f_{2}$ is decreasing
 for $x > 0$, it follows that $x = a$
-is the absolute mimimum of $f_{2}$ in the region $0 \le x \le a$. Furthermore
+is the absolute minimum of $f_{2}$ in the region $0 \le x \le a$. Furthermore
 %
 %
 \begin{equation*}
