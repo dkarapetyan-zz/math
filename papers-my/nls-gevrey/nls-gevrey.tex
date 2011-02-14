@@ -1,15 +1,18 @@
 %
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate}
 %\usepackage{showkeys}  %shows source equation labels on the pdf
-\usepackage[margin=3cm]{geometry}  %page layout
+\usepackage[margin=2.5cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \setcounter{secnumdepth}{1} %number only sections, not subsections
-\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
+\usepackage{cleveref}
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 \synctex=1
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
@@ -31,6 +34,8 @@
 \newcommand{\p}{\partial}
 \newcommand{\ee}{\varepsilon}
 \newcommand{\vp}{\varphi}
+
+\renewcommand{\qed}{\qquad \qedsymbol} %for the proof environment--qed symbol is flush right otherwise
 %
 %
 \theoremstyle{plain}  
@@ -46,64 +51,10 @@
 %
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
-%
-% Goes with hyperref package and \autoref command--now when you type
-% \autoref{some-environment}, it typsets the reference with the appropriate
-% environment name. For example, \autoref{some-theorem} gives Theorem 2,
-% \autoref{some lemma} gives Lemma 2, and so on
-\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
-\makeautorefname{equation}{Equation}
-\makeautorefname{footnote}{footnote}
-\makeautorefname{item}{item}
-\makeautorefname{figure}{Figure}
-\makeautorefname{table}{Table}
-\makeautorefname{part}{Part}
-\makeautorefname{appendix}{Appendix}
-\makeautorefname{chapter}{Chapter}
-\makeautorefname{section}{Section}
-\makeautorefname{subsection}{Section}
-\makeautorefname{subsubsection}{Section}
-\makeautorefname{paragraph}{Paragraph}
-\makeautorefname{subparagraph}{Paragraph}
-\makeautorefname{theorem}{Theorem}
-\makeautorefname{theo}{Theorem}
-\makeautorefname{thm}{Theorem}
-\makeautorefname{addendum}{Addendum}
-\makeautorefname{add}{Addendum}
-\makeautorefname{maintheorem}{Main theorem}
-\makeautorefname{corollary}{Corollary}
-\makeautorefname{lemma}{Lemma}
-\makeautorefname{sublemma}{Sublemma}
-\makeautorefname{proposition}{Proposition}
-\makeautorefname{property}{Property}
-\makeautorefname{scholium}{Scholium}
-\makeautorefname{step}{Step}
-\makeautorefname{conjecture}{Conjecture}
-\makeautorefname{question}{Question}
-\makeautorefname{definition}{Definition}
-\makeautorefname{notation}{Notation}
-\makeautorefname{remark}{Remark}
-\makeautorefname{remarks}{Remarks}
-\makeautorefname{example}{Example}
-\makeautorefname{algorithm}{Algorithm}
-\makeautorefname{axiom}{Axiom}
-\makeautorefname{case}{Case}
-\makeautorefname{claim}{Claim}
-\makeautorefname{assumption}{Assumption}
-\makeautorefname{conclusion}{Conclusion}
-\makeautorefname{condition}{Condition}
-\makeautorefname{construction}{Construction}
-\makeautorefname{criterion}{Criterion}
-\makeautorefname{exercise}{Exercise}
-\makeautorefname{problem}{Problem}
-\makeautorefname{solution}{Solution}
-\makeautorefname{summary}{Summary}
-\makeautorefname{operation}{Operation}
-\makeautorefname{observation}{Observation}
-\makeautorefname{convention}{Convention}
-\makeautorefname{warning}{Warning}
-\makeautorefname{note}{Note}
-\makeautorefname{fact}{Fact}
+
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+
 %
 %
 \begin{document}
@@ -145,130 +96,6 @@ where $\lambda =\pm 1$, and prove the following theorem.
 %
 %
 %
-\begin{framed}
-\begin{remark}
-The cubic NLS has a number of invariances. 
-\begin{enumerate}[(i)]
-  \item{ $u_{\gamma} = \gamma u(\gamma x, \gamma^{2} t)$ with critical Sobolev index
-    $s_{c} = -1/2$}.
-    \label{invar-it-1}
-  \item{ $u_{a,b}(x,t) = u(x -a, t - b), a \in \rr, b \in \rr$}.
-    \label{invar-it-2}
-  \item{ $u_{\theta}(x,t) = e^{i \theta} u(x, t), \theta \in \rr$}.
-    \label{invar-it-3}
-  \item{ $u_{c}(x,t) = e^{icx - i| c^{2} |t}u(x -2tc, t), c \in \rr$}.
-    \label{invar-it-4}
-\end{enumerate}
-{\bf Proof of \eqref{invar-it-1}.}
-Let $u(x, t)$ be a solution to the $NLS$ equation, that is
-%
-$$
-NLS(u)=
-i \p_t u + \p_x^{2} u  + | u |^{2} u  = 0
-$$
-%
-We would like to find the constants
-$a, b, c$ such that
-\[
-u_\gamma (x, t) = \gamma^a u(\gamma^b x, \gamma^c t)
-\]
-is also a solution to $NLS$.  Since 
-$$
-NLS(u_\gamma)=
-i \gamma^{a + c} \p_t u + \gamma^{a + 2b} \p_x^{2} u  + \gamma^{3a} | u |^{2} u 
-$$
-we see that $u_\gamma$ is a $NLS$ solution only if
-$$
-a=b, c = 2a.
-$$
-Setting $a=1$ completes the proof. 
-To find the critical Sobolev index, we compute
-%
-%
-\begin{equation}
-\begin{split}
-  \| u_{\gamma} \|_{\dot{H}^s(\ci)} 
-  & = \gamma \| u(\gamma x, \gamma^2 t) \|_{\dot{H}^{s}(\ci)}
-  \\
-  & = \gamma \left( \int_{\rr} | \xi |^{2s} | \wh{u(\gamma x,
-  \gamma^{2} t)}^x (\xi, t)| \right)^{1/2}.
-\end{split}
-\label{crit-ind-comp}
-\end{equation}
-%
-But
-%
-%
-\begin{equation*}
-\begin{split}
-  \wh{u(\gamma x, \gamma^{2}t)^x}(\xi, t)
-  & = \int_{\rr}e^{-i\xi x}u(\gamma x, \gamma^2 t) dx
-  \\
-  & = \frac{1}{\gamma} \int_{\rr}e^{-i \frac{n}{\gamma} x'}u(x',
-  \gamma^{2} t) dx'
-  \\
-  & = \frac{1}{\gamma} \wh{u(\cdot, \gamma^{2}t)}(\frac{\xi}{\gamma})
-\end{split}
-\end{equation*}
-%
-%
-Substituting back into \eqref{crit-ind-comp}, we obtain
-%
-%
-\begin{equation*}
-\begin{split}
-  \| u_{\gamma} \|_{\dot{H}^s(\rr)} 
-  & = \gamma\left( \int_{\rr} | \xi |^{2s} |
-  \frac{1}{\gamma}\wh{u(\cdot, \gamma^{2}t)}(\frac{\xi}{\gamma}) |^2 d \xi
-  \right)^{1/2}
-  \\
-  & = \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
-  \gamma^{2}t)}(\frac{\xi}{\gamma}) |^2 d \xi  \right)^{1/2}
-  \\
-  & = \left( \int_{\rr} | \gamma \xi' |^{2s} 
-  \wh{u(\cdot, \gamma^{2}t)}(\xi') |^2 \gamma d \xi
-  \right)^{1/2}
-  \\
-  & = \gamma^{s + 1/2} \|u(\cdot, \gamma^{2}t) \|_{\dot{H}^s (\ci)}.
-\end{split}
-\end{equation*}
-%
-%
-Therefore, $\| u_{\gamma(0)} \|_{\dot{H}^s(\rr)} = \gamma^{s + 1/2} \|
-u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=-1/2$ is the critical Sobolev index.
-\label{rem:invariances}
-\\
-{\bf Proof of \eqref{invar-it-2}.} Let $u(x, t)$ be a solution to the $NLS$ equation.
-We would like to find constants
-$a, b \in \rr$ such that $$u_{a,b}(x,t) = u(x -a, t - b)$$ is a solution the NLS
-equation. Since
-%
-%
-\begin{equation*}
-\begin{split}
-  NLS(u_{a,b}) = i \p_t u + \p_x^{2} u  + | u |^{2} u 
-\end{split}
-\end{equation*}
-%
-%
-we see that $u_{a,b}$ is a solution to the NLS equation for all $a, b \in \rr$.
-This completes the proof.
-\\
-{\bf Proof of \eqref{invar-it-3}.}
-Let $u(x, t)$ be a solution to the $NLS$ equation.
-We would like to find a constant
-$c \in \cc$ such that
-\[
-u_c (x, t) = c u(x, t)
-\]
-is also a solution to $NLS$.  Since 
-$NLS(u_{c}) = c i \p_{t} u  + c \p_{x}^{2} u + |c|^2c | u |^{2}u$, we obtain
-$|c|^{2} = 1$, or $c = e^{i \theta}$, for any $\theta \in \rr$.
-\\
-{\bf Proof of \eqref{invar-it-4}.} Pending. Want to find a clever (i.e. natural)
-way of coming up with the galilean invariance, rather than just verifying the relation.
-\end{remark}
-\end{framed}
 %
 %
 
@@ -396,7 +223,7 @@ Bourgain spaces, they possess the
 following important property.
 %
 %
-\begin{lemma}
+\begin{lemma}[Embedding]
 	\label{lem:cutoff-loc-soln}
 	Let $\psi(t)$ be a smooth cutoff function with $\psi(t) =1$ for $t \in [-T, T]$. If
 	$\psi(t)u(x,t) \in Y^s$, then $u \in C([-T, T], H^s(\ci))$.
@@ -518,7 +345,7 @@ or
 \end{equation*}
 %
 %
-Then by \autoref{lem:cutoff-loc-soln} we will have that
+Then by \cref{lem:cutoff-loc-soln} we will have that
 %
 %
 \begin{equation*}
@@ -866,7 +693,7 @@ Applying estimate \eqref{one-plus-ineq} then gives
 \end{equation}
 %
 %%
-where the last step follows from \autoref{cor:trilinear-estimate2}.
+where the last step follows from \cref{cor:trilinear-estimate2}.
 Furthermore, 
 %
 %
@@ -898,7 +725,7 @@ Furthermore,
 %
 %
 where the last two steps follow from \eqref{one-plus-ineq} and
-\autoref{cor:trilinear-estimate2}, respectively. Combining
+\cref{cor:trilinear-estimate2}, respectively. Combining
 \eqref{main-int3-est-X-s-part} and \eqref{main-int-estimate-3-Y-s-part}, we
 conclude that
 %
@@ -1114,7 +941,7 @@ implies
 \end{equation}
 %
 %%
-where the last step follows from \autoref{cor:trilinear-estimate2}. Similarly,
+where the last step follows from \cref{cor:trilinear-estimate2}. Similarly,
 we have
 %
 %
@@ -1196,7 +1023,7 @@ which by the inequality $\|u\|_{X^s} \le \|u\|_{Y^s}$ yields the following.
 %%
 \end{proposition}
 \subsection{Setting Up the Picard Iteration}
-We will now use \autoref{prop:contraction} to prove local well-posedness for
+We will now use \cref{prop:contraction} to prove local well-posedness for
 analytic initial data for the NLS ivp. We first establish that the map 
 %
 %
@@ -1211,7 +1038,7 @@ analytic initial data for the NLS ivp. We first establish that the map
 goes from $\mathcal{A}(Y^s)$ to $\mathcal{A}(Y^s)$, and that it is a contraction
 in an appropriate ball.
 %
-Applying \autoref{prop:contraction}, we have the estimate
+Applying \cref{prop:contraction}, we have the estimate
 %
 %
 \begin{equation}
@@ -1475,7 +1302,7 @@ Therefore, if $u, v \in B(0, \frac{1}{4c}) \subset \mathcal{A}(Y^s)$, it follows
 %%
 We conclude that $T = T_{\vp}$ is a contraction on the ball $B(0, 
 \frac{1}{4c}) \subset \mathcal{A}(Y^s)$. A Picard iteration, coupled with
-\autoref{lem:cutoff-loc-soln} then yields a unique, local
+\cref{lem:cutoff-loc-soln} then yields a unique, local
 solution in $\mathcal{A}(Y^s)$ to the NLS ivp
 \eqref{eqn:nls}-\eqref{eqn:nls-data}. This completes the proof. \qquad
 \qedsymbol
@@ -1483,7 +1310,7 @@ solution in $\mathcal{A}(Y^s)$ to the NLS ivp
 %
 %
 %
-\section{Proof of \autoref{prop:trilinear-est}.}
+\section{Proof of \cref{prop:trilinear-est}.}
 %
 %
 By the triangle inequality, it is enough to show that for any $s \ge 0$ and $b
@@ -1704,7 +1531,7 @@ We now require the following multiplier estimate, whose proof can be found in
 \end{lemma}
 %
 %
-Applying \autoref{cor:four-mult-est-L4} and generalized H\"{o}lder to the 
+Applying \cref{cor:four-mult-est-L4} and generalized H\"{o}lder to the 
 right-hand-side of \eqref{gen-holder-pre-estimate} gives
 %
 %
@@ -1748,7 +1575,7 @@ and so
 %
 %
 We will now the need the following dual estimate of
-\autoref{lem:four-mult-est-L4}.
+\cref{lem:four-mult-est-L4}.
 %
 \begin{corollary}
   \label{cor:four-mult-est-L4}
@@ -1774,7 +1601,7 @@ for every test function $f(x, t)$.
 %
 Recalling that $L^4(\ci \times \rr)$ is invariant under the transformation $(x, 
 t) \mapsto (-x,-t)$ and applying 
-\autoref{cor:four-mult-est-L4}, we obtain
+\cref{cor:four-mult-est-L4}, we obtain
 %
 %
 \begin{equation}
@@ -1816,7 +1643,7 @@ and \eqref{C-sig-estimate} that
 %
 %
 %
-\section{Proof of \autoref{cor:trilinear-estimate2}.}
+\section{Proof of \cref{cor:trilinear-estimate2}.}
 By the triangle inequality, it is enough to show that
 for $s \ge 0$ we have
 %
@@ -2003,9 +1830,9 @@ Here we would like to find an analog to the construction
 
 
 %
-\appendix
-\section{}
-\subsection{Proof of \autoref{lem:cutoff-loc-soln}}
+\begin{appendices}
+\section{Proof of Lemmas and Estimates}
+\subsection{Proof of \cref{lem:cutoff-loc-soln}}
 %
 %
 \begin{equation*}
@@ -2048,7 +1875,7 @@ which is bounded by assumption.
 Applying dominated convergence completes the proof. \qquad \qedsymbol
 %
 %
-\subsection{Proof of \autoref{lem:schwartz-mult}}
+\subsection{Proof of \cref{lem:schwartz-mult}}
 Note that
 %
 %
@@ -2197,7 +2024,7 @@ and taking square roots of both sides gives \eqref{schwartz-mult-piece-2}. Combi
 \eqref{schwartz-mult}, completing the proof.  \qquad \qedsymbol
 %
 %
-\subsection{Proof of \autoref{lem:splitting}.} We have
+\subsection{Proof of \cref{lem:splitting}.} We have
 %
 %
 \begin{equation}
@@ -2219,13 +2046,143 @@ and taking square roots of both sides gives \eqref{schwartz-mult-piece-2}. Combi
 %
 Raising both sides of expression $\eqref{6a}$ to the $v$ power completes 
 the proof. \qquad \qedsymbol 
-
-  
-
-
-
+%
+%
+\section{Scaling and Invariances}
+The cubic NLS has a number of invariances. 
+\begin{enumerate}[(i)]
+  \item{ $u_{\gamma} = \gamma u(\gamma x, \gamma^{2} t)$ with critical Sobolev index
+    $s_{c} = -1/2$}.
+    \label{invar-it-1}
+  \item{ $u_{a,b}(x,t) = u(x -a, t - b), a \in \rr, b \in \rr$}.
+    \label{invar-it-2}
+  \item{ $u_{\theta}(x,t) = e^{i \theta} u(x, t), \theta \in \rr$}.
+    \label{invar-it-3}
+  \item{ $u_{c}(x,t) = e^{icx - i| c^{2} |t}u(x -2tc, t), c \in \rr$}.
+    \label{invar-it-4}
+\end{enumerate}
+%
+%
+\begin{proof}[Proof of \eqref{invar-it-1}]
+Let $u(x, t)$ be a solution to the $NLS$ equation, that is
+%
+$$
+NLS(u)=
+i \p_t u + \p_x^{2} u  + | u |^{2} u  = 0
+$$
+%
+We would like to find the constants
+$a, b, c$ such that
+\[
+u_\gamma (x, t) = \gamma^a u(\gamma^b x, \gamma^c t)
+\]
+is also a solution to $NLS$.  Since 
+$$
+NLS(u_\gamma)=
+i \gamma^{a + c} \p_t u + \gamma^{a + 2b} \p_x^{2} u  + \gamma^{3a} | u |^{2} u 
+$$
+we see that $u_\gamma$ is a $NLS$ solution only if
+$$
+a=b, c = 2a.
+$$
+Setting $a=1$ completes the proof. 
+To find the critical Sobolev index, we compute
+%
+%
+\begin{equation}
+\begin{split}
+  \| u_{\gamma} \|_{\dot{H}^s(\ci)} 
+  & = \gamma \| u(\gamma x, \gamma^2 t) \|_{\dot{H}^{s}(\ci)}
+  \\
+  & = \gamma \left( \int_{\rr} | \xi |^{2s} | \wh{u(\gamma x,
+  \gamma^{2} t)}^x (\xi, t)| \right)^{1/2}.
+\end{split}
+\label{crit-ind-comp}
+\end{equation}
+%
+But
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{u(\gamma x, \gamma^{2}t)^x}(\xi, t)
+  & = \int_{\rr}e^{-i\xi x}u(\gamma x, \gamma^2 t) dx
+  \\
+  & = \frac{1}{\gamma} \int_{\rr}e^{-i \frac{n}{\gamma} x'}u(x',
+  \gamma^{2} t) dx'
+  \\
+  & = \frac{1}{\gamma} \wh{u(\cdot, \gamma^{2}t)}(\frac{\xi}{\gamma})
+\end{split}
+\end{equation*}
+%
+%
+Substituting back into \eqref{crit-ind-comp}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{\gamma} \|_{\dot{H}^s(\rr)} 
+  & = \gamma\left( \int_{\rr} | \xi |^{2s} |
+  \frac{1}{\gamma}\wh{u(\cdot, \gamma^{2}t)}(\frac{\xi}{\gamma}) |^2 d \xi
+  \right)^{1/2}
+  \\
+  & = \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
+  \gamma^{2}t)}(\frac{\xi}{\gamma}) |^2 d \xi  \right)^{1/2}
+  \\
+  & = \left( \int_{\rr} | \gamma \xi' |^{2s} 
+  \wh{u(\cdot, \gamma^{2}t)}(\xi') |^2 \gamma d \xi
+  \right)^{1/2}
+  \\
+  & = \gamma^{s + 1/2} \|u(\cdot, \gamma^{2}t) \|_{\dot{H}^s (\ci)}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore, $\| u_{\gamma(0)} \|_{\dot{H}^s(\rr)} = \gamma^{s + 1/2} \|
+u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=-1/2$ is the critical Sobolev index.
+\end{proof}
+%
+%
+\begin{proof}[Proof of \eqref{invar-it-2}] Let $u(x, t)$ be a solution to the $NLS$ equation.
+We would like to find constants
+$a, b \in \rr$ such that $$u_{a,b}(x,t) = u(x -a, t - b)$$ is a solution the NLS
+equation. Since
+%
+%
+\begin{equation*}
+\begin{split}
+  NLS(u_{a,b}) = i \p_t u + \p_x^{2} u  + | u |^{2} u 
+\end{split}
+\end{equation*}
+%
+%
+we see that $u_{a,b}$ is a solution to the NLS equation for all $a, b \in \rr$.
+This completes the proof.
+\end{proof}
+%
+%
+\begin{proof}[Proof of \eqref{invar-it-3}]
+Let $u(x, t)$ be a solution to the $NLS$ equation.
+We would like to find a constant
+$c \in \cc$ such that
+\[
+u_c (x, t) = c u(x, t)
+\]
+is also a solution to $NLS$.  Since 
+$NLS(u_{c}) = c i \p_{t} u  + c \p_{x}^{2} u + |c|^2c | u |^{2}u$, we obtain
+$|c|^{2} = 1$, or $c = e^{i \theta}$, for any $\theta \in \rr$.
+\end{proof}
+%
+%
+\begin{proof}[Proof of \eqref{invar-it-4}]
+Pending. Want to find a clever (i.e. natural)
+way of coming up with the galilean invariance, rather than just verifying the relation.
+\end{proof}
+%
+%
+%
+\end{appendices}
 
 %\nocite{*}
 \bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
-% \bib, bibdiv, biblist are defined by the amsrefs package.
 \end{document}
