@@ -1,0 +1,526 @@
+%
+\begin{proof}[Proof of \cref{1lem:cutoff-loc-soln}]
+%
+%
+\begin{equation*}
+	\begin{split}
+		\lim_{t_{n} \to t} \|u(\cdot, t) - u(\cdot, t_{n})\|_{\dot{H}^s(\ci)} 
+		& = \lim_{t_{n} \to t} \|\psi(t) u(\cdot, t) - \psi(t_n) u(\cdot,
+		t_{n})\|_{\dot{H}^s(\ci)} 
+		\\
+		& = \lim_{t_n \to t} \left[ \sum_{n \in \zzdot}| n |
+		^{2s} | \psi(t)  \wh{u}(n, t) - \psi(t_n) \wh{ u}(n, t_n) |^2 \right]^{1/2}
+		\\
+		& = \lim_{t_n \to t} \left[ \sum_{n \in \zzdot} | n |^{2s} | \int_{\rr} (e^{it \tau} - e^{it_{n} \tau}) \wh{\psi u}(n,
+		\tau) d \tau |^2 \right]^{1/2}.
+	\end{split}
+\end{equation*}
+		It is clear that
+		%
+		%
+		\begin{equation*}
+			\begin{split}
+				| n |
+				^{2s} | \int_{\rr} (e^{it \tau} - e^{it_{n}\tau}) \wh{\psi u}(n, \tau) d \tau |^2 
+		& \le 4  | n |^{2s} \left ( \int_{\rr} |\wh{\psi u}(n, \tau)| d \tau
+		\right )^2 
+	\end{split}
+\end{equation*}
+and 
+%
+%
+\begin{equation*}
+	\begin{split}
+ \sum_{n \in \zzdot} | n |^{2s} \left ( \int_{\rr} |\wh{\psi u}(n, \tau)| d \tau
+		\right ) ^2 
+		& = \| |n |^s \wh{\psi u}\|_{\dot{\ell}_n^2 L_\tau^1}
+		\\
+		& \le \|\psi u \|_{Y^s}^2 
+	\end{split}
+\end{equation*}
+which is bounded by assumption.
+Applying dominated convergence completes the proof. 
+\end{proof}
+%
+%
+\begin{proof}[Proof of \cref{1lem:schwartz-mult}]
+Note that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{\psi f}\left( n, \tau \right)
+		& = \wh{\psi}(\cdot) * \wh{f}(n,
+		\cdot)(\tau)
+		= \int_\rr \wh{\psi}(\tau_1) \wh{f} \left( n, \tau - \tau_1 \right) 
+		d\tau_1
+	\end{split}
+\end{equation*}
+%
+%
+and hence
+%
+%
+\begin{equation}
+	\label{11b}
+	\begin{split}
+		\|\psi f\|_{\dot{X}^s} 
+		& = \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
+		n^{m} | \right) | \int_\rr \wh{\psi}(\tau_1) \wh{f}\left( n, \tau -
+		\tau_1
+		\right)  d \tau_1 d \tau |^2 \right)^{1/2}
+		\\
+		& \le \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
+		n^{m }
+		|
+		\right) \left( \int_\rr \wh{\psi}\left( \tau_1 \right) \wh{f}\left( n,
+		\tau - \tau_1
+		\right)  d \tau_1 d \tau \right)^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Using the relation
+%
+%
+\begin{equation*}
+	\begin{split}
+		1 + | \tau - n^{m } |
+		& = 1 + | \tau + \tau_1 - n^{m} |
+		\\
+		& \le 1 + | \tau_1 | + | \tau - \tau_1 - n^{m} |
+		\\
+		& \le \left( 1 + | \tau_1 | \right)\left( 1 + | \tau - \tau_1 -
+		n^{m} | \right)
+	\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\eqref{11b}
+		& \le \left( \sum_{n \in \zzdot} |n|^{2s} \right.
+		\\
+		& \times \left . \int_\rr \left(
+		\int_\rr \left( 1 + | \tau_1 | \right)^{1/2} | \wh{\psi}(\tau_1) |
+		\left( 1 + | \tau - \tau_1 - n^{m} | \right)^{1/2} \wh{f}\left( n, \tau
+		- \tau_1
+		\right)d \tau_1
+		\right)^2 d \tau \right)^{1/2}
+	\end{split}
+\end{equation*}
+%
+%
+which by Minkowski's inequality is bounded by
+%
+%
+\begin{equation}
+	\label{12b}
+	\begin{split}
+		& \left( \sum_{n \in \zzdot} |n|^{2s}  \right.
+		\\
+		& \times \left. \left( \int_\rr \left[ \int_\rr
+		\left( 1 + | \tau_{1} | \right) | \wh{\psi}(\tau_1) |^2 \left( 1 + |
+		\tau - \tau_1 - n^{m} |
+		\right) | \wh{f}\left( n, \tau - \tau_1 \right) |^2 d \tau_1 
+		\right]^{1/2} d \tau \right)^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Using the change of variable $\tau - \tau_1 \to \lambda$ gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		\eqref{12b}
+		& = \left( \sum_{n \in \zzdot} |n|^{2s}\right.
+		\\
+		& \times \left.  \left( \int_\rr \left[
+		\int_\rr \left( 1 + | \tau_1 | \right) | \wh{\psi}\left( \tau_1
+		\right) |^2 \left( 1 + | \lambda - n^{m} | \right) | \wh{f} \left( n,
+		\lambda
+		\right)|^2 d \tau_1 \right]^{1/2} d \lambda \right)^2 \right)^{1/2}
+		\\
+		& =  \left( \sum_{n \in \zzdot} |n|^{2s} \right.
+		\\
+		& \times \left. \left( \int_\rr \left( 1 + |
+		\tau_1 |
+		\right)^{1/2} | \wh{\psi}(\tau_1) | d \tau_1 \left[ \int_\rr \left( 1 + |
+		\lambda - n^{m} |
+		\right) | \wh{f}\left( n, \lambda \right) |^2 d \lambda \right]^{1/2}
+		\right)^2 \right)^{1/2}
+		\\
+		& = c_{\psi} \left( \sum_{n \in \zzdot} |n|^{2s} \left( \left[ \int_\rr
+		\left( 1 + | \lambda - n^{m} | \right) | \wh{f}\left( n, \lambda
+		\right) |^2 d \lambda
+		\right]^{\cancel{1/2}} \right)^{\cancel{2}} \right)^{1/2}
+		\\
+		& = c_{\psi} \|f\|_{\dot{X}^s},
+	\end{split}
+\end{equation*}
+%
+%
+concluding the proof. 
+\end{proof}
+%
+%
+%
+%
+%
+%
+\begin{proof}[Proof of \cref{1lem:number-theory1}]
+First note that
+%
+\begin{equation*}
+		| - n^m + n_1^m + n_2^m|
+		 = 3 | n | |n_1 | |n_2 |.
+\end{equation*}
+%
+%
+Hence, it will be enough to show that for $c \ge 0$
+%
+%
+\begin{equation*}
+	\begin{split}
+		| n | |n_1 | |n_2 | \gtrsim | n |^{\frac{2 + c}{2}}| n_1
+		|^{\frac{2-c}{2}}| n_2 |^{\frac{2-c}{2}}
+	\end{split}
+\end{equation*}
+%
+%
+or, dividing through on both sides by $|n| | n_1 | | n_2 |$ and rearranging terms
+%
+%
+\begin{equation*}
+	\begin{split}
+		| n |^{c/2} \lesssim | n_1 |^{c/2} | n_2 |^{c/2}.
+	\end{split}
+\end{equation*}
+%
+%
+But
+%
+%
+\begin{equation*}
+	\begin{split}
+		| n |^{c/2} &= | n_1 + n_2 |^{c/2}
+		\\
+		& \le (| n_1 | + |n_2|)^{c/2} 
+		\\
+		& \le (2\max\{|
+		n_1 |, | n_2 |)^{c/2}
+		\\
+		& \le (2|
+		n_1 | | n_2 |)^{c/2}
+		\\
+		& = 2^{c/2} | n_1 |^{c/2} | n_2 |^{c/2}
+	\end{split}
+\end{equation*}
+completing the proof.
+\end{proof}
+%
+%
+%
+%
+\begin{proof}[Proof of \cref{1lem:number-theory}] Define
+%
+\begin{equation*}
+	\begin{split}
+		| - n^{m} + n_1^{m} + n_2^{m }|
+		& = | n_{1}^{m} - n^{m} + (n-n_{1})^{m}| 
+		\\
+		& \doteq f(n).
+	\end{split}
+\end{equation*}
+%
+%
+For fixed $n_1$, the absolute minima
+of $f(n)$ occurs at $n = 1+n_{1}$ ($n = n_1$ is not available by assumption). Next, note that
+%
+%
+\begin{equation*}
+	\begin{split}
+		f(1+ n_{1}) = | n_{1}^{m} - (1 + n_{1})^m + 1 |
+		& = | (1 + n_{1} )^{m} - n_{1}^{m} -1 |.
+	\end{split}
+\end{equation*}
+We now seek a lower bound for the right hand side. By symmetry we may assume
+$n_1 >0$ without loss of generality.
+%
+%
+\begin{framed}
+\begin{remark}
+	By the term ``symmetry'', we mean that
+	\begin{equation*}
+	\begin{split}
+	| [1 + (-n_1)]^m - (-n_1)^m -1 |
+	& = | (1 - n_1)^m + n_1^m -1 |
+	\\
+	& = | (1 + p_1)^m + (-p_1)^m -1 |, \qquad p_1 = -n_1
+	\\
+	& = | (1 + p_1)^m - (p_1)^m -1 |.
+	\end{split}
+\end{equation*}
+%
+%
+\end{remark}
+\end{framed}
+%
+%
+Then 
+%
+%
+\begin{equation*}
+	\begin{split}
+	| (1 + n_{1} )^{m} - n_{1}^{m} -1 |
+	& = | \sum_{1 \le k \le m-1} c_{k} n_1^{k}|, \qquad \{c_k\} \in
+	\mathbb{N}\setminus 0
+	 \\
+	 & = \sum_{1 \le k \le m-1} c_{k} n_1^{k}
+	 \\
+	 & \ge c_{m-1}  n_1^{m-1}
+	 \\
+	 & = c_{m-1}  n_1^{c} n_1^{m-1-c}
+	 \\
+	 & \gtrsim (1 + n_1)^{c}  n_1^{m-1-c}
+	 \\
+	 & = n^{c} n_1^{m-1-c}. 
+ \end{split}
+\end{equation*}
+%
+%
+Since we assumed $n_1 >0$ without loss of generality, it follows that 
+%
+%
+\begin{equation*}
+	\begin{split}
+		f(n) \gtrsim |n|^{c} | n_1 |^{m-1-c}. 
+	\end{split}
+\end{equation*}
+%
+%
+But since $f(n)$ is symmetric in $n_1$ and $n_2$, a similar argument shows that
+%
+%
+\begin{equation*}
+	\begin{split}
+		f(n) \gtrsim |n|^{c} | n_2 |^{m-1-c}. 
+	\end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation*}
+	\begin{split}
+		f(n) \gtrsim | n |^{c}| n_1 |^{\frac{m-1-c}{2}} | n_2 |^{\frac{m-1-c}{2}}
+	\end{split}
+\end{equation*}
+%
+%
+completing the proof. 
+\end{proof}
+%
+%
+\begin{proof}[Proof of \cref{1lem:calc}]
+%
+%
+%
+By the change of variable $\theta \mapsto a/2 + x$, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_{\rr} \frac{1}{(1 + | \theta |)(1 + | a - \theta |)}d \theta
+	= \int_{\rr} \frac{1}{(1 + |  a/2 + x |)(1 + | a/2 - x |)}d x.
+	\end{split}
+\end{equation*}
+%
+%
+Hence, it suffices to show that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
+		\lesssim \frac{\log(2 + | a |)}{1 + | a |}.
+	\end{split}
+\end{equation*}
+%
+%
+Let us leave the case $a = 0$ for last. By symmetry, the cases $a<0$ and $a >0$
+are equivalent. Hence, to cover the case $a \neq0$, we may assume
+without loss of generality that $a >0$.
+%
+%
+Then
+\begin{equation}
+	\label{1a1}
+	\begin{split}
+		& \int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
+		\\
+		& = \int_{| \theta| \le a+1 } \frac{1}{(1 + | a - \theta |)(1 + | a + \theta
+		|)}d \theta + \int_{| \theta| \ge a+1 } \frac{1}{(1 + | a - \theta |)(1 + |
+		a + \theta |)}d \theta.
+	\end{split}
+\end{equation}
+Estimating the second integral of \eqref{1a1}, we have
+\begin{equation*}
+	\begin{split}
+		& \int_{| \theta| \ge a+1 } \frac{1}{(1 + | a - \theta |)(1 + | a + \theta
+		|)}d \theta 
+		\\
+		& = \int_{\theta \ge a + 1} \frac{1}{(1 + \theta-a)(1 + \theta+a)} d \theta
+		+ \int_{\theta \le -a -1} \frac{1}{(1 + \theta - a) (1 + \theta + a)}d \theta
+		\\
+		& = \frac{1}{2a} \int_{\theta \ge a + 1} \left[ \frac{1}{1 + \theta -a} -
+		\frac{1}{1 + \theta+a} \right] d \theta
+		+ \frac{1}{2a} \int_{\theta \le -a-1} \left[ \frac{1}{1 + \theta+a}
+		-\frac{1}{1 + \theta -a} \right] d \theta
+		\\
+		& = \frac{1}{a} \log(1+a)
+		\\
+		& \lesssim \frac{\log(2 + |a|)}{1 + | a |}.
+	\end{split}
+\end{equation*}
+To evaluate the first integral of \eqref{1a1}, we split into the cases $a \le \theta \le
+a+1$, $-a \le \theta \le 0$, $0 \le \theta \le a$, and $a \le \theta \le a+1$.
+However, note that 
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \int_{a}^{a+1} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta =
+		\int_{-a-1}^{-a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta,
+		\\
+		& \int_{0}^{a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta =
+		\int_{-a}^{0} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta.
+	\end{split}
+\end{equation*}
+%
+%
+Therefore, we need only consider the cases $a \le \theta \le a+1$ and $0 \le
+\theta \le a$. For the case $a \le \theta \le a+1$, we have have
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_{a}^{a+1} \frac{1}{(1 + | a-\theta |)(1 + | a + \theta |)}d \theta
+		& = \int_{a}^{a+1} \frac{1}{(1 + \theta -a)(1 + a + \theta)}d \theta
+		\\
+		& = \frac{1}{2a} \int_{a}^{a+1} \left[ \frac{1}{1 + \theta -a} -
+		\frac{1}{1 + \theta + a}  \right]d \theta
+		\\
+		& =\frac{1}{2a} \log\left( \frac{1 + \theta -a}{1 + \theta + a} \right) \Big
+		|_a^{a+1}
+		\\
+		& = \frac{1}{2a} \log\left( \frac{2a+1}{a+1} \right)
+		\\
+		& \lesssim\frac{\log 2}{2a}
+		\\
+		& \lesssim \frac{\log(2 + | a |)}{1 + | a |}.
+	\end{split}
+\end{equation*}
+%
+%
+while for the case $0 \le \theta \le a$, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_{0}^{a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
+		& = \int_{0}^{a} \frac{1}{(1 +  a - \theta )(1 +  a + \theta )}d \theta
+		\\
+		& = \frac{1}{2(1 + a)} \int_{0}^{a} \left[ \frac{1}{1 + a - \theta} +
+		\frac{1}{1 + a + \theta} \right]d \theta
+		\\
+		& = \frac{1}{2(1 + a)} \log \left( \frac{1 + a + \theta}{1 + a - \theta}
+		\right) \Big |_{0}^{a}
+		\\
+		& = \frac{\log\left( 1 + 2a \right)}{2\left( 1 + a \right)}
+		\\
+		& \lesssim \frac{\log(2 + | a |)}{1 + | a |}.
+	\end{split}
+\end{equation*}
+%
+%
+This completes the proof for the case $a \neq 0$. Lastly, for the case
+$a =0$, we use dominated convergence and our preceding work to
+conclude that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\int_{\rr} \frac{1}{(1 + | \theta|)^2} d \theta
+		& = \lim_{a \to 0}
+		\int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
+		\\
+		& \lesssim \lim_{a \to 0} \frac{\log(2 + | a |)}{1 + | a |}
+		\\
+		& =  \log 2
+		\\
+		& = \frac{\log(2 + | 0 |)}{1 + | 0 |} 
+	\end{split}
+\end{equation*}
+%
+which completes the proof.
+%
+\end{proof}
+%
+\begin{proof}[Conservation of the $L_x^2$ norm] 
+We have
+%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{d}{dt} \int_\ci | u |^2  dx
+		& = \int_\ci \frac{d}{dt} | u |^2  dx
+		\\
+		& = \int_\ci \frac{d}{dt} \left( u \overline{u} \right)  dx
+		\\
+		& = \int_\ci \left( u \p_t \overline{u} + \overline{u} \p_t u \right) dx
+		\\
+		& = \int_\ci \left( u \overline{\p_t u} + \overline{u} \p_t u \right)dx.
+	\end{split}
+\end{equation*}
+%
+%
+Substituting in $\p_t u = i\left( \p_x^{m} u + | u |^2 u \right)$ we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \int_{\ci} \left\{ u\left[ -i\left( \p_x^{m} \overline{u} + | u |^2
+		\overline{u} \right) \right] + \overline{u}\left[ i\left( \p_x^{m} u + | u
+		|^2 u \right) \right] \right\}dx
+		\\
+		& = \int_\ci \left[ -iu \p_x^{m} \overline{u} - i| u |^4 + i \overline{u}
+		\p_x^{m} u + i | u |^4 \right]dx
+		\\
+		& = i \int_{\ci}\left( \overline{u} \p_x^{m} u - u \p_x^{m } \overline{u}
+		\right)dx.
+	\end{split}
+\end{equation*}
+%
+%
+Integrating by parts $m/2$ times and using
+the spatial periodicity of $u$, the right
+hand side simplifies to
+%
+%
+\begin{equation*}
+	\begin{split}
+		i \int_\ci \left( \p_x^{m/2} \overline{u} \p_x^{m/2} u - \p_x^{m/2} u
+		\p_x^{m/2 } 
+		\overline{u} \right) dx = 0.
+	\end{split}
+\end{equation*}
+%
+%
+Therefore, the $L_x^2(\ci)$ norm of solutions to the dNLS is conserved. 
+\end{proof}

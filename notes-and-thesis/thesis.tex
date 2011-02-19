@@ -1,0 +1,170 @@
+
+\ProvidesFile{template.tex}
+    [2005/07/27 v3.0 ^^J%
+     Template file for NDdiss2e class by Sameer Vijay^^J]
+\documentclass[final, 12pt]{nddiss2e}
+                     % Available options are
+                     % (a) draft + 10pt/11pt/12pt + twoadvisors + textrefs
+                     % (b) review + noinfo + twoadvisors + textrefs
+                     % (c) final + noinfo + twoadvisors + textrefs
+\let\bibsection\relax 
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl} 
+\usepackage{fix-cm} %allow arbitrary size fonts
+\usepackage{type1ec} %ditto
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+%\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{appendix}
+\synctex=1
+\usepackage{enumerate} %to change enumerate symbols
+%\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage{cleveref} %must be last loaded package to work properly
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+%
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\renewcommand{\qed}{\qquad \qedsymbol}
+\begin{document}
+
+\frontmatter         % All the items before Chapter 1 go in ``frontmatter''
+
+\title{Thesis }            % Title of Work
+\author{David Karapetyan}           % Author's name
+\work{Dissertation}             % ``Dissertation'' or ``Thesis''
+\degprior{ }         % All prior degrees
+\degaward{ }         % Degree you're aiming for
+\advisor{Alex Himonas}          % Advisor's name
+ % \secondadvisor{ } % Second advisor, if used option ``twoadvisors''
+\department{Department of Mathematics, University of Notre Dame}       % Name of the department
+
+\maketitle           % The title page is created now
+
+ % \copyrightholder{ } % If you're not the copyright holder
+ % \copyrightyear{ }   % If the copyright is not for the current year
+ % \makecopyright      % If not making your work public domain
+                       % uncomment out \makecopyright
+ % \makepublicdomain   % Uncomment this to make your work public domain
+
+ % \begin{abstract}
+ % \end{abstract}
+ %                         % Either place the text between begin/end, or
+ % \include{abstract}  % put it in a file to be included
+
+ % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
+                                           % something else
+ % \begin{dedication}
+ % \end{dedication}
+ %                       % Use one of the two choices to add dedication text
+ % \include{dedication}
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+ %% \renewcommand{\symbolsname}{newsymname} % Replace ``newsymname'' with
+                                           % the name you want, and uncomment
+ % \begin{symbols}
+ % \end{symbols}
+ %                       % Use one of the two choices to add symbols text
+ % \include{symbols}
+
+ %% \renewcommand{\prefacename}{ } % If you want another Preface name, add
+                                   % something else, and uncomment
+ % \begin{preface}
+ % \end{preface}
+ %                       % Use one of the two choices to add preface text
+ % \include{preface}
+
+ %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
+                                       % add something else, and uncomment
+ % \begin{acknowledge}
+ % \end{acknowledge}
+ %                       % Use one of the two choices to add acknowledge text
+ % \include{acknowledgement}
+
+\mainmatter
+ % Place the text body here.
+ \input{./hr/hr.tex}
+
+ \chapter{Well-Posedness and Ill-Posedness for a Class of NLS Equations}
+ \chapter{Numerics for a Class of Equations}
+\appendix
+
+ % If you have appendices, add them here.
+ % Begin each one with \chapter{title} as before- the \appendix command takes
+ % care of renaming chapter headings and creates a new page in the Table of
+ % Contents for them.
+ % \include{appendix-one}
+
+\backmatter              % Place for bibliography and index
+
+\bibliographystyle{amsplain}  % Use the ``nddiss2e'' biblio-style
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}           % input the bib-database file name
+
+\end{document}
+
+%%
+\endinput
+%%
+%% End of file `template.tex'.

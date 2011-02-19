@@ -1,136 +1,17 @@
-%
-\documentclass[12pt,reqno]{amsart}
-\usepackage{amssymb}
-\usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
-\usepackage{framed}  %to frame remarks, thms, etc
-%\usepackage{showkeys}  %shows source equation labels on the pdf
-\usepackage[margin=3cm]{geometry}  %page layout
-%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
-\setcounter{secnumdepth}{1} %number only sections, not subsections
-\hypersetup{colorlinks=true,
-linkcolor=blue,
-citecolor=blue,
-urlcolor=black,
-}
-
-\synctex=1
-\numberwithin{equation}{section}  %eliminate need for keeping track of counters
-\numberwithin{figure}{section}
-\setlength{\parindent}{0in} %no indentation of paragraphs after section title
-\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
-%
-%
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\noindent}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\nn}{\mathbb{N}}
-\newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
-\newcommand{\ci}{\mathbb{T}}
-\newcommand{\zzdot}{\dot{\zz}}
-\newcommand{\wh}{\widehat}
-\newcommand{\p}{\partial}
-\newcommand{\ee}{\varepsilon}
-\newcommand{\vp}{\varphi}
-%
-%
-\theoremstyle{plain}  
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{claim}{Claim}
-\newtheorem{conjecture}[subsection]{conjecture}
-%
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-%
-\theoremstyle{remark}
-\newtheorem{remark}{Remark}
-%
-%
-%
-\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
-\makeautorefname{equation}{Equation}
-\makeautorefname{footnote}{footnote}
-\makeautorefname{item}{item}
-\makeautorefname{figure}{Figure}
-\makeautorefname{table}{Table}
-\makeautorefname{part}{Part}
-\makeautorefname{appendix}{Appendix}
-\makeautorefname{chapter}{Chapter}
-\makeautorefname{section}{Section}
-\makeautorefname{subsection}{Section}
-\makeautorefname{subsubsection}{Section}
-\makeautorefname{paragraph}{Paragraph}
-\makeautorefname{subparagraph}{Paragraph}
-\makeautorefname{theorem}{Theorem}
-\makeautorefname{theo}{Theorem}
-\makeautorefname{thm}{Theorem}
-\makeautorefname{addendum}{Addendum}
-\makeautorefname{add}{Addendum}
-\makeautorefname{maintheorem}{Main theorem}
-\makeautorefname{corollary}{Corollary}
-\makeautorefname{lemma}{Lemma}
-\makeautorefname{sublemma}{Sublemma}
-\makeautorefname{proposition}{Proposition}
-\makeautorefname{property}{Property}
-\makeautorefname{scholium}{Scholium}
-\makeautorefname{step}{Step}
-\makeautorefname{conjecture}{Conjecture}
-\makeautorefname{question}{Question}
-\makeautorefname{definition}{Definition}
-\makeautorefname{notation}{Notation}
-\makeautorefname{remark}{Remark}
-\makeautorefname{remarks}{Remarks}
-\makeautorefname{example}{Example}
-\makeautorefname{algorithm}{Algorithm}
-\makeautorefname{axiom}{Axiom}
-\makeautorefname{case}{Case}
-\makeautorefname{claim}{Claim}
-\makeautorefname{assumption}{Assumption}
-\makeautorefname{conclusion}{Conclusion}
-\makeautorefname{condition}{Condition}
-\makeautorefname{construction}{Construction}
-\makeautorefname{criterion}{Criterion}
-\makeautorefname{exercise}{Exercise}
-\makeautorefname{problem}{Problem}
-\makeautorefname{solution}{Solution}
-\makeautorefname{summary}{Summary}
-\makeautorefname{operation}{Operation}
-\makeautorefname{observation}{Observation}
-\makeautorefname{convention}{Convention}
-\makeautorefname{warning}{Warning}
-\makeautorefname{note}{Note}
-\makeautorefname{fact}{Fact}
-%
-\begin{document}
-\title{Well Posedness for the dNLS}
-\author{David Karapetyan}
-\address{Department of Mathematics  \\
-         University  of Notre Dame\\
-         Notre Dame, IN 46556 }
-\date{09/12/2010}
-%
-\maketitle
-%
-%
+\chapter{Well Posedness for the mKDV}
 %
 %
 %
 %
 \section{Introduction}
-We consider the derivative nonlinear Schr{\"o}dinger (dNLS) initial value problem (ivp)
+We consider the modified Korteweg-de Vries (mKDV) initial value problem (ivp)
 %
 %
 \begin{gather}
-	\label{dNLS-eq}
-	\p_t u + \p_x^{m} u + \lambda \p_x (|u|^2 u) = 0,
+	\label{mmKDV-eq}
+	\p_t u + \p_x^{m} u + \lambda u \p_x u = 0,
 	\\
-	\label{dNLS-init-data}
+	\label{mmKDV-init-data}
 	u(x,0) = u_0(x), \quad x \in \ci, \ t \in \rr.
 \end{gather}
 %
@@ -139,7 +20,7 @@ where $m \in \{3, 5, 7,\dots \}$ and $\lambda \in \{-1, 1\}$.
 %
 %
 \begin{definition}
-	We say that the dNLS ivp \eqref{dNLS-eq}-\eqref{dNLS-init-data} is
+	We say that the mKDV ivp \eqref{mmKDV-eq}-\eqref{mmKDV-init-data} is
 	\emph{locally well posed} in
 	$X$ if 
 	\begin{enumerate}
@@ -147,14 +28,14 @@ where $m \in \{3, 5, 7,\dots \}$ and $\lambda \in \{-1, 1\}$.
 	B_R$ there exists $T>0$ depending on $R$ and a unique function
 	\\
 	$u \in C([-T, T],
-	X)$ satisfying \eqref{dNLS-eq} for all $t \in [-T, T]$. 
+	X)$ satisfying \eqref{mmKDV-eq} for all $t \in [-T, T]$. 
 \item The flow map $u_0 \mapsto u(t)$ is locally uniformly continuous. That is, if $u_0
 	\in B_R$, $\{u_{0,n}\} \subset B_R$, and 
 	$\|u_0 - u_{0, n} \|_{H^{s}(\ci)} \to 0$, then there exists $T >0$ depending
 	on $R$ such that $\|u(\cdot, t) - u_{n}(\cdot,t) \|_{X} \to
 	0$ for $t \in [-T, T]$. 
 	\end{enumerate}
-	%Otherwise, we say that the dNLS ivp is \emph{ill-posed}.
+	%Otherwise, we say that the mKDV ivp is \emph{ill-posed}.
 \end{definition}
 %
 %
@@ -170,8 +51,8 @@ We are now prepared to state the following result.
 %
 %
 \begin{theorem}
-	\label{thm:main}
-	The dNLS ivp is well-posed in $\dot{H}^s(\ci)$ for $s \ge \frac{1-m}{4}$.  
+	\label{mthm:main}
+	The mKDV ivp is well-posed in $\dot{H}^s(\ci)$ for $s \ge \frac{1-m}{4}$.  
 \end{theorem}
 %
 %
@@ -184,13 +65,13 @@ We are now prepared to state the following result.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Outline of the Proof of \autoref{thm:main}}
+\section{Outline of the Proof of Main Theorem}
 %
 %
 %
 %
 %
-We first derive a weak formulation of the dNLS ivp. 
+We first derive a weak formulation of the mKDV ivp. 
 Let $\ci = [0, 2 \pi]$, and use
 the following notation for the Fourier transform
 %
@@ -198,13 +79,13 @@ the following notation for the Fourier transform
 %
 %
 \begin{equation}
-	\label{four-trans-pde}
+	\label{mfour-trans-pde}
 	\begin{split}
 		\widehat{f}(n) = \int_{\ci} e^{-ix n} f(x) \, dx.
 	\end{split}
 \end{equation}
 Let $w(x,t) = u \p_x u$. Applying 
-the Fourier transform to the dNLS ivp in the space variable we obtain 
+the Fourier transform to the mKDV ivp in the space variable we obtain 
 %
 %
 \begin{gather*}
@@ -228,7 +109,7 @@ or
 \end{gather*}
 Since the sign of $\lambda$ plays no role in the proof of local well-posedness,
 we now assume $\frac{m-1}{2}$ to be even without loss of generality. 
-Multiplying \eqref{four-trans-pde} by the integrating factor $e^{itn^m}$ then yields
+Multiplying \eqref{mfour-trans-pde} by the integrating factor $e^{itn^m}$ then yields
 %%
 %%
 \begin{equation*}
@@ -255,7 +136,7 @@ Therefore, by Fourier inversion
 %
 %
 \begin{equation}
-	\label{dNLS-integral-form}
+	\label{mmKDV-integral-form}
 	\begin{split}
 		u(x,t) & = \sum_{n \in \zz} \wh{\vp}(n) e^{i\left( xn - t n^m 
 		\right)} 
@@ -266,25 +147,25 @@ Therefore, by Fourier inversion
 \end{equation}
 %
 %
-Then it is immediate that \eqref{dNLS-integral-form} is a weaker 
-restatement of the Cauchy-problem \eqref{dNLS-eq}-\eqref{dNLS-init-data}, 
-since by construction any classical solution of the dNLS 
-ivp is a solution to \eqref{dNLS-integral-form}. 
+Then it is immediate that \eqref{mmKDV-integral-form} is a weaker 
+restatement of the Cauchy-problem \eqref{mmKDV-eq}-\eqref{mmKDV-init-data}, 
+since by construction any classical solution of the mKDV 
+ivp is a solution to \eqref{mmKDV-integral-form}. 
 \\
 \\
 %
 %
 We now derive an integral 
-equation global in $t$ and equivalent to \eqref{dNLS-integral-form} for $t 
+equation global in $t$ and equivalent to \eqref{mmKDV-integral-form} for $t 
 \in [-T, T]$. Let $\psi(t)$ be a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le T$ and $\text{supp} \, \psi 
 = [-2T, 2T ]$. Multiplying the right hand side of expression
-$\eqref{dNLS-integral-form}$ by $\psi(t)$, we obtain
+$\eqref{mmKDV-integral-form}$ by $\psi(t)$, we obtain
 %
 %
 \begin{equation}
 	\begin{split}
-		\label{cutoff-int-eq}
+		\label{mcutoff-int-eq}
 		u(x, t)
 		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn - t n^m)} \widehat{\vp}(n) 
 		\\
@@ -299,7 +180,7 @@ does not depend on $t'$, we may rewrite
 %
 %
 \begin{equation}
-	\label{pre-prim-int-form}
+	\label{mpre-prim-int-form}
 	\begin{split}
 		& \frac{i }{2 \pi} \psi(t) \int_0^t \sum_{n \in \zz} 
 		e^{i\left[ xn + (t - t') n^m \right]} \wh{w}(n, t') \ dt'
@@ -322,7 +203,7 @@ inversion
 %
 \begin{equation*}
 	\begin{split}
-		\text{rhs of} \; \eqref{pre-prim-int-form}
+		\text{rhs of} \; \eqref{mpre-prim-int-form}
 		& = \frac{i}{4 \pi^2} \psi (t) \sum_{n \in \zz} e^{i\left( xn + t 
 		 n^m
 		\right)} \int_0^t \int_\rr e^{it'\left( \tau - n^m \right) }
@@ -336,12 +217,12 @@ inversion
 %
 %
 where the last step follows from integration. Substituting
-into \eqref{cutoff-int-eq} we obtain
+into \eqref{mcutoff-int-eq} we obtain
 %
 %
 \begin{equation}
 	\begin{split}
-		\label{cutoff-int-eq-2}
+		\label{mcutoff-int-eq-2}
 		u(x, t)
 		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn - tn^m)} \widehat{\vp}(n) 
 		\\
@@ -356,7 +237,7 @@ into \eqref{cutoff-int-eq} we obtain
 %
 %
 Next, we localize near the singular curve $\tau =  n^m$.  Multiplying the
-summand of the second term of \eqref{cutoff-int-eq-2} by $1 + \psi(\tau -
+summand of the second term of \eqref{mcutoff-int-eq-2} by $1 + \psi(\tau -
 n^m) - \psi(\tau -
 n^m) $ and
 rearranging terms, we have
@@ -389,24 +270,24 @@ to
 %
 %
 \begin{align}
-	\label{main-int-expression-0}
+	\label{mmain-int-expression-0}
 	& u(x, t) 
 		\\
-		\label{main-int-expression-1}
+		\label{mmain-int-expression-1}
 		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn + tn^{m 
 		})} \widehat{\vp}(n) 
 		\\
-		\label{main-int-expression-2}
+		\label{mmain-int-expression-2}
 		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{ 1 - \psi(\tau -  n^m) 
 		}{\tau -  n^m} \wh{w}(n, \tau) \ d \tau
 		\\
-		\label{main-int-expression-3}
+		\label{mmain-int-expression-3}
 		& - \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
 		t n^m)}
 		 \frac{1- \psi(\tau -  n^m)}{\tau -  n^m} \wh{w}(n, \tau) \ d \tau
 		\\
-		\label{main-int-expression-4}
+		\label{mmain-int-expression-4}
 		& + \frac{1}{4 \pi^2} \psi(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
 		\sum_{n \in \zz} \int_\rr e^{i(xn + t n^m )}
 		\psi(\tau -  n^m) (\tau -  n^m)^{k-1} \wh{w}(n, \tau)  
@@ -422,7 +303,7 @@ where $T = T_{\vp}$. We now introduce the following spaces.
 	functions $u$ on $\ci \times \rr$ with
 	bounded norm
 \begin{equation}
-	\label{Y-s-norm}
+	\label{mY-s-norm}
 	\begin{split}
 		\|u\|_{\dot{Y}^s} = \|u\|_{\dot{X}^s} + \||n|^s \wh{ u}\|_{ \dot{\ell}^2_n L^1_\tau }
 	\end{split}
@@ -434,7 +315,7 @@ where $T = T_{\vp}$. We now introduce the following spaces.
 where
 %
 \begin{equation}
-	\label{X^s-norm}
+	\label{mX^s-norm}
 	\begin{split}
 		& \|u\|_{\dot{X}^s}
 		= \left ( \sum_{n\in \zz} |n|^{2s} \int_\rr \left ( 1 + | 
@@ -446,7 +327,7 @@ and
 %
 %
 \begin{equation}
-	\label{E-norm}
+	\label{mE-norm}
 	\| | n |^{s} \wh{u}\|_{ \dot{\ell}^2_n L^1_\tau } = \left[ \sum_{n \in \zzdot}| n |^{2s} \left(
 	\int_{\rr}| \wh{u}(n, \tau) |d \tau \right)^{2} \right]^{1/2}.
 \end{equation}
@@ -458,7 +339,7 @@ and
 The $\dot{Y}^s$ spaces have the following important property, whose proof
 is provided in the appendix.
 \begin{lemma}
-	\label{lem:cutoff-loc-soln}
+	\label{mlem:cutoff-loc-soln}
 	Let $\psi(t)$ be a smooth cutoff function with $\psi(t) =1$ for $t \in [-T, T]$. If
 	$\psi(t)u(x,t) \in \dot{Y}^s$, then $u \in C([-T, T], \dot{H}^s(\ci))$.
 \end{lemma}
@@ -468,13 +349,13 @@ We will
 show that for initial data $\vp \in \dot{H}^s(\ci)$, $T$ is a contraction on $B_M 
 \subset \dot{Y}^s$, where $B_M$ is the ball centered at the origin of radius $M = 
 M_{\vp}> 0$, by estimating the $\dot{Y}^s$
-norm of \eqref{main-int-expression-1}-\eqref{main-int-expression-4}. The 
+norm of \eqref{mmain-int-expression-1}-\eqref{mmain-int-expression-4}. The 
 Picard fixed point theorem will
 then yield a unique solution to
-\eqref{main-int-expression-0}-\eqref{main-int-expression-4}. An application of
-\autoref{lem:cutoff-loc-soln} will then imply the existence of a unique, local
-solution $u \in C([-T, T], \dot{H}^s(\ci))$ to the dNLS ivp which coincides with the solution to
-\eqref{main-int-expression-0}-\eqref{main-int-expression-4} on the interval $[-T, T]$. Local Lipschitz continuity of the flow map will follow
+\eqref{mmain-int-expression-0}-\eqref{mmain-int-expression-4}. An application of
+\cref{mlem:cutoff-loc-soln} will then imply the existence of a unique, local
+solution $u \in C([-T, T], \dot{H}^s(\ci))$ to the mKDV ivp which coincides with the solution to
+\eqref{mmain-int-expression-0}-\eqref{mmain-int-expression-4} on the interval $[-T, T]$. Local Lipschitz continuity of the flow map will follow
 from estimates used to establish the contraction mapping. %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -486,7 +367,7 @@ from estimates used to establish the contraction mapping. %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Proof of \autoref{thm:main}}
+\section{Proof of Main Theorem}
 %
 %
 %
@@ -501,7 +382,7 @@ from estimates used to establish the contraction mapping. %
 %
 %
 %
-\subsection{Estimate for \eqref{main-int-expression-1}.}
+\subsection{Estimate for \eqref{mmain-int-expression-1}.}
 %
 %
 Letting $f(x,t) = \psi(t) \sum_{n \in \zz} e^{i(xn + tn^m)} 
@@ -510,7 +391,7 @@ from which we obtain
 %
 %
 \begin{equation}
-	\label{fourier-trans-calc}
+	\label{mfourier-trans-calc}
 	\begin{split}
 		\wh{f}(n, \tau)
 		& = \wh{\vp}(n) \int_\rr e^{-it( \tau - n^m)} 
@@ -529,8 +410,8 @@ Since $\wh{\psi}(\xi)$ is Schwartz for $|\xi| \ge T$, we see that
 %
 \begin{equation}
 	\begin{split}
-	\label{main-int1-est}
-		\|\eqref{main-int-expression-1}\|_{\dot{Y}^s}
+	\label{mmain-int1-est}
+		\|\eqref{mmain-int-expression-1}\|_{\dot{Y}^s}
 		& = \left (  \sum_{n\in \zz} |n|^{2s} \int_\rr \left( 1 + | \tau - n^m 
 		| \right )
 		| \wh{\psi}(\tau - n^m) \wh{\vp}(n) |^2 d \tau \right)^{1/2} 
@@ -547,7 +428,7 @@ Since $\wh{\psi}(\xi)$ is Schwartz for $|\xi| \ge T$, we see that
 %
 %
 %
-\subsection{Estimate for \eqref{main-int-expression-2}.}
+\subsection{Estimate for \eqref{mmain-int-expression-2}.}
 We now need the following lemma, whose proof is provided in the appendix.
 %
 %
@@ -561,12 +442,12 @@ We now need the following lemma, whose proof is provided in the appendix.
 %
 %
 \begin{lemma}
-\label{lem:schwartz-mult}
+\label{mlem:schwartz-mult}
 	For $\psi \in S(\rr)$,
 %
 %
 \begin{equation}
-	\label{schwartz-mult}
+	\label{mschwartz-mult}
 	\begin{split}
 		\|\psi f \|_{\dot{X}^s} \le c_{\psi} \|f \|_{\dot{X}^s}.
 	\end{split}
@@ -580,9 +461,9 @@ Hence,
 %
 %
 \begin{equation}
-	\label{main-int2-est-X-s-part}
+	\label{mmain-int2-est-X-s-part}
 	\begin{split}
-		\|\eqref{main-int-expression-2}\|_{\dot{X}^s} 
+		\|\eqref{mmain-int-expression-2}\|_{\dot{X}^s} 
 		& \lesssim 
 		\left( \| \sum_{n \in \zz} e^{ixn} \int_\rr 
 		e^{it \tau} \frac{ 1 - \psi (\tau - n^m ) 
@@ -615,7 +496,7 @@ Hence,
 where the last two steps follow from the inequality 
 %
 \begin{equation}
-	\label{one-plus-ineq}
+	\label{mone-plus-ineq}
 	\begin{split}
 		\frac{1}{|\tau - n^m| } \le \frac{2}{1 + |\tau - n^m| }, 
 		\qquad |\tau - n^m| \ge 1
@@ -635,10 +516,10 @@ and the following bilinear estimate, whose proof we leave for later.
 %
 %
 \begin{proposition}
-	\label{prop:prim-bilin-est}
+	\label{mprop:prim-bilin-est}
 	For any $s \ge \frac{1-m}{4}$ we have
 	\begin{equation}
-		\label{prim-bilin-est}
+		\label{mprim-bilin-est}
 		\left( \sum_{n \in \dot{\zz}} |n|^{2s} \int_\rr
 		\frac{|\wh{w_{fg}}(n, \tau) |^2}{1+ |\tau - 
 		n^m| } 
@@ -654,9 +535,9 @@ Furthermore,
 %
 %
 \begin{equation}
-	\label{main-int-expression-2-Y-s-part}
+	\label{mmain-int-expression-2-Y-s-part}
 	\begin{split}
-		\| | n |^{s} \wh{\eqref{main-int-expression-2}} \|_{\dot{\ell}^2_n L^1_\tau}
+		\| | n |^{s} \wh{\eqref{mmain-int-expression-2}} \|_{\dot{\ell}^2_n L^1_\tau}
 		& \lesssim 
 		\left[ \sum_{n \in \zz}|n|^{2s} \left(
 		\int_{\rr}\frac{1 - \psi(\tau - n^m)}{\tau - n^m} \wh{w}(n, \tau) d
@@ -667,7 +548,7 @@ Furthermore,
 \end{equation}
 %
 %
-where the last step follows from \eqref{one-plus-ineq} and
+where the last step follows from \eqref{mone-plus-ineq} and
 the following bilinear estimate.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -680,12 +561,12 @@ the following bilinear estimate.
 %
 %
 \begin{proposition}
-\label{prop:bilinear-estimate2}
+\label{mprop:bilinear-estimate2}
 For any $s \ge \frac{1-m}{4}$ we have
 %
 %
 \begin{equation}
-	\label{bilinear-estimate2}
+	\label{mbilinear-estimate2}
 	\begin{split}
 		\left( \sum_{n \in \zzdot} |n|^{2s}  \left ( \int_\rr 
 		\frac{|\wh{w_{fg}}(n, \tau) |}{1 + | \tau - n^m |}
@@ -695,21 +576,21 @@ For any $s \ge \frac{1-m}{4}$ we have
 \end{proposition}
 %
 %
-Combining \eqref{main-int2-est-X-s-part} and
-\eqref{main-int-expression-2-Y-s-part}, we conclude that
+Combining \eqref{mmain-int2-est-X-s-part} and
+\eqref{mmain-int-expression-2-Y-s-part}, we conclude that
 %
 %
 %
 %
 \begin{equation}
-	\label{main-int2-est}
+	\label{mmain-int2-est}
 	\begin{split}
-		\|\eqref{main-int-expression-2}\|_{\dot{Y}^s} \le c_{\psi}\|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
+		\|\eqref{mmain-int-expression-2}\|_{\dot{Y}^s} \le c_{\psi}\|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
 	\end{split}
 \end{equation}
 %
 %
-\subsection{Estimate for \eqref{main-int-expression-3}.}
+\subsection{Estimate for \eqref{mmain-int-expression-3}.}
 Letting $$f(x,t) = \psi(t) \sum_{n \in \zzdot} e^{i\left( xn + tn^m \right)} 
 \int_\rr \frac{1 - \psi\left( \lambda - n^m \right)}{\lambda - n^m} 
 \wh{w} \left( n, \lambda \right) \ d \lambda,$$ we have
@@ -742,7 +623,7 @@ Therefore,
 %
 \begin{equation*}
 	\begin{split}
-		& \| \eqref{main-int-expression-3} \|_{\dot{X}^s} 
+		& \| \eqref{mmain-int-expression-3} \|_{\dot{X}^s} 
 		\\
 		& = \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau - n^{m
 		} \right ) | | \wh{\psi}\left( \tau - n^m \right) |^2 \ d \tau
@@ -768,13 +649,13 @@ Therefore,
 \end{equation*}
 %
 %
-Applying estimate \eqref{one-plus-ineq} then gives
+Applying estimate \eqref{mone-plus-ineq} then gives
 %
 %%
 \begin{equation}
-	\label{main-int3-est-X-s-part}
+	\label{mmain-int3-est-X-s-part}
 	\begin{split}
-		\| \eqref{main-int-expression-3} \|_{\dot{X}^s}
+		\| \eqref{mmain-int-expression-3} \|_{\dot{X}^s}
 		& \lesssim \left( \sum_{n \in \zzdot} |n|^{2s}  \left ( \int_\rr
 		\frac{|\wh{w}(n, \lambda)| }{1 + |\lambda - n^m|}
 		 \ d\lambda \right )^2 \right)^{1/2}
@@ -784,14 +665,14 @@ Applying estimate \eqref{one-plus-ineq} then gives
 \end{equation}
 %
 %%
-where the last step follows from \autoref{prop:bilinear-estimate2}.
+where the last step follows from \cref{mprop:bilinear-estimate2}.
 Furthermore, 
 %
 %
 \begin{equation}
-	\label{main-int-estimate-3-Y-s-part}
+	\label{mmain-int-estimate-3-Y-s-part}
 	\begin{split}
-		\| | n |^s \wh{\eqref{main-int-expression-3}}\|_{\dot{\ell}^2_n L^1_\tau}
+		\| | n |^s \wh{\eqref{mmain-int-expression-3}}\|_{\dot{\ell}^2_n L^1_\tau}
 		& = \left[ \sum_{n \in \zzdot} |n|^{2s} \int_{\rr} |
 		\wh{\psi}(\tau - n^m) |^{2} \left( \int_{\rr}\frac{1 - \psi(\lambda -
 		n^m)}{\lambda - n^m} \wh{w}(n, \lambda) d \lambda \right)^{2} d \tau
@@ -812,30 +693,30 @@ Furthermore,
 \end{equation}
 %
 %
-where the last two steps follow from \eqref{one-plus-ineq} and
-\autoref{prop:bilinear-estimate2}, respectively. Combining
-\eqref{main-int3-est-X-s-part} and \eqref{main-int-estimate-3-Y-s-part}, we
+where the last two steps follow from \eqref{mone-plus-ineq} and
+\cref{mprop:bilinear-estimate2}, respectively. Combining
+\eqref{mmain-int3-est-X-s-part} and \eqref{mmain-int-estimate-3-Y-s-part}, we
 conclude that
 %
 %
 \begin{equation}
-	\label{main-int3-est}
+	\label{mmain-int3-est}
 	\begin{split}
-		\|\eqref{main-int-expression-3}\|_{\dot{Y}^s} 
+		\|\eqref{mmain-int-expression-3}\|_{\dot{Y}^s} 
 		\lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
 	\end{split}
 \end{equation}
 %
 %
 %
-\subsection{Estimate for \eqref{main-int-expression-4}.}
+\subsection{Estimate for \eqref{mmain-int-expression-4}.}
 Note that
 %
 %
 \begin{equation}
-	\label{1n}
+	\label{m1n}
 	\begin{split}
-		\eqref{main-int-expression-4} \simeq \sum_{k \ge 1}
+		\eqref{mmain-int-expression-4} \simeq \sum_{k \ge 1}
 		\frac{i^k}{k!}g_k(x,t)
 	\end{split}
 \end{equation}
@@ -879,13 +760,13 @@ which gives
 \end{equation*}
 %
 %
-Applying this to \eqref{1n}, we obtain
+Applying this to \eqref{m1n}, we obtain
 %
 %
 \begin{equation}
-	\label{2n}
+	\label{m2n}
 	\begin{split}
-		\|\eqref{main-int-expression-4}\|_{\dot{X}^s} 
+		\|\eqref{mmain-int-expression-4}\|_{\dot{X}^s} 
 		& \simeq \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
 		n^m
 		|
@@ -912,7 +793,7 @@ gives
 %
 %
 \begin{equation}
-	\label{3n}
+	\label{m3n}
 	\begin{split}
 		\int_\rr \left( 1 + | \tau - n^m | \right) | \wh{t^{k}
 		\psi(t)}\left( \tau - n^m \right) |^2 \ d \tau
@@ -934,7 +815,7 @@ But
 %
 %
 \begin{equation}
-	\label{4n}
+	\label{m4n}
 	\begin{split}
 		\|t^k \psi(t) \|_{H^1(\rr)}^2
 		& = \left( \|t^k \psi(t)\|_{L^2(\rr)} + \|\p_t \left( t^k \psi(t)
@@ -953,13 +834,13 @@ But
 \end{equation}
 %
 %
-Hence, applying \eqref{3n} and \eqref{4n} to \eqref{2n}, we obtain
+Hence, applying \eqref{m3n} and \eqref{m4n} to \eqref{m2n}, we obtain
 %
 %%
 \begin{equation}
-	\label{5n}
+	\label{m5n}
 	\begin{split}
-		\|\eqref{main-int-expression-4} \|_{\dot{X}^s}
+		\|\eqref{mmain-int-expression-4} \|_{\dot{X}^s}
 		& \lesssim
 		\sum_{k \ge 1} \frac{k}{k!} \left( \sum_{n \in \zzdot} |n|^{2s} | h_k(n) |^2 
 		\right)^{1/2}
@@ -978,12 +859,12 @@ Hence, applying \eqref{3n} and \eqref{4n} to \eqref{2n}, we obtain
 %%
 Recall that $\text{supp} \, |\psi| \subset [0, T ]$. Pick $T \le 1$. 
 Then $| \psi\left( \tau - n^m \right) \cdot \left( \tau - n^m \right)^{k 
--1} | \le \chi_{| \tau - n^m | \le 1}$ for all $k \ge 1$. Hence, \eqref{5n} gives
+-1} | \le \chi_{| \tau - n^m | \le 1}$ for all $k \ge 1$. Hence, \eqref{m5n} gives
 %
 %%
 \begin{equation*}
 	\begin{split}
-		\|\eqref{main-int-expression-4} \|_{\dot{X}^s} 
+		\|\eqref{mmain-int-expression-4} \|_{\dot{X}^s} 
 		& \lesssim \sum_{k \ge 1} \frac{k}{k!}  \left( \sum_{n \in \zzdot} | 
 		\int_{| \tau - n^m  |\le 1} | \wh{w}(n, \tau) \ d \tau |^2 
 		\right)^{1/2}
@@ -1006,9 +887,9 @@ implies
 %
 %%
 \begin{equation}
-\label{main-int4-est-X-s-part}
+\label{mmain-int4-est-X-s-part}
 	\begin{split}
-		\|\eqref{main-int-expression-4}\|_{\dot{X}^s}
+		\|\eqref{mmain-int-expression-4}\|_{\dot{X}^s}
 		& \lesssim \left( \sum_{n \in \zzdot} | \int_{| \tau - n^m| \le 1 }
 		\frac{\wh{w}(n, \tau)}{1 + | \tau - n^m |} \ d \tau |^2 
 		\right)^{1/2}
@@ -1024,14 +905,14 @@ implies
 \end{equation}
 %
 %%
-where the last step follows from \autoref{prop:bilinear-estimate2}. Similarly,
+where the last step follows from \cref{mprop:bilinear-estimate2}. Similarly,
 we have
 %
 %
 \begin{equation}
-\label{main-int4-est-Y-s-part}
+\label{mmain-int4-est-Y-s-part}
 	\begin{split}
-		\| n| |^s \wh{\eqref{main-int-expression-4}}\|_{\dot{\ell}^2_n L^1_\tau}
+		\| n| |^s \wh{\eqref{mmain-int-expression-4}}\|_{\dot{\ell}^2_n L^1_\tau}
 		& \simeq \left[ \sum_{n \in
 		\zzdot}|n|^{2s} \left( \int_{\rr} | \sum_{k \ge 1}
 		\wh{\frac{i^{k}}{k!}g_{k}(x,t)(n, \tau)} |d \tau \right)^{2} \right]^{1/2}
@@ -1052,23 +933,23 @@ we have
 \end{equation}
 %
 %
-where the last step follows from the computations starting from \eqref{5n}
-through \eqref{main-int4-est-X-s-part}.
-Combining \eqref{main-int4-est-X-s-part} and \eqref{main-int4-est-Y-s-part}, we
+where the last step follows from the computations starting from \eqref{m5n}
+through \eqref{mmain-int4-est-X-s-part}.
+Combining \eqref{mmain-int4-est-X-s-part} and \eqref{mmain-int4-est-Y-s-part}, we
 have
 %
 %
 \begin{equation}
-\label{main-int4-est}
+\label{mmain-int4-est}
 	\begin{split}
-		\|\eqref{main-int-expression-4}\|_{\dot{Y}^s} \lesssim \|u\|_{\dot{X}^s}^2.
+		\|\eqref{mmain-int-expression-4}\|_{\dot{Y}^s} \lesssim \|u\|_{\dot{X}^s}^2.
 	\end{split}
 \end{equation}
 %
 %
-Collecting estimates \eqref{main-int1-est}, \eqref{main-int2-est}, 
-\eqref{main-int3-est}, and \eqref{main-int4-est}, and recalling 
-\eqref{main-int-expression-1}-\eqref{main-int-expression-4}, we see that
+Collecting estimates \eqref{mmain-int1-est}, \eqref{mmain-int2-est}, 
+\eqref{mmain-int3-est}, and \eqref{mmain-int4-est}, and recalling 
+\eqref{mmain-int-expression-1}-\eqref{mmain-int-expression-4}, we see that
 $$\|Tu\|_{\dot{Y}^s} \le c_\psi \left( \|\vp \|_{\dot{H}^s(\ci)} + \|u\|_{\dot{X}^s}^2 \right )$$ 
 which by the inequality $\|u\|_{\dot{X}^s} \le \|u\|_{\dot{Y}^s}$ yields the following.
 %%
@@ -1081,7 +962,7 @@ which by the inequality $\|u\|_{\dot{X}^s} \le \|u\|_{\dot{Y}^s}$ yields the fol
 %%
 %
 \begin{proposition}
-\label{prop:contraction}
+\label{mprop:contraction}
 Let $s \ge \frac{1-m}{4}$. Then
 %
 %%
@@ -1094,8 +975,8 @@ Let $s \ge \frac{1-m}{4}$. Then
 %
 %%
 \end{proposition}
-We will now use \autoref{prop:contraction} to prove local well-posedness for the 
-dNLS ivp. Let $c = c_{\psi}$. For given $\vp$, we may choose $\psi$ such
+We will now use \cref{mprop:contraction} to prove local well-posedness for the 
+mKDV ivp. Let $c = c_{\psi}$. For given $\vp$, we may choose $\psi$ such
 that 
 %
 %%
@@ -1125,8 +1006,8 @@ itself. Next, note that
 %%
 \begin{equation*}
 	\begin{split}
-		Tu - Tv = \eqref{main-int-expression-2} + \eqref{main-int-expression-3} 
-		+ \eqref{main-int-expression-4}
+		Tu - Tv = \eqref{mmain-int-expression-2} + \eqref{mmain-int-expression-3} 
+		+ \eqref{mmain-int-expression-4}
 	\end{split}
 \end{equation*}
 %
@@ -1143,13 +1024,13 @@ where now $w = \frac{1}{2} \p_x (u^2 - v^2)$. Rewriting
 %
 %%
 and repeating the arguments used to estimate 
-\eqref{main-int-expression-2}-\eqref{main-int-expression-4} (in the
+\eqref{mmain-int-expression-2}-\eqref{mmain-int-expression-4} (in the
 bilinear estimates, we now set $f=u-v$ and $g = u+v$), we obtain
 %
 %%
 %%
 \begin{equation}
-	\label{20a}
+	\label{m20a}
 	\begin{split}
 		\|Tu - Tv \|_{\dot{Y}^s}  
 		& \le c_\psi \|u -v\|_{\dot{Y}^s} \|u + v \|_{\dot{Y}^s}
@@ -1163,7 +1044,7 @@ If $u, v \in B(0, \frac{1}{4c}) \subset \dot{Y}^s$, it follows that
 %
 %%
 \begin{equation}
-	\label{21a}
+	\label{m21a}
 	\begin{split}
 		\|Tu - Tv \|_{\dot{Y}^s}
 		& \le c \|u -v \|_{\dot{Y}^s} \left( \frac{1}{4c} + 
@@ -1176,8 +1057,8 @@ If $u, v \in B(0, \frac{1}{4c}) \subset \dot{Y}^s$, it follows that
 %%
 We conclude that $T = T_{\vp}$ is a contraction on the ball $B(0, 
 \frac{1}{4c}) \subset \dot{Y}^s$. A Picard iteration and application of 
-\autoref{lem:cutoff-loc-soln} then yield a unique, local
-solution to the dNLS ivp \eqref{dNLS-eq}-\eqref{dNLS-init-data}.
+\cref{mlem:cutoff-loc-soln} then yield a unique, local
+solution to the mKDV ivp \eqref{mmKDV-eq}-\eqref{mmKDV-init-data}.
 \begin{definition}
 	We say that the flow map $u_0 \mapsto u(t)$ is \emph{locally Lipschitz} in a Banach
 	space $X$ if for
@@ -1200,24 +1081,24 @@ $\vp_1, \vp_2 \subset B(0, \frac{15}{64c^{3}})$.  Then there exist $u_1, u_2 \in
 %
 %
 \begin{equation}
-	\label{gen-1a}
+	\label{mgen-1a}
 	\begin{split}
 		T_{\vp_1}(u) - T_{\vp_2}(v)
 		& = \frac{1}{2\pi} \psi(t) \sum_{n \in
 		\zzdot}e^{i\left( xn + tn^m \right)} \wh{\vp_1 - \vp_2}(n)
 		\\
-		& + \eqref{main-int-expression-2} + \eqref{main-int-expression-3} +
-		\eqref{main-int-expression-4} 
+		& + \eqref{mmain-int-expression-2} + \eqref{mmain-int-expression-3} +
+		\eqref{mmain-int-expression-4} 
 	\end{split}
 \end{equation}
 %
 %
-where $w = \frac{1}{2} \p_x (u^2 - v^2)$. Using an argument similar to \eqref{fourier-trans-calc}-\eqref{main-int1-est},
+where $w = \frac{1}{2} \p_x (u^2 - v^2)$. Using an argument similar to \eqref{mfourier-trans-calc}-\eqref{mmain-int1-est},
 we obtain
 %
 %
 \begin{equation}
-	\label{gen-2a}
+	\label{mgen-2a}
 	\begin{split}
 		\| \frac{1}{2\pi} \psi(t) \sum_{n \in
 		\zzdot}e^{i\left( xn + tn^m \right)} \wh{\vp_1 - \vp_2}(n)\|_{\dot{Y}^s}
@@ -1226,7 +1107,7 @@ we obtain
 \end{equation}
 %
 %
-Therefore, from \eqref{21a}-\eqref{gen-2a}, we obtain
+Therefore, from \eqref{m21a}-\eqref{mgen-2a}, we obtain
 %
 %
 \begin{equation*}
@@ -1258,7 +1139,7 @@ or
 \end{equation*}
 %
 %
-Applying \autoref{lem:cutoff-loc-soln}, we then obtain
+Applying \cref{mlem:cutoff-loc-soln}, we then obtain
 %
 %
 	 %
@@ -1271,20 +1152,20 @@ Applying \autoref{lem:cutoff-loc-soln}, we then obtain
 	 \end{equation*}
 	 %
 	 %
-Hence, the flow map of the dNLS ivp is locally Lipschitz continuous in
+Hence, the flow map of the mKDV ivp is locally Lipschitz continuous in
 $\dot{H}^s(\ci)$. This
-concludes the proof of \autoref{thm:main}. \qquad \qedsymbol
+concludes the proof of \cref{mthm:main}. \qquad \qedsymbol
 %
 %
 %
 %
-\section{ Proof of \autoref{prop:prim-bilin-est}}
+\section{Proof of First Bilinear Estimate}
 Note first that $|\wh{w_{fg}}(n, \tau) |  = | n\wh{f} *  \wh{g} 
 (n, \tau)|$. From this and the conservation of mass, it follows that
 %
 %
 \begin{equation}
-	\label{non-lin-rep}
+	\label{mnon-lin-rep}
 	\begin{split}
 		| \wh{w_{fg}}(n, \tau)|
 		& = | \sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2 =n}}  \int_{\tau_1 + \tau_2 = \tau}n\wh{f}\left( n_1,  \tau_1 
@@ -1329,7 +1210,7 @@ From our work above, it follows that
 %
 %
 \begin{equation}
-	\label{convo-est-starting-pnt}
+	\label{mconvo-est-starting-pnt}
 	\begin{split}
 		 & |n|^s \left( 1 + | \tau - n^m | \right)^{-1/2} | \wh{w_{fg}}\left( 
 		n, \tau \right) |
@@ -1351,7 +1232,7 @@ principal symbol $\tau - n^m$ regardless of the choice of $s$, since the quantit
 %
 %
 \begin{equation}
-	\label{convo-multiplier}
+	\label{mconvo-multiplier}
 	\begin{split}
 		\frac{|n|^{s+1}}{|n_1|^s |n_2|^s }
 	\end{split}
@@ -1369,14 +1250,14 @@ proofs are provided in the appendix.
 %
 %
 \begin{lemma}
-	\label{lem:number-theory1}
+	\label{mlem:number-theory1}
 	Let $n=n_1 + n_2$ and suppose that $n, n_1, n_2\neq
 	0$. Then for any integer $c \ge 0$
 %
 %
 \begin{equation}
 	\begin{split}
-		\label{number-theory1}
+		\label{mnumber-theory1}
 		d_3(n_1,n_2) \ge 2^{-c/2} | n |^{\frac{2+c}{2}} | n_{1}
 		|^{\frac{2-c}{2}}| n_2 |^{\frac{2-c}{2}}.
 	\end{split}
@@ -1391,14 +1272,14 @@ proofs are provided in the appendix.
 %
 %
 \begin{lemma}
-	\label{lem:number-theory}
+	\label{mlem:number-theory}
 	Let $n=n_1 + n_2$ and suppose that $n, n_1, n_2\neq
 	0$. Then for any integer  $m \ge 3$
 %
 %
 \begin{equation}
 	\begin{split}
-		\label{number-theory}
+		\label{mnumber-theory}
 		d_m(n_1,n_2) \ge b_{m, c } 
 		|n|^{c/2} |n_1|^{\frac{m-1-c}{2}} | n_2 |^{\frac{m-1-c}{2}}
 		\end{split}
@@ -1423,28 +1304,28 @@ following.
 %
 %
 \begin{align}
-	\label{pigeon-case-1}
+	\label{mpigeon-case-1}
 	& |\tau - n^3| \ge \frac{d_m(n_1, n_2)}{3} 
 		 \\
-		\label{pigeon-case-2}
+		\label{mpigeon-case-2}
 		& | \tau_1 - n_1^3 | \ge \frac{d_m(n_1, n_2)}{3} 
 		 \\
-		\label{pigeon-case-3}
+		\label{mpigeon-case-3}
 		& | \tau_2 - n_2^3 | \ge \frac{d_m(n_1, n_2)}{3}.
 		\end{align}
 %
 %
 By the symmetry of the convolution, it will be enough to consider only
-\eqref{pigeon-case-1} and \eqref{pigeon-case-2}.
+\eqref{mpigeon-case-1} and \eqref{mpigeon-case-2}.
 %
 %
 %
-\subsection{Case \eqref{pigeon-case-1}.} 
-Applying \autoref{lem:number-theory1}, we have, for nonzero $ n, n_1, n_2 $
+\subsection{Case \eqref{mpigeon-case-1}.} 
+Applying \cref{mlem:number-theory1}, we have, for nonzero $ n, n_1, n_2 $
 %
 %%
 \begin{equation}
-	\label{convo-deriv-bound}
+	\label{mconvo-deriv-bound}
 	\begin{split}
 		& \frac{|n|^{s+1}}{|n_1|^s 
 		| n_2|^s}
@@ -1464,23 +1345,23 @@ Applying \autoref{lem:number-theory1}, we have, for nonzero $ n, n_1, n_2 $
 %
 \begin{framed}
 \begin{remark}
-	\label{rem:s-val}
+	\label{mrem:s-val}
 	The last line follows from the following reasoning: Set $(4s + 2 -c) = 0$
 or, equivalently, $-4s -2 +c = 0$. Then for any $c \ge 0$ such that $c = 4s+2$
 the left hand side of
-\eqref{convo-deriv-bound} is bounded by $1$. Of course such a $c$ exists, as
+\eqref{mconvo-deriv-bound} is bounded by $1$. Of course such a $c$ exists, as
 long as $s \ge -1/2$.
 \end{remark}
 \end{framed}
 %
 %
 %
-Hence, recalling \eqref{convo-est-starting-pnt} and applying estimates 
-\eqref{pigeon-case-1} and \eqref{convo-deriv-bound}, we obtain
+Hence, recalling \eqref{mconvo-est-starting-pnt} and applying estimates 
+\eqref{mpigeon-case-1} and \eqref{mconvo-deriv-bound}, we obtain
 %
 %
 \begin{equation}
-	\label{non-lin-rep-with-bound}
+	\label{mnon-lin-rep-with-bound}
 	\begin{split}
 		& |n|^s \left( 1 + | \tau - n^3 | \right)^{-1/2} | 
 		\wh{w_{fg}}(n, \tau) | 
@@ -1506,12 +1387,12 @@ where
 %
 %
 %
-Therefore, from \eqref{non-lin-rep-with-bound}, Plancherel, and generalized 
+Therefore, from \eqref{mnon-lin-rep-with-bound}, Plancherel, and generalized 
 H\"{o}lder, we obtain
 %
 %
 \begin{equation}
-	\label{gen-holder-bound}
+	\label{mgen-holder-bound}
 	\begin{split}
 		& \| |n|^s \left( 1 + | \tau - n^3 | \right )^{-1/2}  \wh{w_{fg}}\left( 
 		n, \tau \right) \|_{L^2(\ci \times \rr)}
@@ -1529,14 +1410,14 @@ We now need the following Fourier multiplier estimate, whose proof can be found
 in~\cite{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}.
 %
 \begin{lemma}
-	\label{lem:four-mult-est-L4}
+	\label{mlem:four-mult-est-L4}
 	Let $(x, t) \in \ci \times \rr $ and $(n, \tau) \in \zz \times \rr$ be 
 	the dual variables. Let $v$ be a positive even integer. Then there is a 
 	constant $c_v > 0$ such that
 %
 %
 \begin{equation}
-	\label{four-mult-est-L4}
+	\label{mfour-mult-est-L4}
 	\begin{split}
 		\|f\|_{L^4(\ci \times \rr)} \le c_v \|\left( 1 + | \tau - n^v | 
 		\right)^\frac{v+1}{4v} \wh{f} \|_{L^2( \zz \times \rr)}
@@ -1552,7 +1433,7 @@ From the lemma, we see that
 %
 %
 \begin{equation}
-	\label{four-mult-conseq}
+	\label{mfour-mult-conseq}
 	\begin{split}
 		\|C_h\|_{L^4(\ci \times \rr)} 
 		& \lesssim \|(1 + | \tau - n^3 |)^{1/2} \wh{C_h}
@@ -1565,7 +1446,7 @@ From the lemma, we see that
 \end{equation}
 %
 %
-Applying this to \eqref{gen-holder-bound} we
+Applying this to \eqref{mgen-holder-bound} we
 conclude that
 \begin{equation*}
 	\begin{split}
@@ -1577,10 +1458,10 @@ conclude that
 %
 %
 %
-\subsection{Case \eqref{pigeon-case-2}.}
-Applying \autoref{lem:number-theory1}, we have, for nonzero $ n, n_1, n_2 $
+\subsection{Case \eqref{mpigeon-case-2}.}
+Applying \cref{mlem:number-theory1}, we have, for nonzero $ n, n_1, n_2 $
 \begin{equation}
-	\label{convo-deriv-bound-2}
+	\label{mconvo-deriv-bound-2}
 	\begin{split}
 		& \frac{|n|^{s+1}}{|n_1|^s 
 		| n_2|^s}
@@ -1598,15 +1479,15 @@ Applying \autoref{lem:number-theory1}, we have, for nonzero $ n, n_1, n_2 $
 \end{equation}
 %
 %
-where the last line follows from \autoref{rem:s-val}.
+where the last line follows from \cref{mrem:s-val}.
 %
 %
-Hence, recalling \eqref{convo-est-starting-pnt} and applying estimate 
-\eqref{convo-deriv-bound-2}, we obtain
+Hence, recalling \eqref{mconvo-est-starting-pnt} and applying estimate 
+\eqref{mconvo-deriv-bound-2}, we obtain
 %
 %
 \begin{equation}
-	\label{1f}
+	\label{m1f}
 	\begin{split}
 		& |n|^s  \left( 1 + | \tau - n^3 | \right)^{-1/2}| \wh{w_{fg}}\left( 
 		n, \tau \right) |
@@ -1636,7 +1517,7 @@ Hence
 %
 %%
 \begin{equation}
-	\label{3f}
+	\label{m3f}
 	\begin{split}
 		& \| |n|^s \left( 1 + | \tau - n^3 | \right)^{-1/2} \wh{w_{fg}}(n, \tau) 
 		\|_{L^2(\zzdot \times \rr)}
@@ -1652,17 +1533,17 @@ Hence
 \end{equation}
 %
 %%
-where the last step follows by dualizing \autoref{lem:four-mult-est-L4}. More
+where the last step follows by dualizing \cref{mlem:four-mult-est-L4}. More
 precisely, we have the following.
 \begin{corollary}
-	\label{cor:four-mult-est-L4}
+	\label{mcor:four-mult-est-L4}
 	Let $(x, t) \in \ci \times \rr $ and $(n, \tau) \in \zz \times \rr$ be 
 	the dual variables. Let $v$ be a positive even integer. Then there is a 
 	constant $c_v > 0$ such that
 %
 %
 \begin{equation}
-	\label{four-mult-est-L4*}
+	\label{mfour-mult-est-L4*}
 	\begin{split}
 		\| \left( 1 + | \tau - n^v | 
 		\right)^{-\frac{v+1}{4v}}
@@ -1674,11 +1555,11 @@ precisely, we have the following.
 \end{corollary}
 %
 Applying H\"{o}lder's inequality to the right hand side of
-\eqref{3f}, we obtain the bound
+\eqref{m3f}, we obtain the bound
 %
 %%
 \begin{equation}
-	\label{4f}
+	\label{m4f}
 	\begin{split}
 		\|\overset{\sim}{C_f} \|_{L^2(\ci \times \rr)} \|C_g \|_{L^4\left( \ci 
 		\times \rr 
@@ -1693,7 +1574,7 @@ By Plancherel we have
 %
 %%
 \begin{equation}
-	\label{5f}
+	\label{m5f}
 	\begin{split}
 		\|\overset{\sim}{C_f} \|_{L^2(\ci \times \rr)}
 		& \simeq \|c_f\|_{L^2(\zz \times \rr)}
@@ -1703,18 +1584,18 @@ By Plancherel we have
 \end{equation}
 %
 %%
-while \eqref{four-mult-conseq} gives
+while \eqref{mfour-mult-conseq} gives
 %
 %
 \begin{equation}
-	\label{6f}
+	\label{m6f}
 	\begin{split}
 		\|C_g \|_{L^4(\ci \times \rr)} \lesssim \|g\|_{\dot{X}^s}.
 	\end{split}
 \end{equation}
 %
 %
-We conclude from \eqref{3f}-\eqref{6f} that
+We conclude from \eqref{m3f}-\eqref{m6f} that
 %
 %
 \begin{equation*}
@@ -1737,26 +1618,26 @@ following.
 %
 %
 \begin{align}
-	\label{pigeon-case-1-gen}
+	\label{mpigeon-case-1-gen}
 	& |\tau - n^m| \ge \frac{d(n_1, n_2)}{3} 	\\
-		\label{pigeon-case-2-gen}
+		\label{mpigeon-case-2-gen}
 		& | \tau_1 - n_1^m | \ge \frac{d(n_1, n_2)}{3},		\\
-		\label{pigeon-case-3-gen}
+		\label{mpigeon-case-3-gen}
 		& | \tau_2 - n_2^m | \ge \frac{d(n_1, n_2)}{3}.
 	\end{align}
 %
 %
 By the symmetry of the convolution, it will be enough to consider only
-\eqref{pigeon-case-1-gen} and \eqref{pigeon-case-2-gen}.
+\eqref{mpigeon-case-1-gen} and \eqref{mpigeon-case-2-gen}.
 %
 %
 %
-\subsection{Case \eqref{pigeon-case-1-gen}}
-Applying \autoref{lem:number-theory}, we have, for nonzero $ n, n_1, n_2 $
+\subsection{Case \eqref{mpigeon-case-1-gen}}
+Applying \cref{mlem:number-theory}, we have, for nonzero $ n, n_1, n_2 $
 %
 %%
 \begin{equation}
-	\label{convo-deriv-bound-gen-case2}
+	\label{mconvo-deriv-bound-gen-case2}
 	\begin{split}
 		& \frac{|n|^{s+1}}{|n_1|^s 
 		| n_2|^s}
@@ -1776,30 +1657,30 @@ Applying \autoref{lem:number-theory}, we have, for nonzero $ n, n_1, n_2 $
 %
 \begin{framed}
 \begin{remark}
-	\label{rem:gen-s-val}
+	\label{mrem:gen-s-val}
 	 The last line follows from the following reasoning: Set $(2s + 2 -c) \le
 0$ and $-4s -m +1 +c \le 0$. Then we want to find $c \ge 0$ such that $2s +2 \le c \le
 4s + m-1$ or 
 %
 %
 \begin{equation}
-	\label{algebra-ineq}
+	\label{malgebra-ineq}
 	\begin{split}
 		2 \le c - 2s \le 2s + m-1.
 	\end{split}
 \end{equation}
 %
 %
-Note that $c=0$ satisfies \eqref{algebra-ineq} for $\frac{1-m}{4} \le s \le
--1$. Furthermore, $c = 4 + 4s$ satisfies \eqref{algebra-ineq} for $s \ge -1$ ($c$ must be non-negative) and $m \ge 5$. 
+Note that $c=0$ satisfies \eqref{malgebra-ineq} for $\frac{1-m}{4} \le s \le
+-1$. Furthermore, $c = 4 + 4s$ satisfies \eqref{malgebra-ineq} for $s \ge -1$ ($c$ must be non-negative) and $m \ge 5$. 
 \end{remark}
 \end{framed}
 %
-Hence, from \eqref{convo-est-starting-pnt} and
-\eqref{convo-deriv-bound-gen-case2},
+Hence, from \eqref{mconvo-est-starting-pnt} and
+\eqref{mconvo-deriv-bound-gen-case2},
 we obtain 
 \begin{equation}
-	\label{convo-est-starting-pnt-gen-case2}
+	\label{mconvo-est-starting-pnt-gen-case2}
 	\begin{split}
 		 & |n|^s \left( 1 + | \tau - n^m | \right)^{-1/2} | \wh{w_{fg}}\left( 
 		n, \tau \right) |
@@ -1821,12 +1702,12 @@ we obtain
 		& = \wh{{C_f} C_g}.
 	\end{split}
 \end{equation}
-Therefore, from \eqref{convo-est-starting-pnt-gen-case2}, Plancherel, and generalized 
+Therefore, from \eqref{mconvo-est-starting-pnt-gen-case2}, Plancherel, and generalized 
 H\"{o}lder, we obtain
 %
 %
 \begin{equation}
-	\label{gen-holder-bound-case2}
+	\label{mgen-holder-bound-case2}
 	\begin{split}
 		& \| |n|^s \left( 1 + | \tau - n^m | \right )^{-1/2}  \wh{w_{fg}}\left( 
 		n, \tau \right) \|_{L^2(\ci \times \rr)}
@@ -1840,11 +1721,11 @@ H\"{o}lder, we obtain
 	\end{split}
 \end{equation}
 %
-From \autoref{lem:four-mult-est-L4}, we see that
+From \cref{mlem:four-mult-est-L4}, we see that
 %
 %
 \begin{equation}
-	\label{four-mult-conseq-gen-case2}
+	\label{mfour-mult-conseq-gen-case2}
 	\begin{split}
 		\|C_\sigma\|_{L^4(\ci \times \rr)} 
 		& \lesssim \|(1 + | \tau - n^m |)^{1/2} \wh{C_\sigma}
@@ -1857,7 +1738,7 @@ From \autoref{lem:four-mult-est-L4}, we see that
 \end{equation}
 %
 %
-Applying this to \eqref{gen-holder-bound-case2} we
+Applying this to \eqref{mgen-holder-bound-case2} we
 conclude that
 \begin{equation*}
 	\begin{split}
@@ -1869,12 +1750,12 @@ conclude that
 %
 %
 %
-\subsection{Case \eqref{pigeon-case-2-gen}}
+\subsection{Case \eqref{mpigeon-case-2-gen}}
 We have for nonzero $ n, n_1, n_2 $
 %
 %%
 \begin{equation}
-	\label{convo-deriv-bound-gen}
+	\label{mconvo-deriv-bound-gen}
 	\begin{split}
 		& \frac{|n|^{s+1}}{|n_1|^s 
 		| n_2|^s}
@@ -1892,11 +1773,11 @@ We have for nonzero $ n, n_1, n_2 $
 \end{equation}
 %
 %
-where the last line follows from \autoref{rem:gen-s-val}.
-Hence, from \eqref{convo-est-starting-pnt} and \eqref{convo-deriv-bound-gen},
+where the last line follows from \cref{mrem:gen-s-val}.
+Hence, from \eqref{mconvo-est-starting-pnt} and \eqref{mconvo-deriv-bound-gen},
 we obtain 
 \begin{equation}
-	\label{convo-est-starting-pnt-gen}
+	\label{mconvo-est-starting-pnt-gen}
 	\begin{split}
 		 & |n|^s \left( 1 + | \tau - n^m | \right)^{-1/2} | \wh{w_{fg}}\left( 
 		n, \tau \right) |
@@ -1928,7 +1809,7 @@ Hence
 %
 %%
 \begin{equation}
-	\label{3f-gen}
+	\label{m3f-gen}
 	\begin{split}
 		& \| |n|^s \left( 1 + | \tau - n^m | \right)^{-1/2} \wh{w_{fg}}(n, \tau) 
 		\|_{L^2(\zzdot \times \rr)}
@@ -1944,15 +1825,15 @@ Hence
 \end{equation}
 %
 %%
-where the last step follows from \autoref{cor:four-mult-est-L4}.
+where the last step follows from \cref{mcor:four-mult-est-L4}.
 %
 %
 Applying H\"{o}lder's inequality to the right hand side of
-\eqref{3f-gen}, we obtain the bound
+\eqref{m3f-gen}, we obtain the bound
 %
 %%
 \begin{equation}
-	\label{4f-gen}
+	\label{m4f-gen}
 	\begin{split}
 		\|\overset{\sim}{C_f} \|_{L^2(\ci \times \rr)} \|C_g \|_{L^4\left( \ci 
 		\times \rr 
@@ -1967,7 +1848,7 @@ By Plancherel we have
 %
 %%
 \begin{equation}
-	\label{5f-gen}
+	\label{m5f-gen}
 	\begin{split}
 		\|\overset{\sim}{C_f} \|_{L^2(\ci \times \rr)}
 		& \simeq \|c_f\|_{L^2(\zz \times \rr)}
@@ -1977,11 +1858,11 @@ By Plancherel we have
 \end{equation}
 %
 %%
-while \autoref{lem:four-mult-est-L4} gives
+while \cref{mlem:four-mult-est-L4} gives
 %
 %
 \begin{equation}
-	\label{four-mult-conseq-gen}
+	\label{mfour-mult-conseq-gen}
 	\begin{split}
 		\|C_h\|_{L^4(\ci \times \rr)} 
 		& \lesssim \|(1 + | \tau - n^m |)^{1/2} \wh{C_h}
@@ -1994,7 +1875,7 @@ while \autoref{lem:four-mult-est-L4} gives
 \end{equation}
 %
 %
-We conclude from \eqref{3f-gen}-\eqref{four-mult-conseq-gen} that
+We conclude from \eqref{m3f-gen}-\eqref{mfour-mult-conseq-gen} that
 %
 %
 \begin{equation*}
@@ -2008,16 +1889,16 @@ We conclude from \eqref{3f-gen}-\eqref{four-mult-conseq-gen} that
 %
 %
 %
-\section{Proof of \autoref{prop:bilinear-estimate2}}
+\section{Proof of Second Bilinear Estimate}
 Recall that for the NLS, one obtains one trilinear estimate as a corollary of
 another. Using this as motivation, let us see if we can obtain
-\autoref{prop:bilinear-estimate2} as a corollary of
-\autoref{prop:prim-bilin-est}. By
+\cref{mprop:bilinear-estimate2} as a corollary of
+\cref{mprop:prim-bilin-est}. By
 duality, it suffices to show that
 %
 %%
 \begin{equation}
-	\label{duality-est}
+	\label{mduality-est}
 	\begin{split}
 	|	\sum_{n \in \zzdot}  |n|^{s}
 		a_n \int_{\rr} \frac{|\wh{w_{fg}}(n, \tau)|}{1 
@@ -2032,7 +1913,7 @@ and Cauchy-Schwartz,
 %
 %%
 \begin{equation}
-	\label{1m}
+	\label{m1m}
 	\begin{split}
 		& | \sum_{n \in \zzdot} |n|^{s} a_n
 		\int_{\rr}\frac{| \wh{w_{fg}}(n, \tau) |}{(1 + | \tau - n^m |)} \ d \tau |
@@ -2072,7 +1953,7 @@ Applying the change of variable $\tau - n^m
 		\end{split}
 \end{equation*}
 However, if we assume $\eta >0$, then
-we cannot use \autoref{prop:prim-bilin-est} to bound
+we cannot use \cref{mprop:prim-bilin-est} to bound
 \begin{equation*}
 	\begin{split}
 		\left ( \sum_{n \in \zzdot}\int_{\rr} \frac{|n|^{2s} | \wh{w_{fg}}(n, \tau) 
@@ -2087,27 +1968,27 @@ we cannot use \autoref{prop:prim-bilin-est} to bound
 Hence, unlike the NLS, we have not been able to obtain a second bilinear
 estimate as a corollary from the first. Heuristically, this is due to the
 derivative in nonlinearity, which is not present in the NLS nonlinearity.
-However, one can obtain \eqref{bilinear-estimate2} for $s>\frac{1-m}{4}$ as a
-corollary of \autoref{prop:prim-bilin-est} by using the ideas
-above and by modifying the proof of \autoref{prop:prim-bilin-est} slightly (i.e.,
-showing that if $b = \frac{1}{2}^-$, then \eqref{prim-bilin-est} holds for
-$s\ge \frac{1-m}{4}^+$). To show that \eqref{bilinear-estimate2} holds for the
+However, one can obtain \eqref{mbilinear-estimate2} for $s>\frac{1-m}{4}$ as a
+corollary of \cref{mprop:prim-bilin-est} by using the ideas
+above and by modifying the proof of \cref{mprop:prim-bilin-est} slightly (i.e.,
+showing that if $b = \frac{1}{2}^-$, then \eqref{mprim-bilin-est} holds for
+$s\ge \frac{1-m}{4}^+$). To show that \eqref{mbilinear-estimate2} holds for the
 case $s=1/2$, we will have to resort to Kenig-Ponce-Vega~\cite{Kenig:1996aa} techniques.
 \end{remark}
 \end{framed}
 %
 %
-Proceeding, note that by duality, to prove \autoref{prop:bilinear-estimate2} it
-suffices to show \eqref{duality-est} for $s \ge \frac{1-m}{4}$. By the symmetry of the convolution, we
-consider only cases \eqref{pigeon-case-1} and \eqref{pigeon-case-2}.
+Proceeding, note that by duality, to prove \cref{mprop:bilinear-estimate2} it
+suffices to show \eqref{mduality-est} for $s \ge \frac{1-m}{4}$. By the symmetry of the convolution, we
+consider only cases \eqref{mpigeon-case-1} and \eqref{mpigeon-case-2}.
 %
 %
-\subsection{Case \eqref{pigeon-case-1}.} Assume $s \ge \frac{1-m}{4}$. Then from 
-\eqref{convo-est-starting-pnt-gen-case2} we have
+\subsection{Case \eqref{mpigeon-case-1}.} Assume $s \ge \frac{1-m}{4}$. Then from 
+\eqref{mconvo-est-starting-pnt-gen-case2} we have
 %
 %
 \begin{equation}
-	\label{gen-smoothing-ineq}
+	\label{mgen-smoothing-ineq}
 	\begin{split}
 		& |n|^s \left( 1 + | \tau - n^m | \right)^{-1/2} | 
 		\wh{w_{fg}}(n, \tau) | 
@@ -2120,12 +2001,12 @@ consider only cases \eqref{pigeon-case-1} and \eqref{pigeon-case-2}.
 \end{equation}
 %
 %
-From the triangle inequality and \eqref{gen-smoothing-ineq}, we have
+From the triangle inequality and \eqref{mgen-smoothing-ineq}, we have
 %
 %
 \begin{equation*}
 	\begin{split}
-	 |\eqref{duality-est}|
+	 |\eqref{mduality-est}|
 	& \lesssim \sum_{n \in \zzdot} |a_{n}| \int_{\rr} \sum_{\substack{n_1 \neq 0, n_2 \neq 0
 		\\ n_1 +n_2 =n}} \int_{\tau_1 + \tau_2 = \tau} c_f(n_1, \tau_1)
 		c_g(n_2, \tau_2)
@@ -2141,7 +2022,7 @@ which by Cauchy-Schwartz is bounded by
 %
 %
 \begin{equation}
-	\label{10g}
+	\label{m10g}
 	\begin{split}
 		& \sum_{n \in \zzdot} |a_n| \int_{\rr} \left(  \sum_{\substack{n_1 \neq 0, n_2
 		\neq 0 \\n_1 +n_2 =n}} \int_{\tau_1 + \tau_2 = \tau} c_{f}^{2}(n_1, \tau_1)
@@ -2155,7 +2036,7 @@ which by Cauchy-Schwartz is bounded by
 \end{equation}
 %
 %
-Applying Cauchy-Schwartz again, \eqref{10g} is bounded by
+Applying Cauchy-Schwartz again, \eqref{m10g} is bounded by
 %
 %
 \begin{align}
@@ -2174,7 +2055,7 @@ Applying Cauchy-Schwartz again, \eqref{10g} is bounded by
 		\notag
 		& = \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}
 		\\
-		\label{holder-term}
+		\label{mholder-term}
 		& \times 
 		\|a_{n}
 		\left( \sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2
@@ -2188,7 +2069,7 @@ Applying H{\"o}lder then gives
 %
 \begin{equation*}
 	\begin{split}
-		& \eqref{holder-term}
+		& \eqref{mholder-term}
 		 \le \| a_{n} \|_{\ell^2}
 		\\
 		& \times \left( \sup_{n \neq 0} \int_{\rr}
@@ -2200,7 +2081,7 @@ Applying H{\"o}lder then gives
 \end{equation*}
 %
 %
-Hence, to complete the proof for case \eqref{pigeon-case-1}, it will be enough
+Hence, to complete the proof for case \eqref{mpigeon-case-1}, it will be enough
 to show that 
 %
 %
@@ -2220,7 +2101,7 @@ or, equivalently, that
 %
 %
 \begin{equation}
-	\label{12g}
+	\label{m12g}
 	\begin{split}
 		\sup_{n \neq 0} \sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2 =n}} \int_{\rr}
 		\int_\rr  \frac{1}{(1 + | \tau - n^m |)(1 + | \tau_1 - n_{1}^m |)(1 + | \tau - \tau_1 -
@@ -2242,11 +2123,11 @@ Following Kenig~\cite{Kenig:1996aa}, we now need the following Calculus lemma.
 %
 %
 \begin{lemma}
-	\label{lem:calc}
+	\label{mlem:calc}
  %
  %
  \begin{equation}
-	 \label{calc}
+	 \label{mcalc}
 	 \begin{split}
 		 \int_{\rr} \frac{1}{(1 + | \theta |)(1 + | a - \theta |)} d \theta \lesssim
 		 \frac{\log(2 + | a |)}{1 + | a |}.
@@ -2272,7 +2153,7 @@ n_2^m$, we see that
 %
 %
 %
-Hence, the left hand side of \eqref{12g} is bounded by
+Hence, the left hand side of \eqref{m12g} is bounded by
 %
 \begin{equation*}
 	\begin{split}
@@ -2288,7 +2169,7 @@ or, equivalently, by
 %
 %
 \begin{equation}
-	\label{13g}
+	\label{m13g}
 	\begin{split}
 		\sup_{n \neq 0} \sum_{n_1 \neq 0} \int_{\rr} \frac{\log(2 + | \tau -
 		n_{1}^m - (n - n_1)^m |)}{(1 + | \tau - n_{1}^m - (n - n_{1})^m |)(1
@@ -2301,13 +2182,13 @@ or, equivalently, by
 Now, note that 
 $$ |\tau - n^m| \ge \frac{d_m(n_1, n_2)}{3} \gtrsim
 | n_1 n_2 |^{(m-1)/2},$$ where the right hand side follows from
-\autoref{lem:number-theory} with $c=0$. Hence, \eqref{13g} is bounded by a constant times
+\cref{mlem:number-theory} with $c=0$. Hence, \eqref{m13g} is bounded by a constant times
 %
 %
 %
 %
 \begin{equation}
-	\label{14g}
+	\label{m14g}
 	\begin{split}
 		& \sup_{n \neq 0} \sum_{n_1 \neq 0}
 		\frac{1}{| n_1 n_2 |^{(\frac{1}{2} + \eta)(m-1)/2}} \int_{\rr} \frac{\log(2 + | \tau - n_{1}^m -
@@ -2342,7 +2223,7 @@ increasing (if $n_1>0$) or strictly decreasing (if $n_1 <0$).
 %
 But then $n_2 = 1 - n_1$, and so $| n_1 n_2 | \gtrsim | n_1 |^2$. Furthermore, we know that 
 for any $\ee > 0$, we have $\log (2 + | a |) \le c_{\ee}(1 + | a
-|)^{\ee}$. Hence, we bound \eqref{14g} by
+|)^{\ee}$. Hence, we bound \eqref{m14g} by
 %
 %
 %
@@ -2362,7 +2243,7 @@ which due to the estimate
 %
 %
 \begin{equation}
-	\label{16g}
+	\label{m16g}
 	\begin{split}
 		(1 + | \tau - n^m |)
 		& = 1 + \frac{1}{4}| \tau - n^m | + \frac{3}{4}| \tau - n^m |
@@ -2382,7 +2263,7 @@ is bounded by
 %
 %
 \begin{equation}
-	\label{15g}
+	\label{m15g}
 	\begin{split}
 		& 4 c_{\ee} \sum_{n_1 \neq 0} \frac{1}{| n_1 |^{(\frac{1}{2} +
 		\eta)(m-1)}} 	\sup_{n \neq 0} \sum_{n_1 \neq 0}	\int_{\rr} \frac{1}{(1 + |
@@ -2400,8 +2281,8 @@ is bounded by
 %
 %
 %
-\subsection{Case \eqref{pigeon-case-2}.} From the triangle inequality and
-\eqref{gen-smoothing-ineq}, we see that for $s \ge \frac{1-m}{4}$ we have
+\subsection{Case \eqref{mpigeon-case-2}.} From the triangle inequality and
+\eqref{mgen-smoothing-ineq}, we see that for $s \ge \frac{1-m}{4}$ we have
 %
 %
 %
@@ -2448,7 +2329,7 @@ variable $\tau - n^{m } \mapsto \tau'$ we obtain  %
 %
 %
 %
-while \eqref{3f-gen}-\eqref{four-mult-conseq-gen} yields the bound
+while \eqref{m3f-gen}-\eqref{mfour-mult-conseq-gen} yields the bound
 %
 %
 \begin{equation*}
@@ -2462,1242 +2343,4 @@ while \eqref{3f-gen}-\eqref{four-mult-conseq-gen} yields the bound
 completing the proof. \qquad \qedsymbol
 %
 %
-\section{Proof of Ill-Posedness}
-We adapt an argument from \cite{Burq_Gerad_Tzvetkov-An-instability-}. For $s<1/2$, $m \in \{4, 8, 12, \dots\}$, set
 %
-%
-%
-%
-\begin{equation}
-	\label{ill-soln}
-	\begin{split}
-		u_{n}(x,t)=\frac{1}{2}n^{-s}e^{it\left( n^{m}+\frac{1}{4}n^{-2s+1}
-		\right)}e^{inx}.
-	\end{split}
-\end{equation}
-%
-%
-Then
-%
-%
-\begin{equation*}
-	\begin{split}
-		& i \p_t u_{n}
-		= -\frac{1}{2}n^{-s}\left( n^{m}+\frac{1}{4}n^{-2s+1} \right)e^{it\left(
-		n^{m}+ \frac{1}{4}n^{-2s+1} \right)}e^{inx},
-		\\
-		& \p_x^{m}u_{n}  = \frac{1}{2}n^{-s+m}e^{it\left(
-		n^{m}+\frac{1}{4}n^{-2s+1} \right)}e^{inx},
-		\\
-		& \p_x (| u_{n} |^{2}u_{n})  = \frac{1}{8}n^{-3s+1}e^{it\left(
-		n^{m}+\frac{1}{4}n^{-2s+1} \right)}e^{inx}.
-	\end{split}
-\end{equation*}
-%
-%
-Hence,
-%
-%
-\begin{equation*}
-	\begin{split}
-		i \p_t u_{n} + \p_x^{m}u_{n} + \p_x(| u_{n} |^{2} u_{n})
-		=0.
-	\end{split}
-\end{equation*}
-%
-%
-Therefore, $u_{n}(x,t)$ solves the initial value problem
-%
-%
-\begin{gather*}
-	\begin{split}
-		i \p_t u + \p_x^m u + \p_x (| u |^{2}u) = 0,
-		\\
-		u(x,0) = \frac{1}{2}n^{-s}e^{inx}.
-	\end{split}
-\end{gather*}
-%
-%
-Next, we show that $u_{n}(\cdot, t) \in H^{s}(\ci)$ for all $t \in \rr$.
-First, we compute
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|e^{inx}\|_{H^{s}(\ci)}
-		& =  \left[ \sum_{\xi \in \zz} \left( 1+ | \xi |
-		\right)^{2s} | \wh{e^{in(\cdot)}}(\xi) |^{2} \right]^{1/2}
-		\\
-		& =  \left[ \sum_{\xi \in \zz} \left( 1 + | \xi | \right)^{2s} |
-		\int_{\ci}e^{ix(n- \xi)}dx |^{2}\right]^{1/2}.
-	\end{split}
-\end{equation*}
-%
-%
-Noting that
-%
-\begin{equation*}
-	\begin{split}
-		\int_{\ci}e^{ix(n - \xi)}dx =
-		\begin{cases}0, \qquad & n \neq \xi
-			\\
-			2 \pi, \qquad & n = \xi
-		\end{cases}
-	\end{split}
-\end{equation*}
-%
-%
-we obtain
-%
-%
-\begin{equation}
-	\label{oscill-bound}
-	\begin{split}
-		\|e^{inx}\|_{H^{s}(\ci)} & = \sqrt{2 \pi}(1 + | n |)^{s}
-		\\
-		& \le | n |^{s}
-	\end{split}
-\end{equation}
-%
-%
-and so
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|u_{n}(\cdot, t)\|_{H^s{(\ci)}} = \frac{1}{2}|n|^{-s}
-		\|e^{inx}\|_{H^{s}(\ci)} \le \frac{1}{2}.
-	\end{split}
-\end{equation*}
-%
-%
-Next, let
-%
-%
-\begin{equation*}
-	\begin{split}
-		u_{k_{n}}(x,t) = k_{n}n^{-s}e^{it\left( n^{m} + k_{n}^2 n^{-2s+1}
-		\right)}e^{inx}.
-	\end{split}
-\end{equation*}
-%
-%
-Following our preceding computations, it is easy to show that $u_{n, k_{n}}$ is a solution to the ivp
-%
-%
-\begin{equation}
-	\label{family-ivp}
-	\begin{split}
-		i\p_t u + \p_x^{m} + | u |^{2}u = 0,
-		\\
-		u(x,0) = k_{n}n^{-s}e^{inx}
-	\end{split}
-\end{equation}
-%
-%
-and satisfies 
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|u_{n, k_{n}}(\cdot, t)\|_{H^{s}(\ci)} \le k_{n}.
-	\end{split}
-\end{equation*}
-%
-%
-Furthermore, choosing $\{k_{n}\}_{n} \subset (0, 1/2)$ to be a family of
-rational numbers converging to $k =1/2$, we have
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|u(x,0) - u_{n, k_{n}}(x, 0) \|_{H^s(\ci)} 
-		& =
-		\|\frac{1}{2}n^{-s}e^{inx} - k_{n}n^{-s}e^{inx} \|_{H^s(\ci)}
-		\\
-		& = | n |^{-s} \|e^{inx}(\frac{1}{2} - k_{n})\|_{H^s(\ci)}
-		\\
-		& = \frac{(1+| n |)^{s}}{|n|^{s}} |\frac{1}{2} - k_{n}| \to 0
-	\end{split}
-\end{equation*}
-%
-%
-and
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \|u_{n}(\cdot, t) - u_{n, k_{n}}(\cdot, t) \|_{H^{s}(\ci)}
-		\\
-		& = \|\frac{1}{2}n^{-s}e^{it\left( n^{m} + \frac{1}{4}n^{-2s+1}
-		\right)}e^{inx} - k_{n}n^{-s}e^{it\left( n^{m} + k_{n}^{2}n^{-2s+1}
-		\right)}e^{inx} \|_{H^{s}(\ci)}
-		\\
-		& = | n |^{-s} \|e^{it\left( n^{m} + \frac{1}{4}n^{-2s+1}
-		\right)}e^{inx}\left( \frac{1}{2} - k_{n}e^{it\left(
-		k_{n}^{2}n^{-2s+1}-\frac{1}{4}n^{-2s+1} \right)} \right)\|_{H^{s}(\ci)}
-		\\
-		& = | n^{-s} |\|e^{inx}\left( \frac{1}{2} - k_{n}e^{it\left(
-		k_{n}^{2}n^{-2s+1} - \frac{1}{4}n^{-2s+1}
-		\right)} \right) \|_{H^{s}(\ci)}
-		\\
-		& = \sqrt{2 \pi} \frac{(1 + | n |^s)}{|n|^s} | \frac{1}{2} - k_{n}e^{itn^{-2s+1}\left( k_{n}^{2}- \frac{1}{4}\right)} |
-	\end{split}
-\end{equation*}
-%
-%
-where the last step follows from \eqref{oscill-bound}. Hence, in order for uniform continuity of the flow map to hold, we must have
-%
-%
-\begin{equation*}
-	\begin{split}
-		\lim_{n \to \infty}  k_{n} e^{itn^{-2s+1}\left( k_{n}^{2} -
-		\frac{1}{4} \right)}  = \frac{1}{2}.
-	\end{split}
-\end{equation*}
-%
-%
-But setting $k_{n} = \left( \frac{1}{4} + n^{2s-1 + \ee} \right)^{1/2}$ where
-$0 < \ee < 1-2s$, we see that $k_n \to 1/2$ while
-%
-%
-\begin{equation*}
-	\begin{split}
-		\lim_{n \to \infty} k_{n} e^{itn^{-2s+1}\left( k_{n}^{2} - \frac{1}{4}
-		\right)} = \lim_{n \to \infty} k_{n} e^{itn^{\ee}} \neq \frac{1}{2}.
-	\end{split}
-\end{equation*}
-%
-\begin{framed}
-\begin{remark}
-	Notice that our choice for $\ee$ is possible only when $s < 1/2$.
-	It is here that
-	our a priori assumption of $s < 1/2$ plays a crucial role.
-\end{remark}
-\end{framed}
-
-%
-In fact, the above limit does not converge at all. This concludes the proof for
-the case $m \in \{4, 8, 12, \dots \}$. For the case $m \in \{2, 6, 10, \dots \}$, we take
-%
-%
-\begin{equation*}
-	\begin{split}
-		u_{n}(x,t) = \frac{1}{2}n^{-s}e^{it\left( -n^{m} + \frac{1}{4}n^{-2s+1}
-		\right)}e^{inx},
-		\\ u_{n, k_{n}}(x,t) = k_{n}n^{-s}e^{it\left( -n^{m} + k_{n}^{2}n^{-2s+1}
-		\right)}e^{inx} 
-	\end{split}
-\end{equation*}
-and then repeat the above arguments. \qquad \qedsymbol
-%
-%
-\begin{framed}
-\begin{remark}
-	Note that this result implies that it will be impossible to use a Picard
-	iteration type argument to prove existence and uniqueness of solutions to the
-	dNLS ivp for $s<1/2$, since this technique would imply uniform
-	continuity of the flow map.
-\end{remark}
-\end{framed}
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				 Appendix
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix
-\section{}
-%
-\subsection{Proof of \autoref{lem:cutoff-loc-soln}}
-%
-%
-\begin{equation*}
-	\begin{split}
-		\lim_{t_{n} \to t} \|u(\cdot, t) - u(\cdot, t_{n})\|_{\dot{H}^s(\ci)} 
-		& = \lim_{t_{n} \to t} \|\psi(t) u(\cdot, t) - \psi(t_n) u(\cdot,
-		t_{n})\|_{\dot{H}^s(\ci)} 
-		\\
-		& = \lim_{t_n \to t} \left[ \sum_{n \in \zzdot}| n |
-		^{2s} | \psi(t)  \wh{u}(n, t) - \psi(t_n) \wh{ u}(n, t_n) |^2 \right]^{1/2}
-		\\
-		& = \lim_{t_n \to t} \left[ \sum_{n \in \zzdot} | n |^{2s} | \int_{\rr} (e^{it \tau} - e^{it_{n} \tau}) \wh{\psi u}(n,
-		\tau) d \tau |^2 \right]^{1/2}.
-	\end{split}
-\end{equation*}
-		It is clear that
-		%
-		%
-		\begin{equation*}
-			\begin{split}
-				| n |
-				^{2s} | \int_{\rr} (e^{it \tau} - e^{it_{n}\tau}) \wh{\psi u}(n, \tau) d \tau |^2 
-		& \le 4  | n |^{2s} \left ( \int_{\rr} |\wh{\psi u}(n, \tau)| d \tau
-		\right )^2 
-	\end{split}
-\end{equation*}
-and 
-%
-%
-\begin{equation*}
-	\begin{split}
- \sum_{n \in \zzdot} | n |^{2s} \left ( \int_{\rr} |\wh{\psi u}(n, \tau)| d \tau
-		\right ) ^2 
-		& = \| |n |^s \wh{\psi u}\|_{\dot{\ell}_n^2 L_\tau^1}
-		\\
-		& \le \|\psi u \|_{Y^s}^2 
-	\end{split}
-\end{equation*}
-which is bounded by assumption.
-Applying dominated convergence completes the proof. \qquad \qedsymbol
-%
-%
-\subsection{Proof of \autoref{lem:schwartz-mult}}
-Note that
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{\psi f}\left( n, \tau \right)
-		& = \wh{\psi}(\cdot) * \wh{f}(n,
-		\cdot)(\tau)
-		= \int_\rr \wh{\psi}(\tau_1) \wh{f} \left( n, \tau - \tau_1 \right) 
-		d\tau_1
-	\end{split}
-\end{equation*}
-%
-%
-and hence
-%
-%
-\begin{equation}
-	\label{1b}
-	\begin{split}
-		\|\psi f\|_{\dot{X}^s} 
-		& = \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
-		n^{m} | \right) | \int_\rr \wh{\psi}(\tau_1) \wh{f}\left( n, \tau -
-		\tau_1
-		\right)  d \tau_1 d \tau |^2 \right)^{1/2}
-		\\
-		& \le \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
-		n^{m }
-		|
-		\right) \left( \int_\rr \wh{\psi}\left( \tau_1 \right) \wh{f}\left( n,
-		\tau - \tau_1
-		\right)  d \tau_1 d \tau \right)^2 \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%
-Using the relation
-%
-%
-\begin{equation*}
-	\begin{split}
-		1 + | \tau - n^{m } |
-		& = 1 + | \tau + \tau_1 - n^{m} |
-		\\
-		& \le 1 + | \tau_1 | + | \tau - \tau_1 - n^{m} |
-		\\
-		& \le \left( 1 + | \tau_1 | \right)\left( 1 + | \tau - \tau_1 -
-		n^{m} | \right)
-	\end{split}
-\end{equation*}
-%
-%
-we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\eqref{1b}
-		& \le \left( \sum_{n \in \zzdot} |n|^{2s} \right.
-		\\
-		& \times \left . \int_\rr \left(
-		\int_\rr \left( 1 + | \tau_1 | \right)^{1/2} | \wh{\psi}(\tau_1) |
-		\left( 1 + | \tau - \tau_1 - n^{m} | \right)^{1/2} \wh{f}\left( n, \tau
-		- \tau_1
-		\right)d \tau_1
-		\right)^2 d \tau \right)^{1/2}
-	\end{split}
-\end{equation*}
-%
-%
-which by Minkowski's inequality is bounded by
-%
-%
-\begin{equation}
-	\label{2b}
-	\begin{split}
-		& \left( \sum_{n \in \zzdot} |n|^{2s}  \right.
-		\\
-		& \times \left. \left( \int_\rr \left[ \int_\rr
-		\left( 1 + | \tau_{1} | \right) | \wh{\psi}(\tau_1) |^2 \left( 1 + |
-		\tau - \tau_1 - n^{m} |
-		\right) | \wh{f}\left( n, \tau - \tau_1 \right) |^2 d \tau_1 
-		\right]^{1/2} d \tau \right)^2 \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%
-Using the change of variable $\tau - \tau_1 \to \lambda$ gives
-%
-%
-\begin{equation*}
-	\begin{split}
-		\eqref{2b}
-		& = \left( \sum_{n \in \zzdot} |n|^{2s}\right.
-		\\
-		& \times \left.  \left( \int_\rr \left[
-		\int_\rr \left( 1 + | \tau_1 | \right) | \wh{\psi}\left( \tau_1
-		\right) |^2 \left( 1 + | \lambda - n^{m} | \right) | \wh{f} \left( n,
-		\lambda
-		\right)|^2 d \tau_1 \right]^{1/2} d \lambda \right)^2 \right)^{1/2}
-		\\
-		& =  \left( \sum_{n \in \zzdot} |n|^{2s} \right.
-		\\
-		& \times \left. \left( \int_\rr \left( 1 + |
-		\tau_1 |
-		\right)^{1/2} | \wh{\psi}(\tau_1) | d \tau_1 \left[ \int_\rr \left( 1 + |
-		\lambda - n^{m} |
-		\right) | \wh{f}\left( n, \lambda \right) |^2 d \lambda \right]^{1/2}
-		\right)^2 \right)^{1/2}
-		\\
-		& = c_{\psi} \left( \sum_{n \in \zzdot} |n|^{2s} \left( \left[ \int_\rr
-		\left( 1 + | \lambda - n^{m} | \right) | \wh{f}\left( n, \lambda
-		\right) |^2 d \lambda
-		\right]^{\cancel{1/2}} \right)^{\cancel{2}} \right)^{1/2}
-		\\
-		& = c_{\psi} \|f\|_{\dot{X}^s},
-	\end{split}
-\end{equation*}
-%
-%
-concluding the proof. \qquad \qedsymbol
-%
-%
-%
-%
-%
-%
-\subsection{Proof of \autoref{lem:number-theory1}.} First note that
-%
-\begin{equation*}
-		| - n^m + n_1^m + n_2^m|
-		 = 3 | n | |n_1 | |n_2 |.
-\end{equation*}
-%
-%
-Hence, it will be enough to show that for $c \ge 0$
-%
-%
-\begin{equation*}
-	\begin{split}
-		| n | |n_1 | |n_2 | \gtrsim | n |^{\frac{2 + c}{2}}| n_1
-		|^{\frac{2-c}{2}}| n_2 |^{\frac{2-c}{2}}
-	\end{split}
-\end{equation*}
-%
-%
-or, dividing through on both sides by $|n| | n_1 | | n_2 |$ and rearranging terms
-%
-%
-\begin{equation*}
-	\begin{split}
-		| n |^{c/2} \lesssim | n_1 |^{c/2} | n_2 |^{c/2}.
-	\end{split}
-\end{equation*}
-%
-%
-But
-%
-%
-\begin{equation*}
-	\begin{split}
-		| n |^{c/2} &= | n_1 + n_2 |^{c/2}
-		\\
-		& \le (| n_1 | + |n_2|)^{c/2} 
-		\\
-		& \le (2\max\{|
-		n_1 |, | n_2 |)^{c/2}
-		\\
-		& \le (2|
-		n_1 | | n_2 |)^{c/2}
-		\\
-		& = 2^{c/2} | n_1 |^{c/2} | n_2 |^{c/2}. \qquad \qed
-	\end{split}
-\end{equation*}
-%
-%
-%
-%
-\subsection{Proof of \autoref{lem:number-theory}.} Define
-%
-\begin{equation*}
-	\begin{split}
-		| - n^{m} + n_1^{m} + n_2^{m }|
-		& = | n_{1}^{m} - n^{m} + (n-n_{1})^{m}| 
-		\\
-		& \doteq f(n).
-	\end{split}
-\end{equation*}
-%
-%
-For fixed $n_1$, the absolute minima
-of $f(n)$ occurs at $n = 1+n_{1}$ ($n = n_1$ is not available by assumption). Next, note that
-%
-%
-\begin{equation*}
-	\begin{split}
-		f(1+ n_{1}) = | n_{1}^{m} - (1 + n_{1})^m + 1 |
-		& = | (1 + n_{1} )^{m} - n_{1}^{m} -1 |.
-	\end{split}
-\end{equation*}
-We now seek a lower bound for the right hand side. By symmetry we may assume
-$n_1 >0$ without loss of generality.
-%
-%
-\begin{framed}
-\begin{remark}
-	By the term ``symmetry'', we mean that
-	\begin{equation*}
-	\begin{split}
-	| [1 + (-n_1)]^m - (-n_1)^m -1 |
-	& = | (1 - n_1)^m + n_1^m -1 |
-	\\
-	& = | (1 + p_1)^m + (-p_1)^m -1 |, \qquad p_1 = -n_1
-	\\
-	& = | (1 + p_1)^m - (p_1)^m -1 |.
-	\end{split}
-\end{equation*}
-%
-%
-\end{remark}
-\end{framed}
-%
-%
-Then 
-%
-%
-\begin{equation*}
-	\begin{split}
-	| (1 + n_{1} )^{m} - n_{1}^{m} -1 |
-	& = | \sum_{1 \le k \le m-1} c_{k} n_1^{k}|, \qquad \{c_k\} \in
-	\mathbb{N}\setminus 0
-	 \\
-	 & = \sum_{1 \le k \le m-1} c_{k} n_1^{k}
-	 \\
-	 & \ge c_{m-1}  n_1^{m-1}
-	 \\
-	 & = c_{m-1}  n_1^{c} n_1^{m-1-c}
-	 \\
-	 & \gtrsim (1 + n_1)^{c}  n_1^{m-1-c}
-	 \\
-	 & = n^{c} n_1^{m-1-c}. 
- \end{split}
-\end{equation*}
-%
-%
-Since we assumed $n_1 >0$ without loss of generality, it follows that 
-%
-%
-\begin{equation*}
-	\begin{split}
-		f(n) \gtrsim |n|^{c} | n_1 |^{m-1-c}. 
-	\end{split}
-\end{equation*}
-%
-%
-But since $f(n)$ is symmetric in $n_1$ and $n_2$, a similar argument shows that
-%
-%
-\begin{equation*}
-	\begin{split}
-		f(n) \gtrsim |n|^{c} | n_2 |^{m-1-c}. 
-	\end{split}
-\end{equation*}
-%
-%
-Therefore,
-%
-%
-\begin{equation*}
-	\begin{split}
-		f(n) \gtrsim | n |^{c}| n_1 |^{\frac{m-1-c}{2}} | n_2 |^{\frac{m-1-c}{2}}
-	\end{split}
-\end{equation*}
-%
-%
-completing the proof. \qquad \qedsymbol
-%
-%
-\subsection{Proof of \autoref{lem:calc}}
-%
-%
-%
-By the change of variable $\theta \mapsto a/2 + x$, we have
-%
-%
-\begin{equation*}
-	\begin{split}
-		\int_{\rr} \frac{1}{(1 + | \theta |)(1 + | a - \theta |)}d \theta
-	= \int_{\rr} \frac{1}{(1 + |  a/2 + x |)(1 + | a/2 - x |)}d x.
-	\end{split}
-\end{equation*}
-%
-%
-Hence, it suffices to show that
-%
-%
-\begin{equation*}
-	\begin{split}
-		\int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		\lesssim \frac{\log(2 + | a |)}{1 + | a |}.
-	\end{split}
-\end{equation*}
-%
-%
-Let us leave the case $a = 0$ for last. By symmetry, the cases $a<0$ and $a >0$
-are equivalent. Hence, to cover the case $a \neq0$, we may assume
-without loss of generality that $a >0$.
-%
-%
-Then
-\begin{equation}
-	\label{a1}
-	\begin{split}
-		& \int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		\\
-		& = \int_{| \theta| \le a+1 } \frac{1}{(1 + | a - \theta |)(1 + | a + \theta
-		|)}d \theta + \int_{| \theta| \ge a+1 } \frac{1}{(1 + | a - \theta |)(1 + |
-		a + \theta |)}d \theta.
-	\end{split}
-\end{equation}
-Estimating the second integral of \eqref{a1}, we have
-\begin{equation*}
-	\begin{split}
-		& \int_{| \theta| \ge a+1 } \frac{1}{(1 + | a - \theta |)(1 + | a + \theta
-		|)}d \theta 
-		\\
-		& = \int_{\theta \ge a + 1} \frac{1}{(1 + \theta-a)(1 + \theta+a)} d \theta
-		+ \int_{\theta \le -a -1} \frac{1}{(1 + \theta - a) (1 + \theta + a)}d \theta
-		\\
-		& = \frac{1}{2a} \int_{\theta \ge a + 1} \left[ \frac{1}{1 + \theta -a} -
-		\frac{1}{1 + \theta+a} \right] d \theta
-		+ \frac{1}{2a} \int_{\theta \le -a-1} \left[ \frac{1}{1 + \theta+a}
-		-\frac{1}{1 + \theta -a} \right] d \theta
-		\\
-		& = \frac{1}{a} \log(1+a)
-		\\
-		& \lesssim \frac{\log(2 + |a|)}{1 + | a |}.
-	\end{split}
-\end{equation*}
-To evaluate the first integral of \eqref{a1}, we split into the cases $a \le \theta \le
-a+1$, $-a \le \theta \le 0$, $0 \le \theta \le a$, and $a \le \theta \le a+1$.
-However, note that 
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \int_{a}^{a+1} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta =
-		\int_{-a-1}^{-a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta,
-		\\
-		& \int_{0}^{a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta =
-		\int_{-a}^{0} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta.
-	\end{split}
-\end{equation*}
-%
-%
-Therefore, we need only consider the cases $a \le \theta \le a+1$ and $0 \le
-\theta \le a$.
-%
-%
-\subsection{Case $a \le \theta \le a+1$}
-We have
-%
-%
-\begin{equation*}
-	\begin{split}
-		\int_{a}^{a+1} \frac{1}{(1 + | a-\theta |)(1 + | a + \theta |)}d \theta
-		& = \int_{a}^{a+1} \frac{1}{(1 + \theta -a)(1 + a + \theta)}d \theta
-		\\
-		& = \frac{1}{2a} \int_{a}^{a+1} \left[ \frac{1}{1 + \theta -a} -
-		\frac{1}{1 + \theta + a}  \right]d \theta
-		\\
-		& =\frac{1}{2a} \log\left( \frac{1 + \theta -a}{1 + \theta + a} \right) \Big
-		|_a^{a+1}
-		\\
-		& = \frac{1}{2a} \log\left( \frac{2a+1}{a+1} \right)
-		\\
-		& \lesssim\frac{\log 2}{2a}
-		\\
-		& \lesssim \frac{\log(2 + | a |)}{1 + | a |}.
-	\end{split}
-\end{equation*}
-%
-%
-\subsection{Case $0 \le \theta \le a$}
-We have
-%
-%
-\begin{equation*}
-	\begin{split}
-		\int_{0}^{a} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		& = \int_{0}^{a} \frac{1}{(1 +  a - \theta )(1 +  a + \theta )}d \theta
-		\\
-		& = \frac{1}{2(1 + a)} \int_{0}^{a} \left[ \frac{1}{1 + a - \theta} +
-		\frac{1}{1 + a + \theta} \right]d \theta
-		\\
-		& = \frac{1}{2(1 + a)} \log \left( \frac{1 + a + \theta}{1 + a - \theta}
-		\right) \Big |_{0}^{a}
-		\\
-		& = \frac{\log\left( 1 + 2a \right)}{2\left( 1 + a \right)}
-		\\
-		& \lesssim \frac{\log(2 + | a |)}{1 + | a |}.
-	\end{split}
-\end{equation*}
-%
-%
-This completes the proof for the case $a \neq 0$. Lastly, for the case
-$a =0$, we use dominated convergence and our preceding work to
-conclude that
-%
-%
-\begin{equation*}
-	\begin{split}
-		\int_{\rr} \frac{1}{(1 + | \theta|)^2} d \theta
-		& = \lim_{a \to 0}
-		\int_{\rr} \frac{1}{(1 + | a - \theta |)(1 + | a + \theta |)}d \theta
-		\\
-		& \lesssim \lim_{a \to 0} \frac{\log(2 + | a |)}{1 + | a |}
-		\\
-		& =  \log 2
-		\\
-		& = \frac{\log(2 + | 0 |)}{1 + | 0 |}. \qquad \qed
-	\end{split}
-\end{equation*}
-%
-\subsection{Conservation of the $L_x^2$ norm.} 
-We have
-%
-%
-\begin{equation*}
-	\begin{split}
-		\frac{d}{dt} \int_\ci | u |^2  dx
-		& = \int_\ci \frac{d}{dt} | u |^2  dx
-		\\
-		& = \int_\ci \frac{d}{dt} \left( u \overline{u} \right)  dx
-		\\
-		& = \int_\ci \left( u \p_t \overline{u} + \overline{u} \p_t u \right) dx
-		\\
-		& = \int_\ci \left( u \overline{\p_t u} + \overline{u} \p_t u \right)dx.
-	\end{split}
-\end{equation*}
-%
-%
-Substituting in $\p_t u = i\left( \p_x^{m} u + | u |^2 u \right)$ we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \int_{\ci} \left\{ u\left[ -i\left( \p_x^{m} \overline{u} + | u |^2
-		\overline{u} \right) \right] + \overline{u}\left[ i\left( \p_x^{m} u + | u
-		|^2 u \right) \right] \right\}dx
-		\\
-		& = \int_\ci \left[ -iu \p_x^{m} \overline{u} - i| u |^4 + i \overline{u}
-		\p_x^{m} u + i | u |^4 \right]dx
-		\\
-		& = i \int_{\ci}\left( \overline{u} \p_x^{m} u - u \p_x^{m } \overline{u}
-		\right)dx.
-	\end{split}
-\end{equation*}
-%
-%
-Integrating by parts $m/2$ times and using
-the spatial periodicity of $u$, the right
-hand side simplifies to
-%
-%
-\begin{equation*}
-	\begin{split}
-		i \int_\ci \left( \p_x^{m/2} \overline{u} \p_x^{m/2} u - \p_x^{m/2} u
-		\p_x^{m/2 } 
-		\overline{u} \right) dx = 0.
-	\end{split}
-\end{equation*}
-%
-%
-Therefore, the $L_x^2(\ci)$ norm of solutions to the dNLS is conserved. \quad
-\qedsymbol
-
-% \bib, bibdiv, biblist are defined by the amsrefs package.
-\begin{bibdiv}
-\begin{biblist}
-
-\bib{Bourgain:1993aa}{article}{
-      author={Bourgain, J.},
-       title={Exponential sums and nonlinear {S}chr{\"o}dinger equations},
-        date={1993},
-        ISSN={1016-443X},
-     journal={Geom. Funct. Anal.},
-      volume={3},
-      number={2},
-       pages={157\ndash 178},
-         url={http://dx.doi.org/10.1007/BF01896021},
-      review={\MR{1209300 (95d:35159)}},
-}
-
-\bib{Bourgain-Fourier-transfo-1}{article}{
-      author={Bourgain, J.},
-       title={Fourier transform restriction phenomena for certain lattice
-  subsets and applications to nonlinear evolution equations. {I}.
-  {S}chr{\"o}dinger equations},
-        date={1993},
-        ISSN={1016-443X},
-     journal={Geom. Funct. Anal.},
-      volume={3},
-      number={2},
-       pages={107\ndash 156},
-         url={http://dx.doi.org/10.1007/BF01896020},
-      review={\MR{MR1209299 (95d:35160a)}},
-}
-
-\bib{Bourgain-Fourier-transfo}{article}{
-      author={Bourgain, J.},
-       title={Fourier transform restriction phenomena for certain lattice
-  subsets and applications to nonlinear evolution equations. {II}. {T}he
-  {K}d{V}-equation},
-        date={1993},
-        ISSN={1016-443X},
-     journal={Geom. Funct. Anal.},
-      volume={3},
-      number={3},
-       pages={209\ndash 262},
-         url={http://dx.doi.org/10.1007/BF01895688},
-      review={\MR{MR1215780 (95d:35160b)}},
-}
-
-\bib{Bourgain-1999-Global-solutions-of-nonlinear}{book}{
-      author={Bourgain, J.},
-       title={Global solutions of nonlinear {S}chr{\"o}dinger equations},
-      series={American Mathematical Society Colloquium Publications},
-   publisher={American Mathematical Society},
-     address={Providence, RI},
-        date={1999},
-      volume={46},
-        ISBN={0-8218-1919-4},
-      review={\MR{MR1691575 (2000h:35147)}},
-}
-
-\bib{Burq_Gerad_Tzvetkov-An-instability-}{article}{
-      author={Burq, N.},
-      author={G{{\'e}}rad, P.},
-      author={Tzvetkov, N.},
-       title={An instability property of the nonlinear {S}chr{\"o}dinger
-  equation on {$S^d$}},
-        date={2002},
-        ISSN={1073-2780},
-     journal={Math. Res. Lett.},
-      volume={9},
-      number={2-3},
-       pages={323\ndash 335},
-      review={\MR{MR1909648 (2003c:35144)}},
-}
-
-\bib{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}{article}{
-      author={Bejenaru, Ioan},
-      author={Tao, Terence},
-       title={Sharp well-posedness and ill-posedness results for a quadratic
-  non-linear {S}chr{\"o}dinger equation},
-        date={2006},
-        ISSN={0022-1236},
-     journal={J. Funct. Anal.},
-      volume={233},
-      number={1},
-       pages={228\ndash 259},
-         url={http://dx.doi.org/10.1016/j.jfa.2005.08.004},
-      review={\MR{2204680 (2007i:35216)}},
-}
-
-\bib{Christ:aa}{article}{
-      author={Christ, Michael},
-      author={Colliander, James},
-      author={Tao, Terence},
-       title={Ill-posedness for nonlinear schrodinger and wave equations},
-        date={2003},
-      eprint={math/0311048},
-         url={http://arxiv.org/abs/math/0311048},
-}
-
-\bib{Christ-Colliander-Tao--Instability-of-the-periodic-nonlinear}{article}{
-      author={Christ, Michael},
-      author={Colliander, James},
-      author={Tao, Terence},
-       title={Instability of the periodic nonlinear schrodinger equation},
-        date={2003},
-      eprint={math/0311227},
-         url={http://arxiv.org/abs/math/0311227},
-}
-
-\bib{Colliander_Keel_Staffilani_Takaoka_Tao-A-refined-globa}{article}{
-      author={Colliander, J.},
-      author={Keel, M.},
-      author={Staffilani, G.},
-      author={Takaoka, H.},
-      author={Tao, T.},
-       title={A refined global well-posedness result for {S}chr{\"o}dinger
-  equations with derivative},
-        date={2002},
-        ISSN={0036-1410},
-     journal={SIAM J. Math. Anal.},
-      volume={34},
-      number={1},
-       pages={64\ndash 86 (electronic)},
-         url={http://dx.doi.org/10.1137/S0036141001394541},
-      review={\MR{MR1950826 (2004c:35381)}},
-}
-
-\bib{Colliander_Keel_Staffilani_Takaoka_Tao-Multilinear-est}{article}{
-      author={Colliander, J.},
-      author={Keel, M.},
-      author={Staffilani, G.},
-      author={Takaoka, H.},
-      author={Tao, T.},
-       title={Multilinear estimates for periodic {K}d{V} equations, and
-  applications},
-        date={2004},
-        ISSN={0022-1236},
-     journal={J. Funct. Anal.},
-      volume={211},
-      number={1},
-       pages={173\ndash 218},
-         url={http://dx.doi.org/10.1016/S0022-1236(03)00218-0},
-      review={\MR{MR2054622 (2005a:35241)}},
-}
-
-\bib{Folland_1999_Real-analysis}{book}{
-      author={Folland, Gerald~B.},
-       title={Real analysis},
-     edition={Second},
-      series={Pure and Applied Mathematics (New York)},
-   publisher={John Wiley \& Sons Inc.},
-     address={New York},
-        date={1999},
-        ISBN={0-471-31716-0},
-        note={Modern techniques and their applications, A Wiley-Interscience
-  Publication},
-      review={\MR{MR1681462 (2000c:00001)}},
-}
-
-\bib{Grunrock-thesis}{thesis}{
-      author={Gr{{\"u}}nrock, Axel},
-       title={New applications of the fourier restriction norm method to
-  wellposedness problems for nonlinear evolution equations},
-        type={Ph.D. Thesis},
-        date={2002},
-}
-
-\bib{Grunrock-Bi--and-triline}{article}{
-      author={Gr{{\"u}}nrock, Axel},
-       title={Bi- and trilinear {S}chr{\"o}dinger estimates in one space
-  dimension with applications to cubic {NLS} and {DNLS}},
-        date={2005},
-        ISSN={1073-7928},
-     journal={Int. Math. Res. Not.},
-      number={41},
-       pages={2525\ndash 2558},
-      review={\MR{MR2181058 (2007b:35298)}},
-}
-
-\bib{Gorsky_2007_Well-posedness-}{article}{
-      author={Gorsky, Jennifer},
-      author={Himonas, A.~Alexandrou},
-       title={Well-posedness for a class of nonlinear dispersive equations},
-        date={2007},
-        ISSN={1201-3390},
-     journal={Dyn. Contin. Discrete Impuls. Syst. Ser. A Math. Anal.},
-      volume={14},
-      number={Advances in Dynamical Systems, suppl. S2},
-       pages={85\ndash 90},
-      review={\MR{MR2384111 (2008m:35305)}},
-}
-
-\bib{Gorsky:2009aa}{article}{
-      author={Gorsky, Jennifer},
-      author={Himonas, A.~Alexandrou},
-       title={Well-posedness of {K}d{V} with higher dispersion},
-        date={2009},
-        ISSN={0378-4754},
-     journal={Math. Comput. Simulation},
-      volume={80},
-      number={1},
-       pages={173\ndash 183},
-         url={http://dx.doi.org/10.1016/j.matcom.2009.06.007},
-      review={\MR{2573277}},
-}
-
-\bib{Grunrock_Herr-Low-regularity-}{article}{
-      author={Gr{{\"u}}nrock, Axel},
-      author={Herr, Sebastian},
-       title={Low regularity local well-posedness of the derivative nonlinear
-  {S}chr{\"o}dinger equation with periodic initial data},
-        date={2008},
-        ISSN={0036-1410},
-     journal={SIAM J. Math. Anal.},
-      volume={39},
-      number={6},
-       pages={1890\ndash 1920},
-         url={http://dx.doi.org/10.1137/070689139},
-      review={\MR{MR2390318 (2009a:35233)}},
-}
-
-\bib{Herr-On-the-Cauchy-p}{article}{
-      author={Herr, Sebastian},
-       title={On the {C}auchy problem for the derivative nonlinear
-  {S}chr{\"o}dinger equation with periodic boundary condition},
-        date={2006},
-        ISSN={1073-7928},
-     journal={Int. Math. Res. Not.},
-       pages={Art. ID 96763, 33},
-      review={\MR{MR2219223 (2007e:35258)}},
-}
-
-\bib{Himonas_Misioek-The-Cauchy-prob}{article}{
-      author={Himonas, A.~Alexandrou},
-      author={Misio{\l}ek, Gerard},
-       title={The {C}auchy problem for a shallow water type equation},
-        date={1998},
-        ISSN={0360-5302},
-     journal={Comm. Partial Differential Equations},
-      volume={23},
-      number={1-2},
-       pages={123\ndash 139},
-         url={http://dx.doi.org/10.1080/03605309808821340},
-      review={\MR{MR1608504 (99b:35176)}},
-}
-
-\bib{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}{article}{
-      author={Himonas, A.~Alexandrou},
-      author={Misiolek, Gerard},
-       title={A priori estimates for {S}chr{\"o}dinger type multipliers},
-        date={2001},
-        ISSN={0019-2082},
-     journal={Illinois J. Math.},
-      volume={45},
-      number={2},
-       pages={631\ndash 640},
-      review={\MR{MR1878623 (2002j:42018)}},
-}
-
-\bib{Himonas:2002aa}{article}{
-      author={Himonas, A.~Alexandrou},
-      author={Misio{\l}ek, Gerard},
-       title={A priori estimates for higher order multipliers on a circle},
-        date={2002},
-        ISSN={0002-9939},
-     journal={Proc. Amer. Math. Soc.},
-      volume={130},
-      number={10},
-       pages={3043\ndash 3050 (electronic)},
-         url={http://dx.doi.org/10.1090/S0002-9939-02-06439-0},
-      review={\MR{1908929 (2003i:42018)}},
-}
-
-\bib{Kenig:1996aa}{article}{
-      author={Kenig, Carlos~E.},
-      author={Ponce, Gustavo},
-      author={Vega, Luis},
-       title={A bilinear estimate with applications to the {K}d{V} equation},
-        date={1996},
-        ISSN={0894-0347},
-     journal={J. Amer. Math. Soc.},
-      volume={9},
-      number={2},
-       pages={573\ndash 603},
-         url={http://dx.doi.org/10.1090/S0894-0347-96-00200-7},
-      review={\MR{1329387 (96k:35159)}},
-}
-
-\bib{Kenig-Ponce-Vega-1996-Quadratic-forms-for-the-1-D-semilinear}{article}{
-      author={Kenig, Carlos~E.},
-      author={Ponce, Gustavo},
-      author={Vega, Luis},
-       title={Quadratic forms for the {$1$}-{D} semilinear {S}chr{\"o}dinger
-  equation},
-        date={1996},
-        ISSN={0002-9947},
-     journal={Trans. Amer. Math. Soc.},
-      volume={348},
-      number={8},
-       pages={3323\ndash 3353},
-         url={http://dx.doi.org/10.1090/S0002-9947-96-01645-5},
-      review={\MR{1357398 (96j:35233)}},
-}
-
-\bib{Lemarie-Rieusset:2006aa}{article}{
-      author={Lemari{{\'e}}-Rieusset, P.~G.},
-      author={Gala, S.},
-       title={Multipliers between {S}obolev spaces and fractional
-  differentiation},
-        date={2006},
-        ISSN={0022-247X},
-     journal={J. Math. Anal. Appl.},
-      volume={322},
-      number={2},
-       pages={1030\ndash 1054},
-         url={http://dx.doi.org/10.1016/j.jmaa.2005.07.043},
-      review={\MR{2250634 (2007f:42012)}},
-}
-
-\bib{Molinet-2009-On-ill-posedness-for-the-one-dimensional-periodic}{article}{
-      author={Molinet, Luc},
-       title={On ill-posedness for the one-dimensional periodic cubic
-  {S}chrodinger equation},
-        date={2009},
-        ISSN={1073-2780},
-     journal={Math. Res. Lett.},
-      volume={16},
-      number={1},
-       pages={111\ndash 120},
-      review={\MR{2480565 (2010b:35440)}},
-}
-
-\bib{Molinet2009Sharp-ill-posed}{article}{
-      author={Molinet, Luc},
-       title={Sharp ill-posedness result for the periodic {B}enjamin-{O}no
-  equation},
-        date={2009},
-        ISSN={0022-1236},
-     journal={J. Funct. Anal.},
-      volume={257},
-      number={11},
-       pages={3488\ndash 3516},
-         url={http://dx.doi.org/10.1016/j.jfa.2009.08.018},
-      review={\MR{2571435}},
-}
-
-\bib{Molinet:2001aa}{article}{
-      author={Molinet, L.},
-      author={Saut, J.~C.},
-      author={Tzvetkov, N.},
-       title={Ill-posedness issues for the {B}enjamin-{O}no and related
-  equations},
-        date={2001},
-        ISSN={0036-1410},
-     journal={SIAM J. Math. Anal.},
-      volume={33},
-      number={4},
-       pages={982\ndash 988 (electronic)},
-         url={http://dx.doi.org/10.1137/S0036141001385307},
-      review={\MR{1885293 (2002k:35281)}},
-}
-
-\bib{Osler:1970aa}{article}{
-      author={Osler, Thomas~J.},
-       title={Leibniz rule for fractional derivatives generalized and an
-  application to infinite series},
-        date={1970},
-        ISSN={0036-1399},
-     journal={SIAM J. Appl. Math.},
-      volume={18},
-       pages={658\ndash 674},
-      review={\MR{0260942 (41 \#5562)}},
-}
-
-\bib{Schlotthauer-Hannah-Well-posedness-}{thesis}{
-      author={Schlotthauer-Hannah, Heather},
-       title={Well-posedness and regularity for a higher order periodic mkdv
-  equation},
-        type={Dissertation},
-     address={Notre Dame, Indiana},
-        date={2007},
-}
-
-\bib{Tao-Multilinear-wei}{article}{
-      author={Tao, Terence},
-       title={Multilinear weighted convolution of {$L^2$}-functions, and
-  applications to nonlinear dispersive equations},
-        date={2001},
-        ISSN={0002-9327},
-     journal={Amer. J. Math.},
-      volume={123},
-      number={5},
-       pages={839\ndash 908},
-  url={http://muse.jhu.edu/journals/american_journal_of_mathematics/v123/123.5%
-tao.pdf},
-      review={\MR{MR1854113 (2002k:35283)}},
-}
-
-\bib{Tao-2002-Low-regularity-global-solutions}{incollection}{
-      author={Tao, Terence},
-       title={Low-regularity global solutions to nonlinear dispersive
-  equations},
-        date={2002},
-   booktitle={Surveys in analysis and operator theory ({C}anberra, 2001)},
-      series={Proc. Centre Math. Appl. Austral. Nat. Univ.},
-      volume={40},
-   publisher={Austral. Nat. Univ.},
-     address={Canberra},
-       pages={19\ndash 48},
-      review={\MR{1953478 (2004e:35199)}},
-}
-
-\bib{Tao-2006-Nonlinear-dispersive-equations}{book}{
-      author={Tao, Terence},
-       title={Nonlinear dispersive equations},
-      series={CBMS Regional Conference Series in Mathematics},
-   publisher={Published for the Conference Board of the Mathematical Sciences,
-  Washington, DC},
-        date={2006},
-      volume={106},
-        ISBN={0-8218-4143-2},
-        note={Local and global analysis},
-      review={\MR{MR2233925 (2008i:35211)}},
-}
-
-\bib{Taylor_1991_Pseudodifferent}{book}{
-      author={Taylor, Michael~E.},
-       title={Pseudodifferential operators and nonlinear {PDE}},
-      series={Progress in Mathematics},
-   publisher={Birkh{\"a}user Boston Inc.},
-     address={Boston, MA},
-        date={1991},
-      volume={100},
-        ISBN={0-8176-3595-5},
-      review={\MR{MR1121019 (92j:35193)}},
-}
-
-\bib{Tzvetkov_2006_Ill-posedness-i}{incollection}{
-      author={Tzvetkov, Nikolay},
-       title={Ill-posedness issues for nonlinear dispersive equations},
-        date={2006},
-   booktitle={Lectures on nonlinear dispersive equations},
-      series={GAKUTO Internat. Ser. Math. Sci. Appl.},
-      volume={27},
-   publisher={Gakk\=otosho},
-     address={Tokyo},
-       pages={63\ndash 103},
-      review={\MR{MR2404974}},
-}
-
-\bib{Zhang:2009aa}{article}{
-      author={Zhang, Guoping},
-       title={Generalized {L}eibnitz rule and its application to nonlinear
-  {S}chr{\"o}dinger equations with superquadratic potentials},
-        date={2009},
-        ISSN={1549-2907},
-     journal={Int. J. Evol. Equ.},
-      volume={3},
-      number={3},
-       pages={357\ndash 368},
-      review={\MR{2531155 (2010g:35311)}},
-}
-
-\end{biblist}
-\end{bibdiv}
-%\nocite{*}
-%\bibliography{/Users/davidkarapetyan/Documents/Math/bib-files/schrodinger.bib}
-\end{document}
