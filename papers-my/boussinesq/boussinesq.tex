@@ -24,6 +24,9 @@ urlcolor=blue,
 }
 \usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{cleveref} %must be last loaded package to work properly
+\renewcommand{\cref}{\Cref}
+\crefformat{equation}{(#2#1#3)} %don't write Equation (2.1), just (2.1)
+\Crefformat{equation}{(#2#1#3)} %don't write Equation (2.1), just (2.1)
 %
 %
 \newcommand{\ds}{\displaystyle}
@@ -115,7 +118,7 @@ We consider the initial value problem (ivp) for the fourth order modified Boussi
 %
 We shall work in the periodic case first, and later generalize our results to
 the non-periodic case. We first rewrite the $B_4$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form. 
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} in integral form. 
 Consider
 the linear $B_4$ ivp
 \begin{gather}
@@ -126,7 +129,7 @@ the linear $B_4$ ivp
   \label{lin-mb-init-data-1}
 \end{gather}
 Taking the spatial Fourier transform of the linear $B_{4}$ ivp
-\eqref{lin-mb}-\eqref{lin-mb-init-data-1} yields
+\cref{lin-mb}-\cref{lin-mb-init-data-1} yields
 %
 %
 \begin{gather}
@@ -148,7 +151,7 @@ For $n=0$, this admits the unique solution
 %
 %
 For the case $n \neq 0$, we substitute the ansatz $e^{\lambda t}$ into
-\eqref{four-trans-lin-mb} to obtain the characteristic equation
+\cref{four-trans-lin-mb} to obtain the characteristic equation
 %
 %
 \begin{equation*}
@@ -168,11 +171,11 @@ which gives
 \end{equation*}
 %
 Since
-\eqref{lin-mb} is second order, and $e^{in^{2}t}$ and $e^{-in^{2}t}$ are
-linearly independent solutions to \eqref{lin-mb}, it follows that $\left\{
+\cref{lin-mb} is second order, and $e^{in^{2}t}$ and $e^{-in^{2}t}$ are
+linearly independent solutions to \cref{lin-mb}, it follows that $\left\{
 e^{in^{2}t}, e^{-in^{2}t}
-\right\}$ is a basis for all solutions of \eqref{lin-mb}. Therefore, the general
-solution of \eqref{lin-mb} takes the form
+\right\}$ is a basis for all solutions of \cref{lin-mb}. Therefore, the general
+solution of \cref{lin-mb} takes the form
 %
 %
 \begin{equation}
@@ -184,7 +187,7 @@ solution of \eqref{lin-mb} takes the form
 %
 %
 which, in conjunction with initial data 
-\eqref{four-trans-lin-mb-data}, implies
+\cref{four-trans-lin-mb-data}, implies
 %
 %
 \begin{gather*}
@@ -204,9 +207,9 @@ Solving for $c_{1}$ and $c_{2}$, we obtain
 \end{gather*}
 %
 %
-Substituting into \eqref{explicit-homog-soln}, we obtain the unique solution for
+Substituting into \cref{explicit-homog-soln}, we obtain the unique solution for
 $n \neq 0$ to
-ivp \eqref{four-trans-lin-mb}-\eqref{four-trans-lin-mb-data}
+ivp \cref{four-trans-lin-mb}-\cref{four-trans-lin-mb-data}
 %
 %
 \begin{equation}
@@ -237,11 +240,11 @@ since $n=0$ is a removable singularity. Furthermore,
 \end{equation*}
 %
 %
-Recalling \eqref{nzerosoln}, it follows that \eqref{lin-mb-four-soln}
+Recalling \cref{nzerosoln}, it follows that \cref{lin-mb-four-soln}
 is the unique solution to ivp
-\eqref{four-trans-lin-mb}-\eqref{four-trans-lin-mb-data} for all $n \in \zz$.  
-Hence, taking the inverse spatial Fourier transform of \eqref{lin-mb-four-soln},
-we obtain the unique solution to ivp \eqref{lin-mb}-\eqref{lin-mb-init-data-1}
+\cref{four-trans-lin-mb}-\cref{four-trans-lin-mb-data} for all $n \in \zz$.  
+Hence, taking the inverse spatial Fourier transform of \cref{lin-mb-four-soln},
+we obtain the unique solution to ivp \cref{lin-mb}-\cref{lin-mb-init-data-1}
 %
 %
 \begin{equation*}
@@ -259,7 +262,7 @@ we obtain the unique solution to ivp \eqref{lin-mb}-\eqref{lin-mb-init-data-1}
 %
 %
 Turning our attention now to the $B_{4}$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} and taking the spatial Fourier
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} and taking the spatial Fourier
 transform yields 
 %
 %
@@ -330,8 +333,8 @@ where $v_{1}$ and $v_{2}$ are solutions to the system
 \end{gather}
 \end{lemma}
 %
-{\bf Proof.} Substituting the ansatz \eqref{2nd-order-ansatz} into
-the left hand side of \eqref{2nd-order-ode}, we obtain the expression
+{\bf Proof.} Substituting the ansatz \cref{2nd-order-ansatz} into
+the left hand side of \cref{2nd-order-ode}, we obtain the expression
 %
 %
 %
@@ -402,13 +405,13 @@ or
 %
 %
 where the last cancellation is due to the fact that $y_{1}$ and $y_{2}$ are
-solutions to the corresponding homogeneous equation of \eqref{2nd-order-ode}
+solutions to the corresponding homogeneous equation of \cref{2nd-order-ode}
 (i.e. $g(t) = 0$). This concludes the proof. \qquad \qedsymbol
 %
 \\
 \\
 %
-Rewriting the system \eqref{cancel-rel-1}-\eqref{cancel-rel-2}
+Rewriting the system \cref{cancel-rel-1}-\cref{cancel-rel-2}
 as
   \begin{equation*}
   \begin{bmatrix}
@@ -471,7 +474,7 @@ Therefore,
 %
 Applying \cref{lem:nonhomog-ode-soln}, it follows that 
 the unique solution to ivp
-\eqref{four-trans-mb}-\eqref{four-trans-mb-data} is given by
+\cref{four-trans-mb}-\cref{four-trans-mb-data} is given by
 %
 %
 \begin{equation*}
@@ -503,7 +506,7 @@ Hence, taking the inverse Fourier transform we obtain
   \label{eqn:pre-integral-form}
 \end{equation}
 %
-Note that \eqref{remov-sing} implies
+Note that \cref{remov-sing} implies
 %
 %
 \begin{equation*}
@@ -523,7 +526,7 @@ But
 \end{equation*}
 %
 %
-Hence, \eqref{eqn:pre-integral-form} simplifies to
+Hence, \cref{eqn:pre-integral-form} simplifies to
 %
 \begin{equation}
   \begin{split}
@@ -547,13 +550,13 @@ see the appendix.
 \end{remark}
 \end{framed}
 Hence, we have rewritten the $B_{4}$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form, which we will now
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} in integral form, which we will now
 localize in time. 
 Let $\psi(t)$ be a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
 = [-1, 1 ]$.
 Define $\psi_{\delta}(t) = \psi(2t/\delta)$.  Multiplying both sides of expression
-$\eqref{eqn:integral-form}$ by $\psi_{\delta}(t)$, we obtain
+$\cref{eqn:integral-form}$ by $\psi_{\delta}(t)$, we obtain
 %
 %
 \begin{align}
@@ -577,7 +580,7 @@ $\eqref{eqn:integral-form}$ by $\psi_{\delta}(t)$, we obtain
   \end{align}
 where $$w(x,t) = \frac{1}{2\pi} \sum_{n \in \zz}
 e^{inx} \wh{u^{2}}(n,t).$$
-Since \eqref{term-3} is a \emph{global} relation in $t$, using Fourier inversion
+Since \cref{term-3} is a \emph{global} relation in $t$, using Fourier inversion
 we can rewrite it as
 %
 %
@@ -645,7 +648,7 @@ to
 		\psi(\tau -  n^{2}) (\tau -  n^{2})^{k-1} \wh{w}(n, \tau).
 \end{align}
 %
-Similarly, \eqref{term-4} can be rewritten as
+Similarly, \cref{term-4} can be rewritten as
 %
 \begin{align}
 		\label{main-int-expression''-2}
@@ -694,11 +697,47 @@ Therefore, neglecting $\pi$ related constants, we have
   \psi(\tau -  an^{2}) (\tau -  an^{2})^{k-1} \wh{w}(n, \tau)
   \\
   \label{main-rel-term-5}
-  & \doteq Tu
+\end{align}
+Notice that any solution to 
+%
+\begin{align}
+  & u(x,t)
+  \notag
+  \\
+  \label{main1-rel-term-1}
+  & = \psi(t) \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+  \\
+  \label{main1-rel-term-2}
+  & + \psi(t) \sum_{n \in \zz} e^{inx}
+  \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}}t}{2 i n^{2}} 
+  \\
+  \label{main1-rel-term-3}
+  & + \psi_{\delta}(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
+  e^{it \tau} \frac{ 1 - \psi(\tau -  an^{2}) 
+  }{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
+  \\
+  \label{main1-rel-term-4}
+  & + \psi_{\delta}(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
+  t an^{2})}
+  \frac{1- \psi(\tau -  an^{2})}{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
+  \\
+  & + \psi_{\delta}(t) \sum_{a = \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
+  \sum_{n \in \zz} \int_\rr e^{i(xn + t an^{2} )}
+  \psi(\tau -  an^{2}) (\tau -  an^{2})^{k-1} \wh{w}(n, \tau)
+  \\
+  \label{main1-rel-term-5}
+  & \doteq Tu, \quad T=T_{u_0, u_1, \psi, \delta}
 \end{align}
 %
 %
-where $T=T_{u_0, u_1, \psi, \delta}$.
+is a solution to \cref{main-rel-term-1}-\cref{main-rel-term-5} for $t \in
+[-\delta, \delta]$.  
+%
+%
+%
+%
+%
+%
 \begin{definition}
   Equip $H^{s} \times H^{s-2}$ with the 
   topology defined by the norm $\|(f_0, f_1)\|_{H^{s} \times H^{s-2}}
@@ -706,7 +745,7 @@ where $T=T_{u_0, u_1, \psi, \delta}$.
   and denote $B_{H^{s} \times H^{s-2}}(R) \doteq \left\{ f: \| f \|_{H^{s} \times
   H^{s-2}} < R
   \right\}$. We say that the $B_{4}$ ivp
-  \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} is
+  \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} is
 	\emph{locally well posed} in
   $H^s \times H^{s-2}$ if 
 	\begin{enumerate}
@@ -828,7 +867,7 @@ We are now prepared to state the main result of this paper.
 \begin{theorem}
 \label{thm:main}
 The initial value problem 
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} is locally well-posed in $H^s$ for
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} is locally well-posed in $H^s$ for
 $s >
 -1/4$ and ill-posed for $s < -1/4$ in both the periodic and non-periodic cases.
 %
@@ -855,7 +894,7 @@ To prove well-posedness for the $B_4$ ivp we we will
 show that for initial data $\vp \in B_{H^{s}(\ci) \times H^{s-2}(\ci)}(R)$, $T$ is a contraction on
 $B_{X^{s}}(M_{R})$, where $M_{R}$ is a constant depending on $R$, 
 by estimating the $X_{s,b}$
-norm of \eqref{main-rel-term-1}-\eqref{main-rel-term-5}. The 
+norm of \cref{main-rel-term-1}-\cref{main-rel-term-5}. The 
 Picard fixed point theorem will
 then yield a unique $u \in X^{s}$ satisfying $u = Tu$.
 An application of
@@ -873,14 +912,163 @@ mapping.
 %
 %
 %
-\subsection{Estimate for \eqref{main-rel-term-1}}
+\begin{framed}
+\begin{remark}
+\label{1rem:no-delta-lin}
+For well-posedness for large data, it
+is crucial that the cutoff for the linear term not depend on $\delta$. To
+see this, we estimate \cref{main-rel-term-1}. We have
+%
+%
+\begin{equation*}
+  \begin{split}
+    \wh{\cref{main-rel-term-1}}
+    = \frac{\wh{\psi_{\delta}}(\tau -
+    n^{2})\wh{u_{0}}(n)}{2} + \frac{\wh{\psi_{\delta}}(\tau +
+    n^{2})\wh{u_{0}}(n)}{2}.
+  \end{split}
+\end{equation*}
+%
+%
+Hence, substituting and applying the inequality 
+%
+%
+\begin{equation}
+  \label{1square-ineq}
+\begin{split}
+(a + b)^{2} \le 4(a^{2} +
+b^{2}),\ a, b \in \rr,
+\end{split}
+\end{equation}
+%
+%
+gives
+%
+%
+\begin{align}
+  & \| \cref{main-rel-term-1} \|_{X^{s}}^{2} 
+    \notag
+    \\
+    & = \sum_{n \in \zz}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi_{\delta}}(\tau - n^{2})\wh{u_{0}(n)}}{2 } +
+    \frac{\wh{\psi_{\delta}}(\tau + n^{2})\wh{u_{0}}(n)}{2 } |^{2} d \tau
+    \notag
+    \\
+    & \le \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
+    \label{1u-0-norm-comp-1}
+    \\
+    & + \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau.
+    \label{1u-0-norm-comp-3}
+\end{align}
+%
+%
+Since (see appendix)
+\begin{equation}
+  \begin{split}
+    | | \tau | - n^{2} | \le \min\left\{ | \tau - n^{2} |, | \tau + n^{2} |
+    \right\},
+  \end{split}
+  \label{1eqn:norm-key-ineq}
+\end{equation}
+%
+we bound \cref{1u-0-norm-comp-1} by
+%
+%
+\begin{equation}
+  \label{1uuy}
+  \begin{split}
+    & \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
+    \\
+    & = \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
+    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau') |^{2}\left( 1 +  | \tau'|
+    \right)^{2b} d \tau.
+    %\\
+    %& \le c_{\psi} \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
+    %|^{2}
+    %\\
+    %& = c_{\psi} \| u_{0} \|_{H^{s}}^{2}
+  \end{split}
+\end{equation}
+%
+But 
+%
+%
+\begin{equation}
+  \label{cutoff-scaling}
+\begin{split}
+  \wh{\psi_{\delta}}(\tau)
+  = \int_{\rr} e^{-it \tau} \psi_{\delta}(t) dt
+  & = \int_{\rr} e^{-it \tau} \psi(2t/\delta) dt
+  \\
+  & = \frac{\delta}{2} \int_{\rr} e^{-is \tau \delta/2} \psi(s) ds
+  \\
+  & = \frac{\delta}{2} \wh{\psi}(\tau \delta/2)
+\end{split}
+\end{equation}
+%
+%
+which gives
+%
+%
+\begin{equation}
+  \label{cutoff-scaling-p}
+\begin{split}
+  \int_{\rr} (1 + | \tau |)^{2b} | \wh{\psi_{\delta}}(\tau) |^{2} d
+  \tau
+  & = \left (\frac{\delta}{2} \right )^{2} \int_{\rr} (1 + | \tau |)^{2b} | \wh{\psi}(\delta \tau
+  /2) |^{2} d
+  \tau
+  \\
+  & =  \frac{\delta}{2}  \int_{\rr} (1 + | 2 \lambda /\delta |)^{2b} | \wh{\psi}(\lambda) | d \lambda
+  \\
+  & \le \frac{\delta}{2} \int_{\rr} (1/\delta + | 2 \lambda / \delta |)^{2b} | \wh{\psi}(\lambda) | d
+  \lambda, \quad 0 < \delta \le 1
+  \\
+  & = \delta^{1-2b} c_{\psi,b}.
+\end{split}
+\end{equation}
+where $c_{\psi, b}$ is a constant depending only on $\psi$ and $b$.
+Therefore, \cref{1uuy} is bounded by 
+\begin{equation*}
+\begin{split}
+  \delta^{1-2b} c_{\psi,b} \| u_{0} \|^{2}.
+\end{split}
+\end{equation*}
+%
+%
+%
+The
+term \cref{1u-0-norm-comp-3} is bounded in similar fashion. Therefore, 
+$\|\cref{main-rel-term-1}\|_{X^{s}}^{2} \le c_{\psi,b} \delta^{1-2b}
+\|u_{0}\|_{H^s}^2$. Taking square roots of both sides gives
+%
+%
+\begin{equation}
+  \begin{split}
+    \|\cref{main-rel-term-1}\|_{X^{s}} \le c_{\psi,b} \delta^{1/2-b}
+    \|u_{0}\|_{H^s}.
+  \end{split}
+  \label{1eqn:u-0-fin-est}
+\end{equation}
+This is a problematic relation for $b > 1/2$, since we have blowup of our bound
+as $\delta$ approaches $0$.
+\end{remark}
+\end{framed}
+%
+\subsection{Estimate for \cref{main1-rel-term-1}}
 \label{ssec:est-init-term-1}
 We have
 %
 %
 \begin{equation*}
   \begin{split}
-    \wh{\eqref{main-rel-term-1}}
+    \wh{\cref{main1-rel-term-1}}
     = \frac{\wh{\psi}(\tau -
     n^{2})\wh{u_{0}}(n)}{2} + \frac{\wh{\psi}(\tau +
     n^{2})\wh{u_{0}}(n)}{2}.
@@ -900,31 +1088,31 @@ b^{2}),\ a, b \in \rr,
 \end{equation}
 %
 %
-we have
+gives
 %
 %
 \begin{align}
-  & \| \eqref{main-rel-term-1} \|_{X^{s}}^{2} 
+  & \| \cref{main1-rel-term-1} \|_{X^{s}}^{2} 
     \notag
     \\
     & = \sum_{n \in \zz}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right) | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2 } +
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2 } +
     \frac{\wh{\psi}(\tau + n^{2})\wh{u_{0}}(n)}{2 } |^{2} d \tau
     \notag
     \\
     & \le \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \label{u-0-norm-comp-1}
     \\
     & + \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau.
+    n^{2} | \right)^{2b} d \tau.
     \label{u-0-norm-comp-3}
 \end{align}
 %
 %
-Noting that (see appendix)
+Since (see appendix)
 \begin{equation}
   \begin{split}
     | | \tau | - n^{2} | \le \min\left\{ | \tau - n^{2} |, | \tau + n^{2} |
@@ -933,35 +1121,71 @@ Noting that (see appendix)
   \label{eqn:norm-key-ineq}
 \end{equation}
 %
-we bound \eqref{u-0-norm-comp-1} by
+we bound \cref{u-0-norm-comp-1} by
 %
 %
-\begin{equation*}
+\begin{equation}
+  \label{uuy}
   \begin{split}
     & \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \\
     & = \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
+    \right)^{2b} d \tau
     \\
-    & \le c_{\psi} \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2}
-    \\
-    & = c_{\psi} \| u_{0} \|_{H^{s}}^{2}
-  \end{split}
+    & =c_{\psi,b} \| u_{0} \|^{2}.
+\end{split}
+\end{equation}
+%
+%
+%
+%
+\begin{framed}
+%
+%
+\begin{remark}
+Note that, for $b \ge 0$,
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{\psi, b}
+  & = \|\wh{\psi}(\tau') \left( 1 +  | \tau'|
+  \right)^{b} \|_{L^{2}}
+  \\
+  & \ge \| \wh{\psi}(\tau') \|_{L^{2}}
+  \\
+  & = \sqrt{2 \pi} \|
+  \psi(t) \|_{L^{2}}
+  \\
+  & > 1.
+\end{split}
 \end{equation*}
 %
 %
-where $c_{\psi}$ is a constant depending only on $\psi$. The
-term \eqref{u-0-norm-comp-3} is bounded in similar fashion. Therefore, 
-$\|\eqref{main-rel-term-1}\|_{X^{s}}^{2} \le c_{\psi}
+Hence, the value of $c_{\psi, b}$ will be no help for handling large data, since there is
+no way we may choose a cutoff symmetric around the origin and satisfying
+$\psi(t) =1$ for $| t | \le 1/2$ such that $c_{\psi, b}$ is arbitrarily small. 
+\label{rem:value-schwartz-const}
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+%
+%
+The
+term \cref{u-0-norm-comp-3} is bounded in similar fashion. Therefore, 
+$\|\cref{main1-rel-term-1}\|_{X^{s}}^{2} \le c_{\psi,b} 
 \|u_{0}\|_{H^s}^2$. Taking square roots of both sides gives
 %
 %
 \begin{equation}
   \begin{split}
-    \|\eqref{main-rel-term-1}\|_{X^{s}} \le c_{\psi}
+    \|\cref{main1-rel-term-1}\|_{X^{s}} \le c_{\psi,b} 
     \|u_{0}\|_{H^s}.
   \end{split}
   \label{eqn:u-0-fin-est}
@@ -969,8 +1193,7 @@ $\|\eqref{main-rel-term-1}\|_{X^{s}}^{2} \le c_{\psi}
 %
 %
 %
-%
-\subsection{Estimate for \eqref{main-rel-term-2}}
+\subsection{Estimate for \cref{main1-rel-term-2}}
 \label{ssec:est-init-term-2}
 We have
 %
@@ -1015,14 +1238,14 @@ and so
   \end{split}
 \end{equation*}
 %
-Hence, substituting and applying \eqref{square-ineq}, we have
+Hence, substituting and applying \cref{square-ineq}, we have
 %
 %
 \begin{equation}
   \begin{split}
-    \| \eqref{main-rel-term-2} \|_{X^{s}}^{2} 
+    \| \cref{main1-rel-term-2} \|_{X^{s}}^{2} 
     & = \sum_{n \in \zzdot}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right) | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
     n^{2}} -
     \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
     \\
@@ -1031,13 +1254,13 @@ Hence, substituting and applying \eqref{square-ineq}, we have
     \\
     & \le \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \\
     & + \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \\
-    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d }{d \tau}
+    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |)^{2b} |\frac{d }{d \tau}
     \wh{\psi}(\tau)|^2 d \tau.
 \end{split}
 \label{u-1-norm-comp-pre}
@@ -1054,29 +1277,29 @@ Applying the inequality
 \end{split}
 \end{equation*}
 %
-to \eqref{u-1-norm-comp-pre} gives
+to \cref{u-1-norm-comp-pre} gives
 %
 \begin{equation}
   \begin{split}
-    \|  \eqref{main-rel-term-2}\|_{X^{s}}^{2} 
+    \|  \cref{main1-rel-term-2}\|_{X^{s}}^{2} 
     & \lesssim \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \\
     & + \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \\
-    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d }{d \tau}
+    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |)^{2b} |\frac{d }{d \tau}
     \wh{\psi}(\tau)|^2 d \tau.
 \end{split}
 \label{u-1-norm-comp}
 \end{equation}
 %
 %
-Applying \eqref{eqn:norm-key-ineq},
+Applying \cref{eqn:norm-key-ineq},
 we bound the first term of
-\eqref{u-1-norm-comp} by
+\cref{u-1-norm-comp} by
 %
 %
 %
@@ -1084,29 +1307,32 @@ we bound the first term of
   \begin{split}
     & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
+    n^{2} | \right)^{2b} d \tau
     \\
     & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
+    \right)^{2b} d \tau
     \\
-    & \le c_{\psi} \| u_{1} \|_{H^{s-2}}^{2}. 
+    & \le c_{\psi,b}  \| u_{1} \|_{H^{s-2}}^{2}. 
   \end{split}
 \end{equation*}
 %
 %
-Applying
-\eqref{eqn:norm-key-ineq} again, the
-second term of \eqref{u-1-norm-comp} is bounded by
+where the last step follows from 
+\cref{cutoff-scaling}-\cref{cutoff-scaling-p}. Applying
+\cref{eqn:norm-key-ineq} again, the
+second term of \cref{u-1-norm-comp} is bounded by
 \begin{equation*}
   \begin{split}
     & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 +  | \tau  +
+    n^{2} | \right)^{2b} d \tau
     \\
     & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
+    \right)^{2b} d \tau
     \\
-    & \le c_{\psi} \| u_{1} \|_{H^{s-2}}^{2}
+    & \le c_{\psi,b} \| u_{1} \|_{H^{s-2}}^{2}
   \end{split}
 \end{equation*}
 while the third term is bounded by  
@@ -1114,20 +1340,20 @@ while the third term is bounded by
 %
 \begin{equation*}
 \begin{split}
-  c_{\psi} \| u_{1} \|_{H^{s-2}}^{2}.
+  c_{\psi,b}  \| u_{1} \|_{H^{s-2}}^{2}.
 \end{split}
 \end{equation*}
 %
 %
 Therefore, 
-$\|\eqref{main-rel-term-2}|_{X^{s}}^{2} \le c_{\psi}
+$\|\cref{main1-rel-term-2}|_{X^{s}}^{2} \le c_{\psi,b} 
 \|u_{1}\|_{H^{s-2}}^2$ and
 taking square roots of both sides gives
 %
 %
 \begin{equation*}
   \begin{split}
-    \|\eqref{main-rel-term-2}|_{X^{s}} \le c_{\psi}
+    \|\cref{main1-rel-term-2}|_{X^{s}} \le c_{\psi,b} 
     \|u_{1}\|_{H^{s-2}}.
   \end{split}
 \end{equation*}
@@ -1135,7 +1361,7 @@ taking square roots of both sides gives
 %
 %
 %
-\subsection{Estimate for \eqref{main-rel-term-3}.}
+\subsection{Estimate for \cref{main1-rel-term-3}.}
 We now need the following lemma, whose proof is provided in the appendix.
 %
 %
@@ -1150,13 +1376,13 @@ We now need the following lemma, whose proof is provided in the appendix.
 %
 \begin{lemma}
 \label{lem:schwartz-mult}
-	For $\psi \in S(\rr)$,
+We have
 %
 %
 \begin{equation}
 	\label{schwartz-mult}
 	\begin{split}
-    \|\psi f \|_{X_{s,b}} \le c_{\psi} \|f \|_{X_{s,b}}.
+    \|\psi_{\delta} f \|_{X_{s,b}} \le c_{\psi, b} \delta^{1/2-b} \|f \|_{X_{s,b}}.
 	\end{split}
 \end{equation}
 %
@@ -1170,8 +1396,8 @@ Hence,
 \begin{equation}
   \label{yu}
 	\begin{split}
-		\|\eqref{main-rel-term-3}\|_{X_{s,b}} 
-    & \le c_{\psi, \delta}
+		\|\cref{main-rel-term-3}\|_{X_{s,b}} 
+    & \le c_{\psi, \delta} \delta^{1/2-b}
     \sum_{a = \pm 1} \| \sum_{n \in \zz} e^{ixn} \int_\rr 
 		e^{it \tau} \frac{ 1 - a\psi (\tau - an^{m} ) 
 		}{\tau - an^{m}} \wh{w}(n, \tau) \ 
@@ -1211,7 +1437,7 @@ Applying the inequality
 		\qquad |j| \ge 1
    	\end{split}
 \end{equation}
-and \eqref{eqn:norm-key-ineq} we bound this by
+and \cref{eqn:norm-key-ineq} we bound this by
 \begin{equation}
   \label{pre-bi-est}
   \begin{split}
@@ -1227,9 +1453,50 @@ and \eqref{eqn:norm-key-ineq} we bound this by
 %
 %
 %
+We now need the following, whose proof can be found in the appendix.
 %
 %
-We now need the following bilinear estimate, whose proof we leave for later.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               localisation decay est 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  Let $\psi(t) \in \mathcal{S}(\rr)$. If $-1/2 < b' \le b < 1/2$, then for any
+  $0 < \delta < 1$
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| \psi(t/\delta) \|_{X_{s,b'}} \lesssim_{\psi, b, b'} \delta^{b - b'} \| u
+    \|_{X_{s,b}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{lem:time-local-est}
+\end{lemma}
+%
+%
+Restricting $1/2 < b < 3/4$, we let $b' = -(1-b)$ and apply \cref{lem:time-local-est} to
+\eqref{pre-bi-est} to obtain the bound
+%
+\begin{equation}
+  \label{gff}
+  \begin{split}
+    & 4 \delta^{1-b -a } \left( \sum_{n \in 
+		\zz} \left (1 + |n| \right )^{2s} \int_\rr
+		\frac{|\wh{w}(n, \tau) |^2}{(1+ |  |\tau| - 
+    n^{m}|)^{2a}} 
+		 \ d \tau 
+		\right)^{1/2}
+\end{split}
+\end{equation}
+where $ -1/2 < a \le 1-b < 1/2$. We now need the following bilinear estimate, whose proof we leave for later.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1249,43 +1516,62 @@ We now need the following bilinear estimate, whose proof we leave for later.
   then 
 	\begin{equation}
 		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr
-		\frac{|\wh{w_{fg}}(n, \tau) |^2}{\left (1+ |\tau - 
+		\frac{|\wh{w_{fg}}(n, \tau) |^2}{\left (1+ |  |\tau| - 
     n^{m}| \right )^{2a}} 
 		 \ d \tau 
 		\right)^{1/2}
-		\lesssim \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}
+    \le c_{a} \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}
 	\end{equation}
-	where $w_{fg}(x,t)$ = $fg (x,t)$.
+  where $w_{fg}(x,t)$ = $fg (x,t)$.
 %
 %
 %
 %
 \end{proposition}
 %
-Applying \cref{prop:bilinear-est} to \eqref{pre-bi-est}, we conclude that
-%
+Applying \cref{prop:bilinear-est} to \cref{gff}, it follows that
+if $1/4 < a \le 1-b < 1/2$ and $s \ge -a/2$ then
 %
 %
 %
 \begin{equation}
-	\label{main-int2-est}
 	\begin{split}
-		\|\eqref{main-rel-term-3}\|_{X_{s,b}} \le c_{\psi, \delta}\|f\|_{X_{s,b}}
-    \|g\|_{X_{s,b}}, \qquad 1/2 < b < 3/4.
+    \|\cref{main1-rel-term-3}\|_{X_{s,b}} \le c_{\psi, b} \delta^{1/2-b}
+    \delta^{1-b -a}\|f\|_{X_{s,b}}
+    \|g\|_{X_{s,b}}.
 	\end{split}
 \end{equation}
 %
 %
 %
+Fixing $0 < \ee < 1/12$, and setting $a = 1/2 - 3 \ee$, $b = 1/2 + \ee$, and $s
+\ge -1/4 + 3 \ee$, we obtain 
 %
 %
+\begin{equation*}
+	\begin{split}
+    \|\cref{main1-rel-term-3}\|_{X_{s,b}} \le c_{\psi, b} 
+    \delta^{\ee}\|f\|_{X_{s,b}}
+    \|g\|_{X_{s,b}}, \quad 0 < \ee < 1/12, \ b = 1/2 + \ee, \ s \ge -1/4 + 3 \ee 
+	\end{split}
+\end{equation*}
 %
 %
+or
 %
 %
+\begin{equation}
+	\label{main-int2-est}
+	\begin{split}
+    \|\cref{main1-rel-term-3}\|_{X_{s,b}} \le c_{\psi, b} 
+    \delta^{b-1/2}\|f\|_{X_{s,b}}
+    \|g\|_{X_{s,b}}, \quad 1/2 < b <7/12,  \ s \ge -1/4 + 3(b -1/2) 
+	\end{split}
+\end{equation}
+
 %
 %
-\subsection{Estimate for \eqref{main-rel-term-4}.}
+\subsection{Estimate for \cref{main1-rel-term-4}.}
 Letting $$f(x,t) = \sum_{a = \pm 1} \psi_{\delta}(t) \sum_{n \in \zz} e^{i\left( xn +
 atn^{m} \right)} 
 \int_\rr \frac{1 - \psi\left( \lambda - an^{m} \right)}{\lambda - an^{m}} 
@@ -1320,9 +1606,9 @@ Therefore,
 \begin{equation}
   \label{iu}
 	\begin{split}
-		& \| \eqref{main-rel-term-4} \|_{X_{s,b}} 
+		& \| \cref{main1-rel-term-4} \|_{X_{s,b}} 
 		\\
-    & \lesssim \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right)^{2s}
+    & \le c_{\psi, b} \delta^{1/2-b} \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right)^{2s}
     \int_\rr \left( 1 + | |\tau| - n^{m } \right )^{2b} | | \wh{\psi_{\delta}}\left(
     \tau - an^{m } \right) |^2 \ d \tau \right.
 		\\
@@ -1331,7 +1617,7 @@ Therefore,
 		an^{m }} \wh{w}(n, \lambda) \ d \lambda |^2  \right)^{1/2}.
   \end{split}
 \end{equation}
-Applying \eqref{eqn:norm-key-ineq}, we have the bound
+Applying \cref{eqn:norm-key-ineq}, we have the bound
 %
 %
 \begin{equation*}
@@ -1348,11 +1634,11 @@ Applying \eqref{eqn:norm-key-ineq}, we have the bound
 \end{split}
 \end{equation*}
 %
-Hence, \eqref{iu} is bounded by
+Hence, \cref{iu} is bounded by
 %
 \begin{equation}
   \begin{split}
-    & c_{\psi, \delta, b} \sum_{a = \pm 1}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | \int_\rr
+    & c_{\psi, b} \delta^{1/2-b} \sum_{a = \pm 1}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | \int_\rr
 		\frac{1 - \psi\left( \lambda - an^{m } \right)}{\lambda - an^{m }}
 		\wh{w}(n, \lambda) \ d\lambda |^2 \right)^{1/2}
 		\\
@@ -1366,12 +1652,12 @@ Hence, \eqref{iu} is bounded by
 		\ d\lambda \right )^2 \right)^{1/2}.
   \end{split}
 \end{equation}
-Applying \eqref{one-plus-ineq} then \eqref{eqn:norm-key-ineq} we bound this by
+Applying \cref{one-plus-ineq} then \cref{eqn:norm-key-ineq} we bound this by
 \begin{equation}
   \label{fh}
 \begin{split}
     4 \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
-    \frac{|\wh{w}(n, \lambda)| }{1 + |\lambda - n^{m }|}
+    \frac{|\wh{w}(n, \lambda)| }{1 + | |\lambda| - n^{m }|}
     \ d\lambda \right )^2 \right)^{1/2}.
 	\end{split}
 \end{equation}
@@ -1394,7 +1680,7 @@ We now need the following corollary to
 %
 \begin{corollary}
 \label{cor:bilinear-estimate2}
-	If $a > 1/4$, $b > 1/2$, and $s \ge -a/2$, 
+	If $a > 1/2$, $b > 1/2$, and $s \ge -a/2$, 
   then 
 %
 %
@@ -1402,33 +1688,33 @@ We now need the following corollary to
 	\label{bilinear-estimate2}
 	\begin{split}
 		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr 
-    \frac{|\wh{w_{fgh}}(n, \tau) |}{(1 + | |\tau| - n^{m } |)^{2a}}
+    \frac{|\wh{w_{fg}}(n, \tau) |}{(1 + | |\tau| - n^{m } |)^{2a}}
 		 \ d\tau \right)^2  \right)^{1/2} \lesssim \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}.
 	\end{split}
 \end{equation}
 \end{corollary}
-Applying \cref{cor:bilinear-estimate2} to \eqref{fh}, we
+Applying \cref{cor:bilinear-estimate2} to \cref{fh}, we
 conclude that
 %
 %
 \begin{equation}
 	\label{main-int3-est}
 	\begin{split}
-		\|\eqref{main-rel-term-4}\|_{X_{s,b}} 
-    \le c_{\psi, \delta, b} \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}. 
+		\|\cref{main-rel-term-4}\|_{X_{s,b}} 
+    \le c_{\psi, b} \delta^{1/2-b} \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}. 
 	\end{split}
 \end{equation}
 %
 %
 %
-\subsection{Estimate for \eqref{main-rel-term-5}.}
+\subsection{Estimate for \cref{main1-rel-term-5}.}
 Note that
 %
 %
 \begin{equation}
 	\label{1n}
 	\begin{split}
-    \eqref{main-rel-term-5} \simeq \sum_{a = \pm 1}\sum_{k \ge 1}
+    \cref{main1-rel-term-5} \simeq \sum_{a = \pm 1}\sum_{k \ge 1}
 		\frac{i^k}{k!}g_k(x,t)
 	\end{split}
 \end{equation}
@@ -1472,13 +1758,13 @@ which gives
 \end{equation*}
 %
 %
-Applying this to \eqref{1n} and using Minkowski's inequality, we obtain
+Applying this to \cref{1n} and using Minkowski's inequality, we obtain
 %
 %
 \begin{equation}
 	\label{2n}
 	\begin{split}
-		& \|\eqref{main-rel-term-5}\|_{X_{s,b}} 
+		& \|\cref{main1-rel-term-5}\|_{X_{s,b}} 
     \\
     & \lesssim \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}
     \int_\rr \left( 1 + | |\tau| - an^{m } | \right)^{2b}
@@ -1500,7 +1786,7 @@ Applying this to \eqref{1n} and using Minkowski's inequality, we obtain
 \end{equation}
 %
 %
-Applying \eqref{eqn:norm-key-ineq} and the change
+Applying \cref{eqn:norm-key-ineq} and the change
 of variable $\tau - an^{m } = \tau'$
 gives
 %
@@ -1522,10 +1808,54 @@ gives
 		\\
     & \lesssim \int_\rr \left( 1 + | \tau' | \right)^{2b}| \wh{t^{k}
 		\psi_{\delta}(t)}(\tau') |^2 \ d \tau'
-		\\
-    & \le \|t^k \psi_{\delta}(t) \|_{H^{[b] + 1}(\rr)}^2
+		%\\
+    %& \le \|t^k \psi_{\delta}(t) \|_{H^{[b] + 1}(\rr)}^2
 	\end{split}
 \end{equation}
+%
+But
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{t^{k} \psi_{\delta}}(\tau) 
+  & = \int_{\rr} e^{-it \tau} t^{k} \psi_{\delta}(t) dt
+  \\
+  & = \int_{\rr} e^{-it \tau} t^{k} \psi(\frac{2t}{\delta})dt
+  \\
+  & = \int_{\rr} e^{-i \tau s \delta /2} \left( \frac{s \delta}{2}
+  \right)^{k} \psi(s) \frac{\delta}{2} ds
+  \\
+  & = \left( \frac{\delta}{2} \right)^{k+1} \wh{s^{k} \psi}
+  \left(\frac{\delta \tau}{2} \right )
+\end{split}
+\end{equation*}
+%
+%
+which gives
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} (1 + | \tau' |)^{2b} | \wh{t^{k} \psi_{\delta}}(\tau') |^{2} d
+  \tau'
+  & = \left( \frac{\delta}{2} \right)^{2k+2} \int_{\rr} (1 + | \tau'
+  |)^{2b} \wh{s^{k} \psi}\left( \frac{\delta \tau' }{2} \right)d \tau'
+  \\
+  & = \left (\frac{\delta}{2} \right )^{2k +1} \int_{\rr} \left( 1 + | \frac{2 \lambda}{\delta} |
+  \right)^{2b} \wh{s^{k} \psi}(\lambda) d \lambda
+  \\
+  & \le \left (\frac{\delta}{2} \right )^{2k+1} \int_{\rr} \left( \frac{1}{\delta} + | \frac{2 \lambda}{\delta} |
+  \right)^{2b} \wh{s^{2k} \psi}(\lambda) d \lambda
+  \\
+  & \simeq \left( \frac{\delta}{2} \right)^{2k +1 -2b} \| s^{k} \psi
+  \|_{H^{b}}^{2}
+  \\
+  & \le \left( \frac{\delta}{2} \right)^{2k +1 -2b} \| s^{k} \psi \|_{H^{[b] +
+  1}}^{2}
+\end{split}
+\end{equation*}
+%
 %
 where $[b]$ denotes the least integer of $b$. Note that
 %
@@ -1533,38 +1863,38 @@ where $[b]$ denotes the least integer of $b$. Note that
 \begin{equation}
 	\label{4n}
 	\begin{split}
-    & \|t^k \psi_{\delta} \|_{H^{[b] +1}(\rr)}
+    & \|t^k \psi \|_{H^{[b] +1}(\rr)}
 		\\
-    & = \|t^k \psi_{\delta}\|_{L^2(\rr)} + \|\p_t (t^k \psi_{\delta} )
+    & = \|t^k \psi\|_{L^2(\rr)} + \|\p_t (t^k \psi )
     \|_{L^2(\rr)} 
     \\
-    & + \| \p_{t}^{2} (t^{k} \psi_{\delta}) \|_{L^{2}(\rr)} + \ldots + \|
-    \p_{t}^{[b] + 1} (t^{k} \psi_{\delta})\|_{L^{2}}
+    & + \| \p_{t}^{2} (t^{k} \psi) \|_{L^{2}(\rr)} + \ldots + \|
+    \p_{t}^{[b] + 1} (t^{k} \psi)\|_{L^{2}}
     \\
-    & \le c_{\psi, \delta} + k c'_{\psi, \delta} + k (k -1) c_{\psi, \delta}'' + \ldots +
-    k(k-1) \ldots (k - [b]) c_{\psi}^{[b] + 1}
+    & \le c_{\psi} + k c'_{\psi} + k (k -1) c_{\psi}'' + \ldots +
+    k(k-1) \ldots (k - [b]) c_{\psi, b}^{[b] + 1}
     \\
-    & \lesssim c_{\psi, \delta} k(k-1) \cdots (k - [b]).
+    & \lesssim c_{\psi, b} k(k-1) \cdots (k - [b]).
 	\end{split}
 \end{equation}
 %
 %
-Hence, applying \eqref{3n} and \eqref{4n} to \eqref{2n}, we obtain
+Hence, applying \cref{3n} and \cref{4n} to \cref{2n}, we obtain
 %
 %%
 \begin{equation}
 	\label{5n}
 	\begin{split}
-		\|\eqref{main-rel-term-5} \|_{X_{s,b}}
-		& \lesssim \sum_{a = \pm 1}
-    c_{\psi, \delta}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | h_k(n) |^2 
+		\|\cref{main1-rel-term-5} \|_{X_{s,b}}
+		& \lesssim c_{\psi, b} \sum_{a = \pm 1}
+    \sum_{k \ge [b] +1} \frac{\delta^{k-b +1/2}}{(k-[b] - 1)!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | h_k(n) |^2 
 		\right)^{1/2}
 		\\
-		& \lesssim  \sum_{a = \pm 1} \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    & \le c_{\psi, b} \delta^{1/2} \sum_{a = \pm 1} \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
     \times \sup_{k \ge [b] + 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | 
-		h_k(n) |^2 \right)^{1/2}
+		h_k(n) |^2 \right)^{1/2}, \quad 0 < \delta \le 1
 		\\
-		& = \sum_{a = \pm 1}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    & = c_{\psi, b} \delta^{1/2} \sum_{a = \pm 1}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
     \\
     & \times \sup_{k \ge [b] + 1} 
 		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} |\int_\rr 
@@ -1577,7 +1907,7 @@ Hence, applying \eqref{3n} and \eqref{4n} to \eqref{2n}, we obtain
 Recall that $0 \le \psi \le 1, \text{ supp} \, \psi \subset [-1,1 ]$. 
 This implies $$| \psi\left( \tau - an^{m } \right) \cdot \left( \tau - an^{m }
 \right)^{k -1} | \le \chi_{| \tau - an^{m } | \le 1}, \qquad k \ge 1.$$ Hence,
-we bound the right hand side of \eqref{5n} by
+we bound the double sum on the right hand side of \cref{5n} by
 %
 %%
 \begin{equation*}
@@ -1611,7 +1941,7 @@ which by the inequality
 \end{equation*}
 %
 %%
-and \eqref{eqn:norm-key-ineq}
+and \cref{eqn:norm-key-ineq}
 is bounded by 
 %
 %%
@@ -1625,21 +1955,22 @@ is bounded by
 \end{equation}
 %
 %%
-Applying \cref{cor:bilinear-estimate2} to \eqref{main-int4-est-X-s-part}, we
+Applying \cref{cor:bilinear-estimate2} to \cref{main-int4-est-X-s-part}, we
 conclude that
 %
 %
 \begin{equation}
 \label{main-int4-est}
 	\begin{split}
-    \|\eqref{main-rel-term-5}\|_{X_{s,b}} \le c_{\psi, \delta} \|u\|_{X_{s,b}}^{3}.
+    \|\cref{main-rel-term-5}\|_{X_{s,b}} \le c_{\psi} \delta^{1/2}
+    \|u\|_{X_{s,b}}^{3}.
 	\end{split}
 \end{equation}
 %
 %
-Collecting estimates \eqref{main-int2-est}, 
-\eqref{main-int3-est}, and \eqref{main-int4-est}, and recalling 
-\eqref{main-rel-term-2}-\eqref{main-rel-term-5}, we obtain the following. 
+Collecting estimates \cref{main-int2-est}, 
+\cref{main-int3-est}, and \cref{main-int4-est}, and recalling 
+\cref{main1-rel-term-2}-\cref{main1-rel-term-5}, we obtain the following. 
 %
 %
 \begin{proposition}
@@ -1649,14 +1980,14 @@ For $s > -1/4$ and  $1/2 < b \le \min \{ 3/4, 1 + 2s \}$, we have
 %%
 \begin{equation*}
 	\begin{split}
-    \|Tu\|_{X^{s}} \le c
+    \|Tu\|_{X^{s}} \le c \delta^{1/2-b}
     \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
     + \|u\|_{X^{s}}^2 
 		\right)
 	\end{split}
 \end{equation*}
 %
-where $c = c_{\psi, \delta, b}$.  
+where $c = c_{\psi, b}$.  
 %%
 \end{proposition}
 %
@@ -1703,8 +2034,8 @@ itself. Next, note that
 %%
 \begin{equation*}
 	\begin{split}
-    Tu - Tv = \eqref{main-rel-term-3} + \eqref{main-rel-term-4} +
-    \eqref{main-rel-term-5} 
+    Tu - Tv = \cref{main1-rel-term-3} + \cref{main1-rel-term-4} +
+    \cref{main1-rel-term-5} 
   \end{split}
   \label{eqn:integral-form-dif}
 \end{equation*}
@@ -1755,7 +2086,7 @@ We conclude that $T = T_{\vp}$ is a contraction on the ball $B(0,
 \frac{1}{4c}) \subset X^{s}$. A Picard iteration then yields a unique 
 $u \in X^{s}$ satisfying $u = Tu$. Applying
 \cref{lem:embedding}, it follows that $u(x,t) \subset C( [-\delta, \delta], H^s)$ is a unique
-solution of the B4 ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} for $t
+solution of the B4 ivp \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} for $t
 \in [-\delta, \delta]$.
 %
 %
@@ -1809,10 +2140,10 @@ we obtain
 \begin{equation}
 	\label{gen-2a}
 	\begin{split}
-    & \| \eqref{main-rel-term-1g}\|_{X^{s}}
+    & \| \cref{main-rel-term-1g}\|_{X^{s}}
 		\le c \|u_0 -v_0\|_{H^s},
     \\
-    & \| \eqref{main-rel-term-2g}\|_{X^{s}}
+    & \| \cref{main-rel-term-2g}\|_{X^{s}}
     \le c \|u_1 -v_1\|_{H^{s-2}}.
 	\end{split}
 \end{equation}
@@ -1820,7 +2151,7 @@ we obtain
 %
 %
 %
-Therefore, from \eqref{21a} and \eqref{gen-2a}, we obtain
+Therefore, from \cref{21a} and \cref{gen-2a}, we obtain
 %
 %
 \begin{equation*}
@@ -1860,7 +2191,7 @@ or
 \end{equation}
 %
 %
-Applying  \cref{lem:embedding} to \eqref{pre-lem-estimate}, it follows that
+Applying  \cref{lem:embedding} to \cref{pre-lem-estimate}, it follows that
 for $(u_0, u_1), (v_0, v_1)  \subset
 B_{H^{s} \times H^{s-2}} \left (\frac{15}{64c^{3}} \right )$, the
 associated solutions $u, v \in C([-\delta, \delta], H^{s}(\ci))$ satisfy the estimate%
@@ -1881,7 +2212,7 @@ Hence, the flow map is Lipschitz continuous from $B_{H^{s}
 \times H^{s-2}} \left (\frac{15}{64c^{3}} \right )$ to $C([-\delta, \delta],
 H^{s}(\ci))$. This
 concludes the proof of well-posedness for the $B_4$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2}. \qquad \qedsymbol
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2}. \qquad \qedsymbol
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1983,7 +2314,7 @@ Hence,
 \begin{equation}
   \label{pre-fubini-int-form}
 	\begin{split}
-    |\text{lhs of} \ \eqref{duality-est}|
+    |\text{lhs of} \ \cref{duality-est}|
 	& \lesssim \sum_{n} \int_{\tau} \phi(n, \tau) \langle n \rangle^s 
   \sum_{n_{1}}
   \int_{\tau_{1}} c_f(n_1, \tau_1)
@@ -2037,7 +2368,7 @@ is bounded by
 \end{equation}
 %
 %
-Applying Cauchy-Schwartz again, \eqref{10g} is bounded by
+Applying Cauchy-Schwartz again, \cref{10g} is bounded by
 %
 %
 \begin{equation*}
@@ -2084,7 +2415,7 @@ n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2b} \langle  |\tau 
 \end{equation}
 %
 %
-Let us now return to the right hand side of \eqref{pre-fubini-int-form}.
+Let us now return to the right hand side of \cref{pre-fubini-int-form}.
 Then by the change of variable $\lambda =
 \tau - \tau_{1}$, we obtain
 \begin{equation*}
@@ -2148,7 +2479,7 @@ $\lambda, n$ then gives the bound
 \end{equation}
 %
 %
-Applying Cauchy-Schwartz again, \eqref{10g*} is bounded by
+Applying Cauchy-Schwartz again, \cref{10g*} is bounded by
 %
 %
 \begin{equation*}
@@ -2196,7 +2527,7 @@ n-n_{1} \rangle ^{2s}  \langle | \tau - \lambda|-n_{1}^{2}
     \rangle } d \tau  \right)^{1/2} \|_{L^\infty_{n, \lambda}}.
 	\end{split}
 \end{equation}
-Again, we return to the right hand side of \eqref{pre-fubini-int-form}.
+Again, we return to the right hand side of \cref{pre-fubini-int-form}.
 We seek to bound
 \begin{equation*}
 \begin{split}
@@ -2287,9 +2618,9 @@ which by Holder is bounded by
 Now consider the family $\{A_{j}\}_{1}^{k}, A_{j} \subset \rr^{2} \times
 \zz^{2}$ with
 $$\bigcup_{1}^{k} A_{j}= \rr^{2} \times
-\zz^{2}.$$ From \eqref{integral-bound-1st-form-per},
-\eqref{integral-bound-1st-form-per*},
-\eqref{integral-bound-2nd-form-per}, and our preceding argumentation,
+\zz^{2}.$$ From \cref{integral-bound-1st-form-per},
+\cref{integral-bound-1st-form-per*},
+\cref{integral-bound-2nd-form-per}, and our preceding argumentation,
 we see that the proof of \cref{prop:bilin-est-real} reduces to showing that
 either 
 %
@@ -2417,7 +2748,7 @@ where we consider cases
 \label{it-6}
 \end{enumerate}
 %
-for \eqref{sup-est-gen-per-1} and \eqref{sup-est-gen-per-2}, and cases
+for \cref{sup-est-gen-per-1} and \cref{sup-est-gen-per-2}, and cases
 %
 \begin{enumerate}[(i)]
 \item $ \sigma^{*}=\tau+n^2,\quad \sigma^{*}_1=\tau - \lambda+n_1^2,\quad
@@ -2433,7 +2764,7 @@ for \eqref{sup-est-gen-per-1} and \eqref{sup-est-gen-per-2}, and cases
   $\sigma^{*}=\tau-n^2,\quad \sigma^{*}_1=\tau - \lambda-n_1^2,\quad
   \sigma^{*}_2= \lambda-(n - n_1)^2$.  \label{it-6-star}
   \end{enumerate}
-for \eqref{sup-est-gen-per-3}.
+for \cref{sup-est-gen-per-3}.
 %
 %
 \begin{framed}
@@ -2448,14 +2779,14 @@ $\tau_1< 0, \tau-\tau_1< 0$ implies $\tau<0$ and $\tau_1\geq 0, \tau-\tau_1\geq
 \end{framed}
 %
 Observe that the transformation $(n, \tau, n_{1}, \tau_{1}) \mapsto -(n, \tau,
-n_{1}, \tau_{1})$ reduces \eqref{it-3} to \eqref{it-4}, \eqref{it-2} to
-\eqref{it-5}, and \eqref{it-1} to \eqref{it-6}. Furthermore, the change of
+n_{1}, \tau_{1})$ reduces \cref{it-3} to \cref{it-4}, \cref{it-2} to
+\cref{it-5}, and \cref{it-1} to \cref{it-6}. Furthermore, the change of
 variables $\tau_{2} = \tau - \tau_{1}, n_{2} = n - n_{1}$, and the
 transformation $(n, \tau, n_{2}, \tau_{2}) \mapsto - (n, \tau, n_{2},
-\tau_{2})$ reduces \eqref{it-5} to \eqref{it-4}. Since $L^{2}$ is invariant
+\tau_{2})$ reduces \cref{it-5} to \cref{it-4}. Since $L^{2}$ is invariant
 under change of variables and reflections, we may without loss of generality
-restrict our attention to cases \eqref{it-4} and \eqref{it-6}.
- \subsection{Case \eqref{it-6}} 
+restrict our attention to cases \cref{it-4} and \cref{it-6}.
+ \subsection{Case \cref{it-6}} 
 \label{ssec:case-it-6}
 Let 
 %
@@ -2539,7 +2870,7 @@ appendix.
   %
   %
 %
-By \cref{lem:calc}, \eqref{case-1-term-1-reduc} is bounded by
+By \cref{lem:calc}, \cref{case-1-term-1-reduc} is bounded by
 %
 %
 \begin{equation*}
@@ -2643,7 +2974,7 @@ Setting $\tau = 0$, we obtain
 \end{split}
 \end{equation*}
 %
-Hence, we cannot hope to bound \eqref{pathological-equality-case-1} for $s \le
+Hence, we cannot hope to bound \cref{pathological-equality-case-1} for $s \le
 1/4$ using this splitting. Instead, consider now
 %
 %
@@ -2758,7 +3089,7 @@ Then in region $A_{4,1}$
 \end{equation}
 %
 %
-Hence, applying apply \cref{lem:calc} and \eqref{smoothing-per-4-1}
+Hence, applying apply \cref{lem:calc} and \cref{smoothing-per-4-1}
 we obtain
 %
 %
@@ -2835,7 +3166,7 @@ Hence,
 %
 %
 %
-Since $a \ge 0$, it follows from \eqref{growth-term-per} that 
+Since $a \ge 0$, it follows from \cref{growth-term-per} that 
 %
 \begin{equation}
   \label{growth-term-control-per}
@@ -2846,7 +3177,7 @@ n \rangle ^{-2s} \langle n_{1} \rangle
 \end{equation}
 %
 %
-which we use to bound the right hand side of \eqref{region-a41} by
+which we use to bound the right hand side of \cref{region-a41} by
 %
 %
 \begin{equation*}
@@ -2902,8 +3233,8 @@ Note that in region $A_{4,2}$
 \end{split}
 \end{equation}
 Hence, applying
-\cref{lem:calc}, \eqref{growth-term-control-per}, and
-\eqref{smoothing-per-4-2}, we bound \eqref{region-4-2} by
+\cref{lem:calc}, \cref{growth-term-control-per}, and
+\cref{smoothing-per-4-2}, we bound \cref{region-4-2} by
 %
 %
 \begin{equation*}
@@ -2923,8 +3254,8 @@ Hence, applying
 %
 %
 Since the right hand side is bounded for $b > 1/4$ by \cref{lem:sum-estimate}, this
-completes the proof for case \eqref{it-6}.
-\subsection{Case \eqref{it-4}} 
+completes the proof for case \cref{it-6}.
+\subsection{Case \cref{it-4}} 
 \label{ssec:case-it-4}
 Let 
 %
@@ -2956,7 +3287,7 @@ which is equal to
     \langle  \lambda + n_{1}^{2} \rangle^{2b}  } d \tau  
 \end{split}
 \end{equation*}
-which by \eqref{growth-term-per} and \cref{lem:calc} is bounded by
+which by \cref{growth-term-per} and \cref{lem:calc} is bounded by
 %
 %
 \begin{equation*}
@@ -3019,7 +3350,7 @@ Applying \cref{lem:calc}, we obtain the bound
 %
 Note that we cannot improve our lower bound for $s$ using this splitting.
 To see this, we set $\tau = 0$
-in the right hand side of \eqref{pathological-equality} and obtain
+in the right hand side of \cref{pathological-equality} and obtain
 %
 %
 %
@@ -3162,7 +3493,7 @@ Then in region $B_{3,1}$
 %
 %
 Estimating first in region
-$B_{3,1}$, we apply \cref{lem:calc} and \eqref{smoothing-per-3-1-case-6}
+$B_{3,1}$, we apply \cref{lem:calc} and \cref{smoothing-per-3-1-case-6}
 to obtain
 %
 %
@@ -3192,7 +3523,7 @@ n \rangle ^{-2s} \langle n_{1} \rangle
 \end{equation}
 %
 %
-Since $a \ge 0$, it follows from \eqref{growth-term-control-per} that the right
+Since $a \ge 0$, it follows from \cref{growth-term-control-per} that the right
 hand side is bounded by
 %
 %
@@ -3253,8 +3584,8 @@ Note that in region $B_{3,2}$
 \end{equation}
 %
 Hence, applying
-\cref{lem:calc}, \eqref{growth-term-control-per}, and
-\eqref{smoothing-per-3-2-case-6} to \eqref{region-B-3-split-3}, we obtain the bound
+\cref{lem:calc}, \cref{growth-term-control-per}, and
+\cref{smoothing-per-3-2-case-6} to \cref{region-B-3-split-3}, we obtain the bound
 %
 %
 \begin{equation*}
@@ -3361,8 +3692,8 @@ It follows that
 \end{split}
 \end{equation}
 Hence, applying
-\eqref{growth-term-control-per}, \cref{lem:calc}, and
-\eqref{smoothing-per-3-3-case-6}, we bound \eqref{region-B-3-star-split} by
+\cref{growth-term-control-per}, \cref{lem:calc}, and
+\cref{smoothing-per-3-3-case-6}, we bound \cref{region-B-3-star-split} by
 %
 %
 \begin{equation*}
@@ -3514,7 +3845,7 @@ Hence,
 \begin{equation}
   \label{pre-fubini-int-form-real}
 	\begin{split}
-    |\text{lhs of} \ \eqref{duality-est-real}|
+    |\text{lhs of} \ \cref{duality-est-real}|
     & \lesssim \int_{\xi} \int_{\tau}   
     \int_{\xi_{1}}  \int_{\tau_{1}} \phi(\xi, \tau)
     c_f(\xi_1, \tau_1)
@@ -3533,10 +3864,10 @@ Hence,
 Now consider the family $\{A_{j}\}_{1}^{k}, A_{j} \subset \rr^{4}$ with
 $$\bigcup_{1}^{k} A_{j}= \rr^{4}.$$ 
 As in the periodic case, a combination of Cauchy-Schwartz, Fubini, and
-H{\"o}lder to estimate the right hand side of \eqref{pre-fubini-int-form-real}
+H{\"o}lder to estimate the right hand side of \cref{pre-fubini-int-form-real}
 reduces the proof of \cref{prop:bilin-est-real} to showing that
-%From \eqref{integral-bound-1st-form},
-%\eqref{integral-bound-2nd-form}, and our preceding argumentation,
+%From \cref{integral-bound-1st-form},
+%\cref{integral-bound-2nd-form}, and our preceding argumentation,
 %we see that the proof of \cref{prop:bilin-est-real} reduces to showing that
 %either 
 %
@@ -3659,7 +3990,7 @@ for the following cases.
 \label{it-real-6}
 \end{enumerate}
 %
-for \eqref{sup-est-gen-1} and \eqref{sup-est-gen-2}, and the analogous cases
+for \cref{sup-est-gen-1} and \cref{sup-est-gen-2}, and the analogous cases
 %
 \begin{enumerate}[(i)]
 \item $ \sigma^{*}=\tau+\xi^2,\quad \sigma^{*}_1=\tau - \lambda+\xi_1^2,\quad
@@ -3675,7 +4006,7 @@ for \eqref{sup-est-gen-1} and \eqref{sup-est-gen-2}, and the analogous cases
   $\sigma^{*}=\tau-\xi^2,\quad \sigma^{*}_1=\tau - \lambda-\xi_1^2,\quad
   \sigma^{*}_2= \lambda-(\xi - \xi_1)^2$.  \label{it-6-star-real}
   \end{enumerate}
-for \eqref{sup-est-gen-3}.
+for \cref{sup-est-gen-3}.
 %
 %
 \begin{framed}
@@ -3691,14 +4022,14 @@ $\tau_1< 0, \tau-\tau_1< 0$ implies $\tau<0$ and $\tau_1\geq 0, \tau-\tau_1\geq
 %
 %
 Observe that the transformation $(\xi, \tau, \xi_{1}, \tau_{1}) \mapsto -(\xi, \tau,
-\xi_{1}, \tau_{1})$ reduces \eqref{it-real-3} to \eqref{it-real-4}, \eqref{it-real-2} to
-\eqref{it-real-5}, and \eqref{it-real-1} to \eqref{it-real-6}. Furthermore, the change of
+\xi_{1}, \tau_{1})$ reduces \cref{it-real-3} to \cref{it-real-4}, \cref{it-real-2} to
+\cref{it-real-5}, and \cref{it-real-1} to \cref{it-real-6}. Furthermore, the change of
 variables $\tau_{2} = \tau - \tau_{1}, \xi_{2} = \xi - \xi_{1}$, and the
 transformation $(\xi, \tau, \xi_{2}, \tau_{2}) \mapsto - (\xi, \tau, \xi_{2},
-\tau_{2})$ reduces \eqref{it-real-5} to \eqref{it-real-4}. Since $L^{2}$ is invariant
+\tau_{2})$ reduces \cref{it-real-5} to \cref{it-real-4}. Since $L^{2}$ is invariant
 under change of variables and reflections, we may without loss of generality
-restrict our attention to cases \eqref{it-real-4} and \eqref{it-real-6}.
- \subsection{Case \eqref{it-real-6}} 
+restrict our attention to cases \cref{it-real-4} and \cref{it-real-6}.
+ \subsection{Case \cref{it-real-6}} 
 \label{ssec:case-it-real-6}
 We partition $\rr^{4}$ into the following three sets 
 %
@@ -3800,7 +4131,7 @@ Hence, in region $A_{1}$, we have the estimate
 \end{equation}
 %
 %
-which we use to bound \eqref{case-1-region-1} by
+which we use to bound \cref{case-1-region-1} by
 %
 %
 %
@@ -3861,7 +4192,7 @@ where the last line follows from a corollary to \cref{lem:calc}.
   %
 \label{cor:integral-bound}
 \end{corollary}
-Note that for \eqref{uniform-bound-region-1}, the
+Note that for \cref{uniform-bound-region-1}, the
 value of $c$ does not depend on the choice of $\tau$ or $\xi$. 
 Next we seek to bound
 \begin{equation}
@@ -3931,12 +4262,12 @@ we obtain
   \end{cases}
 \end{split}
 \end{equation}
-Applying \eqref{region-2-smoothing} and \eqref{growth-term}, we obtain 
+Applying \cref{region-2-smoothing} and \cref{growth-term}, we obtain 
 %
 %
 \begin{equation*}
 \begin{split}
-  \eqref{case-1-region-2}
+  \cref{case-1-region-2}
   & \lesssim
   \int_{\xi_{1}} \int_{\tau_{1}}  \frac{\chi_{A_{2}} \langle \xi_{1} \rangle
   ^{\gamma(s) -2a}}{ 
@@ -4011,7 +4342,7 @@ Next, noting that in region $A_{3}$,
 \end{equation*}
 %
 %
-and recalling \eqref{growth-term}, we see that \eqref{pre-A-3-bound} is bounded by
+and recalling \cref{growth-term}, we see that \cref{pre-A-3-bound} is bounded by
 \begin{equation*}
 \begin{split}
   &  \int_{\xi} \frac{\chi_{A_{2,2}} \langle \xi_{1} \rangle ^{\gamma(s) -2a}}{\langle
@@ -4047,7 +4378,7 @@ is equal to
 \end{equation*}
 %
 %
-\subsection{Case \eqref{it-real-4}} 
+\subsection{Case \cref{it-real-4}} 
 \label{ssec:case-it-real-4}
 We partition $\rr^{4}$ into three sets 
 %
@@ -4079,7 +4410,7 @@ and first seek to bound
     d \tau_1 d \xi_{1}.
   \end{split}
 \end{equation}
-By inequality \eqref{splitting-estimate}, this is bounded by
+By inequality \cref{splitting-estimate}, this is bounded by
 %
 %
 \begin{equation*}
@@ -4126,7 +4457,7 @@ Next, we seek to bound
   \xi_{1})^{2} \rangle^{2b} } d \tau d \xi.
 \end{split}
 \end{equation*}
-Applying \eqref{growth-term}, this is bounded by
+Applying \cref{growth-term}, this is bounded by
 \begin{equation*}
 \begin{split}
   &  \langle \xi_{1} \rangle ^{\gamma(s)}
@@ -4196,9 +4527,9 @@ and first seek to estimate
     d \tau_1 d \xi_{1}.
   \end{split}
 \end{equation}
-Notice that, unlike case \eqref{it-6}, we may \emph{not} assume without loss of generality
+Notice that, unlike case \cref{it-6}, we may \emph{not} assume without loss of generality
 that $|\tau - \tau_{1} - (\xi - \xi_1)^{2} | \le | \tau_{1} + \xi^{2} | $.
-Applying \cref{lem:calc} to \eqref{case-2-region-2} gives the bound
+Applying \cref{lem:calc} to \cref{case-2-region-2} gives the bound
 %
 %
 \begin{equation*}
@@ -4231,14 +4562,14 @@ But in $A_{3,1}$
 \end{equation}
 %
 %
-Hence, applying \eqref{growth-term} and \eqref{case-2-region-A2-key-est}, we obtain
+Hence, applying \cref{growth-term} and \cref{case-2-region-A2-key-est}, we obtain
 %
 %
 %
 %
 \begin{equation*}
 \begin{split}
-  \eqref{case-2-region-2}
+  \cref{case-2-region-2}
   & \lesssim 
   \int_{\xi_{1}} \int_{\tau_{1}} \frac{\chi_{A_{3,1}} \langle \xi_{1}
   \rangle^{\gamma(s) -2a}}{  
@@ -4312,7 +4643,7 @@ Next, noting that in region $A_{3,2}$,
 \end{equation}
 %
 %
-and recalling \eqref{growth-term}, we see that \eqref{pre-A-2-2} is bounded by
+and recalling \cref{growth-term}, we see that \cref{pre-A-2-2} is bounded by
 \begin{equation*}
 \begin{split}
   &  c
@@ -4388,8 +4719,8 @@ It follows that
 \end{split}
 \end{equation}
 Hence, applying
-\eqref{growth-term}, \cref{lem:calc}, and
-\eqref{smoothing-2-3-case-6}, we bound \eqref{region-A-2-3-star-split} by
+\cref{growth-term}, \cref{lem:calc}, and
+\cref{smoothing-2-3-case-6}, we bound \cref{region-A-2-3-star-split} by
 %
 %
 \begin{equation*}
@@ -4419,7 +4750,7 @@ the paper.
 %
 \subsection{Reducing to a First Order ODE} 
 \label{ssec:first-order-ode}
-Taking the spatial Fourier transform of \eqref{lin-mb} yields
+Taking the spatial Fourier transform of \cref{lin-mb} yields
 the ivp
 %
 %
@@ -4455,7 +4786,7 @@ where
 \end{gather*}
 %
 %
-Viewing $n$ as fixed, we see that \eqref{eqn:lin-mb-ode} is a second order
+Viewing $n$ as fixed, we see that \cref{eqn:lin-mb-ode} is a second order
 linear nonhomogeneous ODE. To solve it, we set 
 %
 %
@@ -4506,10 +4837,10 @@ f
 \end{equation}
 %
 %
-Hence, we have reduced solving the $2$nd order ODE \eqref{eqn:lin-mb-ode} to
-solving the first order ODE \eqref{eqn:first-order-ode-reduction}. Multiplying
+Hence, we have reduced solving the $2$nd order ODE \cref{eqn:lin-mb-ode} to
+solving the first order ODE \cref{eqn:first-order-ode-reduction}. Multiplying
 by the integrating factor $e^{-At}$ on both sides of
-\eqref{eqn:first-order-ode-reduction}, we obtain
+\cref{eqn:first-order-ode-reduction}, we obtain
 %
 %
 \begin{equation*}
@@ -4686,14 +5017,14 @@ easily compute its exponential.
       - n^{2} \sin n^{2}t & \cos n^{2}t
     \end{bmatrix}
     \\
-    & = \text{rhs of }\eqref{matrix-expo}
+    & = \text{rhs of }\cref{matrix-expo}
   \end{split}
   \end{equation*}
 \end{remark}
 \end{framed}
 %
 %
-Substituting \eqref{matrix-expo} into \eqref{ode-vec-soln} and recalling our notation, we obtain
+Substituting \cref{matrix-expo} into \cref{ode-vec-soln} and recalling our notation, we obtain
 %
 %
 \begin{equation*}
@@ -4722,12 +5053,12 @@ or
 \end{split}
 \end{equation*}
 %
-Taking the inverse Fourier transform then yields \eqref{eqn:integral-form}, as
+Taking the inverse Fourier transform then yields \cref{eqn:integral-form}, as
 desired.
 \section{Farah's Approach to Estimating the Integral $B_{4}$ Equation} 
 \label{ssec:farah-approach-reduction}
 Recall that the unique solution to ivp
-\eqref{four-trans-mb}-\eqref{four-trans-mb-data} is given by
+\cref{four-trans-mb}-\cref{four-trans-mb-data} is given by
 %
 %
 \begin{equation*}
@@ -4752,12 +5083,12 @@ Taking the inverse Fourier transform then gives
 %
 %
 Hence, we have rewritten the $B_{4}$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form, which we will now
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} in integral form, which we will now
 localize in time. 
 Let $\psi(t)$ be a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
 = [-1, 1 ]$. Define $\psi_{\delta}(t) = \psi(2t/\delta)$, $ 0 < \delta \le 1$.
-Motivated by $\eqref{eqn:integral-formb}$, we consider the equation
+Motivated by $\cref{eqn:integral-formb}$, we consider the equation
 %
 %
 \begin{equation}
@@ -4837,7 +5168,7 @@ where
 %
 %
 %
-Notice that \eqref{space-four-trans} is a \emph{global} relation in $t$.
+Notice that \cref{space-four-trans} is a \emph{global} relation in $t$.
 Hence, taking its time Fourier transform gives
 %
 %
@@ -4851,7 +5182,7 @@ Hence, taking its time Fourier transform gives
 %
 %
 Therefore, using the definition of the $X_{s,b}$ spaces, and applying
-\eqref{square-ineq} gives 
+\cref{square-ineq} gives 
 %
 %
 \begin{equation*}
@@ -4889,7 +5220,7 @@ Applying a change of variable implies
 %
 %
 %
-Applying  to \eqref{comp-pre-lemma} yields
+Applying  to \cref{comp-pre-lemma} yields
 %
 %
 \begin{equation}
@@ -4945,7 +5276,7 @@ where $c_{\psi, b'}$ is a constant depending only on $\psi$ and $b'$.
 %
 %
 Applying the lemma with $b' = -a$ we bound the right hand side
-of \eqref{pre-smoothing-lem} by
+of \cref{pre-smoothing-lem} by
 %
 %
 \begin{equation*}
@@ -4975,7 +5306,7 @@ of \eqref{pre-smoothing-lem} by
 \end{equation*}
 %
 %
-which by \eqref{eqn:norm-key-ineq} is bounded by 
+which by \cref{eqn:norm-key-ineq} is bounded by 
 %
 %
 %
@@ -5014,7 +5345,7 @@ estimate.
 %
 %
 %
-Applying \cref{prop:bilinear-est} to \eqref{eqn:non-lin-bound}, we conclude that
+Applying \cref{prop:bilinear-est} to \cref{eqn:non-lin-bound}, we conclude that
 for $-1/4 < s < 0$, $1/2 < b \le 1 + 2s$, and $s \ge 0$, $1/2 < b \le 1$, we have 
 %
 %
@@ -5036,12 +5367,12 @@ where $c = c_{\psi, s, \delta}$ for $-1/4 < s < 0$ and $c =c_{\psi, \delta}$ for
 We obtain the restrictions on $s$, $b$, and $c$ as follows. If $-1/4 < s \le 0$, let
 $0 < \epsilon < 1/2 + 2s$ and set
 $a = -2s$, $b = 1 + 2s - \epsilon$. Then $0 \le a < 1/2$ and $b \le 1-a$,
-so \eqref{eqn:non-lin-bound} holds. Furthermore, \cref{prop:bilinear-est} holds,
+so \cref{eqn:non-lin-bound} holds. Furthermore, \cref{prop:bilinear-est} holds,
 and substituting for $a,b$ we get $\delta^{[1-(a + b)]/2} = \delta^{\ee/2}$.
 \\
 If $ s \ge 0$, choose $1/4 < a < 1/2$, and let $0 < \ee < 1/2 -a$ and $b = 1-a
 -\ee$. Then
-\eqref{eqn:non-lin-bound} holds. Furthermore, 
+\cref{eqn:non-lin-bound} holds. Furthermore, 
 \cref{prop:bilinear-est} holds, and substituting for $a, b$ we get $\delta^{\left[
 1- (a + b) \right]/2} = \delta^{\ee/2} < \delta^{1/8}$. 
 \end{remark}
@@ -5126,7 +5457,7 @@ where the last step follows from the estimate
 %
 completing the proof. \qquad \qedsymbol
 %
-\subsection{Proof of \eqref{eqn:norm-key-ineq}}
+\subsection{Proof of \cref{eqn:norm-key-ineq}}
 \label{ssec:pf-mod-princ}
 By the reverse triangle inequality, we have
 %
@@ -5160,6 +5491,137 @@ while if $\tau - n^{2} > 0$, then
 %
 completing the proof. \qquad \qedsymbol
 %
+\begin{proof}[Proof of \cref{lem:schwartz-mult}]
+Note that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{\psi f}\left( n, \tau \right)
+		& = \wh{\psi}(\cdot) * \wh{f}(n,
+		\cdot)(\tau)
+		= \int_\rr \wh{\psi}(\tau_1) \wh{f} \left( n, \tau - \tau_1 \right) 
+		d\tau_1
+	\end{split}
+\end{equation*}
+%
+%
+and hence
+%
+%
+\begin{equation}
+	\label{n1b}
+	\begin{split}
+		\|\psi f\|_{X^s} 
+		& = \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left( 1 + | \tau -
+    n^{m} | \right)^{2b} | \int_\rr \wh{\psi}(\tau_1) \wh{f}\left( n, \tau -
+		\tau_1
+		\right)  d \tau_1 d \tau |^2 \right)^{1/2}
+		\\
+		& \le \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left( 1 + | \tau -
+		n^{m }
+		|
+    \right)^{2b} \left( \int_\rr |\wh{\psi}\left( \tau_1 \right) | |\wh{f}\left( n,
+		\tau - \tau_1
+		\right) |  d \tau_1 d \tau \right)^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Using the relation
+%
+%
+\begin{equation*}
+	\begin{split}
+		1 + | \tau - n^{m } |
+    & = 1 + | \tau - \tau_1 + \tau_{1} - n^{m} |
+		\\
+		& \le 1 + | \tau_1 | + | \tau - \tau_1 - n^{m} |
+		\\
+		& \le \left( 1 + | \tau_1 | \right)\left( 1 + | \tau - \tau_1 -
+		n^{m} | \right)
+	\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\cref{n1b}
+		& \le \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \right.
+		\\
+		& \times \left . \int_\rr \left(
+		\int_\rr \left( 1 + | \tau_1 | \right)^{b} | \wh{\psi}(\tau_1) |
+		\left( 1 + | \tau - \tau_1 - n^{m} | \right)^{b} \wh{f}\left( n, \tau
+		- \tau_1
+		\right)d \tau_1
+		\right)^2 d \tau \right)^{1/2}
+	\end{split}
+\end{equation*}
+%
+%
+which by Minkowski's inequality is bounded by
+%
+%
+\begin{equation}
+	\label{n2b}
+	\begin{split}
+		& \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \right.
+		\\
+		& \times \left. \left( \int_\rr \left[ \int_\rr
+    \left( 1 + | \tau_{1} | \right)^{2b} | \wh{\psi}(\tau_1) |^2 \left( 1 + |
+		\tau - \tau_1 - n^{m} |
+    \right)^{2b} | \wh{f}\left( n, \tau - \tau_1 \right) |^2 d \tau 
+    \right]^{1/2} d \tau_{1} \right)^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Using the change of variable $\tau - \tau_1 = \lambda$ gives
+%
+%
+\begin{equation}
+  \label{uh}
+	\begin{split}
+		\cref{n2b}
+		& = \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}\right.
+		\\
+		& \times \left.  \left( \int_\rr \left[
+    \int_\rr \left( 1 + | \tau_1 | \right)^{2b} | \wh{\psi}\left( \tau_1
+    \right) |^2 \left( 1 + | \lambda - n^{m} | \right)^{2b} | \wh{f} \left( n,
+		\lambda
+    \right)|^2 d \lambda \right]^{1/2} d \tau_{1} \right)^2 \right)^{1/2}
+		\\
+		& =  \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \right.
+		\\
+		& \times \left. \left( \int_\rr \left( 1 + |
+		\tau_1 |
+		\right)^{b} | \wh{\psi}(\tau_1) | d \tau_1 \left[ \int_\rr \left( 1 + |
+		\lambda - n^{m} |
+		\right) | \wh{f}\left( n, \lambda \right) |^2 d \lambda \right]^{1/2}
+		\right)^2 \right)^{1/2}.
+  \end{split}
+\end{equation}
+%
+%
+Applying a computation similar to
+\cref{cutoff-scaling}-\cref{cutoff-scaling-p}, the right hand side of \cref{uh} simplifies to
+\begin{equation*}
+  \begin{split}
+    & \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \left( c_{\psi}
+    \delta^{-b} \left[ \int_\rr
+    \left( 1 + | \lambda - n^{m} | \right)^{2b} | \wh{f}\left( n, \lambda
+    \right) |^2 d \lambda
+    \right]^{1/2} \right)^{2} \right)^{1/2}
+    \\
+    & = c_{\psi} \delta^{-b} \|f\|_{X_{s,b}}
+	\end{split}
+\end{equation*}
+%
+concluding the proof. 
+\end{proof}
 %
 \subsection{Proof of \cref{lem:calc}}
 %
@@ -5708,8 +6170,8 @@ Therefore,
 \end{equation}
 %
 %
-Substituting estimates \eqref{microl-est} and \eqref{hb-norm} into the right
-hand side of \eqref{h1-norm}, we see that
+Substituting estimates \cref{microl-est} and \cref{hb-norm} into the right
+hand side of \cref{h1-norm}, we see that
 %
 %
 \begin{equation*}
@@ -5812,7 +6274,7 @@ It follows that
 %
 %
 %
-Furthermore, from computations \eqref{1h}-\eqref{3h} and \eqref{4ng} (both with
+Furthermore, from computations \cref{1h}-\cref{3h} and \cref{4ng} (both with
 $k=0$), we obtain 
 %
 \begin{equation}
@@ -5826,8 +6288,8 @@ $k=0$), we obtain
 \end{equation}
 %
 %
-Substituting \eqref{est-II-1} and \eqref{est-II-2} into the right hand side of
-\eqref{est-II}, we obtain
+Substituting \cref{est-II-1} and \cref{est-II-2} into the right hand side of
+\cref{est-II}, we obtain
 %
 %
 \begin{equation}
@@ -5929,7 +6391,7 @@ and so
 \end{equation*}
 %
 %
-Applying \eqref{sob-term-bound} we bound this by
+Applying \cref{sob-term-bound} we bound this by
 %
 %
 \begin{equation*}
@@ -5956,7 +6418,7 @@ Therefore,
 \end{equation}
 %
 %
-Combining \eqref{rom-1}, \eqref{rom-2}, and \eqref{rom-3} concludes the proof.
+Combining \cref{rom-1}, \cref{rom-2}, and \cref{rom-3} concludes the proof.
 \qquad \qedsymbol
 %
 %
@@ -6093,7 +6555,7 @@ But
 \end{equation*}
 %
 %
-Substituting back into \eqref{crit-ind-comp}, we obtain
+Substituting back into \cref{crit-ind-comp}, we obtain
 %
 %
 \begin{equation*}
@@ -6230,7 +6692,7 @@ But
 \end{equation*}
 %
 %
-Substituting back into \eqref{crit-ind-comp-B2}, we obtain
+Substituting back into \cref{crit-ind-comp-B2}, we obtain
 %
 %
 \begin{equation*}

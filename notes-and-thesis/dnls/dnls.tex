@@ -17,121 +17,8 @@ We consider the derivative nonlinear Schr{\"o}dinger (dNLS) initial value proble
 where $m \in \{3, 5, 7,\dots \}$ and $\lambda \in \{-1, 1\}$.
 %
 %
-\begin{definition}
-	We say that the dNLS ivp \eqref{1dNLS-eq}-\eqref{1dNLS-init-data} is
-	\emph{locally well posed} in
-	$X$ if 
-	\begin{enumerate}
-		\item For every $\vp(x) \in
-	B_R$ there exists $T>0$ depending on $R$ and a unique function
-	\\
-	$u \in C([-T, T],
-	X)$ satisfying \eqref{1dNLS-eq} for all $t \in [-T, T]$. 
-\item The flow map $u_0 \mapsto u(t)$ is locally uniformly continuous. That is, if $u_0
-	\in B_R$, $\{u_{0,n}\} \subset B_R$, and 
-	$\|u_0 - u_{0, n} \|_{H^{s}(\ci)} \to 0$, then there exists $T >0$ depending
-	on $R$ such that $\|u(\cdot, t) - u_{n}(\cdot,t) \|_{X} \to
-	0$ for $t \in [-T, T]$. 
-	\end{enumerate}
-	%Otherwise, we say that the dNLS ivp is \emph{ill-posed}.
-\end{definition}
-%
-%
-We are now prepared to state the following result.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				 Well Posedness Theorem
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{theorem}
-	\label{1thm:prim}
-	The dNLS ivp is well-posed in $\dot{H}^s(\ci)$ for $s \ge \frac{1-m}{4}$.  
-\end{theorem}
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				Outline
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Outline of the Proof of Theorem}
-%
-%
-%
-%
-%
-We first derive a weak formulation of the dNLS ivp. 
-Let $\ci = [0, 2 \pi]$, and use
-the following notation for the Fourier transform
-%
-%
-%
-%
-\begin{equation}
-	\label{1four-trans-pde}
-	\begin{split}
-		\widehat{f}(n) = \int_{\ci} e^{-ix n} f(x) \, dx.
-	\end{split}
-\end{equation}
-Let $w(x,t) = u \p_x u$. Applying 
-the Fourier transform to the dNLS ivp in the space variable we obtain 
-%
-%
-\begin{gather*}
-	\p_t \widehat{u}(n, t) = (-1)^{\frac{m-3}{2}}i n^m \widehat{u}(n, t) - \lambda i  
-	\widehat{w} (n, t),
-	\\
-	\widehat{u} (n,0) = \widehat{\vp}(n)
-\end{gather*}
-%
-%
-which is a globally well-defined relation in $t$ 
-and $n$. Note that by time reversal, we similarly have 
-\begin{gather*}
-	-\p_t \widehat{u}(n, -t) = (-1)^{\frac{m-3}{2}}i n^m \widehat{u}(n, -t) - \lambda i  
-	\widehat{w} (n, -t),
-\end{gather*}
-or
-\begin{gather*}
-	\p_t \widehat{u}(n, -t) = (-1)^{\frac{m-1}{2}}i n^m \widehat{u}(n, -t) + \lambda i  
-	\widehat{w} (n, -t).
-\end{gather*}
-Since the sign of $\lambda$ plays no role in the proof of local well-posedness,
-we now assume $\frac{m-1}{2}$ to be even without loss of generality. 
-Multiplying \eqref{1four-trans-pde} by the integrating factor $e^{itn^m}$ then yields
-%%
-%%
-\begin{equation*}
-	\begin{split}
-		\left[ e^{ it n^m} \widehat{u}(n) \right]_t = i
-		 e^{ it n^m} \widehat{w} (n, t).	
-	\end{split}
-\end{equation*}
-%
-%
-Integrating from $0$ to $t$, we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{u}(n, t) = \wh{\vp}(n) e^{- it n^m} + i  
-		\int_0^t e^{ i(t' - t) n^m} \wh{w}(n, t') \ 
-		dt'.
-	\end{split}
-\end{equation*}
-%
-%
-Therefore, by Fourier inversion 
-%
+Following the arguments used for the mNLS, the dNLS can be rewritten in the
+integral form %
 %
 \begin{equation}
 	\label{1dNLS-integral-form}
@@ -145,126 +32,17 @@ Therefore, by Fourier inversion
 \end{equation}
 %
 %
-Then it is immediate that \eqref{1dNLS-integral-form} is a weaker 
-restatement of the Cauchy-problem \eqref{1dNLS-eq}-\eqref{1dNLS-init-data}, 
-since by construction any classical solution of the dNLS 
-ivp is a solution to \eqref{1dNLS-integral-form}. 
-\\
-\\
-%
-%
-We now derive an integral 
-equation global in $t$ and equivalent to \eqref{1dNLS-integral-form} for $t 
-\in [-T, T]$. Let $\psi(t)$ be a cutoff function symmetric about the 
-origin such that $\psi(t) = 1$ for $|t| \le T$ and $\text{supp} \, \psi 
-= [-2T, 2T ]$. Multiplying the right hand side of expression
-$\eqref{1dNLS-integral-form}$ by $\psi(t)$, we obtain
-%
-%
-\begin{equation}
-	\begin{split}
-		\label{1cutoff-int-eq}
-		u(x, t)
-		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn - t n^m)} \widehat{\vp}(n) 
-		\\
-		& + \frac{i }{2 \pi} \psi(t) \int_0^t \sum_{n \in \zz} 
-		e^{i\left[ xn + (t - t')n^m \right]} \wh{w}(n, t') \ dt'.
-	\end{split}
-\end{equation}
-%
-%
-Noting that $e^{i\left( xn + tn^m \right)}$ 
-does not depend on $t'$, we may rewrite
-%
-%
-\begin{equation}
-	\label{1pre-prim-int-form}
-	\begin{split}
-		& \frac{i }{2 \pi} \psi(t) \int_0^t \sum_{n \in \zz} 
-		e^{i\left[ xn + (t - t') n^m \right]} \wh{w}(n, t') \ dt'
-		\\
-		& = \frac{i}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i\left( xn + t 
-		 n^m 
-		\right)} \int_0^t e^{- it'n^m} \wh{w}(n, t') \ dt'.
-	\end{split}
-\end{equation}
-%%
-%%
-We remark that this is a \emph{global} relation in $t$. Therefore, by Fourier 
-inversion
-%
-%
-%
-%
-%
+where 
 %
 %
 \begin{equation*}
-	\begin{split}
-		\text{rhs of} \; \eqref{1pre-prim-int-form}
-		& = \frac{i}{4 \pi^2} \psi (t) \sum_{n \in \zz} e^{i\left( xn + t 
-		 n^m
-		\right)} \int_0^t \int_\rr e^{it'\left( \tau - n^m \right) }
-		\wh{w}(n, \tau) d \tau dt'
-		\\
-		& = \frac{i}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr 
-		e^{i\left( xn + tn^m \right)} \frac{e^{it\left( \tau - n^m 
-		\right)}-1}{\tau - n^m} \wh{w}(n, \tau) d \tau
-	\end{split}
+\begin{split}
+  w(x,t) = \frac{1}{2 \pi} \sum_{n \in \zz} n e^{inx}  \wh{| u |^{2} u}(n, t)
+\end{split}
 \end{equation*}
 %
 %
-where the last step follows from integration. Substituting
-into \eqref{1cutoff-int-eq} we obtain
-%
-%
-\begin{equation}
-	\begin{split}
-		\label{1cutoff-int-eq-2}
-		u(x, t)
-		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn - tn^m)} \widehat{\vp}(n) 
-		\\
-		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr
-		e^{i(xn + t n^m)} \frac{e^{it(\tau - n^m)}- 1}{\tau - n^m} 
-		\wh{w}(n, \tau) \ d \tau.
-	\end{split}
-\end{equation}
-%
-%
-%
-%
-%
-Next, we localize near the singular curve $\tau =  n^m$.  Multiplying the
-summand of the second term of \eqref{1cutoff-int-eq-2} by $1 + \psi(\tau -
-n^m) - \psi(\tau -
-n^m) $ and
-rearranging terms, we have
-%
-%
-\begin{equation*}
-	\begin{split}
-		 u(x, t)
-		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn + t n^{m 
-		})} \widehat{\vp}(n) 
-		\\
-		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr e^{ixn}  
-		e^{it \tau} \frac{ 1 - \psi(\tau - n^m) 
-		}{\tau - n^m} \wh{w}(n, \tau) \ d \tau
-		\\
-		& - \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int _\rr e^{i(xn + 
-		t n^m)}
-		 \frac{1- \psi(\tau - n^m)}{\tau - n^m} \wh{w}(n, \tau) \ d \tau
-		\\
-		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr
-		e^{i(xn + t n^m)}
-		\frac{\psi(\tau - n^m)\left[ e^{it(\tau - n^m)}-1 
-		\right]}{\tau - n^m} \wh{w}(n, \tau) \ d \tau
-	\end{split}
-\end{equation*}
-%
-%
-which by a power series expansion of $[e^{it(\tau - n^m)}-1]$ simplifies  
-to
+We then localize in time to obtain 
 %
 %
 \begin{align}
@@ -272,21 +50,21 @@ to
 	& u(x, t) 
 		\\
 		\label{1main-int-expression-1}
-		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn + tn^{m 
+		& = \frac{1}{2 \pi} \psi_{\delta}(t) \sum_{n \in \zz} e^{i(xn + tn^{m 
 		})} \widehat{\vp}(n) 
 		\\
 		\label{1main-int-expression-2}
-		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
+		& + \frac{1}{4 \pi^2} \psi_{\delta}(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{ 1 - \psi(\tau -  n^m) 
 		}{\tau -  n^m} \wh{w}(n, \tau) \ d \tau
 		\\
 		\label{1main-int-expression-3}
-		& - \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
+		& - \frac{1}{4 \pi^2} \psi_{\delta}(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
 		t n^m)}
 		 \frac{1- \psi(\tau -  n^m)}{\tau -  n^m} \wh{w}(n, \tau) \ d \tau
 		\\
 		\label{1main-int-expression-4}
-		& + \frac{1}{4 \pi^2} \psi(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
+		& + \frac{1}{4 \pi^2} \psi_{\delta}(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
 		\sum_{n \in \zz} \int_\rr e^{i(xn + t n^m )}
 		\psi(\tau -  n^m) (\tau -  n^m)^{k-1} \wh{w}(n, \tau)  
 		\\
@@ -294,7 +72,7 @@ to
 \end{align}
 %
 %
-where $T = T_{\vp}$. We now introduce the following spaces. 
+where $T = T_{\vp, \psi, \delta}$. We now introduce the following spaces. 
 %
 \begin{definition}
 	Denote $\dot{Y}^s$ to be the space of all
@@ -326,7 +104,7 @@ and
 %
 \begin{equation}
 	\label{1E-norm}
-	\| | n |^{s} \wh{u}\|_{ \dot{\ell}^2_n L^1_\tau } = \left[ \sum_{n \in \zzdot}| n |^{2s} \left(
+	\| \wh{u}\|_{ \dot{\ell}^2_n L^1_\tau } = \left[ \sum_{n \in \zzdot}| n |^{2s} \left(
 	\int_{\rr}| \wh{u}(n, \tau) |d \tau \right)^{2} \right]^{1/2}.
 \end{equation}
 %
@@ -338,41 +116,33 @@ The $\dot{Y}^s$ spaces have the following important property, whose proof
 is provided in the appendix.
 \begin{lemma}
 	\label{1lem:cutoff-loc-soln}
-	Let $\psi(t)$ be a smooth cutoff function with $\psi(t) =1$ for $t \in [-T, T]$. If
-	$\psi(t)u(x,t) \in \dot{Y}^s$, then $u \in C([-T, T], \dot{H}^s(\ci))$.
+  Let $\psi(t)$ be a smooth cutoff function with $\psi(t) =1$ for $t \in [-1,
+  1]$, and define $\psi_{\delta}(t) = \psi(t/\delta)$. If
+  $\psi_{\delta}(t)u(x,t) \in \dot{Y}^s$, then $u \in C([-\delta, \delta],
+  \dot{H}^s(\ci))$.
 \end{lemma}
 %
-%
-We will 
-show that for initial data $\vp \in \dot{H}^s(\ci)$, $T$ is a contraction on $B_M 
-\subset \dot{Y}^s$, where $B_M$ is the ball centered at the origin of radius $M = 
-M_{\vp}> 0$, by estimating the $\dot{Y}^s$
-norm of \eqref{1main-int-expression-1}-\eqref{1main-int-expression-4}. The 
-Picard fixed point theorem will
-then yield a unique solution to
-\eqref{1main-int-expression-0}-\eqref{1main-int-expression-4}. An application of
-\cref{1lem:cutoff-loc-soln} will then imply the existence of a unique, local
-solution $u \in C([-T, T], \dot{H}^s(\ci))$ to the dNLS ivp which coincides with the solution to
-\eqref{1main-int-expression-0}-\eqref{1main-int-expression-4} on the interval $[-T, T]$. Local Lipschitz continuity of the flow map will follow
-from estimates used to establish the contraction mapping. %
+We are now prepared to state our result.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%			Proof of Theorem	
+%				 Well Posedness Theorem
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Proof of Main Theorem}
-%
+\begin{theorem}
+	\label{1thm:prim}
+	The dNLS ivp is well-posed in $\dot{H}^s(\ci)$ for $s \ge \frac{1-m}{4}$.  
+\end{theorem}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%		Estimation of Integral Equality Part 1		
+%				Outline
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -380,129 +150,15 @@ from estimates used to establish the contraction mapping. %
 %
 %
 %
-\subsection{Estimate for \eqref{1main-int-expression-1}.}
-%
-%
-Letting $f(x,t) = \psi(t) \sum_{n \in \zz} e^{i(xn + tn^m)} 
-\wh{\vp}(n)$, we have $\wh{f}(n,t) = \psi(t) \wh{\vp}(n) e^{itn^m}$,
-from which we obtain
-%
-%
-\begin{equation}
-	\label{1fourier-trans-calc}
-	\begin{split}
-		\wh{f}(n, \tau)
-		& = \wh{\vp}(n) \int_\rr e^{-it( \tau - n^m)} 
-		\psi(t) \ d t
-		= \wh{\psi}(\tau - n^m) \wh{\vp}(n).
-	\end{split}
-\end{equation}
 %
 %
 %
 %
+\begin{proof}
+  It follows from the following bilinear estimates.
+\end{proof}
 %
 %
-Since $\wh{\psi}(\xi)$ is Schwartz for $|\xi| \ge T$, we see that 
-%
-%
-\begin{equation}
-	\begin{split}
-	\label{1main-int1-est}
-		\|\eqref{1main-int-expression-1}\|_{\dot{Y}^s}
-		& = \left (  \sum_{n\in \zz} |n|^{2s} \int_\rr \left( 1 + | \tau - n^m 
-		| \right )
-		| \wh{\psi}(\tau - n^m) \wh{\vp}(n) |^2 d \tau \right)^{1/2} 
-		\\
-		& + \left[ \sum_{n \in \zz }| n |^{2s} \left( \int_{\rr} |
-		\wh{\psi}(\tau - n^m)\wh{\vp}(n) | d \tau
-		\right)^{2} \right]^{1/2}
-		\\
-		& \le c_{\psi}
-		\|\vp\|_{\dot{H}^s(\ci)}.
-	\end{split}
-\end{equation}
-%
-%
-%
-%
-\subsection{Estimate for \eqref{1main-int-expression-2}}
-We now need the following lemma, whose proof is provided in the appendix.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%			Schwartz Multiplier	
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}
-\label{1lem:schwartz-mult}
-	For $\psi \in S(\rr)$,
-%
-%
-\begin{equation}
-	\label{1schwartz-mult}
-	\begin{split}
-		\|\psi f \|_{\dot{X}^s} \le c_{\psi} \|f \|_{\dot{X}^s}.
-	\end{split}
-\end{equation}
-%
-%
-\end{lemma}
-%
-%
-Hence,
-%
-%
-\begin{equation}
-	\label{1main-int2-est-X-s-part}
-	\begin{split}
-		\|\eqref{1main-int-expression-2}\|_{\dot{X}^s} 
-		& \lesssim 
-		\left( \| \sum_{n \in \zz} e^{ixn} \int_\rr 
-		e^{it \tau} \frac{ 1 - \psi (\tau - n^m ) 
-		}{\tau - n^m} \wh{w}(n, \tau) \ 
-		d \tau\|_{\dot{X}^s} \right)^{1/2}
-		\\
-		& =  \left( \sum_{n \in \zz} |n|^{2s} \int_\rr
-		(1 + |\tau - n^m|) \left | \frac{1 - \psi(\tau - n^{2 
-		})}{\tau - n^m} 
-		\wh{w}(n, \tau) \right |^2 \ d 
-		\tau \right)^{1/2}
-		\\
-		& \le \left( \sum_{n \in \zz} |n|^{2s} \int_{| \tau - n^m| \ge 1}
-		(1 + |\tau - n^m|) \frac{|\wh{w}(n, \tau)|^2 }{|\tau - n^m|^2} 
-		\ d 
-		\tau \right)^{1/2}
-		\\
-		& \lesssim  \left( \sum_{n \in 
-		\zz} |n|^{2s} \int_\rr
-		\frac{|\wh{w}(n, \tau) |^2}{1+ |\tau - 
-		n^m|} 
-		 \ d \tau 
-		\right)^{1/2}
-		\\
-		& \lesssim  \|u\|_{\dot{X}^s}^2
-	\end{split}
-\end{equation}
-%
-%
-where the last two steps follow from the inequality 
-%
-\begin{equation}
-	\label{1one-plus-ineq}
-	\begin{split}
-		\frac{1}{|\tau - n^m| } \le \frac{2}{1 + |\tau - n^m| }, 
-		\qquad |\tau - n^m| \ge 1
-	\end{split}
-\end{equation}
-%
-%
-and the following bilinear estimate, whose proof we leave for later.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -513,7 +169,7 @@ and the following bilinear estimate, whose proof we leave for later.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{proposition}
+\begin{proposition}[First Bilinear Estimate]
 	\label{1prop:prim-bilin-est}
 	For any $s \ge \frac{1-m}{4}$ we have
 	\begin{equation}
@@ -527,27 +183,6 @@ and the following bilinear estimate, whose proof we leave for later.
 	\end{equation}
 	where $w_{fg}(x,t)$ = $\p_x(fg)(x,t)$.
 \end{proposition}
-Furthermore,
-%
-%
-%
-%
-\begin{equation}
-	\label{1main-int-expression-2-Y-s-part}
-	\begin{split}
-		\| | n |^{s} \wh{\eqref{1main-int-expression-2}} \|_{\dot{\ell}^2_n L^1_\tau}
-		& \lesssim 
-		\left[ \sum_{n \in \zz}|n|^{2s} \left(
-		\int_{\rr}\frac{1 - \psi(\tau - n^m)}{\tau - n^m} \wh{w}(n, \tau) d
-		\tau \right)^{2} \right]^{1/2}
-		\\
-		& \lesssim \|f\|_{X^s} \|g\|_{X^s}
-	\end{split}
-\end{equation}
-%
-%
-where the last step follows from \eqref{1one-plus-ineq} and
-the following bilinear estimate.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -558,7 +193,7 @@ the following bilinear estimate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{proposition}
+\begin{proposition}[Second Trilinear Estimate]
 \label{1prop:bilinear-estimate2}
 For any $s \ge \frac{1-m}{4}$ we have
 %
@@ -573,586 +208,6 @@ For any $s \ge \frac{1-m}{4}$ we have
 \end{equation}
 \end{proposition}
 %
-%
-Combining \eqref{1main-int2-est-X-s-part} and
-\eqref{1main-int-expression-2-Y-s-part}, we conclude that
-%
-%
-%
-%
-\begin{equation}
-	\label{1main-int2-est}
-	\begin{split}
-		\|\eqref{1main-int-expression-2}\|_{\dot{Y}^s} \le c_{\psi}\|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
-	\end{split}
-\end{equation}
-%
-%
-\subsection{Estimate for \eqref{1main-int-expression-3}.}
-Letting $$f(x,t) = \psi(t) \sum_{n \in \zzdot} e^{i\left( xn + tn^m \right)} 
-\int_\rr \frac{1 - \psi\left( \lambda - n^m \right)}{\lambda - n^m} 
-\wh{w} \left( n, \lambda \right) \ d \lambda,$$ we have
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \wh{f^x}(n, t) = \psi(t) e^{itn^m} \int_\rr
-		\frac{1 - \psi\left( \lambda - n^m \right)}{\lambda - n^m} 
-		\wh{w}(n, \lambda) \ d \lambda
-	\end{split}
-\end{equation*}
-and
-\begin{equation*}
-	\begin{split}
-		 \wh{f}\left( n, \tau \right)
-		 & = \int_\rr e^{-it\left( \tau - n^m 
-		\right)} \psi(t) \int_\rr \frac{1 - \psi\left( 
-		\lambda - n^m 
-		\right)}{\lambda - n^m} \wh{w}(n, \lambda) \ d \lambda d \tau
-		\\
-		& = \wh{\psi}\left( \tau - n^m \right) \int_\rr 
-		\frac{1 - \psi\left( 
-		\lambda - n^m 
-		\right)}{\lambda - n^m} \wh{w}(n, \lambda) \ d \lambda.
-	\end{split}
-\end{equation*}
-Therefore,
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \| \eqref{1main-int-expression-3} \|_{\dot{X}^s} 
-		\\
-		& = \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau - n^{m
-		} \right ) | | \wh{\psi}\left( \tau - n^m \right) |^2 \ d \tau
-		\right.
-		\\
-		& \times \left . |
-		\int_\rr \frac{1 - \psi\left( \lambda - n^m \right)}{\lambda -
-		n^m} \wh{w}(n, \lambda) \ d \lambda |^2  \right)^{1/2}
-		\\
-		& \lesssim \left( \sum_{n \in \zzdot} |n|^{2s} | \int_\rr
-		\frac{1 - \psi\left( \lambda - n^m \right)}{\lambda - n^m}
-		\wh{w}(n, \lambda) \ d\lambda |^2 \right)^{1/2}
-		\\
-		& \le \left( \sum_{n \in \zzdot} |n|^{2s}  \left ( \int_\rr
-		\frac{1 - \psi\left( \lambda - n^m \right)}{|\lambda - n^m|}
-		|\wh{w}(n, \lambda) | \ d\lambda \right )^2 \right)^{1/2}
-		\\
-		& \le \left( \sum_{n \in \zzdot} |n|^{2s}  \left ( \int_{| \lambda - 
-		n^m | \ge 1}
-		\frac{|\wh{w}(n, \lambda) | }{|\lambda - n^m|}
-		\ d\lambda \right )^2 \right)^{1/2}.
-	\end{split}
-\end{equation*}
-%
-%
-Applying estimate \eqref{1one-plus-ineq} then gives
-%
-%%
-\begin{equation}
-	\label{1main-int3-est-X-s-part}
-	\begin{split}
-		\| \eqref{1main-int-expression-3} \|_{\dot{X}^s}
-		& \lesssim \left( \sum_{n \in \zzdot} |n|^{2s}  \left ( \int_\rr
-		\frac{|\wh{w}(n, \lambda)| }{1 + |\lambda - n^m|}
-		 \ d\lambda \right )^2 \right)^{1/2}
-		 \\
-		& \lesssim \|u\|_{\dot{X}^s}^2
-	\end{split}
-\end{equation}
-%
-%%
-where the last step follows from \cref{1prop:bilinear-estimate2}.
-Furthermore, 
-%
-%
-\begin{equation}
-	\label{1main-int-estimate-3-Y-s-part}
-	\begin{split}
-		\| | n |^s \wh{\eqref{1main-int-expression-3}}\|_{\dot{\ell}^2_n L^1_\tau}
-		& = \left[ \sum_{n \in \zzdot} |n|^{2s} \int_{\rr} |
-		\wh{\psi}(\tau - n^m) |^{2} \left( \int_{\rr}\frac{1 - \psi(\lambda -
-		n^m)}{\lambda - n^m} \wh{w}(n, \lambda) d \lambda \right)^{2} d \tau
-		\right]^{1/2}
-		\\
-		& \le c_{\psi} \left[ \sum_{n \in \zzdot} |n|^{2s} \left(
-		\int_{\rr} \frac{1 - \psi(\lambda - n^m)}{\lambda - n^m}
-		\wh{w}(n, \lambda) d \lambda
-		\right)^{2}\right]^{1/2}
-		\\
-		& \le 2 c_{\psi} \left[ \sum_{n \in \zzdot} |n|^{2s} \left(
-		\int_{\rr} \frac{\wh{w}(n, \lambda) }{1 + |\lambda - n^m|}
-		d \lambda
-		\right)^{2}\right]^{1/2}
-		\\
-		& \lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s} 
-	\end{split}
-\end{equation}
-%
-%
-where the last two steps follow from \eqref{1one-plus-ineq} and
-\cref{1prop:bilinear-estimate2}, respectively. Combining
-\eqref{1main-int3-est-X-s-part} and \eqref{1main-int-estimate-3-Y-s-part}, we
-conclude that
-%
-%
-\begin{equation}
-	\label{1main-int3-est}
-	\begin{split}
-		\|\eqref{1main-int-expression-3}\|_{\dot{Y}^s} 
-		\lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
-	\end{split}
-\end{equation}
-%
-%
-%
-\subsection{Estimate for \eqref{1main-int-expression-4}.}
-Note that
-%
-%
-\begin{equation}
-	\label{11n}
-	\begin{split}
-		\eqref{1main-int-expression-4} \simeq \sum_{k \ge 1}
-		\frac{i^k}{k!}g_k(x,t)
-	\end{split}
-\end{equation}
-%
-%
-where 
-%
-%
-\begin{equation*}
-	\begin{split}
-		& g_k(x,t) = t^k \psi(t) \sum_{n \in \zzdot} e^{i\left( xn + tn^m
-		\right)} h_k(n),
-		\\
-		& h_k(n) = \int_\rr \psi \left( \tau - n^m \right) \cdot \left(
-		\tau - n^m \right)^{k -1} \wh{w}(n, \tau) \ d \tau.
-	\end{split}
-\end{equation*}
-%
-%
-Hence
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{g_k^x}(n, t) = t^{k} \psi(t) e^{i t n^m} h_k(n)
-	\end{split}
-\end{equation*}
-%
-%
-which gives
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{g_k}(n, \tau)
-		& = h_k(n) \int_\rr e^{-it\left( \tau - n^m \right)}
-		t^{k}\psi(t) \ dt
-		\\
-		& = h_k(n) \wh{t^{k}\psi(t)} \left( \tau - n^m \right).
-	\end{split}
-\end{equation*}
-%
-%
-Applying this to \eqref{11n}, we obtain
-%
-%
-\begin{equation}
-	\label{12n}
-	\begin{split}
-		\|\eqref{1main-int-expression-4}\|_{\dot{X}^s} 
-		& \simeq \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
-		n^m
-		|
-		\right) | \wh{\sum_{k \ge 1} \frac{i^k}{k!}g_k(x,t)} |^2 \ d \tau
-		\right)^{1/2}
-		\\
-		& \le \sum_{k \ge 1} \frac{1}{k!}\left( \sum_{n \in \zzdot} |n|^{2s}
-		\int_\rr \left( 1 + | \tau - n^m | \right) | \wh{g_k}(n, \tau) |^2 \
-		d \tau \right)^{1/2}
-		\\
-		& = \sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zzdot} |n|^{2s}
-		\int_\rr \left( 1 + | \tau - n^m | \right) | h_k(n) \wh{t^k
-		\psi(t)} \left( \tau - n^m \right) |^2 \ d \tau \right)^{1/2}
-		\\
-		& = \sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zzdot} |n|^{2s} |
-		h_k(n) |^2 \int_\rr \left( 1 + | \tau - n^m | \right) | \wh{t^k
-		\psi(t)} \left( \tau - n^m \right) |^2 \ d \tau \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%
-Notice that for fixed $n$, the change of variable $\tau - n^m \to \tau'$
-gives
-%
-%
-\begin{equation}
-	\label{13n}
-	\begin{split}
-		\int_\rr \left( 1 + | \tau - n^m | \right) | \wh{t^{k}
-		\psi(t)}\left( \tau - n^m \right) |^2 \ d \tau
-		& = \int_\rr \left( 1 + |\tau'| \right) | \wh{t^k \psi(t)}(\tau') |^2 \
-		d \tau'
-		\\
-		& \le \int_\rr \left( 1 + |\tau'| \right)^2 | \wh{t^k \psi(t)}(\tau')
-		|^2 \ d \tau'
-		\\
-		& \lesssim \int_\rr \left( 1 + | \tau' |^2 \right) | \wh{t^{k}
-		\psi(t)}(\tau') |^2 \ d \tau'
-		\\
-		& = \|t^k \psi(t) \|_{H^1(\rr)}^2.
-	\end{split}
-\end{equation}
-%
-%
-But
-%
-%
-\begin{equation}
-	\label{14n}
-	\begin{split}
-		\|t^k \psi(t) \|_{H^1(\rr)}^2
-		& = \left( \|t^k \psi(t)\|_{L^2(\rr)} + \|\p_t \left( t^k \psi(t)
-		\right)\|_{L^2(\rr)} \right)^2
-		\\
-		& \lesssim \|t^{k}\psi(t) \|_{L^2(\rr)}^2 + \|\p_t \left (t^{k}
-		\psi(t) \right )\|_{L^2(\rr)}^2
-		\\
-		& \le \|t^k \psi(t) \|_{L^2(\rr)}^2 + \|t^k \p_t \psi(t)
-		\|_{L^2(\rr)}^2 + \|k t^{k -1} \psi(t) \|_{L^2(\rr)}^2
-		\\
-		& = c_{\psi} + c_{\psi}' + k^2 c_{\psi}''
-		\\
-		& \lesssim k^2.
-	\end{split}
-\end{equation}
-%
-%
-Hence, applying \eqref{13n} and \eqref{14n} to \eqref{12n}, we obtain
-%
-%%
-\begin{equation}
-	\label{15n}
-	\begin{split}
-		\|\eqref{1main-int-expression-4} \|_{\dot{X}^s}
-		& \lesssim
-		\sum_{k \ge 1} \frac{k}{k!} \left( \sum_{n \in \zzdot} |n|^{2s} | h_k(n) |^2 
-		\right)^{1/2}
-		\\
-		& \le \sum_{k \ge 1} \frac{k}{k!}
-		 \sup_{k \ge 1} \left( \sum_{n \in \zzdot} |n|^{2s} | 
-		h_k(n) |^2 \right)^{1/2}
-		\\
-		& = \sum_{k \ge 1} \frac{k}{k!}  \sup_{k \ge 1} 
-		\left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr 
-		\psi\left( \tau - n^m \right) \cdot \left( \tau - n^m 
-		\right)^{k -1} \wh{w}(n, \tau) \ d \tau \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%%
-Recall that $\text{supp} \, |\psi| \subset [0, T ]$. Pick $T \le 1$. 
-Then $| \psi\left( \tau - n^m \right) \cdot \left( \tau - n^m \right)^{k 
--1} | \le \chi_{| \tau - n^m | \le 1}$ for all $k \ge 1$. Hence, \eqref{15n} gives
-%
-%%
-\begin{equation*}
-	\begin{split}
-		\|\eqref{1main-int-expression-4} \|_{\dot{X}^s} 
-		& \lesssim \sum_{k \ge 1} \frac{k}{k!}  \left( \sum_{n \in \zzdot} | 
-		\int_{| \tau - n^m  |\le 1} | \wh{w}(n, \tau) \ d \tau |^2 
-		\right)^{1/2}
-	\end{split}
-\end{equation*}
-%
-%%
-which by the inequality
-%
-%%
-\begin{equation*}
-	\begin{split}
-		\frac{1 + | \tau - n^m |}{1 + | \tau  - n^m |} \le 
-		\frac{2}{1 + | \tau - n^m |}, \qquad | \tau - n^m  | \le 1
-	\end{split}
-\end{equation*}
-%
-%%
-implies
-%
-%%
-\begin{equation}
-\label{1main-int4-est-X-s-part}
-	\begin{split}
-		\|\eqref{1main-int-expression-4}\|_{\dot{X}^s}
-		& \lesssim \left( \sum_{n \in \zzdot} | \int_{| \tau - n^m| \le 1 }
-		\frac{\wh{w}(n, \tau)}{1 + | \tau - n^m |} \ d \tau |^2 
-		\right)^{1/2}
-		\\
-		& \le \left( \sum_{n \in \zzdot} | \int_\rr
-		\frac{\wh{w}(n, \tau)}{1 + | \tau - n^m |} \ d \tau |^2 
-		\right)^{1/2} \\
-		& \le \left( \sum_{n \in \zzdot} \left( \int_\rr 
-		\frac{|\wh{w}(n, \tau)|}{1 + | \tau - n^m |}  \ d \tau  \right)^2
-		\right)^{1/2} \\
-		& \lesssim \|u\|_{\dot{X}^s}^2
-	\end{split}
-\end{equation}
-%
-%%
-where the last step follows from \cref{1prop:bilinear-estimate2}. Similarly,
-we have
-%
-%
-\begin{equation}
-\label{1main-int4-est-Y-s-part}
-	\begin{split}
-		\| n| |^s \wh{\eqref{1main-int-expression-4}}\|_{\dot{\ell}^2_n L^1_\tau}
-		& \simeq \left[ \sum_{n \in
-		\zzdot}|n|^{2s} \left( \int_{\rr} | \sum_{k \ge 1}
-		\wh{\frac{i^{k}}{k!}g_{k}(x,t)(n, \tau)} |d \tau \right)^{2} \right]^{1/2}
-		\\
-		& \le \sum_{k \ge 1} \frac{1}{k!} \left[ \sum_{n \in \zzdot} (1 + | n
-		|)^{2s} \left( \int_{\rr} | \wh{g}(n, \tau) | d \tau \right)^{2}
-		\right]^{1/2}
-		\\
-		& = \sum_{k \ge 1} \frac{1}{k!} \left[ \sum_{n \in \zzdot} (1 + | n
-		|)^{2s} | h_{k}(n) |^2 \left( \int_{\rr} | \wh{t^{k} \psi(t)}(\tau -
-		n^m) |d \tau \right)^{2} \right]^{1/2}
-		\\
-		& = c_{\psi} \sum_{k \ge 1} \frac{1}{k!} \left[ \sum_{n \in \zzdot} (1 + | n
-		|)^{2s} | h_{k}(n) |^2 \right]^{1/2}
-		\\
-		& \lesssim \|u\|_{\dot{X}^s}^2
-	\end{split}
-\end{equation}
-%
-%
-where the last step follows from the computations starting from \eqref{15n}
-through \eqref{1main-int4-est-X-s-part}.
-Combining \eqref{1main-int4-est-X-s-part} and \eqref{1main-int4-est-Y-s-part}, we
-have
-%
-%
-\begin{equation}
-\label{1main-int4-est}
-	\begin{split}
-		\|\eqref{1main-int-expression-4}\|_{\dot{Y}^s} \lesssim \|u\|_{\dot{X}^s}^2.
-	\end{split}
-\end{equation}
-%
-%
-Collecting estimates \eqref{1main-int1-est}, \eqref{1main-int2-est}, 
-\eqref{1main-int3-est}, and \eqref{1main-int4-est}, and recalling 
-\eqref{1main-int-expression-1}-\eqref{1main-int-expression-4}, we see that
-$$\|Tu\|_{\dot{Y}^s} \le c_\psi \left( \|\vp \|_{\dot{H}^s(\ci)} + \|u\|_{\dot{X}^s}^2 \right )$$ 
-which by the inequality $\|u\|_{\dot{X}^s} \le \|u\|_{\dot{Y}^s}$ yields the following.
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%% Contraction Proposition
-%				 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%
-%
-\begin{proposition}
-\label{1prop:contraction}
-Let $s \ge \frac{1-m}{4}$. Then
-%
-%%
-\begin{equation*}
-	\begin{split}
-		\|Tu\|_{\dot{Y}^s} \le c_\psi \left( \|\vp \|_{\dot{H}^s(\ci)} + \|u\|_{\dot{Y}^s}^2 
-		\right).
-	\end{split}
-\end{equation*}
-%
-%%
-\end{proposition}
-We will now use \cref{1prop:contraction} to prove local well-posedness for the 
-dNLS ivp. Let $c = c_{\psi}$. For given $\vp$, we may choose $\psi$ such
-that 
-%
-%%
-\begin{equation*}
-	\begin{split}
-		\|\vp\|_{\dot{H}^s(\ci)} \le \frac{3}{16c^2}.
-	\end{split}
-\end{equation*}
-%
-%%
-Then if $\|u\|_{\dot{Y}^s} \le \frac{1}{4c}$, we have
-%
-%%
-\begin{equation*}
-	\begin{split}
-		\|T u \|_{\dot{Y}^s} 
-		& \le c \left[ \frac{3}{16c^2} + \left( 
-		\frac{1}{4c} \right)^2 \right]
-		=  \frac{1}{4c}.
-	\end{split}
-\end{equation*}
-%
-%%
-Hence, $T=T_{\vp}$ maps the ball $B\left( 0, \frac{1}{4c} \right) \subset \dot{Y}^s$ into 
-itself. Next, note that
-%
-%%
-\begin{equation*}
-	\begin{split}
-		Tu - Tv = \eqref{1main-int-expression-2} + \eqref{1main-int-expression-3} 
-		+ \eqref{1main-int-expression-4}
-	\end{split}
-\end{equation*}
-%
-%%
-where now $w = \frac{1}{2} \p_x (u^2 - v^2)$. Rewriting
-%
-%%
-\begin{equation*}
-	\begin{split}
-	\p_x(u^2 - v^2)	
-		& = \p_x[(u-v)(u+v)]
-		\end{split}
-\end{equation*}
-%
-%%
-and repeating the arguments used to estimate 
-\eqref{1main-int-expression-2}-\eqref{1main-int-expression-4} (in the
-bilinear estimates, we now set $f=u-v$ and $g = u+v$), we obtain
-%
-%%
-%%
-\begin{equation}
-	\label{120a}
-	\begin{split}
-		\|Tu - Tv \|_{\dot{Y}^s}  
-		& \le c_\psi \|u -v\|_{\dot{Y}^s} \|u + v \|_{\dot{Y}^s}
-		\\
-		& \le c_\psi \|u -v\|_{\dot{Y}^s} (\|u\|_{\dot{Y}^s}+ \|v \|_{\dot{Y}^s}).
-	\end{split}
-\end{equation}
-%
-%%
-If $u, v \in B(0, \frac{1}{4c}) \subset \dot{Y}^s$, it follows that
-%
-%%
-\begin{equation}
-	\label{121a}
-	\begin{split}
-		\|Tu - Tv \|_{\dot{Y}^s}
-		& \le c \|u -v \|_{\dot{Y}^s} \left( \frac{1}{4c} + 
-		\frac{1}{4c} \right)
-		\\
-		& = \frac{1}{2} \|u -v \|_{\dot{Y}^s}. 
-	\end{split}
-\end{equation}
-%
-%%
-We conclude that $T = T_{\vp}$ is a contraction on the ball $B(0, 
-\frac{1}{4c}) \subset \dot{Y}^s$. A Picard iteration and application of 
-\cref{1lem:cutoff-loc-soln} then yield a unique, local
-solution to the dNLS ivp \eqref{1dNLS-eq}-\eqref{1dNLS-init-data}.
-\begin{definition}
-	We say that the flow map $u_0 \mapsto u(t)$ is \emph{locally Lipschitz} in a Banach
-	space $X$ if for
-	$$u_0, v_0 \in B_R \doteq \{f: \|f\|_X < R\},$$ there exist $C, T>0$
-	depending on $R$ such that $\|u(\cdot, t) - v(\cdot, t)
-	\|_X \le C \|u_{0} - v_0 \|_{X}$ for $t \in [-T, T]$. We
-	say the flow map is \emph{locally uniformly
-	continuous} in $X$ if for
-	$u_0, v_0 \in B_R$ there exists $T >0$ depending on $R$ such that for
-	$t \in [-T, T]$, $\|u(\cdot, t) - v(\cdot, t) \|_{X} \to
-	0$ if $\|u_0 - v_0 \|_{H^{s}(\ci)} \to 0$. 
-\end{definition}
-%
-%
-Clearly any locally Lipschitz flow map is locally uniformly continuous. 
-Next, we shall establish local Lipschitz continuity in $\dot{Y}^s$ of the flow
-map. Let $\vp_1, \vp_2 \subset \dot{H}^s(\ci)$ be given. Choose $\psi$ such that
-$\vp_1, \vp_2 \subset B(0, \frac{15}{64c^{3}})$.  Then there exist $u_1, u_2 \in
-\dot{Y}^s$ such that $u_1 = T_{\vp_1}$, $u_2 = T_{\vp_2}$, and so
-%
-%
-\begin{equation}
-	\label{1gen-1a}
-	\begin{split}
-		T_{\vp_1}(u) - T_{\vp_2}(v)
-		& = \frac{1}{2\pi} \psi(t) \sum_{n \in
-		\zzdot}e^{i\left( xn + tn^m \right)} \wh{\vp_1 - \vp_2}(n)
-		\\
-		& + \eqref{1main-int-expression-2} + \eqref{1main-int-expression-3} +
-		\eqref{1main-int-expression-4} 
-	\end{split}
-\end{equation}
-%
-%
-where $w = \frac{1}{2} \p_x (u^2 - v^2)$. Using an argument similar to \eqref{1fourier-trans-calc}-\eqref{1main-int1-est},
-we obtain
-%
-%
-\begin{equation}
-	\label{1gen-2a}
-	\begin{split}
-		\| \frac{1}{2\pi} \psi(t) \sum_{n \in
-		\zzdot}e^{i\left( xn + tn^m \right)} \wh{\vp_1 - \vp_2}(n)\|_{\dot{Y}^s}
-		\le c_\psi \|\vp_{1} - \vp_{2}\|_{\dot{Y}^s}.
-	\end{split}
-\end{equation}
-%
-%
-Therefore, from \eqref{121a}-\eqref{1gen-2a}, we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|u -v \|_{\dot{Y}^s} = \|T_{\vp_1}(u) - T_{\vp_2}(v) \|_{\dot{Y}^s} \le c_\psi
-		\|\vp_{1} - \vp_{2} \|_{\dot{H}^s\left( \ci \right)} +
-		\frac{1}{2} \|u -v \|_{\dot{Y}^s}
-	\end{split}
-\end{equation*}
-%
-%
-which implies
-%
-%
-\begin{equation*}
-	\begin{split}
-		\frac{1}{2} \|u-v\|_{\dot{Y}^s} \le c_\psi \|\vp_1 - \vp_2 \|_{\dot{H}^s(\ci)}
-	\end{split}
-\end{equation*}
-%
-%
-or
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|u -v \|_{\dot{Y}^s} \le 2 c_\psi \|\vp_1 - \vp_2 \|_{\dot{H}^s(\ci)}.
-	\end{split}
-\end{equation*}
-%
-%
-Applying \cref{1lem:cutoff-loc-soln}, we then obtain
-%
-%
-	 %
-	 %
-	 \begin{equation*}
-		 \begin{split}
-			\|u(\cdot, t) -v(\cdot, t) \|_{\dot{H}^s(\ci)} \le 2 c_\psi \|\vp_1 -
-			\vp_2 \|_{\dot{H}^s(\ci)}, \qquad t \in [-T, T].
-		 \end{split}
-	 \end{equation*}
-	 %
-	 %
-Hence, the flow map of the dNLS ivp is locally Lipschitz continuous in
-$\dot{H}^s(\ci)$. This
-concludes the proof of \cref{1thm:prim}. \qquad \qedsymbol
 %
 %
 %
@@ -1404,30 +459,7 @@ H\"{o}lder, we obtain
 	\end{split}
 \end{equation}
 %
-We now need the following Fourier multiplier estimate, whose proof can be found
-in~\cite{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}.
-%
-\begin{lemma}
-	\label{1lem:four-mult-est-L4}
-	Let $(x, t) \in \ci \times \rr $ and $(n, \tau) \in \zz \times \rr$ be 
-	the dual variables. Let $v$ be a positive even integer. Then there is a 
-	constant $c_v > 0$ such that
-%
-%
-\begin{equation}
-	\label{1four-mult-est-L4}
-	\begin{split}
-		\|f\|_{L^4(\ci \times \rr)} \le c_v \|\left( 1 + | \tau - n^v | 
-		\right)^\frac{v+1}{4v} \wh{f} \|_{L^2( \zz \times \rr)}
-	\end{split}
-\end{equation}
-for every test function $f(x, t)$. 
-%
-%
-%
-%
-\end{lemma}
-From the lemma, we see that
+Applying \cref{nlem:four-mult-est-L4}, we see that
 %
 %
 \begin{equation}
@@ -1531,7 +563,7 @@ Hence
 \end{equation}
 %
 %%
-where the last step follows by dualizing \cref{1lem:four-mult-est-L4}. More
+where the last step follows by dualizing \cref{nlem:four-mult-est-L4}. More
 precisely, we have the following.
 \begin{corollary}
 	\label{1cor:four-mult-est-L4}
@@ -1719,7 +751,7 @@ H\"{o}lder, we obtain
 	\end{split}
 \end{equation}
 %
-From \cref{1lem:four-mult-est-L4}, we see that
+From \cref{nlem:four-mult-est-L4}, we see that
 %
 %
 \begin{equation}
@@ -1856,7 +888,7 @@ By Plancherel we have
 \end{equation}
 %
 %%
-while \cref{1lem:four-mult-est-L4} gives
+while \cref{nlem:four-mult-est-L4} gives
 %
 %
 \begin{equation}
@@ -1887,7 +919,7 @@ We conclude from \eqref{13f-gen}-\eqref{1four-mult-conseq-gen} that
 %
 %
 %
-\section{Proof of Bilinear Estimate}
+\section{Proof of Second Bilinear Estimate}
 Recall that for the NLS, one obtains one trilinear estimate as a corollary of
 another. Using this as motivation, let us see if we can obtain
 \cref{1prop:bilinear-estimate2} as a corollary of
@@ -2397,17 +1429,17 @@ Therefore, $u_{n}(x,t)$ solves the initial value problem
 \end{gather*}
 %
 %
-Next, we show that $u_{n}(\cdot, t) \in H^{s}(\ci)$ for all $t \in \rr$.
+Next, we show that $u_{n}(\cdot, t) \in \dot{H}^{s}(\ci)$ for all $t \in \rr$.
 First, we compute
 %
 %
 \begin{equation*}
 	\begin{split}
 		\|e^{inx}\|_{H^{s}(\ci)}
-		& =  \left[ \sum_{\xi \in \zz} \left( 1+ | \xi |
-		\right)^{2s} | \wh{e^{in(\cdot)}}(\xi) |^{2} \right]^{1/2}
+		& =  \left[ \sum_{\xi \in \zz} | \xi ^{2s}
+    | \wh{e^{in(\cdot)}}(\xi) |^{2} \right]^{1/2}
 		\\
-		& =  \left[ \sum_{\xi \in \zz} \left( 1 + | \xi | \right)^{2s} |
+		& =  \left[ \sum_{\xi \in \zz} | \xi |^{2s} 
 		\int_{\ci}e^{ix(n- \xi)}dx |^{2}\right]^{1/2}.
 	\end{split}
 \end{equation*}
@@ -2432,9 +1464,7 @@ we obtain
 \begin{equation}
 	\label{1oscill-bound}
 	\begin{split}
-		\|e^{inx}\|_{H^{s}(\ci)} & = \sqrt{2 \pi}(1 + | n |)^{s}
-		\\
-		& \le | n |^{s}
+		\|e^{inx}\|_{H^{s}(\ci)} & = 2 \pi| n |^{s}
 	\end{split}
 \end{equation}
 %
@@ -2445,7 +1475,7 @@ and so
 \begin{equation*}
 	\begin{split}
 		\|u_{n}(\cdot, t)\|_{H^s{(\ci)}} = \frac{1}{2}|n|^{-s}
-		\|e^{inx}\|_{H^{s}(\ci)} \le \frac{1}{2}.
+		\|e^{inx}\|_{H^{s}(\ci)} \le \pi.
 	\end{split}
 \end{equation*}
 %
@@ -2479,7 +1509,7 @@ and satisfies
 %
 \begin{equation*}
 	\begin{split}
-		\|u_{n, k_{n}}(\cdot, t)\|_{H^{s}(\ci)} \le k_{n}.
+		\|u_{n, k_{n}}(\cdot, t)\|_{H^{s}(\ci)} \le 2 \pi k_{n}.
 	\end{split}
 \end{equation*}
 %
@@ -2496,7 +1526,7 @@ rational numbers converging to $k =1/2$, we have
 		\\
 		& = | n |^{-s} \|e^{inx}(\frac{1}{2} - k_{n})\|_{H^s(\ci)}
 		\\
-		& = \frac{(1+| n |)^{s}}{|n|^{s}} |\frac{1}{2} - k_{n}| \to 0
+		& = 2 \pi |\frac{1}{2} - k_{n}| \to 0
 	\end{split}
 \end{equation*}
 %
@@ -2520,7 +1550,8 @@ and
 		k_{n}^{2}n^{-2s+1} - \frac{1}{4}n^{-2s+1}
 		\right)} \right) \|_{H^{s}(\ci)}
 		\\
-		& = \sqrt{2 \pi} \frac{(1 + | n |^s)}{|n|^s} | \frac{1}{2} - k_{n}e^{itn^{-2s+1}\left( k_{n}^{2}- \frac{1}{4}\right)} |
+		& = 2 \pi
+    | \frac{1}{2} - k_{n}e^{itn^{-2s+1}\left( k_{n}^{2}- \frac{1}{4}\right)} |
 	\end{split}
 \end{equation*}
 %

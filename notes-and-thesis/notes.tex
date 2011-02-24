@@ -1,21 +1,22 @@
-\documentclass[12pt,reqno]{scrbook}
-%\documentclass[12pt,reqno]{amsbook}
+%\documentclass[12pt,reqno]{srcbook}
+\documentclass[12pt,reqno]{amsbook}
 %
 %
-%\makeatletter  %all this is so that don't indent subsections in amsbook
-%\renewcommand{\subsection}{\@startsection
-%{subsection}%                   % the name
-%{2}%                         % the level
-%{0mm}% the indent
-%{.5\linespacing\@plus.7\linespacing}%  % the before skip
-%{-.5em}%          % the after skip
-%{\normalfont\bfseries}} % the style
+\makeatletter  %all this is so that don't indent subsections in amsbook
+\renewcommand{\subsection}{\@startsection
+{subsection}%                   % the name
+{2}%                         % the level
+{0mm}% the indent
+{.5\linespacing\@plus.7\linespacing}%  % the before skip
+{-.5em}%          % the after skip
+{\normalfont\bfseries}} % the style
 %%
 %\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}%
 %{0mm}{-.5em}%
 %{\normalfont\itshape}}
 %\makeatother
 %
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc} %otherwise have font issues
 \usepackage{lmodern} %this with above font packages give us all possible diacritics
@@ -135,30 +136,31 @@ urlcolor=blue,
 \tableofcontents
 \mainmatter
 \part{Strongly Dispersive Equations}
-\include{./nls-l4/nls-l4}
-\include{./dnls/dnls}
-\include{./kdv/kdv}
-\include{./knls/knls}
-\include{./mkdv/mkdv}
-\include{./mnls/mnls}
-\include{./nls-gevrey/nls-gevrey}
+\input{./mnls/mnls}
+%\input{./nls-l4/nls-l4}
+\input{./dnls/dnls}
+%\input{./kdv/kdv}
+\input{./knls/knls}
+%\input{./mkdv/mkdv}
+\input{./nls-gevrey/nls-gevrey}
 \part{Weakly Dispersive Equations}
-\include{./hr/hr}
+%\input{./hr/hr}
 %
 %
 \part{Miscellaneous}
 \chapter{Appendix}
-\include{./nls-l4/nls-l4-appen}
-\include{./dnls/dnls-appen}
-\include{./kdv/kdv-appen}
-\include{./knls/knls-appen}
-\include{./mkdv/mkdv-appen}
-\include{./mnls/mnls-appen}
-\include{./nls-gevrey/nls-gevrey-appen}
+\input{./mnls/mnls-appen}
+%\input{./nls-l4/nls-l4-appen}
+\input{./dnls/dnls-appen}
+%\input{./kdv/kdv-appen}
+\input{./knls/knls-appen}
+%\input{./mkdv/mkdv-appen}
+\input{./nls-gevrey/nls-gevrey-appen}
 %\input{./hr/hr-appen}
 %
 %
 \backmatter
 \bibliography{/Users/davidkarapetyan/math/bib-files/references}
 %
+%If want reference in normal size, do \begin{biblist}[\normalsize]
 \end{document}

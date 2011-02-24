@@ -1,13 +1,31 @@
-
 \ProvidesFile{template.tex}
-    [2005/07/27 v3.0 ^^J%
-     Template file for NDdiss2e class by Sameer Vijay^^J]
-\documentclass[final, 12pt]{nddiss2e}
+\documentclass[final, 12pt, noinfo]{nddiss2e}
                      % Available options are
                      % (a) draft + 10pt/11pt/12pt + twoadvisors + textrefs
                      % (b) review + noinfo + twoadvisors + textrefs
                      % (c) final + noinfo + twoadvisors + textrefs
 \let\bibsection\relax 
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\centering}
+{\chaptertitlename\ \thechapter}{20pt}{\uppercase} %capitalize
+%chapters--required by thesis format
+\usepackage{titletoc}  %capitalize chapters in toc--required by thesis
+\titlecontents{chapter}
+[0pt]
+{\addvspace{1pc}%
+\normalfont}%
+{\contentsmargin{0pt}%
+\normalfont
+\makebox[0pt][r]{\huge\thecontentslabel\enspace}%
+\uppercase}
+{\contentsmargin{0pt}%
+\uppercase}
+{}
+[\addvspace{0.1pc}]
+
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
 \usepackage[T1]{fontenc}
 \usepackage{ae,aecompl} 
 \usepackage{fix-cm} %allow arbitrary size fonts
@@ -23,7 +41,7 @@
 \usepackage{appendix}
 \synctex=1
 \usepackage{enumerate} %to change enumerate symbols
-%\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage[initials]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
 linkcolor=blue,
@@ -31,6 +49,7 @@ citecolor=blue,
 urlcolor=blue,
 }
 \usepackage{cleveref} %must be last loaded package to work properly
+\renewcommand{\cref}{\Cref}
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -85,11 +104,12 @@ urlcolor=blue,
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
 \renewcommand{\qed}{\qquad \qedsymbol}
+%\renewcommand{\chaptername}{CHAPTER}
 \begin{document}
 
 \frontmatter         % All the items before Chapter 1 go in ``frontmatter''
 
-\title{Thesis }            % Title of Work
+\title{}            % Title of Work
 \author{David Karapetyan}           % Author's name
 \work{Dissertation}             % ``Dissertation'' or ``Thesis''
 \degprior{ }         % All prior degrees
@@ -146,10 +166,11 @@ urlcolor=blue,
 \mainmatter
  % Place the text body here.
  \input{./hr/hr.tex}
-
- \chapter{Well-Posedness and Ill-Posedness for a Class of NLS Equations}
- \chapter{Numerics for a Class of Equations}
+ \input{./mnls/mnls}
+ \chapter{Numerics}
 \appendix
+\chapter{}
+\input{./mnls/mnls-appen.tex}
 
  % If you have appendices, add them here.
  % Begin each one with \chapter{title} as before- the \appendix command takes
@@ -159,12 +180,424 @@ urlcolor=blue,
 
 \backmatter              % Place for bibliography and index
 
-\bibliographystyle{amsplain}  % Use the ``nddiss2e'' biblio-style
-\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}           % input the bib-database file name
+%\bibliographystyle{amsplain}  % Use the ``nddiss2e'' biblio-style
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}           % input the bib-database file name
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}[\normalsize]
+
+\bib{Benjamin_1972_Model-equations}{article}{
+      author={Benjamin, T.~B.},
+      author={Bona, J.~L.},
+      author={Mahony, J.~J.},
+       title={Model equations for long waves in nonlinear dispersive systems},
+        date={1972},
+        ISSN={0080-4614},
+     journal={Philos. Trans. Roy. Soc. London Ser. A},
+      volume={272},
+      number={1220},
+       pages={47\ndash 78},
+}
+
+\bib{Bressan_2007_Global-conserva}{article}{
+      author={Bressan, Alberto},
+      author={Constantin, Adrian},
+       title={Global conservative solutions of the {C}amassa-{H}olm equation},
+        date={2007},
+        ISSN={0003-9527},
+     journal={Arch. Ration. Mech. Anal.},
+      volume={183},
+      number={2},
+       pages={215\ndash 239},
+}
+
+\bib{Bendahmane_2006_Hsp-1-perturbat}{article}{
+      author={Bendahmane, Mostafa},
+      author={Coclite, Giuseppe~Maria},
+      author={Karlsen, Kenneth~H.},
+       title={{$H\sp 1$}-perturbations of smooth solutions for a weakly
+  dissipative hyperelastic-rod wave equation},
+        date={2006},
+        ISSN={1660-5446},
+     journal={Mediterr. J. Math.},
+      volume={3},
+      number={3-4},
+       pages={419\ndash 432},
+}
+
+\bib{Benjamin_1972_The-stability-o}{article}{
+      author={Benjamin, T.~B.},
+       title={The stability of solitary waves},
+        date={1972},
+        ISSN={0962-8444},
+     journal={Proc. Roy. Soc. (London) Ser. A},
+      volume={328},
+       pages={153\ndash 183},
+}
+
+\bib{Burq_Gerad_Tzvetkov-An-instability-}{article}{
+      author={Burq, N.},
+      author={G{{\'e}}rad, P.},
+      author={Tzvetkov, N.},
+       title={An instability property of the nonlinear {S}chr{\"o}dinger
+  equation on {$S^d$}},
+        date={2002},
+        ISSN={1073-2780},
+     journal={Math. Res. Lett.},
+      volume={9},
+      number={2-3},
+       pages={323\ndash 335},
+}
+
+\bib{Bona_2009_Sharp-well-pose}{article}{
+      author={Bona, Jerry~L.},
+      author={Tzvetkov, Nikolay},
+       title={Sharp well-posedness results for the {BBM} equation},
+        date={2009},
+        ISSN={1078-0947},
+     journal={Discrete Contin. Dyn. Syst.},
+      volume={23},
+      number={4},
+       pages={1241\ndash 1252},
+         url={http://dx.doi.org/10.3934/dcds.2009.23.1241},
+}
+
+\bib{Christ_2003_Asymptotics-fre}{article}{
+      author={Christ, Michael},
+      author={Colliander, James},
+      author={Tao, Terrence},
+       title={Asymptotics, frequency modulation, and low regularity
+  ill-posedness for canonical defocusing equations},
+        date={2003},
+        ISSN={0002-9327},
+     journal={Amer. J. Math.},
+      volume={125},
+      number={6},
+       pages={1235\ndash 1293},
+  url={http://muse.jhu.edu/journals/american_journal_of_mathematics/v125/125.6christ.pdf},
+}
+
+\bib{Coclite_2005_Global-weak-sol}{article}{
+      author={Coclite, G.~M.},
+      author={Holden, H.},
+      author={Karlsen, K.~H.},
+       title={Global weak solutions to a generalized hyperelastic-rod wave
+  equation},
+        date={2005},
+        ISSN={0036-1410},
+     journal={SIAM J. Math. Anal.},
+      volume={37},
+      number={4},
+       pages={1044\ndash 1069 (electronic)},
+}
+
+\bib{Constantin_2000_Stability-of-a-}{article}{
+      author={Constantin, Adrian},
+      author={Strauss, Walter~A},
+       title={Stability of a class of solitary waves in compressible elastic
+  rods},
+        date={2000},
+     journal={Phys. Lett. A},
+      volume={270},
+      number={3-4},
+       pages={140\ndash 148},
+}
+
+\bib{Dai_1998_Model-equations}{article}{
+      author={Dai, H-H},
+       title={Model equations for nonlinear dispersive waves in a compressible
+  mooney-rivlin rod},
+        date={1998},
+     journal={Acta Mech.},
+      volume={127},
+      number={1-4},
+       pages={193\ndash 207},
+}
+
+\bib{Dai_2000_Head-on-collisi}{article}{
+      author={Dai, Hui-Hui},
+      author={Dai, Shiqiang},
+      author={Huo, Yi},
+       title={Head-on collision between two solitary waves in a compressible
+  mooney-rivlin elastic rod},
+        date={2000},
+     journal={Wave Motion},
+      volume={32},
+      number={2},
+       pages={93\ndash 111},
+}
+
+\bib{Dai_2000_Solitary-shock-}{article}{
+      author={Dai, Hui-Hui},
+      author={Huo, Yi},
+       title={Solitary shock waves and other travelling waves in a general
+  compressible hyperelastic rod},
+        date={2000},
+     journal={R. Soc. Lond. Proc. Ser. A Math. Phys. Eng. Sci.},
+      volume={456},
+      number={1994},
+       pages={331\ndash 363},
+}
+
+\bib{Dieudonne_1969_Foundations-of-}{book}{
+      author={Dieudonn{{\'e}}, J.},
+       title={Foundations of modern analysis},
+   publisher={Academic Press},
+     address={New York},
+        date={1969},
+        note={Enlarged and corrected printing, Pure and Applied Mathematics,
+  Vol. 10-I},
+}
+
+\bib{Folland_1999_Real-analysis}{book}{
+      author={Folland, Gerald~B.},
+       title={Real analysis},
+     edition={Second},
+      series={Pure and Applied Mathematics (New York)},
+   publisher={John Wiley \& Sons Inc.},
+     address={New York},
+        date={1999},
+        ISBN={0-471-31716-0},
+        note={Modern techniques and their applications, A Wiley-Interscience
+  Publication},
+}
+
+\bib{Himonas:2009fk}{article}{
+      author={Himonas, A.~Alexandrou},
+      author={Kenig, Carlos},
+       title={Non-uniform dependence on initial data for the {CH} equation on
+  the line},
+        date={2009},
+        ISSN={0893-4983},
+     journal={Differential Integral Equations},
+      volume={22},
+      number={3-4},
+       pages={201\ndash 224},
+}
+
+\bib{Himonas_2009_Non-uniform-dep-per}{article}{
+      author={Himonas, Alex},
+      author={Kenig, Carlos~E.},
+      author={Misiolek, G.},
+       title={Non-uniform dependence for the periodic ch equation.},
+        date={2009},
+     journal={To appear in Communications in Partial Differential Equations},
+}
+
+\bib{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}{article}{
+      author={Himonas, A.~Alexandrou},
+      author={Misiolek, Gerard},
+       title={A priori estimates for {S}chr{\"o}dinger type multipliers},
+        date={2001},
+        ISSN={0019-2082},
+     journal={Illinois J. Math.},
+      volume={45},
+      number={2},
+       pages={631\ndash 640},
+}
+
+\bib{Himonas_2001_The-Cauchy-prob}{article}{
+      author={Himonas, Alex},
+      author={Misiolek, Gerard},
+       title={The {C}auchy problem for an integrable shallow-water equation},
+        date={2001},
+        ISSN={0893-4983},
+     journal={Differential Integral Equations},
+      volume={14},
+      number={7},
+       pages={821\ndash 831},
+}
+
+\bib{Himonas:2005kx}{article}{
+      author={Himonas, A.~Alexandrou},
+      author={Misiolek, Gerard},
+       title={High-frequency smooth solutions and well-posedness of the
+  {C}amassa-{H}olm equation},
+        date={2005},
+        ISSN={1073-7928},
+     journal={Int. Math. Res. Not.},
+      number={51},
+       pages={3135\ndash 3151},
+         url={http://dx.doi.org/10.1155/IMRN.2005.3135},
+}
+
+\bib{Himonas_2009_Non-uniform-dep-euler}{article}{
+      author={Himonas, Alex},
+      author={Misiolek, Gerard},
+       title={Non-uniform dependence on initial data of solutions to the euler
+  equations of hydrodynamics},
+        date={2009, to appear},
+     journal={Communications in Mathematical Physics},
+}
+
+\bib{Himonas_2007_Non-uniform-con}{article}{
+      author={Himonas, Alex},
+      author={Misiolek, Gerard},
+      author={Ponce, Gustavo},
+       title={Non-uniform continuity in {$H\sp 1$} of the solution map of the
+  ch equation},
+        date={2007},
+     journal={Asian J. Math.},
+      volume={11},
+      number={1},
+       pages={141\ndash 150},
+}
+
+\bib{Holden_2007_Global-conserva}{article}{
+      author={Holden, Helge},
+      author={Raynaud, Xavier},
+       title={Global conservative solutions of the generalized hyperelastic-rod
+  wave equation},
+        date={2007},
+     journal={J. Differential Equations},
+      volume={233},
+      number={2},
+       pages={448\ndash 484},
+}
+
+\bib{Kato_1975_Quasi-linear-eq}{incollection}{
+      author={Kato, Tosio},
+       title={Quasi-linear equations of evolution, with applications to partial
+  differential equations},
+        date={1975},
+   booktitle={Spectral theory and differential equations ({P}roc. {S}ympos.,
+  {D}undee, 1974; dedicated to {K}onrad {J}{\"o}rgens)},
+   publisher={Springer},
+     address={Berlin},
+       pages={25\ndash 70. Lecture Notes in Math., Vol. 448},
+}
+
+\bib{Kato_1988_Commutator-esti}{article}{
+      author={Kato, Tosio},
+      author={Ponce, Gustavo},
+       title={Commutator estimates and the {E}uler and {N}avier-{S}tokes
+  equations},
+        date={1988},
+        ISSN={0010-3640},
+     journal={Comm. Pure Appl. Math.},
+      volume={41},
+      number={7},
+       pages={891\ndash 907},
+}
+
+\bib{Kenig_2001_On-the-ill-pose}{article}{
+      author={Kenig, Carlos~E.},
+      author={Ponce, Gustavo},
+      author={Vega, Luis},
+       title={On the ill-posedness of some canonical dispersive equations},
+        date={2001},
+        ISSN={0012-7094},
+     journal={Duke Math. J.},
+      volume={106},
+      number={3},
+       pages={617\ndash 633},
+         url={http://dx.doi.org/10.1215/S0012-7094-01-10638-8},
+}
+
+\bib{Koch_2005_Nonlinear-wave-}{article}{
+      author={Koch, H.},
+      author={Tzvetkov, N.},
+       title={Nonlinear wave interactions for the {B}enjamin-{O}no equation},
+        date={2005},
+        ISSN={1073-7928},
+     journal={Int. Math. Res. Not.},
+      number={30},
+       pages={1833\ndash 1847},
+}
+
+\bib{Lenells_2006_Traveling-waves}{article}{
+      author={Lenells, Jonatan},
+       title={Traveling waves in compressible elastic rods},
+        date={2006},
+        ISSN={1531-3492},
+     journal={Discrete Contin. Dyn. Syst. Ser. B},
+      volume={6},
+      number={1},
+       pages={151\ndash 167 (electronic)},
+}
+
+\bib{Li_2000_Well-posedness-}{article}{
+      author={Li, Yi~A},
+      author={Olver, Peter~J},
+       title={Well-posedness and blow-up solutions for an integrable
+  nonlinearly dispersive model wave equation},
+        date={2000},
+     journal={J. Differential Equations},
+      volume={162},
+      number={1},
+       pages={27\ndash 63},
+}
+
+\bib{Mustafa_2007_Global-conserva}{article}{
+      author={Mustafa, Octavian~G.},
+       title={Global conservative solutions of the hyperelastic rod equation},
+        date={2007},
+        ISSN={1073-7928},
+     journal={Int. Math. Res. Not. IMRN},
+      number={13},
+       pages={Art. ID rnm040, 26},
+}
+
+\bib{Olson_2006_Non-uniform-dep}{article}{
+      author={Olson, Erika},
+       title={Non-uniform dependence on initial data for a family of non-linear
+  evolution equations},
+        date={2006},
+     journal={Differential Integral Equations},
+      volume={19},
+      number={10},
+       pages={1081\ndash 1102},
+}
+
+\bib{Rodriguez-Blanco_2001_On-the-Cauchy-p}{article}{
+      author={Rodr{\'{\i}}guez-Blanco, Guillermo},
+       title={On the {C}auchy problem for the {C}amassa-{H}olm equation},
+        date={2001},
+        ISSN={0362-546X},
+     journal={Nonlinear Anal.},
+      volume={46},
+      number={3, Ser. A: Theory Methods},
+       pages={309\ndash 327},
+}
+
+\bib{Taylor_1991_Pseudodifferent}{book}{
+      author={Taylor, Michael~E.},
+       title={Pseudodifferential operators and nonlinear {PDE}},
+      series={Progress in Mathematics},
+   publisher={Birkh{\"a}user Boston Inc.},
+     address={Boston, MA},
+        date={1991},
+      volume={100},
+        ISBN={0-8176-3595-5},
+}
+
+\bib{Yin_2003_On-the-Cauchy-p}{article}{
+      author={Yin, Zhaoyang},
+       title={On the cauchy problem for a nonlinearly dispersive wave
+  equation},
+        date={2003},
+     journal={J. Nonlinear Math. Phys.},
+      volume={10},
+      number={1},
+       pages={10\ndash 15},
+}
+
+\bib{Zhou_2005_Local-well-pose}{article}{
+      author={Zhou, Yong},
+       title={Local well-posedness and blow-up criteria of solutions for a rod
+  equation},
+        date={2005},
+     journal={Math. Nachr.},
+      volume={278},
+      number={14},
+       pages={1726\ndash 1739},
+}
+
+\end{biblist}
+\end{bibdiv}
 
 \end{document}
 
 %%
 \endinput
 %%
-%% End of file `template.tex'.

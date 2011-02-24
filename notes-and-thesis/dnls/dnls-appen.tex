@@ -43,129 +43,129 @@ Applying dominated convergence completes the proof.
 \end{proof}
 %
 %
-\begin{proof}[Proof of \cref{1lem:schwartz-mult}]
-Note that
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{\psi f}\left( n, \tau \right)
-		& = \wh{\psi}(\cdot) * \wh{f}(n,
-		\cdot)(\tau)
-		= \int_\rr \wh{\psi}(\tau_1) \wh{f} \left( n, \tau - \tau_1 \right) 
-		d\tau_1
-	\end{split}
-\end{equation*}
-%
-%
-and hence
-%
-%
-\begin{equation}
-	\label{11b}
-	\begin{split}
-		\|\psi f\|_{\dot{X}^s} 
-		& = \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
-		n^{m} | \right) | \int_\rr \wh{\psi}(\tau_1) \wh{f}\left( n, \tau -
-		\tau_1
-		\right)  d \tau_1 d \tau |^2 \right)^{1/2}
-		\\
-		& \le \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
-		n^{m }
-		|
-		\right) \left( \int_\rr \wh{\psi}\left( \tau_1 \right) \wh{f}\left( n,
-		\tau - \tau_1
-		\right)  d \tau_1 d \tau \right)^2 \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%
-Using the relation
-%
-%
-\begin{equation*}
-	\begin{split}
-		1 + | \tau - n^{m } |
-		& = 1 + | \tau + \tau_1 - n^{m} |
-		\\
-		& \le 1 + | \tau_1 | + | \tau - \tau_1 - n^{m} |
-		\\
-		& \le \left( 1 + | \tau_1 | \right)\left( 1 + | \tau - \tau_1 -
-		n^{m} | \right)
-	\end{split}
-\end{equation*}
-%
-%
-we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\eqref{11b}
-		& \le \left( \sum_{n \in \zzdot} |n|^{2s} \right.
-		\\
-		& \times \left . \int_\rr \left(
-		\int_\rr \left( 1 + | \tau_1 | \right)^{1/2} | \wh{\psi}(\tau_1) |
-		\left( 1 + | \tau - \tau_1 - n^{m} | \right)^{1/2} \wh{f}\left( n, \tau
-		- \tau_1
-		\right)d \tau_1
-		\right)^2 d \tau \right)^{1/2}
-	\end{split}
-\end{equation*}
-%
-%
-which by Minkowski's inequality is bounded by
-%
-%
-\begin{equation}
-	\label{12b}
-	\begin{split}
-		& \left( \sum_{n \in \zzdot} |n|^{2s}  \right.
-		\\
-		& \times \left. \left( \int_\rr \left[ \int_\rr
-		\left( 1 + | \tau_{1} | \right) | \wh{\psi}(\tau_1) |^2 \left( 1 + |
-		\tau - \tau_1 - n^{m} |
-		\right) | \wh{f}\left( n, \tau - \tau_1 \right) |^2 d \tau_1 
-		\right]^{1/2} d \tau \right)^2 \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%
-Using the change of variable $\tau - \tau_1 \to \lambda$ gives
-%
-%
-\begin{equation*}
-	\begin{split}
-		\eqref{12b}
-		& = \left( \sum_{n \in \zzdot} |n|^{2s}\right.
-		\\
-		& \times \left.  \left( \int_\rr \left[
-		\int_\rr \left( 1 + | \tau_1 | \right) | \wh{\psi}\left( \tau_1
-		\right) |^2 \left( 1 + | \lambda - n^{m} | \right) | \wh{f} \left( n,
-		\lambda
-		\right)|^2 d \tau_1 \right]^{1/2} d \lambda \right)^2 \right)^{1/2}
-		\\
-		& =  \left( \sum_{n \in \zzdot} |n|^{2s} \right.
-		\\
-		& \times \left. \left( \int_\rr \left( 1 + |
-		\tau_1 |
-		\right)^{1/2} | \wh{\psi}(\tau_1) | d \tau_1 \left[ \int_\rr \left( 1 + |
-		\lambda - n^{m} |
-		\right) | \wh{f}\left( n, \lambda \right) |^2 d \lambda \right]^{1/2}
-		\right)^2 \right)^{1/2}
-		\\
-		& = c_{\psi} \left( \sum_{n \in \zzdot} |n|^{2s} \left( \left[ \int_\rr
-		\left( 1 + | \lambda - n^{m} | \right) | \wh{f}\left( n, \lambda
-		\right) |^2 d \lambda
-		\right]^{\cancel{1/2}} \right)^{\cancel{2}} \right)^{1/2}
-		\\
-		& = c_{\psi} \|f\|_{\dot{X}^s},
-	\end{split}
-\end{equation*}
-%
-%
-concluding the proof. 
-\end{proof}
+%\begin{proof}[Proof of \cref{1lem:schwartz-mult}]
+%Note that
+%%
+%%
+%\begin{equation*}
+	%\begin{split}
+		%\wh{\psi f}\left( n, \tau \right)
+		%& = \wh{\psi}(\cdot) * \wh{f}(n,
+		%\cdot)(\tau)
+		%= \int_\rr \wh{\psi}(\tau_1) \wh{f} \left( n, \tau - \tau_1 \right) 
+		%d\tau_1
+	%\end{split}
+%\end{equation*}
+%%
+%%
+%and hence
+%%
+%%
+%\begin{equation}
+	%\label{11b}
+	%\begin{split}
+		%\|\psi f\|_{\dot{X}^s} 
+		%& = \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
+		%n^{m} | \right) | \int_\rr \wh{\psi}(\tau_1) \wh{f}\left( n, \tau -
+		%\tau_1
+		%\right)  d \tau_1 d \tau |^2 \right)^{1/2}
+		%\\
+		%& \le \left( \sum_{n \in \zzdot} |n|^{2s} \int_\rr \left( 1 + | \tau -
+		%n^{m }
+		%|
+		%\right) \left( \int_\rr \wh{\psi}\left( \tau_1 \right) \wh{f}\left( n,
+		%\tau - \tau_1
+		%\right)  d \tau_1 d \tau \right)^2 \right)^{1/2}.
+	%\end{split}
+%\end{equation}
+%%
+%%
+%Using the relation
+%%
+%%
+%\begin{equation*}
+	%\begin{split}
+		%1 + | \tau - n^{m } |
+		%& = 1 + | \tau + \tau_1 - n^{m} |
+		%\\
+		%& \le 1 + | \tau_1 | + | \tau - \tau_1 - n^{m} |
+		%\\
+		%& \le \left( 1 + | \tau_1 | \right)\left( 1 + | \tau - \tau_1 -
+		%n^{m} | \right)
+	%\end{split}
+%\end{equation*}
+%%
+%%
+%we obtain
+%%
+%%
+%\begin{equation*}
+	%\begin{split}
+		%\eqref{11b}
+		%& \le \left( \sum_{n \in \zzdot} |n|^{2s} \right.
+		%\\
+		%& \times \left . \int_\rr \left(
+		%\int_\rr \left( 1 + | \tau_1 | \right)^{1/2} | \wh{\psi}(\tau_1) |
+		%\left( 1 + | \tau - \tau_1 - n^{m} | \right)^{1/2} \wh{f}\left( n, \tau
+		%- \tau_1
+		%\right)d \tau_1
+		%\right)^2 d \tau \right)^{1/2}
+	%\end{split}
+%\end{equation*}
+%%
+%%
+%which by Minkowski's inequality is bounded by
+%%
+%%
+%\begin{equation}
+	%\label{12b}
+	%\begin{split}
+		%& \left( \sum_{n \in \zzdot} |n|^{2s}  \right.
+		%\\
+		%& \times \left. \left( \int_\rr \left[ \int_\rr
+		%\left( 1 + | \tau_{1} | \right) | \wh{\psi}(\tau_1) |^2 \left( 1 + |
+		%\tau - \tau_1 - n^{m} |
+		%\right) | \wh{f}\left( n, \tau - \tau_1 \right) |^2 d \tau_1 
+		%\right]^{1/2} d \tau \right)^2 \right)^{1/2}.
+	%\end{split}
+%\end{equation}
+%%
+%%
+%Using the change of variable $\tau - \tau_1 \to \lambda$ gives
+%%
+%%
+%\begin{equation*}
+	%\begin{split}
+		%\eqref{12b}
+		%& = \left( \sum_{n \in \zzdot} |n|^{2s}\right.
+		%\\
+		%& \times \left.  \left( \int_\rr \left[
+		%\int_\rr \left( 1 + | \tau_1 | \right) | \wh{\psi}\left( \tau_1
+		%\right) |^2 \left( 1 + | \lambda - n^{m} | \right) | \wh{f} \left( n,
+		%\lambda
+		%\right)|^2 d \tau_1 \right]^{1/2} d \lambda \right)^2 \right)^{1/2}
+		%\\
+		%& =  \left( \sum_{n \in \zzdot} |n|^{2s} \right.
+		%\\
+		%& \times \left. \left( \int_\rr \left( 1 + |
+		%\tau_1 |
+		%\right)^{1/2} | \wh{\psi}(\tau_1) | d \tau_1 \left[ \int_\rr \left( 1 + |
+		%\lambda - n^{m} |
+		%\right) | \wh{f}\left( n, \lambda \right) |^2 d \lambda \right]^{1/2}
+		%\right)^2 \right)^{1/2}
+		%\\
+		%& = c_{\psi} \left( \sum_{n \in \zzdot} |n|^{2s} \left( \left[ \int_\rr
+		%\left( 1 + | \lambda - n^{m} | \right) | \wh{f}\left( n, \lambda
+		%\right) |^2 d \lambda
+		%\right]^{\cancel{1/2}} \right)^{\cancel{2}} \right)^{1/2}
+		%\\
+		%& = c_{\psi} \|f\|_{\dot{X}^s},
+	%\end{split}
+%\end{equation*}
+%%
+%%
+%concluding the proof. 
+%\end{proof}
 %
 %
 %
