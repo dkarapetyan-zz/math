@@ -24,6 +24,12 @@ urlcolor=blue,
 }
 \usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{cleveref} %must be last loaded package to work properly
+\renewcommand{\cref}{\Cref}
+\Crefname{enumi}{}{} %don't write item iv, just iv
+%\Crefname{equation}{}{} %don't write Equation (2.1), just (2.1)
+\crefformat{equation}{(#2#1#3)} %don't write Equation (2.1), just (2.1)
+\Crefformat{equation}{(#2#1#3)} %don't write Equation (2.1), just (2.1)
+
 %
 %
 \newcommand{\ds}{\displaystyle}
@@ -115,41 +121,40 @@ We consider the initial value problem (ivp) for the fourth order modified Boussi
 We shall work in the periodic case first, and later generalize our results to
 the non-periodic case. Let $\psi(t)$ is a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
-= [-1, 1 ]$. Define $\psi_{\delta}(t) = \psi(2t/\delta)$.
-Neglecting $\pi$ related constants, we consider the time
+= [-1, 1 ]$. Neglecting $\pi$ related constants, we consider the time
 localized integral form of the $B_{4}$ equation
 %
 \begin{align}
-  & \psi_{\delta} u(x,t)
+  & \psi u(x,t)
   \notag
   \\
-  \label{main-rel-term-1}
-  & = \psi_{\delta}(t) \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+  \label{main1-rel-term-1}
+  & = \psi(t) \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
   \\
-  \label{main-rel-term-2}
-  & + \psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
+  \label{main1-rel-term-2}
+  & + \psi(t) \sum_{n \in \zz} e^{inx}
   \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}}t}{2 i n^{2}} 
   \\
-  \label{main-rel-term-3}
-  & + \psi_{\delta}(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
+  \label{main1-rel-term-3}
+  & + \psi(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
   e^{it \tau} \frac{ 1 - \psi(\tau -  an^{2}) 
   }{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
   \\
-  \label{main-rel-term-4}
-  & + \psi_{\delta}(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
+  \label{main1-rel-term-4}
+  & + \psi(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
   t an^{2})}
   \frac{1- \psi(\tau -  an^{2})}{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
   \\
-  & + \psi_{\delta}(t) \sum_{a = \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
+  & + \psi(t) \sum_{a = \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
   \sum_{n \in \zz} \int_\rr e^{i(xn + t an^{2} )}
   \psi(\tau -  an^{2}) (\tau -  an^{2})^{k-1} \wh{w}(n, \tau)
   \\
-  \label{main-rel-term-5}
+  \label{main1-rel-term-5}
   & \doteq Tu
 \end{align}
 %
 %
-where $T=T_{u_0, u_1, \psi, \delta}$.  We now introduce the following spaces. 
+where $T=T_{u_0, u_1, \psi}$.  We now introduce the following spaces. 
 %
 %
 \begin{definition}
@@ -223,14 +228,14 @@ The $X_{s,b}$ spaces have the following important embedding.
 %
 To prove well-posedness for the $B_4$ ivp we we will 
 show that for initial data $\vp \in B_{H^{s}(\ci) \times H^{s-2}(\ci)}(R)$, $T$ is a contraction on
-$B_{X^{s}}(M_{R})$, where $M_{R}$ is a constant depending on $R$, 
+$B_{X_{s,b}}(M_{R})$, where $M_{R}$ is a constant depending on $R$, 
 by estimating the $X_{s,b}$
-norm of \eqref{main-rel-term-1}-\eqref{main-rel-term-5}. The 
+norm of \eqref{main1-rel-term-1}-\eqref{main1-rel-term-5}. The 
 Picard fixed point theorem will
-then yield a unique $u \in X^{s}$ satisfying $u = Tu$.
+then yield a unique $u \in X_{s,b}$ satisfying $u = Tu$.
 An application of
 \cref{lem:embedding} will then imply the existence of a unique
-$u \in C([-\delta, \delta], H^s(\ci))$ solving $\psi_{\delta} u = Tu$ for $| t | \le \delta$.
+$u \in C([-1/2, 1/2], H^s(\ci))$ solving $\psi u = Tu$ for $| t | \le 1/2$.
 Lipschitz continuity of the flow map (and hence, uniform
 continuity) will follow from estimates used to establish the contraction
 mapping. 
@@ -243,16 +248,16 @@ mapping.
 %
 %
 %
-\subsection{Estimate for \eqref{main-rel-term-1}}
+\subsection{Estimate for \eqref{main1-rel-term-1}}
 \label{ssec:est-init-term-1}
 We have
 %
 %
 \begin{equation*}
   \begin{split}
-    \wh{\eqref{main-rel-term-1}}
-    = \frac{\wh{\psi_{\delta}}(\tau -
-    n^{2})\wh{u_{0}}(n)}{2} + \frac{\wh{\psi_{\delta}}(\tau +
+    \wh{\eqref{main1-rel-term-1}}
+    = \frac{\wh{\psi}(\tau -
+    n^{2})\wh{u_{0}}(n)}{2} + \frac{\wh{\psi}(\tau +
     n^{2})\wh{u_{0}}(n)}{2}.
   \end{split}
 \end{equation*}
@@ -274,22 +279,22 @@ we have
 %
 %
 \begin{align}
-  & \| \eqref{main-rel-term-1} \|_{X^{s}}^{2} 
+  & \| \eqref{main1-rel-term-1} \|_{X_{s,b}}^{2} 
     \notag
     \\
     & = \sum_{n \in \zz}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right) | \frac{\wh{\psi_{\delta}}(\tau - n^{2})\wh{u_{0}(n)}}{2 } +
-    \frac{\wh{\psi_{\delta}}(\tau + n^{2})\wh{u_{0}}(n)}{2 } |^{2} d \tau
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2 } +
+    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{0}}(n)}{2 } |^{2} d \tau
     \notag
     \\
     & \le \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
     \label{u-0-norm-comp-1}
     \\
     & + \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau.
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau.
     \label{u-0-norm-comp-3}
 \end{align}
 %
@@ -309,29 +314,30 @@ we bound \eqref{u-0-norm-comp-1} by
 \begin{equation*}
   \begin{split}
     & \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
     \\
     & = \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
+    \right)^{2b} d \tau
     \\
-    & \le c_{\psi, \delta} \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
+    & \le c_{\psi, b} \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2}
     \\
-    & = c_{\psi, \delta} \| u_{0} \|_{H^{s}}^{2}
+    & = c_{\psi, b} \| u_{0} \|_{H^{s}}^{2}.
   \end{split}
 \end{equation*}
 %
 %
-where $c_{\psi, \delta}$ is a constant depending only on $\psi$ and $\delta$. The
+The
 term \eqref{u-0-norm-comp-3} is bounded in similar fashion. Therefore, 
-$\|\eqref{main-rel-term-1}\|_{X^{s}}^{2} \le c_{\psi, \delta}
+$\|\eqref{main1-rel-term-1}\|_{X_{s,b}}^{2} \le c_{\psi, b}
 \|u_{0}\|_{H^s}^2$. Taking square roots of both sides gives
 %
 %
 \begin{equation}
   \begin{split}
-    \|\eqref{main-rel-term-1}\|_{X^{s}} \le c_{\psi, \delta}
+    \|\eqref{main1-rel-term-1}\|_{X_{s,b}} \le c_{\psi, b}
     \|u_{0}\|_{H^s}.
   \end{split}
   \label{eqn:u-0-fin-est}
@@ -340,17 +346,17 @@ $\|\eqref{main-rel-term-1}\|_{X^{s}}^{2} \le c_{\psi, \delta}
 %
 %
 %
-\subsection{Estimate for \eqref{main-rel-term-2}}
+\subsection{Estimate for \eqref{main1-rel-term-2}}
 \label{ssec:est-init-term-2}
 We have
 %
 %
 \begin{equation*}
   \begin{split}
-    \wh{\psi_{\delta}(t)S_{t}u_{1}}^{x}(n, t)
-    & = \psi_{\delta}(t) \wh{u_{1}}(n) \frac{e^{in^2 t} - e^{-in^{2}t}}{2i n^{2}}
+    \wh{\psi(t)S_{t}u_{1}}^{x}(n, t)
+    & = \psi(t) \wh{u_{1}}(n) \frac{e^{in^2 t} - e^{-in^{2}t}}{2i n^{2}}
     \\
-    & = \frac{\psi_{\delta}(t) \wh{u_{1}}(n)e^{in^{2}t}}{2i n^{2}} - \frac{\psi_{\delta}(t)
+    & = \frac{\psi(t) \wh{u_{1}}(n)e^{in^{2}t}}{2i n^{2}} - \frac{\psi(t)
     \wh{u_{1}}(n)e^{-in^{2}t}}{2i n^{2}}  
   \end{split}
 \end{equation*}
@@ -361,8 +367,8 @@ and
 %
 \begin{equation*}
   \begin{split}
-    \wh{\psi_{\delta}(t) S_{t}u_{1}}(n, \tau) = \frac{\wh{\psi_{\delta}}(\tau -
-    n^{2})\wh{u_{1}}(n)}{2i n^{2}} - \frac{\wh{\psi_{\delta}}(\tau + n^{2})\wh{u_{1}}(n)}{2i
+    \wh{\psi(t) S_{t}u_{1}}(n, \tau) = \frac{\wh{\psi}(\tau -
+    n^{2})\wh{u_{1}}(n)}{2i n^{2}} - \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i
     n^{2}}.
   \end{split}
 \end{equation*}
@@ -371,8 +377,8 @@ Note that
 %
 \begin{equation*}
   \begin{split}
-    \wh{\psi_{\delta}(t)S_{t}u_{1}}^{x}(0, t)
-    & = \psi_{\delta}(t) \wh{u_{1}}(0) t
+    \wh{\psi(t)S_{t}u_{1}}^{x}(0, t)
+    & = \psi(t) \wh{u_{1}}(0) t
       \end{split}
 \end{equation*}
 and so 
@@ -380,7 +386,7 @@ and so
 %
 \begin{equation*}
   \begin{split}
-    \wh{\psi_{\delta}(t) S_{t}u_{1}}(0, \tau) = i \frac{d}{d \tau} \wh{\psi_{\delta}}(\tau)
+    \wh{\psi(t) S_{t}u_{1}}(0, \tau) = i \frac{d}{d \tau} \wh{\psi}(\tau)
     \wh{u_{1}}(0).
   \end{split}
 \end{equation*}
@@ -390,25 +396,25 @@ Hence, substituting and applying \eqref{square-ineq}, we have
 %
 \begin{equation}
   \begin{split}
-    \| \eqref{main-rel-term-2} \|_{X^{s}}^{2} 
+    \| \eqref{main1-rel-term-2} \|_{X_{s,b}}^{2} 
     & = \sum_{n \in \zzdot}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right) | \frac{\wh{\psi_{\delta}}(\tau - n^{2})\wh{u_{1}(n)}}{2i
+    |-n^{2} | \right)^{2b} | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
     n^{2}} -
-    \frac{\wh{\psi_{\delta}}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
+    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
     \\
     & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) | i \frac{d }{d \tau}
-    \wh{\psi_{\delta}}(\tau)|^{2} d \tau
+    \wh{\psi}(\tau)|^{2} d \tau
     \\
     & \le \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
     \\
     & + \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
     \\
     & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d }{d \tau}
-    \wh{\psi_{\delta}}(\tau)|^2 d \tau.
+    \wh{\psi}(\tau)|^2 d \tau.
 \end{split}
 \label{u-1-norm-comp-pre}
 \end{equation}
@@ -428,17 +434,17 @@ to \eqref{u-1-norm-comp-pre} gives
 %
 \begin{equation}
   \begin{split}
-    \|  \eqref{main-rel-term-2}\|_{X^{s}}^{2} 
+    \|  \eqref{main1-rel-term-2}\|_{X_{s,b}}^{2} 
     & \lesssim \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
     \\
     & + \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
+    n^{2} | \right)^{2b} d \tau
     \\
     & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d }{d \tau}
-    \wh{\psi_{\delta}}(\tau)|^2 d \tau.
+    \wh{\psi}(\tau)|^2 d \tau.
 \end{split}
 \label{u-1-norm-comp}
 \end{equation}
@@ -453,13 +459,13 @@ we bound the first term of
 \begin{equation*}
   \begin{split}
     & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
     \\
     & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
     \\
-    & \le c_{\psi, \delta} \| u_{1} \|_{H^{s-2}}^{2}. 
+    & \le c_{\psi, b} \| u_{1} \|_{H^{s-2}}^{2}. 
   \end{split}
 \end{equation*}
 %
@@ -470,13 +476,13 @@ second term of \eqref{u-1-norm-comp} is bounded by
 \begin{equation*}
   \begin{split}
     & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau + n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 +  | \tau  -
+    n^{2} | \right)^{2b} d \tau
     \\
     & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi_{\delta}}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
+    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'| \right) d \tau
     \\
-    & \le c_{\psi, \delta} \| u_{1} \|_{H^{s-2}}^{2}
+    & \le c_{\psi, b} \| u_{1} \|_{H^{s-2}}^{2}
   \end{split}
 \end{equation*}
 while the third term is bounded by  
@@ -484,25 +490,769 @@ while the third term is bounded by
 %
 \begin{equation*}
 \begin{split}
-  c_{\psi, \delta} \| u_{1} \|_{H^{s-2}}^{2}.
+  c_{\psi, b} \| u_{1} \|_{H^{s-2}}^{2}.
 \end{split}
 \end{equation*}
 %
 %
 Therefore, 
-$\|\eqref{main-rel-term-2}|_{X^{s}}^{2} \le c_{\psi, \delta}
+$\|\eqref{main1-rel-term-2}|_{X_{s,b}}^{2} \le c_{\psi, b}
 \|u_{1}\|_{H^{s-2}}^2$ and
 taking square roots of both sides gives
 %
 %
 \begin{equation*}
   \begin{split}
-    \|\eqref{main-rel-term-2}|_{X^{s}} \le c_{\psi, \delta}
+    \|\eqref{main1-rel-term-2}|_{X_{s,b}} \le c_{\psi, b}
     \|u_{1}\|_{H^{s-2}}.
   \end{split}
 \end{equation*}
 %
 %
+\subsection{Estimate for \cref{main1-rel-term-3}.}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Schwartz Multiplier	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+We have
+%
+%
+\begin{equation}
+  \label{yu}
+	\begin{split}
+		\|\cref{main1-rel-term-3}\|_{X_{s,b}} 
+    & \le 
+    \sum_{a = \pm 1} \| \sum_{n \in \zz} (t) e^{ixn} \int_\rr 
+		e^{it \tau} \frac{ 1 - a\psi (\tau - an^{m} ) 
+		}{\tau - an^{m}} \wh{w}(n, \tau) \ 
+		d \tau\|_{X_{s,b}}.
+			\end{split}
+\end{equation}
+%
+But
+%
+%
+\begin{equation}
+\label{main-int2-est-X-s-part}
+\begin{split}
+  & \| \sum_{n \in \zz} e^{ixn} \int_\rr 
+		e^{it \tau} \frac{ 1 - a\psi (\tau - an^{m} ) 
+    }{\tau - an^{m}} (t) \wh{w}(n, \tau) \ 
+		d \tau\|_{X_{s,b}}
+		\\
+    & = \sum_{a = \pm 1}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr
+    (1 + |  |\tau| - n^{m}|)^{2b} \left | \frac{1 - a\psi(\tau - an^{2 
+		})}{\tau - an^{m}} 
+     \wh{w}(n, \tau) \right |^2 \ d 
+		\tau \right)^{1/2}
+		\\
+    & \le \sum_{a = \pm 1}
+    \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_{| \tau - an^{m }| \ge 1}
+    (1 + | |\tau| - n^{m}|)^{2b} \frac{|  \wh{w}(n, \tau)|^2 }{|\tau - an^{m }|^2} 
+		\ d 
+		\tau \right)^{1/2}
+  \end{split}
+\end{equation}
+Applying the inequality
+\begin{equation}
+	\label{one-plus-ineq}
+	\begin{split}
+		& \frac{1}{|j|} \le \frac{2}{1 + |j| } , 
+		\qquad |j| \ge 1
+   	\end{split}
+\end{equation}
+and \cref{eqn:norm-key-ineq} we bound this by
+\begin{equation}
+  \label{pre-bi-est}
+  \begin{split}
+		& 4 \left( \sum_{n \in 
+		\zz} \left (1 + |n| \right )^{2s} \int_\rr
+    \frac{| \wh{w}(n, \tau) |^2}{(1+ |  |\tau| - 
+    n^{m}|)^{2(1-b)}} 
+		 \ d \tau 
+		\right)^{1/2}
+\end{split}
+\end{equation}
+%
+%
+%
+We now need the following bilinear
+estimate, whose proof we leave for later.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Proposition
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}[Theorem 1.1 in~\cite{Farah:2009uq}]
+\label{prop:bilinear-est}
+	%
+	%
+	If $a > 1/4$, $b > 1/2$, and $s \ge -a/2$, 
+  then 
+	\begin{equation}
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr
+		\frac{|\wh{w_{fg}}(n, \tau) |^2}{\left (1+ |  |\tau| - 
+    n^{m}| \right )^{2a}} 
+		 \ d \tau 
+		\right)^{1/2}
+    \le c_{a} \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}
+	\end{equation}
+  where $w_{fg}(x,t)$ = $fg (x,t)$.
+%
+%
+%
+%
+\end{proposition}
+%
+Applying \cref{prop:bilinear-est} to \cref{pre-bi-est}, it follows that
+if $1/4 < 1-b < 1/2$ and $s \ge -(1-b)/2$ then
+%
+%
+%
+%
+%
+\begin{equation}
+	\label{main-int2-est}
+	\begin{split}
+    \|\cref{main1-rel-term-3}\|_{X_{s,b}} \le c_{\psi, b} 
+    \|f\|_{X_{s,b}}
+    \|g\|_{X_{s,b}}
+	\end{split}
+\end{equation}
+
+%
+%
+\subsection{Estimate for \cref{main1-rel-term-4}.}
+Letting $$f(x,t) = \sum_{a = \pm 1} \psi(t) \sum_{n \in \zz} e^{i\left( xn +
+atn^{m} \right)} 
+\int_\rr \frac{1 - \psi\left( \lambda - an^{m} \right)}{\lambda - an^{m}} 
+\wh{w} \left( n, \lambda \right) \ d \lambda,$$ we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \wh{f^x}(n, t) = \psi(t) e^{aitn^{m}} \int_\rr
+		\frac{1 - \psi\left( \lambda - an^{m} \right)}{\lambda - an^{m}} 
+		\wh{w}(n, \lambda) \ d \lambda
+	\end{split}
+\end{equation*}
+and
+\begin{equation*}
+	\begin{split}
+		 \wh{f}\left( n, \tau \right)
+		 & = \int_\rr e^{-it\left( \tau - an^{m} 
+		\right)} \psi(t) \int_\rr \frac{1 - a\psi\left( 
+		\lambda - an^{m} 
+		\right)}{\lambda - an^{m}} \wh{w}(n, \lambda) \ d \lambda d \tau
+		\\
+    & = \wh{\psi}\left( \tau - an^{m} \right) \int_\rr 
+		\frac{1 - a\psi\left( 
+		\lambda - an^{m} 
+		\right)}{\lambda - an^{m}} \wh{w}(n, \lambda) \ d \lambda.
+	\end{split}
+\end{equation*}
+Therefore,
+%
+%
+\begin{equation}
+  \label{iu}
+	\begin{split}
+		& \| \cref{main1-rel-term-4} \|_{X_{s,b}} 
+		\\
+    & \le c_{\psi, b}  \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right)^{2s}
+    \int_\rr \left( 1 + | |\tau| - n^{m } \right )^{2b} | | \wh{\psi}\left(
+    \tau - an^{m } \right) |^2 \ d \tau \right.
+		\\
+		& \times \left . |
+		\int_\rr \frac{1 - \psi\left( \lambda - an^{m } \right)}{\lambda -
+		an^{m }} \wh{w}(n, \lambda) \ d \lambda |^2  \right)^{1/2}.
+  \end{split}
+\end{equation}
+Applying \cref{eqn:norm-key-ineq}, we have the bound
+%
+%
+\begin{equation*}
+\begin{split}
+& \sum_{a = \pm 1} 
+\int_\rr \left( 1 + | |\tau| - n^{m } \right )^{2b} | | \wh{\psi}\left(
+    \tau - an^{m } \right) |^2 \ d \tau 
+    \\
+    & \le  \sum_{a = \pm 1} 
+    \int_\rr \left( 1 + |\tau - an^{m } | \right )^{2b} | | \wh{\psi}\left(
+    \tau - an^{m } \right) |^2 \ d \tau 
+    \\
+    & = c_{\psi, b}.
+\end{split}
+\end{equation*}
+%
+Hence, \cref{iu} is bounded by
+%
+\begin{equation}
+  \begin{split}
+    & c_{\psi, b}  \sum_{a = \pm 1}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | \int_\rr
+		\frac{1 - \psi\left( \lambda - an^{m } \right)}{\lambda - an^{m }}
+		\wh{w}(n, \lambda) \ d\lambda |^2 \right)^{1/2}
+		\\
+		& \simeq \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
+		\frac{1 - \psi\left( \lambda - an^{m } \right)}{|\lambda - an^{m }|}
+		|\wh{w}(n, \lambda) | \ d\lambda \right )^2 \right)^{1/2}
+		\\
+		& \le \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_{| \lambda - 
+		an^{m } | \ge 1}
+		\frac{|\wh{w}(n, \lambda) | }{|\lambda - an^{m }|}
+		\ d\lambda \right )^2 \right)^{1/2}.
+  \end{split}
+\end{equation}
+Applying \cref{one-plus-ineq} then \cref{eqn:norm-key-ineq} we bound this by
+\begin{equation}
+  \label{fh}
+\begin{split}
+    4 \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
+    \frac{|\wh{w}(n, \lambda)| }{1 + | |\lambda| - n^{m }|}
+    \ d\lambda \right )^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+%
+%%
+We now need the following corollary to
+\cref{prop:bilinear-est}.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Second bilinear Estimate 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{corollary}
+\label{cor:bilinear-estimate2}
+	If $a > 1/2$, $b > 1/2$, and $s \ge -a/2$, 
+  then 
+%
+%
+\begin{equation}
+	\label{bilinear-estimate2}
+	\begin{split}
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr 
+    \frac{|\wh{w_{fg}}(n, \tau) |}{(1 + | |\tau| - n^{m } |)^{2a}}
+		 \ d\tau \right)^2  \right)^{1/2} \lesssim \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}.
+	\end{split}
+\end{equation}
+\end{corollary}
+Applying \cref{cor:bilinear-estimate2} to \cref{fh}, we
+conclude that
+%
+%
+\begin{equation}
+	\label{main-int3-est}
+	\begin{split}
+		\|\cref{main1-rel-term-4}\|_{X_{s,b}} 
+    \le c_{\psi, b}  \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}. 
+	\end{split}
+\end{equation}
+%
+%
+%
+\subsection{Estimate for \cref{main1-rel-term-5}.}
+Note that
+%
+%
+\begin{equation}
+	\label{1n}
+	\begin{split}
+    \cref{main1-rel-term-5} \simeq \sum_{a = \pm 1}\sum_{k \ge 1}
+		\frac{i^k}{k!}g_k(x,t)
+	\end{split}
+\end{equation}
+%
+%
+where 
+%
+%
+\begin{equation*}
+	\begin{split}
+		& g_k(x,t) = t^k \psi(t) \sum_{n \in \zz} e^{i\left( xn + ta n^{m}
+		\right)} h_k(n),
+		\\
+		& h_k(n) = \int_\rr \psi \left( \tau - an^{m } \right) \cdot \left(
+		\tau - an^{m } \right)^{k -1} \wh{w}(n, \tau) \ d \tau.
+	\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{g_k^x}(n, t) = t^{k} \psi(t) e^{i t an^{m }} h_k(n)
+	\end{split}
+\end{equation*}
+%
+%
+which gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{g_k}(n, \tau)
+		& = h_k(n) \int_\rr e^{-it\left( \tau - an^{m } \right)}
+		t^{k}\psi(t) \ dt
+		\\
+		& = h_k(n) \wh{t^{k}\psi(t)} \left( \tau - an^{m } \right).
+	\end{split}
+\end{equation*}
+%
+%
+Applying this to \cref{1n} and using Minkowski's inequality, we obtain
+%
+%
+\begin{equation}
+	\label{2n}
+	\begin{split}
+		& \|\cref{main1-rel-term-5}\|_{X_{s,b}} 
+    \\
+    & \lesssim \sum_{a = \pm 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}
+    \int_\rr \left( 1 + | |\tau| - an^{m } | \right)^{2b}
+    | \wh{\sum_{k \ge 1} \frac{i^k}{k!}g_k(x,t)} |^2 \ d \tau
+		\right)^{1/2}
+		\\
+		& \le \sum_{a = \pm 1}\sum_{k \ge 1} \frac{1}{k!}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}
+    \int_\rr \left( 1 + | |\tau| - an^{m } | \right)^{2b} | \wh{g_k}(n, \tau) |^2 \
+		d \tau \right)^{1/2}
+		\\
+		& = \sum_{a = \pm 1}\sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}
+    \int_\rr \left( 1 + | |\tau| - an^{m } | \right)^{2b} | h_k(n) \wh{t^k
+		\psi(t)} \left( \tau - an^{m } \right) |^2 \ d \tau \right)^{1/2}
+		\\
+		& = \sum_{a = \pm 1}\sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} |
+    h_k(n) |^2 \int_\rr \left( 1 + | |\tau| - an^{m } | \right)^{2b} | \wh{t^k
+		\psi(t)} \left( \tau - an^{m } \right) |^2 \ d \tau \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Applying \cref{eqn:norm-key-ineq} and the change
+of variable $\tau - an^{m } = \tau'$
+gives
+%
+%
+\begin{equation}
+	\label{3n}
+	\begin{split}
+		& \int_\rr \left( 1 + | |\tau| - an^{m } | \right)^{2b} | \wh{t^{k}
+		\psi(t)}\left( \tau - an^{m } \right) |^2 \ d \tau
+    \\
+    & \le \int_\rr \left( 1 + | \tau - an^{m } | \right)^{2b} | \wh{t^{k}
+		\psi(t)}\left( \tau - an^{m } \right) |^2 \ d \tau
+		\\
+    & = \int_\rr \left( 1 + |\tau'| \right)^{2b} | \wh{t^k \psi(t)}(\tau') |^2 \
+		d \tau'
+		\\
+    & \le \int_\rr \left( 1 + |\tau'| \right)^{2b} | \wh{t^k \psi(t)}(\tau')
+		|^2 \ d \tau'
+		\\
+    & \lesssim \int_\rr \left( 1 + | \tau' | \right)^{2b}| \wh{t^{k}
+		\psi(t)}(\tau') |^2 \ d \tau'
+    \\
+    & \le \| s^{k} \psi \|_{H^{[b] + 1}}^{2}
+\end{split}
+\end{equation}
+%
+%
+where $[b]$ denotes the least integer of $b$. Note that
+%
+%
+\begin{equation}
+	\label{4n}
+	\begin{split}
+    & \|t^k \psi \|_{H^{[b] +1}(\rr)}
+		\\
+    & = \|t^k \psi\|_{L^2(\rr)} + \|\p_t (t^k \psi )
+    \|_{L^2(\rr)} 
+    \\
+    & + \| \p_{t}^{2} (t^{k} \psi) \|_{L^{2}(\rr)} + \ldots + \|
+    \p_{t}^{[b] + 1} (t^{k} \psi)\|_{L^{2}}
+    \\
+    & \le c_{\psi} + k c'_{\psi} + k (k -1) c_{\psi}'' + \ldots +
+    k(k-1) \ldots (k - [b]) c_{\psi, b}^{[b] + 1}
+    \\
+    & \lesssim c_{\psi, b} k(k-1) \cdots (k - [b]).
+	\end{split}
+\end{equation}
+%
+%
+Hence, applying \cref{3n} and \cref{4n} to \cref{2n}, we obtain
+%
+%%
+\begin{equation}
+	\label{5n}
+	\begin{split}
+		\|\cref{main1-rel-term-5} \|_{X_{s,b}}
+		& \lesssim c_{\psi, b} \sum_{a = \pm 1}
+    \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | h_k(n) |^2 
+		\right)^{1/2}
+		\\
+    & \le c_{\psi, b}  \sum_{a = \pm 1} \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    \times \sup_{k \ge [b] + 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | 
+		h_k(n) |^2 \right)^{1/2}
+		\\
+    & = c_{\psi, b}  \sum_{a = \pm 1}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    \\
+    & \times \sup_{k \ge [b] + 1} 
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} |\int_\rr 
+		\psi\left( \tau - an^{m } \right) \cdot \left( \tau - an^{m } 
+    \right)^{k -1} \wh{w}(n, \tau) \ d \tau|^{2} \right)^{1/2}.
+    \end{split}
+\end{equation}
+%
+%%
+Recall that $0 \le \psi \le 1, \text{ supp} \, \psi \subset [-1,1 ]$. 
+This implies $$| \psi\left( \tau - an^{m } \right) \cdot \left( \tau - an^{m }
+\right)^{k -1} | \le \chi_{| \tau - an^{m } | \le 1}, \qquad k \ge 1.$$ Hence,
+we bound the double sum on the right hand side of \cref{5n} by
+%
+%%
+\begin{equation*}
+	\begin{split}
+    & \sum_{a = \pm 1}
+    \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    \times \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
+		\int_{| \tau - an^{m}  |\le 1}  \wh{w}(n, \tau) \ d \tau |^2 
+		\right)^{1/2}
+    \\
+    & = e \sum_{a = \pm 1} \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
+		\int_{| \tau - an^{m}  |\le 1}  \wh{w}(n, \tau) \ d \tau |^2 
+		\right)^{1/2}
+    \\
+    & \le e \sum_{a = \pm 1}
+\left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left (  
+		\int_{| \tau - an^{m}  |\le 1} | \wh{w}(n, \tau) | \ d \tau \right ) ^2 
+		\right]^{1/2}
+	\end{split}
+\end{equation*}
+%
+%%
+which by the inequality
+%
+%%
+\begin{equation*}
+	\begin{split}
+		1 \le 
+		\frac{2}{1 + | j |}, \qquad | j | \le 1
+	\end{split}
+\end{equation*}
+%
+%%
+and \cref{eqn:norm-key-ineq}
+is bounded by 
+%
+%%
+\begin{equation}
+\label{main-int4-est-X-s-part}
+	\begin{split}
+		& 4e \left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left ( \int_\rr
+		\frac{|\wh{w}(n, \tau)|}{1 + | |\tau| - n^{m } |} \ d \tau \right ) ^2 
+		\right]^{1/2}.
+  \end{split}
+\end{equation}
+%
+%%
+Applying \cref{cor:bilinear-estimate2} to \cref{main-int4-est-X-s-part}, we
+conclude that
+%
+%
+\begin{equation}
+\label{main-int4-est}
+	\begin{split}
+    \|\cref{main1-rel-term-5}\|_{X_{s,b}} \le c_{\psi}     \|u\|_{X_{s,b}}^{3}.
+	\end{split}
+\end{equation}
+%
+%
+Collecting estimates \cref{main-int2-est}, 
+\cref{main-int3-est}, and \cref{main-int4-est}, and recalling 
+\cref{main1-rel-term-2}-\cref{main1-rel-term-5}, we obtain the following. 
+%
+%
+\begin{proposition}
+\label{prop:contraction}
+
+For $1/4 < 1-b < 1/2$ and $s \ge -(1-b)/2$, we have
+%%
+\begin{equation*}
+	\begin{split}
+    \|Tu\|_{X_{s,b}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
+    +  \|u\|_{X_{s,b}}^2 
+		\right)
+	\end{split}
+\end{equation*}
+%
+where $c = c_{\psi, b} > 1$.  
+%%
+\end{proposition}
+%
+\subsection{Proof of Existence and Uniqueness}
+\label{sec:proof-b4-per-case}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% Contraction Proposition
+%				 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%
+We will now use \cref{prop:contraction} to prove local well-posedness for the 
+$B_4$ ivp. Suppose
+%
+%%
+\begin{equation*}
+	\begin{split}
+    \|(u_0, u_{1})\|_{H^s(\ci) \times H^{s-2}(\ci)} \le r.
+  \end{split}
+\end{equation*}
+%
+%%
+Then $$\|u\|_{X_{s,b}} \le 2rc$$ implies
+%
+%%
+\begin{equation*}
+	\begin{split}
+		\|Tu \|_{X_{s,b}} 
+    & \le c \left[ r + \left( 
+		2rc \right)^2 \right].
+	\end{split}
+\end{equation*}
+%
+If 
+%
+%
+\begin{equation}
+  \label{delta-suf-small}
+\begin{split}
+  r \le  \frac{1}{8c^{2}} 
+\end{split}
+\end{equation}
+%
+%
+we obtain 
+%%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\|Tu \|_{X_{s,b}} 
+    & \le \frac{3}{2}rc.
+  \end{split}
+\end{equation*}
+%
+%
+Hence, $T=T_{u_0, u_1, \psi}$ maps the ball $B_{X_{s,b}}(2rc)$ into
+itself. Next, note that 
+%
+%%
+\begin{equation*}
+	\begin{split}
+    Tu - Tv = \cref{main1-rel-term-3} + \cref{main1-rel-term-4} +
+    \cref{main1-rel-term-5} 
+  \end{split}
+  \label{eqn:integral-form-dif}
+\end{equation*}
+%
+%%
+where now $w(x,t) =u^{2} - v^{2}$. Rewriting
+%
+%%
+\begin{equation*}
+	\begin{split}
+	u^2 - v^2
+		& = (u-v)(u+v)
+		\end{split}
+\end{equation*}
+%
+%%
+and repeating earlier arguments, we obtain
+%
+%%
+%%
+\begin{equation}
+	\label{20a}
+	\begin{split}
+		\|Tu - Tv \|_{X_{s,b}}  
+    & \le c \|u -v\|_{X_{s,b}} \|u + v \|_{X_{s,b}}
+		\\
+    & \le c \|u -v\|_{X_{s,b}} (\|u\|_{X_{s,b}}+ \|v \|_{X_{s,b}}).
+	\end{split}
+\end{equation}
+%
+%%
+If $$ u, v \in B_{X_{s,b}} \left (2rc \right )$$ then 
+%%
+\begin{equation}
+	\label{21a}
+	\begin{split}
+		\|Tu - Tv \|_{X_{s,b}}
+    & \le c  \|u -v \|_{X_{s,b}} \left( 2rc + 
+		2rc \right)
+		\\
+		& = \frac{1}{2} \|u -v \|_{X_{s,b}}. 
+	\end{split}
+\end{equation}
+%
+%%
+We conclude that $T$ is a contraction on the ball $B_{X_{s,b}}(2rc)$.
+A Picard iteration then yields a unique 
+$u \in X_{s,b}$ satisfying $u = Tu$. Applying
+\cref{lem:embedding}, it follows that $u(x,t) \subset C( [-1/2, 1/2], H^s)$ is a unique
+solution of the B4 ivp \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} for $t
+\in [-1/2, 1/2]$.
+%
+%
+\subsection{Proof of Lipschitz Continuity} 
+\label{sec:lip-continuity}
+%
+%
+%
+%
+Let $$(u_0, u_1), (v_0, v_1)  \subset
+B_{H^{s} \times H^{s-2}} \left (r \right ).$$ Then for initial data sufficiently
+small (i.e. with size satisfying \cref{delta-suf-small}), there exist $u, v \in
+X_{s,b}$ such that $u =
+T_{u_0, u_1}u$, $v = T_{v_0, v_1} v$, and so
+%
+%
+\begin{align}
+  \notag
+    & T_{u_0, u_1}(u) - T_{v_0, v_1}(v)
+		\\
+    & = \psi(t) \sum_{n \in \zz} e^{inx} \wh{u_{0} - v_{0} }(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+\label{main1-rel-term-1g}
+  \\
+  & + \psi(t) \sum_{n \in \zz} e^{inx}
+  \wh{u_{1} - v_{1} }(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
+\label{main1-rel-term-2g}
+  \\
+  & + \psi(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
+  e^{it \tau} \frac{ 1 - \psi(\tau -  an^{2}) 
+  }{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
+\label{main1-rel-term-3g}
+  \\
+  & + \psi(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
+  t an^{2})}
+  \frac{1- \psi(\tau -  an^{2})}{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
+\label{main1-rel-term-4g}
+  \\
+  & + \psi(t) \sum_{a = \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
+  \sum_{n \in \zz} \int_\rr e^{i(xn + t an^{2} )}
+  \psi(\tau -  an^{2}) (\tau -  an^{2})^{k-1} \wh{w}(n, \tau)
+  \label{main1-rel-term-5g}
+\end{align}
+%
+where now $w = u^{2} - v^{2}$. Using arguments similar to those in 
+\cref{ssec:est-init-term-1}-\cref{ssec:est-init-term-2}
+we obtain
+%
+%
+\begin{equation}
+	\label{gen-2a}
+	\begin{split}
+    & \| \cref{main1-rel-term-1g}\|_{X_{s,b}}
+		\le c \|u_0 -v_0\|_{H^s},
+    \\
+    & \| \cref{main1-rel-term-2g}\|_{X_{s,b}}
+    \le c \|u_1 -v_1\|_{H^{s-2}}.
+	\end{split}
+\end{equation}
+%
+%
+%
+%
+Therefore, from \cref{21a} and \cref{gen-2a}, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+    \|u -v \|_{X_{s,b}}
+    & = \|T_{u_0, v_0}(u) - T_{u_1, v_1}(v) \|_{X_{s,b}}
+    \\
+    & \le
+    c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-2}\left( \ci \right)} \right )
+        + \frac{1}{2} \|u -v \|_{X_{s,b}}
+  \end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{1}{2} \|u-v\|_{X_{s,b}} \le
+    c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-2}\left( \ci \right)} \right )
+      \end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation}
+	\begin{split}
+		\|u -v \|_{X_{s,b}} \le 2 c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-2}\left( \ci \right)} \right ).
+	\end{split}
+  \label{pre-lem-estimate}
+\end{equation}
+%
+%
+Applying  \cref{lem:embedding} to \cref{pre-lem-estimate}, it follows that
+for $(u_0, u_1), (v_0, v_1)  \subset
+B_{H^{s} \times H^{s-2}} \left (r \right )$, the
+associated solutions $u, v \in C([-1/2, 1/2], H^{s}(\ci))$ satisfy the estimate%
+%
+%
+	 %
+	 %
+	 \begin{equation*}
+		 \begin{split}
+       \sup_{t \in [-1/2, 1/2]} \|u(\cdot, t) -v(\cdot, t) \|_{H^s(\ci)} \le
+      2 c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
+        \|_{H^{s-2}\left( \ci \right)} \right ).
+		 \end{split}
+	 \end{equation*}
+	 %
+	 %
+Hence, the flow map is Lipschitz continuous from $B_{H^{s}
+\times H^{s-2}} \left (r \right )$ to $C([-1/2, 1/2],
+H^{s}(\ci))$. This
+concludes the proof of well-posedness for the $B_4$ ivp
+\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2}. \qquad \qedsymbol
+
 %
 %
 %
