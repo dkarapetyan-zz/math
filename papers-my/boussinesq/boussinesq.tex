@@ -556,9 +556,9 @@ Hence, we have rewritten the $B_{4}$ ivp
 \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} in integral form, which we will now
 localize in time. 
 Let $\psi(t)$ be a cutoff function symmetric about the 
-origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
-= [-1, 1 ]$.
-Define $\psi_{\delta}(t) = \psi(2t/\delta)$.  Multiplying both sides of expression
+origin such that $\psi(t) = 1$ for $|t| \le 1$ and $\text{supp} \, \psi 
+= [-2, 2 ]$.
+Define $\psi_{\delta}(t) = \psi(t/\delta)$.  Multiplying both sides of expression
 $\cref{eqn:integral-form}$ by $\psi_{\delta}(t)$, we obtain
 %
 %
@@ -1005,7 +1005,7 @@ But
 \begin{split}
   \wh{\psi_{\delta}}(\tau)
   = \int_{\rr} e^{-it \tau} \psi_{\delta}(t) dt
-  & = \int_{\rr} e^{-it \tau} \psi(2t/\delta) dt
+  & = \int_{\rr} e^{-it \tau} \psi(t/\delta) dt
   \\
   & = \frac{\delta}{2} \int_{\rr} e^{-is \tau \delta/2} \psi(s) ds
   \\
@@ -1919,25 +1919,25 @@ Hence, applying \cref{3n} and \cref{4n} to \cref{2n}, we obtain
 \end{equation}
 %
 %%
-Recall that $0 \le \psi \le 1, \text{ supp} \, \psi \subset [-1,1 ]$. 
+Recall that $0 \le \psi \le 1, \text{ supp} \, \psi \subset [-2,2 ]$. 
 This implies $$| \psi\left( \tau - an^{m } \right) \cdot \left( \tau - an^{m }
-\right)^{k -1} | \le \chi_{| \tau - an^{m } | \le 1}, \qquad k \ge 1.$$ Hence,
+\right)^{k -1} | \le 2^{k-1} \chi_{| \tau - an^{m } | \le 1}, \qquad k \ge 1.$$ Hence,
 we bound the right hand side of \cref{5n} by
 %
 %%
 \begin{equation*}
 	\begin{split}
     & c_{\psi, b} \sum_{a = \pm 1}
-    \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    \sum_{k \ge [b] +1} \frac{2^{k-1}}{(k-[b] - 1)!}
     \times \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
 		\int_{| \tau - an^{m}  |\le 1}  \wh{w}(n, \tau) \ d \tau |^2 
 		\right)^{1/2}
     \\
-    & = ec_{\psi, b} \sum_{a = \pm 1} \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
+    & = \frac{e^{2}}{2^{[b]}} c_{\psi, b} \sum_{a = \pm 1} \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
 		\int_{| \tau - an^{m}  |\le 1}  \wh{w}(n, \tau) \ d \tau |^2 
 		\right)^{1/2}
     \\
-    & \le e c_{\psi, b}  \sum_{a = \pm 1}
+    & \lesssim \sum_{a = \pm 1}
 \left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left (  
 		\int_{| \tau - an^{m}  |\le 1} | \wh{w}(n, \tau) | \ d \tau \right ) ^2 
 		\right]^{1/2}
@@ -1963,7 +1963,7 @@ is bounded by
 \begin{equation}
 \label{main-int4-est-X-s-part}
 	\begin{split}
-    & 4e c_{\psi, b} \left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left
+    & \left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left
     ( \int_\rr
 		\frac{|\wh{w}(n, \tau)|}{1 + | |\tau| - n^{m } |} \ d \tau \right ) ^2 
 		\right]^{1/2}.
@@ -4909,7 +4909,7 @@ We shall prove ill-posedness via contradiction. We have the estimate
 \end{split}
 \end{equation*}
 %
-Take $\wh{g_{N}}(k) \equiv 0$. Then the above reduces to
+Take $g(x) \equiv 0$. Then the above reduces to
 %
 %
 \begin{equation*}
@@ -4992,17 +4992,10 @@ $H^{s} \times H^{s-2}$. Substituting
 \end{split}
 \end{equation}
 %
-Assume $s <0$, and let $t \doteq N^{-\alpha}$, where we restrict $N \le
-\delta^{1/\alpha}$. Then \cref{rxx} is bounded below by
+Let $t \doteq N^{-\alpha}$, where we restrict $N \le
+\delta^{1/\alpha}$. Then for $\alpha \ge 2$ \cref{rxx} is bounded below by
 %
 %
-\begin{equation*}
-\begin{split}
-  r^{2}N^{-2s -2 \ee}  
-  \int_{0}^{N^{-\alpha}} \sin[(N^{-\alpha}-t')] [\cos(N^{2 -\alpha})]^{2} dt'
-\end{split}
-\end{equation*}
-which for $\alpha \ge 2$ is bounded below by
 %
 %
 \begin{equation*}
@@ -5059,6 +5052,239 @@ or $\alpha = -s -\ee + 1/2$. Since $\alpha \ge 2$, we obtain
 $-s - \ee + 1/2 \ge 2$, or $s \le -3/2 - \ee$, which completes the proof.
 \qquad \qedsymbol
 %
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Ill Posedness improvement
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Ill-Posedness for $s < -1/2$ on the Circle} 
+\label{sec:ill-pos-improv}
+We have
+%
+%
+\begin{equation*}
+\begin{split}
+  & \| N[A_{1}(f_{N}, g_{N}), A_{2}(f_{N, g_{N}})] \|_{C([0, \delta]),
+  H^{s}}
+  \\
+  & = \sup_{0 \le t \le \delta} \| \psi_{\delta}(t) (1 + | n |)^{s}
+  \frac{1}{4 i \pi} \int_{0}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \wh{(N[A_{1}(f_{N}, g_{N}), A_{2}(f_{N}, g_{N}})] )^{2}(n, t') dt' \|_{\ell^{2}_{n}}
+  \\
+  & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \wh{L(f_{N},g_{N})}(n - n_{1}, t')\wh{A_{2}(f_{N},g_{N})}(n_{1}, t') dt'
+  \|_{\ell^{2}_{n}}
+  \\
+  & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \psi(t')
+  \\
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n - n_{1})\left(
+  e^{i(n - n_{1})^{2}t'} - e^{-i(n - n_{1})^{2}t'}
+  \right)}{2i(n - n_{1})^{2}} \right]
+  \\
+  & \times \wh{N[L(f_{N}, g_{N}), L(f_{N}, g_{N})](n_{1}, t')} dt' \|_{\ell^{2}_{n}}
+  \\
+  & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \\
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n - n_{1})\left(
+  e^{i(n - n_{1})^{2}t'} - e^{-i(n - n_{1})^{2}t'}
+  \right)}{2i(n - n_{1})^{2}} \right]
+  \\
+  & \times \frac{1}{4 \pi i} \psi_{\delta}(t') \int_{0}^{t'} \left[ e^{in_{1}^{2}(t' -s)} -
+  e^{-in_{1}^{2}(t' -s)} \right] \wh{L(f, g) L(f,g)}(n_{1},s) ds dt'  \|_{\ell^{2}_{n}}
+\end{split}
+\end{equation*}
+or 
+%
+%
+\begin{equation*}
+\begin{split}
+& \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \\
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n - n_{1})\left(
+  e^{i(n - n_{1})^{2}t'} - e^{-i(n - n_{1})^{2}t'}
+  \right)}{2i(n - n_{1})^{2}} \right]
+  \\
+  & \times \frac{1}{4 \pi i} \int_{0}^{t'} \left[ e^{in_{1}^{2}(t' -s)} -
+  e^{-in_{1}^{2}(t' -s)} \right] \sum_{n_{2}} \wh{L(f, g)}(n_{1} - n_{2},s)
+  \wh{L(f,g)}(n_{2},s) ds dt'  \|_{\ell^{2}_{n}}
+  \\
+ & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \\
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n - n_{1})\left(
+  e^{i(n - n_{1})^{2}t'} - e^{-i(n - n_{1})^{2}t'}
+  \right)}{2i(n - n_{1})^{2}} \right]
+  \\
+  & \times \frac{1}{4 \pi i} \int_{0}^{t'} \left[ e^{in_{1}^{2}(t' -s)} -
+  e^{-in_{1}^{2}(t' -s)} \right]
+  \\
+  & \times \sum_{n_{2}} 
+  \left[ \frac{1}{2 \pi} \psi(s) 
+  \wh{f}(n_{1} - n_{2}) \frac{e^{i(n_{1} - n_{2})^{2}s} + e^{-i(n_{1} -
+  n_{2})^{2}s}}{2} 
+  + \psi(s) \wh{g}(n_{1} - n_{2})\frac{e^{i(n_{1} - n_{2})^{2}s} -
+  e^{-i(n_{1} - n_{2})^{2}s}}{2 i (n_{1} - n_{2})^{2}} \right]
+  \\
+  & \times 
+  \left[ \frac{1}{2 \pi} \psi(s) 
+  \wh{f}(n_{2}) \frac{e^{in_{2}^{2}s} + e^{-in_{2}^{2}s}}{2} 
+  + \psi(s) 
+  \wh{g}(n_{2})\frac{e^{in_{2}^{2}s} - e^{-in_{2}^{2}s}}{2 i n_{2}^{2}} \right]
+  ds dt'
+  \|_{\ell^{2}_{n}}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+& \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \\
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n - n_{1})\left(
+  e^{i(n - n_{1})^{2}t'} - e^{-i(n - n_{1})^{2}t'}
+  \right)}{2i(n - n_{1})^{2}} \right]
+  \\
+  & \times \frac{1}{4 \pi i} \int_{0}^{t'} \left[ e^{in_{1}^{2}(t' -s)} -
+  e^{-in_{1}^{2}(t' -s)} \right]
+  \\
+  & \times \sum_{n_{2}} 
+  \left[ \frac{1}{2 \pi} 
+  \wh{f}(n_{1} - n_{2}) \frac{e^{i(n_{1} - n_{2})^{2}s} + e^{-i(n_{1} -
+  n_{2})^{2}s}}{2} 
+  + \wh{g}(n_{1} - n_{2})\frac{e^{i(n_{1} - n_{2})^{2}s} -
+  e^{-i(n_{1} - n_{2})^{2}s}}{2 i (n_{1} - n_{2})^{2}} \right]
+  \\
+  & \times 
+  \left[ \frac{1}{2 \pi} 
+  \wh{f}(n_{2}) \frac{e^{in_{2}^{2}s} + e^{-in_{2}^{2}s}}{2} 
+  + 
+  \wh{g}(n_{2})\frac{e^{in_{2}^{2}s} - e^{-in_{2}^{2}s}}{2 i n_{2}^{2}} \right]
+  ds dt'
+  \|_{\ell^{2}_{n}}.
+\end{split}
+\end{equation*}
+%
+%
+Take $g(x) \equiv 0$. Then the above reduces to
+%
+%
+\begin{equation*}
+\begin{split}
+& \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} \right]
+  \\
+  & \times \frac{1}{4 \pi i} \int_{0}^{t'} \left[ e^{in_{1}^{2}(t' -s)} -
+  e^{-in_{1}^{2}(t' -s)} \right]
+  \sum_{n_{2}} 
+  \left[ \frac{1}{2 \pi} 
+  \wh{f}(n_{1} - n_{2}) \frac{e^{i(n_{1} - n_{2})^{2}s} + e^{-i(n_{1} -
+  n_{2})^{2}s}}{2} 
+  \right]
+  \\
+  & \times 
+  \left[ \frac{1}{2 \pi} 
+  \wh{f}(n_{2}) \frac{e^{in_{2}^{2}s} + e^{-in_{2}^{2}s}}{2} 
+  \right]
+  ds dt'
+  \|_{\ell^{2}_{n}}.
+\end{split}
+\end{equation*}
+%
+or
+\begin{equation*}
+\begin{split}
+  & \frac{1}{32 \pi^{5}} \sup_{0 \le t \le \delta} \| (1 + | n |)^{s}  
+  \int_{0}^{t} \sum_{n_{1}} \wh{f_{N}}(n - n_{1}) \sin[n^{2}(t - t')]
+  \cos[(n - n_{1})^{2}t']
+  \\
+  & \times \int_{0}^{t'} \sin[n_{1}^{2}(t' -s)]
+  \sum_{n_{2}} 
+  \wh{f}(n_{1} - n_{2}) \wh{f}(n_{2}) \cos[(n_{1} - n_{2})^{2}s ]
+  \cos(n_{2}^{2}s) ds dt'
+  \|_{\ell^{2}_{n}}
+  \\
+  & \gtrsim_{s} \sup_{0 \le t \le \delta} 
+  | \int_{0}^{t} \sum_{n_{1}} \wh{f_{N}}(1 - n_{1}) \sin[(t - t')]
+  \cos[(1 - n_{1})^{2}t']
+  \\
+  & \times \int_{0}^{t'} \sin[n_{1}^{2}(t' -s)]
+  \sum_{n_{2}} 
+  \wh{f}(n_{1} - n_{2}) \wh{f}(n_{2}) \cos[(n_{1} - n_{2})^{2}s ]
+  \cos(n_{2}^{2}s) ds dt' |
+\end{split}
+\end{equation*}
+%
+where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge
+|a_{1}|$. Choose $f_N$ as in \eqref{ill-pos-ce}. Then
+$(f_{N}, g_{N}) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N}, g_{N}) \to 0$ in
+$H^{s} \times H^{s-2}$, as before. Substituting, we bound below by
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  & r^{3} N^{-3s - 3 \ee} \sup_{0 \le t \le \delta} 
+  | \int_{0}^{t} \sin[(t - t')] \cos(N^{2}t')
+  \\
+  & \times \int_{0}^{t'} \sin[N^{2}(t' -s)]
+  \cos^{2}(N^{2}s )
+  ds dt' |
+\end{split}
+\end{equation*}
+%
+Let $t \doteq N^{-\alpha}$, where we restrict $N \le
+\delta^{1/\alpha}$. Then, for $\alpha \ge 2$ we bound below by
+%
+%
+\begin{equation*}
+\begin{split}
+  & \frac{1}{64} r^{3} N^{-3s - 3 \ee} 
+  | \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} - t') 
+  \\
+  & \times \int_{0}^{t'} \sin[N^{2}(t' -s)]
+  ds dt' |
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+Integrating in $s$ gives
+%
+%
+\begin{equation*}
+\begin{split}
+& \frac{1}{64} r^{3} N^{-3s - 3 \ee -2} 
+| \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} - t')
+\left[1 -\cos(N^{2}t')  \right] dt' |
+\end{split}
+\end{equation*}
+%
+%
+<++>
 %
 \newpage
 \begin{appendices}
@@ -5407,7 +5633,7 @@ Hence, we have rewritten the $B_{4}$ ivp
 localize in time. 
 Let $\psi(t)$ be a cutoff function symmetric about the 
 origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
-= [-1, 1 ]$. Define $\psi_{\delta}(t) = \psi(2t/\delta)$, $ 0 < \delta \le 1$.
+= [-2, 2 ]$. Define $\psi_{\delta}(t) = \psi(t/\delta)$, $ 0 < \delta \le 1$.
 Motivated by $\cref{eqn:integral-formb}$, we consider the equation
 %
 %
@@ -5601,12 +5827,12 @@ of \cref{pre-smoothing-lem} by
 %
 \begin{equation*}
 \begin{split}
-  & c_{\psi} \delta^{1- (a + b)}\left[ \sum_{n \in \zz} (1 + |n|)^{s} \| \wt{u^{2}}(n, t')
+  & c_{\psi, a} \delta^{1- (a + b)}\left[ \sum_{n \in \zz} (1 + |n|)^{s} \| \wt{u^{2}}(n, t')
   e^{in^{2}t'} \|_{H_{t}^{-a}}  +
   \sum_{n \in \zz} (1 + |n|)^{s} \| \wt{u^{2}}(n, t')
   e^{-in^{2}t'} \|_{H_{t}^{-a}} \right]
   \\
-  & = c_{\psi} \delta^{1-(a + b)}
+  & = c_{\psi, a} \delta^{1-(a + b)}
   \left [ \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
   |)^{-a} |\wh{u^{2}}(n, \tau - n^{2})|^{2} d \tau  \right .
   \\
@@ -5614,7 +5840,7 @@ of \cref{pre-smoothing-lem} by
   \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
   |)^{-a} |\wh{u^{2}}(n, \tau + n^{2})|^{2} d \tau  \right ]
   \\
-  & = c_{\psi} \delta^{1- (a + b)}
+  & = c_{\psi, a} \delta^{1- (a + b)}
   \left [ \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | \tau
   + n^{2}
   |)^{-a} |\wh{u^{2}}(n, \tau )|^{2} d \tau  \right .
@@ -5633,12 +5859,12 @@ which by \cref{eqn:norm-key-ineq} is bounded by
 \begin{equation*}
 \begin{split}
   & 
-  2 c_{\psi} \delta^{1- (a + b)}
+  2 c_{\psi, a} \delta^{1- (a + b)}
 \sum_{n \in \zz} (1 + |n|)^{s} \int_{\rr} (1 + | |\tau|
   - n^{2} |)^{-a} 
 |\wh{u^{2}}(n, \tau)|^{2} d \tau 
   \\
-  & = 2 c_{\psi} \delta^{1- (a + b)}
+  & = 2 c_{\psi, a} \delta^{1- (a + b)}
 \|u^{2} \|_{X_{s,-a}}^{2}.
 \end{split}
 \end{equation*}
@@ -5650,7 +5876,7 @@ Substituting back in for $f$ and taking square roots gives
 \begin{equation}
 \begin{split}
   \|\psi_{\delta}(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'\|_{X_{s,b}} \le
-  c_{\psi} \delta^{[1- (a + b)]/2}\| u^{2}
+  c_{\psi, a} \delta^{[1- (a + b)]/2}\| u^{2}
   \|_{X_{s,-a}}, \qquad b \le 1-a, \quad 0 \le a < 1/2.
 \end{split}
 \label{eqn:non-lin-bound}
@@ -5666,35 +5892,36 @@ estimate.
 %
 %
 Applying \cref{prop:bilinear-est} to \cref{eqn:non-lin-bound}, we conclude that
-for $-1/4 < s < 0$, $1/2 < b \le 1 + 2s$, and $s \ge 0$, $1/2 < b \le 1$, we have 
+for $-1/4 < s < 0$, $0 < \ee < 1/2 + 2s$, $b= 1 + 2s - 2 \ee$, and $s \ge 0$,
+$\ee = 1/4$, $1/2 < b \le 1$, we have 
 %
 %
 \begin{equation}
 \begin{split}
   \|\psi_{\delta}(t) \int_{0}^{t} S_{t-t'} (u^{2})_{xx} dt'\|_{X_{s,b}} \le
-  c \| u \|^2_{X_{s,b}}. 
+  c \delta^{\ee} \| u \|^2_{X_{s,b}}, 
 \end{split}
 \label{eqn:nonlinear-term-bound}
 \end{equation}
 %
 %
-where $c = c_{\psi, s, \delta}$ for $-1/4 < s < 0$ and $c =c_{\psi}$ for $s \ge
-0$.  
+where $c = c_{\psi, b}$ (for \cref{eqn:nonlinear-term-bound} to hold, the value
+of $a$ depends on the value of $b$; see below).
 %
 %
 \begin{framed}
 \begin{remark}
 We obtain the restrictions on $s$, $b$, and $c$ as follows. If $-1/4 < s \le 0$, let
 $0 < \epsilon < 1/2 + 2s$ and set
-$a = -2s$, $b = 1 + 2s - \epsilon$. Then $0 \le a < 1/2$ and $b \le 1-a$,
+$a = -2s$, $b = 1 + 2s - 2 \epsilon$. Then $0 \le a < 1/2$ and $b \le 1-a$,
 so \cref{eqn:non-lin-bound} holds. Furthermore, \cref{prop:bilinear-est} holds,
-and substituting for $a,b$ we get $\delta^{[1-(a + b)]/2} = \delta^{\ee/2}$.
+and substituting for $a,b$ we get $\delta^{[1-(a + b)]/2} = \delta^{\ee}$.
 \\
 If $ s \ge 0$, choose $1/4 < a < 1/2$, and let $0 < \ee < 1/2 -a$ and $b = 1-a
 -\ee$. Then
 \cref{eqn:non-lin-bound} holds. Furthermore, 
 \cref{prop:bilinear-est} holds, and substituting for $a, b$ we get $\delta^{\left[
-1- (a + b) \right]/2} = \delta^{\ee/2} < \delta^{1/8}$. 
+1- (a + b) \right]/2} = \delta^{\ee} < \delta^{1/4}$. 
 \end{remark}
 \end{framed}
 %
