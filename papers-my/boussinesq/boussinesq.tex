@@ -4775,7 +4775,7 @@ Hence, applying
 which is bounded for $a > 1/4$ by \cref{cor:integral-bound}. This concludes the proof of \cref{prop:bilin-est-real}. \qquad \qedsymbol
 %
 %
-\section{Ill-Posedness for $s < -3/2$ on the Circle}
+\section{Ill-Posedness for $s < -1$ on the Circle}
 Our motivation will be the work of Bejanaru and Tao
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 %
@@ -5017,18 +5017,18 @@ or
 \end{equation*}
 %
 %
-By l'H\^opital's rule, for large $N$ we have
+Assume $s < -\ee$. Then by l'H\^opital's rule
 %
 %
 \begin{equation*}
 \begin{split}
-\frac{1}{4} r^{2} N^{-2s -2 \ee}  
+  \lim_{N \to \infty} \frac{1}{4} r^{2} N^{-2s -2 \ee}  
 [1 - \cos(N^{-\alpha})]
-& \simeq \frac{[1 - \cos(N^{-\alpha})]}{1/N^{-2s -2\ee}}
+& \simeq \lim_{N \to \infty} \frac{[1 - \cos(N^{-\alpha})]}{N^{2s + 2\ee}}
 \\
-& \gtrsim \frac{\sin(N^{-\alpha}) N^{-\alpha}}{1/N^{-2s -2\ee + 1}}
+& \lim_{N \to \infty} \gtrsim \frac{\sin(N^{-\alpha}) N^{-\alpha -1}}{N^{2s + 2\ee - 1}}
 \\
-& = \frac{\sin(N^{-\alpha})}{N^{2s + 2 \ee -1 + \alpha}}.
+& = \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2 \ee + \alpha}}.
 \end{split}
 \end{equation*}
 %
@@ -5038,18 +5038,18 @@ But
 %
 \begin{equation*}
 \begin{split}
-  \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2 \ee -1 + \alpha}}
-  & = \lim_{N \to 0}\frac{\sin(N^{\alpha})}{N^{-2s - 2 \ee +1 - \alpha}}
+  \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2 \ee + \alpha}}
+  & = \lim_{N \to 0}\frac{\sin(N^{\alpha})}{N^{-2s - 2 \ee - \alpha}}
   \\
-  & = 1, \quad \alpha = -2s -2 \ee +1 - \alpha
+  & = 1, \quad \alpha = -2s -2 \ee - \alpha
 \end{split}
 \end{equation*}
 %
 %
-or $\alpha = -s -\ee + 1/2$. Since $\alpha \ge 2$, we obtain
+or $\alpha = -s -\ee $. Since $\alpha \ge 2$, we obtain
 %
 %
-$-s - \ee + 1/2 \ge 2$, or $s \le -3/2 - \ee$, which completes the proof.
+$-s - \ee  \ge 2$, or $s \le -2 - \ee$, which completes the proof.
 \qquad \qedsymbol
 %
 %
@@ -5063,7 +5063,7 @@ $-s - \ee + 1/2 \ge 2$, or $s \le -3/2 - \ee$, which completes the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Ill-Posedness for $s < -1/2$ on the Circle} 
+\section{Attempt to Improve Ill-Posedness on the Circle} 
 \label{sec:ill-pos-improv}
 We have
 %
@@ -5075,7 +5075,7 @@ We have
   \\
   & = \sup_{0 \le t \le \delta} \| \psi_{\delta}(t) (1 + | n |)^{s}
   \frac{1}{4 i \pi} \int_{0}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
-  \wh{(N[A_{1}(f_{N}, g_{N}), A_{2}(f_{N}, g_{N}})] )^{2}(n, t') dt' \|_{\ell^{2}_{n}}
+  \wh{\{N[A_{1}(f_{N}, g_{N}), A_{2}(f_{N}, g_{N})] } \}^{2}(n, t') dt' \|_{\ell^{2}_{n}}
   \\
   & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
   \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
@@ -5248,7 +5248,7 @@ $H^{s} \times H^{s-2}$, as before. Substituting, we bound below by
   & r^{3} N^{-3s - 3 \ee} \sup_{0 \le t \le \delta} 
   | \int_{0}^{t} \sin[(t - t')] \cos(N^{2}t')
   \\
-  & \times \int_{0}^{t'} \sin[N^{2}(t' -s)]
+  & \times \int_{0}^{t'} \sin[(N-1)^{2}(t' -s)]
   \cos^{2}(N^{2}s )
   ds dt' |
 \end{split}
@@ -5263,7 +5263,7 @@ Let $t \doteq N^{-\alpha}$, where we restrict $N \le
   & \frac{1}{64} r^{3} N^{-3s - 3 \ee} 
   | \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} - t') 
   \\
-  & \times \int_{0}^{t'} \sin[N^{2}(t' -s)]
+  & \times \int_{0}^{t'} \sin[(N-1)^{2}(t' -s)]
   ds dt' |
 \end{split}
 \end{equation*}
@@ -5275,17 +5275,127 @@ Let $t \doteq N^{-\alpha}$, where we restrict $N \le
 Integrating in $s$ gives
 %
 %
+\begin{equation}
+  \label{gfd}
+\begin{split}
+  & \frac{1}{64} r^{3} N^{-3s - 3 \ee}(N-1)^{-2} 
+| \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} - t')
+\left\{ 1 -\cos[ (N-1)^{2}t']  \right \} dt' |.
+\end{split}
+\end{equation}
+%
+%
+Then 
+%
+%
+\begin{equation}
+  \label{pre-int}
+\begin{split}
+& \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} - t')
+\left\{1 -\cos[(N-1)^{2}t']  \right\} dt' 
+\\
+& = 1 - \cos(N^{-\alpha}) - \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} -t')
+\cos[(N-1)^{2}t'] dt'.
+\end{split}
+\end{equation}
+%
+%
+But
+%
+%
 \begin{equation*}
 \begin{split}
-& \frac{1}{64} r^{3} N^{-3s - 3 \ee -2} 
-| \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha} - t')
-\left[1 -\cos(N^{2}t')  \right] dt' |
+   & \int_{0}^{N^{-\alpha}} \sin(N^{-\alpha -t'}) \cos[(N-1)^{2}t'] 
+   \\
+   & = \int_{0}^{N^{-\alpha}} \frac{e^{i(N^{-\alpha} -t')} -
+  e^{-i(N^{-\alpha}-t)}}{2i} \times \frac{e^{i[(N-1)^{2}t']} + e^{-i[(N-1)^{2}t']}}{2}
+  \\
+  & = \frac{1}{4 i} \int_{0}^{N^{-\alpha}} \left( e^{i[N^{-\alpha} + (N-1)^{2}t'
+  - t'}) + e^{i[N^{-\alpha} - (N-1)^{2}t' -t']} - e^{-i[N^{-\alpha} - t' -
+  (N-1)^{2}t']} - e^{-i[N^{-\alpha} - t' + (N-1)^{2}t']}  \right) dt'
+  \\
+  & = \frac{1}{4i} \left \{ \left[ \frac{e^{i(N-1)^{2}N^{-\alpha}}}{i[(N-1)^{2}-1]} -
+  \frac{e^{-i(N-1)^{2}N^{-\alpha}}}{i[(N-1)^{2} +1]} - \frac{e^{i(N-1)^{2}N^{-
+  \alpha}}}{i[(N-1)^{2} +1]} - \frac{e^{-i(N-1)^{2}N^{-\alpha}}}{i[(N-1)^{2} +1]}\right] \right.
+  \\
+  & - \left. \left[
+  \frac{e^{iN^{-\alpha}}}{i[(N-1)^{2} -1]} - \frac{e^{iN^{-\alpha}}}{i[(N-1)^{2} +1]} -
+  \frac{e^{-iN^{-\alpha}}}{i[(N-1)^{2} +1]} +
+  \frac{e^{-iN^{-\alpha}}}{i[(N-1)^{2} -1]}  \right]  \right \}
+  \\
+  & = \frac{1}{4} \left\{ 2 \cos[(N-1)^{2}N^{-\alpha}]\left[
+  \frac{1}{(N-1)^{2} +1} - \frac{1}{(N-1)^{2} -1} \right] \right.
+  \\
+  & + \left. 2 \cos N^{-\alpha}
+  \left[ \frac{1}{(N-1)^{2} -1} - \frac{1}{(N-1)^{2} +1} \right] \right\}
+\end{split}
+\end{equation*}
+%
+which reduces to
+%
+%
+\begin{equation*}
+\begin{split}
+ \frac{\cos(N^{-\alpha}) - \cos[(N-1)^{2}N^{-\alpha})}{(N-1)^{4} -1}.
 \end{split}
 \end{equation*}
 %
 %
-<++>
+Substituting into \cref{pre-int}, we obtain
 %
+%
+%
+\begin{equation*}
+\begin{split}
+  1 - \cos (N^{-\alpha}) -
+  \frac{\cos(N^{-\alpha}) - \cos[(N-1)^{2}N^{-\alpha})}{(N-1)^{4} -1}.
+\end{split}
+\end{equation*}
+%
+%
+Hence, \cref{gfd} reduces to
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  & \frac{1}{64} r^{3} N^{-3s - 3 \ee}(N-1)^{-2} \left | 1 - \cos (N^{-\alpha}) -
+  \frac{\cos(N^{-\alpha}) - \cos[(N-1)^{2}N^{-\alpha})}{(N-1)^{4} -1}\right |
+  \\
+  & \gtrsim 
+  N^{-3s - 3 \ee -2} \left | 1 - \cos (N^{-\alpha}) -
+  \frac{\cos(N^{-\alpha}) - \cos[(N-1)^{2}N^{-\alpha})}{(N-1)^{4} -1}\right |
+  \\
+  & \ge \frac{1 - \cos (N^{-\alpha})}{N^{3s + 3 \ee +2}}  -N^{-3s - 3 \ee -2} 
+  \left [\frac{\cos(N^{-\alpha}) - \cos[(N-1)^{2}N^{-\alpha})}{(N-1)^{4} -1}
+  \right ].
+\end{split}
+\end{equation*}
+%
+%
+Assume $s < -2/3 - \ee$. Then by l'H\^opital's rule
+%
+%
+\begin{equation*}
+\begin{split}
+   \lim_{N \to \infty} \frac{1 - \cos (N^{-\alpha})}{N^{3s + 3 \ee +2}}
+   & \simeq  \lim_{N \to \infty} \frac{\sin(N^{-\alpha})N^{-\alpha -1}}{N^{3s + 3 \ee +1
+  }}
+  \\
+  & = \lim_{N \to 0} \frac{\sin(N^{\alpha})}{N^{-3s - 3 \ee -2
+  -\alpha}}
+  \\
+  & = 1, \qquad \alpha = -3s -3 \ee -2 - \alpha
+\end{split}
+\end{equation*}
+%
+%
+or $2 \alpha = -3s - 3 \ee -2$. Since $\alpha \ge 2$, we obtain 
+$-3s -3 \ee -2 \ge 4$, which gives $s \le -2 -\ee$. This is the problem term
+which limits how good a ill-posedness result we can get (computations coming
+shortly). Hence, considering the 
+higher iterate $A_{2}$ has given us no better an ill-posedness result than
+considering the $A_{1}$ iterate. 
 \newpage
 \begin{appendices}
 \section{An Alternative Way to Derive the $B_{4}$ Integral Equation}
