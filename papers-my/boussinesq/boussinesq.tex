@@ -2,7 +2,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[protrusion=true,expansion=true]{microtype}
+%\usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage[notcite]{showkeys}
 \usepackage{appendix}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
@@ -4787,22 +4787,21 @@ Our motivation will be the work of Bejanaru and Tao
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 %
 \begin{definition}
-For functions $f =
-f(x), g = g(x)$, formally define 
+  For $f =f(x)= (f_{1}(x), f_{2}(x)), u = u(x,t), v = v(x,t)$ formally define 
 %
 %
 \begin{equation*}
 \begin{split}
-  L( f, g)
+  L(f)
   \doteq \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+  \wh{f_{1}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
   & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{g}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
+  \wh{f_{2}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
 \end{split}
 \end{equation*}
 %
 %
-and for $u = u(x,t)$, $v = v(x,t)$ formally define 
+and
 %
 %
 \begin{equation*}
@@ -4814,17 +4813,31 @@ N(u, v)
 \end{split}
 \end{equation*}
 %
+%
+Then we let $A_{n}: H^{s} \times H^{s-2} \to X_{s,b}, n = 1, 2, \dots$ be the
+recursively defined maps
+%
+%
+\begin{equation*}
+\begin{split}
+  & A_{1}(f) \doteq L(f),
+  \\
+  & A_{n}(f) \doteq \sum_{n_{1}, n_{2} \in \mathbb{N}: n_{1} + n_{2} = n} N\left[
+  A_{n_{1}}(f), A_{n_{2}}(f) \right], \quad n > 1.
+\end{split}
+\end{equation*}
+
 \end{definition}
 %
 %
 %%
 \begin{definition}
   We say that the localized integral $B_{4}$ equation
-  is \emph{qualitatively well-posed} in the
-  spaces $H^{s} \times H^{s-2}$, $X_{s,b}$ if for all $(u_{0}, u_{1})$, $u, v
+  is \emph{qualitatively well-posed} in $H^{s} \times H^{s-2}$
+  if for all $(u_{0}, u_{1})$, $u, v
   \in X_{s,b}$ we have the estimates
   \begin{enumerate}
-    \item{$\|L(u_{0}, u_{1})\|_{X_{s,b}} \le C \|(u_{0}, u_{1}) \|_{H^{s} \times
+    \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^{s} \times
       H^{s-2}}$}
     \item{$\| N(u, v) \|_{X_{s,b}} \le C \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}$} 
   \end{enumerate}
@@ -4845,79 +4858,70 @@ N(u, v)
 By estimates \cref{eqn:u-0-fin-est}, \cref{u-1-est},
 \cref{main-int2-est}, \cref{main-int3-est}, and \cref{main-int4-est}, we see
 that the localized $B_{4}$ integral equation is quantitatively well-posed in
-$H^{s} \times H^{s-2}, X_{s,b}$. Therefore, an application of Proposition 1 in
-\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness} yields the
-following.
-%
+$H^{s} \times H^{s-2}$. Therefore, we may apply the following result, which we
+will prove later. A proof of a more general theorem can be found in~\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 \begin{proposition}
-  Let $(u_{0}, u_{1}) \mapsto u(x, t)$ be the solution map to the localized
+  Let $f \mapsto u[f]$ be the solution map to the localized
   $B_{4}$ which maps a ball $B_{H^{s} \times H^{s-2}}$ in $H^{s} \times
   H^{s-2}$ to a ball $B_{X_{s,b}}$ in $X_{s,b}$. Suppose that the solution map
-  $(u_{0}, u_{1}) \mapsto u(x,t)$ is continuous from $B_{H^{s'} \times
-  H^{s'-2}}$ to $(B_{X_{s,b}}, \| \|_{C([-\delta, \delta], H^{s'})})$ (i.e.\ the
-  ball $B_{X_{s,b}}$ equipped with the $C([-\delta, \delta], H^{s'})$ topology),
-  where $s' < s$. Then
-  for  $n=1,2$, the operator $A_{n} :
+  is continuous from $B_{H^{s'}} \times
+  H^{s'-2}$ to $(B_{X_{s,b}}, \| \|_{X_{s', b}})$ (i.e.\ the
+  ball $B_{X_{s,b}}$ equipped with the $X_{s',b}$ topology),
+  where $s' < s$. Then for  $n=1,2,\dots$, the operator $A_{n} :
   B_{H^{s'}} \times B_{H^{s'-2}} \to X_{s',b}$ is continuous
   from $B_{H^{s'}} \times B_{H^{s'-2}}$
-  to $(B_{X_{s,b}}, \|  \|_{C([-\delta, \delta], H^{s'})})$,
-  where
+  to $(B_{X_{s,b}}, \|  \|_{X_{s',b}})$.
   %
   %
-  \begin{equation*}
-  \begin{split}
-    &A_{1}(f,g) \doteq L(f,g),
-    \\
-    & A_{2}(f,g) \doteq N(A_{1}(f,g), A_{1}(f,g)).
-  \end{split}
-  \end{equation*}
   %
   %
 \label{prop:ill-posedness}
 \end{proposition}
 %
 %
-We shall prove ill-posedness via contradiction. We have the estimate
+We now prove ill-posedness via contradiction. Let $f_{N} = (f_{N,1},
+f_{N,2})$. We have the estimate
 %
 %
 \begin{equation*}
 \begin{split}
-  & \| N(A_{1}(f_{N}, g_{N}), A_{1}(f_{N}, g_{N})) \|_{C([-\delta, \delta],
+  & \| N(A_{1}(f_{N}), A_{1}(f_{N})) \|_{C([-\delta, \delta],
   H^{s})}
   \\
  & \ge
-  \| N(A_{1}(f_{N}, g_{N}), A_{1}(f_{N}, g_{N})) \|_{C([0, \delta],
+  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, \delta],
   H^{s})} 
   \\
   & = \sup_{0 \le t \le \delta} \| \psi_{\delta}(t) (1 + | n |)^{s}
-  \frac{1}{4 i \pi} \int_{0}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
-  \wh{(L(f_{N},g_{N}))^{2}}(n, t') dt' \|_{\ell^{2}_{n}}
+  \frac{1}{4 i \pi}
+  \int_{0}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \wh{[L(f_{N})]^{2}}(n, t') dt' \|_{\ell^{2}_{n}}
   \\
   & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
   \int_{0}^{t} \sum_{n_{1}}
   \\
   & \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
-  \wh{L(f_{N},g_{N})}(n - n_{1}, t')\wh{L(f_{N},g_{N})}(n_{1}, t') dt'
+  \wh{L(f_{N})}(n - n_{1}, t')\wh{L(f_{N})}(n_{1}, t') dt'
   \|_{\ell^{2}_{n}}
   \\
   & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
   \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
   \psi(t')
   \\
-  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
-  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n - n_{1})\left(
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N,1}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{f_{N,2}}(n - n_{1})\left(
   e^{i(n - n_{1})^{2}t'} - e^{-i(n - n_{1})^{2}t'}
   \right)}{2i(n - n_{1})^{2}} \right]
   \\
-  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(n_{1})\left( e^{in_{1}^{2}t'} +
-  e^{-in_{1}^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(n_{1})\left(
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N,1}}(n_{1})\left( e^{in_{1}^{2}t'} +
+  e^{-in_{1}^{2}t'} \right)}{2} + \frac{\wh{f_{N,2}}(n_{1})\left(
   e^{in_{1}^{2}t'} - e^{-in_{1}^{2}t'}
   \right)}{2 i n_{1}^{2}} \right]
   dt' \|_{\ell^{2}_{n}}
 \end{split}
 \end{equation*}
 %
-Take $g(x) \equiv 0$. Then the above reduces to
+Take $f_{N,2}(x) \equiv 0$. Then the above reduces to
 %
 %
 \begin{equation*}
@@ -4925,10 +4929,10 @@ Take $g(x) \equiv 0$. Then the above reduces to
   & \sup_{0 \le t \le \delta} \frac{1}{16 i \pi^{2}}\| (1 + | n |)^{s}
   \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
   \\
-  & \times \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
+  & \times \left[ \frac{\wh{f_{N,1}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
   e^{-i(n - n_{1})^{2}t'} \right)}{2} \right ]
   \\
-  & \times \left[ \frac{\wh{f_{N}}(n_{1})\left( e^{in_{1}^{2}t'} +
+  & \times \left[ \frac{\wh{f_{N,1}}(n_{1})\left( e^{in_{1}^{2}t'} +
   e^{-in_{1}^{2}t'} \right)}{2}  \right]
   dt' \|_{\ell^{2}_{n}}
 \end{split}
@@ -4943,12 +4947,12 @@ or
 \begin{split}
 & \sup_{0 \le t \le \delta} \frac{1}{8 \pi^{2}}\| (1 + | n |)^{s}
 \int_{0}^{t} \sin[n^{2}(t-t')] \cos[(n - n_{1})^{2}t']
-\cos(n_{1}^{2}t') \wh{f_{N}}(n - n_{1})\wh{f_{N}}(n_{1}) dt'
+\cos(n_{1}^{2}t') \wh{f_{N,1}}(n - n_{1})\wh{f_{N,1}}(n_{1}) dt'
 \|_{\ell_{2}}
 \\
 & \gtrsim \sup_{0 \le t \le \delta} 
 | \int_{0}^{t} \sum_{n_{1}} \sin[(t-t')] \cos[(1 -n_{1})^{2}t']
-\cos(n_{1}^{2}t') \wh{f_{N}}(1 - n_{1})\wh{f_{N}}(n_{1}) dt' |
+\cos(n_{1}^{2}t') \wh{f_{N,1}}(1 - n_{1})\wh{f_{N,1}}(n_{1}) dt' |
 \end{split}
 \end{equation}
 %
@@ -4967,7 +4971,7 @@ where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge
 \begin{equation}
   \label{ill-pos-ce}
 \begin{split}
-  \wh{f_{N}}(n) \doteq r N^{-s - \ee} \chi_{\{{0}\}} (n - N), \quad \ee > 0.
+  \wh{f_{N,1}}(n) \doteq r N^{-s - \ee} \chi_{\{{0}\}} (n - N), \quad \ee > 0.
 \end{split}
 \end{equation}
 %
@@ -4977,7 +4981,7 @@ Then
 %
 \begin{equation*}
 \begin{split}
-  \| f_{N} \|_{H^{s}}
+  \| f_{N,1} \|_{H^{s}}
   & = rN^{-s -\ee} \left( \sum_{n} (1 + | n |)^{2s} |
   \chi_{\left\{0 \right\}} (n - N) |^{2} \right)^{1/2}
   \\
@@ -4986,8 +4990,8 @@ Then
 \end{equation*}
 %
 %
-Hence, $f_{N} \in B_{H^{s}}(2r)$ and $f_{N} \to 0$ in $H^{s}$. Therefore,
-$(f_{N}, g_{N}) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N}, g_{N}) \to 0$ in
+Hence, $f_{N,1} \in B_{H^{s}}(2r)$ and $f_{N,1} \to 0$ in $H^{s}$. Therefore,
+$(f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N,1}, 0) \to 0$ in
 $H^{s} \times H^{s-2}$. Substituting
 \cref{ill-pos-ce} into \cref{yut}, we obtain
 %
@@ -5088,22 +5092,22 @@ We shall prove ill-posedness via contradiction. We have the estimate
 %
 \begin{equation*}
 \begin{split}
-  & \| N(A_{1}(f_{N}, g_{N}), A_{1}(f_{N}, g_{N})) \|_{C([-\delta, \delta],
+  & \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([-\delta, \delta],
   H^{s})}
   \\
  & \ge
-  \| N(A_{1}(f_{N}, g_{N}), A_{1}(f_{N}, g_{N})) \|_{C([0, \delta],
+  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, \delta],
   H^{s})} 
   \\
   & = \sup_{0 \le t \le \delta} \| \psi_{\delta}(t) (1 + | \xi |)^{s}
   \frac{1}{4 i \pi} \int_{0}^{t} \left( e^{i\xi^{2}(t-t')} - e^{-i\xi^{2}(t-t')} \right)
-  \wh{(L(f_{N},g_{N}))^{2}}(\xi, t') d \xi_{1} dt' \|_{L^{2}_{\xi}}
+  \wh{L(f_{N})^{2}}(\xi, t') d \xi_{1} dt' \|_{L^{2}_{\xi}}
   \\
   & = \sup_{0 \le t \le \delta} \| (1 + | \xi |)^{s} \frac{1}{4 i \pi} 
   \int_{0}^{t} \int_{\xi_{1}}
   \\
   & \left( e^{i\xi^{2}(t-t')} - e^{-i\xi^{2}(t-t')} \right)
-  \wh{L(f_{N},g_{N})}(\xi - \xi_{1}, t')\wh{L(f_{N},g_{N})}(\xi_{1}, t') d
+  \wh{L(f_{N})}(\xi - \xi_{1}, t')\wh{L(f_{N})}(\xi_{1}, t') d
   \xi_{1} dt'
   \|_{L^{2}_{\xi}}
   \\
@@ -5111,19 +5115,19 @@ We shall prove ill-posedness via contradiction. We have the estimate
   \int_{0}^{t} \int_{\xi_{1}} \left( e^{i\xi^{2}(t-t')} - e^{-i\xi^{2}(t-t')} \right)
   \psi(t')
   \\
-  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(\xi - \xi_{1})\left( e^{i(\xi - \xi_{1})^{2}t'} +
-  e^{-i(\xi - \xi_{1})^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(\xi - \xi_{1})\left(
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N,1}}(\xi - \xi_{1})\left( e^{i(\xi - \xi_{1})^{2}t'} +
+  e^{-i(\xi - \xi_{1})^{2}t'} \right)}{2} + \frac{\wh{f_{N,2}}(\xi - \xi_{1})\left(
   e^{i(\xi - \xi_{1})^{2}t'} - e^{-i(\xi - \xi_{1})^{2}t'}
   \right)}{2i(\xi - \xi_{1})^{2}} \right]
   \\
-  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N}}(\xi_{1})\left( e^{i\xi_{1}^{2}t'} +
-  e^{-i\xi_{1}^{2}t'} \right)}{2} + \frac{\wh{g_{N}}(\xi_{1})\left(
+  & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N,1}}(\xi_{1})\left( e^{i\xi_{1}^{2}t'} +
+  e^{-i\xi_{1}^{2}t'} \right)}{2} + \frac{\wh{f_{N,2}}(\xi_{1})\left(
   e^{i\xi_{1}^{2}t'} - e^{-i\xi_{1}^{2}t'}
   \right)}{2 i \xi_{1}^{2}} \right] d \xi_{1} dt' \|_{L^{2}_{\xi}}
 \end{split}
 \end{equation*}
 %
-Take $g(x) \equiv 0$. Then the above reduces to
+Take $f_{N,2}(x) \equiv 0$. Then the above reduces to
 %
 %
 \begin{equation*}
@@ -5131,10 +5135,10 @@ Take $g(x) \equiv 0$. Then the above reduces to
   & \sup_{0 \le t \le \delta} \frac{1}{16 i \pi^{2}}\| (1 + | \xi |)^{s}
   \int_{0}^{t} \int_{\xi_{1}} \left( e^{i\xi^{2}(t-t')} - e^{-i\xi^{2}(t-t')} \right)
   \\
-  & \times \left[ \frac{\wh{f_{N}}(\xi - \xi_{1})\left( e^{i(\xi - \xi_{1})^{2}t'} +
+  & \times \left[ \frac{\wh{f_{N,1}}(\xi - \xi_{1})\left( e^{i(\xi - \xi_{1})^{2}t'} +
   e^{-i(\xi - \xi_{1})^{2}t'} \right)}{2} \right ]
   \\
-  & \times \left[ \frac{\wh{f_{N}}(\xi_{1})\left( e^{i\xi_{1}^{2}t'} +
+  & \times \left[ \frac{\wh{f_{N,1}}(\xi_{1})\left( e^{i\xi_{1}^{2}t'} +
   e^{-i\xi_{1}^{2}t'} \right)}{2}  \right]
   dt' \|_{L^{2}_{\xi}}
 \end{split}
@@ -5149,13 +5153,13 @@ or
 \begin{split}
 & \sup_{0 \le t \le \delta} \frac{1}{8 \pi^{2}}\| (1 + | \xi |)^{s}
 \int_{0}^{t} \int_{\xi_{1}} \sin[\xi^{2}(t-t')] \cos[(\xi - \xi_{1})^{2}t']
-\cos(\xi_{1}^{2}t') \wh{f_{N}}(\xi - \xi_{1})\wh{f_{N}}(\xi_{1}) d
+\cos(\xi_{1}^{2}t') \wh{f_{N,1}}(\xi - \xi_{1})\wh{f_{N,1}}(\xi_{1}) d
 \xi_{1}  dt'
 \|_{L^{2}_{\xi}}
 \\
 & \gtrsim \sup_{0 \le t \le \delta} \| \chi_{| \xi | \le 1}
  \int_{0}^{t} \int_{\xi_{1}} \sin[(t-t')] \cos[(1 -\xi_{1})^{2}t']
- \cos(\xi_{1}^{2}t') \wh{f_{N}}(1 - \xi_{1})\wh{f_{N}}(\xi_{1}) d \xi_{1} dt'
+ \cos(\xi_{1}^{2}t') \wh{f_{N,1}}(1 - \xi_{1})\wh{f_{N,1}}(\xi_{1}) d \xi_{1} dt'
  \|_{L^{2}_{\xi}}.
 \end{split}
 \end{equation}
@@ -5174,7 +5178,7 @@ Let
 \begin{equation}
   \label{realill-pos-ce}
 \begin{split}
-  \wh{f_{N}}(\xi) \doteq r N^{-s - \ee} \chi_{|\xi - N|\le 1}, \quad \ee > 0
+  \wh{f_{N,1}}(\xi) \doteq r N^{-s - \ee} \chi_{|\xi - N|\le 1}, \quad \ee > 0
 \end{split}
 \end{equation}
 %
@@ -5183,7 +5187,7 @@ and fix $s < -1/2$. Then
 %
 \begin{equation*}
 \begin{split}
-  \| f_{N} \|_{H^{s}}
+  \| f_{N,1} \|_{H^{s}}
   & = rN^{-s-\ee} \left( \int_{N-1}^{N+1} (1 + \xi)^{2s} d \xi
   \right)^{1/2}
   \\
@@ -5197,9 +5201,9 @@ and fix $s < -1/2$. Then
 \end{equation*}
 %
 %
-Hence, for $s < -1/2$, $f_{N} \in B_{H^{s}}(2r)$
-and $f_{N} \to 0$ in $H^{s}$. Therefore,
-$(f_{N}, g_{N}) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N}, g_{N}) \to 0$ in
+Hence, for $s < -1/2$, $f_{N,1} \in B_{H^{s}}(2r)$
+and $f_{N,1} \to 0$ in $H^{s}$. Therefore,
+$(f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N,1}, 0) \to 0$ in
 $H^{s} \times H^{s-2}$. Substituting
 \cref{realill-pos-ce} into \cref{realyut}, we obtain
 %
@@ -5328,8 +5332,8 @@ We shall require the following lemma.
 %
 \begin{lemma}[Quantitative WP implies Analytic WP]
   For $f \in B_{H^{s} \times H^{s-2}}(r)$, $s > -1/4$ and $\delta=\delta(r)$
-sufficiently small we have the following.
-\begin{enumerate}[(i)]
+sufficiently small: 
+\begin{enumerate}[(I)]
   \item
     \label{qwp-it-1}
     There exists a unique solution
@@ -5337,23 +5341,47 @@ $u[f] \in C([-\delta, \delta], H^{s})$
 to the localized integral $B_{4}$ equation
 \cref{main1-rel-term-0}-\cref{main1-rel-term-5}. 
 \item
-  \label{qwp-it-2}
-  If we define the
-nonlinear maps $A_{n}: H^{s} \times H^{s-2} \to C(\rr, H^{s})$ for $n = 1, 2,
-\dots$ by
+  \label{homogen}
+  We have the homogeneity property
+  %
+  %
+  \begin{equation}
+    \label{eqn:homog}
+  \begin{split}
+    A_{n}(\lambda f) = \lambda^{n} A_{n}(f) \ \text{for all} \ \lambda \in \rr
+  \end{split}
+  \end{equation}
+  %
+  \item
+    \label{pre-lip-qwp}
+    We have the bound
+\begin{equation}
+  \label{induct-ineq}
+  \begin{split}
+    \| A_{n}(f) \|_{X_{s,b}} \le c_{\psi}^{n} 2^{n-1} \delta^{(n-1)(b-1/2)} \| f
+    \|_{H^{s} \times H^{s-2}}^{n}
+  \end{split}
+  \end{equation}
+  %
+  \item
+    \label{lip-qwp}
+    We have the Lipschitz bound
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}} \le \| f-g \|_{H^{s} \times
+      H^{s-2}} \left( \| f \|_{H^{s} \times H^{s-2}}
+      + \| g \|_{H^{s} \times H^{s-2}}  \right)^{n-1}
+    \end{split}
+    \end{equation*}
+    %
+    %
+\item
+  \label{qwp-it-5}
+  %
 %
-%
-\begin{equation*}
-\begin{split}
-  & A_{1}(f) \doteq L(f),
-  \\
-  & A_{n}(f) \doteq \sum_{n_{1}, n_{2} \in \mathbb{N}: n_{1} + n_{2} = n} N\left[
-  A_{n_{1}}(f), A_{n_{2}}(f) \right], \quad n > 1
-\end{split}
-\end{equation*}
-%
-%
-then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely convergent (in $C([-\delta, \delta], H^{s})$ power series expansion
+For all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely convergent (in $C([-\delta, \delta], H^{s})$ power series expansion
 %
 %
 \begin{equation}
@@ -5371,10 +5399,8 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
 %
 %
 %
-\begin{proof}
-  It is enough to prove \cref{qwp-it-2}; the proof of \cref{qwp-it-1} was
-  presented in \cref{sec:periodic} and \cref{sec:non-periodic-case}. In fact,
-  we proved the linear and nonlinear estimates 
+\begin{proof}[Proof of \cref{qwp-it-1}]
+  It is a consequence of the linear and nonlinear estimates
   %
   %
   \begin{align}
@@ -5386,17 +5412,52 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
     \label{ill-pos-bil}
   \end{align}
   %
+  For the proofs of these estimates, and how to obtain \cref{qwp-it-1} from
+  them, we refer the reader to \cref{sec:periodic} and
+  \cref{sec:non-periodic-case}.
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of \cref{homogen}]
   %
- We will first show that
-\begin{equation}
-  \label{induct-ineq}
+  The proof will be via induction on $n$. For the base case $n=1$, we have
+  %
+  %
+  \begin{equation*}
   \begin{split}
-    \| A_{n}(f) \|_{X_{s,b}} \le c_{\psi}^{n} 2^{n-1} \delta^{(n-1)(b-1/2)} \| f
-    \|_{H^{s} \times H^{s-2}}^{n}
+    A_{1}(\lambda f) = L(\lambda f) = \lambda L(f).
   \end{split}
-  \end{equation}
+  \end{equation*}
   %
-  via an induction. For the base case, we have
+  %
+  due to the linearity of $L$. For the inductive step we assume
+  \cref{eqn:homog}. Since $N$ is bilinear, we have
+  \begin{equation*}
+  \begin{split}
+    A_{n+1}(\lambda f)
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} N\left[
+    A_{j}(\lambda f), A_{k}(\lambda f) \right]
+    \\
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} N\left[
+    \lambda^{j} A_{j}(f), \lambda^{k} A_{k}(\lambda f) \right]
+    \\
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} \lambda^{j+k}
+    N\left[ A_{j}(f),  A_{k}(\lambda f) \right]
+    \\
+    & = \lambda^{n+1} A_{n+1}(f)
+  \end{split}
+  \end{equation*}
+  %
+  %
+  concluding the proof.
+\end{proof}
+%
+%
+%
+%
+\begin{proof}[Proof of \cref{pre-lip-qwp}]
+The proof will be via induction on $n$. For the base case $n=1$, we have
   %
   \begin{equation*}
   \begin{split}
@@ -5407,7 +5468,7 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
   \end{split}
   \end{equation*}
   %
-  For the inductive step, we assume \cref{induct-ineq} holds. 
+  For the inductive step, we assume \cref{induct-ineq}. 
   Then applying \cref{ill-pos-bil} gives
   %
   %
@@ -5446,24 +5507,19 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
     H^{s-2}}^{j+k}
     \\
     & \le 2^{n} \delta^{n(b-1/2)}
-    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}.
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}
   \end{split}
   \end{equation*}
   %
   %
-  Hence, by induction, \cref{induct-ineq}
-  is true. Next, recalling \cref{qwp-it-1}, we see that there exists $u$ such that
-  $Tu = u$; that is
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  L(f) + N(u,u) -u =0
-  \end{split}
-  \end{equation*}
-  %
-  %
-  Using this as motivation, we will now estimate the error of $u_{k} \doteq
+  completing the proof. 
+\end{proof}
+%
+%
+\begin{proof}[Proof of \cref{qwp-it-5}]
+Next, recalling \cref{qwp-it-1}, we see that there exists $u$ such that
+$Tu = u$; that is $L(f) + N(u,u) -u =0$.
+Using this as motivation, we will now estimate the error of $u_{k} \doteq
   \sum_{n=1}^{k}A_{n}(f)$. First, note that
   %
   %
@@ -5513,7 +5569,7 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
     \\
     & = c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}} \sum_{k < \ell \le 2k}
     c_{\psi}^{\ell - 1} 2^{\ell-1}
-    \delta^{(\ell -1)(b - 1/2)} \| f \|_{H^{s} \times H^{s-2}}^{\ell-1}
+    \delta^{(\ell -1)(b - 1/2)} \| f \|_{H^{s} \times H^{s-2}}^{\ell-1}.
   \end{split}
   \end{equation*}
   %
@@ -5528,14 +5584,14 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
   \end{equation}
   %
   %
-  this is bounded by
+  gives the bound
   %
   %
   %
   \begin{equation*}
   \begin{split}
   c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}} \sum_{k < \ell \le 2k}
-  \left (\frac{1}{2} \right )^{\ell-1}
+  \left (\frac{1}{2} \right )^{\ell-1}.
 \end{split}
   \end{equation*}
   %
@@ -5570,6 +5626,45 @@ then for all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely converge
   which concludes the proof.
   %
 \end{proof}
+%
+%
+We now proceed to the proof of \cref{prop:ill-posedness}. Assume that the solution
+map $f \mapsto u[f]$ is continuous from $B_{H^{s} \times H^{s-2}}(r_{1})$ to
+$B_{X_{s,b}}(r_{2})$. Let $\left\{ f_{m} \right\} \subset B_{H^{s} \times
+H^{s-2}}$ be a sequence converging to $f \in B_{H^{s} \times H^{s-2}}$ in the
+$H^{s'} \times H^{s'-2}$ topology, $s' < s$. That is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f - f_{m} \|_{H^{s} \times H^{s-2}} \to 0.
+\end{split}
+\end{equation*}
+%
+%
+We will show that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| A_{n}(f) - A_{n}(f_{m}) \|_{X_{s',b}} \to 0
+\end{split}
+\end{equation*}
+%
+%
+by induction on $n$. For the base case $n=1$, we note that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| A_{1}(f) - A_{1}(f_{m}) \|_{X_{s',b}}
+  & =  \|L(f) - L(f_{m})  \|_{X_{s',b}}
+  \\
+  & = \|L(f -f_{m}) \|_{X_{s',b}}
+  \\
+  & \lesssim \| f - f_{m} \|_{H^{s'} \times H^{s'-2}} \to 0.
+\end{split}
+\end{equation*}
 %
 %
 %
@@ -6192,7 +6287,7 @@ easily compute its exponential.
       - n^{2} \sin n^{2}t & \cos n^{2}t
     \end{bmatrix}
     \\
-    & = \text{rhs of}\cref{matrix-expo}
+    & = \text{rhs of} \ \cref{matrix-expo}
   \end{split}
   \end{equation*}
 \end{remark}
@@ -6261,7 +6356,7 @@ Hence, we have rewritten the $B_{4}$ ivp
 \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} in integral form, which we will now
 localize in time. 
 Let $\psi(t)$ be a cutoff function symmetric about the 
-origin such that $\psi(t) = 1$ for $|t| \le 1/2$ and $\text{supp} \, \psi 
+origin such that $\psi(t) = 1$ for $|t| \le 1$ and $\text{supp} \, \psi 
 = [-2, 2 ]$. Define $\psi_{\delta}(t) = \psi(t/\delta)$, $ 0 < \delta \le 1$.
 Motivated by $\cref{eqn:integral-formb}$, we consider the equation
 %
@@ -7651,7 +7746,8 @@ The equation does not have an associated scaling, however one can do a formal sc
     \[
     u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
     \]
-    which leads to $s_c=-\frac 32$;
+    which leads to $s_c=-\frac 32$.
+\end{itemize}
 \begin{proof}
 Let $u(x, t)$ be a solution to the $B_4$ equation, that is
 %
@@ -7751,7 +7847,7 @@ Substituting back into \cref{crit-ind-comp}, we obtain
 \end{equation*}
 %
 %
-Therefore, $\| u_{\lambda(0)} \|_{\dot{H}^s(\rr)} = \lambda^{s + 3/2} \|
+Therefore, $\| u_{\lambda}(0) \|_{\dot{H}^s(\rr)} = \lambda^{s + 3/2} \|
 u_{0} \|_{\dot{H}^{s}(\rr)}$. Hence, $s=-3/2$ is the critical Sobolev index.
 \end{proof}
 %
@@ -7772,6 +7868,7 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
 \end{framed}
 %
 %
+\begin{itemize}
   \item for 
     \[
     u_{tt}-u_{xx}+(u^2)_{xx}\,=\,0,
@@ -7781,6 +7878,7 @@ in some appropriate sense should be the scaling index which is  $-3/2$.
     u_{\lambda}(t,x)\,=\,u\left(\frac{t}{\lambda}, \frac{x}{\lambda}\right),
     \]
     which leads to $s_c=\frac 12$.
+\end{itemize}
 \begin{proof}
 Let $u(x, t)$ be a solution to the $B_2$ equation, that is
 %
@@ -7884,7 +7982,6 @@ Substituting back into \cref{crit-ind-comp-B2}, we obtain
 Therefore, $\| u_{\lambda(0)} \|_{\dot{H}^s(\rr)} = \lambda^{s - 1/2} \|
 u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=1/2$ is the critical Sobolev index.
 \end{proof}
-\end{itemize}
 This might suggest that the current results are not optimal.
 \end{appendices}
 %
