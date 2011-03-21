@@ -1,8 +1,8 @@
 %
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath}
+\usepackage{fix-cm} %fix font errors
 \usepackage{amssymb}
-%\usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage[notcite]{showkeys}
 \usepackage{appendix}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
@@ -70,7 +70,7 @@ urlcolor=blue,
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
-\renewcommand{\qed}{\qquad \qedsymbol}
+%\renewcommand{\qed}{\qquad \qedsymbol}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\RR}{\mathcal{R}}
 \newcommand{\al}{\alpha}
@@ -5358,23 +5358,55 @@ to the localized integral $B_{4}$ equation
 \begin{equation}
   \label{induct-ineq}
   \begin{split}
-    \| A_{n}(f) \|_{X_{s,b}} \le c_{\psi}^{n} 2^{n-1} \delta^{(n-1)(b-1/2)} \| f
+    \| A_{n}(f) \|_{X_{s,b}} \le  c_{\psi}^{n} 4^{(n-1)} n^{C}
+    \delta^{(n-1)(b-1/2)} \| f
     \|_{H^{s} \times H^{s-2}}^{n}
   \end{split}
   \end{equation}
+  %
+  %
+  where $C = C(n)$ and 
+  %
+  %
+  \begin{equation}
+    \label{stilted-growth}
+  \begin{split}
+     -\frac{\log n}{\log 2} \le C(n) \le 0.
+  \end{split}
+  \end{equation}
+  %
+  %
+  In particular, \cref{stilted-growth} implies 
+  %
+  %
+  %
+  %
+  %
+  \begin{equation}
+  \label{induct-ineq-final}
+  \begin{split}
+    \| A_{n}(f) \|_{X_{s,b}} \le  c_{\psi}^{n} 4^{n-1} 
+    \delta^{(n-1)(b-1/2)} \| f
+    \|_{H^{s} \times H^{s-2}}^{n}.
+  \end{split}
+  \end{equation}
+  %
+  %
   %
   \item
     \label{lip-qwp}
     We have the Lipschitz bound
     %
     %
-    \begin{equation*}
+    \begin{equation}
+      \label{lip-qwp-eq}
     \begin{split}
-      \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}} \le \| f-g \|_{H^{s} \times
+      \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}} \le c_{\psi}^{n} 4^{n-1} 
+      \delta^{(n-1)(b-1/2)} \| f-g \|_{H^{s} \times
       H^{s-2}} \left( \| f \|_{H^{s} \times H^{s-2}}
-      + \| g \|_{H^{s} \times H^{s-2}}  \right)^{n-1}
+      + \| g \|_{H^{s} \times H^{s-2}}  \right)^{n-1}.
     \end{split}
-    \end{equation*}
+    \end{equation}
     %
     %
 \item
@@ -5497,23 +5529,183 @@ The proof will be via induction on $n$. For the base case $n=1$, we have
   \begin{split}
     & c_{\psi} \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} 
     \delta^{b-1/2}\left[ c_{\psi}^{j}
-    2^{j-1}\delta^{(j-1)(b-1/2)}\| f \|_{H^{s} \times
+    4^{j-1}j^{C} \delta^{(j-1)(b-1/2)}\| f \|_{H^{s} \times
     H^{s-2}}^{j} \right] \left [c_{\psi}^{k}
-    2^{k-1}\delta^{(k-1)(b-1/2)}\| f \|_{H^{s} \times
+    4^{k-1} k^{C} \delta^{(k-1)(b-1/2)}\| f \|_{H^{s} \times
     H^{s-2}}^{k} \right]
     \\
     & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} c_{\psi}^{j+k +1}
-    2^{j+k-2} \delta^{(j + k -1)(b-1/2)} \| f \|_{H^{s} \times
+    4^{j+k-2} (jk)^{C} \delta^{(j + k -1)(b-1/2)} \| f \|_{H^{s} \times
     H^{s-2}}^{j+k}
     \\
-    & \le 2^{n} \delta^{n(b-1/2)}
-    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}
+    &  \le  4^{n-1} \delta^{n(b-1/2)}
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}} \times
+    \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} (jk)^{C}
+    \\
+    & \le 4^{n-1} \delta^{n(b-1/2)}
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}} \times
+    2nn^{C}, \qquad C \le 0
+    \\
+    & \le  4^{n-1} \delta^{n(b-1/2)}
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}  \times 2n^{C+1}
   \end{split}
   \end{equation*}
   %
   %
-  completing the proof. 
+  Hence, to complete the proof of \cref{induct-ineq}, it will be enough to show that there exists $C =
+  C(n)$ satisfying $n^{C+1} = 2 (n+1)^{C}$ and obeying the bound
+  \cref{stilted-growth}. Taking logarithms, we want
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  (C+1) \log n = C \log(n+1)
+  \end{split}
+  \end{equation*}
+  %
+  %
+  Solving for $C$ gives
+  %
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  C(n)
+  & = -\frac{\log n}{\log(2 + 2/n)}
+  \\
+  & \ge - \frac{\log n}{\log 2}.
+  \end{split}
+  \end{equation*}
+  %
+  Hence, we have proved \cref{induct-ineq}.
+  Substituting this into relation \cref{induct-ineq}
+  gives \cref{induct-ineq-final}. The proof is complete.
+  %
 \end{proof}
+%
+%
+%
+\begin{proof}[Proof of \cref{lip-qwp}]
+The proof will be via an induction on $n$. For the base case $n=1$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}}
+  & = \| L_{n}(f) - L_{n}(g) \|_{X_{s,b}}
+  \\
+  & = \| L_{n}(f -g) \|_{X_{s,b}}
+  \\
+  & \le c_{\psi} \| f-g \|_{H^{s} \times H^{s-2}}
+\end{split}
+\end{equation*}
+%
+%
+where the last step followed from \cref{ill-pos-lin}. For the inductive step,
+we assume \cref{lip-qwp-eq}. Note that
+%
+%
+\begin{equation*}
+\begin{split}
+  \|A_{n+1}(f) - A_{n+1}(g)  \|_{X_{s,b}} = \| \sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}}\left\{ N\left[
+  A_{n_{1}}(f), A_{n_{2}}(f) \right] - N\left[
+  A_{n_{1}}(g), A_{n_{2}}(g) \right]  \right\} \|_{X_{s,b}}.
+\end{split}
+\end{equation*}
+%
+%
+Using the relation
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{1}u_{2} - v_{1}v_{2} = (u_{1} - v_{1})(u_{2} + v_{2}) - u_{1}v_{2} +
+  u_{2} v_{1}
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\|A_{n+1}(f) - A_{n+1}(g)  \|_{X_{s,b}}
+& = \| \sum_{\substack{n_{1},
+n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \left \{N[A_{n_{1}}(f) -
+A_{n_{1}}(g),  A_{n_{2}}(f) + A_{n_{2}}(g) ] \right .
+\\
+& \left . - N\left[ A_{n_{1}}(f), A_{n_{2}}(g) \right] + N\left[
+A_{n_{2}}(f), A_{n_{1}}(g) \right] \right \}  \|_{X_{s,b}}
+\\
+& = \| \sum_{\substack{n_{1},
+n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}}N[A_{n_{1}}(f) -
+A_{n_{1}}(g), A_{n_{2}}(f) + A_{n_{2}}(g)]
+ \|_{X_{s,b}}
+\end{split}
+\end{equation*}
+%
+%
+where the last step follows from symmetry.
+%
+%
+%
+%
+Applying the triangle inequality and \cref{ill-pos-bil}, we bound this by
+%
+%
+\begin{equation*}
+\begin{split}
+  & c_{\psi} \delta^{b-1/2}\sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \| A_{n_{1}}(f) -
+  A_{n_{1}}(g) \|_{X_{s,b}} \| A_{n_{2}}(f) +
+  A_{n_{2}}(g) \|_{X_{s,b}}
+  \\
+  & \le c_{\psi} \delta^{b-1/2}\sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \| A_{n_{1}}(f) -
+  A_{n_{1}}(g) \|_{X_{s,b}} ( \| A_{n_{2}}(f) \|_{X_{s,b}} +
+  \| A_{n_{2}}(g) \|_{X_{s,b}} )
+\end{split}
+\end{equation*}
+%
+%
+Applying our inductive assumption \cref{lip-qwp-eq} and
+\cref{induct-ineq-final}, this is bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  & c_{\psi} \delta^{b-1/2} \sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} c_{\psi}^{n_{1}}
+  4^{n_{1}-1}  \delta^{(n_{1}-1)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
+  \\
+  & \times \left(
+  \| f \|_{H^{s} \times H^{s-2}} + \| g \|_{H^{s} \times H^{s-2}}
+  \right)^{n_{1}-1} \times c_{\psi}^{n_{2}}4^{n_{2}-1} 
+  \delta^{(n_{2}-1)(b -1/2)}\left[ \| f \|_{H^{s} \times H^{s-2}}^{n_{2}}
+  + \| g \|_{H^{s} \times H^{s-2}}^{n_{2}} \right]
+  \\
+  & \le \sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} c_{\psi}^{n_{1}+n_{2}}
+  4^{n_{1}+n_{2}-2} \delta^{(n_{1} + n_{2}-2)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
+\\
+& \times \left( \| f \|_{H^{s} \times H^{s-2}}
++ \| g \|_{H^{s} \times H^{s-2}} \right)^{n_{1} + n_{2} -1}
+\\
+& \le 
+  c_{\psi}^{n+1}
+  4^{n} \delta^{(n-1)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
+\left( \| f \|_{H^{s} \times H^{s-2}}
++ \| g \|_{H^{s} \times H^{s-2}} \right)^{n}
+  \end{split}
+\end{equation*}
+%
+completing the proof.
+%
+
+\end{proof}
+%
 %
 %
 \begin{proof}[Proof of \cref{qwp-it-5}]
@@ -5619,11 +5811,13 @@ Using this as motivation, we will now estimate the error of $u_{k} \doteq
     \\
     & = \delta^{b-1/2}
     c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
+    \\
+    & < \infty
   \end{split}
   \end{equation*}
   %
   %
-  which concludes the proof.
+which concludes the proof.
   %
 \end{proof}
 %

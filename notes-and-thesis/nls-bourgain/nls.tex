@@ -1,0 +1,2147 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\renewcommand{\cref}{\Cref}
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+\title{Well-Posedness for the NLS}
+\author{Alex Himonas, David Karapetyan, and Gerson Petronilho}
+\address{Department of Mathematics  \\
+University  of Notre Dame\\
+Notre Dame, IN 46556 }
+\address{Department of Mathematics \\
+University  of Notre Dame\\
+Notre Dame, IN 46556 }
+\address{Departamento de Matemática \\
+Universidade Federal de São
+Carlos \\
+Rodovia Washington Luiz, Km 235, São Carlos, SP,
+13565-905, Brasil}
+        \date{03/20/2011}
+        %
+        \maketitle
+        %
+        %
+        %
+        %
+        %
+        %
+\section{Introduction}
+				  We consider the cubic nonlinear Schr\"{o}dinger (NLS) 
+				  initial value problem (ivp)
+%
+%
+\begin{gather}
+	\label{nNLS-eq}
+	i \p_t u + \p_x^{2} u \pm |u|^2 u =0,
+		\\
+		\label{nNLS-init-data}
+		u(x,0) = \vp(x) \in H^s(\ci), \ \ t \in \rr, \ \ x \in \ci.
+\end{gather}
+%
+%
+For the local well-posedness of the cubic NLS,
+the sign in front of the nonlinearity plays no significant role.
+Hence, without loss of generality we assume a positive sign.
+Following the method of Bourgain~\cite{Bourgain-Fourier-transfo-1},
+\cite{Bourgain-Fourier-transfo}, we first derive a
+weak formulation of the NLS ivp. Let
+$\ci = [0, 2 \pi]$, and use
+the following notation for the Fourier transform
+%
+%
+%
+%
+\begin{equation}
+	\label{nfour-trans-pde}
+	\begin{split}
+    \widehat{f}(n) = \int_{\ci} e^{-ix n} f(x) \, dx.
+	\end{split}
+\end{equation}
+Applying the spatial Fourier transform to the NLS ivp we obtain
+%
+%
+\begin{gather}
+  \label{nfour}
+  \p_t \widehat{u}(n, t) = -i n^2 \widehat{u}(n, t) + i  
+  \widehat{w} (n, t)
+	\\
+  \label{nfour-init-data}
+	\widehat{u} (n,0) = \widehat{\vp}(n).
+\end{gather}
+Multiplying \eqref{nfour} by the integrating factor $e^{itn^2}$ then yields
+%%
+%%
+\begin{equation*}
+	\begin{split}
+		\left[ e^{ it n^2} \widehat{u}(n) \right]_t = i
+		 e^{ it n^2} \widehat{w} (n, t).	
+	\end{split}
+\end{equation*}
+%
+%
+Integrating from $0$ to $t$, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{u}(n, t) = \wh{\vp}(n) e^{- it n^2} + i  
+		\int_0^t e^{ i(\tau - t) n^2} \wh{w}(n, \tau) \ 
+		d\tau.
+	\end{split}
+\end{equation*}
+%
+%
+Therefore, by Fourier inversion 
+%
+%
+\begin{equation}
+	\label{nNLS-integral-form}
+	\begin{split}
+		u(x,t) & = \frac{1}{2\pi} \sum_{n \in \zz} \wh{\vp}(n) e^{i\left( xn - t n^2 
+		\right)} 
+		\\
+    & + \frac{i}{2 \pi} \sum_{n \in \zz} \int_0^t e^{i\left[ xn + \left( \tau - t 
+		\right) n^2 \right]} \wh{w}(n, \tau) \ d\tau.
+	\end{split}
+\end{equation}
+%
+%
+Note that \eqref{nNLS-integral-form} is a weaker 
+restatement of the Cauchy-problem \eqref{nNLS-eq}-\eqref{nNLS-init-data}, 
+since by construction any classical solution of the NLS 
+ivp is a solution to \eqref{nNLS-integral-form}. 
+%
+%
+We now derive an integral 
+equation global in $t$ and equivalent to \eqref{nNLS-integral-form} for $t 
+\in [-1, 1]$. Let $\psi(t)$ be a cutoff function symmetric about the 
+origin such that $\psi(t) = 1$ for $|t| \le 1$ and $\text{supp} \, \psi 
+= [-2, 2 ]$. Multiplying both sides of expression
+$\eqref{nNLS-integral-form}$ by $\psi(t)$, we obtain
+%
+%
+\begin{equation}
+	\begin{split}
+		\label{ncutoff-int-eq}
+    \psi u(x, t)
+		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn - t n^{2})} \widehat{\vp}(n) 
+		\\
+		& + \frac{i }{2 \pi} \psi(t) \int_0^t \sum_{n \in \zz} 
+		e^{i\left[ xn + (t - \tau)n^2 \right]} \wh{w}(n, \tau) \ d\tau.
+	\end{split}
+\end{equation}
+%
+%
+Noting that $e^{i\left( xn + tn^{2} \right)}$ 
+does not depend on $\tau$, we may rewrite the second term
+%
+%
+\begin{equation}
+	\label{npre-prim-int-form}
+	\begin{split}
+		& \frac{i }{2 \pi} \psi(t) \int_0^t \sum_{n \in \zz} 
+		e^{i\left[ xn + (t - \tau) n^2 \right]} \wh{w}(n, \tau) \ d\tau
+		\\
+		& = \frac{i}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i\left( xn + t 
+		 n^{2} 
+		\right)} \int_0^t e^{- i\tau n^{2}} \wh{w}(n, \tau) \ d\tau.
+	\end{split}
+\end{equation}
+%%
+%%
+We remark that this is a \emph{global} relation in $t$. Therefore, by Fourier 
+inversion
+%
+%
+%
+%
+%
+%
+%
+\begin{equation*}
+	\begin{split}
+		\text{rhs of} \; \eqref{npre-prim-int-form}
+		& = \frac{i}{4 \pi^2} \psi (t) \sum_{n \in \zz} e^{i\left( xn + t 
+		 n^2
+		\right)} \int_0^t \int_\rr e^{i\tau\left( \lambda - n^2 \right) }
+		\wh{w}(n, \lambda) d \lambda d\tau
+		\\
+		& = \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr 
+		e^{i\left( xn + tn^2 \right)} \frac{e^{it\left( \lambda - n^2 
+		\right)}-1}{\lambda - n^2} \wh{w}(n, \lambda) d \lambda
+	\end{split}
+\end{equation*}
+%
+%
+where the last step follows from Fubini and integration. Substituting
+into \eqref{ncutoff-int-eq} we obtain
+%
+%
+\begin{equation}
+	\begin{split}
+		\label{ncutoff-int-eq-2}
+    \psi u(x, t)
+		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn - tn^{2})} \widehat{\vp}(n) 
+		\\
+		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr
+		e^{i(xn + t n^2)} \frac{e^{it(\lambda - n^2)}- 1}{\lambda - n^2} 
+		\wh{w}(n, \lambda) \ d \lambda.
+	\end{split}
+\end{equation}
+%
+%
+%
+Next, we localize near the singular curve $\lambda =  n^2$.  Multiplying the
+summand of the second term of \eqref{ncutoff-int-eq-2} by $1 + \psi(\lambda -
+n^2) - \psi(\lambda -
+n^2) $ and
+rearranging terms, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+    \psi u(x, t)
+		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn + t n^{2 
+		})} \widehat{\vp}(n) 
+		\\
+		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr e^{ixn}  
+		e^{it \lambda} \frac{ 1 - \psi(\lambda - n^2) 
+		}{\lambda - n^2} \wh{w}(n, \lambda) \ d \lambda
+		\\
+		& - \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int _\rr e^{i(xn + 
+		t n^2)}
+		 \frac{1- \psi(\lambda - n^2)}{\lambda - n^2} \wh{w}(n, \lambda) \ d \lambda
+		\\
+		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr
+		e^{i(xn + t n^2)}
+		\frac{\psi(\lambda - n^2)\left[ e^{it(\lambda - n^2)}-1 
+		\right]}{\lambda - n^2} \wh{w}(n, \lambda) \ d \lambda
+	\end{split}
+\end{equation*}
+%
+%
+which by a power series expansion of $[e^{it(\lambda - n^2)}-1]$ simplifies  
+to
+%
+%
+\begin{align}
+	\label{nmain-int-expression-0}
+  & \psi u(x, t) 
+		\\
+		\label{nmain-int-expression-1}
+		& = \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{i(xn + tn^{2 
+		})} \widehat{\vp}(n) 
+		\\
+		\label{nmain-int-expression-2}
+		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
+		e^{it \lambda} \frac{ 1 - \psi(\lambda -  n^2) 
+		}{\lambda -  n^2} \wh{w}(n, \lambda) \ d \lambda
+		\\
+		\label{nmain-int-expression-3}
+		& - \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
+		t n^2)}
+		 \frac{1- \psi(\lambda -  n^2)}{\lambda -  n^2} \wh{w}(n, \lambda) \ d \lambda
+		\\
+		\label{nmain-int-expression-4}
+		& + \frac{1}{4 \pi^2} \psi(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
+		\sum_{n \in \zz} \int_\rr e^{i(xn + t n^2 )}
+		\psi(\lambda -  n^2) (\lambda -  n^2)^{k-1} \wh{w}(n, \lambda)  
+		\\
+		& \doteq T(u) \notag
+\end{align}
+%
+%
+where $T = T_{\vp, \psi}$. 
+\begin{definition}
+  Given a Banach space $X$, denote $B_{X}(R) \doteq \left\{ f: \| f \|_{X} < R
+  \right\}$. Let $\mathcal{X}$ be a Banach space continuously embedded in $C([-1,
+      1], H^s(\ci))$. We say that the NLS ivp \eqref{nNLS-eq}-\eqref{nNLS-init-data} is
+	\emph{locally well posed in
+  $H^s(\ci)$ for small data} if 
+	\begin{enumerate}
+    \item For every $\vp(x) \in B_{H^{s}(\ci)}(R)$, $R$ sufficiently small
+      there exists a unique \\ $u \in \mathcal{X} \cap C([-1,
+      1], H^s(\ci))$ satisfying
+      \eqref{nmain-int-expression-0}-\eqref{nmain-int-expression-4}.
+    \item
+      The flow map $u_0 \mapsto u(t)$ is uniformly continuous from
+      $B_{H^{s}(\ci)}(R)$ 
+      to $C(\left[ -1, 1 \right], H^s(\ci))$. That is, if
+      $\{u_{0,n} \}, \{v_{0,n}\} \subset B_{H^{s}(\ci)}(R)$ such that $\|u_{0,n} -
+      v_{0,n} \|_{H^{s}(\ci)} \to 0$, then \\
+      $\sup_{t \in [-1, 1]}
+      \|u_{n}(\cdot, t) - v_{n}(\cdot, t) \|_{H^s(\ci)} \to 0$.
+  \end{enumerate}
+	Otherwise, we say that the NLS ivp is \emph{ill-posed}.
+\end{definition}
+%
+\begin{definition}
+  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
+  \begin{enumerate}[(i)]
+   \item{$F: \ci \times \rr \to \cc$ }.
+   \item{ $F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
+   \item{ $F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
+  \end{enumerate}
+  Let $Y^{s}$ denote the completion of $\mathcal{Y}$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+	\label{nY-s-norm}
+	\begin{split}
+		\|u\|_{Y^s} = \|u\|_{X^s} + \|\wh{u}\|_{ \ell^2_n L^1_\lambda }
+	\end{split}
+\end{equation}
+  %
+    %
+    where
+\begin{equation}
+	\label{nX^s-norm}
+	\begin{split}
+		& \|u\|_{X^s}
+		= \left ( \sum_{n\in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left ( 1 + | 
+		\lambda - n^{2} | \right ) | \wh{u} ( n, \lambda ) |^2
+		\right )^{1/2}
+	\end{split}
+\end{equation}
+and
+%
+%
+\begin{equation}
+	\label{nE-norm}
+	\|\wh{u}\|_{ \ell^2_n L^1_\lambda } = \left[ \sum_{n \in \zz}(1 + | n |)^{2s} \left(
+	\int_{\rr}| \wh{u}(n, \lambda) |d \lambda \right)^{2} \right]^{1/2}.
+\end{equation}
+    %
+  \end{definition}
+%
+The $Y^s$ spaces embed continuously into $C([-1,1]), H^{s}(\ci)$. More
+specifically, we have the following, whose proof
+is provided in the appendix.
+\begin{lemma}
+	\label{nlem:cutoff-loc-soln}
+	Let $\psi(t)$ be a smooth cutoff function with $\psi(t) =1$ for $t \in [-1,
+  1]$. If
+  $\psi(t)u(x,t) \in Y^s$, then $u \in C([-1, 1], H^s(\ci))$.
+\end{lemma}
+
+We are now prepared to state the main result of this paper.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%	Main Result				
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+\label{nthm:main}
+The initial value problem 
+\eqref{nNLS-eq}-\eqref{nNLS-init-data} is locally well-posed for small data in $H^s(\ci)$ for $s \ge
+0$.
+%
+\end{theorem} 
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Proof of Theorem	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Proof of Main Theorem}
+%
+%
+To prove well-posedness for the NLS ivp we we will 
+show that for initial data $\vp \in B_{H^{s}(\ci)}(R)$, $R$ sufficiently small,
+$T$ is a contraction on
+$B_{Y^{s}}(M_{R})$ by estimating the $Y^s$
+norm of \eqref{nmain-int-expression-1}-\eqref{nmain-int-expression-4}. The 
+Picard fixed point theorem will
+then yield a unique solution in $Y^{s}$ to
+$u = Tu$. An application of
+\cref{nlem:cutoff-loc-soln} will then imply $u \in Y^{s} \cap C([-1, 1],
+H^s(\ci))$, and hence 
+$\psi u = Tu$ for $| t | \le 1$.
+Lipschitz continuity of the flow map (and hence, uniform
+continuity) will follow from estimates used to establish the contraction
+mapping. 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%		Estimation of Integral Equality Part 1		
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\subsection{Estimate for \eqref{nmain-int-expression-1}.}
+%
+%
+Letting $f(x,t) = \psi(t) \sum_{n \in \zz} e^{i(xn + tn^{2})} 
+\wh{\vp}(n)$, we have \\ $\wh{f}(n,t) = \psi(t) \wh{\vp}(n) e^{itn^{2}}$,
+from which we obtain
+%
+%
+\begin{equation}
+	\label{nfourier-trans-calc}
+	\begin{split}
+		\wh{f}(n, \lambda)
+		& = \wh{\vp}(n) \int_\rr e^{-it( \lambda - n^{2})} 
+		\psi(t) \ d t
+    = \wh{\psi}(\lambda - n^{2}) \wh{\vp}(n).
+	\end{split}
+\end{equation}
+%
+%
+%
+%
+%
+%
+Therefore
+%
+\begin{equation}
+	\begin{split}
+	\label{nmain-int1-est}
+		\|\eqref{nmain-int-expression-1}\|_{Y^s}
+		& \simeq \left (  \sum_{n\in \zz} \left (1 + |n| \right )^s \int_\rr \left( 1 + | \lambda - n^{2} 
+		| \right )
+    | \wh{\psi}(\lambda - n^{2}) \wh{\vp}(n) |^2 d \lambda \right)^{1/2} 
+		\\
+		& + \left[ \sum_{n \in \zz }\left( 1 + | n | \right)^{2s} \left( \int_{\rr} |
+    \wh{\psi}(\lambda - n^{2})\wh{\vp}(n) | d \lambda
+		\right)^{2} \right]^{1/2}
+		\\
+    & = c_{\psi}
+		\|\vp\|_{H^s(\ci)}.
+	\end{split}
+\end{equation}
+%
+%
+%
+%
+\subsection{Estimate for \eqref{nmain-int-expression-2}.}
+We now need the following lemma, whose proof is provided in the appendix.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Schwartz Multiplier	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+\label{nlem:schwartz-mult}
+	For $\psi \in S(\rr)$,
+%
+%
+\begin{equation}
+	\label{nschwartz-mult}
+	\begin{split}
+		\|\psi f \|_{Y^s} \le c_{\psi} \|f \|_{Y^s}.
+	\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+%
+Hence,
+%
+%
+\begin{equation}
+  \label{nyu}
+	\begin{split}
+		\|\eqref{nmain-int-expression-2}\|_{Y^s} 
+    & \le c_{\psi}
+		\| \sum_{n \in \zz} e^{ixn} \int_\rr 
+		e^{it \lambda} \frac{ 1 - \psi (\lambda - n^{2} ) 
+		}{\lambda - n^{2}} \wh{w}(n, \lambda) \ 
+		d \lambda\|_{Y^s}.
+			\end{split}
+\end{equation}
+%
+We first estimate
+%
+%
+\begin{equation}
+\label{nmain-int2-est-X-s-part}
+\begin{split}
+  & \| \sum_{n \in \zz} e^{ixn} \int_\rr 
+		e^{it \lambda} \frac{ 1 - \psi (\lambda - n^{2} ) 
+		}{\lambda - n^{2}} \wh{w}(n, \lambda) \ 
+		d \lambda\|_{X^s}
+		\\
+    & = \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr
+		(1 + |\lambda - n^{2}|) \left | \frac{1 - \psi(\lambda - n^{2 
+		})}{\lambda - n^{2}} 
+		\wh{w}(n, \lambda) \right |^2 \ d 
+		\lambda \right)^{1/2}
+		\\
+		& \le \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_{| \lambda - n^{2}| \ge 1}
+		(1 + |\lambda - n^{2}|) \frac{|\wh{w}(n, \lambda)|^2 }{|\lambda - n^{2}|^2} 
+		\ d 
+		\lambda \right)^{1/2}
+		\\
+		& \lesssim  \left( \sum_{n \in 
+		\zz} \left (1 + |n| \right )^{2s} \int_\rr
+		\frac{|\wh{w}(n, \lambda) |^2}{1+ |\lambda - 
+		n^{2}|} 
+		 \ d \lambda 
+		\right)^{1/2}
+		\\
+		& \lesssim  \|u\|_{X^s}^3
+\end{split}
+\end{equation}
+%
+%
+%
+where the last two steps follow from the inequality 
+%
+\begin{equation}
+	\label{none-plus-ineq}
+	\begin{split}
+		\frac{1}{|\lambda - n^{2}| } \le \frac{2}{1 + |\lambda - n^{2}| }, 
+		\qquad |\lambda - n^{2}| \ge 1
+	\end{split}
+\end{equation}
+%
+%
+and the following trilinear estimate, whose proof we leave for later.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Proposition
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+\label{nprop:trilinear-est}
+	%
+	%
+	For any $s \ge 0$ and $b \ge 3/8$, we have
+	\begin{equation}
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr
+		\frac{|\wh{w_{fgh}}(n, \lambda) |^2}{\left (1+ |\lambda - 
+    n^{2}| \right )^{2b}} 
+		 \ d \lambda 
+		\right)^{1/2}
+		\lesssim \|f\|_{X^s} \|g\|_{X^s}\|h\|_{X^s}
+	\end{equation}
+	where $w_{fgh}(x,t)$ = $fg \bar h (x,t)$.
+%
+%
+%
+%
+\end{proposition}
+%
+%
+Furthermore,
+%
+%
+%
+%
+\begin{equation}
+	\label{nmain-int-expression-2-Y-s-part}
+	\begin{split}
+    & \| \wh{\eqref{nmain-int-expression-2}}\|_{\ell^{2}_{n}L^{1}_{\lambda}}
+		\\
+    & \simeq \left[ \sum_{n \in \zz}(1 + | n |)^{2s} \left(
+		\int_{\rr}\frac{|1 - \psi(\lambda - n^{2})|}{|\lambda - n^{2}|} |\wh{w}(n, \lambda)| d
+		\lambda \right)^{2} \right]^{1/2}
+		\\
+    & \le \left[ \sum_{n \in \zz}(1 + | n |)^{2s} \left(
+    \int_{| \lambda - n^{2} | \ge 1 }\frac{|\wh{w}(n, \lambda)|}{|\lambda - n^{2}|}  d
+		\lambda \right)^{2} \right]^{1/2}
+    \\
+    & \lesssim \left[ \sum_{n \in \zz}(1 + | n |)^{2s} \left(
+    \int_{\rr}\frac{|\wh{w}(n, \lambda)|}{1 + |\lambda - n^{2}|}  d
+		\lambda \right)^{2} \right]^{1/2}
+    \\
+		& \lesssim \|f\|_{X^s} \|g\|_{X^s}\|h\|_{X^s}
+	\end{split}
+\end{equation}
+%
+%
+where the last two steps follow from \eqref{none-plus-ineq} and the following
+corollary to \cref{nprop:trilinear-est}.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Second trilinear Estimate 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{corollary}
+\label{ncor:trilinear-estimate2}
+	For $s \ge 0$ we have
+%
+%
+\begin{equation}
+	\label{ntrilinear-estimate2}
+	\begin{split}
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr 
+		\frac{|\wh{w_{fgh}}(n, \lambda) |}{1 + | \lambda - n^{2} |}
+		 \ d\lambda \right)^2  \right)^{1/2} \lesssim \|f\|_{X^s} \|g\|_{X^s}\|h\|_{X^s}.
+	\end{split}
+\end{equation}
+\end{corollary}
+%
+%
+Combining \eqref{nyu}, \eqref{nmain-int2-est-X-s-part}, and
+\eqref{nmain-int-expression-2-Y-s-part}, we conclude that
+%
+%
+%
+%
+\begin{equation}
+	\label{nmain-int2-est}
+	\begin{split}
+		\|\eqref{nmain-int-expression-2}\|_{Y^s} \le c_{\psi}\|f\|_{X^s} \|g\|_{X^s}\|h\|_{X^s}.
+	\end{split}
+\end{equation}
+%
+%
+\subsection{Estimate for \eqref{nmain-int-expression-3}.}
+Letting $$f(x,t) = \psi(t) \sum_{n \in \zz} e^{i\left( xn + tn^{2} \right)} 
+\int_\rr \frac{1 - \psi\left( \lambda - n^{2} \right)}{\lambda - n^{2}} 
+\wh{w} \left( n, \lambda \right) \ d \lambda,$$ we have
+%
+%
+\begin{equation*}
+	\begin{split}
+		& \wh{f^x}(n, t) = \psi(t) e^{itn^{2}} \int_\rr
+		\frac{1 - \psi\left( \lambda - n^{2} \right)}{\lambda - n^{2}} 
+		\wh{w}(n, \lambda) \ d \lambda
+	\end{split}
+\end{equation*}
+and
+\begin{equation*}
+	\begin{split}
+		 \wh{f}\left( n, \lambda \right)
+		 & = \int_\rr e^{-it\left( \lambda - n^{2} 
+		\right)} \psi(t) \int_\rr \frac{1 - \psi\left( 
+		\lambda - n^{2} 
+		\right)}{\lambda - n^{2}} \wh{w}(n, \lambda) \ d \lambda d \lambda
+		\\
+    & = \wh{\psi}\left( \lambda - n^{2} \right) \int_\rr 
+		\frac{1 - \psi\left( 
+		\lambda - n^{2} 
+		\right)}{\lambda - n^{2}} \wh{w}(n, \lambda) \ d \lambda.
+	\end{split}
+\end{equation*}
+Therefore,
+%
+%
+\begin{equation}
+  \label{niu}
+	\begin{split}
+		& \| \eqref{nmain-int-expression-3} \|_{X^s} 
+		\\
+		& \simeq \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left( 1 + | \lambda - n^{2
+    } \right ) | | \wh{\psi}\left( \lambda - n^{2} \right) |^2 \ d \lambda
+		\right.
+		\\
+		& \times \left . |
+		\int_\rr \frac{1 - \psi\left( \lambda - n^{2} \right)}{\lambda -
+		n^{2}} \wh{w}(n, \lambda) \ d \lambda |^2  \right)^{1/2}
+		\\
+    & \le c_{\psi}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | \int_\rr
+		\frac{1 - \psi\left( \lambda - n^{2} \right)}{\lambda - n^{2}}
+		\wh{w}(n, \lambda) \ d\lambda |^2 \right)^{1/2}
+		\\
+		& \simeq \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
+		\frac{1 - \psi\left( \lambda - n^{2} \right)}{|\lambda - n^{2}|}
+		|\wh{w}(n, \lambda) | \ d\lambda \right )^2 \right)^{1/2}
+		\\
+		& \le \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_{| \lambda - 
+		n^{2} | \ge 1}
+		\frac{|\wh{w}(n, \lambda) | }{|\lambda - n^{2}|}
+		\ d\lambda \right )^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Applying estimate \eqref{none-plus-ineq}, we bound this by
+%
+%%
+\begin{equation}
+	\label{nmain-int3-est-X-s-part}
+	\begin{split}
+		& 2 \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
+		\frac{|\wh{w}(n, \lambda)| }{1 + |\lambda - n^{2}|}
+		 \ d\lambda \right )^2 \right)^{1/2}
+		 \\
+		& \lesssim \|u\|_{X^s}^3
+	\end{split}
+\end{equation}
+%
+%%
+where the last step follows from \cref{ncor:trilinear-estimate2}.
+Furthermore, 
+%
+%
+\begin{equation}
+	\label{nmain-int-estimate-3-Y-s-part}
+	\begin{split}
+    \|\wh{\eqref{nmain-int-expression-3}}\|_{\ell^{2}_{n}L^{1}_{\lambda}}
+		& \simeq \left[ \sum_{n \in \zz} (1 + | n |)^{2s} \int_{\rr} |
+    \wh{\psi}(\lambda - n^{2}) |^{2} \left( \int_{\rr}\frac{1 - \psi(\lambda -
+		n^{2})}{\lambda - n^{2}} \wh{w}(n, \lambda) d \lambda \right)^{2} d \lambda
+		\right]^{1/2}
+		\\
+		& \le c_{\psi} \left[ \sum_{n \in \zz} (1 + | n |)^{2s} \left(
+		\int_{\rr} \frac{1 - \psi(\lambda - n^{2})}{\lambda - n^{2}}
+		\wh{w}(n, \lambda) d \lambda
+		\right)^{2}\right]^{1/2}
+		\\
+		& \le 2 c_{\psi} \left[ \sum_{n \in \zz} (1 + | n |)^{2s} \left(
+		\int_{\rr} \frac{\wh{w}(n, \lambda) }{1 + |\lambda - n^{2}|}
+		d \lambda
+		\right)^{2}\right]^{1/2}
+		\\
+		& \lesssim \|f\|_{X^s} \|g\|_{X^s} \|h\|_{X^s}
+	\end{split}
+\end{equation}
+%
+%
+where the last two steps follow from \eqref{none-plus-ineq} and
+\cref{ncor:trilinear-estimate2}, respectively. Combining \eqref{niu},
+\eqref{nmain-int3-est-X-s-part}, and \eqref{nmain-int-estimate-3-Y-s-part}, we
+conclude that
+%
+%
+\begin{equation}
+	\label{nmain-int3-est}
+	\begin{split}
+		\|\eqref{nmain-int-expression-3}\|_{Y^s} 
+    \le c_{\psi} \|f\|_{X^s} \|g\|_{X^s} \|h\|_{X^s}.
+	\end{split}
+\end{equation}
+%
+%
+%
+\subsection{Estimate for \eqref{nmain-int-expression-4}.}
+Note that
+%
+%
+\begin{equation}
+	\label{n1n}
+	\begin{split}
+		\eqref{nmain-int-expression-4} \simeq \sum_{k \ge 1}
+		\frac{i^k}{k!}g_k(x,t)
+	\end{split}
+\end{equation}
+%
+%
+where 
+%
+%
+\begin{equation*}
+	\begin{split}
+		& g_k(x,t) = t^k \psi(t) \sum_{n \in \zz} e^{i\left( xn + tn^{2}
+		\right)} h_k(n),
+		\\
+		& h_k(n) = \int_\rr \psi \left( \lambda - n^{2} \right) \cdot \left(
+		\lambda - n^{2} \right)^{k -1} \wh{w}(n, \lambda) \ d \lambda.
+	\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{g_k^x}(n, t) = t^{k} \psi(t) e^{i t n^{2}} h_k(n)
+	\end{split}
+\end{equation*}
+%
+%
+which gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{g_k}(n, \lambda)
+		& = h_k(n) \int_\rr e^{-it\left( \lambda - n^{2} \right)}
+		t^{k}\psi(t) \ dt
+		\\
+		& = h_k(n) \wh{t^{k}\psi(t)} \left( \lambda - n^{2} \right).
+	\end{split}
+\end{equation*}
+%
+%
+Applying this to \eqref{n1n}, we obtain
+%
+%
+\begin{equation}
+	\label{n2n}
+	\begin{split}
+		\|\eqref{nmain-int-expression-4}\|_{X^s} 
+		& \simeq \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left( 1 + | \lambda -
+		n^{2}
+		|
+		\right) | \wh{\sum_{k \ge 1} \frac{i^k}{k!}g_k(x,t)} |^2 \ d \lambda
+		\right)^{1/2}
+		\\
+		& \le \sum_{k \ge 1} \frac{1}{k!}\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}
+		\int_\rr \left( 1 + | \lambda - n^{2} | \right) | \wh{g_k}(n, \lambda) |^2 \
+		d \lambda \right)^{1/2}
+		\\
+		& = \sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}
+		\int_\rr \left( 1 + | \lambda - n^{2} | \right) | h_k(n) \wh{t^k
+		\psi(t)} \left( \lambda - n^{2} \right) |^2 \ d \lambda \right)^{1/2}
+		\\
+		& = \sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} |
+		h_k(n) |^2 \int_\rr \left( 1 + | \lambda - n^{2} | \right) | \wh{t^k
+		\psi(t)} \left( \lambda - n^{2} \right) |^2 \ d \lambda \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Notice that for fixed $n$, the change of variable $\lambda - n^{2} = \lambda'$
+gives
+%
+%
+\begin{equation}
+	\label{n3n}
+	\begin{split}
+		\int_\rr \left( 1 + | \lambda - n^{2} | \right) | \wh{t^{k}
+		\psi(t)}\left( \lambda - n^{2} \right) |^2 \ d \lambda
+		& = \int_\rr \left( 1 + |\lambda'| \right) | \wh{t^k \psi(t)}(\lambda') |^2 \
+		d \lambda'
+		\\
+		& \le \int_\rr \left( 1 + |\lambda'| \right)^2 | \wh{t^k \psi(t)}(\lambda')
+		|^2 \ d \lambda'
+		\\
+		& \lesssim \int_\rr \left( 1 + | \lambda' |^2 \right) | \wh{t^{k}
+		\psi(t)}(\lambda') |^2 \ d \lambda'
+		\\
+		& = \|t^k \psi(t) \|_{H^1(\rr)}^2.
+	\end{split}
+\end{equation}
+%
+%
+But
+%
+%
+\begin{equation}
+	\label{n4n}
+	\begin{split}
+		\|t^k \psi(t) \|_{H^1(\rr)}^2
+		& = \left( \|t^k \psi(t)\|_{L^2(\rr)} + \|\p_t \left( t^k \psi(t)
+		\right)\|_{L^2(\rr)} \right)^2
+		\\
+		& \lesssim \|t^{k}\psi(t) \|_{L^2(\rr)}^2 + \|\p_t \left (t^{k}
+		\psi(t) \right )\|_{L^2(\rr)}^2
+		\\
+		& \le \|t^k \psi(t) \|_{L^2(\rr)}^2 + \|t^k \p_t \psi(t)
+		\|_{L^2(\rr)}^2 + \|k t^{k -1} \psi(t) \|_{L^2(\rr)}^2
+		\\
+		& = c_{\psi} + c_{\psi}' + c_{\psi}''k^2 
+		\\
+    & \lesssim c_{\psi} k^2.
+	\end{split}
+\end{equation}
+%
+%
+Hence, applying \eqref{n3n} and \eqref{n4n} to \eqref{n2n}, we obtain
+%
+%%
+\begin{equation}
+	\label{n5n}
+	\begin{split}
+		\|\eqref{nmain-int-expression-4} \|_{X^s}
+		& \lesssim
+    c_{\psi}\sum_{k \ge 1} \frac{k}{k!} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | h_k(n) |^2 
+		\right)^{1/2}
+		\\
+		& \lesssim \sum_{k \ge 1} \frac{1}{(k-1)!}
+		\times \sup_{k \ge 1} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} | 
+		h_k(n) |^2 \right)^{1/2}
+		\\
+		& = \sum_{k \ge 1} \frac{1}{(k-1)!}
+    \\
+    & \times \sup_{k \ge 1} 
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} |\int_\rr 
+		\psi\left( \lambda - n^{2} \right) \cdot \left( \lambda - n^{2} 
+    \right)^{k -1} \wh{w}(n, \lambda) \ d \lambda|^{2} \right)^{1/2}.
+    	\end{split}
+\end{equation}
+%
+%%
+Recall that $0 \le \psi \le 1, \text{ supp} \, \psi \subset [-2,2 ]$. 
+Hence, we bound the
+right hand side of \eqref{n5n} by
+%
+%%
+\begin{equation*}
+	\begin{split}
+    & \sum_{k \ge 1} \frac{2^{k-1}}{(k-1)!} \times \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
+		\int_{| \lambda - n^{2}  |\le 1}  \wh{w}(n, \lambda) \ d \lambda |^2 
+		\right)^{1/2}
+    \\
+    & = e^{2} \left( \sum_{n \in \zz} (1 + | n |)^{2s}| 
+		\int_{| \lambda - n^{2}  |\le 1}  \wh{w}(n, \lambda) \ d \lambda |^2 
+		\right)^{1/2}
+    \\
+    & \le e^{2} \left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left (  
+		\int_{| \lambda - n^{2}  |\le 1} | \wh{w}(n, \lambda) | \ d \lambda \right ) ^2 
+		\right]^{1/2}
+	\end{split}
+\end{equation*}
+%
+%%
+which by the inequality
+%
+%%
+\begin{equation*}
+	\begin{split}
+		\frac{1 + | \lambda - n^{2} |}{1 + | \lambda  - n^{2} |} \le 
+		\frac{2}{1 + | \lambda - n^{2} |}, \qquad | \lambda - n^{2}  | \le 1
+	\end{split}
+\end{equation*}
+%
+%%
+is bounded by 
+%
+%%
+\begin{equation}
+\label{nmain-int4-est-X-s-part}
+	\begin{split}
+    & 2e^{2} \left[ \sum_{n \in \zz} (1 + | n |)^{2s}\left ( \int_\rr
+		\frac{|\wh{w}(n, \lambda)|}{1 + | \lambda - n^{2} |} \ d \lambda \right ) ^2 
+		\right]^{1/2} \\
+		& \lesssim \|u\|_{X^s}^3
+	\end{split}
+\end{equation}
+%
+%%
+where the last step follows from \cref{ncor:trilinear-estimate2}. Similarly,
+we have
+%
+%
+\begin{equation}
+\label{nmain-int4-est-Y-s-part}
+	\begin{split}
+    \|\wh{\eqref{nmain-int-expression-4}}\|_{ \ell^2_n L^1_\lambda }
+		& \simeq \left[ \sum_{n \in
+		\zz}(1 + | n |)^{2s} \left( \int_{\rr} | \sum_{k \ge 1}
+		\wh{\frac{i^{k}}{k!}g_{k}(x,t)(n, \lambda)} |d \lambda \right)^{2} \right]^{1/2}
+		\\
+		& \le \sum_{k \ge 1} \frac{1}{k!} \left[ \sum_{n \in \zz} (1 + | n
+    |)^{2s} \left( \int_{\rr} | \wh{g_{k}}(n, \lambda) | d \lambda \right)^{2}
+		\right]^{1/2}
+		\\
+		& = \sum_{k \ge 1} \frac{1}{k!} \left[ \sum_{n \in \zz} (1 + | n
+		|)^{2s} | h_{k}(n) |^2 \left( \int_{\rr} | \wh{t^{k} \psi(t)}(\lambda -
+		n^{2}) |d \lambda \right)^{2} \right]^{1/2}
+		\\
+		& = c_{\psi} \sum_{k \ge 1} \frac{1}{k!} \left[ \sum_{n \in \zz} (1 + | n
+		|)^{2s} | h_{k}(n) |^2 \right]^{1/2}
+		\\
+		& \lesssim \|u\|_{X^s}^{3}
+	\end{split}
+\end{equation}
+%
+%
+where the last step follows from the computations starting from \eqref{n5n}
+through \eqref{nmain-int4-est-X-s-part}.
+Combining \eqref{nmain-int4-est-X-s-part} and \eqref{nmain-int4-est-Y-s-part}, we
+have
+%
+%
+\begin{equation}
+\label{nmain-int4-est}
+	\begin{split}
+    \|\eqref{nmain-int-expression-4}\|_{Y^s} \le c_{\psi} \|u\|_{X^s}^{3}.
+	\end{split}
+\end{equation}
+%
+%
+Collecting estimates \eqref{nmain-int1-est}, \eqref{nmain-int2-est}, 
+\eqref{nmain-int3-est}, and \eqref{nmain-int4-est}, and recalling 
+\eqref{nmain-int-expression-1}-\eqref{nmain-int-expression-4}, we see that
+$$\|Tu\|_{Y^s} \le c_{\psi} \left( \|\vp \|_{H^s(\ci)} + \|u\|_{X^s}^3 \right )$$ 
+which by the inequality $\|u\|_{X^s} \le \|u\|_{Y^s}$ yields the following.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% Contraction Proposition
+%				 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%
+\begin{proposition}
+\label{nprop:contraction}
+	Let $s \ge0$. Then
+%
+%%
+\begin{equation*}
+	\begin{split}
+		\|Tu\|_{Y^s} \le c_{\psi} \left( \|\vp \|_{H^s(\ci)} + \|u\|_{Y^s}^3 
+		\right).
+	\end{split}
+\end{equation*}
+%
+%%
+\end{proposition}
+%
+%
+\subsection{Existence and Uniqueness} 
+\label{ssec:exis-uniq}
+We will now use \cref{nprop:contraction} to prove local well-posedness for the 
+NLS ivp. Let $c = c_{\psi}^{1/2}$. Suppose that the intial data is small, that
+is, it satisfies
+%
+%%
+\begin{equation}
+	\begin{split}
+		\|\vp\|_{H^s(\ci)} \le \frac{15}{64c^3}.
+	\end{split}
+\end{equation}
+%
+%%
+Then if $$\|u\|_{Y^s} \le \frac{1}{4c}$$ we have
+%
+%%
+\begin{equation*}
+	\begin{split}
+		\|T u \|_{Y^s} 
+		& \le c^2 \left[ \frac{15}{64c^3} + \left( 
+		\frac{1}{4c} \right)^3 \right]
+		=  \frac{1}{4c}.
+	\end{split}
+\end{equation*}
+%
+%%
+Hence, $T=T_{\vp, \psi}$ maps the ball $B_{Y^{s}}\left( \frac{1}{4c} \right)$ into 
+itself. Next, note that
+%
+%%
+\begin{equation*}
+	\begin{split}
+		Tu - Tv = \eqref{nmain-int-expression-2} + \eqref{nmain-int-expression-3} 
+		+ \eqref{nmain-int-expression-4}
+	\end{split}
+\end{equation*}
+%
+%%
+where now $w = u | u |^2 - v | v |^{2}$. Rewriting
+%
+%%
+\begin{equation*}
+	\begin{split}
+		u | u |^{2} - v | v |^{2}
+		& = | u |^2 \left( u -v \right) + v\left( | u 
+		|^2 - | v |^2
+		\right)
+		\\
+		& = u \bar u \left( u -v \right) + v u \bar u - v v \bar v
+		\\
+		& = u \bar u \left( u - v \right) + v \bar u\left( u - v \right) + v 
+		\bar u v - v v \bar v
+		\\
+		& = u \bar u \left( u -v \right) + v \bar u\left( u - v \right) + v v 
+		\left( \overline{u -v} \right),
+	\end{split}
+\end{equation*}
+%
+%%
+the triangle inequality and linearity of the Fourier transform give
+%
+%%
+\begin{equation*}
+	\begin{split}
+		| \wh{w}(n, \lambda) | = | \mathcal{F}(u | u |^2 - v| v |^2) |
+		& \le | \wh{u \overline{u} \left (u -v \right )} | +
+		| \wh{v \overline{u} (u -v)} | + |\wh{v v 
+		(\overline{u-v})}|
+		\\
+		& = | \wh{w_1} | + | \wh{w_2} | + | \wh{w_3} |
+	\end{split}
+\end{equation*}
+%
+%%
+where
+%
+%%
+\begin{equation*}
+	\begin{split}
+		w_1 = u \bar u \left( u -v \right), \qquad w_2 = v \bar u \left( u -v 
+		\right), \qquad w_3 = v v \left( \overline{u -v} \right).
+	\end{split}
+\end{equation*}
+%
+%%
+Hence, $Tu - Tv = \sum_{\ell=1}^{3} 
+T_\ell(u, v)$, where
+\begin{align}
+	\label{nmain-int-exp-mod1}
+	& \frac{i}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
+		e^{it \lambda} \frac{ 1 - \psi(\lambda - n^{2}) 
+		}{\lambda - n^{2}} \wh{w_\ell}(n, \lambda) \ d \lambda
+		\\
+		\label{nmain-int-exp-mod2}
+		- & \frac{i}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
+		tn^{2})}
+		 \frac{1- \psi(\lambda - n^{2})}{\lambda - n^{2}} \wh{w_\ell}(n, \lambda) \ d \lambda
+		\\
+		\label{nmain-int-exp-mod3}
+		+ & \frac{i}{4 \pi^2} \psi(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
+		\sum_{n \in \zz} \int_\rr e^{i(xn + tn^{2} )}
+		\psi(\lambda - n^{2}) (\lambda - n^{2})^{k-1} \wh{w_\ell}(n, \lambda)  
+		\\
+		\doteq & T_\ell(u). \notag
+\end{align}
+Repeating the arguments used to estimate 
+\eqref{nmain-int-expression-2}-\eqref{nmain-int-expression-4}, we obtain
+%
+%%
+\begin{equation*}
+	\begin{split}
+    & \|T_1\|_{Y^s} \le c_{\psi} \|u -v \|_{Y^s} \|u\|^2_{Y^s}
+		\\
+    & \|T_2\|_{Y^s} \le c_{\psi} \|u -v \|_{Y^s} \|u\|_{Y^s} \|v\|_{Y^s}
+		\\
+    & \|T_3\|_{Y^s} \le c_{\psi} \|u -v \|_{Y^s} \|v\|_{Y^s}^2.
+	\end{split}
+\end{equation*}
+%
+%%
+Therefore,
+%
+%%
+\begin{equation}
+	\label{n20a}
+	\begin{split}
+    \|Tu - Tv \|_{Y^s} = & \| \sum_{\ell =1}^{3} T_\ell(u, v) \|_{Y^s}
+		\\
+    & \le c_{\psi} \|u -v \|_{Y^s} \left( \|u\|_{Y^s}^2 + 
+		\|u\|_{Y^s} \|v\|_{Y^s} + \|v\|_{Y^s}^2 \right)
+		\\
+		& \le c_{\psi} \|u -v\|_{Y^s} \left( \|u\|_{Y^s} + \|v\|_{Y^s} \right)^2
+		\\
+		& = c^2 \|u -v\|_{Y^s} \left( \|u\|_{Y^s} + \|v\|_{Y^s} \right)^2.
+	\end{split}
+\end{equation}
+%
+%%
+If $u, v \in B_{Y^{s}}(\frac{1}{4c})$, it follows that
+%
+%%
+\begin{equation}
+	\label{n21a}
+	\begin{split}
+		\|Tu - Tv \|_{Y^s}
+		& \le c^2 \|u -v \|_{Y^s} \left( \frac{1}{4c} + 
+		\frac{1}{4c} \right)^2
+		\\
+		& = \frac{1}{4} \|u -v \|_{Y^s}. 
+	\end{split}
+\end{equation}
+%
+%%
+We conclude that $T = T_{\vp, \psi}$ is a contraction on the ball
+$B_{Y^{s}}(\frac{1}{4c})$. A Picard iteration, coupled with
+\cref{nlem:cutoff-loc-soln} then yields a unique solution $u \in Y^{s} \cap
+C(\left[ -1, 1 \right], H^{s}(\ci))$ to the integral equation $\psi u = Tu$.
+%
+%
+%
+\subsection{Lipschitz Continuity} 
+\label{ssec:lip-cont-flow-map}
+We now establish Lipschitz continuity of the flow map from
+\\ $B_{H^{s}(\ci)}(\frac{15}{64c^{3}})$ to $C(\left[ -1, 1 \right], H^{s}(\ci))$.
+Assume $\vp_1, \vp_2
+\subset B_{H^s(\ci)}(\frac{15}{64c^{3}})$.
+Then by the preceding arguments there exist $u, v \in Y^s$ such that 
+$u = T_{\vp_1, \psi}$, $v = T_{\vp_2, \psi}$, and so
+%
+%
+\begin{equation*}
+	\begin{split}
+		T_{\vp_1, \psi}(u) -
+    T_{\vp_2, \psi}(v) = \frac{1}{2\pi} \psi(t) \sum_{n \in
+		\zz}e^{i\left( xn + tn^{2} \right)} \wh{\vp_1 - \vp_2}(n) + \sum_{\ell=1
+    }^{3} T_{\ell}(u).
+	\end{split}
+\end{equation*}
+%
+%
+Using an argument similar to \eqref{nfourier-trans-calc}-\eqref{nmain-int1-est},
+we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\| \frac{1}{2\pi} \psi(t) \sum_{n \in
+		\zz}e^{i\left( xn + tn^{2} \right)} \wh{\vp_1 - \vp_2}(n)\|_{Y^s}
+		\le c_{\psi} \|\vp_{1} - \vp_{2}\|_{Y^s}.
+	\end{split}
+\end{equation*}
+%
+%
+Hence, \eqref{n20a}-\eqref{n21a} gives
+%
+%
+\begin{equation*}
+	\begin{split}
+    \sum_{\ell=1}^{3} T_{\ell}(u,v) \le \frac{1}{4}\|u-v\|_{Y^s}.
+	\end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation*}
+	\begin{split}
+    \|u - v \|_{Y^s} \le c_{\psi}
+		\|\vp_{1} - \vp_{2} \|_{H^{s}\left( \ci \right)}\| +
+		\frac{1}{4} \|u -v \|_{Y^s}
+	\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+	\begin{split}
+    \frac{3}{4} \| u-  v\|_{Y^s} \le c_{\psi} \|\vp_1 - \vp_2 \|_{H^s(\ci)}
+	\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+	\begin{split}
+    \| u -  v \|_{Y^s} \le \frac{4}{3} c_{\psi} \|\vp_1 - \vp_2
+    \|_{H^{s}(\ci)}
+	\end{split}
+\end{equation*}
+%
+
+%
+which by \cref{nlem:cutoff-loc-soln} gives
+%
+%
+	 %
+	 %
+	 \begin{equation}
+     \label{lip-hs}
+		 \begin{split}
+       \sup_{t \in \left[ -1, 1 \right]}\|u(\cdot, t) -v(\cdot, t) \|_{H^s(\ci)} \le \frac{4}{3} c_{\psi} \|\vp_1 -
+			\vp_2 \|_{H^{s}(\ci)}.
+		 \end{split}
+	 \end{equation}
+	 %
+   Furthermore, since $u = T_{\vp_1, \psi}$, $v = T_{\vp_2, \psi}$,
+   \cref{nlem:cutoff-loc-soln} implies
+   $\psi u = T_{\vp_1, \psi}$, $\psi v = T_{\vp_2, \psi}$ for $| t | \le 1$.
+   Hence, the flow map of the NLS ivp is Lipschitz continuous from
+   $B_{H^{s}(\ci)}( \frac{15}{64c^{3}})$ to  $C(\left[ -1, 1 \right],
+   H^{s}(\ci))$. Since this implies uniform continuity of the flow map from
+   $B_{H^{s}(\ci)}( \frac{15}{64c^{3}})$ to  $C(\left[ -1, 1 \right],
+   H^{s}(\ci))$, the proof of \cref{nthm:main} is complete. \qquad
+   \qedsymbol
+%
+%
+%
+%
+\section{Proof of Trilinear Estimate}
+%
+%
+%
+%
+%
+%
+Note first that $|\wh{w_{fgh}}(n, \lambda) |  = | \wh{f} * ( \wh{g} 
+* \wh{\bar h})(n, \lambda)|$ and $| \wh{\bar{h}}(n, \lambda) | = |\overline{ \wh{\overline{h}} 
+}(n, \lambda)| = | \wh{h}(-n, -\lambda) |$. It follows that
+%
+%
+\begin{equation}
+	\label{nnon-lin-rep}
+	\begin{split}
+		& | \wh{w_{fgh}}(n, \lambda)|
+    \\
+    & = |  \sum_{n_{1} } \int_{\lambda_{1}} \sum_{n_{2}}
+    \int_{\lambda_{2}} \wh{f}\left( n
+    -n_1,  \lambda - \lambda_1 \right) \wh{g}\left( n_{1} - n_2, \lambda_{1} - \lambda_2  
+\right) \wh{\bar h}\left( n_2, \lambda_2 \right) d \lambda_2 d \lambda_1 |
+\\
+& \le \sum_{n_{1} } \int_{\lambda_{1}} \sum_{n_{2}}
+\int_{\lambda_{2}}  | \wh{f}\left( n - n_1, \lambda - \lambda_1 
+\right) | \times  | \wh{g}\left( n_1 - n_2, \lambda_1 - \lambda_2 
+\right) | \times | \wh{\bar h}\left( n_{2}, \lambda_{2} \right) | d \lambda_2 d \lambda_1
+\\
+& = \sum_{n_{1} } \int_{\lambda_{1}} \sum_{n_{2}}
+\int_{\lambda_{2}}  | \wh{f}\left( n - n_1, \lambda - \lambda_1 
+     \right) | \times | \wh{g}\left( n_{1} - n_2, \lambda_{1} - \lambda_2 
+\right) | \times | \wh{h}\left( -n_{2}, - \lambda_2 \right) | d \lambda_2 d \lambda_1
+\\
+& = \sum_{n_{1} } \int_{\lambda_{1}} \sum_{n_{2}}
+\int_{\lambda_{2}} \frac{c_f\left( n - n_1, \lambda - \lambda_1 
+\right)}{\left (1 + |n - n_{1}| \right )^s \left( 1 + | \lambda - \lambda_1 - (n - n_{1})^{2} | \right)^{b}}
+\\
+& \times \frac{c_{g}\left( n_1 - n_2, \lambda_1 - \lambda_2 \right)}{\left (1 + |n_1 -
+n_2| \right ) 
+^s\left( 1 + | \lambda_1 - \lambda_2 -  (n_1 - n_2)^{2}| 
+\right)^{b}}
+ \times \frac{c_{h}\left( -n_{2}, -\lambda_2 \right)}{\left (1 + |n_{2}| \right ) ^s\left( 1 + | 
+\lambda_2 + n_{2}^{2} | \right)^{b}} \ d \lambda_2 d \lambda_1
+\end{split}
+\end{equation}
+%
+%
+where
+%
+%
+\begin{equation*}
+	\begin{split}
+		c_\sigma(n, \lambda) = \left (1 + |n| \right ) ^s \left( 1 + | \lambda - n^{2} |  
+		\right)^{b} | \wh{\sigma}\left( n, \lambda \right) | .
+	\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation}
+	\label{nconvo-est-starting-pnt}
+	\begin{split}
+		 & \left (1 + |n| \right )^s \left( 1 + | \lambda - n^{2} | \right)^{-b} | \wh{w_{fgh}}\left( 
+		n, \lambda \right) |
+		\\
+		& \le \left( 1 + | \lambda - n^{2} | \right)^{-b}
+    \sum_{n_{1} } \int_{\lambda_{1}} \sum_{n_{2}}
+    \int_{\lambda_{2}}     \\
+    & \frac{\left (1 + |n| \right )^s}{\left (1 +
+		|n - n_{1}| \right )^s \left (1 + | n_1 - n_2| \right )^s \left (1 + |n_{2}| \right )^s} 
+		\times \frac{c_f(n - n_{1}, \lambda - \lambda_1)}{\left( 1 + | \lambda - \lambda_1 - (n - n_{1})^{2} | 
+		\right)^{b}}
+		\\
+		& \times
+		\frac{c_g(n_1 - n_2, \lambda_1 - \lambda_2)}{\left( 1 + | \lambda_1 - \lambda_2 - (n_1 - n_2)^{2} | 
+		\right)^{b}} \times
+		\frac{c_h(-n_{2}, -\lambda_2)}{\left( 1 + | \lambda_2 + n_{2}^{2} | 
+		\right)^{b}}\ d \lambda_2 d \lambda_1 .
+	\end{split}
+\end{equation}
+%
+%
+For $s \ge 0$, observe that
+%
+%
+\begin{equation}
+	\label{nderiv-bound-easy-s}
+	\begin{split}
+		\frac{\left (1 + |n| \right ) ^s}{\left (1 + |n - n_{1}| \right ) ^s \left (1 + |n_1 - n_2| \right ) ^s \left (1 + |n_2| \right ) ^s} 
+		\le 3^{s}
+	\end{split}
+\end{equation}
+%
+%
+by the following lemma, whose proof is provided in the appendix.
+%
+%
+\begin{lemma}
+\label{nlem:splitting}
+	For $\nu \ge 0$ we have
+%
+%
+\begin{equation}
+	\label{nsplitting}
+	\begin{split}
+    \left ( 1 + |a +b + c| \right)^{\nu} \le 3^{ \nu}
+    \left(1 + | a | \right)^{\nu} \left(
+    1 + | b | \right)^{\nu} \left( 1 + | c | \right)^{\nu}.
+	\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+%
+Hence, from \eqref{nconvo-est-starting-pnt} and \eqref{nderiv-bound-easy-s}, we 
+obtain
+%
+\begin{equation*}
+	\begin{split}
+		& \left (1 + |n| \right )^s \left( 1 +  | \lambda - n^{2}  | \right)^{-b} | 
+		\wh{w_{fgh}}\left( n, \lambda \right) | 
+		\\
+    & \lesssim  \frac{1}{\left( 1 +
+		| \lambda - n^{2}| 
+		\right)^{b}}  
+		\times
+    \sum_{n_{1} } \int_{\lambda_{1}} \sum_{n_{2}}
+    \int_{\lambda_{2}} \frac{c_f\left( n - n_{1}, \lambda - \lambda_1 
+		\right)}{\left (1 + |n - n_{1}| \right )^s \left( 1 + | \lambda - \lambda_1 - (n - n_{1})^{2} |
+		\right)^{b}}
+		\\
+		& \times \frac{c_{g}\left( n_1 - n_2, \lambda_1 - \lambda_2 \right)}{\left (1 + |n_1 - n_2| \right ) 
+		^s\left( 1 + | \lambda_1 - \lambda_2 -  (n_1 - n_2)^{2}| 
+		\right)^{b}}
+    \times \frac{c_{h}\left( -n_2, -\lambda_2 \right)}{\left (1 + |n_2| \right )
+    ^s \left( 1 + | \lambda_2 + n_2^{2} | \right)^{b}} \ d \lambda_2 d \lambda_1 
+    \\
+		& = \left( 1 + | \lambda - n^{2} | \right)^{-b}
+		\wh{C_f C_{g} C^+_{h}} \left( n, \lambda \right)
+	\end{split}
+\end{equation*}
+%
+%
+where
+%
+%
+\begin{equation*}
+	\begin{split}
+		C_\sigma(x, t) = \left[ \frac{c_\sigma\left( n, \lambda \right)}{\left( 
+		1 + | \lambda - n^{2} | \right)^{b}} \right]^\vee,
+		\ \ C^+_\sigma(x, t) = \left[ \frac{c_\sigma\left( -n, -\lambda \right)}{\left( 
+		1 + | \lambda + n^{2} | \right)^{b}} \right]^\vee.
+	\end{split}
+\end{equation*}
+%
+%
+Therefore
+%
+%
+\begin{equation}
+	\label{ngen-holder-pre-estimate}
+	\begin{split}
+		& \| \left( 1 + |n | \right)^s
+		\left( 1 + | \lambda - n^{2} | \right)^{-b} \wh{w_{fgh}}(n, 
+		\lambda)		
+		\|_{L^2(\zz \times \rr)}
+		\\
+		& \lesssim \| \left( 1 + | \lambda - n^{2} | \right)^{-b}
+		\wh{C_f C_{g} C^+_{h}} \|_{L^2(\zz \times \rr)}.
+	\end{split}
+\end{equation}
+%
+We now require the following multiplier estimate, whose proof can be found in
+\cite{Bourgain-Fourier-transfo-1}. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Four Mult Est	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+\begin{lemma}
+	\label{nlem:four-mult-est-L4}
+	Let $(x, t) \in \ci \times \rr $ and $(n, \lambda) \in \zz \times \rr$ be 
+	the dual variables. Then there is a 
+	constant $c > 0$ such that
+%
+%
+\begin{equation}
+	\label{nfour-mult-est-L4*}
+	\begin{split}
+		\| \left( 1 + | \lambda - n^\nu | 
+		\right)^{-\frac{3}{8}}
+		\wh{f}\|_{L^2(\zz \times \rr)} \le c \|f \|_{L^{4/3}( \ci \times \rr)}
+	\end{split}
+\end{equation}
+for every test function $f(x, t)$. 
+%
+%
+\end{lemma}
+%
+A proof of a more general result can be found in
+\cite{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger} and
+\cite{Himonas_Misiolek-A-priori-estima}.
+Applying \cref{ncor:four-mult-est-L4} and generalized H\"{o}lder to the 
+right-hand-side of \eqref{ngen-holder-pre-estimate} gives
+%
+%
+\begin{equation}
+	\label{ngen-holder-piece-1}
+	\begin{split}
+		\|\left( 1 + | \lambda - n^{2} | \right)^{-b} \wh{C_f C_{ 
+		g } C^+_{h}}\|_{L^2(\zz \times \rr)}
+		& \lesssim  \|C_f C_{g} C^+_{h} \|_{L^{4/3}(\ci \times \rr)}
+		\\
+		& \le \|C_f \|_{L^4(\ci \times \rr)} \|C_{g}\|_{L^4(\ci \times \rr)} 
+		\|C^+_{h}\|_{L^4(\ci \times \rr)}.
+	\end{split}
+\end{equation}
+%
+%
+Note that a change of variable gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		C_\sigma^+(x, t)
+		& = \sum_{n \in \zz} \int_\rr e^{i(nx +  \lambda t)} \frac{c_\sigma\left( -n, -\lambda \right)}{\left( 
+		1 + | \lambda + n^{2} | \right)^{b}} \ d \lambda
+		\\
+		& = - \sum_{n \in \zz} \int_\rr e^{-i(nx +   \lambda t )}
+		\frac{c_\sigma\left( n, \lambda \right)}{\left( 
+		1 + | \lambda - n^{2} | \right)^{b}} \ d \lambda
+	\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+	\begin{split}
+		C_\sigma^+(-x, -t) = -C_\sigma(x, t).
+	\end{split}
+\end{equation*}
+%
+%
+We will now need the following dual estimate of
+\cref{nlem:four-mult-est-L4}.
+%
+\begin{corollary}
+	\label{ncor:four-mult-est-L4}
+	Let $(x, t) \in \ci \times \rr $ and $(n, \lambda) \in \zz \times \rr$ be 
+	the dual variables. Then there is a 
+	constant $c > 0$ such that
+%
+%
+\begin{equation}
+	\label{nfour-mult-est-L4}
+	\begin{split}
+    \|f\|_{L^4(\ci \times \rr)} \le c \|\left( 1 + | \lambda - n^{2} | 
+		\right)^\frac{3}{8} \wh{f} \|_{L^2( \zz \times \rr)}
+	\end{split}
+\end{equation}
+for every test function $f(x, t)$. 
+%
+%
+%
+%
+\end{corollary}
+%
+%
+Recalling that $L^4(\ci \times \rr)$ is invariant under the transformation $(x, 
+t) \mapsto (-x,-t)$ and applying 
+\cref{ncor:four-mult-est-L4}, we obtain
+%
+%
+\begin{equation}
+	\label{nC-sig-estimate}
+	\begin{split}
+		\| C^+_\sigma \|_{L^4(\ci \times \rr)} = \|C_\sigma \|_{L^4(\ci \times \rr)} 
+		& \lesssim \|\left( 1 + | \lambda - n^{2} | 
+		\right)^{3/8} \left( 1 + | \lambda - n^{2} | 
+		\right)^{-b} c_\sigma \|_{L^2(\zz \times \rr)}
+		\\
+		& \le \|c_\sigma \|_{L^2(\zz \times \rr)}, \qquad b \ge 3/8 
+    \\
+		& = \|\sigma\|_{X^s}.
+	\end{split}
+\end{equation}
+%
+%
+We conclude from \eqref{ngen-holder-pre-estimate}, \eqref{ngen-holder-piece-1}, 
+and \eqref{nC-sig-estimate} that 
+%
+%
+%
+%
+\begin{equation*}
+	\begin{split}
+		\| \left( 1 + |n | \right)^s \left( 1 + | \lambda - n^{2} | \right)^{-b} \wh{w_{fgh}} 
+		(n, \lambda) \|_{L^2(\zz \times \rr)} \lesssim 
+		\|f\|_{X^s}\|g\|_{X^s}\|h\|_{X^s}, \qquad b \ge 3/8.
+	\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+%
+%
+\section{Proof of Corollary to Trilinear Estimate}
+By duality, it suffices to show that 
+%
+%%
+\begin{equation*}
+	\begin{split}
+		| \sum_{n \in \zz} \left (1 + |n| \right )^{s}
+		a_n \int_{\rr} \frac{|\wh{w_{fgh}}(n, \lambda)|}{1 
+		+ | \lambda - n^{2} |} \ d \lambda | \lesssim \|f\|_{X^s} \|g\|_{X^s} \|h\|_{X^s}
+		\|a_n \|_{\ell^2}
+	\end{split}
+\end{equation*}
+%
+%%
+for $\{a_n\} \in \ell^2$. By the triangle inequality 
+and Cauchy-Schwartz,
+%
+%%
+\begin{equation}
+	\label{n1m}
+	\begin{split}
+		& | \sum_{n \in \zz} \left (1 + |n| \right )^{s} a_n
+		\int_{\rr}\frac{| \wh{w_{fgh}}(n, \lambda) |}{1 + | \lambda - n^{2} |} \ d \lambda |
+		\\
+		& \le \sum_{n \in \zz} \int_{\rr} \frac{| a_n |}{\left( 1 + 
+		| \lambda - n^{2} |
+		\right)^{1/2 + \eta}} \cdot \frac{\left( 1 + | n| \right)^s  |
+		\wh{w_{fgh}}(n, \lambda) |}{\left( 
+		1 + | \lambda - n^{2} | \right)^{1/2 - \eta}} \ d \lambda
+		\\
+		& \le \left( \sum_{n \in \zz} | a_{n} |^2\int_{\rr} \frac{1}{\left( 1 + | \lambda - n^{2} | \right)^{1 + 2 \eta}} \ d \lambda  
+		\right)^{1/2} 
+		\left ( \sum_{n \in \zz}\int_{\rr} \frac{\left (1 + |n| \right )^{2s} | \wh{w_{fgh}}(n, \lambda) 
+		|^2}{\left( 1 + | \lambda - n^{2} | \right)^{1 - 2 \eta}}\ d \lambda 
+		\right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%%
+Restrict $\eta \in (0, 1/8)$. Applying the change of variable $\lambda - n^{2}
+= \lambda'$ we obtain  %
+%%
+
+\begin{equation*}
+	\begin{split}
+		& \left( \sum_{n \in \zz} | a_{n} |^2\int_{\rr} \frac{1}{\left( 1 + | \lambda -
+		n^{2} | \right)^{1 + 2 \eta}} \ d \lambda  
+		\right)^{1/2} 
+		\\
+		& = \left ( \sum_{n \in \zz}
+		| a_n |^2 
+		\int_{\rr} \frac{1}{\left( 1 + | \lambda' | \right)^{1 + 2 \eta}} \ d 
+		\lambda \right)^{1/2}
+		\\
+		& \simeq \|a_n\|_{\ell^2}
+		\end{split}
+\end{equation*}
+while \cref{nprop:trilinear-est} gives the bound
+\begin{equation*}
+	\begin{split}
+		\left ( \sum_{n \in \zz}\int_{\rr} \frac{\left (1 + |n| \right )^{2s} | \wh{w_{fgh}}(n, \lambda) 
+		|^2}{\left( 1 + | \lambda - n^{2} | \right)^{1 - 2 \eta}}\ d \lambda 
+		\right)^{1/2} \lesssim \|f\|_{X^s} \|g\|_{X^s} \|h\|_{X^s}
+	\end{split}
+\end{equation*}
+%
+%%
+completing the proof.
+\qquad \qedsymbol
+%
+%
+%
+%
+%
+%
+%
+\appendix
+\section{}
+%
+%
+\begin{proof}[Proof of \cref{nlem:cutoff-loc-soln}]
+%
+%
+\begin{equation}
+  \label{ndm}
+	\begin{split}
+		\lim_{t_{k} \to t} \|u(\cdot, t) - u(\cdot, t_{k})\|_{H^s(\ci)} 
+    & = \lim_{t_{k} \to t} \|\psi(t) u(\cdot, t) - \psi(t_{k}) u(\cdot, t_{k})\|_{H^s(\ci)} 
+		\\
+		& = \lim_{t_{k} \to t} \left[ \sum_{n}\left( 1 + | n |
+    \right)^{2s} | \psi(t)  \wh{u}(n, t) - \psi(t_{k}) \wh{ u}(n, t_{k}) |^2 \right]^{1/2}
+		\\
+		& = \lim_{t_{k} \to t} \left[ \sum_{n} \left( 1 + | n |
+    \right)^{2s} | \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+		\lambda) d \lambda |^2 \right]^{1/2}.
+	\end{split}
+\end{equation}
+First note that
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+& \lim_{t_{k} \to t}  | \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+		\lambda) d \lambda |^2 
+    \\
+    = 
+     & \lim_{t_{k} \to t}  \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+    \lambda) d \lambda \times \lim_{t_{k} \to t} \overline{\int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+    \lambda) d \lambda }  
+    \\
+    = 
+    &  \lim_{t_{k} \to t}  \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+    \lambda) d \lambda \times \lim_{t_{k} \to t} \int_{\rr} (e^{-it \lambda} - e^{-it_{k} \lambda})
+    \overline{\wh{\psi u}}(n,
+    \lambda) d \lambda.   
+    \end{split}
+\end{equation*}
+%
+%
+But for fixed $n$ 
+%
+%
+\begin{equation*}
+\begin{split}
+|(e^{it \lambda} - e^{it_{k} \lambda})  
+\wh{\psi u}(n, \lambda) | \le 2 |\wh{\psi u}(n, \lambda) |
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} |2 \wh{\psi u}(n, \lambda) | d \lambda < \infty.
+\end{split}
+\end{equation*}
+%
+%
+Hence, by dominated convergence
+%
+%
+\begin{equation*}
+\begin{split}
+\lim_{t_{k} \to t}  \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+    \lambda) d \lambda =  \int_{\rr} \lim_{t_{k} \to t} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+    \lambda) d \lambda = 0. 
+\end{split}
+\end{equation*}
+%
+%
+Similarly, 
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\lim_{t_{k} \to t} \int_{\rr} (e^{-it \lambda} - e^{-it_{k} \lambda})
+    \overline{\wh{\psi u}}(n,
+    \lambda) d \lambda  =\int_{\rr}  \lim_{t_{k} \to t} (e^{-it \lambda} - e^{-it_{k} \lambda})
+    \overline{\wh{\psi u}}(n,
+    \lambda) d \lambda  = 0.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+%
+\begin{equation}
+  \label{ngh}
+\begin{split}
+  \lim_{t_{k} \to t} | \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+		\lambda) d \lambda |^2 = 0.
+\end{split}
+\end{equation}
+%
+%
+		Furthermore,
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      (1 + | n |)^{2s} | \int_{\rr} \left( e^{it\lambda} - e^{it_{k} \lambda} \right)
+      \wh{\psi u}(n, \lambda) d \lambda|^{2} \le 4 (1 + | n |)^{2s} \left(
+      \int_{\rr} | \wh{\psi u}(n, \lambda)  | d \lambda
+      \right)^{2}
+    \end{split}
+    \end{equation*}
+    %
+    %
+    and
+		%
+		%
+		\begin{equation*}
+			\begin{split}
+         \sum_{n}  \left( 1 + | n |
+        \right)^{2s} \left ( \int_{\rr} |\wh{\psi u}(n, \lambda)| d \lambda
+        \right )^2  
+        & = \|\wh{\psi u}\|_{\ell^{2}_{n}L^{1}_{\lambda}}^2
+		\\
+		& \le \|\psi u \|_{X^{s}}^2 
+	\end{split}
+\end{equation*}
+which is bounded by assumption. Therefore, applying dominated convergence and
+\eqref{ngh}, we
+obtain 
+%
+%
+\begin{equation*}
+\begin{split}
+  \text{rhs of \eqref{ndm}} = \left[ \sum_{n} \left( 1 + | n |
+    \right)^{2s} \lim_{t_{k} \to t} | \int_{\rr} (e^{it \lambda} - e^{it_{k} \lambda})
+    \wh{\psi u}(n,
+		\lambda) d \lambda |^2 \right]^{1/2} = 0
+\end{split}
+\end{equation*}
+%
+%
+completing the proof. 
+\end{proof}
+%
+%
+\begin{proof}[Proof of \cref{nlem:schwartz-mult}]
+Note that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\wh{\psi f}\left( n, \lambda \right)
+		& = \wh{\psi}(\cdot) * \wh{f}(n,
+		\cdot)(\lambda)
+		= \int_\rr \wh{\psi}(\lambda_1) \wh{f} \left( n, \lambda - \lambda_1 \right) 
+		d\lambda_1
+	\end{split}
+\end{equation*}
+%
+%
+and hence
+%
+%
+\begin{equation}
+	\label{n1b}
+	\begin{split}
+		\|\psi f\|_{X^s} 
+		& = \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left( 1 + | \lambda -
+		n^{2} | \right) | \int_\rr \wh{\psi}(\lambda_1) \wh{f}\left( n, \lambda -
+		\lambda_1
+		\right)  d \lambda_1 d \lambda |^2 \right)^{1/2}
+		\\
+		& \le \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \int_\rr \left( 1 + | \lambda -
+		n^{2}
+		|
+		\right) \left( \int_\rr |\wh{\psi}\left( \lambda_1 \right) | |\wh{f}\left( n,
+		\lambda - \lambda_1
+		\right) |  d \lambda_1 d \lambda \right)^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Using the relation
+%
+%
+\begin{equation*}
+	\begin{split}
+		1 + | \lambda - n^{2} |
+    & = 1 + | \lambda - \lambda_1 + \lambda_{1} - n^{2} |
+		\\
+		& \le 1 + | \lambda_1 | + | \lambda - \lambda_1 - n^{2} |
+		\\
+		& \le \left( 1 + | \lambda_1 | \right)\left( 1 + | \lambda - \lambda_1 -
+		n^{2} | \right)
+	\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\eqref{n1b}
+		& \le \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \right.
+		\\
+		& \times \left . \int_\rr \left(
+		\int_\rr \left( 1 + | \lambda_1 | \right)^{1/2} | \wh{\psi}(\lambda_1) |
+		\left( 1 + | \lambda - \lambda_1 - n^{2} | \right)^{1/2} \wh{f}\left( n, \lambda
+		- \lambda_1
+		\right)d \lambda_1
+		\right)^2 d \lambda \right)^{1/2}
+	\end{split}
+\end{equation*}
+%
+%
+which by Minkowski's inequality is bounded by
+%
+%
+\begin{equation}
+	\label{n2b}
+	\begin{split}
+		& \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \right.
+		\\
+		& \times \left. \left( \int_\rr \left[ \int_\rr
+		\left( 1 + | \lambda_{1} | \right) | \wh{\psi}(\lambda_1) |^2 \left( 1 + |
+		\lambda - \lambda_1 - n^{2} |
+		\right) | \wh{f}\left( n, \lambda - \lambda_1 \right) |^2 d \lambda 
+    \right]^{1/2} d \lambda_{1} \right)^2 \right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%
+Using the change of variable $\lambda - \lambda_1 = \tau$ gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		\eqref{n2b}
+		& = \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}\right.
+		\\
+		& \times \left.  \left( \int_\rr \left[
+		\int_\rr \left( 1 + | \lambda_1 | \right) | \wh{\psi}\left( \lambda_1
+		\right) |^2 \left( 1 + | \tau - n^{2} | \right) | \wh{f} \left( n,
+		\tau
+    \right)|^2 d \tau \right]^{1/2} d \lambda_{1} \right)^2 \right)^{1/2}
+		\\
+		& =  \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \right.
+		\\
+		& \times \left. \left( \int_\rr \left( 1 + |
+		\lambda_1 |
+		\right)^{1/2} | \wh{\psi}(\lambda_1) | d \lambda_1 \left[ \int_\rr \left( 1 + |
+		\tau - n^{2} |
+		\right) | \wh{f}\left( n, \tau \right) |^2 d \tau \right]^{1/2}
+		\right)^2 \right)^{1/2}
+		\\
+		& = c_{\psi} \left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \left( \left[ \int_\rr
+		\left( 1 + | \tau - n^{2} | \right) | \wh{f}\left( n, \tau
+		\right) |^2 d \tau
+		\right]^{\cancel{1/2}} \right)^{\cancel{2}} \right)^{1/2}
+		\\
+		& = c_{\psi} \|f\|_{X^s}.
+	\end{split}
+\end{equation*}
+%
+Also, by Young's inequality we have the estimate 
+%
+%
+\begin{equation*}
+\begin{split}
+  \|\wh{\psi f}\|_{\ell^{2}_{n} L^{1}_{\lambda}} 
+  & = \left[ \sum_{n \in \zz} \left (1 + |n| \right )^{2s} \left (
+  \int_{\rr} | \wh{\psi}(\cdot) * \wh{f}(n, \cdot)(\lambda) | d \lambda  \right ) ^2 \right]^{1/2}
+  \\
+  & \le  \left[ \sum_{n \in \zz} (1 + | n |)^{2s} \left( \int_{\rr} |
+    \wh{\psi}(\lambda) | d \lambda  \times \int_{\rr} | \wh{f}(n, \lambda) | d \lambda
+    \right)^{2}\right]^{1/2}
+  \\
+  & = c_{\psi} \| \wh{f} \|_{\ell^{2}_{n} L^{1}_{\lambda}}
+\end{split}
+\end{equation*}
+%
+%
+%
+concluding the proof. 
+\end{proof}
+%
+%
+\begin{proof}[Proof of \cref{nlem:splitting}] We have
+%
+%
+\begin{equation}
+	\label{n6a}
+	\begin{split}
+		1 + | a + b + c| 
+		& \le 1 + | a | + | b | + | c |
+		\\
+		& \le 1 + | a | + 1 + | b | + 1 + | c |
+		\\
+		& \le 3\left( \max\{1+| a |, 1+| b |, 1+ | c | \}\right)
+		\\
+		& \le 3 \left( 1 + | a | \right)\left( 1 + | b | \right) \left( 1 + |
+		c |
+		\right).
+	\end{split}
+\end{equation}
+%
+%
+Raising both sides of expression $\eqref{n6a}$ to the power $\nu \ge 0$ completes 
+the proof. 
+\end{proof}
+%
+%
+%
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Bourgain-Fourier-transfo-1}{article}{
+      author={Bourgain, J},
+       title={Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. i. schr{\"o}dinger
+  equations},
+        date={1993},
+     journal={Geom. Funct. Anal.},
+      volume={3},
+      number={2},
+       pages={107\ndash 156},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1209299},
+}
+
+\bib{Bourgain-Fourier-transfo}{article}{
+      author={Bourgain, J},
+       title={Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. ii. the
+  kdv-equation},
+        date={1993},
+     journal={Geom. Funct. Anal.},
+      volume={3},
+      number={3},
+       pages={209\ndash 262},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1215780},
+}
+
+\bib{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}{article}{
+      author={Himonas, A~Alexandrou},
+      author={Misiolek, Gerard},
+       title={A priori estimates for schr{\"o}dinger type multipliers},
+        date={2001},
+     journal={Illinois J. Math.},
+      volume={45},
+      number={2},
+       pages={631\ndash 640},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1878623},
+}
+
+\bib{Himonas_Misiolek-A-priori-estima}{article}{
+      author={Himonas, A~Alexandrou},
+      author={Misiolek, Gerard},
+       title={A priori estimates for schr{\"o}dinger type multipliers},
+        date={2001},
+     journal={Illinois J. Math.},
+      volume={45},
+      number={2},
+       pages={631\ndash 640},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1878623},
+}
+
+\end{biblist}
+\end{bibdiv}
+\end{document}
