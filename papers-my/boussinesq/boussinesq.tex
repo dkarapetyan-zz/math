@@ -5860,6 +5860,139 @@ by induction on $n$. For the base case $n=1$, we note that
 \end{split}
 \end{equation*}
 %
+For the inductive step, assume that for al $1 < n' < n$, the operator
+$A_{n'}: H^{s'} \times H^{s'-2} \mapsto X_{s',b}$ is continuous from
+$(H^{s} \times H^{s-2}, \|  \|_{H^{s'} \times H^{s'-2}})$ to $(X_{s,b}, \|
+\|_{X_{s',b}}$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| u[\lambda f] - u[\lambda f_{m}] \|_{X_{s',b}} = 0.
+\end{split}
+\end{equation*}
+%
+%
+Applying \cref{qwp-it-5}, this implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n'=1}^{\infty} A_{n'}(\lambda f) -
+  A_{n'}(\lambda f_{m}) \|_{X_{s',b}} =0
+\end{split}
+\end{equation*}
+%
+%
+which by \cref{homogen} gives
+%
+%
+\begin{equation}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n'=1}^{\infty} \lambda^{n'}\left[
+  A_{n'}(f) - A_{n'}(f_{m})
+  \right] \|_{X_{s',b}} =0.
+\end{split}
+\label{1bh}
+\end{equation}
+%
+%
+By the reverse triangle inequality
+%
+%
+\begin{equation}
+\begin{split}
+  & \| \sum_{n'=1}^{\infty} \lambda^{n'}\left[ A_{n'}(f) - A_{n'}(f_{m}) \right]
+  \|_{X_{s',b}}
+  \\
+  & = \| \sum_{n' < n}^{\infty} \lambda^{n'}\left[ A_{n'}(f) -
+  A_{n'}(f_{m}) \right] - \sum_{n' > n}^{\infty} \lambda^{n'}\left[
+  A_{n'}(f_{m}) - A_{n'}(f)
+  \right] \|_{X_{s',b}}
+  \\
+  & \ge |\| \sum_{n' < n}^{\infty} \lambda^{n'}\left[ A_{n'}(f) -
+  A_{n'}(f_{m}) \right] \|_{X_{s',b}} -
+  \| \sum_{n' \ge n}^{\infty} \lambda^{n'}\left[ A_{n'}(f_{m}) -
+  A_{n'}(f) \right] \|_{X_{s',b}} \|_{X_{s',b}} |.
+\end{split}
+\label{2bh}
+\end{equation}
+%
+%
+But by our inductive hypothesis
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n'<n}^{\infty} \lambda^{n'} \left[
+  A_{n'}(f') - A_{n'}(f_{m})
+  \right] \|_{X_{s',b}} = 0.
+\end{split}
+\end{equation*}
+%
+%
+Using this in conjunction with \cref{1bh}, we see that \cref{2bh} implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n' \ge n}^{\infty} \lambda^{n'} \left[
+  A_{n'}(f_{m}) - A_{n'}(f)
+  \right] \|_{X_{s',b}} = 0.
+\end{split}
+\end{equation*}
+%
+%
+By the reverse triangle inequality, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+0 & = \lim_{m \to \infty} \| \sum_{n' \ge n}^{\infty} \lambda^{n'} \left[
+  A_{n'}(f_{m}) - A_{n'}(f)
+  \right] \|_{X_{s',b}}
+  \\
+  & = \lim_{m \to \infty}  \|\lambda^{n}\left[ A_{n}(f_{m}) - A_{n}(f) \right] -
+  \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
+  \right]\|_{X_{s',b}}
+  \\
+  & = \lim_{m \to \infty}
+  \left\{ \lambda^{n} \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+   - \| \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
+      \right]\|_{X_{s',b}}\right\}
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \lambda^{n} \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+  & = \lim_{m \to \infty} \| \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
+      \right]\|_{X_{s',b}}
+      \\
+      & \le  \sum_{n' > n} \lambda^{n'} \sup_{m} \|  A_{n'}(f) - A_{n}(f_{m})
+      \|_{X_{s',b}}
+\end{split}
+\end{equation*}
+%
+%
+Dividing both sides by $\lambda^{n}$ gives
+%
+%
+\begin{equation*}
+\begin{split}
+\lim_{m \to \infty}  \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+  & \le \sum_{n' > n} \lambda^{n'-n} \sup_{m} \|  A_{n'}(f) - A_{n}(f_{m})
+      \|_{X_{s',b}}
+      \\
+      & \le
+\end{split}
+\end{equation*}
+%
 %
 %
 \section{Attempt to Improve Ill-Posedness on the Circle} 
@@ -6044,7 +6177,7 @@ or
 \end{equation*}
 %
 where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge
-|a_{1}|$. Choose $f_N$ as in \eqref{ill-pos-ce}. Then
+|a_{1}|$. Choose $f_N$ as in \cref{ill-pos-ce}. Then
 $(f_{N}, g_{N}) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N}, g_{N}) \to 0$ in
 $H^{s} \times H^{s-2}$, as before. Substituting, we bound below by
 %
