@@ -1,4 +1,3 @@
-%
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath}
 \usepackage{fix-cm} %fix font errors
@@ -10,8 +9,8 @@
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
-\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-\setcounter{secnumdepth}{1} %number only sections, not subsections
+\setcounter{tocdepth}{2} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{2} %number only sections, not subsections
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 %\numberwithin{figure}{section}
@@ -67,6 +66,14 @@ urlcolor=blue,
 {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother%
 %makes proof environment bold instead of italic
+%\makeatletter
+%\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+%{-3.25ex\@plus -1ex \@minus -.2ex}%
+%{1.5ex \@plus .2ex}%
+%{\normalfont\normalsize \bfseries}}
+%\makeatother
+%makes subsubsubsection bold instead of italic
+%
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
@@ -793,7 +800,7 @@ We now introduce the following spaces.
 %
 \begin{definition}
   Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
-  \begin{enumerate}[(i)]
+  \begin{enumerate}[(I)]
    \item{$F: \ci \times \rr \to \cc$}.
    \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
    \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
@@ -900,7 +907,26 @@ To prove well-posedness for the $B_4$ ivp we we will show that for initial data
 \\ $\vp \in B_{H^{s}(\ci) \times H^{s-2}(\ci)}(r)$, $T$ is a contraction on
 $B_{X_{s,b}}(M_{r})$, where $M_{r}$ is a constant depending on $r$, by
 estimating the $X_{s,b}$ norm of
-\cref{main1-rel-term-1}-\cref{main1-rel-term-5}. The Picard fixed point theorem
+\cref{main1-rel-term-1}-\cref{main1-rel-term-5}. 
+More precisely, we will prove the following.
+\begin{proposition}
+\label{prop:contraction}
+%
+For $1/2 < b < 5/8$, $s \ge -1/4 + (b -1/2)$, $0 < \delta \le 1$, we have
+%
+%%
+\begin{equation*}
+	\begin{split}
+    \|Tu\|_{X_{s,b}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
+    + \delta^{b-1/2} \|u\|_{X_{s,b}}^2 
+		\right)
+	\end{split}
+\end{equation*}
+%
+where $c = c_{\psi, b} > 1$.  
+%%
+\end{proposition}
+The Picard fixed point theorem
 will then yield a unique $u \in X_{s,b}$ satisfying $u = Tu$.  An application of
 \cref{lem:embedding} will then imply the existence of a unique $u \in
 C([-\delta, \delta], H^s(\ci)) \cap X_{s,b}$ solving $\psi_{\delta} u = Tu$ for
@@ -1065,7 +1091,7 @@ as $\delta$ approaches $0$.
 \end{remark}
 \end{framed}
 %
-\subsection{Estimate for \cref{main1-rel-term-1}}
+\subsubsection{Estimate for \cref{main1-rel-term-1}}
 \label{ssec:est-init-term-1}
 We have
 %
@@ -1197,7 +1223,7 @@ $\|\cref{main1-rel-term-1}\|_{X_{s,b}}^{2} \le c_{\psi,b}
 %
 %
 %
-\subsection{Estimate for \cref{main1-rel-term-2}}
+\subsubsection{Estimate for \cref{main1-rel-term-2}}
 \label{ssec:est-init-term-2}
 We have
 %
@@ -1366,7 +1392,7 @@ taking square roots of both sides gives
 %
 %
 %
-\subsection{Estimate for \cref{main1-rel-term-3}.}
+\subsubsection{Estimate for \cref{main1-rel-term-3}.}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1571,7 +1597,7 @@ or
 
 %
 %
-\subsection{Estimate for \cref{main1-rel-term-4}.}
+\subsubsection{Estimate for \cref{main1-rel-term-4}.}
 Letting $$f(x,t) = \sum_{a = \pm 1} \psi(t) \sum_{n \in \zz} e^{i\left( xn +
 atn^{m} \right)} 
 \int_\rr \frac{1 - \psi\left( \lambda - an^{m} \right)}{\lambda - an^{m}} 
@@ -1771,7 +1797,7 @@ We conclude that
 %
 %
 %
-\subsection{Estimate for \cref{main1-rel-term-5}.}
+\subsubsection{Estimate for \cref{main1-rel-term-5}.}
 Note that
 %
 %
@@ -1991,23 +2017,6 @@ Collecting estimates \cref{main-int2-est},
 \cref{main1-rel-term-2}-\cref{main1-rel-term-5}, we obtain the following. 
 %
 %
-\begin{proposition}
-\label{prop:contraction}
-%
-For $1/2 < b < 5/8$, $s \ge -1/4 + (b -1/2)$, $0 < \delta \le 1$, we have
-%
-%%
-\begin{equation*}
-	\begin{split}
-    \|Tu\|_{X_{s,b}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
-    + \delta^{b-1/2} \|u\|_{X_{s,b}}^2 
-		\right)
-	\end{split}
-\end{equation*}
-%
-where $c = c_{\psi, b} > 1$.  
-%%
-\end{proposition}
 %
 \subsection{Proof of Existence and Uniqueness}
 \label{sec:proof-b4-per-case}
@@ -2262,7 +2271,7 @@ concludes the proof of well-posedness for the $B_4$ ivp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Proof of \hyperref[prop:bilinear-est]{Periodic Bilinear Estimate}} 
+\subsection{Proof of \hyperref[prop:bilinear-est]{Periodic Bilinear Estimate}} 
 \label{sec:proof-bilin-est}
 Since $\|f\|_{X_{s,-a'}} \le \|f\|_{X_{s, -a}}$ for $0 < a < a'$, we may assume
 $1/4 < a \le b$ and $b > 1/2$ without loss of generality.
@@ -2772,7 +2781,7 @@ or
 %
 %
 where we consider cases
-\begin{enumerate}[(i)]
+\begin{enumerate}[(I)]
     \item $ \sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau -
       \tau_1+(n - n_1)^2$,
 \label{it-1}
@@ -2790,7 +2799,7 @@ where we consider cases
 %
 for \cref{sup-est-gen-per-1} and \cref{sup-est-gen-per-2}, and cases
 %
-\begin{enumerate}[(i)]
+\begin{enumerate}[(I)]
 \item $ \sigma^{*}=\tau+n^2,\quad \sigma^{*}_1=\tau - \lambda+n_1^2,\quad
   \sigma^{*}_2=\lambda+(n - n_1)^2$, \label{it-1-star} \item $
   \sigma^{*}=\tau-n^2,\quad \sigma^{*}_1=\tau - \lambda-n_1^2,\quad
@@ -2826,7 +2835,7 @@ transformation $(n, \tau, n_{2}, \tau_{2}) \mapsto - (n, \tau, n_{2},
 \tau_{2})$ reduces \cref{it-5} to \cref{it-4}. Since $L^{2}$ is invariant
 under change of variables and reflections, we may without loss of generality
 restrict our attention to cases \cref{it-4} and \cref{it-6}.
- \subsection{Case \cref{it-6}} 
+ \subsubsection{Case \cref{it-6}} 
 \label{ssec:case-it-6}
 Let 
 %
@@ -2883,7 +2892,7 @@ appendix.
  Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p, q, p+q-1
  \right\}$. Then 
  %
- \begin{enumerate}[(i)]
+ \begin{enumerate}[(I)]
    \item
 For $\alpha=\beta \ \text{or} p \neq 1 \ \text{or} \ q \neq 1$
  \begin{equation*}
@@ -3300,7 +3309,7 @@ Hence, applying
 %
 Since the right hand side is bounded for $b > 1/4$ by \cref{lem:sum-estimate}, this
 completes the proof for case \cref{it-6}.
-\subsection{Case \cref{it-4}} 
+\subsubsection{Case \cref{it-4}} 
 \label{ssec:case-it-4}
 Let 
 %
@@ -3810,7 +3819,7 @@ If $b > 1/2$, $a > 1/4$, and $s \ge -a/2$,
 %
 %
 %
-\section{Proof of \hyperref[prop:bilin-est-real]{Non-Periodic Bilinear Estimate}} 
+\subsection{Proof of \hyperref[prop:bilin-est-real]{Non-Periodic Bilinear Estimate}} 
 %
 \label{sec:bilin-est-real}
 Since $\| f \|_{\mathcal{X}_{s,-a}} \le \| f \|_{\mathcal{X}_{s, -a'}}$ for $a \ge a' \ge 0$, we assume
@@ -4019,7 +4028,7 @@ or
 \end{equation}
 %
 for the following cases.
-\begin{enumerate}[(i)]
+\begin{enumerate}[(I)]
     \item $ \sigma=\tau+\xi^2,\quad \sigma_1=\tau_1+\xi_1^2,\quad \sigma_2=\tau -
       \tau_1+(\xi - \xi_1)^2$,
 \label{it-real-1}
@@ -4037,7 +4046,7 @@ for the following cases.
 %
 for \cref{sup-est-gen-1} and \cref{sup-est-gen-2}, and the analogous cases
 %
-\begin{enumerate}[(i)]
+\begin{enumerate}[(I)]
 \item $ \sigma^{*}=\tau+\xi^2,\quad \sigma^{*}_1=\tau - \lambda+\xi_1^2,\quad
   \sigma^{*}_2=\lambda+(\xi - \xi_1)^2$, \label{it-1-star-real} \item $
   \sigma^{*}=\tau-\xi^2,\quad \sigma^{*}_1=\tau - \lambda-\xi_{1}^2,\quad
@@ -4074,7 +4083,7 @@ transformation $(\xi, \tau, \xi_{2}, \tau_{2}) \mapsto - (\xi, \tau, \xi_{2},
 \tau_{2})$ reduces \cref{it-real-5} to \cref{it-real-4}. Since $L^{2}$ is invariant
 under change of variables and reflections, we may without loss of generality
 restrict our attention to cases \cref{it-real-4} and \cref{it-real-6}.
- \subsection{Case \cref{it-real-6}} 
+ \subsubsection{Case \cref{it-real-6}} 
 \label{ssec:case-it-real-6}
 We partition $\rr^{4}$ into the following three sets 
 %
@@ -4422,7 +4431,7 @@ is equal to
 \end{equation*}
 %
 %
-\subsection{Case \cref{it-real-4}} 
+\subsubsection{Case \cref{it-real-4}} 
 \label{ssec:case-it-real-4}
 We partition $\rr^{4}$ into three sets 
 %
@@ -4782,7 +4791,7 @@ Hence, applying
 which is bounded for $a > 1/4$ by \cref{cor:integral-bound}. This concludes the proof of \cref{prop:bilin-est-real}. \qquad \qedsymbol
 %
 %
-\section{Ill-Posedness for $s < -2$ on the Circle}
+\section{Ill-Posedness}
 Our motivation will be the work of Bejanaru and Tao
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 %
@@ -4814,7 +4823,7 @@ N(u, v)
 \end{equation*}
 %
 %
-Then we let $A_{n}: H^{s} \times H^{s-2} \to X_{s,b}, n = 1, 2, \dots$ be the
+Then we let $A_{n}: H^{s} \times H^{s-2} \to X_{s,b}, \ n = 1, 2, \dots$ be the
 recursively defined maps
 %
 %
@@ -4864,12 +4873,12 @@ will prove later. A proof of a more general theorem can be found in~\cite{Bejena
   Let $f \mapsto u[f]$ be the solution map to the localized
   $B_{4}$ which maps a ball $B_{H^{s} \times H^{s-2}}$ in $H^{s} \times
   H^{s-2}$ to a ball $B_{X_{s,b}}$ in $X_{s,b}$. Suppose that the solution map
-  is continuous from $B_{H^{s'}} \times
-  H^{s'-2}$ to $(B_{X_{s,b}}, \| \|_{X_{s', b}})$ (i.e.\ the
+  is continuous from $B_{H^{s'} \times
+  H^{s'-2}}$ to $(B_{X_{s,b}}, \| \|_{X_{s', b}})$ (i.e.\ the
   ball $B_{X_{s,b}}$ equipped with the $X_{s',b}$ topology),
   where $s' < s$. Then for  $n=1,2,\dots$, the operator $A_{n} :
   B_{H^{s'}} \times B_{H^{s'-2}} \to X_{s',b}$ is continuous
-  from $B_{H^{s'}} \times B_{H^{s'-2}}$
+  from $B_{H^{s'} \times {H^{s'-2}}}$
   to $(B_{X_{s,b}}, \|  \|_{X_{s',b}})$.
   %
   %
@@ -4878,8 +4887,10 @@ will prove later. A proof of a more general theorem can be found in~\cite{Bejena
 \label{prop:ill-posedness}
 \end{proposition}
 %
+\subsection{Ill-Posedness for $s < -2$ on the Circle} 
+\label{ssec:circle-ill-pos}
 %
-We now prove ill-posedness via contradiction. Let $f_{N} = (f_{N,1},
+The proof will be via contradiction. Let \\ $f_{N} = (f_{N,1},
 f_{N,2})$. We have the estimate
 %
 %
@@ -5085,9 +5096,9 @@ $-s - \ee  \ge 2$, or $s \le -2 - \ee$, which completes the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Ill-Posedness for $s < -2$ on the Line} 
+\subsection{Ill-Posedness for $s < -2$ on the Line} 
 \label{realsec:ill-pos-line}
-We shall prove ill-posedness via contradiction. We have the estimate
+The proof will be via contradiction. We have the estimate
 %
 %
 \begin{equation*}
@@ -5305,699 +5316,9 @@ $-s - \ee \ge 2$, or $s \le -2 - \ee$, which completes the proof.
 \qquad \qedsymbol
 %
 %
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Proof of ill-pos props
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Proof of \cref{prop:ill-posedness}}
-\label{sec:pf-ill-pos-prop}
-We shall require the following lemma.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%               Quantitative wp implies analytic wp
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}[Quantitative WP implies Analytic WP]
-  For $f \in B_{H^{s} \times H^{s-2}}(r)$, $s > -1/4$ and $\delta=\delta(r)$
-sufficiently small: 
-\begin{enumerate}[(I)]
-  \item
-    \label{qwp-it-1}
-    There exists a unique solution
-$u[f] \in C([-\delta, \delta], H^{s})$
-to the localized integral $B_{4}$ equation
-\cref{main1-rel-term-0}-\cref{main1-rel-term-5}. 
-\item
-  \label{homogen}
-  We have the homogeneity property
-  %
-  %
-  \begin{equation}
-    \label{eqn:homog}
-  \begin{split}
-    A_{n}(\lambda f) = \lambda^{n} A_{n}(f) \ \text{for all} \ \lambda \in \rr
-  \end{split}
-  \end{equation}
-  %
-  \item
-    \label{pre-lip-qwp}
-    We have the bound
-\begin{equation}
-  \label{induct-ineq}
-  \begin{split}
-    \| A_{n}(f) \|_{X_{s,b}} \le  c_{\psi}^{n} 4^{(n-1)} n^{C}
-    \delta^{(n-1)(b-1/2)} \| f
-    \|_{H^{s} \times H^{s-2}}^{n}
-  \end{split}
-  \end{equation}
-  %
-  %
-  where $C = C(n)$ and 
-  %
-  %
-  \begin{equation}
-    \label{stilted-growth}
-  \begin{split}
-     -\frac{\log n}{\log 2} \le C(n) \le 0.
-  \end{split}
-  \end{equation}
-  %
-  %
-  In particular, \cref{stilted-growth} implies 
-  %
-  %
-  %
-  %
-  %
-  \begin{equation}
-  \label{induct-ineq-final}
-  \begin{split}
-    \| A_{n}(f) \|_{X_{s,b}} \le  c_{\psi}^{n} 4^{n-1} 
-    \delta^{(n-1)(b-1/2)} \| f
-    \|_{H^{s} \times H^{s-2}}^{n}.
-  \end{split}
-  \end{equation}
-  %
-  %
-  %
-  \item
-    \label{lip-qwp}
-    We have the Lipschitz bound
-    %
-    %
-    \begin{equation}
-      \label{lip-qwp-eq}
-    \begin{split}
-      \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}} \le c_{\psi}^{n} 4^{n-1} 
-      \delta^{(n-1)(b-1/2)} \| f-g \|_{H^{s} \times
-      H^{s-2}} \left( \| f \|_{H^{s} \times H^{s-2}}
-      + \| g \|_{H^{s} \times H^{s-2}}  \right)^{n-1}.
-    \end{split}
-    \end{equation}
-    %
-    %
-\item
-  \label{qwp-it-5}
-  %
-%
-For all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely convergent (in $C([-\delta, \delta], H^{s})$ power series expansion
-%
-%
-\begin{equation}
-  \label{power-series-soln}
-\begin{split}
-  u[f] = \sum_{n=1}^{\infty} A_{n}(f)
-\end{split}
-\end{equation}
-\end{enumerate}
-%
-%
-\label{lem:analytic-wp}
-\end{lemma}
-%
-%
-%
-%
-\begin{proof}[Proof of \cref{qwp-it-1}]
-  It is a consequence of the linear and nonlinear estimates
-  %
-  %
-  \begin{align}
-    \label{ill-pos-lin}
-    & \| L(f) \|_{X_{s,b}} \le c_{\psi} \| f \|_{H^{s} \times H^{s-2}},
-    \\
-    & \| N(u,v) \|_{X_{s,b}} \le c_{\psi} \delta^{b-1/2} \| u \|_{X_{s,b}} \| v
-    \|_{X_{s,b}}.
-    \label{ill-pos-bil}
-  \end{align}
-  %
-  For the proofs of these estimates, and how to obtain \cref{qwp-it-1} from
-  them, we refer the reader to \cref{sec:periodic} and
-  \cref{sec:non-periodic-case}.
-\end{proof}
-%
-%
-%
-\begin{proof}[Proof of \cref{homogen}]
-  %
-  The proof will be via induction on $n$. For the base case $n=1$, we have
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    A_{1}(\lambda f) = L(\lambda f) = \lambda L(f).
-  \end{split}
-  \end{equation*}
-  %
-  %
-  due to the linearity of $L$. For the inductive step we assume
-  \cref{eqn:homog}. Since $N$ is bilinear, we have
-  \begin{equation*}
-  \begin{split}
-    A_{n+1}(\lambda f)
-    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} N\left[
-    A_{j}(\lambda f), A_{k}(\lambda f) \right]
-    \\
-    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} N\left[
-    \lambda^{j} A_{j}(f), \lambda^{k} A_{k}(\lambda f) \right]
-    \\
-    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} \lambda^{j+k}
-    N\left[ A_{j}(f),  A_{k}(\lambda f) \right]
-    \\
-    & = \lambda^{n+1} A_{n+1}(f)
-  \end{split}
-  \end{equation*}
-  %
-  %
-  concluding the proof.
-\end{proof}
-%
-%
-%
-%
-\begin{proof}[Proof of \cref{pre-lip-qwp}]
-The proof will be via induction on $n$. For the base case $n=1$, we have
-  %
-  \begin{equation*}
-  \begin{split}
-    \| A_{1}(f) \|_{X_{s,b}}
-    & = \| L(f) \|_{X_{s,b}}
-    \\
-    & \le  c_{\psi} \| f \|_{H^{s} \times H^{s-2}}.
-  \end{split}
-  \end{equation*}
-  %
-  For the inductive step, we assume \cref{induct-ineq}. 
-  Then applying \cref{ill-pos-bil} gives
-  %
-  %
-  %
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \| A_{n+1}(f) \|_{X_{s,b}}
-    & = \| \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} N\left[
-    A_{j}(f), A_{k}(f) \right] \|_{X_{s,b}}
-    \\
-    & \le \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} \| N\left[
-    A_{j}(f), A_{k}(f) \right] \|_{X_{s,b}}
-    \\
-    & \le c_{\psi} \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} 
-    \delta^{b-1/2} \| A_{j}(f) \|_{X_{s,b}} \| A_{k}(f)\|_{X_{s,b}}
-  \end{split}
-  \end{equation*}
-  %
-  %
-  which by  \cref{induct-ineq} is bounded by
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    & c_{\psi} \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} 
-    \delta^{b-1/2}\left[ c_{\psi}^{j}
-    4^{j-1}j^{C} \delta^{(j-1)(b-1/2)}\| f \|_{H^{s} \times
-    H^{s-2}}^{j} \right] \left [c_{\psi}^{k}
-    4^{k-1} k^{C} \delta^{(k-1)(b-1/2)}\| f \|_{H^{s} \times
-    H^{s-2}}^{k} \right]
-    \\
-    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} c_{\psi}^{j+k +1}
-    4^{j+k-2} (jk)^{C} \delta^{(j + k -1)(b-1/2)} \| f \|_{H^{s} \times
-    H^{s-2}}^{j+k}
-    \\
-    &  \le  4^{n-1} \delta^{n(b-1/2)}
-    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}} \times
-    \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} (jk)^{C}
-    \\
-    & \le 4^{n-1} \delta^{n(b-1/2)}
-    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}} \times
-    2nn^{C}, \qquad C \le 0
-    \\
-    & \le  4^{n-1} \delta^{n(b-1/2)}
-    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}  \times 2n^{C+1}
-  \end{split}
-  \end{equation*}
-  %
-  %
-  Hence, to complete the proof of \cref{induct-ineq}, it will be enough to show that there exists $C =
-  C(n)$ satisfying $n^{C+1} = 2 (n+1)^{C}$ and obeying the bound
-  \cref{stilted-growth}. Taking logarithms, we want
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  (C+1) \log n = C \log(n+1)
-  \end{split}
-  \end{equation*}
-  %
-  %
-  Solving for $C$ gives
-  %
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  C(n)
-  & = -\frac{\log n}{\log(2 + 2/n)}
-  \\
-  & \ge - \frac{\log n}{\log 2}.
-  \end{split}
-  \end{equation*}
-  %
-  Hence, we have proved \cref{induct-ineq}.
-  Substituting this into relation \cref{induct-ineq}
-  gives \cref{induct-ineq-final}. The proof is complete.
-  %
-\end{proof}
-%
-%
-%
-\begin{proof}[Proof of \cref{lip-qwp}]
-The proof will be via an induction on $n$. For the base case $n=1$, we have
-%
-%
-\begin{equation*}
-\begin{split}
-  \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}}
-  & = \| L_{n}(f) - L_{n}(g) \|_{X_{s,b}}
-  \\
-  & = \| L_{n}(f -g) \|_{X_{s,b}}
-  \\
-  & \le c_{\psi} \| f-g \|_{H^{s} \times H^{s-2}}
-\end{split}
-\end{equation*}
-%
-%
-where the last step followed from \cref{ill-pos-lin}. For the inductive step,
-we assume \cref{lip-qwp-eq}. Note that
-%
-%
-\begin{equation*}
-\begin{split}
-  \|A_{n+1}(f) - A_{n+1}(g)  \|_{X_{s,b}} = \| \sum_{\substack{n_{1},
-  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}}\left\{ N\left[
-  A_{n_{1}}(f), A_{n_{2}}(f) \right] - N\left[
-  A_{n_{1}}(g), A_{n_{2}}(g) \right]  \right\} \|_{X_{s,b}}.
-\end{split}
-\end{equation*}
-%
-%
-Using the relation
-%
-%
-\begin{equation*}
-\begin{split}
-  u_{1}u_{2} - v_{1}v_{2} = (u_{1} - v_{1})(u_{2} + v_{2}) - u_{1}v_{2} +
-  u_{2} v_{1}
-\end{split}
-\end{equation*}
-%
-%
-we obtain
-%
-%
-\begin{equation*}
-\begin{split}
-\|A_{n+1}(f) - A_{n+1}(g)  \|_{X_{s,b}}
-& = \| \sum_{\substack{n_{1},
-n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \left \{N[A_{n_{1}}(f) -
-A_{n_{1}}(g),  A_{n_{2}}(f) + A_{n_{2}}(g) ] \right .
-\\
-& \left . - N\left[ A_{n_{1}}(f), A_{n_{2}}(g) \right] + N\left[
-A_{n_{2}}(f), A_{n_{1}}(g) \right] \right \}  \|_{X_{s,b}}
-\\
-& = \| \sum_{\substack{n_{1},
-n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}}N[A_{n_{1}}(f) -
-A_{n_{1}}(g), A_{n_{2}}(f) + A_{n_{2}}(g)]
- \|_{X_{s,b}}
-\end{split}
-\end{equation*}
-%
-%
-where the last step follows from symmetry.
-%
-%
-%
-%
-Applying the triangle inequality and \cref{ill-pos-bil}, we bound this by
-%
-%
-\begin{equation*}
-\begin{split}
-  & c_{\psi} \delta^{b-1/2}\sum_{\substack{n_{1},
-  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \| A_{n_{1}}(f) -
-  A_{n_{1}}(g) \|_{X_{s,b}} \| A_{n_{2}}(f) +
-  A_{n_{2}}(g) \|_{X_{s,b}}
-  \\
-  & \le c_{\psi} \delta^{b-1/2}\sum_{\substack{n_{1},
-  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \| A_{n_{1}}(f) -
-  A_{n_{1}}(g) \|_{X_{s,b}} ( \| A_{n_{2}}(f) \|_{X_{s,b}} +
-  \| A_{n_{2}}(g) \|_{X_{s,b}} )
-\end{split}
-\end{equation*}
-%
-%
-Applying our inductive assumption \cref{lip-qwp-eq} and
-\cref{induct-ineq-final}, this is bounded by
-%
-%
-\begin{equation*}
-\begin{split}
-  & c_{\psi} \delta^{b-1/2} \sum_{\substack{n_{1},
-  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} c_{\psi}^{n_{1}}
-  4^{n_{1}-1}  \delta^{(n_{1}-1)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
-  \\
-  & \times \left(
-  \| f \|_{H^{s} \times H^{s-2}} + \| g \|_{H^{s} \times H^{s-2}}
-  \right)^{n_{1}-1} \times c_{\psi}^{n_{2}}4^{n_{2}-1} 
-  \delta^{(n_{2}-1)(b -1/2)}\left[ \| f \|_{H^{s} \times H^{s-2}}^{n_{2}}
-  + \| g \|_{H^{s} \times H^{s-2}}^{n_{2}} \right]
-  \\
-  & \le \sum_{\substack{n_{1},
-  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} c_{\psi}^{n_{1}+n_{2}}
-  4^{n_{1}+n_{2}-2} \delta^{(n_{1} + n_{2}-2)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
-\\
-& \times \left( \| f \|_{H^{s} \times H^{s-2}}
-+ \| g \|_{H^{s} \times H^{s-2}} \right)^{n_{1} + n_{2} -1}
-\\
-& \le 
-  c_{\psi}^{n+1}
-  4^{n} \delta^{(n-1)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
-\left( \| f \|_{H^{s} \times H^{s-2}}
-+ \| g \|_{H^{s} \times H^{s-2}} \right)^{n}
-  \end{split}
-\end{equation*}
-%
-completing the proof.
-%
-
-\end{proof}
-%
-%
-%
-\begin{proof}[Proof of \cref{qwp-it-5}]
-Next, recalling \cref{qwp-it-1}, we see that there exists $u$ such that
-$Tu = u$; that is $L(f) + N(u,u) -u =0$.
-Using this as motivation, we will now estimate the error of $u_{k} \doteq
-  \sum_{n=1}^{k}A_{n}(f)$. First, note that
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    L(f) + N(u_{k, u_{k}})
-    & = L(f) + N\left[ \sum_{n=1}^{k} A_{n}(f), \sum_{n=1}^{k} A_{n}(f) \right]
-    \\
-    & = L(f) + \sum_{1 \le i \le k, 1 \le j \le k} N\left[ A_{i}(f),
-    A_{j}(f) \right]
-    \\
-    & = u_{k} + \sum_{k < i+j \le 2k} N\left[ A_{i}(f), A_{j}(f) \right].
-  \end{split}
-  \end{equation*}
-  %
-  %
-  From this, \cref{ill-pos-bil}, and \cref{induct-ineq}, it follows that 
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    & \|L(f) + N(u_{k}, u_{k}) - u_{k}\|_{X_{s,b}}
-    \\
-    &= \|
-    \sum_{k < i+j \le 2k} N\left[ A_{i}(f), A_{j}(f) \right]\|_{X_{s,b}}
-    \\
-    & \le \sum_{k < i+j \le 2k} \| N\left[ A_{i}(f), A_{j}(f)
-    \right]\|_{X_{s,b}}
-    \\
-    & \le c_{\psi} \delta^{b-1/2}
-    \sum_{k < i+j \le 2k} \| A_{i}(f) \|_{X_{s,b}} \| A_{j}(f)
-    \|_{X_{s,b}}
-    \\
-    & \le c_{\psi} \delta^{b-1/2}
-    \sum_{k < i+j \le 2k} \left[ c_{\psi}^{i}
-    2^{i-1}\delta^{(i-1)(b-1/2)}\| f \|_{H^{s} \times
-    H^{s-2}}^{i} \right] \left [c_{\psi}^{j}
-    2^{j-1}\delta^{(j-1)(b-1/2)}\| f \|_{H^{s} \times
-    H^{s-2}}^{j} \right]
-    \\
-    & = \sum_{k < i+j \le 2k} c_{\psi}^{i+j +1}
-    2^{i+j-2} \delta^{(i + j -1)(b-1/2)} \| f \|_{H^{s} \times
-    H^{s-2}}^{i+j}
-    \\
-    & \le 2 \sum_{k < \ell \le 2k} c_{\psi}^{\ell + 1} 2^{\ell-2}
-    \delta^{(\ell -1)(b - 1/2)} \| f \|_{H^{s} \times H^{s-2}}^{\ell}
-    \\
-    & = c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}} \sum_{k < \ell \le 2k}
-    c_{\psi}^{\ell - 1} 2^{\ell-1}
-    \delta^{(\ell -1)(b - 1/2)} \| f \|_{H^{s} \times H^{s-2}}^{\ell-1}.
-  \end{split}
-  \end{equation*}
-  %
-  Fixing $\delta$ sufficiently small such that
-  %
-  %
-  \begin{equation}
-    \label{delta-ill-pos}
-  \begin{split}
-    \| f \|_{H^{s} \times H^{s-2}} \le \frac{1}{4 c_{\psi}} \delta^{1/2 -b}
-  \end{split}
-  \end{equation}
-  %
-  %
-  gives the bound
-  %
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}} \sum_{k < \ell \le 2k}
-  \left (\frac{1}{2} \right )^{\ell-1}.
-\end{split}
-  \end{equation*}
-  %
-  Since this quantity converges to $0$ as $k \to \infty$, we conclude that
-  $u_{k} \to u$ in $X_{s,b}$.
-  To prove that the convergence is absolute, we apply \cref{induct-ineq} and
-  \cref{delta-ill-pos} to obtain 
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \sum_{n=1}^{\infty} \| A_{n}(f) \|_{X_{s,b}}
-    & \le \sum_{n=1}^{\infty}
-    2^{n} \delta^{n(b-1/2)} c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}
-    \\
-    & \le \frac{1}{2} \delta^{b-1/2}
-    c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
-    \sum_{n=0}^{\infty}
-    (2 \delta^{b-1/2} c_{\psi} \| f \|_{H^{s} \times H^{s-2}})^{n}
-    \\
-    & \le \frac{1}{2} \delta^{b-1/2}
-    c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
-    \sum_{n=0}^{\infty}
-    \left (\frac{1}{2} \right )^{n}
-    \\
-    & = \delta^{b-1/2}
-    c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
-    \\
-    & < \infty
-  \end{split}
-  \end{equation*}
-  %
-  %
-which concludes the proof.
-  %
-\end{proof}
-%
-%
-We now proceed to the proof of \cref{prop:ill-posedness}. Assume that the solution
-map $f \mapsto u[f]$ is continuous from $B_{H^{s} \times H^{s-2}}(r_{1})$ to
-$B_{X_{s,b}}(r_{2})$. Let $\left\{ f_{m} \right\} \subset B_{H^{s} \times
-H^{s-2}}$ be a sequence converging to $f \in B_{H^{s} \times H^{s-2}}$ in the
-$H^{s'} \times H^{s'-2}$ topology, $s' < s$. That is
-%
-%
-\begin{equation*}
-\begin{split}
-  \| f - f_{m} \|_{H^{s} \times H^{s-2}} \to 0.
-\end{split}
-\end{equation*}
-%
-%
-We will show that
-%
-%
-\begin{equation*}
-\begin{split}
-  \| A_{n}(f) - A_{n}(f_{m}) \|_{X_{s',b}} \to 0
-\end{split}
-\end{equation*}
-%
-%
-by induction on $n$. For the base case $n=1$, we note that
-%
-%
-\begin{equation*}
-\begin{split}
-  \| A_{1}(f) - A_{1}(f_{m}) \|_{X_{s',b}}
-  & =  \|L(f) - L(f_{m})  \|_{X_{s',b}}
-  \\
-  & = \|L(f -f_{m}) \|_{X_{s',b}}
-  \\
-  & \lesssim \| f - f_{m} \|_{H^{s'} \times H^{s'-2}} \to 0.
-\end{split}
-\end{equation*}
-%
-For the inductive step, assume that for al $1 < n' < n$, the operator
-$A_{n'}: H^{s'} \times H^{s'-2} \mapsto X_{s',b}$ is continuous from
-$(H^{s} \times H^{s-2}, \|  \|_{H^{s'} \times H^{s'-2}})$ to $(X_{s,b}, \|
-\|_{X_{s',b}}$. Then
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{m \to \infty} \| u[\lambda f] - u[\lambda f_{m}] \|_{X_{s',b}} = 0.
-\end{split}
-\end{equation*}
-%
-%
-Applying \cref{qwp-it-5}, this implies
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{m \to \infty} \| \sum_{n'=1}^{\infty} A_{n'}(\lambda f) -
-  A_{n'}(\lambda f_{m}) \|_{X_{s',b}} =0
-\end{split}
-\end{equation*}
-%
-%
-which by \cref{homogen} gives
-%
-%
-\begin{equation}
-\begin{split}
-  \lim_{m \to \infty} \| \sum_{n'=1}^{\infty} \lambda^{n'}\left[
-  A_{n'}(f) - A_{n'}(f_{m})
-  \right] \|_{X_{s',b}} =0.
-\end{split}
-\label{1bh}
-\end{equation}
-%
-%
-By the reverse triangle inequality
-%
-%
-\begin{equation}
-\begin{split}
-  & \| \sum_{n'=1}^{\infty} \lambda^{n'}\left[ A_{n'}(f) - A_{n'}(f_{m}) \right]
-  \|_{X_{s',b}}
-  \\
-  & = \| \sum_{n' < n}^{\infty} \lambda^{n'}\left[ A_{n'}(f) -
-  A_{n'}(f_{m}) \right] - \sum_{n' > n}^{\infty} \lambda^{n'}\left[
-  A_{n'}(f_{m}) - A_{n'}(f)
-  \right] \|_{X_{s',b}}
-  \\
-  & \ge |\| \sum_{n' < n}^{\infty} \lambda^{n'}\left[ A_{n'}(f) -
-  A_{n'}(f_{m}) \right] \|_{X_{s',b}} -
-  \| \sum_{n' \ge n}^{\infty} \lambda^{n'}\left[ A_{n'}(f_{m}) -
-  A_{n'}(f) \right] \|_{X_{s',b}} \|_{X_{s',b}} |.
-\end{split}
-\label{2bh}
-\end{equation}
-%
-%
-But by our inductive hypothesis
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{m \to \infty} \| \sum_{n'<n}^{\infty} \lambda^{n'} \left[
-  A_{n'}(f') - A_{n'}(f_{m})
-  \right] \|_{X_{s',b}} = 0.
-\end{split}
-\end{equation*}
-%
-%
-Using this in conjunction with \cref{1bh}, we see that \cref{2bh} implies
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{m \to \infty} \| \sum_{n' \ge n}^{\infty} \lambda^{n'} \left[
-  A_{n'}(f_{m}) - A_{n'}(f)
-  \right] \|_{X_{s',b}} = 0.
-\end{split}
-\end{equation*}
-%
-%
-By the reverse triangle inequality, we obtain
-%
-%
-%
-\begin{equation*}
-\begin{split}
-0 & = \lim_{m \to \infty} \| \sum_{n' \ge n}^{\infty} \lambda^{n'} \left[
-  A_{n'}(f_{m}) - A_{n'}(f)
-  \right] \|_{X_{s',b}}
-  \\
-  & = \lim_{m \to \infty}  \|\lambda^{n}\left[ A_{n}(f_{m}) - A_{n}(f) \right] -
-  \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
-  \right]\|_{X_{s',b}}
-  \\
-  & = \lim_{m \to \infty}
-  \left\{ \lambda^{n} \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
-   - \| \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
-      \right]\|_{X_{s',b}}\right\}
-\end{split}
-\end{equation*}
-%
-%
-and so
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{m \to \infty} \lambda^{n} \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
-  & = \lim_{m \to \infty} \| \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
-      \right]\|_{X_{s',b}}
-      \\
-      & \le  \sum_{n' > n} \lambda^{n'} \sup_{m} \|  A_{n'}(f) - A_{n}(f_{m})
-      \|_{X_{s',b}}
-\end{split}
-\end{equation*}
-%
-%
-Dividing both sides by $\lambda^{n}$ gives
-%
-%
-\begin{equation*}
-\begin{split}
-\lim_{m \to \infty}  \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
-  & \le \sum_{n' > n} \lambda^{n'-n} \sup_{m} \|  A_{n'}(f) - A_{n}(f_{m})
-      \|_{X_{s',b}}
-      \\
-      & \le
-\end{split}
-\end{equation*}
-%
-%
-%
-\section{Attempt to Improve Ill-Posedness on the Circle} 
+\subsection{Attempt to Improve the Ill-Posedness Index} 
 \label{sec:ill-pos-improv}
-We have
+On the circle, we have
 %
 %
 \begin{equation*}
@@ -6254,7 +5575,7 @@ But
   - t']}) + e^{i[N^{-\alpha} - (N-1)^{2}t' -t']} \right.
   \\
   & \left. - e^{-i[N^{-\alpha} - t' -
-  (N-1)^{2}t']} - e^{-i[N^{-\alpha} - t' + (N-1)^{2}t']}  \right) dt'
+  (N-1)^{2}t']} - e^{-i[N^{-\alpha} - t' + (N-1)^{2}t']}  \right ) dt'
   \\
   & = \frac{1}{4i} \left \{\left[ \frac{e^{i(N-1)^{2}N^{-\alpha}}}{i[(N-1)^{2}-1]} -
   \frac{e^{-i(N-1)^{2}N^{-\alpha}}}{i[(N-1)^{2} +1]} - \frac{e^{i(N-1)^{2}N^{-
@@ -6337,6 +5658,726 @@ $-3s -3 \ee -2 \ge 4$, which gives $s \le -2 -\ee$. Hence, considering the
 higher iterate $A_{2}$ has given us no better an ill-posedness result than
 considering the $A_{1}$ iterate. A similar phenomenon should occur for the real
 line. 
+
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Proof of ill-pos props
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\subsection{Proof of \cref{prop:ill-posedness}}
+\label{sec:pf-ill-pos-prop}
+We will need the following lemma, whose proof is provided at the end of the
+section.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Quantitative wp implies analytic wp
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Quantitative WP implies Analytic WP]
+  \label{lem:qwp-awp}
+  For $f \in B_{H^{s} \times H^{s-2}}(r)$, $s > -1/4$ and $\delta=\delta(r)$
+sufficiently small: 
+\begin{enumerate}[(I)]
+  \item
+    \label{qwp-it-1}
+    There exists a unique solution
+    $u[f] \in X_{s,b} \cap C([-\delta, \delta], H^{s})$
+to the localized integral $B_{4}$ equation
+\cref{main1-rel-term-0}-\cref{main1-rel-term-5}. Furthermore, $u =
+\psi_{\delta} u$. 
+\item
+  \label{homogen}
+  We have the homogeneity property
+  %
+  %
+  \begin{equation}
+    \label{eqn:homog}
+  \begin{split}
+    A_{n}(\lambda f) = \lambda^{n} A_{n}(f) \ \text{for all} \ \lambda \in \rr
+  \end{split}
+  \end{equation}
+  %
+  \item
+    \label{pre-lip-qwp}
+    We have the bound
+\begin{equation}
+  \label{induct-ineq}
+  \begin{split}
+    \| A_{n}(f) \|_{X_{s,b}} \le  c_{\psi}^{n} 4^{(n-1)}
+    \delta^{(n-1)(b-1/2)} \| f
+    \|_{H^{s} \times H^{s-2}}^{n}
+  \end{split}
+  \end{equation}
+  %
+  %
+  %
+  %
+  %
+  \item
+    \label{lip-qwp}
+    We have the Lipschitz bound
+    %
+    %
+    \begin{equation}
+      \label{lip-qwp-eq}
+    \begin{split}
+      \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}} \le c_{\psi}^{n} 4^{n-1} 
+      \delta^{(n-1)(b-1/2)} \| f-g \|_{H^{s} \times
+      H^{s-2}} \left( \| f \|_{H^{s} \times H^{s-2}}
+      + \| g \|_{H^{s} \times H^{s-2}}  \right)^{n-1}.
+    \end{split}
+    \end{equation}
+    %
+    %
+\item
+  \label{qwp-it-5}
+  %
+%
+For all $f \in B_{H^{s} \times H^{s-2}}(r)$ we have the absolutely convergent
+(in $X_{s,b} \cap C([-\delta, \delta], H^{s})$) power series expansion
+%
+%
+\begin{equation}
+  \label{power-series-soln}
+\begin{split}
+  u[f] = \sum_{n=1}^{\infty} A_{n}(f)
+\end{split}
+\end{equation}
+\end{enumerate}
+%
+%
+\label{lem:analytic-wp}
+\end{lemma}
+%
+To prove \cref{prop:ill-posedness}, we first assume that the solution
+map $f \mapsto u[f]$ is continuous from $B_{H^{s} \times H^{s-2}}(r_{1})$ to
+$B_{X_{s,b}}(r_{2})$. Let $\left\{ f_{m} \right\} \subset B_{H^{s} \times
+H^{s-2}}(r_{1})$ be a sequence converging to $f \in B_{H^{s} \times
+H^{s-2}}(r_{1})$ in the
+$H^{s'} \times H^{s'-2}$ topology, $s' < s$. That is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f - f_{m} \|_{H^{s} \times H^{s-2}} \to 0.
+\end{split}
+\end{equation*}
+%
+%
+We will show that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| A_{n}(f) - A_{n}(f_{m}) \|_{X_{s',b}} \to 0
+\end{split}
+\end{equation*}
+%
+%
+by induction on $n$. For the base case $n=1$, we note that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| A_{1}(f) - A_{1}(f_{m}) \|_{X_{s',b}}
+  & =  \|L(f) - L(f_{m})  \|_{X_{s',b}}
+  \\
+  & = \|L(f -f_{m}) \|_{X_{s',b}}
+  \\
+  & \lesssim \| f - f_{m} \|_{H^{s'} \times H^{s'-2}} \to 0.
+\end{split}
+\end{equation*}
+%
+For the inductive step, assume that for al $1 < n' < n$, the operator
+$A_{n'}: H^{s'} \times H^{s'-2} \mapsto X_{s',b}$ is continuous from
+$(H^{s} \times H^{s-2}, \|  \|_{H^{s'} \times H^{s'-2}})$ to $(X_{s,b}, \|
+\|_{X_{s',b}})$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| u[\lambda f] - u[\lambda f_{m}] \|_{X_{s',b}} = 0.
+\end{split}
+\end{equation*}
+%
+%
+Applying \cref{qwp-it-5}, this implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n'=1}^{\infty} A_{n'}(\lambda f) -
+  A_{n'}(\lambda f_{m}) \|_{X_{s',b}} =0
+\end{split}
+\end{equation*}
+%
+%
+which by \cref{homogen} gives
+%
+%
+\begin{equation}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n'=1}^{\infty} \lambda^{n'}\left[
+  A_{n'}(f) - A_{n'}(f_{m})
+  \right] \|_{X_{s',b}} =0.
+\end{split}
+\label{1bh}
+\end{equation}
+%
+%
+By the reverse triangle inequality
+%
+%
+\begin{equation}
+\begin{split}
+  & \| \sum_{n'=1}^{\infty} \lambda^{n'}\left[ A_{n'}(f) - A_{n'}(f_{m}) \right]
+  \|_{X_{s',b}}
+  \\
+  & = \| \sum_{n' < n}^{\infty} \lambda^{n'}\left[ A_{n'}(f) -
+  A_{n'}(f_{m}) \right] - \sum_{n' > n}^{\infty} \lambda^{n'}\left[
+  A_{n'}(f_{m}) - A_{n'}(f)
+  \right] \|_{X_{s',b}}
+  \\
+  & \ge |\| \sum_{n' < n}^{\infty} \lambda^{n'}\left[ A_{n'}(f) -
+  A_{n'}(f_{m}) \right] \|_{X_{s',b}} -
+  \| \sum_{n' \ge n}^{\infty} \lambda^{n'}\left[ A_{n'}(f_{m}) -
+  A_{n'}(f) \right] \|_{X_{s',b}} \|_{X_{s',b}} |.
+\end{split}
+\label{2bh}
+\end{equation}
+%
+%
+But by our inductive hypothesis
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n'<n}^{\infty} \lambda^{n'} \left[
+  A_{n'}(f') - A_{n'}(f_{m})
+  \right] \|_{X_{s',b}} = 0.
+\end{split}
+\end{equation*}
+%
+%
+Using this in conjunction with \cref{1bh}, we see that \cref{2bh} implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \| \sum_{n' \ge n}^{\infty} \lambda^{n'} \left[
+  A_{n'}(f_{m}) - A_{n'}(f)
+  \right] \|_{X_{s',b}} = 0.
+\end{split}
+\end{equation*}
+%
+%
+By the reverse triangle inequality, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+0 & = \lim_{m \to \infty} \| \sum_{n' \ge n}^{\infty} \lambda^{n'} \left[
+  A_{n'}(f_{m}) - A_{n'}(f)
+  \right] \|_{X_{s',b}}
+  \\
+  & = \lim_{m \to \infty}  \|\lambda^{n}\left[ A_{n}(f_{m}) - A_{n}(f) \right] -
+  \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
+  \right]\|_{X_{s',b}}
+  \\
+  & = \lim_{m \to \infty}
+  \left\{ \lambda^{n} \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+   - \| \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
+      \right]\|_{X_{s',b}}\right\}
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{m \to \infty} \lambda^{n} \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+  & = \lim_{m \to \infty} \| \sum_{n' > n} \lambda^{n'} \left[ A_{n'}(f) - A_{n}(f_{m})
+      \right]\|_{X_{s',b}}
+      \\
+      & \le  \sum_{n' > n} \lambda^{n'} \sup_{m} \|  A_{n'}(f) - A_{n}(f_{m})
+      \|_{X_{s',b}}
+\end{split}
+\end{equation*}
+%
+%
+Dividing both sides by $\lambda^{n}$ gives and applying \cref{lip-qwp-eq} gives
+%
+%
+\begin{equation}
+  \label{pre-lambda-small-app}
+\begin{split}
+& \lim_{m \to \infty}  \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+  \\
+  & \le \sum_{n' > n} \lambda^{n'-n} \sup_{m} \|  A_{n'}(f) - A_{n'}(f_{m})
+      \|_{X_{s',b}}
+      \\
+      & \le  \sum_{n' > n} c_{\psi}^{n'} 4^{n'-1} 
+      \delta^{(n'-1)(b-1/2)}\lambda^{n'-n} \sup_{m}
+      \| f-f_{m} \|_{H^{s} \times
+      H^{s-2}} \left( \| f \|_{H^{s} \times H^{s-2}}
+      + \| f_{m} \|_{H^{s} \times H^{s-2}}  \right)^{n'-1}
+      \\
+      & \le  \sum_{n' > n} c_{\psi}^{n'} 4^{n'-1} 
+      \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} (2r)^{n'}
+\end{split}
+\end{equation}
+%
+where the last step follows from the triangle inequality and the boundedness of
+$f_{m}$ and $f$.
+%
+%
+\begin{framed}
+\begin{remark}
+Notice that here we could have produced a similar estimate by applying the
+triangle inequality and \cref{induct-ineq}. Indeed, the proof goes through using
+this alternative estimate as well. That is, \cref{lip-qwp} is not needed to
+prove \cref{qwp-it-5}. However, for the sake of completeness, we have
+included the proof of \cref{lip-qwp} nonetheless.
+\label{rem:dont-need-lip}
+\end{remark}
+\end{framed}
+%
+%
+Note that
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \sum_{n' > n} c_{\psi}^{n'} 4^{n'-1} 
+  \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} r^{n'}
+  & = 2 c_{\psi} r \sum_{n' > n} c_{\psi}^{n'-1} 4^{n'-1} 
+  \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} (2r)^{n'-1}
+  \\
+  & = 2 c_{\psi} r \sum_{n' > n} \lambda^{n'-n} (8 rc_{\psi}
+  \delta^{(b-1/2)})^{n'-1}
+  \\
+  & = 2 c_{\psi} r \sum_{k =1}^{\infty} \lambda^{k} (8 rc_{\psi}
+  \delta^{(b-1/2)})^{k +n -1}
+  \\
+  & = 2 c_{\psi} r (8 rc_{\psi}
+  \delta^{(b-1/2)})^{n -1}
+\sum_{k =1}^{\infty}  (8 \lambda rc_{\psi}
+  \delta^{(b-1/2)})^{k},
+  \\
+  & \le \frac{2 c_{\psi} r (8 rc_{\psi}
+  \delta^{(b-1/2)})^{n -1}}{1-8 \lambda r c_{\psi}
+  \delta^{(b-1/2)}}, \qquad \lambda \le \frac{1}{16rc_{\psi} \delta^{(b-1/2)}}.
+\end{split}
+\end{equation*}
+%
+Recalling \cref{pre-lambda-small-app}, we see that for any $\lambda < 1/(16 r
+c_{\psi} \delta^{b-1/2})$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+\lim_{m \to \infty}  \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
+  \le \frac{2 c_{\psi} r (8 rc_{\psi}
+  \delta^{(b-1/2)})^{n -1}}{1-8 \lambda r c_{\psi}
+  \delta^{(b-1/2)}}.
+\end{split}
+\end{equation*}
+%
+%
+Taking $\lambda \to 0$ completes the proof of \cref{prop:ill-posedness}. \qed
+%
+\subsubsection{Proof of \cref{lem:qwp-awp}} We split the proof into five parts.
+\label{ssec:pf-qwp-it-1}
+%
+\begin{proof}[Proof of \cref{qwp-it-1}]
+  It is a consequence of the linear and nonlinear estimates
+  %
+  %
+  \begin{align}
+    \label{ill-pos-lin}
+    & \| L(f) \|_{X_{s,b}} \le c_{\psi} \| f \|_{H^{s} \times H^{s-2}},
+    \\
+    & \| N(u,v) \|_{X_{s,b}} \le c_{\psi} \delta^{b-1/2} \| u \|_{X_{s,b}} \| v
+    \|_{X_{s,b}}.
+    \label{ill-pos-bil}
+  \end{align}
+  %
+  where we have the restrictions $u = \psi_{\delta} u$, $v = \psi_{\delta} v$.
+  For the proofs of these estimates, and how to obtain \cref{qwp-it-1} from
+  them, we refer the reader to \cref{sec:periodic} and
+  \cref{sec:non-periodic-case}.
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of \cref{homogen}]
+  %
+  The proof will be via induction on $n$. For the base case $n=1$, we have
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    A_{1}(\lambda f) = L(\lambda f) = \lambda L(f).
+  \end{split}
+  \end{equation*}
+  %
+  %
+  due to the linearity of $L$. For the inductive step we assume
+  \cref{eqn:homog}. Since $N$ is bilinear, we have
+  \begin{equation*}
+  \begin{split}
+    A_{n+1}(\lambda f)
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} N\left[
+    A_{j}(\lambda f), A_{k}(\lambda f) \right]
+    \\
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} N\left[
+    \lambda^{j} A_{j}(f), \lambda^{k} A_{k}(\lambda f) \right]
+    \\
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n +1}} \lambda^{j+k}
+    N\left[ A_{j}(f),  A_{k}(\lambda f) \right]
+    \\
+    & = \lambda^{n+1} A_{n+1}(f)
+  \end{split}
+  \end{equation*}
+  %
+  %
+  concluding the proof.
+\end{proof}
+%
+%
+%
+%
+\begin{proof}[Proof of \cref{pre-lip-qwp}]
+The proof will be via induction on $n$. For the base case $n=1$, we have
+  %
+  \begin{equation*}
+  \begin{split}
+    \| A_{1}(f) \|_{X_{s,b}}
+    & = \| L(f) \|_{X_{s,b}}
+    \\
+    & \le  c_{\psi} \| f \|_{H^{s} \times H^{s-2}}.
+  \end{split}
+  \end{equation*}
+  %
+  For the inductive step, we assume \cref{induct-ineq}. 
+  Then applying \cref{ill-pos-bil} gives
+  %
+  %
+  %
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| A_{n+1}(f) \|_{X_{s,b}}
+    & = \| \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} N\left[
+    A_{j}(f), A_{k}(f) \right] \|_{X_{s,b}}
+    \\
+    & \le \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} \| N\left[
+    A_{j}(f), A_{k}(f) \right] \|_{X_{s,b}}
+    \\
+    & \le c_{\psi} \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} 
+    \delta^{b-1/2} \| A_{j}(f) \|_{X_{s,b}} \| A_{k}(f)\|_{X_{s,b}}
+  \end{split}
+  \end{equation*}
+  %
+  %
+  which by  \cref{induct-ineq} is bounded by
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    & c_{\psi} \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} 
+    \delta^{b-1/2}\left[ c_{\psi}^{j}
+    4^{j-1}j^{C} \delta^{(j-1)(b-1/2)}\| f \|_{H^{s} \times
+    H^{s-2}}^{j} \right] \left [c_{\psi}^{k}
+    4^{k-1} k^{C} \delta^{(k-1)(b-1/2)}\| f \|_{H^{s} \times
+    H^{s-2}}^{k} \right]
+    \\
+    & = \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} c_{\psi}^{j+k +1}
+    4^{j+k-2} (jk)^{C} \delta^{(j + k -1)(b-1/2)} \| f \|_{H^{s} \times
+    H^{s-2}}^{j+k}
+    \\
+    &  \le  4^{n-1} \delta^{n(b-1/2)}
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}} \times
+    \sum_{\substack{j, k \in \mathbb{N}\\ j + k = n+1}} (jk)^{C}
+    \\
+    & \le 4^{n-1} \delta^{n(b-1/2)}
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}} \times
+    2nn^{C}, \qquad C \le 0
+    \\
+    & \le  4^{n-1} \delta^{n(b-1/2)}
+    c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}  \times 2n^{C+1}
+  \end{split}
+  \end{equation*}
+  %
+  %
+    %
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of \cref{lip-qwp}]
+The proof will be via an induction on $n$. For the base case $n=1$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| A_{n}(f) - A_{n}(g) \|_{X_{s,b}}
+  & = \| L_{n}(f) - L_{n}(g) \|_{X_{s,b}}
+  \\
+  & = \| L_{n}(f -g) \|_{X_{s,b}}
+  \\
+  & \le c_{\psi} \| f-g \|_{H^{s} \times H^{s-2}}
+\end{split}
+\end{equation*}
+%
+%
+where the last step followed from \cref{ill-pos-lin}. For the inductive step,
+we assume \cref{lip-qwp-eq}. Note that
+%
+%
+\begin{equation*}
+\begin{split}
+  \|A_{n+1}(f) - A_{n+1}(g)  \|_{X_{s,b}} = \| \sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}}\left\{ N\left[
+  A_{n_{1}}(f), A_{n_{2}}(f) \right] - N\left[
+  A_{n_{1}}(g), A_{n_{2}}(g) \right]  \right\} \|_{X_{s,b}}.
+\end{split}
+\end{equation*}
+%
+%
+Using the relation
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{1}u_{2} - v_{1}v_{2} = (u_{1} - v_{1})(u_{2} + v_{2}) - u_{1}v_{2} +
+  u_{2} v_{1}
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\|A_{n+1}(f) - A_{n+1}(g)  \|_{X_{s,b}}
+& = \| \sum_{\substack{n_{1},
+n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \left \{N[A_{n_{1}}(f) -
+A_{n_{1}}(g),  A_{n_{2}}(f) + A_{n_{2}}(g) ] \right .
+\\
+& \left . - N\left[ A_{n_{1}}(f), A_{n_{2}}(g) \right] + N\left[
+A_{n_{2}}(f), A_{n_{1}}(g) \right] \right \}  \|_{X_{s,b}}
+\\
+& = \| \sum_{\substack{n_{1},
+n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}}N[A_{n_{1}}(f) -
+A_{n_{1}}(g), A_{n_{2}}(f) + A_{n_{2}}(g)]
+ \|_{X_{s,b}}
+\end{split}
+\end{equation*}
+%
+%
+where the last step follows from symmetry.
+%
+%
+%
+%
+Applying the triangle inequality and \cref{ill-pos-bil}, we bound this by
+%
+%
+\begin{equation*}
+\begin{split}
+  & c_{\psi} \delta^{b-1/2}\sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \| A_{n_{1}}(f) -
+  A_{n_{1}}(g) \|_{X_{s,b}} \| A_{n_{2}}(f) +
+  A_{n_{2}}(g) \|_{X_{s,b}}
+  \\
+  & \le c_{\psi} \delta^{b-1/2}\sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} \| A_{n_{1}}(f) -
+  A_{n_{1}}(g) \|_{X_{s,b}} ( \| A_{n_{2}}(f) \|_{X_{s,b}} +
+  \| A_{n_{2}}(g) \|_{X_{s,b}} )
+\end{split}
+\end{equation*}
+%
+%
+Applying our inductive assumption \cref{lip-qwp-eq} and
+\cref{induct-ineq}, this is bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  & c_{\psi} \delta^{b-1/2} \sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} c_{\psi}^{n_{1}}
+  4^{n_{1}-1}  \delta^{(n_{1}-1)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
+  \\
+  & \times \left(
+  \| f \|_{H^{s} \times H^{s-2}} + \| g \|_{H^{s} \times H^{s-2}}
+  \right)^{n_{1}-1} \times c_{\psi}^{n_{2}}4^{n_{2}-1} 
+  \delta^{(n_{2}-1)(b -1/2)}\left[ \| f \|_{H^{s} \times H^{s-2}}^{n_{2}}
+  + \| g \|_{H^{s} \times H^{s-2}}^{n_{2}} \right]
+  \\
+  & \le \sum_{\substack{n_{1},
+  n_{2} \in \mathbb{N} \\ n_{1} + n_{2} =n+1}} c_{\psi}^{n_{1}+n_{2}}
+  4^{n_{1}+n_{2}-2} \delta^{(n_{1} + n_{2}-2)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
+\\
+& \times \left( \| f \|_{H^{s} \times H^{s-2}}
++ \| g \|_{H^{s} \times H^{s-2}} \right)^{n_{1} + n_{2} -1}
+\\
+& \le 
+  c_{\psi}^{n+1}
+  4^{n} \delta^{(n-1)(b-1/2)} \| f -g \|_{H^{s} \times H^{s-2}}
+\left( \| f \|_{H^{s} \times H^{s-2}}
++ \| g \|_{H^{s} \times H^{s-2}} \right)^{n}
+  \end{split}
+\end{equation*}
+%
+completing the proof.
+%
+
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of \cref{qwp-it-5}]
+Next, recalling \cref{qwp-it-1}, we see that there exists $u$ such that $u =
+\psi_{\delta} u$ and 
+$Tu = u$; that is $L(f) + N(u,u) -u =0$.
+Using this as motivation, we will now estimate the error of $u_{k} \doteq
+  \sum_{n=1}^{k}A_{n}(f)$. First, note that
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    L(f) + N(u_{k}, u_{k})
+    & = L(f) + N\left[ \sum_{n=1}^{k} A_{n}(f), \sum_{n=1}^{k} A_{n}(f) \right]
+    \\
+    & = L(f) + \sum_{1 \le i \le k, 1 \le j \le k} N\left[ A_{i}(f),
+    A_{j}(f) \right]
+    \\
+    & = u_{k} + \sum_{k < i+j \le 2k} N\left[ A_{i}(f), A_{j}(f) \right].
+  \end{split}
+  \end{equation*}
+  %
+  %
+  From this, we obtain
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    & \|L(f) + N(u_{k}, u_{k}) - u_{k}\|_{X_{s,b}}
+    \\
+    &= \|
+    \sum_{k < i+j \le 2k} N\left[ A_{i}(f), A_{j}(f) \right]\|_{X_{s,b}}
+    \\
+    & \le \sum_{k < i+j \le 2k} \| N\left[ A_{i}(f), A_{j}(f)
+    \right]\|_{X_{s,b}}
+  \end{split}
+\end{equation*}
+Since $u = \psi_{\delta} u$, we have $A_{k}(f) = \psi_{\delta} A_{k}(f)$ for all
+$k > 1$. Hence, applying \cref{ill-pos-bil} and \cref{induct-ineq}, we bound
+above by
+\begin{equation*}
+  \begin{split}
+    & \le c_{\psi} \delta^{b-1/2}
+    \sum_{k < i+j \le 2k} \| A_{i}(f) \|_{X_{s,b}} \| A_{j}(f)
+    \|_{X_{s,b}}
+    \\
+    & \le c_{\psi} \delta^{b-1/2}
+    \sum_{k < i+j \le 2k} \left[ c_{\psi}^{i}
+    2^{i-1}\delta^{(i-1)(b-1/2)}\| f \|_{H^{s} \times
+    H^{s-2}}^{i} \right] \left [c_{\psi}^{j}
+    2^{j-1}\delta^{(j-1)(b-1/2)}\| f \|_{H^{s} \times
+    H^{s-2}}^{j} \right]
+    \\
+    & = \sum_{k < i+j \le 2k} c_{\psi}^{i+j +1}
+    2^{i+j-2} \delta^{(i + j -1)(b-1/2)} \| f \|_{H^{s} \times
+    H^{s-2}}^{i+j}
+    \\
+    & \le 2 \sum_{k < \ell \le 2k} c_{\psi}^{\ell + 1} 2^{\ell-2}
+    \delta^{(\ell -1)(b - 1/2)} \| f \|_{H^{s} \times H^{s-2}}^{\ell}
+    \\
+    & = c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}} \sum_{k < \ell \le 2k}
+    c_{\psi}^{\ell - 1} 2^{\ell-1}
+    \delta^{(\ell -1)(b - 1/2)} \| f \|_{H^{s} \times H^{s-2}}^{\ell-1}.
+  \end{split}
+  \end{equation*}
+  %
+  Fixing $\delta$ sufficiently small such that
+  %
+  %
+  \begin{equation}
+    \label{delta-ill-pos}
+  \begin{split}
+    \| f \|_{H^{s} \times H^{s-2}} \le \frac{1}{4 c_{\psi}} \delta^{1/2 -b}
+  \end{split}
+  \end{equation}
+  %
+  %
+  gives the bound
+  %
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}} \sum_{k < \ell \le 2k}
+  \left (\frac{1}{2} \right )^{\ell-1}.
+\end{split}
+  \end{equation*}
+  %
+  Since this quantity converges to $0$ as $k \to \infty$, we conclude that
+  $u_{k} \to u$ in $X_{s,b}$.
+  To prove that the convergence is absolute, we apply \cref{induct-ineq} and
+  \cref{delta-ill-pos} to obtain 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sum_{n=1}^{\infty} \| A_{n}(f) \|_{X_{s,b}}
+    & \le \sum_{n=1}^{\infty}
+    2^{n} \delta^{n(b-1/2)} c_{\psi}^{n+1} \| f \|^{n+1}_{H^{s} \times H^{s-2}}
+    \\
+    & \le \frac{1}{2} \delta^{b-1/2}
+    c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
+    \sum_{n=0}^{\infty}
+    (2 \delta^{b-1/2} c_{\psi} \| f \|_{H^{s} \times H^{s-2}})^{n}
+    \\
+    & \le \frac{1}{2} \delta^{b-1/2}
+    c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
+    \sum_{n=0}^{\infty}
+    \left (\frac{1}{2} \right )^{n}
+    \\
+    & = \delta^{b-1/2}
+    c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}}^{2}
+    \\
+    & < \infty
+  \end{split}
+  \end{equation*}
+  %
+  %
+which concludes the proof.
+  %
+\end{proof}
+%
+%
+%
+%
 \newpage
 \begin{appendices}
 \section{An Alternative Way to Derive the $B_{4}$ Integral Equation}
@@ -6990,8 +7031,7 @@ If $ s \ge 0$, choose $1/4 < a < 1/2$, and let $0 < \ee < 1/2 -a$ and $b = 1-a
 \section{Proofs of Lemmas and Estimates} 
 \label{sec:pfs-lems-est}
 %
-\subsection{Proof of \cref{lem:embedding}} 
-\label{ssec:embedding-pf}
+\begin{proof}[Proof of \cref{lem:embedding}] 
 %
 %
 \begin{equation*}
@@ -7053,10 +7093,10 @@ where the last step follows from the estimate
 \end{equation*}
 %
 %
-completing the proof. \qquad \qedsymbol
+completing the proof. 
+\end{proof}
 %
-\subsection{Proof of \cref{eqn:norm-key-ineq}}
-\label{ssec:pf-mod-princ}
+\begin{proof}[Proof of \cref{eqn:norm-key-ineq}]
 By the reverse triangle inequality, we have
 %
 %
@@ -7087,7 +7127,8 @@ while if $\tau - n^{2} > 0$, then
 \end{equation*}
 %
 %
-completing the proof. \qquad \qedsymbol
+completing the proof. 
+\end{proof}
 %
 %
 \begin{proof}[Proof of \cref{lem:schwartz-mult}]
@@ -7222,7 +7263,7 @@ Applying a computation similar to
 concluding the proof. 
 \end{proof}
 %
-\subsection{Proof of \cref{lem:calc}}
+\begin{proof}[Proof of \cref{lem:calc}]
 %
 By the change of variable $x \mapsto x + (\alpha + \beta)/2$, we have
 %
@@ -7373,11 +7414,11 @@ $p, q > 0$ such that $p +q >1$, and $r =\min\left\{p, q, p+q-1
   \label{est-2}
 \end{align*}
 By symmetry, the second inequality also holds for $a < 0$. Substituting $(\alpha -
-\beta)$ for $a$ completes the proof. \qquad \qedsymbol
+\beta)$ for $a$ completes the proof.
+\end{proof}
 %
 %
-\subsection{Proof of \cref{lem:calc-lower-bound}}
-\label{ssec:simp-est-proof}
+\begin{proof}[Proof of \cref{lem:calc-lower-bound}]
 By symmetry, we may assume $ a \ge 0$, $x \ge 0$ without loss of generality.
 Then
 %
@@ -7431,10 +7472,10 @@ f(x) \ge 1 + 2a \ge 1 + a
 \end{equation*}
 %
 %
-completing the proof. \qquad \qedsymbol
+completing the proof. 
+\end{proof}
 %
-\subsection{Proof of \cref{lem:sum-estimate}}
-\label{ssec:pf-sum-est}
+\begin{proof}[Proof of \cref{lem:sum-estimate}]
 Let $\alpha = \alpha(n, \mu), \beta = \beta(n, \mu)$ be roots of the equation
 %
 %
@@ -7555,10 +7596,10 @@ An identical argument also gives
 n_1(n-n_1)|)^{\gamma}} < \infty
 \end{split}
 \end{equation*}
-which completes the proof.  \qquad \qedsymbol
+which completes the proof.  
+\end{proof}
 %
-\subsection{Proof of \cref{cor:integral-bound}}
-\label{ssec:pf-int-bound}
+\begin{proof}[Proof of \cref{cor:integral-bound}]
 %
 Let $\alpha = \alpha(a_{0}, a_{1}, a_{2})$, $\beta = \beta(a_{0}, a_{1}, a_{2})$
 be the roots of $a_{0} + a_{1}x + a_{2}x^{2}$. Then
@@ -7587,10 +7628,9 @@ of generality that $ \alpha, \beta \in \rr$. Then
 %
 %
 where the last line follows from \cref{lem:calc}. This concludes the proof.
-\qquad \qedsymbol
+\end{proof}
 %
-\subsection{Proof of \cref{lem:pre-bilin-est}}
-\label{ssec:pf-pre-bilin-est}
+\begin{proof}[Proof of \cref{lem:pre-bilin-est}]
 We have
 %
 %
@@ -8019,7 +8059,7 @@ Therefore,
 %
 %
 Combining \cref{rom-1}, \cref{rom-2}, and \cref{rom-3} concludes the proof.
-\qquad \qedsymbol
+\end{proof}
 %
 %
 %

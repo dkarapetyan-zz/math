@@ -1,0 +1,247 @@
+%
+\documentclass{beamer}
+\setbeamersize{text margin left=0.4cm, text margin right=0.4cm}
+%\documentstyle{Boadilla}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{lmodern}
+\usepackage{cancel}
+\usepackage{hyperref}
+\synctex=1
+\numberwithin{equation}{section}
+%
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\tor}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\wh}{\widehat}
+\newcommand{\weak}{\rightharpoonup}
+\newcommand{\vp}{\varphi}
+%
+%
+\newtheorem{proposition}{Proposition}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+
+\def\refer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
+
+%% Equation Numbers %%
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%
+\date{}
+\title
+{ Well-posedness of  periodic NLS  \\in  analytic  spaces}
+  
+\author{{\it A.  Himonas,\, D. Karapetyan   \& G. Petronilho}}
+%\author{Alex Himonas}
+%\address{Department of Mathematics  \\
+%       University of Notre Dame     \\
+%         Notre Dame, IN 46556}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+%\section*{Table of Contents}
+%\begin{frame}
+%\frametitle{Table Of Contents}
+%\tableofcontents
+%\end{frame}
+%
+%
+\begin{frame}
+  \frametitle{Cubic NLS}
+%
+%
+\begin{align*}
+	&i \p_t u + \p_x^{2} u \pm
+  |u|^2 u =0, \quad x\in \mathbb{T},\,\,t\in \mathbb{R}
+		\\
+		&u(x,0) = \vp(x).
+\end{align*}
+%
+Some Introductory Material on the history of the equation.
+\end{frame}
+%
+%
+\begin{frame}
+  \frametitle{The Analytic Spaces}
+For $\delta >0$ and $s\ge 0$, we define 
+$$G^{\delta, s}(\mathbb{T})=\{f\in L^2(\mathbb{T}): ||f||^2_{G^{\delta,s}(\mathbb{T})}=\sum_{k\in \mathbb{Z}} 
+(1+ |k|)^{2s}e^{2\delta|k|}|\widehat{f}(k)|^2<\infty\}.$$
+%
+%
+%
+%
+\[Y_{\delta,s}=Y_{\delta,s}(\mathbb{T}\times \mathbb{R})=\{v\in L^2(\mathbb{T}\times \mathbb{R}):
+||v||_{Y_{\delta,s}}<\infty\}\]
+where 
+\begin{equation*}
+  \begin{split}
+    ||v||_{Y_{\delta,s}}
+    & =\left( \sum_{k\in \mathbb{Z}}\int_{\mathbb{R}}(1+|\tau
+-k^2|)(1+|k|)^{2s}
+e^{2\delta |k|}|\widehat{v}(k,\tau)|^2d\tau\right)^{1/2}
+\\
+& +\Big (\sum_{k\in \mathbb{Z}}(1+|k|)^{2s}e^{2\delta |k|}
+\Big [\int_{\mathbb{R}}
+|\widehat{v}(k,\tau)|d\tau\Big ]^2 \Big )^{\frac{1}{2}} 
+\end{split}
+\end{equation*}
+%
+\end{frame}
+%
+%
+\begin{frame}
+  \frametitle{Facts}
+  \begin{enumerate}
+    \item If $\vp \in G^{\delta, s}(\ci)$, then it is real analytic, with a complex
+  analytic extension to a symmetric strip around the real axis with width $\delta$.
+\item
+  For a cutoff function $\psi(t)$ symmetric about the origin with
+  $\psi(t)=1$ for $| t | \le T$, we have
+$$Y_{\delta,s}(\mathbb{T}\times \mathbb{R})
+\xrightarrow{\psi} C([0,T],G^{\delta,s}(\mathbb{T}))$$.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Main Result}
+%
+\begin{theorem}
+  \begin{enumerate}
+%
+\item
+Let $s\ge 0$. For initial data in $G^{\delta,s}(\mathbb{T})$, $\delta >0$,
+there exists a positive time $T$, such that the initial-value problem
+is well-posed in the space $C([0,T], G^{\delta,s}(\mathbb{T}))$.
+%
+\item
+Moreover, the regularity of solutions in the time variable is Gevrey of order
+two ($G^2$).
+\end{enumerate}
+%
+\end{theorem}
+\end{frame}
+%
+\begin{frame}
+  \frametitle{NLS Localized Integral Form}
+\begin{equation*}
+  \begin{split}
+u(x,t) & =
+ \psi(t) \underset{n\in \mathbb{Z}}{\sum} e^{i(nx +n^2t)}  \widehat{\varphi} (n)
+\\
+& + \psi(t) \underset{n\in \mathbb{Z}}{\sum} e^{i(nx+n^2t)}  \int_{\mathbb{R}}
+\frac{e^{i(\lambda-n^2 )t}-1}{\lambda-n^2}
+\widehat{w}(n,\lambda) \ d \lambda
+\end{split}
+\end{equation*}
+where $w=|u|^2\overline{u}=u\overline{u}u$ and 
+$\psi$ is a cutoff function symmetric about the origin with
+$\psi(t)=1$ for $| t | \le T$. Computing the $Y_{\delta, s}$ norm of the right
+hand side, the proof of well-posedness reduces to showing the following.
+\end{frame}
+\begin{frame}
+  \frametitle{Trilinear Estimates}
+\begin{lemma}\label{bilinear1}
+ For $s\ge 0$  
+$$\left ( \sum_{n \in {\mathbb{Z}}} (1+|n|)^{2s}e^{2\delta |n|}
+\int_{\mathbb{R}}
+\frac{|\widehat{w_{fgh}}(n, \lambda)|^2}{1+|\lambda -n^2|}
+d\lambda
+\right )^{1/2}\le C||u||^3_{{X}_{\delta,s}}$$
+%
+%
+\begin{equation*}
+	\begin{split}
+		\left( \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int_\rr 
+		\frac{|\wh{w_{fgh}}(n, \lambda) |}{1 + | \lambda - n^{2} |}
+		 \ d\lambda \right)^2  \right)^{1/2} \lesssim \|f\|_{X_{\delta, s}} \|g\|_{X_{\delta, s}}\|h\|_{X_{\delta, s}}
+	\end{split}
+\end{equation*}
+for all $f, g, h \in Y_{\delta,s}$.
+\end{lemma}
+\end{frame}
+%
+%
+\begin{frame}
+  \frametitle{Key Point in Proof}
+We will prove only the first trilinear estimate. The proof of the second is
+similar. Start by setting
+\begin{equation*}
+c_u(n,\lambda)=|n|^s e^{\delta |n|}(1+|\lambda-n^2|)^{1/2}\widehat{u}(n,\lambda)
+\end{equation*}
+then we have
+\begin{equation*}
+||u||_{{X}_{\delta,s}}=\Big (\sum_{n\in \mathbb{{Z}}}\int_{\mathbb{R}}|c_u(n,\lambda)|^2d\lambda \Big )^{1/2}
+=||c_u(n,\lambda)||_{l^2_nL^2_{\lambda}}.
+\end{equation*}
+\end{frame}
+\begin{frame}
+It follows that
+
+\begin{eqnarray*}
+&&\sum_{n } (1+|n|)^{2s}e^{2\delta |n|}
+\int_{}
+     \frac{|\widehat{w}(n, \lambda)|^2}{1+|\lambda -n^2|}
+d\lambda
+\\
+&&
+=\sum_{n  {}} (1+|n|)^{2s}e^{2\delta |n|}
+\int_{}
+     \frac{1}{1+|\lambda -n^2|}\Big \vert 
+         \notag\\
+&&
+  \times  \sum_{n_1 {}}
+     \int_{_{\lambda_1}}\sum_{n_2 {}}
+     \int_{_{\lambda_2}}\frac{e^{-\delta |n-n_1|}c_u(n-n_1,\lambda-\lambda_1)}{(1+|n-n_1|)^s(1+|(\lambda-\lambda_1)-(n-n_1)^2|)^{1/2}}\notag\\
+&&\times
+\frac{e^{-\delta|n_1-n_2|}c_u(n_1-n_2,\lambda_1-\lambda_2)}{(1+|n_1-n_2|)^s(1+|(\lambda_1-\lambda_2)-(n_1-n_2)^2|)^{1/2}}
+\\
+&& \times \frac{e^{-\delta |n_2|}\overline{c_u(-n_2,-\lambda_2)}}{(1+|n_2|)^s(1+|(-\lambda_2)-(-n_2)^2|)^{1/2}}
+d\lambda_2d\lambda_1 \Big \vert^2d\lambda
+     \notag\\
+   \end{eqnarray*}
+   which is bounded by
+ \end{frame}
+   \begin{frame}
+     \begin{eqnarray*}
+      &&=\sum_{n  {}} 
+\int_{\lambda}
+     \Big \vert \sum_{n_1 {}}
+     \int_{_{\lambda_1}}\sum_{n_2 {}}
+     \int_{_{\lambda_2}}
+     \\
+     && \frac{(1 + |n|)^{s}|(1 + |n-n_1|)^{-s}(1 + |n_1-n_2|)^{-s}(1 + |n_2|)^{-s}}{(1+|\lambda -n^2|)^{1/2}(1+|(\lambda-\lambda_1)-(n-n_1)^2|)^{1/2}}\\
+     &&\times \frac{c_u(n-n_1,\lambda-\lambda_1)c_u(n_1-n_2,\lambda_1-\lambda_2)\overline{c_u(-n_2,-\lambda_2)}}{(1+|(\lambda_1-\lambda_2)-(n_1-n_2)^2|)^{1/2}
+     (1+|(-\lambda_2)-(-n_2)^2|)^{1/2}}d\lambda_1d\lambda_2 \Big \vert^2
+\end{eqnarray*}
+since $|n|\le |n-n_1|+(1+|n_1-n_2|)+|n_2|$.
+From here the proof is the same as the NLS trilinear estimate. \qed
+\end{frame}
+\end{document}

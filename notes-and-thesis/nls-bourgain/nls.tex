@@ -94,7 +94,7 @@ Universidade Federal de São
 Carlos \\
 Rodovia Washington Luiz, Km 235, São Carlos, SP,
 13565-905, Brasil}
-        \date{03/20/2011}
+        \date{03/22/2011}
         %
         \maketitle
         %
@@ -332,21 +332,21 @@ to
 where $T = T_{\vp, \psi}$. 
 \begin{definition}
   Given a Banach space $X$, denote $B_{X}(R) \doteq \left\{ f: \| f \|_{X} < R
-  \right\}$. Let $\mathcal{X}$ be a Banach space continuously embedded in $C([-1,
-      1], H^s(\ci))$. We say that the NLS ivp \eqref{nNLS-eq}-\eqref{nNLS-init-data} is
+  \right\}$. We say that the NLS ivp
+  \eqref{nNLS-eq}-\eqref{nNLS-init-data} is
 	\emph{locally well posed in
   $H^s(\ci)$ for small data} if 
 	\begin{enumerate}
     \item For every $\vp(x) \in B_{H^{s}(\ci)}(R)$, $R$ sufficiently small
-      there exists a unique \\ $u \in \mathcal{X} \cap C([-1,
+      there exists a unique $u \in C([-1,
       1], H^s(\ci))$ satisfying
       \eqref{nmain-int-expression-0}-\eqref{nmain-int-expression-4}.
     \item
-      The flow map $u_0 \mapsto u(t)$ is uniformly continuous from
+      The data to solution map $u_0 \mapsto u(t)$ is uniformly continuous from
       $B_{H^{s}(\ci)}(R)$ 
       to $C(\left[ -1, 1 \right], H^s(\ci))$. That is, if
       $\{u_{0,n} \}, \{v_{0,n}\} \subset B_{H^{s}(\ci)}(R)$ such that $\|u_{0,n} -
-      v_{0,n} \|_{H^{s}(\ci)} \to 0$, then \\
+      v_{0,n} \|_{H^{s}(\ci)} \to 0$, then 
       $\sup_{t \in [-1, 1]}
       \|u_{n}(\cdot, t) - v_{n}(\cdot, t) \|_{H^s(\ci)} \to 0$.
   \end{enumerate}
@@ -453,7 +453,7 @@ $u = Tu$. An application of
 \cref{nlem:cutoff-loc-soln} will then imply $u \in Y^{s} \cap C([-1, 1],
 H^s(\ci))$, and hence 
 $\psi u = Tu$ for $| t | \le 1$.
-Lipschitz continuity of the flow map (and hence, uniform
+Lipschitz continuity of the data to solution map (and hence, uniform
 continuity) will follow from estimates used to establish the contraction
 mapping. 
 %
@@ -1257,7 +1257,7 @@ C(\left[ -1, 1 \right], H^{s}(\ci))$ to the integral equation $\psi u = Tu$.
 %
 \subsection{Lipschitz Continuity} 
 \label{ssec:lip-cont-flow-map}
-We now establish Lipschitz continuity of the flow map from
+We now establish Lipschitz continuity of the data to solution map from
 \\ $B_{H^{s}(\ci)}(\frac{15}{64c^{3}})$ to $C(\left[ -1, 1 \right], H^{s}(\ci))$.
 Assume $\vp_1, \vp_2
 \subset B_{H^s(\ci)}(\frac{15}{64c^{3}})$.
@@ -1348,9 +1348,9 @@ which by \cref{nlem:cutoff-loc-soln} gives
    Furthermore, since $u = T_{\vp_1, \psi}$, $v = T_{\vp_2, \psi}$,
    \cref{nlem:cutoff-loc-soln} implies
    $\psi u = T_{\vp_1, \psi}$, $\psi v = T_{\vp_2, \psi}$ for $| t | \le 1$.
-   Hence, the flow map of the NLS ivp is Lipschitz continuous from
+   Hence, the data to solution map of the NLS ivp is Lipschitz continuous from
    $B_{H^{s}(\ci)}( \frac{15}{64c^{3}})$ to  $C(\left[ -1, 1 \right],
-   H^{s}(\ci))$. Since this implies uniform continuity of the flow map from
+   H^{s}(\ci))$. Since this implies uniform continuity of the data to solution map from
    $B_{H^{s}(\ci)}( \frac{15}{64c^{3}})$ to  $C(\left[ -1, 1 \right],
    H^{s}(\ci))$, the proof of \cref{nthm:main} is complete. \qquad
    \qedsymbol
@@ -1561,7 +1561,7 @@ We now require the following multiplier estimate, whose proof can be found in
 \begin{equation}
 	\label{nfour-mult-est-L4*}
 	\begin{split}
-		\| \left( 1 + | \lambda - n^\nu | 
+    \| \left( 1 + | \lambda - n^{2} | 
 		\right)^{-\frac{3}{8}}
 		\wh{f}\|_{L^2(\zz \times \rr)} \le c \|f \|_{L^{4/3}( \ci \times \rr)}
 	\end{split}
@@ -1896,7 +1896,7 @@ Hence
         \right )^2  
         & = \|\wh{\psi u}\|_{\ell^{2}_{n}L^{1}_{\lambda}}^2
 		\\
-		& \le \|\psi u \|_{X^{s}}^2 
+		& \le \|\psi u \|_{Y^{s}}^2 
 	\end{split}
 \end{equation*}
 which is bounded by assumption. Therefore, applying dominated convergence and
