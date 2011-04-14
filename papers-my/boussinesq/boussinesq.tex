@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 \usepackage{fix-cm} %fix font errors
 \usepackage{amssymb}
-\usepackage[notcite]{showkeys}
+%\usepackage[notcite]{showkeys}
 \usepackage{appendix}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
@@ -103,7 +103,7 @@ urlcolor=blue,
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{03/08/2011}
+\date{04/05/2011}
 %
 %
 \subjclass[2000]{35B30, 35Q55, 35Q72}
@@ -617,7 +617,9 @@ solving
     \int_{0}^{t}e^{-in^{2}(t-t')}
     \wh{w}(n, t') dt'
   \end{align}
-  solves \cref{1hh}-\cref{4hh} for $| t | \le \delta$.
+  solves \cref{1hh}-\cref{4hh} for $| t | \le \delta$. Furthermore, replacing
+  $w$ with $w_{\delta} \doteq \psi_{2 \delta} w$ yields expressions equivalent
+  to \cref{term-3} and \cref{term-4}, respectively. 
   Since \cref{term-3} is a \emph{global} relation in
   $t$, using Fourier inversion we can rewrite it as
 %
@@ -625,7 +627,7 @@ solving
 \begin{equation*}
 \begin{split}
   & \frac{1}{8 i \pi^{2}}  \psi_{\delta}(t) \sum_{n \in \zz} e^{inx} e^{in^{2}t}
-  \int_{0}^{t} \int_{\rr} e^{it'(\tau - n^{2})} \wh{w}(n, \tau) d \tau dt'
+  \int_{0}^{t} \int_{\rr} e^{it'(\tau - n^{2})} \wh{w_{\delta}}(n, \tau) d \tau dt'
 \end{split}
 \end{equation*}
 %
@@ -636,7 +638,7 @@ which by Fubini and integration is equal to
 \begin{equation*}
 \begin{split}
   -\frac{1}{8 \pi^{2}}  \psi_{\delta}(t) \sum_{n \in \zz} \int_{\rr} e^{ixn}
-  e^{in^{2}t} \frac{e^{it(\tau - n^{2})} -1}{\tau - n^{2}}\wh{w}(n, \tau) d \tau.
+  e^{in^{2}t} \frac{e^{it(\tau - n^{2})} -1}{\tau - n^{2}}\wh{w_{\delta}}(n, \tau) d \tau.
 \end{split}
 \end{equation*}
 %
@@ -651,16 +653,16 @@ rearranging terms, we get
 	\begin{split}
 	& - \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n \in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{1 - \psi(\tau - n^{2}) 
-}{\tau - n^{2}} \wh{w}(n, \tau) \ d \tau
+}{\tau - n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
 		\\
 		& + \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n \in \zz} \int _\rr e^{i(xn + 
 		t n^{2})}
-		 \frac{1- \psi(\tau - n^{2})}{\tau - n^{2}} \wh{w}(n, \tau) \ d \tau
+		 \frac{1- \psi(\tau - n^{2})}{\tau - n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
 		\\
 		& - \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n \in \zz} \int_\rr
 		e^{i(xn + t n^{2})}
 		\frac{\psi(\tau - n^{2})\left[ e^{it(\tau - n^{2})}-1 
-		\right]}{\tau - n^{2}} \wh{w}(n, \tau) \ d \tau
+		\right]}{\tau - n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
 	\end{split}
 \end{equation*}
 %
@@ -673,17 +675,17 @@ to
 		\label{main-int-expression'-2}
 		& -\frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{1 - \psi(\tau -  n^{2}) 
-}{\tau -  n^{2}} \wh{w}(n, \tau) \ d \tau
+}{\tau -  n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
 		\\
 		\label{main-int-expression'-3}
 		& + \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n\in \zz} \int_\rr e^{i(xn + 
 		t n^{2})}
-		 \frac{1- \psi(\tau -  n^{2})}{\tau -  n^{2}} \wh{w}(n, \tau) \ d \tau
+		 \frac{1- \psi(\tau -  n^{2})}{\tau -  n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
 		\\
 		\label{main-int-expression'-4}
 		& - \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
 		\sum_{n \in \zz} \int_\rr e^{i(xn + t n^{2} )}
-		\psi(\tau -  n^{2}) (\tau -  n^{2})^{k-1} \wh{w}(n, \tau).
+		\psi(\tau -  n^{2}) (\tau -  n^{2})^{k-1} \wh{w_{\delta}}(n, \tau).
 \end{align}
 %
 Similarly, \cref{term-4} can be rewritten as
@@ -692,17 +694,17 @@ Similarly, \cref{term-4} can be rewritten as
 		\label{main-int-expression''-2}
 		& \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
 		e^{it \tau} \frac{1 - \psi(\tau +  n^m) 
-}{\tau +  n^m} \wh{w}(n, \tau) \ d \tau
+}{\tau +  n^m} \wh{w_{\delta}}(n, \tau) \ d \tau
 		\\
 		\label{main-int-expression''-3}
 		&  - \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{n\in \zz} \int_\rr e^{i(xn - 
 		t n^2)}
-		 \frac{1- \psi(\tau +  n^m)}{\tau +  n^m} \wh{w}(n, \tau) \ d \tau
+		 \frac{1- \psi(\tau +  n^m)}{\tau +  n^m} \wh{w_{\delta}}(n, \tau) \ d \tau
 		\\
 		\label{main-int-expression''-4}
 		& + \frac{1}{8 \pi^2}  \psi_{\delta}(t) \sum_{k \ge 1} \frac{i^k t^k}{k!}
 		\sum_{n \in \zz} \int_\rr e^{i(xn - t n^2 )}
-		\psi(\tau +  n^2) (\tau +  n^m)^{k-1} \wh{w}(n, \tau).
+		\psi(\tau +  n^2) (\tau +  n^m)^{k-1} \wh{w_{\delta}}(n, \tau).
 \end{align}
 %
 %
@@ -724,17 +726,17 @@ Therefore, neglecting $\pi$ related constants, we have
   \label{main1-rel-term-3}
   & +  \psi_{\delta}(t)\sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
   e^{it \tau} \frac{1 - \psi(\tau -  an^{2}) 
-}{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
+}{\tau -  an^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
   \\
   \label{main1-rel-term-4}
   & + \psi_{\delta}(t) \sum_{a = \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
   t an^{2})}
-  \frac{1- \psi(\tau -  an^{2})}{\tau -  an^{2}} \wh{w}(n, \tau) \ d \tau
+  \frac{1- \psi(\tau -  an^{2})}{\tau -  an^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
   \\
   \label{main1-rel-term-4.5}
   & +  \psi_{\delta}(t) \sum_{a = \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
   \sum_{n \in \zz} \int_\rr e^{i(xn + t an^{2} )}
-  \psi(\tau -  an^{2}) (\tau -  an^{2})^{k-1} \wh{w}(n, \tau)
+  \psi(\tau -  an^{2}) (\tau -  an^{2})^{k-1} \wh{w_{\delta}}(n, \tau)
   \\
   \label{main1-rel-term-5}
   & \doteq Tu, \quad T=T_{u_0, u_1, \psi, \delta}.
@@ -822,45 +824,35 @@ provided in the appendix.
   Equip $H^{s} \times H^{s-2}$ with the 
   topology defined by the norm $\|(f_0, f_1)\|_{H^{s} \times H^{s-2}}
   = \|f_0\|_{H^{s}} + \|f_1\|_{H^{s-2}}$.
-  and denote $B_{H^{s} \times H^{s-2}}(r) \doteq \left\{f: \| f \|_{H^{s} \times
-  H^{s-2}} < r
-  \right\}$. We say that the $B_{4}$ ivp
+   We say that the $B_{4}$ ivp
   \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} is
 	\emph{locally well posed} in
   $H^s \times H^{s-2}$ if 
 	\begin{enumerate}
-    \item For every $(u_{0}, u_{1}) \in B_{H^{s} \times H^{s-2}}(r)$
-      there exists $\delta>0$ depending on $r$ and a function space
-      $\mathcal{X}$ continuously embedded in $C([-\delta,
-      \delta], H^s)$ such that the Cauchy problem
-      $\psi_{\delta} u = Tu$ has a unique solution $u \in C([-\delta,
-      \delta], H^s) \cap \mathcal{X}$ for $ |t| \le \delta$.
+    \item Given $(u_{0}, u_{1}) \in H^{s} \times H^{s-2}$
+      there exists $\delta>0$ depending on $(u_{0}, u_{1})$
+      such that the Cauchy problem
+      $\psi_{\delta} u = Tu$ has a solution $u \in C([-\delta,
+      \delta], H^s) \cap X_{s,b}$ for $ |t| \le \delta$.
+    \item The solution is unique in $C([-\delta, \delta], H^{s}) \cap
+      X_{s,b}$.
     \item
-      The flow map $(u_0, u_{1}) \mapsto u(t)$ is continuous from
-      $B_{H^{s} \times H^{s-2}}(r)$ to \\ $C(\left[ -\delta, \delta \right], H^s)$. That is, if
-      $\{(u_{0,n}, u_{1,n} ) \}, \{(v_{0,n}, v_{1,n} )\}
-      \subset B_{H^{s} \times H^{s-2}}(r)$ such that $$\|(u_{0,n}, u_{1,n}) -
-      (v_{0,n}, v_{1,n}) \|_{H^{s} \times H^{s-2}} \to 0,$$ then 
+      The data to solution map $(u_0, u_{1}) \mapsto u(x,t)$ is continuous. That
+      is, given a sequence $\{(u_{0,n}, u_{1,n} ) \} \in H^{s} \times H^{s-2}$
+      such that $$\|(u_{0}, u_{1})
+      - (u_{0,n}, v_{1,n}) \|_{H^{s} \times
+      H^{s-2}} \to 0,$$ with corresponding solutions $u_{n} \in
+      C([-\delta_{n},
+      \delta_{n}])$ and $u \in C([-\delta_{\infty}, \delta_{\infty}])$
+      then there exists $0 < \delta \le \inf\left\{
+      \delta_{n}, \delta_{\infty} \right\}$ such that $\psi_{\delta}u_{n} =
+      Tu_{n}, \psi_{\delta}u = Tu$ and 
       $$\sup_{t \in [-\delta, \delta]}
-      \|u_{n}(\cdot, t) - v_{n}(\cdot, t) \|_{H^s} \to 0.$$
+      \|u(\cdot, t) - u_{n}(\cdot, t) \|_{H^s} \to 0.$$
   \end{enumerate}
 	Otherwise, we say that the $B_{4}$ ivp is \emph{ill-posed}.
 \end{definition}
 %
-\begin{framed}
-\begin{remark}
-  If $$\sup_{t \in [-\delta, \delta]}\|u(\cdot, t) - v(\cdot, t)
-  \|_{H^{s}} \le c \left( \|u_{0} - v_0 \|_{H^{s}} + \|u_{1} - v_1 \|_{H^{s-2}}
-  \right),$$ we
-  say the flow map is \emph{Lipschitz continuous} from $B_{H^{s} \times H^{s-2}}(r)$ 
-  to $C(\left[ -\delta, \delta \right], H^s)$. 
-%
-%
-%Note that this implies uniform continuity of the flow map from $B_{H^{s}
-%\times H^{s-2}}(r)$ to $C(\left[ -\delta, \delta \right], H^s)$.
-\label{rem:lipschitz-cont}
-\end{remark}
-\end{framed}
 
 %
 We are now prepared to state the main result of this paper.
@@ -902,19 +894,28 @@ $s >
 \section{The Periodic Case} 
 \label{sec:periodic}
 %
-%
+For an arbitrary Banach space $X$, we denote $B_{X}(r) \doteq \left\{f: \| f
+\|_{X}< r \right\}$.
 To prove well-posedness for the $B_4$ ivp we we will show that for initial data
-\\ $\vp \in B_{H^{s}(\ci) \times H^{s-2}(\ci)}(r)$, $T$ is a contraction on
-$B_{X_{s,b}}(M_{r})$, where $M_{r}$ is a constant depending on $r$, by
-estimating the $X_{s,b}$ norm of
+$\vp \in H^{s}(\ci) \times H^{s-2}(\ci)$, $T = T_{\vp, \delta}$ is a contraction on
+$B_{X_{s,b}}(M)$ for suitably small $\delta$, where $\delta >0$ is a constant
+depending on $M$ and
+$M > 0$ is a constant depending on $\|\vp\|_{H^{s} \times H^{s-2}}$. First, we
+will estimate the $X_{s,b}$ norm of
 \cref{main1-rel-term-1}-\cref{main1-rel-term-5}. 
 The Picard fixed point theorem
 will then yield a unique $u \in X_{s,b}$ satisfying $u = Tu$.  An application of
 \cref{lem:embedding} will then imply the existence of a unique $u \in
 C([-\delta, \delta], H^s(\ci)) \cap X_{s,b}$ solving $\psi_{\delta} u = Tu$ for
-$| t | \le \delta$.  Lipschitz continuity of the flow map will follow from
-estimates used to establish the contraction mapping. 
-%
+$| t | \le \delta$. Local Lipschitz continuity of the flow map will follow from
+estimates used to establish the contraction mapping. That is, we will show that
+for given $(u_{0}, u_{1}), (v_{0}, v_{1}) \in H^{s} \times H^{s-2}$ there exists
+a $\delta > 0$ depending on $\|(u_{0}, u_{1})\|_{H^{s} \times H^{s} \times
+H^{s-2}}, \|(v_{0}, v_{1}) \|_{H^{s} \times H^{s-2}}$ such that 
+$\psi_{\delta} u = Tu, \psi_{\delta} v = Tv$ and  $$\sup_{t \in [-\delta,
+\delta]}\|u(\cdot, t) - v(\cdot, t) \|_{H^{s}} \le c \left( \|u_{0} - v_0
+\|_{H^{s}} + \|u_{1} - v_1 \|_{H^{s-2}} \right)$$ for some $c > 0$. Note that
+this will imply continuity of the data to solution map.
 %
 %
 %
@@ -1386,8 +1387,6 @@ taking square roots of both sides gives
 %
 %
 %
-We first note that \cref{main1-rel-term-3} remains unchanged if
-we replace $w$  with $w_{\delta} \doteq \psi_{2 \delta} w$. 
 We now need the following.
 %
 \begin{lemma}
@@ -1593,7 +1592,6 @@ or
 %
 %
 \subsubsection{Estimate for \cref{main1-rel-term-4}.}
-Again, we can take replace $w$ with $w_{\delta}$ without impunity.
 Letting $$f(x,t) = \sum_{a = \pm 1} \psi(t) \sum_{n \in \zz} e^{i\left( xn +
 atn^{m} \right)} 
 \int_\rr \frac{1 - \psi\left( \lambda - an^{m} \right)}{\lambda - an^{m}} 
@@ -1803,7 +1801,7 @@ We conclude that
 %
 %
 \subsubsection{Estimate for \cref{main1-rel-term-5}.}
-Again, we replace $w$ with $w_{\delta}$ without impunity. Note that
+Note that
 %
 %
 \begin{equation}
@@ -2162,7 +2160,7 @@ A Picard iteration then yields a unique
 $u \in X_{s,b}$ satisfying $u = Tu$. Applying
 \cref{lem:embedding}, it follows that $u(x,t) \subset C( [-\delta, \delta], H^s)
 \cap X_{s,b}$ is a unique
-solution of the B4 ivp \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} for $t
+solution of the $B_{4}$ ivp \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} for $t
 \in [-\delta, \delta]$.
 %
 %
@@ -4868,37 +4866,8 @@ recursively defined maps
 
 \end{definition}
 %
-%
+The key tool in our proof of ill-posedness is the following. 
 %%
-\begin{definition}
-  We say that the localized integral $B_{4}$ equation
-  is \emph{qualitatively well-posed} in $H^{s} \times H^{s-2}$
-  if for all $(u_{0}, u_{1})$, $u, v
-  \in X_{s,b}$ we have the estimates
-  \begin{enumerate}
-    \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^{s} \times
-      H^{s-2}}$}
-    \item{$\| N(u, v) \|_{X_{s,b}} \le C \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}$} 
-  \end{enumerate}
-  for some constant $C > 0$.
-\end{definition}
-%%
-%
-
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Key ill-posedness Prop of Bej-Tao
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-By estimates \cref{eqn:u-0-fin-est}, \cref{u-1-est},
-\cref{main-int2-est}, \cref{main-int3-est}, and \cref{main-int4-est}, we see
-that the localized $B_{4}$ integral equation is quantitatively well-posed in
-$H^{s} \times H^{s-2}$. Therefore, we may apply the following result, which we
-will prove later. A proof of a more general theorem can be found in~\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 \begin{proposition}
   Let $f \mapsto u[f]$ be the solution map to the localized
   $B_{4}$ which maps a ball $B_{H^{s} \times H^{s-2}}$ in $H^{s} \times
@@ -4917,6 +4886,39 @@ will prove later. A proof of a more general theorem can be found in~\cite{Bejena
 \label{prop:ill-posedness}
 \end{proposition}
 %
+%
+%
+%
+\begin{framed}
+%
+%
+\begin{remark}
+  We defer the proof for later.  A sketch of the proof of a more general
+  proposition can be found
+  in~\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. The key
+  requirement, heuristically, is that if the equation in question
+  has a $k-linear$ non-linearity, then for the proposition to apply
+  it must possess a $k-linear$ estimate on the non-linearity, in addition
+  to a suitable bound on the linear term. Bejenaru and Tao refer to this as
+  \emph{qualitative well-posedness}. For example, the $B_{4}$ ivp is qualitatively
+  well-posed. That is, for given initial data $f \in H^{s} \times H^{s-2}$ and
+  functions $u,v \in X_{s,b}$, one has the estimates
+\begin{enumerate}
+  \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{X_{s,b}} \le C \delta^{b - 1/2} \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}$} 
+\end{enumerate}
+for some constant $C > 0$.
+%%
+%
+%
+\label{rem:qual-wp}
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+%
 \subsection{Ill-Posedness for $s < -2$ on the Circle} 
 \label{ssec:circle-ill-pos}
 %
@@ -4926,10 +4928,9 @@ f_{N,2})$. We have the estimate
 %
 \begin{equation*}
 \begin{split}
-  & \| N(A_{1}(f_{N}), A_{1}(f_{N})) \|_{C([-\delta, \delta],
-  H^{s})}
+  & \| N(A_{1}(f_{N}), A_{1}(f_{N})) \|_{X_{s,b}}
   \\
- & \ge
+  & \ge
   \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, \delta],
   H^{s})} 
   \\
@@ -4947,7 +4948,7 @@ f_{N,2})$. We have the estimate
   \\
   & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
   \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
-  \psi(t')
+  [\psi(t')]^{2}
   \\
   & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N,1}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
   e^{-i(n - n_{1})^{2}t'} \right)}{2} + \frac{\wh{f_{N,2}}(n - n_{1})\left(
@@ -4979,40 +4980,55 @@ Take $f_{N,2}(x) \equiv 0$. Then the above reduces to
 \end{split}
 \end{equation*}
 %
+which we expand to obtain
+\begin{equation*}
+\begin{split}
+& \sup_{0 \le t \le \delta} \frac{1}{8 \pi^{2}}\| (1 + | n |)^{s}
+\int_{0}^{t} \sum_{n_{1}} \sin[n^{2}(t-t')] \cos[(n - n_{1})^{2}t']
+\cos(n_{1}^{2}t') \wh{f_{N,1}}(n - n_{1})\wh{f_{N,1}}(n_{1}) dt'
+\|_{\ell_{2}}.
+\end{split}
+\end{equation*}
+Assume $N$ to be a positive integer. Then 
+using the inequality $\| a_{n} \|_{\ell^{2}} \ge
+|a_{2N}|$ and the fact that
 %
-or 
+%
+\begin{equation*}
+\begin{split}
+  (1 + 2N)^{s} \ge 2^{s}(1 + N)^{s} \ge
+  4^{s} N^{s}, \qquad s \le 0
+\end{split}
+\end{equation*}
+%
+%
+we bound this below by 
 %
 %
 \begin{equation}
   \label{yut}
 \begin{split}
-& \sup_{0 \le t \le \delta} \frac{1}{8 \pi^{2}}\| (1 + | n |)^{s}
-\int_{0}^{t} \sin[n^{2}(t-t')] \cos[(n - n_{1})^{2}t']
-\cos(n_{1}^{2}t') \wh{f_{N,1}}(n - n_{1})\wh{f_{N,1}}(n_{1}) dt'
-\|_{\ell_{2}}
-\\
-& \gtrsim \sup_{0 \le t \le \delta} 
-| \int_{0}^{t} \sum_{n_{1}} \sin[(t-t')] \cos[(1 -n_{1})^{2}t']
-\cos(n_{1}^{2}t') \wh{f_{N,1}}(1 - n_{1})\wh{f_{N,1}}(n_{1}) dt' |
+  & \frac{4^{s}}{8\pi^{2}} N^{s} \sup_{0 \le t \le \delta} 
+  | \int_{0}^{t} \sum_{n_{1}} \sin[4N^{2}(t-t')] \cos[(2N -n_{1})^{2}t']
+\cos(n_{1}^{2}t') \wh{f_{N,1}}(2N - n_{1})\wh{f_{N,1}}(n_{1}) dt' |.
 \end{split}
 \end{equation}
 %
 %
 %
 %
-%
-%
-%
-%
-%
-where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge
-|a_{1}|$. Let
+Let
 %
 %
 \begin{equation}
   \label{ill-pos-ce}
 \begin{split}
-  \wh{f_{N,1}}(n) \doteq r N^{-s - \ee} \chi_{\{{0}\}} (n - N), \quad \ee > 0.
+  \wh{f_{N,1}}(n) \doteq
+  \begin{cases}
+     rN^{-s-\ee},  \quad  & n = N
+    \\
+     0, \quad  & \text{otherwise}
+  \end{cases}
 \end{split}
 \end{equation}
 %
@@ -5033,77 +5049,46 @@ Then
 %
 Hence, $f_{N,1} \in B_{H^{s}}(2r)$ and $f_{N,1} \to 0$ in $H^{s}$. Therefore,
 $(f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N,1}, 0) \to 0$ in
-$H^{s} \times H^{s-2}$. Substituting
+$H^{s} \times H^{s-2}$. From the well-posedness theory for the $B_{4}$ equation,
+the associated solutions $u_{N}$ share a common lifespan in the interval
+$(0, 1)$. We now fix $\delta$ to be this common lifespan. Substituting
 \cref{ill-pos-ce} into \cref{yut}, we obtain
 %
 %
 \begin{equation}
   \label{rxx}
 \begin{split}
-  r^{2}N^{-2s -2 \ee} \sup_{0 \le t \le \delta} 
-  | \int_{0}^{t} \sin[(t-t')] [\cos(N^{2}t')]^{2} dt' |.
+  r^{2}N^{-s -2 \ee} \sup_{0 \le t \le \delta} 
+  | \int_{0}^{t} \sin[4N^{2}(t-t')] [\cos(N^{2}t')]^{2} dt' |.
 \end{split}
 \end{equation}
 %
-Let $t \doteq N^{-\alpha}$, where we restrict $N \le
-\delta^{1/\alpha}$. Then for $\alpha \ge 2$ \cref{rxx} is bounded below by
+Let $t = N^{-2}$, where we restrict $N \ge
+\delta^{-1/2}$. Then \cref{rxx} is bounded below by
 %
 %
 %
 %
 \begin{equation*}
 \begin{split}
-\frac{1}{4} r^{2}N^{-2s -2 \ee}  
-\int_{0}^{N^{-\alpha}} \sin[(N^{-\alpha}-t')] dt'
+\frac{1}{4} r^{2}N^{-s -2 \ee}  
+\int_{0}^{N^{-2}} \sin[4N^{2}(N^{-2}-t')] dt'
 \end{split}
 \end{equation*}
 %
 %
-or
+which evaluates to
 %
 %
 \begin{equation*}
 \begin{split}
-\frac{1}{4} r^{2} N^{-2s -2 \ee}  
-[1 - \cos(N^{-\alpha})].
+\frac{1}{16} r^{2} N^{-s -2 -2 \ee}  
+[1 - \cos 4]  \to \infty, \qquad s < -2 -2\ee
 \end{split}
 \end{equation*}
 %
 %
-Assume $s < -\ee$. Then by l'H\^opital's rule
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{N \to \infty} \frac{1}{4} r^{2} N^{-2s -2 \ee}  
-[1 - \cos(N^{-\alpha})]
-& \simeq \lim_{N \to \infty} \frac{[1 - \cos(N^{-\alpha})]}{N^{2s + 2\ee}}
-\\
-& \simeq \lim_{N \to \infty}  \frac{\sin(N^{-\alpha}) N^{-\alpha -1}}{N^{2s + 2\ee - 1}}
-\\
-& = \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2 \ee + \alpha}}.
-\end{split}
-\end{equation*}
-%
-%
-But
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2 \ee + \alpha}}
-  & = \lim_{N \to 0}\frac{\sin(N^{\alpha})}{N^{-2s - 2 \ee - \alpha}}
-  \\
-  & = 1, \quad \alpha = -2s -2 \ee - \alpha
-\end{split}
-\end{equation*}
-%
-%
-or $\alpha = -s -\ee $. Since $\alpha \ge 2$, we obtain
-%
-%
-$-s - \ee  \ge 2$, or $s \le -2 - \ee$, which completes the proof.
-\qquad \qedsymbol
+completing the proof.  \qed
 %
 %
 %
@@ -5128,13 +5113,12 @@ $-s - \ee  \ge 2$, or $s \le -2 - \ee$, which completes the proof.
 %
 \subsection{Ill-Posedness for $s < -2$ on the Line} 
 \label{realsec:ill-pos-line}
-The proof will be via contradiction. We have the estimate
+The proof will be via contradiction. Assume $0 < \delta \le 1$. We have the estimate
 %
 %
 \begin{equation*}
 \begin{split}
-  & \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([-\delta, \delta],
-  H^{s})}
+  & \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{X_{s,b}}
   \\
  & \ge
   \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, \delta],
@@ -5154,7 +5138,7 @@ The proof will be via contradiction. We have the estimate
   \\
   & = \sup_{0 \le t \le \delta} \| (1 + | \xi |)^{s} \frac{1}{4 i \pi} 
   \int_{0}^{t} \int_{\xi_{1}} \left( e^{i\xi^{2}(t-t')} - e^{-i\xi^{2}(t-t')} \right)
-  \psi(t')
+  [\psi(t')]^{2}
   \\
   & \times \frac{1}{2 \pi} \left[ \frac{\wh{f_{N,1}}(\xi - \xi_{1})\left( e^{i(\xi - \xi_{1})^{2}t'} +
   e^{-i(\xi - \xi_{1})^{2}t'} \right)}{2} + \frac{\wh{f_{N,2}}(\xi - \xi_{1})\left(
@@ -5186,7 +5170,7 @@ Take $f_{N,2}(x) \equiv 0$. Then the above reduces to
 \end{equation*}
 %
 %
-or 
+which we expand to obtain 
 %
 %
 \begin{equation}
@@ -5197,11 +5181,11 @@ or
 \cos(\xi_{1}^{2}t') \wh{f_{N,1}}(\xi - \xi_{1})\wh{f_{N,1}}(\xi_{1}) d
 \xi_{1}  dt'
 \|_{L^{2}_{\xi}}
-\\
-& \gtrsim \sup_{0 \le t \le \delta} \| \chi_{| \xi | \le 1}
- \int_{0}^{t} \int_{\xi_{1}} \sin[(t-t')] \cos[(1 -\xi_{1})^{2}t']
- \cos(\xi_{1}^{2}t') \wh{f_{N,1}}(1 - \xi_{1})\wh{f_{N,1}}(\xi_{1}) d \xi_{1} dt'
- \|_{L^{2}_{\xi}}.
+%\\
+%& \gtrsim \sup_{0 \le t \le \delta} \| \chi_{| \xi | \le 1}
+ %\int_{0}^{t} \int_{\xi_{1}} \sin[(t-t')] \cos[(1 -\xi_{1})^{2}t']
+ %\cos(\xi_{1}^{2}t') \wh{f_{N,1}}(1 - \xi_{1})\wh{f_{N,1}}(\xi_{1}) d \xi_{1} dt'
+ %\|_{L^{2}_{\xi}}.
 \end{split}
 \end{equation}
 %
@@ -5232,118 +5216,102 @@ and fix $s < -1/2$. Then
   & = rN^{-s-\ee} \left( \int_{N-1}^{N+1} (1 + \xi)^{2s} d \xi
   \right)^{1/2}
   \\
-  & = rN^{-s-\ee} \left[ \frac{1}{2s+1}( (N+2)^{2s+1} - N^{2s+1} ) \right]^{1/2},
-  \qquad s \neq -1/2
+  & = rN^{-s-\ee} \left| \frac{1}{2s+1}( (N+2)^{2s+1} - N^{2s+1} ) \right|^{1/2},
   \\
-  & = r N^{-\ee} \left[ {\frac{1}{2s+1}}\left ( (N+2) \left( \frac{N+2}{N}
-  \right)^{2s} -N \right) \right]^{1/2}  \\
+  & = r N^{-\ee} \left| {\frac{1}{2s+1}}\left [ (N+2) \left( \frac{N+2}{N}
+  \right)^{2s} -N \right ] \right|^{1/2}  \\
   & \le 2 r N^{-\ee}.
 \end{split}
 \end{equation*}
 %
-%
-Hence, for $s < -1/2$, $f_{N,1} \in B_{H^{s}}(2r)$
+Hence, for $s \le -1/2$, $f_{N,1} \in B_{H^{s}}(2r)$
 and $f_{N,1} \to 0$ in $H^{s}$. Therefore,
 $(f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(2r)$ and $(f_{N,1}, 0) \to 0$ in
-$H^{s} \times H^{s-2}$. Substituting
-\cref{realill-pos-ce} into \cref{realyut}, we obtain
+$H^{s} \times H^{s-2}$. Since our initial data all lie in the same ball, from
+the well-posedness theory for the $B_{4}$ equation we see that
+the associated solutions $u_{N}$ share a common lifespan in the interval
+$(0, 1)$. We now fix $\delta$ to be this common lifespan. Note that the
+conditions
+%
+%
+\begin{equation*}
+\begin{split}
+  & | \xi - \xi_{1} - N | \le 1,
+  \\
+  & | \xi_{1} - N | \le 1
+\end{split}
+\end{equation*}
+%
+%
+imply 
+\begin{equation}
+  \label{abs-val-cond}
+  \xi - N - 1 \le \xi_{1} \le \xi - N +1, \ N-1 \le \xi_{1} \le N+1.
+\end{equation}
+If we restrict $2N \le \xi  \le 2N +1$ in \cref{abs-val-cond}, then we obtain
+$N \le \xi_{1} \le N+1$. Therefore, substituting
+\cref{realill-pos-ce} into \cref{realyut} and localizing around the set $S
+\doteq \left\{ \xi: 2N \le \xi \le 2N+1  \right\}$, we obtain the lower bound
 %
 %
 %
 \begin{equation*}
 \begin{split}
-  r^{2} N^{-2s -2 \ee} \sup_{0 \le t \le \delta} \| \chi_{| \xi | \le 1}
-  \int_{0}^{t} \int_{N-1}^{N+1} 
-  \sin[(t-t')] \cos[(1 -\xi_{1})^{2}t']
+  & \frac{r^{2}}{8 \pi^{2}}
+  N^{-2s -2 \ee} \sup_{0 \le t \le \delta} \| \chi_{S}
+  (1 + | \xi |)^{s} \int_{0}^{t} \int_{N}^{N+1} 
+  \sin[\xi^{2}(t-t')] \cos[(\xi -\xi_{1})^{2}t']
  \cos(\xi_{1}^{2}t') d \xi_{1} dt'
  \|_{L^{2}_{\xi}}.
-\end{split}
+ \end{split}
 \end{equation*}
 %
 %
-%
-Let $t \doteq N^{-\alpha}$, where we restrict $N \le
-\delta^{1/\alpha}$. Then for $\alpha \ge 2$ we bound this below by
+Let $t = N^{-2}$, where we restrict $N \ge
+\delta^{-1/2}$. Noting that $\xi - \xi_{1} \sim N$, $\xi_{1} \sim N$, and $\xi
+\sim N$ thanks
+to the restrictions on the domains of integration for $\xi$ and $\xi_{1}$, we bound below by
 %
 %
 %
 %
 \begin{equation*}
 \begin{split}
-  \frac{1}{4} r^{2}N^{-2s - 2\ee} \sup_{0 \le t \le \delta} \|\chi_{| \xi |\le 1} 
-  \int_{0}^{N^{-\alpha}} \int_{N-1}^{N+1} \sin[(N^{-\alpha}-t')] d
+& \frac{r^{2}}{8 \pi^{2}}
+  N^{-2s -2 \ee} \| \chi_{S}
+  (1 + | \xi |)^{s} \int_{0}^{N^{-2}} \int_{N}^{N+1} 
+  \sin[\xi^{2}(t-t')] \cos[(\xi -\xi_{1})^{2}t']
+ \cos(\xi_{1}^{2}t') d \xi_{1} dt'
+ \|_{L^{2}_{\xi}}
+\\
+  & \ge \frac{r^{2}}{32 \pi^{2}} N^{-2s - 2\ee}  \|\chi_{S} (1 + | \xi
+  |)^{s}
+  \int_{0}^{N^{-2}} \int_{N}^{N+1} \sin[\xi^{2}(N^{-2}-t')] d
   \xi_{1} dt' \|_{L^{2}_{\xi}}
-\end{split}
-\end{equation*}
-%
-%
-which equals
-%
-%
-%
-\begin{equation*}
-\begin{split}
-  \frac{1}{2} r^{2}N^{-2s - 2\ee} \sup_{0 \le t \le \delta} \|\chi_{| \xi |\le 1} 
-  \int_{0}^{N^{-\alpha}} \sin[(N^{-\alpha}-t')] dt' \|_{L^{2}_{\xi}}
-\end{split}
-\end{equation*}
-%
-%
-or
-%
-\begin{equation*}
-\begin{split}
-  \frac{1}{2} r^{2}N^{-2s - 2\ee} \sup_{0 \le t \le \delta} \|\chi_{| \xi |\le 1} 
-  [1 - \cos(N^{-\alpha})] \|_{L^{2}_{\xi}}
-\end{split}
-\end{equation*}
-%
-%
-or
-%
-\begin{equation*}
-\begin{split}
-r^{2} N^{-2s - 2\ee}  
-[1 - \cos(N^{-\alpha})].
-\end{split}
-\end{equation*}
-%
-%
-Then by l'H\^opital's rule
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{N \to \infty} \frac{1}{4} r^{2} N^{-2s - 2\ee}  
-[1 - \cos(N^{-\alpha})]
-& \simeq \lim_{N \to \infty} \frac{[1 - \cos(N^{-\alpha})]}{N^{2s + 2\ee}}
-\\
-& \simeq \lim_{N \to \infty}  \frac{\sin(N^{-\alpha}) N^{-\alpha -1}}{N^{2s+ 2
-\ee -1}}
-\\
-& = \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2\ee + \alpha}}.
-\end{split}
-\end{equation*}
-%
-%
-But
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{N \to \infty} \frac{\sin(N^{-\alpha})}{N^{2s + 2\ee + \alpha}}
-  & = \lim_{N \to 0}\frac{\sin(N^{\alpha})}{N^{-2s - 2 \ee - \alpha}}
   \\
-  & = 1, \quad \alpha = -2s - 2\ee - \alpha
-\end{split}
+  & \simeq
+  N^{-2s - 2\ee}  \|\chi_{S}  (1 + | \xi
+  |)^{s}
+  \int_{0}^{N^{-2}} \sin[\xi^{2}(N^{-2}-t')] dt' \|_{L^{2}_{\xi}}
+  \\
+  & = N^{-2s- 2\ee}  \|\chi_{S}
+  [1 - \cos(\xi^{2}N^{-2})](1 + | \xi |)^{s} \xi^{-2}
+  \|_{L^{2}_{\xi}}
+  \\
+  & \gtrsim  N^{-2s- 2\ee}  \|\chi_{S}
+  [1 - \cos(\xi^{2}N^{-2})](1 + | \xi |)^{s-2} 
+  \|_{L^{2}_{\xi}}
+  \\
+  & \gtrsim N^{-s- 2 -2\ee}  \|\chi_{S}
+  \|_{L^{2}_{\xi}}
+  \\
+  & = N^{-s -2 -2\ee} \to \infty, \qquad s < -2 -2 \ee
+  \end{split}
 \end{equation*}
 %
 %
-or $\alpha = -s -\ee $. Since $\alpha \ge 2$, we obtain
+which completes the proof. \qed
 %
-%
-$-s - \ee \ge 2$, or $s \le -2 - \ee$, which completes the proof.
-\qquad \qedsymbol
 %
 %
 \subsection{Attempt to Improve the Ill-Posedness Index} 
@@ -5688,7 +5656,6 @@ $-3s -3 \ee -2 \ge 4$, which gives $s \le -2 -\ee$. Hence, considering the
 higher iterate $A_{2}$ has given us no better an ill-posedness result than
 considering the $A_{1}$ iterate. A similar phenomenon should occur for the real
 line. 
-
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5700,7 +5667,8 @@ line.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\subsection{Proof of \cref{prop:ill-posedness}}
+\section{Proof of \hyperref[prop:ill-posedness]{Key Ill-Posedness
+Proposition}}
 \label{sec:pf-ill-pos-prop}
 We will need the following lemma, whose proof is provided at the end of the
 section.
@@ -5725,8 +5693,7 @@ sufficiently small:
     There exists a unique solution
     $u[f] \in X_{s,b} \cap C([-\delta, \delta], H^{s})$
 to the localized integral $B_{4}$ equation
-\cref{main1-rel-term-0}-\cref{main1-rel-term-5}. Furthermore, $u =
-\psi_{\delta} u$. 
+\cref{main1-rel-term-0}-\cref{main1-rel-term-5}.
 \item
   \label{homogen}
   We have the homogeneity property
@@ -5964,13 +5931,13 @@ Dividing both sides by $\lambda^{n}$ gives and applying \cref{lip-qwp-eq} gives
   & \le \sum_{n' > n} \lambda^{n'-n} \sup_{m} \|  A_{n'}(f) - A_{n'}(f_{m})
       \|_{X_{s',b}}
       \\
-      & \le  \sum_{n' > n} c_{\psi}^{n'} 4^{n'-1} 
+      & \le  \sum_{n' > n} c_{\psi}^{2n'-1} 30^{n'-1} 
       \delta^{(n'-1)(b-1/2)}\lambda^{n'-n} \sup_{m}
       \| f-f_{m} \|_{H^{s} \times
       H^{s-2}} \left( \| f \|_{H^{s} \times H^{s-2}}
       + \| f_{m} \|_{H^{s} \times H^{s-2}}  \right)^{n'-1}
       \\
-      & \le  \sum_{n' > n} c_{\psi}^{n'} 4^{n'-1} 
+      & \le  \sum_{n' > n} c_{\psi}^{2n'-1} 30^{n'-1} 
       \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} (2r)^{n'}
 \end{split}
 \end{equation}
@@ -5997,37 +5964,37 @@ Note that
 %
 \begin{equation*}
 \begin{split}
-  \sum_{n' > n} c_{\psi}^{n'} 4^{n'-1} 
-  \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} r^{n'}
-  & = 2 c_{\psi} r \sum_{n' > n} c_{\psi}^{n'-1} 4^{n'-1} 
+  \sum_{n' > n} c_{\psi}^{2n'-1} 30^{n'-1} 
+  \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} (2r)^{n'}
+  & = 2c_{\psi} r \sum_{n' > n} c_{\psi}^{2(n'-1)} 30^{n'-1} 
   \delta^{(n'-1)(b-1/2)}  \lambda^{n'-n} (2r)^{n'-1}
   \\
-  & = 2 c_{\psi} r \sum_{n' > n} \lambda^{n'-n} (8 rc_{\psi}
-  \delta^{(b-1/2)})^{n'-1}
+  & = 2 c_{\psi} r \sum_{n' > n} \lambda^{n'-n} [60 rc_{\psi}^{2}
+  \delta^{(b-1/2)}]^{n'-1}
   \\
-  & = 2 c_{\psi} r \sum_{k =1}^{\infty} \lambda^{k} (8 rc_{\psi}
-  \delta^{(b-1/2)})^{k +n -1}
+  & = 2 c_{\psi} r \sum_{k =1}^{\infty} \lambda^{k} [60 rc_{\psi}^{2}
+  \delta^{(b-1/2)}]^{k +n -1}
   \\
-  & = 2 c_{\psi} r (8 rc_{\psi}
-  \delta^{(b-1/2)})^{n -1}
-\sum_{k =1}^{\infty}  (8 \lambda rc_{\psi}
-  \delta^{(b-1/2)})^{k},
+  & = 2 c_{\psi} r \lambda [60 rc_{\psi}^{2}
+  \delta^{(b-1/2)}]^{n}
+  \sum_{k =0}^{\infty}  [60 \lambda rc_{\psi}^{2}
+  \delta^{(b-1/2)}]^{k},
   \\
-  & \le \frac{2 c_{\psi} r (8 rc_{\psi}
-  \delta^{(b-1/2)})^{n -1}}{1-8 \lambda r c_{\psi}
-  \delta^{(b-1/2)}}, \qquad \lambda \le \frac{1}{16rc_{\psi} \delta^{(b-1/2)}}.
+  & = \frac{2 c_{\psi} r \lambda [60 rc_{\psi}^{2}
+  \delta^{(b-1/2)}]^{n}}{1-60 \lambda r c_{\psi}^{2}
+  \delta^{(b-1/2)}}, \qquad \lambda < \frac{1}{60rc_{\psi}^{2} \delta^{(b-1/2)}}.
 \end{split}
 \end{equation*}
 %
-Recalling \cref{pre-lambda-small-app}, we see that for any $\lambda < 1/(16 r
-c_{\psi} \delta^{b-1/2})$, we have
+Recalling \cref{pre-lambda-small-app}, we see that for any $\lambda < 1/(60 r
+c_{\psi}^{2} \delta^{b-1/2})$, we have
 %
 %
 \begin{equation*}
 \begin{split}
 \lim_{m \to \infty}  \| A_{n}(f_{m}) - A_{n}(f) \|_{X_{s',b}}
-  \le \frac{2 c_{\psi} r (8 rc_{\psi}
-  \delta^{(b-1/2)})^{n -1}}{1-8 \lambda r c_{\psi}
+  \le \frac{2 c_{\psi} r \lambda [60 rc_{\psi}^{2}
+  \delta^{(b-1/2)}]^{n}}{1-60 \lambda r c_{\psi}^{2}
   \delta^{(b-1/2)}}.
 \end{split}
 \end{equation*}
@@ -6035,7 +6002,7 @@ c_{\psi} \delta^{b-1/2})$, we have
 %
 Taking $\lambda \to 0$ completes the proof of \cref{prop:ill-posedness}. \qed
 %
-\subsubsection{Proof of \cref{lem:qwp-awp}} We split the proof into five parts.
+\subsection{Proof of \hyperref[lem:qwp-awp]{Power Series Decomposition Lemma}} We split the proof into five parts.
 \label{ssec:pf-qwp-it-1}
 %
 \begin{proof}[Proof of \cref{qwp-it-1}]
@@ -6051,7 +6018,6 @@ Taking $\lambda \to 0$ completes the proof of \cref{prop:ill-posedness}. \qed
     \label{ill-pos-bil}
   \end{align}
   %
-  where we have the restrictions $u = \psi_{\delta} u$, $v = \psi_{\delta} v$.
   For the proofs of these estimates, and how to obtain \cref{qwp-it-1} from
   them, we refer the reader to \cref{sec:periodic} and
   \cref{sec:non-periodic-case}.
@@ -6385,9 +6351,38 @@ Applying \cref{series-bound} completes the proof.
 %
 %
 \begin{proof}[Proof of \cref{qwp-it-5}]
-Next, recalling \cref{qwp-it-1}, we see that there exists $u$ such that $u =
-\psi_{\delta} u$ and 
-$Tu = u$; that is $L(f) + N(u,u) -u =0$.
+We first prove that $u_{k} \doteq
+\sum_{n=1}^{k}A_{n}(f)$ is absolutely convergent in $X_{s,b}$ (and hence
+converges in $X_{s,b}$ to an element of $X_{s,b}$). Applying \cref{induct-ineq} and
+  \cref{delta-ill-pos} to obtain 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sum_{n=1}^{\infty} \| A_{n}(f) \|_{X_{s,b}}
+    & \le \sum_{n=1}^{\infty}
+       c_{\psi}^{2n-1} 30^{(n-1)}
+    \delta^{(n-1)(b-1/2)} \| f
+    \|_{H^{s} \times H^{s-2}}^{n}
+    \\
+    & \le  
+    c_{\psi} \| f \|_{H^{s} \times H^{s-2}}
+    \sum_{n=0}^{\infty}
+    ( \delta^{b-1/2} c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}})^{n}
+    \\
+    & \le c_{\psi} \| f \|_{H^{s} \times H^{s-2}}
+    \sum_{n=0}^{\infty}
+    \left (\frac{1}{2} \right )^{n}
+    \\
+    & < \infty.
+  \end{split}
+  \end{equation*}
+  Next, recalling \cref{qwp-it-1}, we see that for $f \in H^{s} \times
+  H^{s-2}$ and $\delta = \delta(r)$ sufficiently small, there exists a unique
+  solution $u[f] \in X_{s,b} \cap C([-\delta, \delta], H^{s})$ to the integral
+  equation $Tu = u$; that is $L(f) + N(u,u) -u =0$. Since $u_{k}$ is convergent
+  in $X_{s,b}$, It remains to show that
+  $u_{k}$ converges to this $u$ in $X_{s,b}$. 
 Using this as motivation, we will now estimate the error of $u_{k} \doteq
   \sum_{n=1}^{k}A_{n}(f)$. First, note that
   %
@@ -6472,31 +6467,7 @@ this above by
   %
   Since this quantity converges to $0$ as $k \to \infty$, we conclude that
   $u_{k} \to u$ in $X_{s,b}$.
-  To prove that the convergence is absolute, we apply \cref{induct-ineq} and
-  \cref{delta-ill-pos} to obtain 
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \sum_{n=1}^{\infty} \| A_{n}(f) \|_{X_{s,b}}
-    & \le \sum_{n=1}^{\infty}
-       c_{\psi}^{2n-1} 30^{(n-1)}
-    \delta^{(n-1)(b-1/2)} \| f
-    \|_{H^{s} \times H^{s-2}}^{n}
-    \\
-    & \le  
-    c_{\psi} \| f \|_{H^{s} \times H^{s-2}}
-    \sum_{n=0}^{\infty}
-    ( \delta^{b-1/2} c_{\psi}^{2} \| f \|_{H^{s} \times H^{s-2}})^{n}
-    \\
-    & \le c_{\psi} \| f \|_{H^{s} \times H^{s-2}}
-    \sum_{n=0}^{\infty}
-    \left (\frac{1}{2} \right )^{n}
-    \\
-    & < \infty
-  \end{split}
-  \end{equation*}
-  %
+    %
   %
 which concludes the proof.
   %

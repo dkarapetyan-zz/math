@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 %\synctex=1    synctex doesn't work with beamer
 \usepackage{pdfsync}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \numberwithin{equation}{section}
 %
 \newcommand{\bigno}{\bigskip\noindent}
@@ -49,11 +50,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%
 %
-\date{04/01/2011}
 \title
 { Well-posedness of  periodic NLS  \\in  analytic  spaces}
   
-\author{{A.  Himonas,\, D. Karapetyan   \& G. Petronilho}}
+\author{{David Karapetyan}}
 %\author{Alex Himonas}
 %\address{Department of Mathematics  \\
 %       University of Notre Dame     \\
@@ -65,6 +65,14 @@
 \titlepage
 \end{frame}
 
+\begin{frame}
+  \frametitle{Collaborators}
+  \begin{itemize}
+    \item {\large Alex Himonas}
+     \vskip 0.2in 
+    \item {\large Gerson Petronilho}
+  \end{itemize}
+\end{frame}
 
 \section*{Table of Contents}
 \begin{frame}
@@ -76,6 +84,10 @@
 \begin{frame}
   \frametitle{Cubic NLS}
 %
+%\cite{Bourgain-Fourier-transfo}
+%\cite{Bourgain-Fourier-transfo-1}
+%\cite{Hannah:2011fk}
+% \bib, bibdiv, biblist are defined by the amsrefs package.
 %
 \begin{align*}
 	&i \p_t u + \p_x^{2} u \pm
@@ -84,7 +96,54 @@
 		&u(x,0) = \vp(x).
 \end{align*}
 %
-Some Introductory Material on the history of the equation.
+\pause
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Bourgain-Fourier-transfo-1}{article}{
+      author={Bourgain, J},
+       title={Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. i. schr{\"o}dinger
+  equations},
+        date={1993},
+     journal={Geom. Funct. Anal.},
+      volume={3},
+      number={2},
+       pages={107\ndash 156},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1209299},
+}
+
+\bib{Bourgain-Fourier-transfo}{article}{
+      author={Bourgain, J},
+       title={Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. ii. the
+  kdv-equation},
+        date={1993},
+     journal={Geom. Funct. Anal.},
+      volume={3},
+      number={3},
+       pages={209\ndash 262},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1215780},
+}
+
+\bib{Hannah:2011fk}{article}{
+      author={Hannah, H.},
+      author={Himonas, A.A.},
+      author={Petronilho, G.},
+       title={Gevrey regularity of the periodic gkdv equation},
+        date={2011},
+        ISSN={0022-0396},
+     journal={Journal of Differential Equations},
+}
+
+\end{biblist}
+\end{bibdiv}
+%
+\pause
+%
+%
+%
+and many others.
 \end{frame}
 %
 %
@@ -158,9 +217,10 @@ Let $s\ge 0$. For initial data in $G^{\delta,s}(\mathbb{T})$, $\delta >0$,
 there exists a positive time $T$ such that the NLS initial-value problem
 is well-posed in the space $C([0,T], G^{\delta,s}(\mathbb{T}))$.
 %
+\pause
 \item
-Moreover, the regularity of solutions in the time variable is of order Gevrey
-two ($G^2$).
+In fact, the regularity of solutions in the time variable is locally $(t \in [0,
+T])$ of order Gevrey two ($G^2$).
 \end{enumerate}
 %
 \end{theorem}
@@ -206,7 +266,7 @@ s}}\|h\|_{X_{\delta,s}}
 \int_\rr \frac{|\wh{w_{fgh}}(n, \lambda) |}{1 + | \lambda - n^{2} |} \ d\lambda
 \right)^2  \right)^{1/2}
 \\
-& \lesssim \|f\|_{X_{\delta,s}} \|g\|_{X_{1, \delta,
+& \lesssim \|f\|_{X_{\delta,s}} \|g\|_{X_{\delta,
 s}}\|h\|_{X_{\delta,s}}
 \end{align*}
 \end{enumerate}
@@ -287,7 +347,7 @@ From here the proof is the same as the NLS trilinear estimate. \qed
 \end{frame}
 \section{Regularity of Solutions in Time}
 \begin{frame}
-  \frametitle{Regularity of Solutions in Time}
+  \frametitle{Updating Regularity of Solutions in Time}
 %
 %
 %
@@ -312,33 +372,33 @@ for all $(x,t)\in \mathbb{T}\times [0,T]$.
 %
 %
 \begin{remark}
-Note that the proposition implies Gevrey two regularity in space for $t \in
-[0, T]$. To see this, set $j = 0$. We claim that
+Note that the proposition implies Gevrey two regularity in time for $t \in
+[0, T]$. To see this, set $k = 0$. We claim that
 %
 %
 \begin{equation*}
 \begin{split}
-(2k)!
-& \le 4^{k} (k!)^{2}, \quad k \ge 1
+(2j)!
+& \le 4^{j} (j!)^{2}, \quad k \ge 1
 \end{split}
 \end{equation*}
 %
 %
 \pause
-which we prove by induction. The inequality for the base case $k=1$ is clearly
-true. For the inductive step, we assume the above inequality for $k' \le k$. Then
+which we prove by induction. The inequality for the base case $j=1$ is clearly
+true. For the inductive step, we assume the above inequality for $j' \le j$. Then
 %
 %
 \begin{equation*}
 \begin{split}
-[2(k+1)]!
-& = (2k+2)(2k+1)(2k)! 
+[2(j+1)]!
+& = (2j+2)(2j+1)(2j)! 
 \\
-& \le (2k+2)(2k+1)4^{k}(k!)^{2}
+& \le (2j+2)(2j+1)4^{j}(j!)^{2}
 \\
-& \le (2k+2)^{2}4^{k}(k!)^{2}
+& \le (2j+2)^{2}4^{j}(j!)^{2}
 \\
-& = 4^{k+1} [(k+1)!]^{2}
+& = 4^{j+1} [(j+1)!]^{2}
 \end{split}
 \end{equation*}
 %
@@ -452,6 +512,9 @@ Applying the lemma, we get
 \end{equation*}
 %
 completing the proof. \qed
+\end{frame}
+\begin{frame}
+  \centerline{\Huge Thank You}
 \end{frame}
 \section{Appendix}
 \subsection{Proof of Combinatorial Lemma} 
@@ -694,4 +757,11 @@ holomorphic there. Also, since $\tilde{\varphi}(x+i0)=\varphi(x)$,
 it follows that $\vp$ is real analytic on all of $\ci$.
 This completes the proof. \qed
 \end{frame}
+%
+%
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%
+%
 \end{document}
+
+
