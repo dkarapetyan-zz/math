@@ -1,3 +1,5 @@
+
+
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -16,11 +18,9 @@ linkcolor=blue,
 citecolor=blue,
 urlcolor=blue,
 }
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography;
-%uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly
-%(conflicts with cref in particular)
-\usepackage{cleveref} %must be last loaded package to work properly
-\renewcommand{\cref}{\Cref}
+%\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography;
+%%uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly
+%%(conflicts with cref in particular)
 %
 %
 \newcommand{\ds}{\displaystyle}
@@ -86,7 +86,6 @@ urlcolor=blue,
 \newcommand{\tA}{{\tilde{A}}}
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
-\synctex=1
 \begin{document}
 \title{A Modified Boussinesq equation}
 \author{Dan-Andrei Geba, Alexandrou Himonas, and David Karapetyan}
@@ -437,7 +436,7 @@ estimate is crucial to the proof.
 \end{proposition}
 %
 Estimating the $X_{s,b}$ norms of the linear terms of the $B_{4}$ localized
-integral ivp, and applying \autoref{prop:bilinear-est} when estimating the
+integral ivp, and applying \ref{prop:bilinear-est} when estimating the
 $X_{s,b}$ norm of the non-linearity,
 one can show the following.
 %
@@ -1285,7 +1284,8 @@ $$
 \int_0^t \int_\R \exp(-i(t-t')\xi^2) \exp(it' (\xi_1^2 + (\xi-\xi_1)^2)) \hat f_N(\xi_1) \hat f_N(\xi-\xi_1)\ d\xi_1 dt'
 \|_{L^2_\xi(\R)} \geq c r^2$$
 for some $c > 0$.  But this contradicts \eqref{sin}. \qed
-
-
+%
+%
 \bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliographystyle{amsalpha-custom}
 \end{document}
