@@ -1,0 +1,857 @@
+%
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+%\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography;
+%%uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly
+%%(conflicts with cref in particular)
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem{exercise}[theorem]{Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname]
+{\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
+\makeatother%
+%makes proof environment bold instead of italic
+%\makeatletter
+%\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+%{-3.25ex\@plus -1ex \@minus -.2ex}%
+%{1.5ex \@plus .2ex}%
+%{\normalfont\normalsize \bfseries}}
+%\makeatother
+%makes subsubsubsection bold instead of italic
+%
+\def\sgn{\operatorname{sgn}}
+\def\sech{\operatorname{sech}}
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde{S}}}
+\newcommand{\tP}{{\tilde{P}}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\begin{document}
+\title{A Modified Boussinesq equation}
+\author{Dan-Andrei Geba, Alexandrou Himonas, and David Karapetyan}
+\address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
+\address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
+\address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
+\date{04/26/2011}
+%
+%
+\subjclass[2000]{35B30, 35Q55, 35Q72}
+\keywords{local well-posedness; ill-posedness.}
+\maketitle
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Traveling waves for B4
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Traveling Waves for the Boussinesq Equation} 
+\label{sec:trav-wave}
+We are looking for functions $f(x)$ such that
+%
+%
+\begin{equation}
+  \label{ansatz}
+\begin{split}
+u(x,t) = f(x-ct)
+\end{split}
+\end{equation}
+%
+%
+satisfies the Boussinesq equation
+%
+%
+\begin{equation}
+  \label{bous-eqn}
+\begin{split}
+  u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0
+\end{split}
+\end{equation}
+%
+%
+Substituting \eqref{ansatz} into \eqref{bous-eqn} gives
+%
+%
+\begin{equation}
+\begin{split}
+  (c^{2}-1)f'' + f'''' + (f^{2})'' = 0
+\end{split}
+\label{post-sub}
+\end{equation}
+%
+%
+where $$f^{(k)} = f^{(k)}(x-ct) = \frac{d^{k}f}{dx^{k}} \Big |_{x-ct}.$$ 
+Integrating \eqref{post-sub} twice with repspect to $x$, we obtain
+%
+%
+\begin{equation}
+  \label{pre-const-elim}
+\begin{split}
+  (c^{2}-1)f + f'' + f^{2} + ax +b = 0, \quad a,b \in \rr.
+\end{split}
+\end{equation}
+%
+%
+
+%
+%
+In order to construct traveling wave solutions from $f$, we need to arrange that
+$\lim_{x \to \infty} f(x) = D \in \rr$. But if $a \neq 0$ in
+\eqref{pre-const-elim}, then it will be impossible to construct a traveling wave
+solution using \eqref{pre-const-elim}. To see this, we proceed by contradiction
+and assume that $\lim_{x \to
+\infty} f(x) = D$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  0 = \lim_{x \to \infty} f'' = \lim_{x \to \infty} [-f^{2} -f(c^{2}-1) - ax -b]
+\end{split}
+\end{equation*}
+%
+%
+which would imply
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{x \to \infty} | f(x) |  = \infty
+\end{split}
+\end{equation*}
+%
+%
+which is a contradiction. Hence, taking $a = 0$ in \eqref{pre-const-elim} we
+obtain
+%
+\begin{equation}
+  \label{2nd-order-ode-pre}
+\begin{split}
+  f'' = (1-c^{2})f - f^{2} -b 
+\end{split}
+\end{equation}
+%
+%
+Multiplying both sides of \eqref{2nd-order-ode-pre} by $f'$, integrating, and rearranging terms we obtain 
+%
+\begin{equation}
+  \label{first-order-ode}
+\begin{split}
+  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2} (c^{2}-1)f^{2} -3bf 
+  \right ]
+\end{split}
+\end{equation}
+%
+%
+where we have taken the integration constant to be zero. 
+We now restrict our attention to solutions of \eqref{first-order-ode} where
+we attain a local maximum $M$ and local minimum $m$. Then $b = b(m, M)$ is
+completely determined by the expression
+%
+%
+\begin{equation*}
+\begin{split}
+& 0 = -\frac{2}{3} \left [ M^{3} + \frac{3}{2} (c^{2} -1)M^{2} -3bM  
+  \right ]
+\end{split}
+\end{equation*}
+%
+giving
+%
+%
+\begin{equation}
+  \label{b-val}
+\begin{split}
+  b = \frac{M^{2}}{3} + \frac{M}{2}(c^{2}-1).
+\end{split}
+\end{equation}
+%
+%
+%
+Furthermore, recall that for a cubic polynomial $g(x) = x^{3} +bx^{2} +cx +d$
+with roots $r_{1}, r_{2}, r_{3}$, we have $r_{1} + r_{2} + r_{3} = -b$.
+%
+%
+\begin{framed}
+%
+%
+\begin{remark}
+\label{rem:fact-pf}
+For a proof, expand 
+$g(x) = (x-a)(x-b)(x-c)$.
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+Combining this information with the fundamental theorem of algebra, 
+we see that \eqref{first-order-ode} has the factorization
+%
+%
+%
+%
+\begin{equation}
+\begin{split}
+  \left ( f'\right )^{2}
+  = \frac{2}{3} \left (f-m\right )
+  \left( M-f\right )
+  \left [ f + \frac{3}{2}(c^{2} -1) +m +M  \right ]
+\end{split}
+\label{ode-fact}
+\end{equation}
+%
+For fixed $c$, we choose $m, M$ such that 
+\begin{equation}
+  \label{max-min-bound}
+  m + \frac{3}{2}(c^{2} -1) + m + M > 0 
+\end{equation}
+%
+ensuring that the third term in the product on the right hand side of
+\eqref{ode-fact} is always positive.
+%
+%\begin{framed}
+%%
+%%
+%\begin{remark}
+%Note that this is always possible, for any $c$. To se this, note that relation
+%\eqref{max-min-bound} is equivalent to
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %2m+M < \frac{3}{2}(c^{2} -1) < m+2M
+%\end{split}
+%\end{equation*}
+%%
+%%
+%Hence, it will be enough to show that for fixed $C$, there exist $m, M$ such
+%that
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %2m+M < C < m+2M
+%\end{split}
+%\end{equation*}
+%%
+%%
+%For fixed $C > 0$, simply take $m > 0$, $M = 2m$. Then we reduce to showing that
+%there exists $m$ such that
+%\begin{equation*}
+%\begin{split}
+  %4m < C < 5m
+%\end{split}
+%\end{equation*}
+%But this is clearly true (take $m = C/5 + \ee$, where $\ee > 0$ is as small
+%as we like). For fixed $C < 0$, take $m < 0$, $m = 2M$. Then we reduce to showing that
+%there exists $M$ such that
+%\begin{equation*}
+%\begin{split}
+  %5M < C < 4M
+%\end{split}
+%\end{equation*}
+%But this is also true (take $M = C/5 - \ee$, where $\ee > 0$ is as small
+%as we like). 
+%\label{rem:pos}
+%\end{remark}
+%%
+%%
+%\end{framed}
+%
+%
+
+Then our solution to \eqref{ode-fact} has a
+local maximum $M$ and a local minimum $m$. Consider the Cauchy problem
+%
+\begin{gather}
+  \label{ode-cauchy}
+   \left ( f'\right )^{2}
+  = \frac{2}{3} \left (f-m\right )
+  \left(M-f \right )
+  \left [ f + \frac{3}{2}(c^{2} -1) +m +M \right ],
+  \\
+\label{ode-cauchy-data}
+   f(0) = m.
+\end{gather}
+%
+%
+We have the following result.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  For fixed $c \ge 1$ and $M > m > 0$,  there exists a positive
+  number $\ell = \ell(m, M)$ and an even $2\ell$-periodic analytic function $f =
+  f(x)$ which solves the initial value problem
+\begin{align}
+  \label{2nd-order-ode}
+& f'' = (1-c^{2})f - f^{2} - \left [\frac{M^{2}}{3} + \frac{M}{2}(c^{2}-1)
+\right]
+\\
+\label{2nd-order-ode-data}
+& f(0)=m, \quad f'(0) = 0.
+\end{align}
+Furthermore, the function
+  $f(x)$ satisfies
+  %
+  %
+  \begin{equation}
+    \label{f-bound}
+  \begin{split}
+  m \le f(x) \le M
+  \end{split}
+  \end{equation}
+  %
+  %
+  and the function $u(x,t) = f(x-ct)$ is a traveling wave solution of the
+  Boussinesq equation. 
+\label{lem:ode-solution}
+\end{lemma}
+%
+%
+%
+\begin{proof}
+By the fundamental ode theorem, the Cauchy problem
+\begin{gather}
+  \label{ode-cauchy-left}
+   f'
+  = -\left \{ \frac{2}{3} \left (f-m\right )
+  \left( M -f \right )
+  \left [ f + \frac{3}{2}(c^{2} -1) +m +M \right ] \right
+  \}^{1/2},
+  \\
+\label{ode-cauchy-data-left}
+   f(0) = m
+\end{gather}
+admits a unique solution in the domain $-\ell \le x \le 0$, where $\ell =
+\ell(m, M)$ and $f(-\ell) = M$. Reflecting this solution across the $y$-axis
+gives the unique solution to the Cauchy problem 
+\begin{gather}
+  \label{ode-cauchy-right}
+   f'
+  = \left \{ \frac{2}{3} \left (f-m\right )
+  \left( M -f \right )
+  \left [ f + \frac{3}{2}(c^{2} -1) +m +M  \right ] \right
+  \}^{1/2},
+  \\
+\label{ode-cauchy-data-right}
+   f(0) = m
+\end{gather}
+in the domain $0 \le x \le \ell$, where $f(\ell) = M$. 
+Changing the
+initial data from $f(0) = m$ to $f(k\ell)=m$ where $k \in \left\{ 2, 4, 6,\dots
+\right\}$, repeating the process above, and then joining the resulting curves
+together at the points $n \ell$, where $n \in \left\{ 1,3,5,\dots \right\}$, we
+obtain a $2\ell$-periodic
+solution to the Cauchy problem \eqref{ode-cauchy}-\eqref{ode-cauchy-data}.
+Hence, it is a solution to the Cauchy problem
+\eqref{2nd-order-ode}-\eqref{2nd-order-ode-data}. Analyticity follows from the
+Cauchy-Kovalevskaya theorem. The
+estimate \eqref{f-bound} follows by construction.
+%
+%
+\end{proof}
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Period Estimate
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  The period $2 \ell$ of the solution to the Cauchy problem
+  \eqref{2nd-order-ode}-\eqref{2nd-order-ode-data} described in Lemma
+  \ref{lem:ode-solution} satisfies
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \ell \sim \left [m + M + \frac{3}{2}(c^{2}-1) \right ]^{-1/2}.
+  \end{split}
+  \label{period-est}
+  \end{equation}
+  %
+  %
+\label{lem:period-est}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+For $0 < x < \ell$, we have $f'(x) > 0$. Hence, the function $f = f(x)$ has an
+inverse $x = x(f)$, and so by the fundamental theorem of calculus and
+\eqref{ode-cauchy-right}
+%
+%
+\begin{equation*}
+\begin{split}
+\ell & = x(m + M) - x(m)
+\\
+& = \int_{m}^{M} \frac{dx}{df} df
+\\
+& = \int_{m}^{M} \frac{1}{ \left\{ \frac{2}{3}(f-m)(M-f)
+\left[ f +
+\frac{3}{2}(c^{2}-1) + m + M \right] \right\}^{1/2}} df.
+\end{split}
+\end{equation*}
+%
+%
+Bounding from above, we have
+%
+%
+\begin{equation*}
+\begin{split}
+\ell
+& \le \frac{\sqrt{\frac{3}{2}}}{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+\right]^{1/2}} \int_{m}^{M} \frac{1}{(f-m)^{1/2}(M-f)^{1/2}}df
+\\
+& = \frac{\sqrt{\frac{3}{2}}}
+{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+\right]^{1/2}} 
+\\
+& \times \left[ \int_{m}^{\frac{M+m}{2}} \frac{1}{(f-m)^{1/2}(M-f)^{1/2}}df 
++ \int_{\frac{M+m}{2}}^{M} \frac{1}{(f-m)^{1/2}(M-f)^{1/2}}df
+\right]
+\\
+& = \frac{\sqrt{\frac{3}{2}}}
+{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+\right]^{1/2}} 
+\\
+& \times \frac{1}{\left( \frac{M-m}{2} \right)^{1/2}} \left[ \int_{m}^{\frac{M+m}{2}} \frac{1}{(f-m)^{1/2}}df 
++ \int_{\frac{M+m}{2}}^{M} \frac{1}{(M-f)^{1/2}}df
+\right]
+\\
+& = \frac{4 \sqrt{\frac{3}{2}}}
+{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+\right]^{1/2}} 
+\\
+& \le 2 \sqrt{6} \left [m+M + \frac{3}{2} (c^{2} -1) \right ]^{-1/2}.
+\end{split}
+\end{equation*}
+%
+%
+Bounding from below, we have
+%
+%
+\begin{equation*}
+\begin{split}
+\ell
+& \ge  \frac{1}{ \left\{ \frac{2}{3}(M-m)(M-m)
+\left[ m + M +
+\frac{3}{2}(c^{2}-1) + m + M \right] \right\}^{1/2}} \int_{m}^{M} df
+\\
+& = \frac{1}{\left\{ \frac{2}{3}
+\left[ m + M +
+\frac{3}{2}(c^{2}-1) + m + M \right] \right\}^{1/2}} 
+\\
+& = \frac{\sqrt{\frac{3}{2}}}{\left[ 2m + 2M 
++ \frac{3}{2}(c^{2}-1) \right]^{1/2}} 
+\\
+& = \frac{\sqrt{\frac{3}{4}}}{\left[ m + M 
++ \frac{3}{4}(c^{2}-1) \right]^{1/2}} 
+\\
+& \ge \frac{\sqrt{3}}{2} \left[ m + M 
++ \frac{3}{2}(c^{2}-1) \right]^{-1/2}
+\end{split}
+\end{equation*}
+%
+%
+which completes the proof.
+\end{proof}
+%
+%
+We have the estimate
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f' \|^{2}_{L^{2}(-\ell, \ell)}
+  & \simeq \int_{0}^{\ell} (f')^{2} dx
+  \\
+  & \simeq \int_{0}^{\ell} (f-m)(M-f)\left[ f + \frac{3}{2}(c^{2}-1)+m + M
+  \right]dx
+  \\
+  & \le (M-m)^{2} \left[ M + \frac{3}{2}(c^{2}-1) +m + M \right] \ell
+  \\
+  & \lesssim (M-m)^{2} \left[ m + 2M + \frac{3}{2}(c^{2}-1)  \right]
+  \left[ m + M + \frac{3}{2}(c^{2}-1)\right]^{-1/2}
+  \\
+  & \le 2 (M-m)^{2}\left[ M + \frac{3}{2}(c^{2}-1) +m + M \right]^{1/2}
+\end{split}
+\end{equation*}
+%
+%
+Furthermore,
+\begin{equation*}
+\begin{split}
+  \| f'' \|^{2}_{L^{2}(-\ell, \ell)}
+  & \simeq \int_{0}^{\ell} (f'')^{2} dx
+  \\
+  & \simeq \int_{0}^{\ell}
+  \left\{ (1-c^{2})f - f^{2} - \left [\frac{M^{2}}{3} + \frac{M}{2}(c^{2}-1)
+  \right] \right\}dx
+  \\
+  & \le (M-m)^{2} \left[ M + \frac{3}{2}(c^{2}-1) +m + M \right] \ell
+  \\
+  & \lesssim (M-m)^{2} \left[ m + 2M + \frac{3}{2}(c^{2}-1)  \right]
+  \left[ m + M + \frac{3}{2}(c^{2}-1)\right]^{-1/2}
+  \\
+  & \le 2 (M-m)^{2}\left[ M + \frac{3}{2}(c^{2}-1) +m + M \right]^{1/2}
+\end{split}
+\end{equation*}
+
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Solitons
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Solitons for the Boussinesq} 
+\label{sec:soliton}
+We rewrite \eqref{first-order-ode} as
+%
+%
+\begin{equation}
+  \label{first-order-rewritten}
+\begin{split}
+  \frac{(f')^{2}}{f} = -\frac{2}{3}\left[ f^{2} + \frac{3}{2}(c^{2}-1)f - 3b -
+  \frac{3d}{2f}\right].
+\end{split}
+\end{equation}
+%
+%
+Assume $\lim_{|x| \to \infty} f'' =0$. Then by L'H\^opital's rule
+%
+%
+\begin{equation*}
+\begin{split}
+  \lim_{|x| \to \infty} \frac{(f')^{2}}{f} = \lim_{|x| \to \infty} \frac{2f'
+  f''}{f'} = \lim_{|x| \to \infty} 2f'' = 0.
+\end{split}
+\end{equation*}
+%
+%
+Coupling this with our earlier assumption of $\lim_{| x | \to \infty} f' = \lim_{| x
+| \to \infty} f = 0$, we see that we must have $b =d=0$. Hence, from 
+\eqref{first-order-ode} we obtain 
+%
+%
+\begin{equation}
+  \label{bous-ode-simp}
+\begin{split}
+  (f')^{2} = \frac{2}{3} f^{2} \left [ \frac{3}{2} (1-c^{2}) -f \right ]. 
+\end{split}
+\end{equation}
+%
+%
+Assume $$0 \le |c| < 1 \ \text{and} \ 0 \le f \le \frac{3}{2}(1-c^{2}).$$ 
+%
+%
+Then
+%
+%
+\begin{equation*}
+\begin{split}
+  f' = \sqrt{\frac{2}{3}}f \left[ \frac{3}{2}(1 - c^{2}) -f \right]^{1/2}
+\end{split}
+\end{equation*}
+%
+%
+Letting $y = f(x)$, this gives
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dy}{ f \left[ \frac{3}{2}(1 - c^{2}) -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
+dx
+\end{split}
+\end{equation*}
+%
+%
+Integrating both sides, and using the formula
+%
+%
+\begin{equation*}
+\begin{split}
+  \int \frac{dy}{y \sqrt{a + by}} = -\frac{2}{ \sqrt{a}} \tanh^{-1}
+  \frac{\sqrt{a+ by}}{ \sqrt{a}}
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  -\frac{2}{\sqrt{\frac{3}{2}(1-c^{2})}} \tanh^{-1}
+  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - y}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
+  \sqrt{\frac{2}{3}}x + A, \quad A \in \rr
+\end{split}
+\end{equation*}
+%
+%
+or
+\begin{equation*}
+\begin{split}
+  \tanh^{-1}
+  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - y}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
+  - \frac{\sqrt{(1-c^{2})}}{2}x + B, \quad B \in \rr
+\end{split}
+\end{equation*}
+%
+Assume that
+%
+%
+\begin{equation*}
+\begin{split}
+  y(x_{0}) = \frac{3}{2}(1-c^{2})
+\end{split}
+\end{equation*}
+%
+%
+for fixed $x_{0}$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  0 = \tanh^{-1}(0) = - \frac{\sqrt{(1-c^{2})}}{2}x_{0} + B
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+B = \frac{\sqrt{(1-c^{2})}}{2}x_{0}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - y}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
+  \tanh \left [- \frac{\sqrt{(1-c^{2})}}{2}(x -x_{0}) \right ] 
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  y = \frac{3}{2}(1-c^{2}) \left \{ 1 - \tanh^{2} \left [- \frac{\sqrt{(1-c^{2})}}{2}(x -x_{0})
+  \right ] \right \}
+  \end{split}
+\end{equation*}
+%
+%
+Using the identities
+%
+%
+\begin{equation*}
+\begin{split}
+  & 1 - \tanh^{2}x = \sech^{2}x,
+  \\
+  & \sech^{2}(-x) = \sech^{2}x
+\end{split}
+\end{equation*}
+%
+we conclude that
+%
+%
+\begin{equation*}
+\begin{split}
+  y(x) = \frac{3}{2}(1-c^{2}) \sech^{2} \left [\frac{\sqrt{(1-c^{2})}}{2}(x -x_{0})
+  \right ]. 
+  \end{split}
+\end{equation*}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                B4 no Solitons
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Why the $B_{4}$ Equation Doesn't Seem to Admit Solitons} 
+\label{sec:B4-soliton-fail}
+%
+%
+The analog of \eqref{bous-ode-simp} for the $B_{4}$ ivp
+\begin{equation}
+  \label{b4}
+\begin{split}
+  u_{tt} + u_{xxxx} + (u^{2})_{xx} = 0
+\end{split}
+\end{equation}
+is
+\begin{equation}
+  \label{b4-ode-simp}
+\begin{split}
+  (f')^{2} = \frac{2}{3} f^{2} \left [ -\frac{3}{2}c^{2} -f \right ]. 
+\end{split}
+\end{equation}
+Assume $f \le -\frac{3}{2}c^{2}$. Then 
+%
+\begin{equation*}
+\begin{split}
+  f' = \sqrt{\frac{2}{3}}f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}
+\end{split}
+\end{equation*}
+%
+%
+Letting $y = f(x)$, this gives
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dy}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
+dx
+\end{split}
+\end{equation*}
+%
+Integrating both sides, we obtain
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\int \frac{dy}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
+x + A, \quad A \in \rr
+\end{split}
+\end{equation*}
+%
+%
+Using the substitution $y = -\frac{3}{2}c^{2}\sec^{2} \theta$, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+\int \frac{dy}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} 
+& = \int \frac{-3 c^{2} \sec^{2}\theta \tan \theta d
+\theta}{-\frac{3}{2}c^{2} \sec^{2} \theta \left[ -\frac{3}{2}c^{2} +
+\frac{3}{2}c^{2} \sec^{2} \theta \right]^{1/2}}
+\\
+& = \int \frac{4}{3c^{2}} d \theta
+\\
+& = \frac{4}{3c^{2}} \theta
+\\
+& = \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}y \right )
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+ \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}y \right )
+= \sqrt{\frac{2}{3}}
+x + A
+\end{split}
+\end{equation*}
+%
+%
+implying that $y$ is periodic. But we assumed a priori that $y(x) \to 0$ as $x
+\to \infty$. Since $y \not \equiv 0$, we have a contradiction.
+\end{document}
