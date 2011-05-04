@@ -93,7 +93,7 @@ urlcolor=blue,
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{04/26/2011}
+\date{05/04/2011}
 %
 %
 \subjclass[2000]{35B30, 35Q55, 35Q72}
@@ -110,7 +110,7 @@ urlcolor=blue,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Traveling Waves for the Boussinesq Equation} 
+\section{Traveling Waves for the $B_{4}$ Equation} 
 \label{sec:trav-wave}
 We are looking for functions $f(x)$ such that
 %
@@ -118,18 +118,18 @@ We are looking for functions $f(x)$ such that
 \begin{equation}
   \label{ansatz}
 \begin{split}
-u(x,t) = f(x-ct)
+u(x,t) = f(x-t)
 \end{split}
 \end{equation}
 %
 %
-satisfies the Boussinesq equation
+satisfies the $B_{4}$ equation
 %
 %
 \begin{equation}
   \label{bous-eqn}
 \begin{split}
-  u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0
+  u_{tt} + u_{xxxx} + (u^{2})_{xx} = 0.
 \end{split}
 \end{equation}
 %
@@ -139,20 +139,20 @@ Substituting \eqref{ansatz} into \eqref{bous-eqn} gives
 %
 \begin{equation}
 \begin{split}
-  (c^{2}-1)f'' + f'''' + (f^{2})'' = 0
+ f'' + f'''' + (f^{2})'' = 0
 \end{split}
 \label{post-sub}
 \end{equation}
 %
 %
-where $$f^{(k)} = f^{(k)}(x-ct) = \frac{d^{k}f}{dx^{k}} \Big |_{x-ct}.$$ 
+where $$f^{(k)} = f^{(k)}(x-t) = \frac{d^{k}f}{dx^{k}} \Big |_{x-t}.$$ 
 Integrating \eqref{post-sub} twice with repspect to $x$, we obtain
 %
 %
 \begin{equation}
   \label{pre-const-elim}
 \begin{split}
-  (c^{2}-1)f + f'' + f^{2} + ax +b = 0, \quad a,b \in \rr.
+  f'' + f + f^{2} + ax +b = 0, \quad a,b \in \rr.
 \end{split}
 \end{equation}
 %
@@ -170,7 +170,7 @@ and assume that $\lim_{x \to
 %
 \begin{equation*}
 \begin{split}
-  0 = \lim_{x \to \infty} f'' = \lim_{x \to \infty} [-f^{2} -f(c^{2}-1) - ax -b]
+  0 = \lim_{x \to \infty} f'' = \lim_{x \to \infty} [-f^{2} -f - ax -b]
 \end{split}
 \end{equation*}
 %
@@ -191,7 +191,7 @@ obtain
 \begin{equation}
   \label{2nd-order-ode-pre}
 \begin{split}
-  f'' = (1-c^{2})f - f^{2} -b 
+  f'' = - f^{2} -f -b 
 \end{split}
 \end{equation}
 %
@@ -201,21 +201,24 @@ Multiplying both sides of \eqref{2nd-order-ode-pre} by $f'$, integrating, and re
 \begin{equation}
   \label{first-order-ode}
 \begin{split}
-  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2} (c^{2}-1)f^{2} -3bf 
+  (f')^{2} = -\frac{2}{3} \left [ f^{3} -f^{2} - 3bf +d
   \right ]
 \end{split}
 \end{equation}
 %
 %
-where we have taken the integration constant to be zero. 
 We now restrict our attention to solutions of \eqref{first-order-ode} where
-we attain a local maximum $M$ and local minimum $m$. Then $b = b(m, M)$ is
-completely determined by the expression
+we attain a local maximum $M$ and local minimum $m$. Then $b = b(m, M)$ and $d =
+d(m, M)$ are 
+completely determined by the system
 %
 %
 \begin{equation*}
 \begin{split}
-& 0 = -\frac{2}{3} \left [ M^{3} + \frac{3}{2} (c^{2} -1)M^{2} -3bM  
+  & 0 = -\frac{2}{3} \left [ M^{3} -M^{2} - 3bM - d
+  \right ]
+  \\
+  & 0 = -\frac{2}{3} \left [ m^{3} -m^{2} - 3bm - d
   \right ]
 \end{split}
 \end{equation*}
@@ -226,7 +229,8 @@ giving
 \begin{equation}
   \label{b-val}
 \begin{split}
-  b = \frac{M^{2}}{3} + \frac{M}{2}(c^{2}-1).
+  b = \frac{1}{3}\left( m^{2} + mM + M^{2} -m - M\right), \quad d= m^{3} -(
+  m^{2} + mM + M^{2} - m - M).
 \end{split}
 \end{equation}
 %
@@ -260,87 +264,14 @@ we see that \eqref{first-order-ode} has the factorization
   \left ( f'\right )^{2}
   = \frac{2}{3} \left (f-m\right )
   \left( M-f\right )
-  \left [ f + \frac{3}{2}(c^{2} -1) +m +M  \right ]
+  \left [ f + m +M  \right ]
 \end{split}
 \label{ode-fact}
 \end{equation}
 %
-For fixed $c$, we choose $m, M$ such that 
-\begin{equation}
-  \label{max-min-bound}
-  m + \frac{3}{2}(c^{2} -1) + m + M > 0 
-\end{equation}
+Note that any solution to \eqref{ode-fact} is a solution to
+\eqref{2nd-order-ode}. Using this fact, we obtain the following result.
 %
-ensuring that the third term in the product on the right hand side of
-\eqref{ode-fact} is always positive.
-%
-%\begin{framed}
-%%
-%%
-%\begin{remark}
-%Note that this is always possible, for any $c$. To se this, note that relation
-%\eqref{max-min-bound} is equivalent to
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %2m+M < \frac{3}{2}(c^{2} -1) < m+2M
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Hence, it will be enough to show that for fixed $C$, there exist $m, M$ such
-%that
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %2m+M < C < m+2M
-%\end{split}
-%\end{equation*}
-%%
-%%
-%For fixed $C > 0$, simply take $m > 0$, $M = 2m$. Then we reduce to showing that
-%there exists $m$ such that
-%\begin{equation*}
-%\begin{split}
-  %4m < C < 5m
-%\end{split}
-%\end{equation*}
-%But this is clearly true (take $m = C/5 + \ee$, where $\ee > 0$ is as small
-%as we like). For fixed $C < 0$, take $m < 0$, $m = 2M$. Then we reduce to showing that
-%there exists $M$ such that
-%\begin{equation*}
-%\begin{split}
-  %5M < C < 4M
-%\end{split}
-%\end{equation*}
-%But this is also true (take $M = C/5 - \ee$, where $\ee > 0$ is as small
-%as we like). 
-%\label{rem:pos}
-%\end{remark}
-%%
-%%
-%\end{framed}
-%
-%
-
-Then our solution to \eqref{ode-fact} has a
-local maximum $M$ and a local minimum $m$. Consider the Cauchy problem
-%
-\begin{gather}
-  \label{ode-cauchy}
-   \left ( f'\right )^{2}
-  = \frac{2}{3} \left (f-m\right )
-  \left(M-f \right )
-  \left [ f + \frac{3}{2}(c^{2} -1) +m +M \right ],
-  \\
-\label{ode-cauchy-data}
-   f(0) = m.
-\end{gather}
-%
-%
-We have the following result.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -353,18 +284,17 @@ We have the following result.
 %
 %
 \begin{lemma}
-  For fixed $c \ge 1$ and $M > m > 0$,  there exists a positive
+  For fixed $M > m > 0$,  there exists a positive
   number $\ell = \ell(m, M)$ and an even $2\ell$-periodic analytic function $f =
   f(x)$ which solves the initial value problem
 \begin{align}
   \label{2nd-order-ode}
-& f'' = (1-c^{2})f - f^{2} - \left [\frac{M^{2}}{3} + \frac{M}{2}(c^{2}-1)
-\right]
+& f'' = - f^{2} - b
 \\
 \label{2nd-order-ode-data}
 & f(0)=m, \quad f'(0) = 0.
 \end{align}
-Furthermore, the function
+where the value of $b$ is given by \eqref{b-val}. Furthermore, the function
   $f(x)$ satisfies
   %
   %
@@ -376,8 +306,8 @@ Furthermore, the function
   \end{equation}
   %
   %
-  and the function $u(x,t) = f(x-ct)$ is a traveling wave solution of the
-  Boussinesq equation. 
+  and the function $u(x,t) = f(x-t)$ is a traveling wave solution of the
+  $B_{4}$ equation. 
 \label{lem:ode-solution}
 \end{lemma}
 %
@@ -390,7 +320,7 @@ By the fundamental ode theorem, the Cauchy problem
    f'
   = -\left \{ \frac{2}{3} \left (f-m\right )
   \left( M -f \right )
-  \left [ f + \frac{3}{2}(c^{2} -1) +m +M \right ] \right
+  \left [ f  +m +M \right ] \right
   \}^{1/2},
   \\
 \label{ode-cauchy-data-left}
@@ -404,7 +334,7 @@ gives the unique solution to the Cauchy problem
    f'
   = \left \{ \frac{2}{3} \left (f-m\right )
   \left( M -f \right )
-  \left [ f + \frac{3}{2}(c^{2} -1) +m +M  \right ] \right
+  \left [ f  +m +M  \right ] \right
   \}^{1/2},
   \\
 \label{ode-cauchy-data-right}
@@ -416,7 +346,15 @@ initial data from $f(0) = m$ to $f(k\ell)=m$ where $k \in \left\{ 2, 4, 6,\dots
 \right\}$, repeating the process above, and then joining the resulting curves
 together at the points $n \ell$, where $n \in \left\{ 1,3,5,\dots \right\}$, we
 obtain a $2\ell$-periodic
-solution to the Cauchy problem \eqref{ode-cauchy}-\eqref{ode-cauchy-data}.
+solution to the Cauchy problem
+\begin{gather}
+  (f')^{2}
+  = \frac{2}{3} \left (f-m\right )
+  \left( M -f \right )
+  \left [ f + m +M  \right ],
+  \\
+   f(0) = m.
+\end{gather}
 Hence, it is a solution to the Cauchy problem
 \eqref{2nd-order-ode}-\eqref{2nd-order-ode-data}. Analyticity follows from the
 Cauchy-Kovalevskaya theorem. The
@@ -446,7 +384,7 @@ estimate \eqref{f-bound} follows by construction.
   %
   \begin{equation}
   \begin{split}
-    \ell \sim \left [m + M + \frac{3}{2}(c^{2}-1) \right ]^{-1/2}.
+    \ell \sim (m + M)^{-1/2}.
   \end{split}
   \label{period-est}
   \end{equation}
@@ -471,8 +409,8 @@ inverse $x = x(f)$, and so by the fundamental theorem of calculus and
 & = \int_{m}^{M} \frac{dx}{df} df
 \\
 & = \int_{m}^{M} \frac{1}{ \left\{ \frac{2}{3}(f-m)(M-f)
-\left[ f +
-\frac{3}{2}(c^{2}-1) + m + M \right] \right\}^{1/2}} df.
+\left[ f 
++ m + M \right] \right\}^{1/2}} df.
 \end{split}
 \end{equation*}
 %
@@ -483,11 +421,11 @@ Bounding from above, we have
 \begin{equation*}
 \begin{split}
 \ell
-& \le \frac{\sqrt{\frac{3}{2}}}{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+& \le \frac{\sqrt{\frac{3}{2}}}{\left[ 2m + M
 \right]^{1/2}} \int_{m}^{M} \frac{1}{(f-m)^{1/2}(M-f)^{1/2}}df
 \\
 & = \frac{\sqrt{\frac{3}{2}}}
-{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+{\left[ 2m + M
 \right]^{1/2}} 
 \\
 & \times \left[ \int_{m}^{\frac{M+m}{2}} \frac{1}{(f-m)^{1/2}(M-f)^{1/2}}df 
@@ -495,7 +433,7 @@ Bounding from above, we have
 \right]
 \\
 & = \frac{\sqrt{\frac{3}{2}}}
-{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+{\left[ 2m + M
 \right]^{1/2}} 
 \\
 & \times \frac{1}{\left( \frac{M-m}{2} \right)^{1/2}} \left[ \int_{m}^{\frac{M+m}{2}} \frac{1}{(f-m)^{1/2}}df 
@@ -503,10 +441,10 @@ Bounding from above, we have
 \right]
 \\
 & = \frac{4 \sqrt{\frac{3}{2}}}
-{\left[ m + \frac{3}{2}(c^{2}-1) + m + M
+{\left[ 2m + M
 \right]^{1/2}} 
 \\
-& \le 2 \sqrt{6} \left [m+M + \frac{3}{2} (c^{2} -1) \right ]^{-1/2}.
+& \le 2 \sqrt{6} \left (m+M \right )^{-1/2}.
 \end{split}
 \end{equation*}
 %
@@ -519,20 +457,20 @@ Bounding from below, we have
 \ell
 & \ge  \frac{1}{ \left\{ \frac{2}{3}(M-m)(M-m)
 \left[ m + M +
-\frac{3}{2}(c^{2}-1) + m + M \right] \right\}^{1/2}} \int_{m}^{M} df
+m + M \right] \right\}^{1/2}} \int_{m}^{M} df
 \\
 & = \frac{1}{\left\{ \frac{2}{3}
 \left[ m + M +
-\frac{3}{2}(c^{2}-1) + m + M \right] \right\}^{1/2}} 
+m + M \right] \right\}^{1/2}} 
 \\
 & = \frac{\sqrt{\frac{3}{2}}}{\left[ 2m + 2M 
-+ \frac{3}{2}(c^{2}-1) \right]^{1/2}} 
+ \right]^{1/2}} 
 \\
-& = \frac{\sqrt{\frac{3}{4}}}{\left[ m + M 
-+ \frac{3}{4}(c^{2}-1) \right]^{1/2}} 
+& = \frac{\sqrt{\frac{3}{4}}}{\left( m + M 
+\right)^{1/2}} 
 \\
-& \ge \frac{\sqrt{3}}{2} \left[ m + M 
-+ \frac{3}{2}(c^{2}-1) \right]^{-1/2}
+& \ge \frac{\sqrt{3}}{2} \left( m + M 
+ \right)^{-1/2}
 \end{split}
 \end{equation*}
 %
@@ -549,15 +487,15 @@ We have the estimate
   \| f' \|^{2}_{L^{2}(-\ell, \ell)}
   & \simeq \int_{0}^{\ell} (f')^{2} dx
   \\
-  & \simeq \int_{0}^{\ell} (f-m)(M-f)\left[ f + \frac{3}{2}(c^{2}-1)+m + M
+  & \simeq \int_{0}^{\ell} (f-m)(M-f)\left[ f +m + M
   \right]dx
   \\
-  & \le (M-m)^{2} \left[ M + \frac{3}{2}(c^{2}-1) +m + M \right] \ell
+  & \le (M-m)^{2} \left[ M  +m + M \right] \ell
   \\
-  & \lesssim (M-m)^{2} \left[ m + 2M + \frac{3}{2}(c^{2}-1)  \right]
-  \left[ m + M + \frac{3}{2}(c^{2}-1)\right]^{-1/2}
+  & \lesssim (M-m)^{2} \left[ m + 2M   \right]
+  \left[ m + M \right]^{-1/2}
   \\
-  & \le 2 (M-m)^{2}\left[ M + \frac{3}{2}(c^{2}-1) +m + M \right]^{1/2}
+  & \le 2 (M-m)^{2}\left[ M  +m + M \right]^{1/2}
 \end{split}
 \end{equation*}
 %
@@ -572,12 +510,12 @@ Furthermore,
   \left\{ (1-c^{2})f - f^{2} - \left [\frac{M^{2}}{3} + \frac{M}{2}(c^{2}-1)
   \right] \right\}dx
   \\
-  & \le (M-m)^{2} \left[ M + \frac{3}{2}(c^{2}-1) +m + M \right] \ell
+  & \le (M-m)^{2} \left[ M  +m + M \right] \ell
   \\
-  & \lesssim (M-m)^{2} \left[ m + 2M + \frac{3}{2}(c^{2}-1)  \right]
-  \left[ m + M + \frac{3}{2}(c^{2}-1)\right]^{-1/2}
+  & \lesssim (M-m)^{2} \left[ m + 2M   \right]
+  \left[ m + M \right]^{-1/2}
   \\
-  & \le 2 (M-m)^{2}\left[ M + \frac{3}{2}(c^{2}-1) +m + M \right]^{1/2}
+  & \le 2 (M-m)^{2}\left[ M  +m + M \right]^{1/2}
 \end{split}
 \end{equation*}
 
@@ -600,7 +538,7 @@ We rewrite \eqref{first-order-ode} as
 \begin{equation}
   \label{first-order-rewritten}
 \begin{split}
-  \frac{(f')^{2}}{f} = -\frac{2}{3}\left[ f^{2} + \frac{3}{2}(c^{2}-1)f - 3b -
+  \frac{(f')^{2}}{f} = -\frac{2}{3}\left[ f^{2} - 3b -
   \frac{3d}{2f}\right].
 \end{split}
 \end{equation}
@@ -625,7 +563,7 @@ Coupling this with our earlier assumption of $\lim_{| x | \to \infty} f' = \lim_
 \begin{equation}
   \label{bous-ode-simp}
 \begin{split}
-  (f')^{2} = \frac{2}{3} f^{2} \left [ \frac{3}{2} (1-c^{2}) -f \right ]. 
+  (f')^{2} = \frac{2}{3} f^{2} - f. 
 \end{split}
 \end{equation}
 %
