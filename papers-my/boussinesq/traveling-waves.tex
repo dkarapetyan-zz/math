@@ -93,7 +93,7 @@ urlcolor=blue,
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{05/04/2011}
+\date{05/09/2011}
 %
 %
 \subjclass[2000]{35B30, 35Q55, 35Q72}
@@ -160,49 +160,25 @@ Integrating \eqref{post-sub} twice with repspect to $x$, we obtain
 
 %
 %
-In order to construct traveling wave solutions from $f$, we need to arrange that
-$\lim_{x \to \infty} f(x) = D \in \rr$. But if $a \neq 0$ in
-\eqref{pre-const-elim}, then it will be impossible to construct a traveling wave
-solution using \eqref{pre-const-elim}. To see this, we proceed by contradiction
-and assume that $\lim_{x \to
-\infty} f(x) = D$. Then
-%
-%
-\begin{equation*}
-\begin{split}
-  0 = \lim_{x \to \infty} f'' = \lim_{x \to \infty} [-f^{2} -f - ax -b]
-\end{split}
-\end{equation*}
-%
-%
-which would imply
-%
-%
-\begin{equation*}
-\begin{split}
-  \lim_{x \to \infty} | f(x) |  = \infty
-\end{split}
-\end{equation*}
-%
-%
-which is a contradiction. Hence, taking $a = 0$ in \eqref{pre-const-elim} we
-obtain
+In order to construct smooth traveling wave solutions from $f$, we assume that
+$f, f'$ are integrable. This implies $a =0$, and so  
+ \eqref{pre-const-elim} gives
 %
 \begin{equation}
   \label{2nd-order-ode-pre}
 \begin{split}
-  f'' = - f^{2} -f -b 
+  f'' = - f^{2} -f -b.
 \end{split}
 \end{equation}
 %
 %
-Multiplying both sides of \eqref{2nd-order-ode-pre} by $f'$, integrating, and rearranging terms we obtain 
+Multiplying both sides of \eqref{2nd-order-ode-pre} by $f'$ and integrating,  we obtain 
 %
 \begin{equation}
   \label{first-order-ode}
 \begin{split}
-  (f')^{2} = -\frac{2}{3} \left [ f^{3} -f^{2} - 3bf +d
-  \right ]
+  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2}f^{2} + 3bf +d
+  \right ].
 \end{split}
 \end{equation}
 %
@@ -215,10 +191,10 @@ completely determined by the system
 %
 \begin{equation*}
 \begin{split}
-  & 0 = -\frac{2}{3} \left [ M^{3} -M^{2} - 3bM - d
+  & 0 = -\frac{2}{3} \left [ M^{3} + \frac{3}{2} M^{2} + 3bM + d
   \right ]
   \\
-  & 0 = -\frac{2}{3} \left [ m^{3} -m^{2} - 3bm - d
+  & 0 = -\frac{2}{3} \left [ m^{3} + \frac{3}{2} m^{2} + 3bm + d
   \right ]
 \end{split}
 \end{equation*}
@@ -229,8 +205,10 @@ giving
 \begin{equation}
   \label{b-val}
 \begin{split}
-  b = \frac{1}{3}\left( m^{2} + mM + M^{2} -m - M\right), \quad d= m^{3} -(
-  m^{2} + mM + M^{2} - m - M).
+  & b  = -\frac{1}{3}\left( m^{2} + mM + M^{2} \right) - \frac{1}{2}\left( m + M
+  \right)
+  \\
+  & d = -M\left( 2M^{2} + 3M + mM + \frac{3}{2}m + m^{2} \right).
 \end{split}
 \end{equation}
 %
@@ -264,7 +242,7 @@ we see that \eqref{first-order-ode} has the factorization
   \left ( f'\right )^{2}
   = \frac{2}{3} \left (f-m\right )
   \left( M-f\right )
-  \left [ f + m +M  \right ]
+  \left [ f + m + M + \frac{3}{2} \right ]
 \end{split}
 \label{ode-fact}
 \end{equation}
@@ -289,7 +267,7 @@ Note that any solution to \eqref{ode-fact} is a solution to
   f(x)$ which solves the initial value problem
 \begin{align}
   \label{2nd-order-ode}
-& f'' = - f^{2} - \frac{1}{3}\left( M^{2} - M \right)
+& f'' = - f^{2} - \frac{1}{3} M^{2} - \frac{1}{2}M
 \\
 \label{2nd-order-ode-data}
 & f(0)=0, \quad f'(0) = 0.
@@ -320,7 +298,7 @@ By the fundamental ode theorem, the Cauchy problem
    f'
   = -\left [ \frac{2}{3} f
   \left( M -f \right )
-  \left ( f +M \right ) \right
+  \left ( f +M + \frac{3}{2}\right ) \right
   ]^{1/2},
   \\
 \label{ode-cauchy-data-left}
@@ -334,7 +312,7 @@ gives the unique solution to the Cauchy problem
    f'
   = \left [ \frac{2}{3} f
   \left( M -f \right )
-  \left ( f +M \right ) \right
+  \left ( f +M + \frac{3}{2} \right ) \right
   ]^{1/2},
   \\
 \label{ode-cauchy-data-right}
@@ -351,7 +329,7 @@ solution to the Cauchy problem
   (f')^{2}
   = \frac{2}{3} f
   \left( M -f \right )
-  \left [ f +M  \right ],
+  \left [ f +M + \frac{3}{2}  \right ],
   \\
    f(0) =0.
 \end{gather}
@@ -385,10 +363,22 @@ estimate \eqref{f-bound} follows by construction.
   %
   \begin{equation}
   \begin{split}
-    \ell \sim M^{-1/2}.
+    \ell = c M^{-1/2}.
   \end{split}
   \label{period-est}
   \end{equation}
+  %
+  where
+  %
+  %
+  \begin{equation}
+  \begin{split}
+ c =  \int_{0}^{1} \frac{1}{ \left\{ \frac{2}{3}g(1-g)
+\left[ g + 1 \right] \right\}^{1/2}} dg
+  \end{split}
+  \label{constant-val}
+  \end{equation}
+  %
   %
   %
 \label{lem:period-est}
@@ -410,61 +400,23 @@ inverse $x = x(f)$, and so by the fundamental theorem of calculus and
 & = \int_{0}^{M} \frac{dx}{df} df
 \\
 & = \int_{0}^{M} \frac{1}{ \left\{ \frac{2}{3}f(M-f)
-\left[ f + M \right] \right\}^{1/2}} df.
+\left[ f + M + \frac{3}{2}\right] \right\}^{1/2}} df.
 \end{split}
 \end{equation*}
 %
+Using the change of variable $g = f/m$, it follows that 
 %
-Bounding from above, we have
 %
 %
 \begin{equation*}
 \begin{split}
-\ell
-& \le \frac{\sqrt{\frac{3}{2}}}{M^{1/2}} \int_{0}^{M} \frac{1}{f^{1/2}(M-f)^{1/2}}df
-\\
-& = \frac{\sqrt{\frac{3}{2}}}
-{M^{1/2}} 
-\\
-& \times \left[ \int_{0}^{\frac{M}{2}} \frac{1}{f^{1/2}(M-f)^{1/2}}df 
-+ \int_{\frac{M}{2}}^{M} \frac{1}{f^{1/2}(M-f)^{1/2}}df
-\right]
-\\
-& = \frac{\sqrt{\frac{3}{2}}}
-{M^{1/2}} 
-\\
-& \times \frac{1}{\left( \frac{M}{2} \right)^{1/2}} \left[ \int_{m}^{\frac{M}{2}} \frac{1}{f^{1/2}}df 
-+ \int_{\frac{M}{2}}^{M} \frac{1}{(M-f)^{1/2}}df
-\right]
-\\
-& = \frac{4 \sqrt{\frac{3}{2}}}
-{M^{1/2}} 
-\\
-& \le 2 \sqrt{6} M ^{-1/2}.
+\ell & =  M^{-1/2} \int_{0}^{1} \frac{1}{ \left\{ \frac{2}{3}g(1-g)
+\left[ g + 1 \right] \right\}^{1/2}} dg
 \end{split}
 \end{equation*}
 %
 %
-Bounding from below, we have
-%
-%
-\begin{equation*}
-\begin{split}
-\ell
-& \ge  \frac{1}{ \left\{ \frac{2}{3}M^{2}
-\left( 2M 
-\right) \right\}^{1/2}} \int_{0}^{M} df
-\\
-& = \frac{1}{\left\{ \frac{2}{3}
-\left( 2M 
-\right) \right\}^{1/2}} 
-\\
-& = \frac{\sqrt{3}}{2} M^{-1/2}
-\end{split}
-\end{equation*}
-%
-%
-which completes the proof.
+completing the proof.
 \end{proof}
 %
 %
@@ -631,6 +583,148 @@ For $M \ge 1$,
   concluding the proof.
 \end{proof}
 %
+%
+Recall that for fixed $M > 0$, Lemma \ref{lem:period-est} gives us a
+solution $f_{M}$ to the Cauchy problem
+\eqref{2nd-order-ode}-\eqref{2nd-order-ode-data} with period $2 \ell_{M} =
+2cM^{-1/2}$, where $c$ is given by
+\eqref{constant-val}. It follows immediately that for $n \in \mathbb{N}$ we have 
+%
+%
+\begin{equation*}
+\begin{split}
+  \ell_{M} = \frac{2\pi}{n}, \quad \text{where} \  M = \sqrt{\frac{nc}{2 \pi}}.
+\end{split}
+\end{equation*}
+%
+%
+This fact will prove crucial in proving non-uniform dependence. Note that the
+$B_{4}$ equation admits the scaling
+%
+%
+\begin{equation}
+\begin{split}
+  u_{\lambda}(x,t) = \lambda u(\lambda x, \lambda^{2} t).
+\end{split}
+\label{scaling}
+\end{equation}
+%
+%
+Let 
+%
+%
+\begin{align}
+  & u_{n} = f_{n}(x-t),
+  \\
+  & v_{n} = c_{n}f_{n}(c_{n} x - c_{n}^{2}t). 
+\label{cand-solns}
+\end{align}
+%
+where
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{n} = 1- 1/n
+\end{split}
+\end{equation*}
+%
+%
+%
+\subsection{Boundedness}
+%We first define the Fourier transform of a $2 \ell$
+%periodic function $f(x)$. First note
+%that the set
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\left\{ e^{\pi i kx/\ell} \right\}_{k \in \zz}
+%\end{split}
+%\end{equation*}
+%%
+%%
+%is a basis for $L^{2}(-\ell, \ell)$. Therefore, we have
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %f(x) = \sum_{k \in \zz} c_{k} e^{ \pi ikx / \ell}.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%To find $c_{k}$, we multiply both sides by $e^{- \pi imx / \ell}$, integrate,
+%and apply Fubini to obtain
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\int_{-\ell}^{\ell} e^{- \pi imx / \ell}f(x) dx
+  %& = \sum_{k \in \zz}
+  %\int_{-\ell}^{\ell} c_{k}e^{- \pi i x(m-k)}
+  %\\
+  %& = c_{m} 2 \ell.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%Hence, 
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\wh{f}(k) \doteq  c_{k} = \frac{1}{2 \ell} \int_{-\ell}^{\ell} e^{- \pi ikx/
+  %\ell}f(x) dx.
+%\end{split}
+%\end{equation*}
+%
+%
+Using change of variables, we note that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{f_{n}(a \cdot - b t)}(\xi)
+  & = \int_{-\pi}^{\pi} e^{-ix \xi} f_{n}(ax - bt)dx
+  \\
+  & = \int_{-\pi - \frac{b}{a}t}^{\pi - \frac{b}{a}t} e^{-i \xi(x +
+  \frac{b}{a}t)} f_{n}(ax) dx
+  \\
+  & = \int_{-\pi}^{\pi } e^{-i \xi(x +
+  \frac{b}{a}t)} f_{n}(ax) dx
+  \\
+  & = e^{-i\xi bt/a} \int_{-\pi}^{\pi} e^{-ix \xi} f_{n}(ax) dx
+  \\
+  & = \frac{1}{a} e^{-i \xi bt/a} \int_{-\pi a}^{\pi a} e^{-ix
+  \xi /a}f_{n}(x) dx
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+%
+<++>
+
+
+have
+%
+%
+\begin{equation}
+\begin{split}
+  \| u_{n} \|_{H^{s}}
+  & = \| f_{n}(\cdot - t) \|_{H^{s}}
+  \\
+  & = \| e^{-it}<++> \|<++>
+\end{split}
+\label{<++>}
+\end{equation}
+%
+%
+<++>
+\label{ssec:boundedness}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
