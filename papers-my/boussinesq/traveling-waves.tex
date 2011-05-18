@@ -8,6 +8,7 @@
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
+\usepackage{graphicx}
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \setlength{\parindent}{0in} %no indentation of paragraphs after section title
 \renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
@@ -93,7 +94,7 @@ urlcolor=blue,
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{05/09/2011}
+\date{05/17/2011}
 %
 %
 \subjclass[2000]{35B30, 35Q55, 35Q72}
@@ -118,7 +119,7 @@ We are looking for functions $f(x)$ such that
 \begin{equation}
   \label{ansatz}
 \begin{split}
-u(x,t) = f(x-t)
+u(x,t) = f(x-ct)
 \end{split}
 \end{equation}
 %
@@ -139,45 +140,43 @@ Substituting \eqref{ansatz} into \eqref{bous-eqn} gives
 %
 \begin{equation}
 \begin{split}
- f'' + f'''' + (f^{2})'' = 0
+  c^{2} f'' + f'''' + (f^{2})'' = 0
 \end{split}
 \label{post-sub}
 \end{equation}
 %
 %
-where $$f^{(k)} = f^{(k)}(x-t) = \frac{d^{k}f}{dx^{k}} \Big |_{x-t}.$$ 
+where $$f^{(k)} = f^{(k)}(x-ct) = \frac{d^{k}f}{dx^{k}} \Big |_{x-ct}.$$ 
 Integrating \eqref{post-sub} twice with repspect to $x$, we obtain
 %
 %
 \begin{equation}
   \label{pre-const-elim}
 \begin{split}
-  f'' + f + f^{2} + ax +b = 0, \quad a,b \in \rr.
+  f'' + c^{2} f + f^{2} + ax +b = 0, \quad a,b \in \rr.
 \end{split}
 \end{equation}
 %
 %
-
 %
 %
-In order to construct smooth traveling wave solutions from $f$, we assume that
-$f, f'$ are integrable. This implies $a =0$, and so  
- \eqref{pre-const-elim} gives
+Assuming $a = 0$, we obtain
 %
 \begin{equation}
   \label{2nd-order-ode-pre}
 \begin{split}
-  f'' = - f^{2} -f -b.
+  f'' = - f^{2} -c^{2} f -b.
 \end{split}
 \end{equation}
 %
 %
-Multiplying both sides of \eqref{2nd-order-ode-pre} by $f'$ and integrating,  we obtain 
+Multiplying both sides of \eqref{2nd-order-ode-pre} by $f'$ and integrating then
+gives 
 %
 \begin{equation}
   \label{first-order-ode}
 \begin{split}
-  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2}f^{2} + 3bf +d
+  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2} c^{2} f^{2} + 3bf +d
   \right ].
 \end{split}
 \end{equation}
@@ -191,10 +190,10 @@ completely determined by the system
 %
 \begin{equation*}
 \begin{split}
-  & 0 = -\frac{2}{3} \left [ M^{3} + \frac{3}{2} M^{2} + 3bM + d
+  & 0 = -\frac{2}{3} \left [ M^{3} + \frac{3}{2} c^{2} M^{2} + 3bM + d
   \right ]
   \\
-  & 0 = -\frac{2}{3} \left [ m^{3} + \frac{3}{2} m^{2} + 3bm + d
+  & 0 = -\frac{2}{3} \left [ m^{3} + \frac{3}{2} c^{2} m^{2} + 3bm + d
   \right ]
 \end{split}
 \end{equation*}
@@ -205,10 +204,10 @@ giving
 \begin{equation}
   \label{b-val}
 \begin{split}
-  & b  = -\frac{1}{3}\left( m^{2} + mM + M^{2} \right) - \frac{1}{2}\left( m + M
+  & b  = -\frac{1}{3}\left( m^{2} + mM + M^{2} \right) - \frac{1}{2}c^{2}\left( m + M
   \right)
   \\
-  & d = -M\left( 2M^{2} + 3M + mM + \frac{3}{2}m + m^{2} \right).
+  & d = -M\left( m^{2} + mM + \frac{3}{2}c^{2} m \right).
 \end{split}
 \end{equation}
 %
@@ -242,7 +241,7 @@ we see that \eqref{first-order-ode} has the factorization
   \left ( f'\right )^{2}
   = \frac{2}{3} \left (f-m\right )
   \left( M-f\right )
-  \left [ f + m + M + \frac{3}{2} \right ]
+  \left [ f + m + M + \frac{3}{2}c^{2} \right ]
 \end{split}
 \label{ode-fact}
 \end{equation}
@@ -262,12 +261,12 @@ Note that any solution to \eqref{ode-fact} is a solution to
 %
 %
 \begin{lemma}
-  For fixed $M > m = 0$,  there exists a positive
+  For fixed $M > m = 0$ and $c \in \rr$,  there exists a positive
   number $\ell = \ell(m, M)$ and an even $2\ell$-periodic analytic function $f =
   f(x)$ which solves the initial value problem
 \begin{align}
   \label{2nd-order-ode}
-& f'' = - f^{2} - \frac{1}{3} M^{2} - \frac{1}{2}M
+  & f'' = -f^{2} - c^{2} f + \frac{1}{3} M^{2} + \frac{1}{2}c^{2} M
 \\
 \label{2nd-order-ode-data}
 & f(0)=0, \quad f'(0) = 0.
@@ -292,48 +291,34 @@ Furthermore, the function
 %
 %
 \begin{proof}
-By the fundamental ode theorem, the Cauchy problem
+By the Picard-Lindel\"of theorem, the Cauchy problem
 \begin{gather}
   \label{ode-cauchy-left}
    f'
   = -\left [ \frac{2}{3} f
   \left( M -f \right )
-  \left ( f +M + \frac{3}{2}\right ) \right
+  \left ( f +M + \frac{3}{2}c^{2}\right ) \right
   ]^{1/2},
   \\
 \label{ode-cauchy-data-left}
-   f(0) =0
+f(0) = M-\ee
 \end{gather}
-admits a unique solution in the domain $-\ell \le x \le 0$, where $\ell =
-\ell(m, M)$ and $f(-\ell) = M$. Reflecting this solution across the $y$-axis
-gives the unique solution to the Cauchy problem 
-\begin{gather}
-  \label{ode-cauchy-right}
-   f'
-  = \left [ \frac{2}{3} f
-  \left( M -f \right )
-  \left ( f +M + \frac{3}{2} \right ) \right
-  ]^{1/2},
-  \\
-\label{ode-cauchy-data-right}
-   f(0) =0
-\end{gather}
-in the domain $0 \le x \le \ell$, where $f(\ell) = M$. 
-Changing the
-initial data from $f(0) =0$ to $f(k\ell)=0$ where $k \in \left\{ 2, 4, 6,\dots
-\right\}$, repeating the process above, and then joining the resulting curves
-together at the points $n \ell$, where $n \in \left\{ 1,3,5,\dots \right\}$, we
-obtain a $2\ell$-periodic
+admits a unique non-trivial solution in the domain $\eta \le f^{-1}(M- \ee) - \eta$.
+From the form of \eqref{ode-cauchy-left}, we see that this solution extends to a
+nontrivial solution of \eqref{ode-cauchy-left} in the domain $0 \le x \le \ell$,
+where $\ell = f^{-1}(M)$. Reflecting this solution across the $y$-axis, and then
+taking the periodic extension of resulting $y$-symmetric graph, we obtain 
+obtain a non-trivial $2\ell$-periodic
 solution to the Cauchy problem
 \begin{gather}
   (f')^{2}
   = \frac{2}{3} f
   \left( M -f \right )
-  \left [ f +M + \frac{3}{2}  \right ],
+  \left [ f +M + \frac{3}{2}c^{2}  \right ],
   \\
-   f(0) =0.
+   f(0) =0
 \end{gather}
-Hence, it is a solution to the Cauchy problem
+which solves 
 \eqref{2nd-order-ode}-\eqref{2nd-order-ode-data}. Analyticity follows from the
 Cauchy-Kovalevskaya theorem (the right hand side of \eqref{2nd-order-ode} is an
 analytic function of $f$). The
@@ -342,7 +327,23 @@ estimate \eqref{f-bound} follows by construction.
 %
 \end{proof}
 %
+\newpage
 %
+\begin{figure}[h!]
+  \caption{Solution for $b=1$, $c=1$. We have blow up as $x \to \infty$. May be
+  possible to produce a cuspon if we take the periodic extension (the derivative
+  of the solution blows up very rapidly). Haven't looked
+  into it yet.}
+    \includegraphics[width=20cm, height=20cm]{c1b1}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h!]
+  \caption{Solution for $b=1$, $c=6$. Soliton.}
+  \includegraphics[width=15cm, height=20cm]{c6b1-soliton}
+\end{figure}
+
 %
 %
 %
@@ -363,22 +364,13 @@ estimate \eqref{f-bound} follows by construction.
   %
   \begin{equation}
   \begin{split}
-    \ell = c M^{-1/2}.
+    \ell \sim M^{-1/2}.
   \end{split}
   \label{period-est}
   \end{equation}
   %
-  where
   %
-  %
-  \begin{equation}
-  \begin{split}
- c =  \int_{0}^{1} \frac{1}{ \left\{ \frac{2}{3}g(1-g)
-\left[ g + 1 \right] \right\}^{1/2}} dg
-  \end{split}
-  \label{constant-val}
-  \end{equation}
-  %
+  where $\ell$ varies continuously with respect to $M$.
   %
   %
 \label{lem:period-est}
@@ -388,9 +380,9 @@ estimate \eqref{f-bound} follows by construction.
 %
 %
 \begin{proof}
+%
 For $0 < x < \ell$, we have $f'(x) > 0$. Hence, the function $f = f(x)$ has an
-inverse $x = x(f)$, and so by the fundamental theorem of calculus and
-\eqref{ode-cauchy-right}
+inverse $x = x(f)$, and so by the fundamental theorem of calculus 
 %
 %
 \begin{equation*}
@@ -400,23 +392,61 @@ inverse $x = x(f)$, and so by the fundamental theorem of calculus and
 & = \int_{0}^{M} \frac{dx}{df} df
 \\
 & = \int_{0}^{M} \frac{1}{ \left\{ \frac{2}{3}f(M-f)
-\left[ f + M + \frac{3}{2}\right] \right\}^{1/2}} df.
+\left[ f + M + \frac{3}{2} c^{2} \right] \right\}^{1/2}} df.
 \end{split}
 \end{equation*}
 %
-Using the change of variable $g = f/m$, it follows that 
-%
+Bounding from above, we have
 %
 %
 \begin{equation*}
 \begin{split}
-\ell & =  M^{-1/2} \int_{0}^{1} \frac{1}{ \left\{ \frac{2}{3}g(1-g)
-\left[ g + 1 \right] \right\}^{1/2}} dg
+\ell
+& \le \frac{\sqrt{\frac{3}{2}}}{M^{1/2}} \int_{0}^{M} \frac{1}{f^{1/2}(M-f)^{1/2}}df
+\\
+& = \frac{\sqrt{\frac{3}{2}}}
+{M^{1/2}} 
+\\
+& \times \left[ \int_{0}^{\frac{M}{2}} \frac{1}{f^{1/2}(M-f)^{1/2}}df 
++ \int_{\frac{M}{2}}^{M} \frac{1}{f^{1/2}(M-f)^{1/2}}df
+\right]
+\\
+& = \frac{\sqrt{\frac{3}{2}}}
+{M^{1/2}} 
+\\
+& \times \frac{1}{\left( \frac{M}{2} \right)^{1/2}} \left[ \int_{0}^{\frac{M}{2}} \frac{1}{f^{1/2}}df 
++ \int_{\frac{M}{2}}^{M} \frac{1}{(M-f)^{1/2}}df
+\right]
+\\
+& = \frac{4 \sqrt{\frac{3}{2}}}
+{M^{1/2}} 
+\\
+& \le 2 \sqrt{6} M ^{-1/2}.
 \end{split}
 \end{equation*}
 %
 %
-completing the proof.
+Bounding from below, we have
+%
+%
+\begin{equation*}
+\begin{split}
+\ell
+& \ge  \frac{1}{ \left\{ \frac{2}{3}M^{2}
+\left( 2M 
+\right) \right\}^{1/2}} \int_{0}^{M} df
+\\
+& = \frac{1}{\left\{ \frac{2}{3}
+\left( 2M 
+\right) \right\}^{1/2}} 
+\\
+& = \frac{\sqrt{3}}{2} M^{-1/2}
+\end{split}
+\end{equation*}
+%
+The continuity of $\ell = \ell(M)$ follows immediately follows from the fact
+that $d\ell /dM$is bounded, which can be shown using the estimates above and
+the Leibniz integral rule. This completes the proof.
 \end{proof}
 %
 %
@@ -454,11 +484,9 @@ The proof will be by induction. Note that
 \begin{equation*}
 \begin{split}
   | f' |
-  & \le \sqrt{\frac{2}{3}} \left[ 2M^{3} \right]^{1/2}
+  & \lesssim \left [ M^{2}(2M + \frac{3}{2}c^{2}) \right]^{1/2}
   \\
-  & = \frac{2}{\sqrt{3}}M^{3/2}
-  \\
-  & = \frac{2}{\sqrt{3}}M^{1 + 1/2}.
+  & \lesssim M^{1 + 1/2}
 \end{split}
 \end{equation*}
 %
@@ -468,13 +496,14 @@ and
 \begin{equation*}
 \begin{split}
 | f'' |
-& = | -f^{2} - \frac{1}{3}(M^{2} - M) |
+& = | -f^{2} - c^{2} f - \frac{1}{3} M^{2} - \frac{1}{2}c^{2} M
+ |
 \\
-& \le | f |^{2} + \frac{1}{3}| M^{2} - M |
+& \le | f |^{2} + c^{2} | f | + \frac{1}{3}M^{2} + \frac{1}{2}c^{2} M
 \\
-& \le 2M^{2} + M
+& \le M ^{2} +  c^{2} M  + \frac{1}{3}M^{2} + \frac{1}{2}c^{2} M
 \\
-& \le 3M^{1 + 2/2}
+& \lesssim M^{1 + 2/2}
 \end{split}
 \end{equation*}
 %
@@ -484,11 +513,11 @@ and
 \begin{equation*}
 \begin{split}
 | f''' | 
-& = 2 |ff'  |
+& = 2 |f+1| | f' |
 \\
-& \le 2M\left( \frac{2}{\sqrt{3}} M^{3/2} \right)
+& \lesssim (M+1)M^{3/2}
 \\
-& = \frac{4}{\sqrt{3}} M^{1 + 3/2}.
+& \lesssim M^{1 + 3/2}.
 \end{split}
 \end{equation*}
 %
@@ -505,9 +534,10 @@ Using \eqref{2nd-order-ode}, we have
   & =
   (f'')^{(n-2)}
   \\
-  & = \left( -f^{2} - \frac{1}{3}(M^{2} - M) \right)^{(n-2)}
+  & = \left( -f^{2} - c^{2} f + \frac{1}{3} M^{2} + \frac{1}{2}c^{2} M
+ \right)^{(n-2)}
   \\
-  & = -(f^{2})^{(n-2)}.
+  & = -(f^{2})^{(n-2)} - c^{2}f^{(n-2)}.
 \end{split}
 \end{equation*}
 %
@@ -519,14 +549,15 @@ Hence, by the Leibniz rule and our inductive assumption, we have
 \begin{split}
   | f^{(n)} |
   & \le  \sum_{p=0}^{n-2} \binom{n-2}{p} | f^{(n-2-p)} | |
-  f^{(p)} |
+  f^{(p)} | + c^{2} | f^{(n-2)} |
   \\
   & \le  \sum_{p=0}^{n-2} \binom{n-2}{p} c_{n-2-p}M^{1 +
-  \frac{n-2-p}{2}}c_{p}M^{1 + \frac{p}{2}}
+  \frac{n-2-p}{2}}c_{p}M^{1 + \frac{p}{2}} + c_{n-2} M^{1 + \frac{n-2}{2}}
   \\
   & = M^{1 + \frac{n}{2}} \sum_{p=0}^{n-2} \binom{n-2}{p} c_{n-2-p}c_{p}
+  + c_{n-2} M^{\frac{n}{2}}
   \\
-  & = c_{n-2}M^{1 + n/2}
+  & \le C M^{1 + n/2}, \qquad M \ge 1
 \end{split}
 \end{equation*}
 %
@@ -586,145 +617,122 @@ For $M \ge 1$,
 %
 Recall that for fixed $M > 0$, Lemma \ref{lem:period-est} gives us a
 solution $f_{M}$ to the Cauchy problem
-\eqref{2nd-order-ode}-\eqref{2nd-order-ode-data} with period $2 \ell_{M} =
-2cM^{-1/2}$, where $c$ is given by
-\eqref{constant-val}. It follows immediately that for $n \in \mathbb{N}$ we have 
+\eqref{2nd-order-ode}-\eqref{2nd-order-ode-data} with period $2 \ell_{M} \sim
+M^{-1/2}$. From the continuity of $\ell$ with respect to $M$, it follows that for $n \in \mathbb{N}$ we have 
 %
 %
 \begin{equation*}
 \begin{split}
-  \ell_{M} = \frac{2\pi}{n}, \quad \text{where} \  M = \sqrt{\frac{nc}{2 \pi}}.
+  \ell_{M} = \frac{2\pi}{n} \quad \text{for some } M \sim \sqrt{n}.
 \end{split}
 \end{equation*}
 %
 %
-This fact will prove crucial in proving non-uniform dependence. Note that the
-$B_{4}$ equation admits the scaling
-%
-%
-\begin{equation}
-\begin{split}
-  u_{\lambda}(x,t) = \lambda u(\lambda x, \lambda^{2} t).
-\end{split}
-\label{scaling}
-\end{equation}
-%
-%
-Let 
-%
-%
-\begin{align}
-  & u_{n} = f_{n}(x-t),
-  \\
-  & v_{n} = c_{n}f_{n}(c_{n} x - c_{n}^{2}t). 
-\label{cand-solns}
-\end{align}
-%
-where
-%
-%
-\begin{equation*}
-\begin{split}
-  c_{n} = 1- 1/n
-\end{split}
-\end{equation*}
-%
-%
-%
-\subsection{Boundedness}
-%We first define the Fourier transform of a $2 \ell$
-%periodic function $f(x)$. First note
-%that the set
+%This fact will prove crucial in proving non-uniform dependence. Note that the
+%$B_{4}$ equation admits the scaling
 %%
 %%
-%\begin{equation*}
+%\begin{equation}
 %\begin{split}
-  %\left\{ e^{\pi i kx/\ell} \right\}_{k \in \zz}
+  %u_{\lambda}(x,t) = \lambda u(\lambda x, \lambda^{2} t).
 %\end{split}
-%\end{equation*}
+%\label{scaling}
+%\end{equation}
 %%
 %%
-%is a basis for $L^{2}(-\ell, \ell)$. Therefore, we have
+%Let 
 %%
 %%
-%\begin{equation*}
-%\begin{split}
-  %f(x) = \sum_{k \in \zz} c_{k} e^{ \pi ikx / \ell}.
-%\end{split}
-%\end{equation*}
-%%
-%%
-%To find $c_{k}$, we multiply both sides by $e^{- \pi imx / \ell}$, integrate,
-%and apply Fubini to obtain
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\int_{-\ell}^{\ell} e^{- \pi imx / \ell}f(x) dx
-  %& = \sum_{k \in \zz}
-  %\int_{-\ell}^{\ell} c_{k}e^{- \pi i x(m-k)}
+%\begin{align}
+  %& u_{n} = f_{n}(x-t),
   %\\
-  %& = c_{m} 2 \ell.
-%\end{split}
-%\end{equation*}
+  %& v_{n} = c_{n}f_{n}(c_{n} x - c_{n}^{2}t). 
+%\label{cand-solns}
+%\end{align}
 %%
-%%
-%Hence, 
+%where
 %%
 %%
 %\begin{equation*}
 %\begin{split}
-  %\wh{f}(k) \doteq  c_{k} = \frac{1}{2 \ell} \int_{-\ell}^{\ell} e^{- \pi ikx/
-  %\ell}f(x) dx.
+  %c_{n} = 1- 1/n.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%%
+%\subsection{Boundedness}
+%%We first define the Fourier transform of a $2 \ell$
+%%periodic function $f(x)$. First note
+%%that the set
+%%%
+%%%
+%%\begin{equation*}
+%%\begin{split}
+  %%\left\{ e^{\pi i kx/\ell} \right\}_{k \in \zz}
+%%\end{split}
+%%\end{equation*}
+%%%
+%%%
+%%is a basis for $L^{2}(-\ell, \ell)$. Therefore, we have
+%%%
+%%%
+%%\begin{equation*}
+%%\begin{split}
+  %%f(x) = \sum_{k \in \zz} c_{k} e^{ \pi ikx / \ell}.
+%%\end{split}
+%%\end{equation*}
+%%%
+%%%
+%%To find $c_{k}$, we multiply both sides by $e^{- \pi imx / \ell}$, integrate,
+%%and apply Fubini to obtain
+%%%
+%%%
+%%\begin{equation*}
+%%\begin{split}
+  %%\int_{-\ell}^{\ell} e^{- \pi imx / \ell}f(x) dx
+  %%& = \sum_{k \in \zz}
+  %%\int_{-\ell}^{\ell} c_{k}e^{- \pi i x(m-k)}
+  %%\\
+  %%& = c_{m} 2 \ell.
+%%\end{split}
+%%\end{equation*}
+%%%
+%%%
+%%Hence, 
+%%%
+%%%
+%%\begin{equation*}
+%%\begin{split}
+  %%\wh{f}(k) \doteq  c_{k} = \frac{1}{2 \ell} \int_{-\ell}^{\ell} e^{- \pi ikx/
+  %%\ell}f(x) dx.
+%%\end{split}
+%%\end{equation*}
+%%
+%%
+%Using change of variables, we note that 
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\wh{f_{n}(a \cdot - b t)}(\xi)
+  %& = \int_{-\pi}^{\pi} e^{-ix \xi} f_{n}(ax - bt)dx
+  %\\
+  %& = \int_{-\pi - \frac{b}{a}t}^{\pi - \frac{b}{a}t} e^{-i \xi(x +
+  %\frac{b}{a}t)} f_{n}(ax) dx
+  %\\
+  %& = \int_{-\pi}^{\pi } e^{-i \xi(x +
+  %\frac{b}{a}t)} f_{n}(ax) dx
+  %\\
+  %& = e^{-i\xi bt/a} \int_{-\pi}^{\pi} e^{-ix \xi} f_{n}(ax) dx
 %\end{split}
 %\end{equation*}
 %
 %
-Using change of variables, we note that 
-%
-%
-\begin{equation*}
-\begin{split}
-  \wh{f_{n}(a \cdot - b t)}(\xi)
-  & = \int_{-\pi}^{\pi} e^{-ix \xi} f_{n}(ax - bt)dx
-  \\
-  & = \int_{-\pi - \frac{b}{a}t}^{\pi - \frac{b}{a}t} e^{-i \xi(x +
-  \frac{b}{a}t)} f_{n}(ax) dx
-  \\
-  & = \int_{-\pi}^{\pi } e^{-i \xi(x +
-  \frac{b}{a}t)} f_{n}(ax) dx
-  \\
-  & = e^{-i\xi bt/a} \int_{-\pi}^{\pi} e^{-ix \xi} f_{n}(ax) dx
-  \\
-  & = \frac{1}{a} e^{-i \xi bt/a} \int_{-\pi a}^{\pi a} e^{-ix
-  \xi /a}f_{n}(x) dx
-\end{split}
-\end{equation*}
 %
 %
 %
 %
-%
-%
-<++>
-
-
-have
-%
-%
-\begin{equation}
-\begin{split}
-  \| u_{n} \|_{H^{s}}
-  & = \| f_{n}(\cdot - t) \|_{H^{s}}
-  \\
-  & = \| e^{-it}<++> \|<++>
-\end{split}
-\label{<++>}
-\end{equation}
-%
-%
-<++>
-\label{ssec:boundedness}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -766,7 +774,7 @@ The analog of \eqref{first-order-ode} in this case is
 \begin{equation}
   \label{hh}
 \begin{split}
-  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2}(1-c^{2})f^{2} - 3bf +d \right ]
+  (f')^{2} = -\frac{2}{3} \left [ f^{3} - \frac{3}{2}(1-c^{2})f^{2} + 3bf +d \right ]
 \end{split}
 \end{equation}
 %
@@ -778,7 +786,7 @@ We may rewrite \eqref{hh} as
 \begin{equation}
   \label{first-order-rewritten}
 \begin{split}
-  \frac{(f')^{2}}{f} = -\frac{2}{3}\left[ f^{2} + \frac{3}{2}(1-c^{2})f- 3b -
+  \frac{(f')^{2}}{f} = -\frac{2}{3}\left[ f^{2} - \frac{3}{2}(1-c^{2})f+ 3b -
   \frac{3d}{2f}\right].
 \end{split}
 \end{equation}
@@ -808,7 +816,7 @@ Coupling this with our earlier assumption of $\lim_{| x | \to \infty} f' = \lim_
 \end{equation}
 %
 %
-Assume $$0 \le |c| < 1 \ \text{and} \ 0 \le f \le \frac{3}{2}(1-c^{2}).$$ 
+Assume $$f \le \frac{3}{2}(1-c^{2}).$$ 
 %
 %
 Then
@@ -821,12 +829,12 @@ Then
 \end{equation*}
 %
 %
-Letting $y = f(x)$, this gives
+or
 %
 %
 \begin{equation*}
 \begin{split}
-\frac{dy}{ f \left[ \frac{3}{2}(1 - c^{2}) -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
+\frac{df}{ f \left[ \frac{3}{2}(1 - c^{2}) -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
 dx.
 \end{split}
 \end{equation*}
@@ -835,12 +843,13 @@ dx.
 Integrating both sides, and using the formula
 %
 %
-\begin{equation*}
+\begin{equation}
+  \label{key-int-form}
 \begin{split}
   \int \frac{dy}{y \sqrt{a + by}} = -\frac{2}{ \sqrt{a}} \tanh^{-1}
   \frac{\sqrt{a+ by}}{ \sqrt{a}}
 \end{split}
-\end{equation*}
+\end{equation}
 %
 %
 we obtain
@@ -849,7 +858,7 @@ we obtain
 \begin{equation*}
 \begin{split}
   -\frac{2}{\sqrt{\frac{3}{2}(1-c^{2})}} \tanh^{-1}
-  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - y}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
+  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - f}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
   \sqrt{\frac{2}{3}}x + A, \quad A \in \rr
 \end{split}
 \end{equation*}
@@ -859,7 +868,7 @@ or
 \begin{equation*}
 \begin{split}
   \tanh^{-1}
-  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - y}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
+  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - f}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
   - \frac{\sqrt{(1-c^{2})}}{2}x + B, \quad B \in \rr
 \end{split}
 \end{equation*}
@@ -869,7 +878,7 @@ Assume that
 %
 \begin{equation*}
 \begin{split}
-  y(x_{0}) = \frac{3}{2}(1-c^{2})
+  f(x_{0}) = \frac{3}{2}(1-c^{2})
 \end{split}
 \end{equation*}
 %
@@ -899,7 +908,7 @@ Therefore,
 %
 \begin{equation*}
 \begin{split}
-  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - y}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
+  \frac{\sqrt{\frac{3}{2}(1-c^{2}) - f}}{\sqrt{\frac{3}{2}(1-c^{2})}} =
   \tanh \left [- \frac{\sqrt{(1-c^{2})}}{2}(x -x_{0}) \right ] 
 \end{split}
 \end{equation*}
@@ -911,7 +920,7 @@ or
 %
 \begin{equation*}
 \begin{split}
-  y = \frac{3}{2}(1-c^{2}) \left \{ 1 - \tanh^{2} \left [- \frac{\sqrt{(1-c^{2})}}{2}(x -x_{0})
+  f = \frac{3}{2}(1-c^{2}) \left \{ 1 - \tanh^{2} \left [- \frac{\sqrt{(1-c^{2})}}{2}(x -x_{0})
   \right ] \right \}
   \end{split}
 \end{equation*}
@@ -933,13 +942,14 @@ we conclude that
 %
 \begin{equation*}
 \begin{split}
-  y(x) = \frac{3}{2}(1-c^{2}) \sech^{2} \left [\frac{\sqrt{(1-c^{2})}}{2}(x -x_{0})
+  f(x) = \frac{3}{2}(1-c^{2}) \sech^{2} \left [\frac{\sqrt{(1-c^{2})}}{2}(x -x_{0})
   \right ]. 
   \end{split}
 \end{equation*}
 %
 %
 %
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -949,11 +959,14 @@ we conclude that
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Why the $B_{4}$ Equation Doesn't Seem to Admit Solitons} 
+\section{$B_{4}$ Solitons} 
 \label{sec:B4-soliton-fail}
 %
 %
-The analog of \eqref{bous-ode-simp} for the $B_{4}$ ivp
+We have to be a bit more clever when computing solitons for $B_{4}$. To see why,
+we follow the method of computing solitons for the Boussinesq, and see what
+happens. Proceeding, we first note that the
+analog of \eqref{bous-ode-simp} for the $B_{4}$ ivp
 \begin{equation}
   \label{b4}
 \begin{split}
@@ -964,7 +977,7 @@ is
 \begin{equation}
   \label{b4-ode-simp}
 \begin{split}
-  (f')^{2} = -\frac{2}{3} f^{2} \left [ \frac{3}{2}c^{2} +f \right ]. 
+  (f')^{2} = -\frac{2}{3} f^{2} \left [ f + \frac{3}{2}c^{2}\right ]. 
 \end{split}
 \end{equation}
 Assume $f \le -\frac{3}{2}c^{2}$. Then 
@@ -976,12 +989,12 @@ Assume $f \le -\frac{3}{2}c^{2}$. Then
 \end{equation*}
 %
 %
-Letting $y = f(x)$, this gives
+or
 %
 %
 \begin{equation*}
 \begin{split}
-\frac{dy}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
+\frac{df}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
 dx
 \end{split}
 \end{equation*}
@@ -993,18 +1006,18 @@ Integrating both sides, we obtain
 %
 \begin{equation*}
 \begin{split}
-\int \frac{dy}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
+\int \frac{df}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
 x + A, \quad A \in \rr
 \end{split}
 \end{equation*}
 %
 %
-Using the substitution $y = -\frac{3}{2}c^{2}\sec^{2} \theta$, we see that
+Using the substitution $f = -\frac{3}{2}c^{2}\sec^{2} \theta$, we see that
 %
 %
 \begin{equation*}
 \begin{split}
-\int \frac{dy}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} 
+\int \frac{df}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} 
 & = \int \frac{-3 c^{2} \sec^{2}\theta \tan \theta d
 \theta}{-\frac{3}{2}c^{2} \sec^{2} \theta \left[ -\frac{3}{2}c^{2} +
 \frac{3}{2}c^{2} \sec^{2} \theta \right]^{1/2}}
@@ -1013,7 +1026,7 @@ Using the substitution $y = -\frac{3}{2}c^{2}\sec^{2} \theta$, we see that
 \\
 & = \frac{4}{3c^{2}} \theta
 \\
-& = \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}y \right )
+& = \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}f \right )
 \end{split}
 \end{equation*}
 %
@@ -1023,13 +1036,168 @@ and so
 %
 \begin{equation*}
 \begin{split}
- \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}y \right )
+ \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}f \right )
 = \sqrt{\frac{2}{3}}
 x + A
 \end{split}
 \end{equation*}
 %
+or
 %
-implying that $y$ is periodic. But we assumed a priori that $y(x) \to 0$ as $x
-\to \infty$. Since $y \not \equiv 0$, we have a contradiction.
+%
+\begin{equation*}
+\begin{split}
+  f = -\frac{3c^{2}}{2} \sec^{2}\left[ \frac{3c^{2}}{4} \sqrt{\frac{2}{3}} \left (x
+  - x_{0} \right)\right].
+\end{split}
+\end{equation*}
+%
+%
+which blows up as $$ \left[ \frac{3c^{2}}{4} \sqrt{\frac{2}{3}} (x-x_{0})
+\right] \to \frac{\pi}{2}.$$
+%
+%
+Hence, we obtain solitons following a different route. Note that the analog for 
+\eqref{hh} for $B_{4}$ is
+\begin{equation}
+  \label{hhb4}
+\begin{split}
+  (f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2}c^{2}f^{2} + 3bf +d \right ]
+\end{split}
+\end{equation}
+Set $$f(0) = 0, \ f'(0) = 0.$$ Then we must have $d=0$, giving 
+the ivp
+%
+%
+\begin{gather}
+  (f')^{2} = -\frac{2}{3}\left [ f^{3} + \frac{3}{2}c^{2}f^{2} + 3bf \right ]
+  \label{b4-ivp-eq}
+  \\
+  f(0)=1, \quad f'(0) = 0.
+\end{gather}
+%
+Assume $b \ge 0$. Then we can write \eqref{b4-ivp-eq} as
+%
+%
+\begin{equation*}
+\begin{split}
+  (f')^{2} = -\frac{2}{3}f (f + r)^{2}, \qquad r = \frac{4b}{c^{2}}.
+\end{split}
+\end{equation*}
+%
+%
+Assume $f \le 0$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  f' = \sqrt{\frac{2}{3}} (-f)^{1/2}(f+r)
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  \int \frac{df}{(-f)^{1/2}(f+r)} =  \sqrt{\frac{2}{3}} x + A
+\end{split}
+\end{equation*}
+%
+%
+Using the change of variable $y = f-r$ on the left hand side, and applying
+\eqref{key-int-form}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  -\frac{2}{\sqrt{r}} \tanh^{-1}\left( \frac{\sqrt{r-y}}{\sqrt{r}} \right) =
+  \sqrt{\frac{2}{3}}x + A
+\end{split}
+\end{equation*}
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+\tanh^{-1}\left( \frac{\sqrt{r-y}}{\sqrt{r}} \right) =
+  -\sqrt{\frac{r}{6}}x + B
+\end{split}
+\end{equation*}
+%
+%
+Assume that $y(x_{0}) = r$ for fixed $x_{0}$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+  0 = \tan^{-1}(0) = -\sqrt{\frac{r}{6}}x_{0} + B
+\end{split}
+\end{equation*}
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+B = \sqrt{\frac{r}{6}}x_{0}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\left( \frac{\sqrt{r-y}}{\sqrt{r}} \right) =
+\tanh \left[ -\sqrt{\frac{r}{6}}(x - x_{0}) \right]
+\end{split}
+\end{equation*}
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  y = r\left \{ 1 - \tanh^{2} \left[ -\sqrt{\frac{r}{6}}(x- x_{0}) \right] \right \}
+\end{split}
+\end{equation*}
+%
+%
+Using the identities
+%
+%
+\begin{equation*}
+\begin{split}
+  & 1 - \tanh^{2}x = \sech^{2}x,
+  \\
+  & \sech^{2}(-x) = \sech^{2}x
+\end{split}
+\end{equation*}
+%
+we obtain 
+%
+%
+\begin{equation*}
+\begin{split}
+  y = r\sech^{2} \left[ \sqrt{\frac{r}{6}}(x- x_{0}) \right] 
+\end{split}
+\end{equation*}
+%
+%
+Recalling that $y = f-r$ and $r = 4b/c^{2}$, we conclude that 
+%
+%
+\begin{equation*}
+\begin{split}
+  f(x) = \frac{4b}{c^{2}}\left\{ 1 + \sech^{2} \left[ \frac{1}{c}
+  \sqrt{\frac{2b}{3}} (x-x_{0}) \right] \right\}.
+\end{split}
+\end{equation*}
+%
+%
+
 \end{document}
