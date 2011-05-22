@@ -11,6 +11,7 @@
 *.doc
 *.dvi
 *.fff
+*.fig
 *.gif
 *.glg
 *.glo

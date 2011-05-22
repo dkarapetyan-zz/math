@@ -1,0 +1,331 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+%
+%
+%
+\begin{document}
+\title{Research Statement} 
+\author{{\it David Karapetyan}\\
+University of Notre Dame}
+\maketitle
+
+
+\markboth{Non-Uniform Dependence for the Hyperelastic Rod Equation}{David 
+Karapetyan}
+\parindent0in
+\parskip0.1in
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%      introduction
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\setcounter{section}{0}
+\subsection{Well-Posedness and Ill-Posedness for \\``Burgers Type'' Nonlinear Evolution Equations}
+I recently considered the initial value problem for
+the hyperelastic rod (HR) equation
+%
+%
+\begin{gather}
+\label{hr}
+\p_t u
+-
+\p_t \p_x^2 u
++
+3u\p_x u
+=
+\gamma \big (
+2\p_x u \p_x^2 u
++
+u \p_x^3 u
+\big ),
+\\
+\label{hr-data} u(x, 0) = u_0 (x),
+\quad x  \in \ci, \text{  or  } \rr \quad t \in \rr,
+\end{gather}
+%
+%
+where $\gamma$  is a  nonzero constant,
+and proved that the dependence of solutions on initial data is not uniformly 
+continuous in Sobolev spaces $H^s(\ci)$, $s>3/2$.
+This extended a result proved by Olson 
+\cite{Olson_2006_Non-uniform-dep} in the periodic
+case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire well-posedness
+range) for HR. Furthermore, motivated by the work of Himonas and
+Kenig~\cite{Himonas:2009fk}
+I established non-uniform dependence on initial data
+in the non-periodic case. More precisely, I showed the following. 
+%
+%
+\begin{theorem}
+\label{hr-non-unif-dependence}
+Let $\gamma$ be a nonzero constant. Then 
+the data-to-solution map $u(0) \mapsto u(t)$ of the Cauchy-problem
+for the HR equation
+\eqref{hr}-\eqref{hr-data}
+is not uniformly continuous
+from any bounded subset of  $H^s$ into $C([-T, T], H^s)$
+for $s>3/2$ on the line and circle. %
+\end{theorem}
+%
+\begin{framed}
+I still need to fix the argument for the real line.
+\end{framed}
+%
+My approach for proving \autoref{hr-non-unif-dependence}  
+mirrors that in Himonas and Kenig~\cite{Himonas:2009fk} and 
+Himonas, Kenig, and Misiolek~\cite{Himonas_2009_Non-uniform-dep-per}.
+That is, I choose 
+approximate solutions to the HR equation such that the size of the difference between approximate and actual solutions with 
+identical initial data is negligible. Hence, to understand the degree of 
+dependence, it sufficed to focus on the behavior of the approximate 
+solutions (which are simple in form), rather than on the behavior of the 
+actual solutions. In order for the method to go through, I needed 
+well-posedness estimates for the size of the 
+actual solutions to the HR equation, as well a 
+lower bound for their lifespan. This was needed in order to obtain an upper 
+bound for the size of the difference of approximate and actual solutions. 
+More precisely, I needed the following well-posedness result  with estimates,  
+stated in both the  periodic and non-periodic case.
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%            wp of theorem in R and T
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\begin{theorem}
+\label{thm:HR_existence_continuous_dependence}
+If   $s>3/2$  then we have:
+
+(i) If $u_0\in H^s$  then  there exists a unique solution to
+the Cauchy problem  \eqref{hr}--\eqref{hr-data} in $C([-T, T], H^s)$, where 
+the lifespan  $T$ depends on the size
+of the initial data $u_0$. Moreover, 
+the  lifespan $T$ satisfies the lower bound estimate 
+%
+%
+%
+\begin{equation}
+\label{Life-span-est}
+T
+\ge
+\frac{1}{2c_s \|u_0\|_{H^s}}.
+\end{equation}
+%
+
+(ii)
+The flow map $u_0 \mapsto u(t)$ is continuous from
+bounded sets of $H^s$ into \\ $C([-T, T], H^s)$,
+and the solution $u$ satisfies the estimate
+%
+%
+%
+\begin{equation}
+\label{u_x-Linfty-Hs}
+\|
+u(t)
+\|_ {H^s}
+\le
+2
+\|
+u_0
+\|_{H^s}, \ \ |t|\le T.
+\end{equation}
+%
+%
+%
+\end{theorem}
+%
+%
+Proofs of 
+existence, uniqueness, and continuous dependence for HR
+have been outlined in~\cite{Yin_2003_On-the-Cauchy-p} and~\cite{Zhou_2005_Local-well-pose} for the line and circle, 
+respectively. Both outlines rely upon an application of Kato's semi-group 
+method. However, I was not able to find estimates  
+\eqref{Life-span-est} and \eqref{u_x-Linfty-Hs}  in the literature.
+Hence, I also provided a proof of local well-posedness of HR,
+including  estimates \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs},
+which are key ingredients in the proof of non-uniform dependence, by 
+following an alternative approach used for nonlinear hyperbolic equations
+in Taylor~\cite{Taylor_1991_Pseudodifferent}.
+
+I am currently investigating ill-posedness for the HR equation. In particular, I
+am interested in showing that the data-to-solution map fails to be continuous
+for sufficiently rough initial data. 
+
+\subsection{Well-Posedness for Dispersive and Dissipative \\
+Nonlinear Evolution Equations} 
+I am also interested in proving well-posedness for a series of unexplored dispersive equations modeled after the Korteweg–de Vries equation (KDV) 
+\begin{gather*}
+  u_{t} + 6u_{xx} + u u_{x} = 0,
+  \\
+  u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+\end{gather*}
+%
+%
+and the cubic nonlinear Schr\"odinger
+equation (NLS)
+\begin{gather*}
+  iu_{t} + u_{xx} + | u |^{2}u = 0,
+\\
+u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+\end{gather*}
+
+Specifically, I am interested in the relationship between the degree of
+dispersion (or dissipation) and the lowest Sobolev index for which local and
+global well-posedness holds.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+My research on the KDV has led me to become interested in the Boussinesq
+equation
+\begin{equation*}
+  \begin{split}
+  & u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
+  \\
+  & u(x,0) = u_{0} \in H^{s} \\
+  & u_{t}(x,0) = u_{1} \in H^{s-2},
+  \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
+\end{split}
+\end{equation*}
+\begin{framed}
+Alex, how much can I reveal about the current work we are doing on
+this equation?
+\end{framed}
+%
+\subsection{Numerics} 
+ \newpage
+ \begin{framed}
+   Would like to mention how I am using numerics to construct the necessary traveling
+wave solutions to prove ill-posedness for Boussinesq. Don't know if I should at
+this point, since I don't yet have a result.
+\end{framed}
+%
+%		Bibliography		
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+%
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{HKM09}
+
+\bibitem[HK09]{Himonas:2009fk}
+A.~Himonas and C.~Kenig, \emph{Non-uniform dependence on initial data for
+  the ch equation on the line}, Differential Integral Equations \textbf{22}
+  (2009), no.~3-4, 201--224.
+
+\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
+A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
+  periodic ch equation.}, To appear in Communications in Partial Differential
+  Equations (2009).
+
+\bibitem[Ols06]{Olson_2006_Non-uniform-dep}
+E.~Olson, \emph{Non-uniform dependence on initial data for a family of
+  non-linear evolution equations}, Differential Integral Equations \textbf{19}
+  (2006), no.~10, 1081--1102.
+
+\bibitem[Tay91]{Taylor_1991_Pseudodifferent}
+M.~E. Taylor, \emph{Pseudodifferential operators and nonlinear pde}, vol. 100,
+  1991.
+
+\bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
+Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
+  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
+
+\bibitem[Zho05]{Zhou_2005_Local-well-pose}
+Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
+  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
+
+\end{thebibliography}
+
+
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%\bibliographystyle{amsalpha-custom}
+\end{document}
+
