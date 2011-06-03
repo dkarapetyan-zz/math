@@ -1,0 +1,1166 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{subfig}
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+\title{Notes on the Local Ill-Posedness of the MKdV}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+    University  of Notre Dame\\
+        Notre Dame, IN 46556 }
+        \date{06/03/2011}
+        %
+        \maketitle
+        %
+        %
+        %
+        %
+        %
+        %
+        \section{The Fourier Transform of Solitons}
+        \label{sec:comps}
+
+        The generalized Korteweg-de Vries (gKDV) ivp
+        %
+        %
+        \begin{gather*}
+          u_{t} + u_{xxx} + u^{n}u_{x} = 0, 
+          \\
+          u(x,0) = u_{0}(x), \quad t, \ x \in \rr, \ n \in \zz^{+}
+        \end{gather*}
+        %
+        %
+        admits a one parameter $(k)$ family of soliton solutions
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          u_{n}(x,t,k) = \left( \frac{n+2}{2} \right)^{1/n} k^{2/n}
+          \sech^{2/n}\left[ \frac{n}{2}(kx - k^{3}t) \right], \quad 0 < k <
+          \infty.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        We wish to compute the Fourier transform of 
+        \begin{equation}
+          \label{kdv-soliton}
+          \begin{split}
+            u_{1}(x, t, k) =
+        \frac{3}{2} k^{2} \sech^{2}\left[ \frac{1}{2}(kx - k^{3}t)
+        \right]
+      \end{split}
+    \end{equation}
+    and 
+        \begin{equation}
+          \label{mkdv-soliton}
+            u_{2}(x, t, k) = \sqrt{2} k \sech\left( kx -
+        k^{3}t \right).
+      \end{equation}
+                
+
+\subsection{The Fourier Transform of $\sech(x)$.} 
+\label{ssec:four-sech}
+        %
+        %
+        %
+        We wish to find an explicit
+        formula for
+        %
+        %
+        \begin{equation}
+          \label{sech-four-init}
+        \begin{split}
+          \wh{\sech(x)}(\xi) = 2 \int_{- \infty}^{ \infty} e^{-i x \xi}
+          \frac{1}{e^{x} + e^{-x}} dx 
+        \end{split}
+        \end{equation}
+        %
+        %
+        by computing the integral on the right hand side using contour
+        integration in the complex plane and the residue theorem.
+        Let $D = D(R)$ be a rectangle in the complex plane with vertices at radius
+        $ -R, R, R + i \pi, -R + i \pi$, and let $C = C(R) = C_{\text{right}}
+        \cup C_{\text{top}}\cup C_{\text{left}} \cup C_{\text{[-R, R]}}$
+        be the contour tracing the rectangle counter-clockwise. Note that along
+        contour $C_{\text{left}}$, which we parametrize by $z = R + it, \ 0 \le
+        t \le \pi$, we have the
+        bound
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          | e^{-iz \xi} \frac{1}{e^{z} + e^{-z}} | = \frac{e^{\xi t}}{| e^{R + it} +
+          e^{-R -it}|} \lesssim \frac{e^{\xi t}}{e^{R}}
+        \end{split}
+        \end{equation*}
+        %
+        %
+        due to the (global in $t$) estimate
+        %
+        %
+        \begin{equation}
+          \label{key-abs-est}
+        \begin{split}
+          | e^{R + it} + e^{-R -it} |
+          & = | e^{R}(\cos t + i \sin t) + e^{-R}(\cos t - i \sin t) |
+          \\
+          & = | (e^{R} + e^{-R})\cos t + (e^{R} - e^{-R})i \sin t |
+          \\
+          & = \sqrt{e^{2R} + 2(\cos^{2} t - \sin^{2} t ) + e^{-2R}}
+          \\
+          & \ge \sqrt{e^{2R} -2}, \qquad R \ge \frac{1}{2}\log 2
+          \\
+          & \ge \frac{1}{2}e^{R}, \qquad R \ge \log 2.
+        \end{split}
+        \end{equation}
+        Similarly, along $C_{\text{right}}$, which we parametrize by $z = -R +
+        it, \ 0 \le t \le \pi$, we have the bound
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          | e^{-iz \xi} \frac{1}{e^{z} + e^{-z}} | = \frac{e^{\xi t}}{| e^{-R + it} +
+          e^{R -it}}| \lesssim \frac{e^{\xi t}}{e^{R}}
+        \end{split}
+        \end{equation*}
+        via \eqref{key-abs-est}, with $-t$ substituted for $t$. 
+        Hence, for $R \ge \log 2$
+        %
+        %
+        \begin{equation}
+          \label{right-decay}
+        \begin{split}
+          | \int_{C_{\text{left}} \cup C_{\text{right}}}
+          e^{-iz \xi} \frac{1}{e^{z} + e^{-z}} dz |
+        \lesssim \frac{1}{e^{R}} \int_{0}^{\pi} e^{t \xi} dt \to 0.
+     \end{split}
+   \end{equation}
+        %
+        %
+       % 
+        %
+        Lastly, using the change of variable $z = t + \pi i$, $-R \le t \le R$,
+        we have
+        %
+        %
+        \begin{equation}
+          \label{top-exp}
+        \begin{split}
+          \int_{C_{\text{top}}}e^{-iz \xi} \frac{1}{e^{z} + e^{-z}} dz
+          & = \int_{R}^{-R} e^{-i(t + \pi i)\xi} 
+          \frac{1}{e^{t + \pi i} + e^{-t - \pi i}} dt
+          \\
+          & = e^{ \pi \xi}  \int_{R}^{-R} e^{-it \xi} \frac{1}{-e^{t} -
+          e^{-t}} dt
+          \\
+          & = e^{ \pi \xi}  \int_{-R}^{R} e^{-it \xi} \frac{1}{e^{t} +
+          e^{-t}} dt
+          \\
+          & = e^{ \pi \xi} \wh{\frac{1}{e^{t} + e^{-t}}}(\xi).
+        \end{split}
+        \end{equation}
+        %
+        %
+        Next, note that $$\frac{e^{-i z \xi}}{e^{z} +
+        e^{-z}}$$ has a singularity in $D$ only at the
+        point $z = \pi i/2$. Therefore, applying the residue theorem gives
+        %
+        %
+        \begin{equation}
+          \label{1h}
+        \begin{split}
+          2 \pi i \, \text{Res}
+          \left( \frac{ e^{-iz \xi}}{e^{z} + e^{-z}}, \frac{\pi i}{2}
+          \right)
+          & = \lim_{R \to \infty} \int_{C(R)} e^{-i z \xi}
+          \frac{1}{e^{z} + e^{-z}} dz 
+          \\
+          & = (1 + e^{ \pi \xi})
+          \wh{\frac{1}{e^{t} + e^{-t}}}(\xi).
+        \end{split}
+        \end{equation}
+        %
+        %
+        %
+        For $f(z)$ with a pole of order $n$ at $c$, we have the formula
+        %
+        %
+        \begin{equation}
+          \label{res-form}
+        \begin{split}
+          \text{Res}(f, c) =  \frac{1}{(n-1)!} \lim_{z \to c}
+          \frac{d}{dz^{n-1}} \left[ (z-c)^{n} f(z) \right].
+        \end{split}
+        \end{equation}
+        %
+        If $f(z) = g(z)/h(z)$ has a pole or order $1$ at $c$, then the above
+        simplifies to
+        %
+        %
+        \begin{equation}
+          \label{res-form-1-order}
+        \begin{split}
+          \text{Res}(f,c) = \frac{g(c)}{h'(c)}.
+        \end{split}
+        \end{equation}
+        %
+        %
+        %
+        Hence, applying \eqref{res-form-1-order}, we compute
+        %
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \text{Res} \left( \frac{ e^{-iz \xi}}{e^{z} + e^{-z}},
+          \frac{\pi i}{2} \right)
+          & = \frac{e^{-iz \xi} \vert_{z = \pi i/2}}{(e^{z} + e^{-z})'
+          \vert_{z = \pi i/2}}
+          \\
+          & = - \frac{i e^{ \pi \xi/2}}{2}.
+        \end{split}
+        \end{equation*}
+        %
+        Substituting into \eqref{1h}, we obtain
+        %
+        %
+        %
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          2 \pi i \left( - \frac{ie^{ \pi \xi/2}}{2} \right) =  (1 +
+          e^{ \pi \xi}) \wh{\frac{1}{e^{t} + e^{-t}}}(\xi)
+        \end{split}
+        \end{equation*}
+        %
+        %
+        or
+        \begin{equation*}
+        \begin{split}
+          \wh{\frac{1}{e^{t} + e^{-t}}}(\xi) 
+          & =
+           \pi \frac{e^{ \pi \xi /2}}{e^{ \pi \xi} + 1}
+          \\
+          & = \frac{ \pi}{2}  \sech(\pi \xi).
+        \end{split}
+        \end{equation*}
+        Plugging this into \eqref{sech-four-init}, we see that
+        %
+        %
+        \begin{equation}
+          \label{sech-four-fin}
+        \begin{split}
+        \wh{\sech(x)}(\xi) = \pi \sech(\pi \xi).
+        \end{split}
+        \end{equation}
+        %
+        %
+        Applying the equalities
+        \begin{equation}
+          \label{four-scale}
+        \begin{split}
+        \wh{f(kx)}(\xi) = \frac{1}{k}\wh{f}(\xi/k)
+        \end{split}
+        \end{equation}
+        %
+        and
+        %
+        %
+        \begin{equation}
+          \label{time-trans}
+        \begin{split}
+          \wh{f(x-ct)}(\xi) = e^{-ict \xi} \wh{f}(\xi)
+        \end{split}
+        \end{equation}
+        to \eqref{sech-four-fin}, we conclude that  
+        %
+        %
+        \begin{equation}
+          \label{mkdv-sol-four}
+        \begin{split}
+          \wh{u_{2}}(\xi, t, k) =
+          \sqrt{2} \pi e^{-ik^{3}t \xi} \sech \left (\frac{\pi
+          \xi}{2k} \right ).
+        \end{split}
+        \end{equation}
+        %
+                %
+\subsection{The Fourier Transform of $\sech^{2}(x)$.} 
+        \label{ssec:sech-sq-four}
+        Next, we prove that
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \wh{\sech^{2}(x)}(\xi) = \xi \csch(\xi).
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Observe that
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \sech^{2}x = \frac{4}{(e^{x} + e^{-x})^{2}}.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        %
+        %
+        We wish to find an explicit
+        formula for
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \wh{\frac{1}{(e^{x} + e^{-x})^{2}}}(\xi)
+          = \int_{- \infty}^{ \infty} e^{-ix \xi}
+          \frac{1}{(e^{x}+e^{-x})^{2}} dx
+        \end{split}
+        \end{equation*}
+        %
+        %
+        by computing the integral on the right hand side using contour
+        integration in the complex plane and the residue theorem.
+        Let $D = D(R)$ be a rectangle in the complex plane with vertices at radius
+        $ -R, R, R + i \pi, -R + i \pi$, and let $C = C(R) = C_{\text{right}}
+        \cup C_{\text{top}}\cup C_{\text{left}} \cup C_{\text{[-R, R]}}$
+        be the contour tracing the rectangle counter-clockwise. Note that along
+        contour $C_{\text{left}}$, which we parametrize by $z = R + it, \ 0 \le
+        t \le \pi$, we have the
+        bound
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          | e^{-iz \xi} \frac{1}{(e^{z} + e^{-z})^{2}}|
+          = \frac{e^{\xi t}}{| e^{R + it} +
+          e^{-R -it}|^{2}} \lesssim \frac{e^{\xi t}}{e^{2R}}
+        \end{split}
+        \end{equation*}
+        %
+        %
+        due to \eqref{key-abs-est}.
+        Similarly, along $C_{\text{right}}$, which we parametrize by $z = -R +
+        it, \ 0 \le t \le \pi$, we have the bound
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          | e^{-iz \xi} \frac{1}{(e^{z} + e^{-z})^{2}} | =
+          \frac{e^{\xi t}}{| e^{-R + it} +
+          e^{R -it}|^{2}} \lesssim \frac{e^{\xi t}}{e^{2R}}
+        \end{split}
+        \end{equation*}
+        via \eqref{key-abs-est}, with $-t$ substituted for $t$. 
+        Hence, for $R \ge \log 2$
+        %
+        %
+        \begin{equation}
+          \label{right-decay-sech-sq}
+        \begin{split}
+          | \int_{C_{\text{left}} \cup C_{\text{right}}}
+          e^{-iz \xi} \frac{1}{(e^{z} + e^{-z})^{2}} dz |
+        \lesssim \frac{1}{e^{2R}} \int_{0}^{\pi} e^{t \xi} dt \to 0.
+     \end{split}
+   \end{equation}
+        %
+        %
+       % 
+        %
+        Lastly, using the change of variable $z = t + \pi i$, we have
+        %
+        %
+        \begin{equation}
+          \label{top-exp-sechsq}
+        \begin{split}
+          \int_{C_{\text{top}}}e^{-iz \xi} \frac{1}{(e^{z} + e^{-z})^{2}} dz
+          & = \int_{R}^{-R} e^{-i(t + \pi i)\xi} 
+          \frac{1}{(e^{t + \pi i} + e^{-t - \pi i})^{2}} dt
+          \\
+          & = e^{ \pi \xi}  \int_{R}^{-R} e^{-it \xi} \frac{1}{(e^{t} +
+          e^{-t})^{2}} dt
+          \\
+          & = -e^{ \pi \xi}  \int_{-R}^{R} e^{-it \xi} \frac{1}{(e^{t} +
+          e^{-t})^{2}} dt
+          \\
+          & = -e^{ \pi \xi} \wh{\frac{1}{(e^{t} + e^{-t})^{2}}}(\xi).
+        \end{split}
+        \end{equation}
+        %
+        %
+        %
+        Next, note that $e^{-i z \xi}/(e^{z} + e^{-z})^{2}$
+        has a singularity in $D$ only at the
+        point $z = \pi i/2$ (in fact, it is a pole of order $2$).
+        Therefore, by the residue theorem
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          2 \pi i \, \text{Res} \left[ \frac{ e^{-i z \xi}}{(e^{z} +
+          e^{-z})^{2}}, \frac{\pi i}{2} \right]
+          & = \lim_{R \to \infty} \int_{C(R)} e^{-i z \xi}
+          \frac{1}{(e^{z} + e^{-z})^{2}} dz 
+          \\
+          & = (1 - e^{ \pi \xi})
+          \wh{\frac{1}{(e^{t} + e^{-t})^{2}}}(\xi).
+        \end{split}
+        \end{equation*}
+        %
+        %
+        %
+        Applying \eqref{res-form} and the equality
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \lim_{z \to c} \frac{df}{dz} \Big |_{z} = \lim_{z \to 0}
+          \frac{df}{dz}\Big |_{z + c} = \lim_{z \to 0} \frac{d}{dz}f(z + c)
+        \end{split}
+        \end{equation*}
+        %
+        %
+        we compute
+
+        %
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+         & \text{Res} \left( \frac{e^{-iz \xi}}{(e^{z} + e^{-z})^{2}}, \frac{\pi i}{2} 
+        \right)
+        \\
+        & = \lim_{z \to \pi i/2} \left[ (z - \pi i /2 )^{2} \frac{e^{-iz
+        \xi}}{(e^{z} + e^{-z})^{2}} \right]'
+        \\
+        & = \lim_{z \to 0} \left[ z^{2} \frac{e^{-i(z + \pi i /2)
+        \xi}}{(e^{z + \pi i/2} + e^{-z - \pi i /2})^{2}} \right]'
+        \\
+        & = -  e^{ \pi \xi/2} \lim_{z \to 0} \left[ z^{2}
+        \frac{e^{-i z\xi}}{(e^{z} - e^{-z })^{2}} \right]'
+        \\
+        & = - e^{ \pi \xi/2} \lim_{z \to 0} \left[ 
+        \frac{ - i \xi e^{-iz \xi} z^{2} (e^{z} - e^{-z})^{2} - 2z^{2} e^{-iz
+        \xi}(e^{z} + e^{-z})(e^{z} - e^{-z})}{(e^{z} - e^{-z})^{4}} +
+        \frac{2z e^{-i z \xi}}{(e^{z} - e^{-z})^{2}}
+        \right ]
+        \\
+        &  = - e^{ \pi \xi/2} \lim_{z \to 0} \left[ \frac{ - i \xi
+        z^{2}}{(e^{z} - e^{-z})^{2}} - \frac{4z^{2}}{(e^{z} - e^{-z})^{3}} +
+        \frac{2z}{(e^{z} - e^{-z})^{2}}
+        \right ]
+      \end{split}
+        \end{equation*}
+        %
+        which gives
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+        & - e^{ \pi \xi/2} \lim_{z \to 0} \left[ \frac{ - i \xi
+        z^{2}}{e^{-2z}(e^{2z} - 1)^{2}} - \frac{4z^{2}}{e^{-3z}(e^{2z} - 1)^{3}} +
+        \frac{2z}{e^{-2z}(e^{2z} - 1)^{2}}
+        \right ]
+        \\
+        & = - e^{ \pi \xi/2} \lim_{z \to 0} \left[ \frac{ - i \xi
+        \cancel{z^{2}}}{\cancel{(e^{z} - 1)^{2}}(e^{z} + 1)^{2}}
+        - \frac{4 \cancel{z^{2}}}{(e^{z} -
+        1)^{\cancel{3}}(e^{z} + 1)^{3}} +
+        \frac{2\cancel{z}}{(e^{z} - 1)^{\cancel{2}}(e^{z}+1)^{2}}
+        \right ]
+        \\
+        & = \frac{i \xi}{4} e^{\pi \xi /2}
+        - e^{ \pi \xi/2} \lim_{z \to 0} \left[ -\frac{1}{2(e^{z} -1)} +
+        \frac{1}{2(e^{z}-1)} \right]
+        \\
+        & = \frac{i \xi}{4} e^{\pi \xi /2}.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        %
+        Hence,  
+        %
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          2 \pi i\left( \frac{i\xi}{4} e^{\pi \xi/2} \right) = \left (1 -
+          e^{ \pi \xi} \right ) \wh{\frac{1}{(e^{t} + e^{-t})^{2}}}(\xi)
+        \end{split}
+        \end{equation*}
+        or
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \wh{\frac{4}{(e^{t} + e^{-t})^{2}}}(\xi) = \pi \xi \frac{2  e^{ \pi \xi
+          /2}}{e^{ \pi \xi} -1}.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Therefore, 
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \wh{\sech^{2}(x)}(\xi)
+          & = \pi \xi \csch( \pi \xi/2).
+        \end{split}
+        \end{equation*}
+        %
+        %
+        %
+        %
+        Applying \eqref{four-scale} and \eqref{time-trans}, we conclude that
+        %
+        %
+                %
+        %
+        \begin{equation}
+          \label{kdv-sol-four}
+        \begin{split}
+          \wh{u_{1}}(\xi, t, k) = \frac{3 \pi }{2} e^{-ik^{3}t \xi} \xi
+          \csch \left (\frac{\pi \xi}{2k} \right ).
+        \end{split}
+        \end{equation}
+        %
+        %
+In fact, using the method of residues, one can compute $\wh{u_{n}}(\xi, t, k)$
+        for arbitrary $n$. However, this is tedious, and computationally
+        intensive.  In the next section, we investigate a more efficient method
+        for computing $\wh{u_{n}}(\xi, t, k)$. 
+        %
+        \section{An Alternative Computation} 
+        %
+        %
+        Observe that
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \wh{\sech^{2/n}\left( \frac{nkx}{2} \right)}(\xi) =
+          \int_{-\infty}^{\infty}e^{-ix\xi}\left( \frac{e^{nkx/2}}{1 +
+          e^{nkx}} \right)^{2/n} dx.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Using the change of variable $t = e^{nkx}$ gives
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          & \int_{0}^{\infty} e^{-i \frac{\log t}{nk} \xi} \left(
+          \frac{t^{1/2}}{1 + t} \right)^{2/n} \frac{dt}{nkt}
+          \\
+          & = \frac{1}{nk} \int_{0}^{\infty} \frac{t^{\frac{1}{n} -1 -\frac{i
+          \xi}{nk}}}{(1 + t)^{\frac{2}{n}}} dt
+        \end{split}
+        \end{equation*}
+        %
+        %
+       where the integral is equal to the beta function
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         B(x,y) = \int_{0}^{\infty} \frac{t^{x-1}}{(1 + t)^{x+y}} dt, \quad
+         \text{Re}(x) >0, \ \text{Re}(y) > 0
+       \end{split}
+       \end{equation*}
+       %
+       %
+       with 
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+       & x = \frac{1}{n} - \frac{i \xi}{nk}, 
+       \\
+       & y = \frac{1}{n} + \frac{i \xi}{nk}.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Therefore
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+       \wh{\sech^{2/n}\left( \frac{nkx}{2} \right)}(\xi) =
+       \frac{1}{nk} B\left( \frac{1}{n} - \frac{i \xi}{nk}, \frac{1}{n} + \frac{i \xi}{nk}
+       \right).
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Recall that
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         B(x,y) = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}, \quad
+         \text{Re}(x) > 0, \ \text{Re}(y) > 0
+       \end{split}
+       \end{equation*}
+       %
+       %
+       where $\Gamma(z)$ is the gamma function
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \Gamma(z) = \int_{0}^{\infty} t^{z-1} e^{-t} dt, \quad
+         \text{Re}(z) > 0.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Hence,
+       %
+       %
+       \begin{equation*}
+         \begin{split}
+           \wh{\sech^{2/n}\left( \frac{nkx}{2} \right)}(\xi)
+           & =
+           \frac{1}{nk}
+           \frac{\Gamma \left (\frac{1}{n} - \frac{i \xi}{nk} \right ) \Gamma \left (
+           \frac{1}{n} + \frac{i \xi}{nk} \right )}{\Gamma \left (\frac{2}{n} \right )}
+           \\
+           & = 
+           \frac{| \Gamma \left (\frac{1}{n} + \frac{i \xi}{nk} \right)|^{2}}
+           {nk \Gamma \left (\frac{2}{n} \right )}
+         \end{split}
+       \end{equation*}
+       %
+       where the last step follows from the equality.
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \Gamma(\bar{z}) = \overline{\Gamma(z)}.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       We conclude that
+       %
+       \begin{equation*}
+         \begin{split}
+           \wh{u_{n}}(\xi,t,k) = e^{-ik^{3}t \xi}
+           \left( \frac{n+2}{2} \right)^{1/n} \frac{k^{2/n -1}}{n}
+           \frac{|\Gamma \left (\frac{1}{n} + \frac{i \xi}{nk} \right)|^{2}}
+           {\Gamma \left (\frac{2}{n}
+           \right )}.
+         \end{split}
+       \end{equation*}
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       %                Ill posedness
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       \section{Ill-Posedness for mKDV} 
+       \label{sec:ill-pos-mkdv}
+       The modified Korteweg-de Vries equation (mkDV)
+       \begin{gather}
+          u_{t} + u_{xxx} + u^{2}u_{x} = 0, 
+          \label{mkdv}
+          \\
+          u(x,0) = u_{0}(x), \quad x, t \in \rr
+          \label{mkdv-data}
+        \end{gather}
+        is given by setting $n =2$ in gKDV. We shall prove the following result.
+        %
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        %
+        %                ill-pos-thm
+        %
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        %
+        \begin{theorem}
+          The mKDV initial value problem \eqref{mkdv}-\eqref{mkdv-data} is
+          locally ill-posed in $H^{s}, \ s<-1/2$. That is, for any $T > 0$, 
+          existence, uniqueness, or continuity of the data-to-solution map fails
+          for $0 < t < T$. 
+        \label{thm:mkdv-ill-pos}
+        \end{theorem}
+        %
+        %
+        First some preliminaries. Let 
+        %
+        %
+        \begin{equation}
+          \label{seq-init-data}
+        \begin{split}
+          u_{\ee, 0}(x) \doteq \frac{\sqrt{2}}{\ee} \sech\left( \frac{x}{\ee}
+          \right).
+        \end{split}
+        \end{equation}
+        %
+        %
+        Then by \eqref{mkdv-soliton}, $u_{\ee, 0}(x)$ has an associated soliton
+        solution
+        %
+        %
+        \begin{equation}
+          \label{seq-sol}
+        \begin{split}
+          u_{\ee}(x,t) = \frac{\sqrt{2}}{\ee} \sech\left( \frac{x}{ \ee} -
+          \frac{t}{ \ee^{3}} \right).
+        \end{split}
+        \end{equation}
+        %
+        %
+        We wish to study the convergence of
+        $\eqref{seq-init-data}-\eqref{seq-sol}$ in $H^{s}$ as $\ee \to 0$. We
+        have the following. 
+        %
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        %
+        %                init-data-strong-conv
+        %
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        %
+        \begin{lemma}
+          For $s< -1/2$,
+          %
+          %
+          \begin{equation*}
+          \begin{split}
+            u_{\ee, 0}(x) \xrightarrow{H^{s}} \sqrt{2} \pi \delta(x).
+          \end{split}
+          \end{equation*}
+          \label{lem:seq-data-strong-conv}
+        \end{lemma}
+
+          %
+          %
+          %
+          \begin{proof}
+            By \eqref{mkdv-sol-four},
+            %
+            %
+            \begin{equation*}
+            \begin{split}
+              \wh{u_{\ee, 0}}(\xi) = \sqrt{2} \pi \sech\left( \frac{\ee \pi
+              \xi}{2} \right).
+            \end{split}
+            \end{equation*}
+            %
+            %
+            Hence,
+            %
+            %
+            \begin{equation}
+              \label{strong-conv-eq}
+            \begin{split}
+              \| u_{\ee, 0}(\cdot) -
+              \sqrt{2} \pi \delta(\cdot) \|_{H^{s}}
+              & = \int_{\rr} (1 + \xi^{2})^{s} | \wh{u_{\ee, 0}}(\xi) -
+              \wh{\sqrt{2} \pi \delta(\cdot)}(\xi) |^{2} d \xi
+              \\
+              & = \int_{\rr} (1 + \xi^{2})^{s} | \sqrt{2} \pi \sech\left(
+              \frac{\ee \pi \xi}{2}
+              \right) - \sqrt{2} \pi |^{2} d \xi
+              \\
+              & = 2 \pi^{2} \int_{\rr} (1 + \xi^{2})^{s} |\sech\left( \frac{\ee \pi
+              \xi}{2}
+              \right) -1  |^{2} d \xi.
+            \end{split}
+            \end{equation}
+            %
+            %
+            Note that
+            %
+            %
+            \begin{equation*}
+            \begin{split}
+              (1 + \xi^{2})^{s} |\sech\left( \frac{\ee \pi}{2} -1 \right )
+              |^{2}
+              \le 2(1 + \xi^{2})^{s} \in L^{1}, \quad s<-1/2.
+            \end{split}
+            \end{equation*}
+            %
+            %
+            Hence, applying dominated convergence to \eqref{strong-conv-eq}, we
+            obtain
+            %
+            %
+            \begin{equation*}
+            \begin{split}
+              \lim_{\ee \to 0}
+              \| u_{\ee, 0}(\cdot) -
+              \sqrt{2} \pi \delta(\cdot) \|_{H^{s}}
+              & = 2 \pi^{2} \lim_{\ee \to 0}
+              \int_{\rr} (1 + \xi^{2})^{s} |\sech\left( \frac{\ee \pi
+              \xi}{2}
+              \right) -1  |^{2} d \xi
+              \\
+              & = 2 \pi^{2}  
+              \int_{\rr} \lim_{\ee \to 0}
+              (1 + \xi^{2})^{s} |\sech\left( \frac{\ee \pi \xi}{2}
+              \right) -1  |^{2} d \xi
+              \\
+              & = 0. 
+            \end{split}
+            \end{equation*}
+            %
+            %
+          \end{proof}
+          %
+          %
+          %
+          On the following page, we have provided graphs of
+          $u_{\ee,0}(x)$ with $\ee = 1$, $\ee = 0.1$, and $\ee = 0.01$
+          respectively. It is clear that the graphs are converging to some
+          multiple of a $\delta$ function as $\ee$ becomes small.
+          \newpage
+\begin{figure}[!t]
+  \begin{center}
+  \vspace{-30mm}
+  \hspace{-15mm}
+  \subfloat{\includegraphics[scale=0.5]{sech-ep-1}}
+\hspace{-40mm}
+\subfloat{\includegraphics[scale=0.5]{sech-ep-01}}
+\\
+\vspace{-70mm}
+\hspace{-15mm}
+\subfloat{\includegraphics[scale=0.5]{sech-ep-001}}
+\end{center}
+\end{figure}
+%
+%
+%
+\begin{framed}
+  \begin{remark}
+    We have no analogue of Lemma \ref{lem:seq-data-strong-conv} for the KDV. To
+    see this, consider the sequence of initial data 
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      u_{\ee,0}(x) = \frac{3}{2\ee^{2}}\sech^{2}\left(
+      \frac{x}{2 \ee} \right).
+    \end{split}
+    \end{equation*}
+    %
+    %
+    From \eqref{kdv-soliton}, we see that for KDV the associated soliton
+    solutions are
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      u_{\ee}(x,t) = \frac{3}{2\ee^{2}}
+      \sech^{2}\left[ \frac{x}{2 \ee} - \frac{t}{\ee^{3}})
+        \right].
+    \end{split}
+    \end{equation*}
+    %
+    From \eqref{kdv-sol-four}
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \wh{u_{\ee, 0}}(\xi) = \frac{3 \pi}{2} \xi \csch\left( \frac{\pi \xi
+      \ee}{2} \right).
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Leting
+    $k \in \mathbb{N}$, $c \in \rr$ be arbitrary, we see that for any $s \in \rr$,
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \| u_{\ee,0}(\cdot) - c \delta^{(k)} \|_{H^{s}}^{2}
+      & = \int_{\rr}
+      (1 + \xi^{2})^{s} | \wh{u_{\ee,0}}(\xi) - \wh{c \delta^{(k)}}(\xi)
+      |^{2} d \xi
+      \\
+      & =  \int_{\rr} (1 + \xi^{2})^{s} | \frac{3 \pi}{2} \xi \csch\left(
+      \frac{\pi \xi \ee}{2} \right) - c(i \xi)^{k}
+       | d \xi
+       \\
+       & \to \infty 
+    \end{split}
+    \end{equation*}
+    %
+    as $\ee \to 0$.
+    Hence the method of proof used to show ill-posedness for
+    mKDV does not work for KDV. 
+    %
+    
+    %
+    \end{remark}
+  \end{framed}
+          We have a weaker result for the convergence of the associated soliton
+          solutions $u_{\ee}(x,t)$.
+        %
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        %
+        %                weak-conv-solns
+        %
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        %
+        \begin{lemma}
+        For any $s \in \rr$,
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          u_{\ee}(x,t) \rightharpoonup 0 \ \text{in} \ H^{s} \ \text{for} \ t>
+          0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        \label{lem:weak-conv}
+        \end{lemma}
+        %
+        %
+        %
+        %
+        \begin{proof}
+          For any test function $\vp(x) \in C_{0}^{\infty}(\rr)$, we have
+          %
+          %
+          \begin{equation*}
+          \begin{split}
+            \langle u_{\ee}, \vp \rangle 
+            & = \int_{\rr} u_{\ee}(x,t) \vp(x) dx
+            \\
+            & = \frac{\sqrt{2}}{\ee} \int_{\rr} \vp(x) \sech\left( \frac{x}{\ee}
+            - \frac{t}{\ee^{3}}
+            \right) dx.
+          \end{split}
+          \end{equation*}
+          %
+          %
+          Using the change of variable $y = x/\ee - t/\ee^{3}$, we obtain
+          %
+          %
+          \begin{equation*}
+          \begin{split}
+            \langle u_{\ee}, \vp \rangle = \sqrt{2} \int_{\rr} \vp\left( \ee y +
+            \frac{t}{\ee^{2}} 
+            \right)\sech(y) dy.
+          \end{split}
+          \end{equation*}
+          %
+          %
+          %
+          Since
+          %
+          %
+          \begin{equation*}
+          \begin{split}
+            | \vp\left( \ee y + \frac{t}{\ee^{2}} \right) \sech y | \le
+            c_{\vp} \sech y \in L^{1}
+          \end{split}
+          \end{equation*}
+          %
+          %
+           we conclude via dominated convergence that
+          %
+          %
+          \begin{equation*}
+          \begin{split}
+            \lim_{\ee \to 0} \langle u_{\ee}, \vp \rangle  
+            & = \sqrt{2} \int_{\rr} \lim_{\ee \to 0} \vp\left( \ee y +
+            \frac{t}{\ee^{2}} \right) \sech y \ dy
+            \\
+            & = 0, \qquad t > 0
+          \end{split}
+          \end{equation*}
+          %
+          %
+          since $\vp$ is compactly supported.
+        \end{proof}
+        %
+        %
+        %
+        %
+        \subsection{Proof of Theorem \ref{thm:mkdv-ill-pos}} 
+        \label{ssec:pf-thm}
+        Let $u_{0}(x) = \sqrt{2} \pi \delta(x)$, and fix $s < -1/2$.
+        Then $u_{0} \in H^{s}$. If there does not exist a unique $u(x,t)$
+        solving \eqref{mkdv} locally in time with $u(x, 0) = u_{0}(x)$, then we
+        are done. So assume otherwise. The proof will be complete if we can show
+        that there exists a sequence $u_{\ee}(x,t) \in H^{s}$, $0 \le t \le T$
+        such that
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          & u_{\ee, 0}(x) \to u_{0}(x) \ \text{in} \ H^{s}, \ \text{but}
+          \\
+          & u_{\ee}(x,t) \not \to u(x,t) \ \text{in} \ H^{s} \ \text{for} \ t>0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Let 
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          u_{\ee, 0}(x) = \frac{\sqrt{2}}{\ee} \sech\left( \frac{x}{\ee}
+          \right). 
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Then by Lemma \ref{lem:seq-data-strong-conv}, $u_{\ee, 0} \to
+        u_{0}$ strongly in $H^{s}$, $s < -1/2$. Recall that the $u_{\ee, 0}$ have
+        the associated solutions
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          u_{\ee}(x,t) = \frac{\sqrt{2}}{\ee} \sech\left( \frac{x}{ \ee} -
+          \frac{t}{ \ee^{3}} \right).
+        \end{split}
+        \end{equation*}
+        %
+        %
+        If the $u_{\ee}(x,t)$ do not converge strongly in $H^{s}$ for $t > 0$, we
+        are done. So assume that they do converge. Then by Lemma
+        \ref{lem:weak-conv}, we must have
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          u_{\ee}(x,t) \to 0 \ \text{in} \ H^{s} \ \text{for} \ t > 0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        But the $0$ solution to mKDV cannot be the solution associated with
+        initial data $u_{0}(x) = \sqrt{2} \pi \delta(x)$, since $0(x,t)
+        \vert_{t = 0} = 0 \neq \sqrt{2} \pi \delta(x)$. The proof is complete.
+        \qed
+        %
+        %
+        %
+        %
+        %
+        %
+
+        
+
+
+
+
+        %\nocite{*}
+        %\bibliography{/Users/davidkarapetyan/Documents/math/}
+
+        \end{document}

@@ -2,6 +2,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
+\usepackage{fix-cm}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
@@ -86,8 +87,6 @@ University of Notre Dame}
 \maketitle
 
 
-\markboth{Non-Uniform Dependence for the Hyperelastic Rod Equation}{David 
-Karapetyan}
 \parindent0in
 \parskip0.1in
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,9 +96,9 @@ Karapetyan}
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
 \setcounter{section}{0}
-\subsection{Well-Posedness and Ill-Posedness for \\``Burgers Type'' Nonlinear Evolution Equations}
-I recently considered the initial value problem for
-the hyperelastic rod (HR) equation
+
+The main focus of my research so far has been well-posedness and ill-posedness
+for the hyperelastic rod (HR) equation
 %
 %
 \begin{gather}
@@ -114,178 +113,159 @@ the hyperelastic rod (HR) equation
 2\p_x u \p_x^2 u
 +
 u \p_x^3 u
-\big ),
+\big ), \quad \gamma \neq 0
 \\
 \label{hr-data} u(x, 0) = u_0 (x),
 \quad x  \in \ci, \text{  or  } \rr \quad t \in \rr,
 \end{gather}
 %
 %
-where $\gamma$  is a  nonzero constant,
-and proved that the dependence of solutions on initial data is not uniformly 
+the Korteweg-–de Vries equation (KDV) 
+\begin{gather}
+  u_{t} + 6u_{xx} + u u_{x} = 0,
+  \\
+  u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+\end{gather}
+%
+%
+the cubic nonlinear Schr\"odinger
+equation (NLS)
+\begin{gather}
+  iu_{t} + u_{xx} + | u |^{2}u = 0,
+\\
+u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+\end{gather}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+and the Boussinesq
+equation
+\begin{gather}
+   u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
+  \\
+   u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
+  \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
+\end{gather}
+I recently published a paper on the HR equation entitled 
+{\it ``Non-Uniform Dependence  and well-posedness
+for the
+Hyperelastic Rod Equation''}. In it, I prove
+that 
+the dependence of solutions on initial data is not uniformly 
 continuous in Sobolev spaces $H^s(\ci)$, $s>3/2$.
 This extended a result proved by Olson 
 \cite{Olson_2006_Non-uniform-dep} in the periodic
 case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire well-posedness
 range) for HR. Furthermore, motivated by the work of Himonas and
-Kenig~\cite{Himonas:2009fk}
+Kenig~\cite{Himonas:2009fk}, \cite{Himonas:2009fk}, and 
+Himonas, Kenig, and Misiolek~\cite{Himonas_2009_Non-uniform-dep-per},
 I established non-uniform dependence on initial data
-in the non-periodic case. More precisely, I showed the following. 
-%
-%
-\begin{theorem}
-\label{hr-non-unif-dependence}
-Let $\gamma$ be a nonzero constant. Then 
-the data-to-solution map $u(0) \mapsto u(t)$ of the Cauchy-problem
-for the HR equation
-\eqref{hr}-\eqref{hr-data}
-is not uniformly continuous
-from any bounded subset of  $H^s$ into $C([-T, T], H^s)$
-for $s>3/2$ on the line and circle. %
-\end{theorem}
-%
-\begin{framed}
-I still need to fix the argument for the real line.
-\end{framed}
-%
-My approach for proving \autoref{hr-non-unif-dependence}  
-mirrors that in Himonas and Kenig~\cite{Himonas:2009fk} and 
-Himonas, Kenig, and Misiolek~\cite{Himonas_2009_Non-uniform-dep-per}.
-That is, I choose 
+in the non-periodic case.
+The method of proof involved choosing
 approximate solutions to the HR equation such that the size of the difference between approximate and actual solutions with 
-identical initial data is negligible. Hence, to understand the degree of 
+identical initial data was negligible. Hence, to understand the degree of 
 dependence, it sufficed to focus on the behavior of the approximate 
 solutions (which are simple in form), rather than on the behavior of the 
-actual solutions. In order for the method to go through, I needed 
+actual solutions. In order for the method to go through, I also proved 
 well-posedness estimates for the size of the 
 actual solutions to the HR equation, as well a 
-lower bound for their lifespan. This was needed in order to obtain an upper 
-bound for the size of the difference of approximate and actual solutions. 
-More precisely, I needed the following well-posedness result  with estimates,  
-stated in both the  periodic and non-periodic case.
-%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%            wp of theorem in R and T
-%
-%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
-\begin{theorem}
-\label{thm:HR_existence_continuous_dependence}
-If   $s>3/2$  then we have:
+lower bound for their lifespan. This was needed in order to obtain an upper
+bound for the size of the difference of approximate and actual solutions. I am
+currently interested in strengthening the ill-posedness result for HR from
+failure of uniform continuity of the data-to-solution map to failure of
+continuity for sufficiently rough initial data. More generally, I am interested
+in disproving well-posedness in the sense of Hadamard (failure of existence,
+uniqueness, or continuity for the data-to-solution map). 
 
-(i) If $u_0\in H^s$  then  there exists a unique solution to
-the Cauchy problem  \eqref{hr}--\eqref{hr-data} in $C([-T, T], H^s)$, where 
-the lifespan  $T$ depends on the size
-of the initial data $u_0$. Moreover, 
-the  lifespan $T$ satisfies the lower bound estimate 
-%
-%
-%
-\begin{equation}
-\label{Life-span-est}
-T
-\ge
-\frac{1}{2c_s \|u_0\|_{H^s}}.
-\end{equation}
-%
+I also have recent work (joint with Alex Himonas and Gerson Petronilho) on the
+well-posedness of periodic NLS in analytic spaces. Using a suitable modification
+of the Bourgain spaces \cite{Bourgain-Fourier-transfo}, we show that for analytic initial data $u_{0}(x)$ with
+complex analytic extension to a symmetric strip about the real axis with width
+$\delta$, there exists a unique local
+solution $u(x,t)$ to the NLS which for $| t | < T$
+is analytic in the space variable. In fact, this solution admits admits a
+complex analytic extension to the same strip as the initial data. Furthermore,
+the data-to-solution map is locally Lipschitz continuous from the space of
+initial data to the space of solutions. Motivated by
+\cite{Gorsky-The-Cauchy-prob}, I have also recently shown that for analytic
+initial data $u_{0}$, the associated solution $u(x,t)$ is $G^{2}$ in time. I am
+currently investigating whether the time regularity of the solution can be improved. 
 
-(ii)
-The flow map $u_0 \mapsto u(t)$ is continuous from
-bounded sets of $H^s$ into \\ $C([-T, T], H^s)$,
-and the solution $u$ satisfies the estimate
-%
-%
-%
-\begin{equation}
-\label{u_x-Linfty-Hs}
-\|
-u(t)
-\|_ {H^s}
-\le
-2
-\|
-u_0
-\|_{H^s}, \ \ |t|\le T.
-\end{equation}
-%
-%
-%
-\end{theorem}
-%
-%
-Proofs of 
-existence, uniqueness, and continuous dependence for HR
-have been outlined in~\cite{Yin_2003_On-the-Cauchy-p} and~\cite{Zhou_2005_Local-well-pose} for the line and circle, 
-respectively. Both outlines rely upon an application of Kato's semi-group 
-method. However, I was not able to find estimates  
-\eqref{Life-span-est} and \eqref{u_x-Linfty-Hs}  in the literature.
-Hence, I also provided a proof of local well-posedness of HR,
-including  estimates \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs},
-which are key ingredients in the proof of non-uniform dependence, by 
-following an alternative approach used for nonlinear hyperbolic equations
-in Taylor~\cite{Taylor_1991_Pseudodifferent}.
+To better understand the smoothing effect for NLS coming from the diffusive term
+$\p_{x}^{2}u$, I
+recently investigated KDV and NLS type equations with higher order
+dispersion and diffusivity, respectively. More precisely, I have proved
+existence, uniqueness, and Lipschitz continuity for initial data in
+$\dot{H}^{s}, s \ge (1-m)/4$ for the higher order KDV
 
-I am currently investigating ill-posedness for the HR equation. In particular, I
-am interested in showing that the data-to-solution map fails to be continuous
-for sufficiently rough initial data. 
-
-\subsection{Well-Posedness for Dispersive and Dissipative \\
-Nonlinear Evolution Equations} 
-I am also interested in proving well-posedness for a series of unexplored dispersive equations modeled after the Korteweg–de Vries equation (KDV) 
-\begin{gather*}
-  u_{t} + 6u_{xx} + u u_{x} = 0,
-  \\
-  u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
-\end{gather*}
+\begin{gather}
+	\label{mmKDV-eq}
+	\p_t u + \p_x^{m} u + \lambda u \p_x u = 0,
+	\\
+	\label{mmKDV-init-data}
+  u(x,0) = u_0(x) \in \dot{H}^{s}(\ci), \quad x \in \ci, \ t \in \rr
+\end{gather}
 %
 %
-and the cubic nonlinear Schr\"odinger
-equation (NLS)
-\begin{gather*}
-  iu_{t} + u_{xx} + | u |^{2}u = 0,
-\\
-u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
-\end{gather*}
-
-Specifically, I am interested in the relationship between the degree of
-dispersion (or dissipation) and the lowest Sobolev index for which local and
-global well-posedness holds.
+where $m \in \{3, 5, 7,\dots \}$ and $\lambda \in \{-1, 1\}$, 
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-My research on the KDV has led me to become interested in the Boussinesq
-equation
-\begin{equation*}
-  \begin{split}
-  & u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
-  \\
-  & u(x,0) = u_{0} \in H^{s} \\
-  & u_{t}(x,0) = u_{1} \in H^{s-2},
-  \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
-\end{split}
-\end{equation*}
-\begin{framed}
-Alex, how much can I reveal about the current work we are doing on
-this equation?
-\end{framed}
+and for initial data $H^{s}, s \ge 0$ for the higher order NLS
 %
-\subsection{Numerics} 
- \newpage
- \begin{framed}
-   Would like to mention how I am using numerics to construct the necessary traveling
-wave solutions to prove ill-posedness for Boussinesq. Don't know if I should at
-this point, since I don't yet have a result.
-\end{framed}
 %
+\begin{gather}
+	\label{nmNLS-eq}
+	i \p_t u + \p_x^{m} u + \lambda |u|^2 u =0,
+		\\
+		\label{nmNLS-init-data}
+		u(x,0) = \vp(x) \in H^s(\ci), \ \ t \in \rr, \ \ x \in \ci
+\end{gather}
+%
+%
+where $m \in \{2,4,6,\dots\}$ and $\lambda \in \{-1, 1\}$. If we strengthen our
+notion of well-posedness to require uniform continuity of the data-to-solution
+map, then my well-posedness result for the higher order NLS is sharp. That is,
+using an an argument
+similar to that found in \cite{Burq_Gerad_Tzvetkov-An-instability-}, I have
+shown that the data-to-solution map for the higher oder NLS is not uniformly
+continuous for initial data in $H^{s}, s \le 0$. 
+%
+%
+%
+I am also working on proving failure of the continuity of the data-to-solution map for
+initial data in $H^{s} \times H^{s-2}, s < -1/2$ for the Boussinesq equation. I am using three
+different approaches to gain insight into the problem. The first is motivated by
+\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. More
+specifically, the approach runs as follows:
+\begin{enumerate}[I.]
+  \item
+    Prove well-posedness in $H^{s} \times H^{s-2}, s \ge -1/2$.
+ \item
+   Show that the well-posedness implies that for a solution $u(x,t)$ with
+   initial data $u_{0} \in H^{s} \times H^{s-2}$, we have the following
+   decomposition (local in $t$) 
+   $$u(x,t) = \sum_{n} A_{n},$$ where the $A_{n}$ are non-linear functions of
+   the initial data. 
+ \item 
+   Choose an appropriate sequence of initial datum $u_{0,n}(x) \in H^{-1/2}
+   \times H^{-3/2}$ such that
+   we have failure of continuity for some iterate $A_{k}$ for $s < -1/2$.
+   This will imply
+   failure of the data-to-solution map for $s < -1/2$.
+   \end{enumerate}
 %		Bibliography		
 %
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \bib, bibdiv, biblist are defined by the amsrefs package.
-%
+The second approach is motivated by \cite{Himonas:2005kx}. That is,
+to prove the failure of continuity of the data-to-solution map, I am attempting
+to find a sequence of traveling wave solutions $u_{n}(x,t)$ to the Boussinesq with
+corresponding initial data $u_{0,n}$ in a sufficiently rough Sobolev space such 
+$u_{0,n} \to u_{0}$ in $H^{s}$ but $v_{n}(x,t) \not \to u(x,t)$ in $H^{s}$. 
+
+Lastly, the third approach involves numerical simulation in Matlab. More
+precisely, to get clues as to what which traveling wave solutions might allow me
+to prove failure of continuity, I have been numerically solving various ODEs
+with adjustable parameters. 
+
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -295,8 +275,28 @@ this point, since I don't yet have a result.
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{HKM09}
 
+\bibitem[BGT02]{Burq_Gerad_Tzvetkov-An-instability-}
+N.~Burq, P.~G{\'e}rad, and N.~Tzvetkov, \emph{An instability property of the
+  nonlinear schr{\"o}dinger equation on {\$}s\^{}d{\$}}, Math. Res. Lett.
+  \textbf{9} (2002), no.~2-3, 323--335.
+
+\bibitem[Bou93]{Bourgain-Fourier-transfo}
+J.~Bourgain, \emph{Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. ii. the
+  kdv-equation}, Geom. Funct. Anal. \textbf{3} (1993), no.~3, 209--262.
+
+\bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
+I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
+  for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
+  \textbf{233} (2006), no.~1, 228--259.
+
+\bibitem[Gor04]{Gorsky-The-Cauchy-prob}
+J.~M. Gorsky, \emph{The cauchy problem for a modified camassa-holm equation
+  with analytic initial data}, Differential Integral Equations \textbf{17}
+  (2004), no.~11-12, 1233--1254.
+
 \bibitem[HK09]{Himonas:2009fk}
-A.~Himonas and C.~Kenig, \emph{Non-uniform dependence on initial data for
+A.~A. Himonas and C.~Kenig, \emph{Non-uniform dependence on initial data for
   the ch equation on the line}, Differential Integral Equations \textbf{22}
   (2009), no.~3-4, 201--224.
 
@@ -305,26 +305,17 @@ A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
   periodic ch equation.}, To appear in Communications in Partial Differential
   Equations (2009).
 
+\bibitem[HM05]{Himonas:2005kx}
+A.~A. Himonas and G.~Misiolek, \emph{High-frequency smooth solutions and
+  well-posedness of the {C}amassa-{H}olm equation}, Int. Math. Res. Not.
+  (2005), no.~51, 3135--3151. \MR{2187502 (2006i:35315)}
+
 \bibitem[Ols06]{Olson_2006_Non-uniform-dep}
 E.~Olson, \emph{Non-uniform dependence on initial data for a family of
   non-linear evolution equations}, Differential Integral Equations \textbf{19}
   (2006), no.~10, 1081--1102.
 
-\bibitem[Tay91]{Taylor_1991_Pseudodifferent}
-M.~E. Taylor, \emph{Pseudodifferential operators and nonlinear pde}, vol. 100,
-  1991.
-
-\bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
-Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
-  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
-
-\bibitem[Zho05]{Zhou_2005_Local-well-pose}
-Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
-  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
-
 \end{thebibliography}
-
-
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 %\bibliographystyle{amsalpha-custom}
 \end{document}

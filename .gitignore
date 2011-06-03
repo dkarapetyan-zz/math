@@ -39,4 +39,5 @@
 *.synctex.gz
 *.toc
 *.ttt 
+*.zip
 Papers*/*

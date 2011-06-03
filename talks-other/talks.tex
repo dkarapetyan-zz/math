@@ -1,0 +1,1574 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+%\address{Department of Mathematics  \\
+    %University  of Notre Dame\\
+        %Notre Dame, IN 46556 }
+        %
+        %
+        %
+        %
+\section{Antononopoulos Mitsotakis Boussinesq Approximations}
+        \begin{enumerate}
+          \item Numerical solution of the 'classical' Boussinesq system,
+            preprint 2009
+          \item D.C. Antonopoulos and V.D. Notes on error estimates for Galerkin
+            approximations of the 'classical' Boussinesq system and related
+            hyperbolic problems, preprint 2010 arxiv
+          \item D.C. Antonopoulos, D.E. Mitsotakis and V.D. Galerkin, approximations of
+            periodic solutions of Boussinesq systems, preprint 2010
+        \end{enumerate}
+        \section{Asymptotic Linear Stability of Solitary water waves--Tzvetkov}
+        Weinstein's argument (Stability of KDV solitons). Doesn't work for KP
+        equation. Merle and Vega prove stability of KDV solitons in
+        $L^{2}$ using the Miura transform and the Galilei invariance. Tzvetkov
+        applied Merle-Vega's method to KP-II. Got stability of $\vp_{c}(x - 2ct)$
+        soliton.
+        %
+        %
+        \section{Transverse Instability for KP-I and NLS equations---Stefanov}
+       KP-I
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         & (u_{t} + u_{xxx} + (f(u))_{x})_{x} - u_{yy} =0
+         \\
+         & (u_{t} + u_{xxx} + (f(u))_{x})_{x} + u_{yy} = 0.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Johnson and Zumbrun--periodic waves of gKdV equation, 2-D perturbations.
+       Haragus--transverse spectral stability.
+       \section{Stability of the $\mu$-CH peakons---Liu}
+       Asymptotic stability for CH is open.
+       \section{Erdogan and Tzirakis}
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       %                
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       \begin{theorem}
+         Let $s > -1/2$ and $s_{1} < \min(3s+1, s+1)$. Then, given $H^{s}$, we
+         have
+         %
+         %
+         \begin{equation*}
+         \begin{split}
+           \| u(t) - e^{-t \p_{x}^{3}}g \|_{H^{s_{1}}} \le C (\| g
+           \|_{H^{s}}) \langle t \rangle^{\alpha(s)},
+         \end{split}
+         \end{equation*}
+         %
+         %
+         for some $\alpha(s) > 0$.
+       \label{thm:main3}
+       \end{theorem}
+       %
+       %
+       Christ studying smoothing $FL^{p} \to FL^{q}$. Other theorem in paper
+       similar to that one in paper.
+       Techniques in Tzirakis paper allows you to update uniqueness for $s \ge 0$.
+       Very powerful.  Michael Christ disproved being able to update uniqueness
+       for $s < 0$ via counterexample. Unpublished paper, on his website.
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       %                blowup complex KDV
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       \section{Blowup of the Complex KDV--Bona, Weissler} 
+       \label{sec:kdv-blowup}
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       %                him
+       %
+       %
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %
+       %
+       \section{CH Equation--Alex Himonas} 
+       \label{sec:him}
+       Integrable equations--Fokas-Fuchssteiner, Gel'fand-Dorfman
+       
+
+
+        %
+        %
+        %
+        \section{The Camassa Holm Equation}
+        \label{sec:ch}
+        \subsection{Origins}
+\label{ssec:origins}
+        \begin{enumerate}
+          \item
+            Fokas and Fuchssteiner--Hereditary symmetries ('81). Wrong coefficients.
+          \item Camassa-Holm--Shallow water theory ('93).
+        \end{enumerate}
+        
+        %
+        \begin{equation*}
+        \begin{split}
+          \text{KDV}: \ \
+          u_{t} + 3 uu_{x} + \alpha u_{xxx} + \beta u_{x} = 0, \quad \alpha,
+          \beta \neq 0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        For Camassa-Holm, have one extra term on left. Also,
+        instead of zero on right hand side, have
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+        \text{CH}: \ \
+        u_{t} + - u_{xxt} + 3 uu_{x} + \alpha u_{xxx} + \beta u_{x} = uu_{xxx} + 2
+        u_{x} u_{xx}, \quad \alpha \neq 0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        If $\alpha, \beta \neq 0$ have smooth solitons (look very similar to KDV
+        solitons). \emph{But is it physical}?
+        \begin{enumerate}
+          \item Dullin, Cottwald, and Holm ('03)--yes, it is physical. 
+          \item Constantin (09')--yes, it is physical.
+          \item Mikhailov, Bhatt--On the Inconsistency of the Camassa-Holm
+            equation\ldots('10)--No, it isn't.
+        \end{enumerate}
+        More interesting: dispersionless equations. Set $\alpha \to 0, \beta \to
+        0$, or $u \mapsto \tilde{u} = u + u_{0}$, $x \mapsto \tilde{x} = x -
+        ct$, and $t \mapsto \tilde{t} = t$. Rewrite dispersionless equations as
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          & m_{t} + um_{x} + 2 u_{x}m =0,
+          \\
+          & \text{"momentum"} m = u - u_{xx}
+        \end{split}
+        \end{equation*}
+        %
+        %
+        %
+        %
+        \begin{remark}
+        Can think of this as a geodesic equation. $u$ is like a Lagrangian
+        variable, $m$ is like a Hamiltonian variable.
+        \end{remark}
+        %
+        %
+
+
+        \subsection{Peakons} 
+        \label{ssec:peakons}
+        \begin{enumerate}
+          \item Single peakon: $u = ce^{-| x -ct |}, m = 2 c \delta(x -ct)$.
+          \item Multi-peakons: linear combination of single peakons. $u =
+            \sum_{j=1}^{N} p_{j}e^{-| x - q_{j}(t) |}, m = 2 \sum_{j
+            =1}^{N} p_{j}(t) \delta(x - q_{j}(t))$.
+    \end{enumerate}
+
+        \subsection{Bi-Hamiltonian Structure and Recursion Operator} 
+        \label{ssec:bi-ham}
+        CH better rewritten as 
+        %
+        %
+        $u = g*m$ with $g(x) = \frac{1}{2}e^{-| x |}$. How about positions
+        $q_{j}$ and amplitudes $p_{j}$? They satisfy a canonical finite dimensional
+        Hamiltonian system:%
+        %
+        \begin{equation*}
+        \begin{split}
+          & \frac{dq_{j}}{dt} = \frac{\p H}{\p p_{j}}
+          \\
+          & \frac{d _{p_{j}}}{d_{t}} = -\frac{\p H}{d q_{j}}, j = 1, \cdots N
+        \end{split}
+        \end{equation*}
+        %
+        %
+        where
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          H = \frac{1}{2} \sum_{j,k} p_{j} p_{k} e^{-| q_{j} - q_{k} |}
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Motion of the peakons is a geodesic flow. CH equation itself is a
+        geodesic equation. Rewriting Hamilton's equations is to write
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d}{dt} (\vec{q}/ \vec{p}) = J \Delta H
+\end{split}
+\end{equation*}
+%
+%
+where 
+%
+%
+\begin{equation*}
+\begin{split}
+J = 
+\begin{bmatrix}
+  0 & I
+  \\
+  -I & 0
+\end{bmatrix}
+\end{split}
+\end{equation*}
+%
+%
+As a geodesic equation, CH comes from $L = \frac{1}{2}\|u \|_{H^{1}}^{2}$. If you
+switch to the Hamiltonian version, then $m = \frac{\delta L}{ \delta u} = u -
+u_{xx}$ (Legendre Transform).
+\begin{enumerate}
+  \item CH has the Hamiltonian form
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \frac{\p m}{ \p t} = B_{0} \frac{\p H}{ \p m}
+    \end{split}
+    \end{equation*}
+    %
+    %
+    with %
+    %
+    \begin{equation*}
+    \begin{split}
+      B_{0} = -(m D_{x} + D_{x}m) \text{it's skew symmetric}
+    \end{split}
+    \end{equation*}
+    %
+    %
+    and %
+    %
+    \begin{equation*}
+    \begin{split}
+    H = L = \frac{1}{2} \int m g*m dx
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Gradient defind by
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+    \langle \frac{\delta H}{\delta m}, v  \rangle  = \frac{d}{d \ee} H(m + \ee
+    v) |_{\ee = 0}, \forall v
+    \end{split}
+    \end{equation*}
+    %
+    %
+    In this case, $H = \frac{1}{2} \langle m, g*m \rangle $ and this implies
+    $\frac{\delta H}{ \delta m} = g*m =u$.
+  \item But also:
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \frac{\p m}{ \p t} = B_{1} \frac{\delta \tilde{H}}{ \delta m}
+    \end{split}
+    \end{equation*}
+    %
+    %
+    where %
+    %
+    \begin{equation*}
+    \begin{split}
+      & B_{1} = -D_{x}(1 - D_{x}^{2}), \\
+      & \tilde{H} = \frac{1}{2} \int (u u_{x}^{2} + u^{3})dx
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Then 
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \frac{\delta \tilde{H}}{\delta u}
+      & = \frac{1}{2} u_{x}^{2} + \frac{3}{2}
+      u^{2} - (u u_{x})_{x}
+      \\
+      & = -\frac{1}{2} u_{x}^{2} + u u_{xx} + \frac{3}{2} u^{2}.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Now
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      m = M[u] \implies \frac{\delta \tilde{H}}{\delta u} = M'[u] + \frac{\delta
+      \tilde{H}}{ \delta m}. 
+    \end{split}
+    \end{equation*}
+    %
+    %
+\end{enumerate}
+To recap, what we have shown is that CH has two Hamiltonian structures.
+$B_{0}$ and $B_{1}$ are compatible, i.e. $\lambda_{0} B_{0} +
+\lambda_{1} + B_{1}$ is Hamiltonian $\forall (\lambda_{0}, \lambda_{1})$. This
+Bi-Hamiltonian compatibility condition is one definition for integrability,
+since from this we can create infinitely many symmetries based on recursion
+operator
+%
+%
+\begin{equation*}
+\begin{split}
+ &  R = B_{1} B_{0}^{-1}
+ \\
+ & \frac{\p m}{ \p t_{n}} = R^{n} \frac{\p m}{ \p t}
+\end{split}
+\end{equation*}
+%
+%
+where %
+%
+\begin{equation*}
+\begin{split}
+  \frac{\p}{ \p t_{n}} \ \text{commutes with} \ \frac{\p}{ \p t} \ \forall n
+\end{split}
+\end{equation*}
+%
+%
+\subsection{Lax Pairs and Reciprocal transfer} 
+%
+%
+\section{Camassa-Holm II}
+%
+%
+\begin{equation*}
+\begin{split}
+  & B_{0} \frac{\delta H_{-1}}{\delta m} = B_{1} \frac{\delta H_{-3}}{\delta m} =
+  -(u m_{x} + 2 u_{x}m)
+  \\
+  & B_{0} \frac{\delta H_{-1}}{\delta m} = B_{1} \frac{\delta H_{-3}}{\delta m} =
+  -m_{x}
+  \\
+  & B_{0} \frac{\delta C}{ \delta m} = B_{1} \frac{\delta H_{1}}{\delta m} =0
+  \\
+  & = B_{0} \frac{ \delta H_{3}}{\delta m} = B_{1} \frac{ \delta C}{ \delta m} =
+  -\frac{1}{2} (D_{x} - D_{x}^{3})m^{-1/2} \ \text{Harvy Dym}
+  \\
+  & B_{1} \frac{ \delta H_{3}}{ \delta m} = \cdots \text{5th order flow}
+\end{split}
+\end{equation*}
+%
+%
+Recall that %
+%
+\begin{equation*}
+\begin{split}
+  & R = B_{1} B_{0}
+  \\
+  & H_{-3} \frac{1}{2} \int (u u_{x}^{2} + u^{3}) dx
+  \\
+  & H_{-1} - \frac{1}{2} \int m g*m dx
+  \\
+  & C = \int m^{1/2} dx
+  \\
+  & H_{1} = \int m dx
+  \\
+  & H_{3} = \int (-1/16 m^{-5/2} m_{x}^{2} - \frac{1}{4} m^{-1/2})dx
+\end{split}
+\end{equation*}
+%
+%
+Now
+%
+%
+\begin{equation*}
+\begin{split}
+  & dX = m^{1/2}dx - m^{1/2} u dt
+  \\
+  & dT = dt
+  \\
+  &\text{CH eqn} \ \ V_{T} = -p_{x}
+\end{split}
+\end{equation*}
+%
+%
+where %
+%
+\begin{equation*}
+\begin{split}
+  & p(x, T) = m^{1/2}(x,t)
+  \\
+  & v(X, T) = \frac{-p_{xx}}{2p} + \frac{1}{4} \frac{p_{x}^{2}}{p^{2}} -
+  \frac{1}{2p^{2}}
+\end{split}
+\end{equation*}
+%
+%
+These are called reciprocal transformations---can apply to
+any equation with conservation laws. Weights of CH/Harry Dyn hiererarchy. Can do
+counting definition: each
+$x$ derivative counts as $+1$, take the highest that appears. $m$ has weight
+$0$. $u$ has weight $-2$, since $u = (1 - D_{x}^{2})^{-1}m$. 
+\subsection{Other integral peakon-type equations?} 
+        \label{ssec:lax-pair}
+\label{ssec:peak-type}
+\begin{enumerate}
+ \item{ Degasperis-Procesi}
+   $m_{t} + u m_{x} + 3 u_{x} m = 0$, \quad $m = u - u_{xx}, u = g*m, g =
+   \frac{1}{2}e^{-| x |}$.
+   \item{ Novikov}
+     $m_{t} + u^{2} m_{x} + 3 u u_{x} m =0$
+     \item{ Qiao[Fokas]}
+       $m_{t} + (m(u^{2}- u_{x}^{2})) =0$.
+\end{enumerate}
+\subsection{b-family of equations} 
+\label{ssec:b-family}
+$m_{t} + u m_{x} + b u_{x} m = 0$. According to all sorts of tests or
+integrability, only $b=2$ (CH) and $b=3$ (DP) are integrable. Still a nice
+family of equations which for every member admits multi-peakon solutions.
+%
+%
+\begin{equation*}
+\begin{split}
+  u = \sum_{j=1}^{N}p_{j}(t) g(x - q_{j}(t)), \quad m = \sum_{j=1}^{N}
+  p_{j} \delta(x - q_{j})
+\end{split}
+\end{equation*}
+%
+%
+Equations of motion for peakons (``pulsons for abitrary g'', symmetric kernel):
+%
+%
+\begin{equation*}
+\begin{split}
+  & \frac{dq_{j}}{dt} = \sum_{k} p_{k} g (q_{j} - q_{k})
+  \\
+  & \frac{dp_{j}}{dt} = -(b-1) \sum_{k} p_{j} p_{k} g'(q_{j} - q_{k}).
+\end{split}
+\end{equation*}
+%
+%
+If $b=2$, these equations are canonical Hamiltonian equations with Hamiltonian
+%
+%
+\begin{equation*}
+\begin{split}
+  h = \frac{1}{2} \sum p_{j} p_{k} g(q_{j} - q_{k})
+\end{split}
+\end{equation*}
+%
+%
+for arbitrary symmetric $g$. Now, b-family with arbitrary choice of $g$ can be
+written in the following way.%
+%
+\begin{equation*}
+\begin{split}
+\frac{\p m}{\p t = } B \frac{\delta H}{ \delta m}
+\end{split}
+\end{equation*}
+%
+%
+where $H = \int m dx$ and (up to scaling)
+$B = -m^{1 - 1/b} D_{x} m^{1/b} \wh{G} m^{1.b}
+D_{x} m^{1 - 1/b}$ where $B$ is a skew symmetric operator, and $\wh{G}$ is
+convolution with $G(x) = \int_{0}^{x} g(s) dt$. 
+Now, not necessarily Hamiltonian, since may not satisfy Jacobi identity.        
+The skew bracket defined by $B$ reduces to a skew bracket for $p_{j},
+q_{k}$ on the level of the pulson solutions.
+%
+%
+\begin{equation*}
+\begin{split}
+  & \left\{ q_{j}, q_{k} \right\} = G(q_{j} - q_{k}),
+  \\
+  & \left\{ q_{j}, p_{k} \right\} = (b-1) G'(q_{j} - q_{k})p_{k}
+  \\
+  & \left\{ p_{j}, p_{k} \right\} = -(b-1)^{2} G''(q_{j} - q_{k})p_{j}
+  p_{k}.
+\end{split}
+\end{equation*}
+%
+%
+Jacobi identity:
+%
+%
+\begin{equation*}
+\begin{split}
+  %\left \{ \left\{ f, g \right\}, h\} + \left\{ \left\{ h,f \right\},g \right\}
+  %+ \left\{ \left\{ g,h \right\}, f \right\} = 0 \forall f, g, h
+\end{split}
+\end{equation*}
+%
+%
+Need to check 
+%
+%
+\begin{equation*}
+\begin{split}
+  & \left\{ \left\{ q_{j}, q_{k} \right\}, q_{l} \right\} + \text{cyclic} = 0
+  \\
+  & \left\{ \left\{ q, q \right\}, p \right\} + \text{cyclic} = 0
+  \\
+  & \left\{ \left\{ q, p \right\}, p \right\} + \text{cyclic} = 0
+\end{split}
+\end{equation*}
+%
+%
+Functional equation for $G$:
+%
+%
+\begin{equation*}
+\begin{split}
+  & G'(\alpha)(G(\beta) + G(\gamma)) + \text{cyclic} = 0
+  \\
+  &  \text{whenever} \ \alpha + \beta + \gamma =0
+\end{split}
+\end{equation*}
+%
+%
+The general odd solution belonging to $C^{1}(\rr)\setminus 0$ is
+%
+%
+\begin{equation*}
+\begin{split}
+  G(x) = A \text{signum} x(1 - e^{-B| x |})
+\end{split}
+\end{equation*}
+%
+%
+Now, if $B \to 0, A = \frac{1}{B}$, you get $G(x) = cx$, which implies
+$m_{t} + k m_{x} = 0, K = A \int m(y) dy$. If $B \to \infty, A=1, G(x) = A
+\text{signum} x$, then $m_{t} + kmm_{x}=0$. Holm and Staley did numerics on the
+b-family. Found that for $b \ge 1$, you get stable trains of multi-peakons. For
+example
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{t} + u^{3} u_{x} + u_{xxx} = 0
+\end{split}
+\end{equation*}
+%
+%
+seemingly has many solitons (stable), yet not integrable. $b < 1$, get leftons,
+$-1 < b < 1$ ragged type.
+\subsection{Lax pairs for CH} 
+\label{ssec:lax-pair-CH}
+\begin{definition}
+A Lax pair is a pair of linear equations with a spectral parameter $\lambda \in
+\cc$, whose compatibility yields the nonlinear equation of interest. 
+\end{definition}
+For a PDE in $1+1$ dimensions (indept variables $x$ and $t$), the Lax pair
+consists of an $x$ part and a $t$ part.
+
+CH scalar Lax pair:
+%
+%
+\begin{equation*}
+\begin{split}
+  & \text{x part}: \psi_{xx} + (m \lambda - \frac{1}{4}) \psi = 0.
+  \\
+  & \text{t part}: \psi_{t} + (u + \frac{1}{2} \lambda^{-1})\psi_{x} -
+  \frac{1}{2}u_{x} \psi = 0
+\end{split}
+\end{equation*}
+%
+%
+\begin{definition}
+  Compatibility: $\psi_{xxt} = \psi_{txx} \forall \psi, \lambda$. 
+\end{definition}
+Let's compute:
+%
+%
+\begin{equation*}
+\begin{split}
+  \psi_{xxt}
+  & = \left( (\frac{1}{4} - m \lambda)\psi \right)_{t}
+  \\
+  & = -m_{t} \lambda \psi + \left( \frac{1}{4} - m \lambda \right)
+  \psi_{t}
+  \\
+  & = -m_{t} \lambda \psi + \left( \frac{1}{4} - m \lambda \right)\left(
+  -(u + \frac{1}{2} \lambda^{-1}\psi_{x} + \frac{1}{2} u_{x} \psi)
+  \right)
+  \\
+  & = \left[ -m_{t} \lambda + (\frac{1}{4}- m \lambda)\frac{1}{2}u_{x} \right]\psi
+  - (\frac{1}{4} - m \lambda)(u + \frac{1}{2}\lambda^{-1})\psi_{x}
+\end{split}
+\end{equation*}
+%
+%
+while
+%
+%
+\begin{equation*}
+\begin{split}
+  \psi_{txx}
+  & = \left[ (u + \frac{1}{2} \lambda^{-1})\psi_{xx} + u_{x}
+  \psi_{x} - \frac{1}{2} u_{x} \psi_{x} - \frac{1}{2} u_{xx} \psi
+  \right]_{x}
+  \\
+  & = \left[ (u + \frac{1}{2}\lambda^{-1})(\frac{1}{4} - m \lambda)\psi
+  + \frac{1}{2} u_{x} \psi_{x} - \frac{1}{2} u_{xx} \psi \right]_{x}
+  \\
+  & = \left( \left[ (u + \frac{1}{2} \lambda^{-1})(\frac{1}{4} - m \lambda) -
+  \frac{1}{2} u_{xx} \right]\psi + \frac{1}{2} u_{x} \psi_{x} \right)_{x}a
+  \\
+  & = \frac{1}{2} u_{x}(\frac{1}{4} - m \lambda)
+  \\
+  & = \frac{1}{2}u_{x}\left( \frac{1}{4} - m \lambda \right)\psi + \left[
+  \frac{1}{2}u_{xx} - \frac{1}{2} u_{xx} + (u +
+  \frac{1}{2}\lambda^{-1})(\frac{1}{4} - m \lambda)
+  \right]\psi_{x}
+  \\
+  & + u_{x}\left( (\frac{1}{4} - m \lambda) - m_{x} \lambda (u +
+    \frac{1}{2} \lambda^{-1}) - \frac{1}{2} u_{xxx}\right)\psi
+\end{split}
+\end{equation*}
+%%
+Some mistake in the computation--but idea is above.
+%
+For a shortcut, set $V = m \lambda - \frac{1}{4}, A = u +
+\frac{1}{2}\lambda^{-1}, B = -\frac{1}{2}u_{x} = -\frac{1}{2}A_{x}$. 
+Then 
+%
+%
+\begin{equation*}
+\begin{split}
+  & \psi_{xx} + V \psi = 0
+  \\
+  & \psi_{t} + A \psi_{x} - \frac{1}{2} A_{x} \psi = 0
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \psi_{xxt}
+  & = -(V \psi)_{t}
+  \\
+  & = -V_{t} \psi - V \psi_{t}
+  \\
+  & = -V_{t} \psi + V\left( -A \psi_{x} + \frac{1}{2} A_{x} \psi \right)
+  \\
+  & = \left( -V_{t} + \frac{1}{2} A_{x}V \right)\psi - A V \psi_{x}
+\end{split}
+\end{equation*}
+%
+%
+while
+%%
+%%
+\begin{equation*}
+\begin{split}
+  \psi_{txx}
+  & = \left( -A \psi_{x} + \frac{1}{2}A_{x} \psi \right)_{xx}
+  \\
+  & = \left( -A \psi_{xx} - A_{x} \psi_{x} + \frac{1}{2} A_{x} \psi_{x} +
+  \frac{1}{2} A_{xx} \psi \right)_{x}
+  \\
+  & = \left( AV \psi - \frac{1}{2} A_{x} \psi_{x} + \frac{1}{2} A_{xx}\psi
+  \right)_{x}
+  \\
+  & = \left[ \left( \frac{1}{2}A_{xx} + AV \right)\psi - \frac{1}{2}A_{x}
+  \psi_{x} \right]_{x}
+  \\
+  & = \psi_{txx} = \left( \frac{1}{2}A_{xxx} + A_{xx}V + A V_{x} \right)\psi 
+  \\
+  & + \left( \frac{1}{2}A_{xx} + AV - \frac{1}{2}A_{xx} \right)\psi_{x} -
+  \frac{1}{2} A_{x} \psi_{xx}
+  \\
+  & = \left( \frac{1}{2}A_{xxx} + A_{x}V + AV_{x} + AV_{x} +
+  \frac{1}{2}A_{x}V \right) \psi + AV \psi_{x}
+\end{split}
+\end{equation*}
+%%
+%%
+Then answer should be
+%
+%
+\begin{equation*}
+\begin{split}
+  -V_{t} + \left( \frac{1}{2}D_{x}^{3} + 2V D_{x} + V_{x}\right)A = 0
+\end{split}
+\end{equation*}
+%%
+%%
+Expanding, get
+%
+%
+\begin{equation*}
+\begin{split}
+  & \text{coefficients of $\lambda$}:  m_{t} + 2mu_{x} + m_{x} u = 0
+  \\
+  &  \text{coefficiients of $\lambda^{0}$}: \frac{1}{2} u_{xxx} - \frac{1}{2}
+  u_{x} + \frac{1}{2} m_{x} =  0.
+\end{split}
+\end{equation*}
+%%
+%%
+\subsection{Matrix Lax Pair for CH} 
+\label{ssec:matrix-lax}
+%
+%
+\begin{equation*}
+\begin{split}
+  & \p_{x} \Psi = U \Psi
+  \\
+  & \p_{t} \Psi = V \Psi, \quad \text{where} \ \Psi = 
+  \begin{bmatrix}
+    \psi & \tilde{\psi}
+    \\
+    \psi_{n} & \tilde{\psi_{n}}
+  \end{bmatrix}
+\end{split}
+\end{equation*}
+%%
+%%
+%%
+%%
+\begin{equation*}
+\begin{split}
+  U = 
+  \begin{bmatrix}
+ 0 & 1
+ \\
+ -m\lambda + \frac{1}{4} & 0
+  \end{bmatrix}
+\end{split}
+\end{equation*}
+%
+%
+and 
+%
+%
+\begin{equation*}
+\begin{split}
+V = 
+\begin{bmatrix}
+  \frac{1}{2} u_{x} & -u - \frac{1}{2} \lambda^{-1}
+  \\
+  um\lambda + \frac{1}{4}u - \frac{1}{8}\lambda^{-1} & -\frac{1}{2}u_{x}
+\end{bmatrix}
+\end{split}
+\end{equation*}
+%
+%
+Compatibility $\Psi_{xt} = \Psi_{tx}$ or $\left[ \p_x - U, \p_t -V \right]=0$
+and $U_{t} - V_{x} + \left[ U, V \right]=0$. Now, can you use the lax pair to
+find the bi-hamiltonian structure? Suppose $\psi, \tilde{\psi}$ be two
+independent solutions of $\psi_{xx} + (m \lambda - \frac{1}{4})\psi = 0$. Let
+$P = \psi \tilde{\psi}$. $\implies P_{xxx} + 4(m \lambda -
+\frac{1}{4})P_{x} + 2 m_{x} \lambda P = 0$. $\implies \left[ (D_{x}^{3} - D_{x})
++ \lambda(4m D_{x} + 2 m_{x})\right]P = 0$. $\implies (B_{1} - 2 \lambda
+B_{0})P = 0$. Taking $\lambda \to \infty$, and doing asymptotic expansion, we
+get $P \sim P_{o} +
+\lambda^{-1} + \lambda^{-2}P_{2} +\cdots$, where $P_{0} \alpha m^{-1/2} \alpha
+\frac{\delta c}{ \delta m}, P_{1} \alpha \frac{\delta H_{3}}{ \delta m}$.
+Another way to get bi-hamiltonian structure is to take $\rho = (\log
+\psi)_{x}$ and $\rho_{t} = \left[ (\log \psi)_{t} \right]_{x}$, i.e.
+$\rho_{t} = F$. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Peakonomics
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Peakonomics} 
+\label{sec:peakonomics}
+Collaborators: Johnny Kelsey, Francesca Medda, Alan Wilson. Interested in
+pattern formation in economic systems. Looked at a model of Krugman (Nobel
+Economics '08). Wrote book called ``The Self-Organizing Economy'' ('96).
+Modeling: main variable is $\lambda (x,t)$, called the ``business density''.
+It's the density of how much economic activity is going on. 
+%
+%
+The $\lambda$, in CH notation,
+is actually the $m$, or momentum density. Another quantity
+$P(x,t)$, called ``market potential''. In CH notation, this is $u$, or velocity
+field. $G(x) = Ae^{-r_{1} | x |} - Be^{-r_{2}| x |}$. In CH notation,
+$g(x) = \frac{1}{2}e^{-| x |}$. Also, $P = G* \lambda = \int G(x-y) \lambda
+(y,t) dy$, where integral is over $\rr$ or $\ci$. In CH, $u = g*m$.
+Now %
+%
+\begin{equation*}
+\begin{split}
+  & P(x,t) = \int \left( A e^{-r_{1}| x-y |} - Be^{-r_{2}| x-y |}  \right)
+  \lambda(y,t) dt \quad \text{first term with A centripetal, second centrifugal}
+  \\
+  & \frac{r_{1}}{r_{2}} > \frac{A}{B} > \frac{r_{2}}{r_{1}} \quad \text{all
+  params positive}
+\end{split}
+\end{equation*}
+%
+%
+$G(x)$ looks like mexican hat--symmetric about origin, triangle that dips down
+into negative $y$ range, then slowly twists back up to $y=0$. Another quantity
+is $\bar{P}(t) = \int P(x,t) \lambda(x,t) dx$. Now, Knigman's model:
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d \lambda}{dt} = \gamma \lambda (P - \bar{P}), \quad \gamma >0 \quad
+  \text{Set $\gamma=1$ henceforth}
+\end{split}
+\end{equation*}
+%
+%
+Implicit assumption
+%
+%
+\begin{equation*}
+\begin{split}
+\int \lambda(x,t)dx=1
+\end{split}
+\end{equation*}
+%
+%
+Better definition of the model: Let $\lambda$, $P$ be as before, but let
+$\bar{P}(t) = \frac{\int P(x,t) \lambda(x,t)dx}{\int \lambda(x,t)dx}$.
+$C = \int \lambda(x,t) dx$ with $\bar{P} = \int P \lambda dx / C$ the model is
+dimensionally correct.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                conservatino of probability
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+%
+We have the conservation of probability
+%
+\begin{equation*}
+\begin{split}
+\frac{dC}{dt} =0.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:cons-prob}
+\end{lemma}
+%
+%
+So $C(t) = C(0) \forall t$. 
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d \bar{P}}{dt} = 2 \text{var}(P) \ge 0
+\end{split}
+\end{equation*}
+%
+%
+The general model is as before, 
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{\p \lambda}{ \p t} = \lambda (P - \bar{P}) 
+\end{split}
+\end{equation*}
+%
+%
+with $\bar{P}$ redefined accordingly; $G$ could be different.
+\label{lem:deriv-barP}
+\end{lemma}
+%
+%
+Analysis easier on the circle. Linearize around constant solution
+$\lambda(x,t) = 1/L$, where $\ci = [-L/2, L/2]$. Do perturbation analysis.
+Get ODEs for Fourier modes, which grow or decay. (Turing Mechanism gives another
+example).
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                main thm
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+Krugman's model has exact solutions given by a sum of point masses
+%
+%
+\begin{equation*}
+\begin{split}
+  \lambda(x,t) = \sum_{j=1}^{N} a_{j}(t) \delta(x - x_{j})
+\end{split}
+\end{equation*}
+%
+%
+where $x_{j} = \text{const} \ \forall t$ and $a_{j}$ evolve according to 
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d a_{j}}{dt} = a_{j}\left[ \sum_{k=1}^{N} a_{k} G(x_{j}, x_{k}) -
+  \frac{1}{C} \sum_{k, \ell} a_{k}a_{\ell} G(x_{k} - x_{\ell}) \right] 
+\end{split}
+\end{equation*}
+%
+%
+with $C = \sum a_{j} = \text{const}$.
+\label{thm:main-theorem}
+\end{theorem}
+%
+%
+In other words, in model, everything gets sucked into a single point--Krugman
+was not looking for this\ldots wanted pockets of economic activity to form
+everywhere. Integration is performed using Riemann sums\ldots and derivatives
+are handled using finite differences (Method of Lines). 
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Somos Sequences
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Somos Sequences} 
+\label{sec:somos}
+Graham Everest introduced Hone. Michael Somos (early '80's). 
+%
+%
+\begin{equation*}
+\begin{split}
+  x_{n+4}x_{n} = x_{n+3}x_{n+1} + x_{n+2}^{2}.
+\end{split}
+\end{equation*}
+%
+%
+Initial data $x_{0}, x_{1}, x_{2}, x_{3} =1$. Relation above gives
+\\ $1,1,1,1,2,3,7,23,59,314,1529,8209,83313,\cdots$. 
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+  With these initial data, $x_{n} \in \zz \ \ \forall n \in \zz$. 
+\label{prop:somos}
+\end{proposition}
+%
+%
+\subsection{Prehistory} 
+\label{ssec:prehistory}
+%
+%
+\begin{equation*}
+\begin{split}
+  F_{n+1} = F_{n} + F_{n-1}, \quad F_{0}=0, F_{1}=1
+\end{split}
+\end{equation*}
+%
+%
+But for Fibonacci sequence, $(F_{n})$ is a divisibility sequence, i.e.
+$F_{n} \vert F_{m}$ whenever $n \vert m$. Similarly, Lucas sequences.
+M. Ward ($'40$).
+%
+%
+\begin{equation*}
+\begin{split}
+  x_{n+4} x_{n} = \alpha x_{n+3}x_{n+1} + \beta x_{n+2}^{2}
+\end{split}
+\end{equation*}
+%
+%
+Take $x_{1} =1, x_{2},x_{3}, x_{4} \in \zz, x_{2} \vert x_{4}, \ \text{and} \
+\alpha = x_{2}^{2}, \beta = -x_{1} x_{3}$. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Ward
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Ward]
+%
+%
+\begin{equation*}
+\begin{split}
+  x_{n} \in \zz \ \forall n \in \zz \ \text{and} \ x_{n} \vert x_{m} \
+  \text{whenever} \ n \vert m.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+%
+\label{thm:main}
+\end{theorem}
+%
+%
+\begin{proof}
+Use the fact that %
+%
+\begin{equation*}
+\begin{split}
+  x_{n} = \frac{\sigma(nv)}{\sigma(v)^{n^{2}}}
+\end{split}
+\end{equation*}
+%
+%
+where $\sigma(z) = \sigma(z, g_{2}, g_{3})$ is the Weirstrauss $\delta$ function
+associated with the elliptic curve
+%
+%
+\begin{equation*}
+\begin{split}
+  E: y^{2}=4x^{3} - g_{2}x - g_{3}
+\end{split}
+\end{equation*}
+%
+%
+\end{proof}
+Hilbert's $10$th problem--undecidability proved by Matiyasevich ('70)
+using linear recurrence sequences.
+Question: Why does Somos-4 give integers? Answer: Because the recurrence has the
+Laurent property. General Somos-4:
+%
+%
+\begin{equation*}
+\begin{split}
+  x_{n+4}x_{n} = \alpha x_{n+3} x_{n+1} \beta x_{n+2}^{2}
+\end{split}
+\end{equation*}
+%
+%
+The Laurent property for the above syas that $x_{n} \in \zz[x_{0}^{\pm 1},
+x_{1}^{\pm 1}, \cdots, x_{3}^{\pm 1}, \alpha, \beta ]$ for all $n \in \zz$. 
+%
+%
+\begin{proof}
+Do modular arithmetic in $\rr$, using induction with any $4$ adjacent terms
+coprime. For more details, see David Gale ``Tracking the Automatic Ant''.
+\end{proof}
+%
+%
+Hirota-Miwa KDV transformation reduces KDV to Somos-4. Look it up.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Liu
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Liu-Gromov Witten Theory} 
+\label{sec:liu}
+Considering infinite system of differential equations--also called integrable
+hierarchy. 
+\begin{gather*}
+     u = u(x)
+    \\
+    R_{n+1}(u, u_{x}, u_{xx}, \cdots)
+    \\
+    \frac{d}{dx} R_{n+1}(u) = \frac{1}{2n+1} \left( u_{x} + 2u \frac{d}{dx} +
+    \frac{1}{4}\left( \frac{d}{dx} \right)^{3} \right) R_{n}(u)
+    \\
+    R_{1}(u) = u
+    \\
+    R_{2}(u) = \frac{1}{2} u^{2} + \frac{1}{12} u_{xx}.
+\end{gather*}
+n-th eqn in KDV hierarcy
+%
+%
+\begin{gather*}
+    u = u(t,x)
+    \\
+    u_{t} =  \frac{d}{dx}R_{n+1}, \quad n = 0,1,2,\cdots
+    \\
+    n = 0, \quad u_{t} = u_{x}
+    \\
+    n=1, \quad u_{t} = uu_{x} + \frac{1}{12}u_{xxx}, \quad \text{KDV}
+    \\
+    n=2, \quad \text{and so on}
+\end{gather*}
+We say
+\begin{gather*}
+  Z = Z(x, t_{0}, t_{1}, t_{2}, \cdots)
+\end{gather*}
+is a $\tau$-function of KDV hierarchy if
+\begin{gather*}
+  u(x, t_{0}, t_{1}, \cdots) \doteq \frac{\p^{2} \log Z}{\p x^{2}}
+\end{gather*}
+is a solution for the $n$-th equation in KDV hierarchy if $x =x$, $t =
+t_{n}$. 
+Define $M_{g,k}$ = space of genus-g stable curves with $k$ marked points.
+Basically Riemann surface with $k$ punctures. Deligne-Mumford compactification $ M_{g,n} \subset \bar{M_{g,k}}$.
+\begin{gather*}
+  \bar{M_{g,k}} = \left\{ (C; x_{1}, \cdots, x_{k}) \right\}, \quad C \
+  \text{curve} 
+\end{gather*}
+Line bundle $T_{x_{2}}^{*}C \subset E_{2}$.
+\begin{gather*}
+  \langle \tau_{n_{1}}, \cdots, \tau_{n_{k}} \rangle_{g} \doteq
+  \int_{\bar{M_{g,k}}} c_{1}(E_{1})^{n_{1}} \times \ldots \times
+  c_{1}(E_{k})^{n_{k}}
+\end{gather*}
+\begin{gather*}
+  F_{g}(t_{0}, t_{1}, \cdots) = \sum_{k \ge 0} \frac{1}{k!} \sum_{n_{1}, \ldots,
+  n_{k} \ge 0} t_{n_{1}} \times\cdots\times t_{n_{k}} \langle \tau_{n_{1}}
+  \times\cdots \times \tau_{n_{k}} \rangle_{g}.
+\end{gather*}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Witten's Conjecture]
+\begin{gather*}
+  Z = e^{\sum_{g \ge 0} F_{g}(t)}
+\end{gather*}
+is a $\tau$-function of KDV hierarchy. $t_{0} \simeq x$
+\label{thm:witt}
+\end{theorem}
+%
+%
+$\bar{M_{0,3}} = \left\{ pt \right\}$, 
+\begin{gather*}
+  \langle \tau_{0} \tau_{0} \tau_{0} \rangle  = \int_{\bar{M_{0,3}}} 1 =1
+\end{gather*}
+Witten's conjecture determines all
+\begin{gather*}
+  \langle \tau_{n_{1}}, \cdots, \tau_{n_{k}} \rangle. 
+\end{gather*}
+Kontesevich proved the conjecture. Reduces difficult problem of computing $\tau$
+functions to calculus\ldots don't even need to know $\tau$ functions now, thanks
+to Witten conjecture. Define
+\begin{gather*}
+  L_{-1} = -\frac{\p}{\p t_{0}} + \frac{1}{2} t_{0}^{2} + \sum_{i=1}^{\infty}
+  t_{i+1} \frac{\p}{\p t_{2}}
+\end{gather*}
+String equation: $L_{-1} Z = 0$.
+        %\nocite{*}
+        %\bibliography{/Users/davidkarapetyan/Documents/math/}
+\section{Notion of Integrability}
+        \label{sec:}
+Consider equations of form
+%
+%
+\begin{equation*}
+\begin{split}
+  (1 - \p_x^{2})u_{t} = P(u, u_{x}, u_{xx}, u_{xxx}, \cdots).
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                thm
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Mikhailov-Novikov, 2002]
+If equation (b-family)
+%
+%
+\begin{equation*}
+\begin{split}
+  m_{t} = b m u_{x} + u m_{x}, m = (1 - \p_x^{2})u = u - u_{xx}
+\end{split}
+\end{equation*}
+%
+%
+possesses an ``infinite hierarchy of (quasi) local higher symmetries'', i.e.
+integrability, then
+$b =2$ (CH) or $b =3$ (DP)
+\label{thm:main-theorem2}
+\end{theorem}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Novikov, 2009]
+The equation
+%
+%
+\begin{equation*}
+\begin{split}
+  & (1 - \ee^{2} \p_{x}^{2})u_{t} = c_{1} uu_{x} + \ee [c_{2} u u_{xx} +
+  c_{3} u_{x}^{2}] + \ee^{2}[c_{4} uu_{xx} + c_{5} u_{x}u_{xxx}]
+  \\
+  & +
+  \ee^{3}[c_{6} u u_{xxxx} + c_{7} u_{x} u_{xxx} + c_{8}u_{xx}^{2}] +
+  \ee^{4}[c_{9} u u _{xxxxx} + c_{10} u_{x} u_{xx} + c_{11} u_{xx}u_{xxx}]
+\end{split}
+\end{equation*}
+%
+with at least one of the following conditions not satisfied.
+\begin{enumerate}
+  \item{ $c_{2} = 0$}
+  \item{$c_{6} = 0$ }
+  \item{ $c_{1} + c_{4} = 0$}
+\end{enumerate}
+is integrable then it is one in the following list of $10$ equations.
+\begin{enumerate}
+ \item{CH }
+ \item{ DP}
+ \item{ $(1 - \ee^{2} \p_x^{2}) \p_{t} u = \p_{x} [(4 - \ee^{2}
+   \p_{x}^{2})u]^{2}$}
+   \item{ And so on}
+\end{enumerate}
+%
+\label{thm:integ}
+\end{theorem}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Novikov]
+If $P(\cdots)$ is of weight -1 (each derivative is +1 weight, $\ee$ is -1 weight)
+ind satisfies some conditions implies $8$ more integrable equations.
+\end{theorem}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Novikov]
+If $P(\cdots)$ has weight=1 and cubic nonlinearities + condition
+implies 10 integrable equations and one of them is NEW, and called the Novikov
+equation.
+%
+%
+\begin{equation*}
+\begin{split}
+  (1 - \p_{x}^{2})u_{t} = -4u^{2} u_{x} + 3 u u_{x} u_{xx} + u^{2} u_{xxx}. 
+\end{split}
+\end{equation*}
+%
+It has 
+\begin{enumerate}
+ \item{ Infinitely many symmetries}
+ \item{ (Hone et al) Lax pair}
+ \item{ Infinitely many conserved quantitites}
+ \item{ Bihamiltonian structure}
+ \item{ ?? Can be solved using the inverse scattering method ?? }
+\end{enumerate}
+%
+\end{theorem}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Degasperis-Procesi]
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{t} + c_{0} u_{x} + \gamma u_{xxx} = (c_{1} u^{2} + c_{2} u_{x}^{2} +
+  c_{3} u_{xx})_{x}
+\end{split}
+\end{equation*}
+%
+%
+is integrable implies
+\begin{enumerate}
+ \item{ CH, or}
+ \item{ DP, or}
+ \item{ KDV}
+\end{enumerate}
+\end{theorem}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Khesim-Misiolek]
+\ldots geodesic equation on some object is intregrable implies
+\begin{enumerate}
+ \item{ KDV, or}
+ \item{ CH, or}
+ \item{ Hunter-Saxton}
+\end{enumerate}
+%
+\end{theorem}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}[Fokas-Fuchsteiner]
+\ldots a family is integrable implies
+\begin{enumerate}
+\item{ KDV, or}
+\item{ CH}
+  \end{enumerate}
+\end{theorem}
+%
+%
+%
+%
+\begin{framed}
+\begin{remark}
+Different researchers have different machinery. Spits out some equations, not
+others.
+\end{remark}
+\end{framed}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  The Novikov equation is well-posed in $H^{S}$ if $s > 3/2$ and dependence on
+  initial data is continuous.
+\end{theorem}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+The dependence is not better than continuous.
+\end{theorem}
+%
+%
+%
+%
+\begin{framed}
+%
+%
+\begin{remark}
+  Novikov equation has PEAKON SOLUTIONS and CONSERVES $H^{1}$. First equation
+  with cubic nonlinearity that has peakon solutions. 
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+
+
+        \end{document}
