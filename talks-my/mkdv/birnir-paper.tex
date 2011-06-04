@@ -165,7 +165,7 @@ urlcolor=blue,
         $ -R, R, R + i \pi, -R + i \pi$, and let $C = C(R) = C_{\text{right}}
         \cup C_{\text{top}}\cup C_{\text{left}} \cup C_{\text{[-R, R]}}$
         be the contour tracing the rectangle counter-clockwise. Note that along
-        contour $C_{\text{left}}$, which we parametrize by $z = R + it, \ 0 \le
+        contour $C_{\text{right}}$, which we parametrize by $z = R + it, \ 0 \le
         t \le \pi$, we have the
         bound
         %
@@ -196,7 +196,7 @@ urlcolor=blue,
           & \ge \frac{1}{2}e^{R}, \qquad R \ge \log 2.
         \end{split}
         \end{equation}
-        Similarly, along $C_{\text{right}}$, which we parametrize by $z = -R +
+        Similarly, along $C_{\text{left}}$, which we parametrize by $z = -R +
         it, \ 0 \le t \le \pi$, we have the bound
         %
         %
@@ -243,6 +243,17 @@ urlcolor=blue,
         \end{split}
         \end{equation}
         %
+        while
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \int_{C_{[-R, R]}}e^{-iz \xi} \frac{1}{e^{z} + e^{-z}} dz
+        & = \int_{-R}^{R}e^{-it \xi} \frac{1}{e^{t} + e^{-t}} dt
+        \to \wh{ \frac{1}{e^{t} + e^{-t}}}(\xi).
+        \end{split}
+        \end{equation*}
+
         %
         Next, note that $$\frac{e^{-i z \xi}}{e^{z} +
         e^{-z}}$$ has a singularity in $D$ only at the
@@ -412,7 +423,7 @@ urlcolor=blue,
         $ -R, R, R + i \pi, -R + i \pi$, and let $C = C(R) = C_{\text{right}}
         \cup C_{\text{top}}\cup C_{\text{left}} \cup C_{\text{[-R, R]}}$
         be the contour tracing the rectangle counter-clockwise. Note that along
-        contour $C_{\text{left}}$, which we parametrize by $z = R + it, \ 0 \le
+        contour $C_{\text{right}}$, which we parametrize by $z = R + it, \ 0 \le
         t \le \pi$, we have the
         bound
         %
@@ -427,7 +438,7 @@ urlcolor=blue,
         %
         %
         due to \eqref{key-abs-est}.
-        Similarly, along $C_{\text{right}}$, which we parametrize by $z = -R +
+        Similarly, along $C_{\text{left}}$, which we parametrize by $z = -R +
         it, \ 0 \le t \le \pi$, we have the bound
         %
         %
@@ -454,7 +465,7 @@ urlcolor=blue,
         %
        % 
         %
-        Lastly, using the change of variable $z = t + \pi i$, we have
+        Using the change of variable $z = t + \pi i$, we have
         %
         %
         \begin{equation}
@@ -473,6 +484,18 @@ urlcolor=blue,
           & = -e^{ \pi \xi} \wh{\frac{1}{(e^{t} + e^{-t})^{2}}}(\xi).
         \end{split}
         \end{equation}
+        %
+        %
+        while
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \int_{C_{[-R, R]}}e^{-iz \xi} \frac{1}{(e^{z} + e^{-z})^{2}} dz
+        & = \int_{-R}^{R}e^{-it \xi} \frac{1}{(e^{t} + e^{-t})^{2}} dt
+        \to \wh{ \frac{1}{(e^{t} + e^{-t})^{2}}}(\xi).
+        \end{split}
+        \end{equation*}
         %
         %
         %
@@ -615,7 +638,7 @@ urlcolor=blue,
         %
         %
 In fact, using the method of residues, one can compute $\wh{u_{n}}(\xi, t, k)$
-        for arbitrary $n$. However, this is tedious, and computationally
+        for arbitrary $n$. However, this is tedious and computationally
         intensive.  In the next section, we investigate a more efficient method
         for computing $\wh{u_{n}}(\xi, t, k)$. 
         %
@@ -878,7 +901,7 @@ In fact, using the method of residues, one can compute $\wh{u_{n}}(\xi, t, k)$
             %
             \begin{equation*}
             \begin{split}
-              (1 + \xi^{2})^{s} |\sech\left( \frac{\ee \pi}{2} -1 \right )
+              (1 + \xi^{2})^{s} |\sech\left( \frac{\ee \pi \xi}{2} \right ) -1
               |^{2}
               \le 2(1 + \xi^{2})^{s} \in L^{1}, \quad s<-1/2.
             \end{split}
@@ -916,19 +939,17 @@ In fact, using the method of residues, one can compute $\wh{u_{n}}(\xi, t, k)$
           On the following page, we have provided graphs of
           $u_{\ee,0}(x)$ with $\ee = 1$, $\ee = 0.1$, and $\ee = 0.01$
           respectively. It is clear that the graphs are converging to some
-          multiple of a $\delta$ function as $\ee$ becomes small.
+          multiple of $\delta(x)$ as $\ee$ becomes small.
           \newpage
-\begin{figure}[!t]
+\begin{figure}[!ht]
   \begin{center}
   \vspace{-30mm}
-  \hspace{-15mm}
-  \subfloat{\includegraphics[scale=0.5]{sech-ep-1}}
-\hspace{-40mm}
-\subfloat{\includegraphics[scale=0.5]{sech-ep-01}}
+  \subfloat{\includegraphics[scale=0.4]{sech-ep-1}}
+\hspace{-20mm}
+\subfloat{\includegraphics[scale=0.4]{sech-ep-01}}
 \\
-\vspace{-70mm}
-\hspace{-15mm}
-\subfloat{\includegraphics[scale=0.5]{sech-ep-001}}
+\vspace{-30mm}
+\subfloat{\includegraphics[scale=0.4]{sech-ep-001}}
 \end{center}
 \end{figure}
 %
