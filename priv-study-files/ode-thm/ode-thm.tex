@@ -4,11 +4,11 @@
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
-\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
 %\usepackage{showkeys}  %shows source equation labels on the pdf
 \usepackage[margin=3cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \setcounter{secnumdepth}{1} %number only sections, not subsections
+\usepackage{hyperref}
 \hypersetup{colorlinks=true,
 	linkcolor=blue,
 	citecolor=blue,
@@ -113,7 +113,7 @@
 \address{Department of Mathematics  \\
 	University  of Notre Dame\\
 		Notre Dame, IN 46556 }
-		\date{}
+		\date{06/08/2011}
 		%
 		\maketitle
 		%
@@ -125,6 +125,55 @@
 %
 %
 \section{Introduction}
+\begin{definition}
+	\label{def:diff-simp}
+	Let $X$ be Banach space, $(a,b) \subset \rr$ an open interval, and
+	consider the map $f: (a,b) \to X$.
+	Then $f$ is \emph{differentiable at $t_0$} if there exists a map
+	$f': (a,b) \to X$ such that 
+	%
+	%
+	%
+	%
+	\begin{equation}
+		\label{diff-limit-simp}
+		\begin{split}
+			\lim_{h \to 0} \| \frac{f(t_0+ h) - f(t_0) 
+			 }{h} - f'(t_0) \|_X = 0.
+		\end{split}
+	\end{equation}
+	%
+	%
+	We call $f'(t_0)$ the \emph{derivative of $f$ at $t_0$}.
+	If \eqref{diff-limit-simp}
+	holds for all $t_0 \in (a,b)$, then we say $f$ is \emph{differentiable in
+	$(a,b)$}, and call $f'$ the
+	\emph{derivative of $f$ in $(a,b)$}.  
+\end{definition}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Notation
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\begin{framed}
+\begin{example}
+Let $f: (a,b) \to \rr^2$ be defined by $f(t) = (1, t^2)$. Then $Df(1)$ maps
+$(a,b)$ to $\rr$ by the relation $Df(1)(t) = (0, 2t) = t[0, 2]$. Hence, $Df(1)$ is the $1
+\times 2$ matrix $[0,2]$, which we may also view as the point $(0,2) \in \rr^2$.
+That is, $f'(1) = (0,2)$. Similarly, $f'(t) = (0,2t)$.
+\end{example}
+\end{framed}
+
+
 Our goal will be to prove the following.
 %
 %
@@ -140,25 +189,34 @@ Our goal will be to prove the following.
 \begin{theorem}[Banach Space ODE Theorem]
 	\label{ode-thm}
 	Let $X$ be Banach, $E \subset X$ open, $u_0 \in E$, and let $(-a, a)$ be an
-	open interval in $\rr$. If $f: (-a, a) \times E \to X$ is \emph{continuously
-	differentiable}, then for a sufficiently small $h > 0$ there exists a unique
-	differentiable map $u: (-h, h) \to E$ such that for all $t \in (-h, h)$,
+	open interval in $\rr$. If $f: (-a, a) \times E \to X$ satisfies the
+	inequality
+	%
+	%
+	\begin{equation}
+		\label{stronger-ode}
+		\begin{split}
+			\|f(t, x) - f(t, y) \|_X \le c \|x - y\|_X, \qquad \forall t \in (-a, a),
+			\qquad \forall x, y \in E,
+		\end{split}
+	\end{equation}
+	%
+	%
+	then for sufficiently small $h > 0$ there exists a unique
+	differentiable map \\ $u: (-h, h) \to E$ such that for all $t \in (-h, h)$
 	%
 	%
 	\begin{gather}
-		\label{ode-thm-eq}
+    \label{ode-thm-eq}
 			u'(t) = f(t, u(t)),
 			\\
-			\label{ode-thm-init-data}
+      \label{ode-thm-init-data}
 			u(0) = u_0.
 	\end{gather}
 \end{theorem}
 %
 %
-We remark that \autoref{ode-thm} also holds if we relax the assumption of continuous
-differentiability and require only Lipschitz continuity of $f(t)$ on $E$, where $t
-\in (-a, a)$. 
-Indeed, \autoref{ode-thm} is simply a 
+Notice that \autoref{ode-thm} is a 
 generalization of the following classical result.
 %
 %
@@ -199,11 +257,15 @@ generalization of the following classical result.
 	%
 	%
 	\end{theorem}
-To prove \autoref{ode-thm}, we will first define what it means for a 
-mapping between two Banach spaces to be \emph{continuously differentiable}.
-We will then define integration over Banach spaces, which we will use to
+To prove \autoref{ode-thm}, we will first define
+integration over Banach spaces, which we will use to
 rewrite \eqref{ode-thm-eq} as an integral equation. A Banach fixed point
-argument will then complete the proof. 
+argument will then complete the proof. These notes are heavily influenced by a
+number of excellent books, among them Dieudonn{\'e}
+\cite{Dieudonne_1969_Foundations-of-}, Yosida \cite{Yosida:1980fk},
+Folland \cite{Folland_1999_Real-analysis}, Jost
+\cite{Jost-1998-Postmodern-analysis}, Rudin \cite{Rudin:1976uq}, and Knapp
+\cite{Knapp:2005rm}-\cite{Knapp:2005yg}.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -215,262 +277,6 @@ argument will then complete the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Differentiation in Banach Spaces}
-\begin{definition}
-	\label{def:diff}
-	Let $X,Y$ be Banach spaces, and consider the map $f: X \to Y$.
-	Then $f$ is differentiable at $x_0$ if there
-	is a continuous linear map $Df(x_0): X \to Y$ such that
-	%
-	%
-	%
-	%
-	\begin{equation}
-		\label{diff-limit}
-		\begin{split}
-			\lim_{h \to 0} \frac{\|f(x_0+ h) - f(x_0) -
-			Df(x_0)(h) \|_Y}{\|h\|_{X}} = 0
-		\end{split}
-	\end{equation}
-	%
-	%
-	This map, which we call the \emph{total derivative} of $f$ at $t_0$, is 
-	unique. If $Df(x_0)$ exists for all $x_0 \in X$,
-	then we say that $f$ is
-	\emph{differentiable} in $X$. If $f$ is differentiable in $X$, and 
-	$\|Df(x_0 + h) - Df(x_0) \|_Y \to 0$ as $\|h\|_{X} \to 0$ for all $x_0 \in X$,
-	then we say that $f$ is \emph{continuously differentiable in $X$}. 	
-\end{definition}
-	%
-	\begin{remark}
-		\label{rem:usual-diff}
-		Consider the map $f: \rr \to \rr$. Then \autoref{def:diff} 
-		coincides with the usual definitions of
-		differentiability and continuous differentiability for maps
-		from $\rr $ to $\rr$.
-		To see this, assume $f$ is differentiable at $x_0$.
-		Let us first verify that the map  $D(x_0): \rr ~\to~\rr$
-		defined by $Df(x_0)(x) =
-		xf'(x_0)$ is the total derivative of $f$. Assume without loss of generality
-		that $h \to 0^+$. Then
-		%
-		%
-		\begin{equation}
-			\label{2}
-			\begin{split}
-				& \lim_{h \to 0^+} \frac{| f( x_0 + h) - f(x_0) -
-				Df(x_0)(h) |}{|h|}
-				\\
-				= & \lim_{h\to 0^+} \left |\frac{f(x_0+h) -
-				f(x_0)}{h} - \frac{Df(x_0)(h)}{h}  \right |
-				\\
-				= & \lim_{h \to 0^+} \left |\frac{f(x_0+h) - f(x_0)}{h} -
-				f'(x_0) \right | = 0.
-			\end{split}
-		\end{equation}
-		%
-		%
-%
-%
-For any $a \in \rr$, define the map $T_{a} \in L(\rr , \rr)$ by
-$T_{a}(x) = ax$. Then the map $a \mapsto T_a$ is an isometric
-isomorphism from $\rr$ to $L( \rr, \rr)$. Hence, 
-we may identify $f'(x_0)$ with $T_{f'(x_0)} = Df(x_0)$,
-which by \eqref{2} is the total derivative of $f$.  Using this identification,
-it follows that $f$ is continuously
-differentiable in $\rr$ if and only if $f'$ is a continuous function of
-$x_0$, for all $x_0 \in \rr$. \qquad \qedsymbol
-%
-\end{remark}
-%
-%
-In general, for an arbitrary Banach space $X$, open interval $(a,b) \subset
-\rr$, and map $f:(a,b) \to X$, we can identify $Df(x_0)$ with an
-element of $X$ via the following.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%			Lemma Isometry	
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}
-	\label{lem:isometry} Let $(a,b) \subset \rr$ be an open interval, $X$ a Banach
-	space, with $x \in X$. Define the map $T_x \in L\left ( (a,b) , X \right )$ by
-	$T_x(t_0) = x t_0$. Then the map $x \mapsto T_x$ is an
-	isometric isomorphism from
-	$X$ to $L((a,b) , X)$. 
-\end{lemma}
-%
-%
-{\bf Proof.} Note that 
-%
-%
-\begin{equation*}
-	\begin{split}
-		| | | T_x | | |
-		& = \sup_{|t_0| = 1} \| T_x (t_0) \|_X
-		= \| x t_0\|_X
-		= \|x\|_X.
-	\end{split}
-\end{equation*}
-%
-%
-Hence, the map $x \mapsto T_x$ is an isometry from $X$ into $L((a,b),
-X)$. It remains to show that it is onto. Let $U \in L( (a,b), X)$. Then
-by linearity
-%
-%
-\begin{equation*}
-	\begin{split}
-		U(t_0) = U(1)t_0. 
-	\end{split}
-\end{equation*}
-%
-%
-Hence, $U = T_{U(1)}$, completing the proof. \qquad \qedsymbol
-\\
-\\
-Applying the lemma, we see that if $Df(t_0)$ exists for a map $f: (a,b) \to X$,
-then it can be viewed as an
-element of $X$. Similarly, if $Df(t_0)$ exists for all $t_0 \in (a,b)$, then
-we may view the map $t_0 \to Df(t_0)$ as an
-element of $L( (a,b), X)$. Hence, for a
-map $f:(a,b) \to X$, we have the following equivalent reformulation of
-\autoref{def:diff}. 
-\begin{definition}
-	\label{def:diff-simp}
-	Let $X$ be Banach space, $(a,b) \subset \rr$ an open interval, and
-	consider the map $f: (a,b) \to X$.
-	Then $f$ is \emph{differentiable at $t_0$} if there exists a map
-	$f': (a,b) \to X$ such that 
-	%
-	%
-	%
-	%
-	\begin{equation}
-		\label{diff-limit-simp}
-		\begin{split}
-			\lim_{h \to 0} \| \frac{f(t_0+ h) - f(t_0) 
-			 }{h} - f'(t_0) \|_X = 0.
-		\end{split}
-	\end{equation}
-	%
-	%
-	We call $f'(t_0)$ the \emph{derivative of $f$ at $t_0$}.
-	If \eqref{diff-limit-simp}
-	holds for all $t_0 \in (a,b)$, then we say $f$ is \emph{differentiable in
-	$(a,b)$}, and call $f'$ the
-	\emph{derivative of $f$ in $(a,b)$}.  If the derivative of $f$ in $(a,b)$
-	exists and is continuous there, then we say that $f$ is
-	\emph{continuously differentiable in $(a,b)$}. 	
-\end{definition}
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				Notation
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
-\begin{example}
-Let $f: (a,b) \to \rr^2$ be defined by $f(t) = (1, t^2)$. Then $Df(1)$ maps
-$(a,b)$ to $\rr$ by the relation $Df(1)(t) = (0, 2t) = t[0, 2]$. Hence, $Df(1)$ is the $1
-\times 2$ matrix $[0,2]$, which we may also view as the point $(0,2) \in \rr^2$.
-That is, $f'(1) = (0,2)$. Similarly, $f'(t) = (0,2t)$.
-\end{example}
-
-Lastly, we include the following.
-%
-%
-\begin{proposition}
-		(Chain Rule) Let $X,Y,Z$ be Banach spaces, $g: Y \to Z$ and $f:
-		X \to Y$ continuously differentiable maps. Then for all $x_0,
-		x \in X$ we have \begin{equation*} (g \circ f)' (x_0) =
-			g'(f(x_0)) \circ (f'(x_0)).
-		\end{equation*} 
-	\end{proposition}
-			{\bf Proof.} Choose $0<\ee<1$. Since 
-			\begin{equation*}
-				\lim_{s \to 0} \frac{\|f (x_0 + s) - f(x_0) -
-				f'(x_0)(s)\|}{\|s\|} = 0
-			\end{equation*}
-			we can find $\delta > 0$ such that 
-			\begin{equation*}
-				\frac{\|f (x_0 + s) - f(x_0) -
-				f'(x_0)(s)\|}{\|s\|} < \ee
-			\end{equation*}
-			for $\|s\| < \delta$. This implies
-			\begin{equation*}
-				\|f(x_0 + s) - f(x_0) - f'(x_0)(h) \| < \ee \|s\|.
-			\end{equation*}
-			Hence, we can write
-			\begin{equation*}
-				f(x_0 + s) = f(x_0) + f'(x_0)(s) + O_1(s)
-			\end{equation*}
-			with $\|O_1(s)\| < \ee \|s\|$. Similarly, for $\|t\| <
-			\delta$ we have 
-			\begin{equation*}
-				g(x_0 + t) = g(x_0) + g'(x_0)(t)+ O_2(t)
-			\end{equation*}
-			with $\|O_2(t)\| < \ee \|t\|$. In addition, since $f'(x_0)$
-			and $g'(f(x_0))$ are continous linear operators, we have
-			\begin{equation*}
-				\begin{split}
-					&\|f'(x_0)(s) \| < a \|s \|,
-					\\
-					&\|g'(x_0)(t) \| < b \|t \|
-				\end{split}
-			\end{equation*}
-			for some constants $a , b$. Hence
-			\begin{equation*}
-				\|f'(x_0)(s) + O_1(s) \| < (a + 1) \|s\|
-			\end{equation*}
-			for $\|s\| < \delta$. Then for $\|s \| <
-			\delta/(a+1)$ we have
-			\begin{equation}
-				\label{key_estimate}
-				\begin{split}
-					&\| O_2 [f'(x_0)(h) + O_1(s)] \| < \ee(a+1)\|s \|,
-					\\
-					& \|g'(f(x_0))(O_1(s))\| < b \ee \|s\|.
-				\end{split}
-			\end{equation}
-			Hence
-			\begin{equation*}
-				\begin{split}
-					h(x_0 + s) &= g(f(x_0 +s)
-					\\
-					&= g(f(x_0) + f'(x_0)(s) + O_1(s))
-					\\
-					&= g(f(x_0)) + g'(f(x_0))(f'(x_0)(s) + O_1(s)) 
-					+ O_2(f'(x_0)(s) + O_1(s))
-					\\
-					&= g(f(x_0)) + g'(f(x_0))f'(x_0)(s) +
-					g'(f(x_0))(O_1(s)) + O_2(f'(x_0)(s) + O_1(s))
-				\end{split}
-			\end{equation*}
-			Applying \eqref{key_estimate}, we conclude that
-			\begin{equation*}
-				\begin{split}
-				&h(x_0 + s) = g(f(x_0)) + g'(f(x_0))(f'(x_0)(s)) +
-				O_3(s), \; 
-			\text{where}
-				\\
-				&\|O_3(s)\| < (a + b + 1) \ee \|s\|. \qquad \Box  
-			\end{split}
-			\end{equation*}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -481,6 +287,7 @@ Lastly, we include the following.
 %
 %
 \section{Integration in Banach Spaces}
+\label{sec:int-banach}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -503,15 +310,14 @@ Lastly, we include the following.
 %
 %
 \begin{definition}
-	A mapping $f:(a,b) \to X$ is a \emph{step-function} if there exists a disjoint
-	partitioning $\left\{ (t_{j}, t_{j+1}) \right\}_{0}^{n-1}$ of $(a,b)$,
-	where $ t_{j +1} - t_{j} = (b-a)/n$, such that
+	A mapping $f:[a,b] \to X$ is a \emph{step-function} if there exists a disjoint
+	partitioning $\left\{ (t_{j}, t_{j+1}) \right\}$ of $[a,b]$ such that
 	%
 	%
 	\begin{equation}
 		\label{step-function}
 		\begin{split}
-			f(t)=\sum_{j=0}^{n-1} {\psi_j} \chi_{(t_{j}, t_{j+1})}(t).
+			f(t)=\sum_{j=0}^{n-1} {\alpha_j} \chi_{(t_{j}, t_{j+1})}.
 		\end{split}
 	\end{equation}
 	%
@@ -519,44 +325,134 @@ Lastly, we include the following.
 \end{definition}
 %
 %
+\begin{framed}
 \begin{example}
-	The map $f:(-1,1) \to L^2(\rr)$ given by 
+	The map $f:[-1,1] \to L^2(\rr)$ given by 
 	%
 	%
 	\begin{equation*}
 		\begin{split}
 			f(t) = 
 			\begin{cases}
-				 e^{-x^2},  \quad & -1<t\le0 \\
-				 e^{-2x^2},  \quad & \phantom - 0 <t<1 \\
+				 e^{-x^2},  \quad & -1 \le t\le0 \\
+				 e^{-2x^2},  \quad & \phantom - 0 < t \le 1 \\
 				 0,  \quad & \phantom - \text{otherwise}
 			\end{cases}
 		\end{split}
 	\end{equation*}
 	%
 	%
-	\end{example}
 	is a step-function.
+	\end{example}
+\end{framed}
 %
 %
 \begin{definition}[Banach Space Integration for Step Functions]
 	Let $(a,b)$ be an open interval in $\rr$, $X$ a Banach space, $f: [a,b] \to
 	X$ a step function as in \eqref{step-function}. 
-	Then we call $\sum_{j=0}^{n-1} \psi_j (t_{j +1} - t_{j})$ the \emph{integral of f between $a$ and $b$}, and
-	adopt the notation
-	%
+	Then 
 	%
 	\begin{equation*}
 		\begin{split}
-			\int_a^b f(t) dt \doteq \sum_{j=0}^{n-1} \psi_j \frac{b-a}{n} =
-			\frac{b-a}{n} \sum_{j=0}^{n-1} \psi_j. 
-		\end{split}
+      \int_a^b f(t) dt \doteq \sum_{j=0}^{n-1} \alpha_j (t_{j+1} - t_{j}).
+    \end{split}
 	\end{equation*}
 	%
 	%
 %
 \end{definition}
 %
+%
+Note that this definition is independent of the partitioning we use for $f$, due
+to the following lemma.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Indpendence of Partioning
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+For step functions $f, g$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{a}^{b} f(t) dt - \int_{a}^{b} g(t) dt = \int_{a}^{b}\left[ f(t) - g(t) \right]dt.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:indep-part}
+\end{lemma}
+%
+%
+\begin{proof}
+%
+Let
+%
+\begin{equation*}
+\begin{split}
+  & f = \sum_{j=1}^{m}\alpha_{j} \chi_{(t_{j}, t_{j+1})}
+  \\
+  & g = \sum_{k =1}^{n}
+  \beta_{k} \chi_{(s_{k}, s_{k+1})}
+\end{split}
+\end{equation*}
+%
+and assume without loss of generality that $n \ge m$. 
+Then
+%
+%
+\begin{equation*}
+\begin{split}
+  f(t) - g(t) = \sum_{p=1}^{m+n} \gamma_{p} \chi_{(y_{p}, y_{p+1})} 
+\end{split}
+\end{equation*}
+%
+%
+where
+\begin{equation*}
+  \begin{split}
+    \gamma_{p} \chi_{(y_{p}, y_{p+1}) } = 
+    \begin{cases}
+      \alpha_{p} \chi_{(t_{p}, t_{p+1})}
+, \quad & 1 \le p \le m \\
+-\beta_{p-m} \chi_{(s_{p-m}, s_{p-m+1})}, \quad & m < p \le m+n.
+\end{cases}
+\end{split}
+\end{equation*}
+Then
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{a}^{b}\left[ f(t) - g(t) \right]dt
+  & = \sum_{p=1}^{m+n}
+  \gamma_{p}(t_{p+1} - t_{p})
+  \\
+  & = \sum_{p=1}^{m} \gamma_{p}(t_{p+1} - t_{p}) +
+  \sum_{p=1}^{m+n}\gamma_{p}(t_{p+1} - t_{p})
+  \\
+  & = \sum_{p=1}^{m} \alpha_{p}(t_{p+1} - t_{p}) +
+  \sum_{p=m+1}^{m+n}-\beta_{p-m}(s_{p-m+1} - s_{p-m})
+  \\
+  & = \sum_{j=1}^{m}\alpha_{j}(t_{j+1} - t_{j}) -
+  \sum_{k=1}^{n}\beta_{k}(s_{k+1} - s_{k})
+  \\
+  & = \int_{a}^{b}f(t)dt - \int_{a}^{b} g(t) dt.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+\end{proof}
 %
 We are now interested in extending integration to a larger class of functions. We will need the
 following. %
@@ -565,46 +461,433 @@ following. %
 	\label{lem:dense}
 	Let $[a, b] \subset \rr$ be a closed interval in $\rr$, $X$ a Banach space, and
 	suppose the function $f:[a,b] \to X$ is continuous . Then
-	there exists a sequence of step functions $\left\{ f_n \right\}_n$
-	such that $\|f - f_n\|_{L^\infty( (a,b), X)} \to 0$. 
+	there exists a sequence of step functions $\left\{ f_n \right\}$
+	such that $\|f - f_n\|_{L^\infty( [a,b], X)} \to 0$. 
 \end{lemma}
 %
 %
-{\bf Proof.} Fix $n \in \mathbb{N}$. Since $f$ is continuous, for every $w \in
-\left[ a,b \right]$ there is an open interval $V_w$ such that $\|f(s) - f(t)
-\|_X \le 1/n$ for all $s, t \in V_w$. Clearly $\left\{ V_w \right\}_{w \in
-\left[ a,b \right]}$ is a connected
-open cover of $[a,b]$. Since $[a,b]$ is compact, and $\left\{ V_w \right\}_{w \in
-\left[ a,b \right]}$ is connected, we
-can extract
-a finite disjoint subcover $\left\{ (t_j, t_{j +1}) \right\}_j$ of $[a,b]$. For
-each interval $(t_j, t_{j +1})$
-choose $t_{j}^* \in (t_{j}, t_{j +1})$, and define the step-function
+\begin{proof}
+  Fix $n \in \mathbb{N}$. Since $f$ is continuous, for every $t \in
+\left[ a,b \right]$ there is an open set $V_t \in [a,b]$ such that
+$\|f(x) - f(y)) \|_X \le 1/n$ for all $x, y \in V_t$. Note that $\left\{ V_t
+\right\}_{t \in \left[ a,b \right]}$ is an open cover of $[a,b]$. We assume
+without loss of generality that this cover is disjoint (since for any two
+intervals $A$ and $B$ which overlap, we can replace $A$ with $A \setminus
+B$ and still remain with an open cover of $[a,b]$). 
+Due to the compactness of $[a,b]$, we can extract
+a finite subcover $\left\{ (t_j, t_{j +1}) \right\}$ of $[a,b]$. This subcover
+will be disjoint, since the original covering of $[a,b]$ was assumed to be
+disjoint. Furthermore,
+observe that if $t \in (t_{j}, t_{j+1})$,
+then $(t_{j}, t_{j+1}) \in V_{t}$. For each interval $(t_j, t_{j +1})$
+choose any $t_{j}^* \in (t_{j}, t_{j +1})$, and define the step-function
 %
 %
 \begin{equation*}
 	\begin{split}
 		f_n(t) =
 		\begin{cases}
-		f(s_i), \quad & t \in V_{w_i},
+      f(t_{j}^{*}), \quad & t \in (t_{j},t_{j+1}) \subset V_{t}
 		\\
 		0 & \text{otherwise}.
 	\end{cases}
 	\end{split}
 \end{equation*}
 %
-%
-Then by construction, 
+Fix $t \in [a,b]$. By construction, $t \in V_{t}$ and
+$t \in (t_{j}, t_{j+1})$ for some $j$. Hence, picking $s \in (t_{j},
+t_{j+1})$, we have $s \in V_{t}$ and so
 %
 %
 \begin{equation*}
 	\begin{split}
-		\|f-f_n\|_{L^\infty( (a,b), X)} \le 1/n,
+		\|f(t)-f_n(t)\|_X
+    & = \| f(t) - f(t_{j}^{*}) + f(t_{j}^{*}) - f_{n}(t)  \|_{X}
+    \\
+    & \le \| f(t) - f(t_{j}^{*}) \|_{X} + \| f(t_{j}^{*}) - f_{n}(t) \|_{X}
+    \\
+    & = \| f(t) - f(t_{j}^{*}) \|_{X}
+    \\
+    & \le \frac{1}{n}.
 	\end{split}
 \end{equation*}
 %
 %
-completing the proof. \qquad \qedsymbol
+Since $t$ was chosen arbitrarily, the proof is complete. 
+\end{proof}
+%
+\begin{framed}
+\begin{remark}
+  \label{rem:unif}
+If $f_{n}: [a,b] \to X$ is any sequence of step functions converging pointwise
+in $t$ to $f$ in $X$, it converges \emph{uniformly} in $t$, due to the
+compactness of $[a,b]$. 
+\end{remark}
+\end{framed}
+%
+\begin{definition}[Banach Space Integration for Continuous Functions]
+  \label{def:banach}
+  Let $X$ be a Banach space, $f: [a,b] \to X$ continuous, and $f_{n} \to f$ in
+  $L^{\infty}([a,b], X)$. Then 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \int_{a}^{b} f(t) dt \doteq \lim_{n \to \infty} \int_{a}^{b} f_{n}(t) dt
+  \end{split}
+  \end{equation*}
+  %
+  %
+\end{definition}
+%
+where the convergence is in the topology of $X$. We now show that this
+definition for Banach space integration is
+well-defined. More precisely, we will first show that $\int_{a}^{b}
+f_{n}(t) dt$ is Cauchy in $X$. Then, we will show the convergence is independent
+of the step functions chosen. Proceeding, we first prove the following lemma.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                tri inequality
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  For a step function $f: [a,b] \to X$, we have
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| \int_{a}^{b} f(t) dt \|_{X} \le \int_{a}^{b} \| f(t) \|_{X} dt.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{lem:tri-ineq-int}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \int_{a}^{b} f(t) dt \|_{X} &
+  = \| \sum_{j=1}^{m}\alpha_{j} (t_{j+1} - t_{j})
+  \|_{X}
+  \\
+  & \le  \sum_{j=1}^{m} \| \alpha_{j} \|_{X} (t_{j+1} - t_{j})
+  \\
+  & = \int_{a}^{b} \| f(t) \|_{X} dt.
+\end{split}
+\end{equation*}
+%
+%
+\end{proof}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                uniqueness
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Definition \ref{def:banach} is then well-defined due to the following two
+lemmas.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                conv
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Convergence] Let $f_{n}: [a,b] \to X$ be a sequence of simple
+  functions converging to $f$ in $L^{\infty}([a,b], X)$. Then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \int_{a}^{b}f_{n}(t) dt
+  \end{split}
+  \end{equation*}
+  %
+  %
+  is Cauchy in $X$. 
+\label{lem:conv}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+  \begin{equation}
+    \begin{split}
+  \| \int_{a}^{b} f_{n}(t) dt - \int_{a}^{b} f_{m}(t) dt \|_{X}
+  & = \| \int_{a}^{b}\left[ f_{n}(t) - f_{m}(t) \right]dt \|_{X}, \quad \text{Lemma
+  \ref{lem:indep-part}}
+  \\
+  & \le \int_{a}^{b} \| f_{n}(t) - f_{m}(t) \|_{X} dt,
+  \quad \phantom{m} \text{Lemma \ref{lem:tri-ineq-int}}
+  \\
+  & \le \int_{a}^{b} (\| f(t) - f_{n}(t) \|_{X} + \| f(t) - f_{m}(t) \|_{X})dt.
+\end{split}
+\end{equation}
+%
+Fix $\ee$. By Remark \ref{rem:unif}, we see that there exists $N$ such
+that for $m, n > N$
+%
+%
+\begin{equation*}
+\begin{split}
+& \| f(t) - f_{n}(t) \|_{X} \le \ee, \quad \forall t \in [a, b].
+\\
+& \| f(t) - f_{m}(t) \|_{X} \le \ee, \quad \forall t \in [a, b].
+\end{split}
+\end{equation*}
+Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+\| \int_{a}^{b} f_{n}(t) dt - \int_{a}^{b} f_{m}(t) dt \|_{X} \le 2(b-a) \ee.
+\end{split}
+\end{equation*}
+%
+Since $\ee$ can be chosen arbitrarily small, the proof is complete.
+\end{proof}
+%
+%
+\begin{lemma}[Independence]
+  Let $f_{n}(t)$, $g_{n}(t) : [a,b] \to X$
+  be two step functions converging to $f$ in $L^{\infty}([a,b], X)$.
+  If
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    & \int_{a}^{b} f_{n}(t) dt \xrightarrow{X} F
+    \\
+    & \int_{a}^{b} g_{n}(t) dt \xrightarrow{X} G
+  \end{split}
+  \end{equation*}
+  %
+  %
+  then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    F =G.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{lem:well-def}
+\end{lemma}
+%
+%
+%
+%
+%
+%
+\begin{proof}
+%
+%
+\begin{equation*}
+\begin{split}
+  \| F - G \|_{X} & = \| \int_{a}^{b} f(t) dt - \int_{a}^{b} g(t) dt \|_{X}
+  \\
+  & = \| \int_{a}^{b}\left[ f(t) - g(t) \right]dt \|_{X}, \quad \text{Lemma
+  \ref{lem:indep-part}}
+  \\
+  & \le \int_{a}^{b} \| f(t) - g(t) \|_{X} dt,
+  \quad \phantom{m} \text{Lemma \ref{lem:tri-ineq-int}}
+  \\
+  & \le \int_{a}^{b} (\| f(t) - f_{n}(t) \|_{X} + \| f(t) - g_{n}(t) \|_{X})dt.
+\end{split}
+\end{equation*}
+%
+%
+Fix $\ee$. By Remark \ref{rem:unif}, we see that there exists $N$ such
+that for $n > N$
+%
+%
+\begin{equation*}
+\begin{split}
+& \| f(t) - f_{n}(t) \|_{X} \le \ee, \quad \forall t \in [a, b]
+\\
+& \| f(t) - g_{n}(t) \|_{X} \le \ee, \quad \forall t \in [a, b].
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+\| F - G \|_{X} \le 2(b-a) \ee.
+\end{split}
+\end{equation*}
+%
+%
+Since $\ee$ can be chosen arbitrarily small, we see that we must have $F = G$.
+\end{proof}
+%
+%
+We conclude the section by showing that Banach space integration and
+differentiation are inverse operations.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                FTC
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Fundamental Theorem of Calculus]
+Let $f \in C\left( [a,b], X \right)$, where $X$ is a Banach space. For $a \le x
+\le b$, let
+%
+%
+\begin{equation*}
+\begin{split}
+  F(t) = \int_{a}^{t}f(s)ds.
+\end{split}
+\end{equation*}
+%
+%
+Then the map $t \mapsto F(t)$ is Lipschitz continuous from $[a,b]$ to $X$.
+Furthermore, $F$ is differentiable at all $t_{0} \in [a,b]$, and
+%
+%
+\begin{equation}
+  \label{fund-thm-calc-diff}
+\begin{split}
+  F'(t_{0})= f(t_{0}).
+\end{split}
+\end{equation}
+\label{lem:fund-thm-calc}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+We first establish the continuity of the map $t \mapsto F(t)$. Assume without
+loss of generality that $t_{1} \le t_{2}$. We have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| F(t_{1}) - F(t_{2}) \|_{X}
+  & = \| \int_{a}^{t_{1}}f(s)ds -
+  \int_{a}^{t_{2}} f(s)ds \|_{X}
+  \\
+  & = \| \int_{t_{1}}^{t_{2}} f(s) ds \|_{X}
+  \\
+  & \le \int_{t_{1}}^{t_{2}}\| f(s) \|_{X} ds.
+\end{split}
+\end{equation*}
+%
+%
+Since $[a,b]$ is compact and $f$ is continuous, we have $\| f(s) \|_{X} \le M$
+for all $s \in [a,b]$. Hence
+%
+%
+\begin{equation*}
+\begin{split}
+  \| F(t_{1}) - F(t_{2}) \| \le M(t_{2} - t_{1}).
+\end{split}
+\end{equation*}
+%
+%
+which establishes the Lipschitz continuity of the map $t \mapsto F(t)$. To
+establish \eqref{fund-thm-calc-diff}, we apply the definition of Banach space
+differentiation given in \eqref{diff-limit-simp} and see that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \frac{F(t_{0} + h) - F(t_{0})}{h}  - f(t_{0}) \|_{X}
+  & = \| \frac{\int_{a}^{t_{0}+h}f(s)ds - \int_{a}^{t_{0}}f(s)ds}{h} -
+  f(t_{0}) \|_{X}
+  \\
+  & = \| \int_{a}^{t_{0}+h}\frac{f(s)}{h}ds  -
+  \int_{t_{0}}^{t_{0} + h} \frac{f(t_{0})}{h} ds \|_{X}
+  \\
+  & = \frac{1}{h} \| \int_{t_{0}}^{t_{0} + h}[f(s) - f(t_{0})]ds \|_{X}
+  \\
+  & \le \frac{1}{h} \int_{t_{0}}^{t_{0} + h} \| f(s) - f(t_{0})
+  \|_{L^{\infty}\left( [t_{0}, t_{0} + h], X \right)}
+  \\
+  & = \| f(s) - f(t_{0})
+  \|_{L^{\infty}\left( [t_{0}, t_{0} + h], X \right)}
+  \\
+  & = \lim_{h \to 0} \sup_{0 \le k \le 1} \| f(t_{0} + kh) - f(t_{0})
+  \|_{X}.
+\end{split}
+\end{equation*}
+%
+%
+Note that since $f$ is continuous on $[a,b]$, and $[a,b]$ is compact, it follows
+that $f$ is uniformly continuous on $[a,b]$. Hence, for fixed $\delta > 0$,
+there exists $\ee_{\delta} > 0$ such that for $h < \ee_{\delta}$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f(t_{0} + kh) - f(t_{0}) \|_{X} < \delta, \ \text{for all } \  0 \le k \le 1.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \sup_{0 \le k \le 1} \| f(t_{0} + kh) - f(t_{0}) \|_{X} < \delta, \quad h <
+  \ee_{\delta}.
+\end{split}
+\end{equation*}
+%
+%
+Since $\delta$ can be chosen arbitrarily small, we conclude that
+%
+\begin{equation*}
+\begin{split}
+  \lim_{h \to 0} \sup_{0 \le k \le 1} \| f(t_{0} + kh) - f(t_{0})
+  \|_{X} = 0,
+\end{split}
+\end{equation*}
+%
+%
+concluding the proof.
+\end{proof}
+%
 %
 %
 %
@@ -633,15 +916,19 @@ Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 \end{equation*}
 %
 %
+\begin{framed}
 \begin{remark}
 	Observe that a contraction mapping is always continuous.
 \end{remark}
+\end{framed}
 %
 %
+\begin{framed}
 \begin{example}
 	The function $T(x) = 0.1x^2$ defines a contraction mapping in the metric space
 	$X = [-4, 4]$ with distance $d(x,y) = |x-y|$. 
 \end{example}
+\end{framed}
 	%
 	%
 	%
@@ -660,12 +947,12 @@ Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 	Let $(X,d)$ be a complete metric space, and $T: X \to X$ a contraction
 	mapping. Then $T$ has a unique fixed point in $X$. That is, there is a unique
 	point $x^* \in X$ such that $Tx^* = x^*$. Furthermore, if $x_0$ is any point
-	in $X$, and we define the sequence $x_{n+1} = Tx_n$, then $x_n \to x^*$ as $n
+  in $X$, and we define the sequence $x_{n+1} = Tx_n$, then $x_n \xrightarrow{X} x^*$ as $n
 	\to \infty$.
 	\end{lemma}
 	%
 	%
-	{\bf Proof.} First we show uniqueness. If $x^*$ and $x^{**}$ are two fixed
+  \begin{proof} First we show uniqueness. If $x^*$ and $x^{**}$ are two fixed
 	points, then
 	%
 	%
@@ -677,9 +964,8 @@ Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 	\end{equation*}
 	%
 	%
-To show that there is a fixed point $x^*$, it suffices to show that $\left\{ x_n
-\right\}$ converges to $x^*$. Since $X$ is complete it suffices to show that
-$\left\{ x_n \right\}$ is a Cauchy sequence. Note that a repeated application of the
+To prove existence, we observe that since $X$ is complete it suffices to show
+that $x_n$ is Cauchy. A repeated application of the
 contraction inequality gives
 %
 %
@@ -699,26 +985,22 @@ contraction inequality gives
 \end{equation*}
 %
 %
-%Next let $n, k \in N$. The last inequality together with the triangle inequality
-%give
-%%
-%%
-%\begin{equation*}
-%	\begin{split}
-%		d(x_{n+k}, x_n)
-%		& \le \sum_{j=1}^k d\left( x_{n+j}, x_{n+j -1} \right)
-%		\\
-%		& \le \sum_{j =1}^{k}\alpha^{n+j -1}d\left( x_0, x_1 \right)
-%		\\
-%		& \le \frac{\alpha^n}{1- \alpha}d\left( x_0, x_1 \right) \to 0 \ \ \text{as}
-%		\ \ n \to \infty.
-%	\end{split}
-%\end{equation*}
-%%
-%%
-%Therefore $x_n$ is a Cauchy sequence. This completes the proof. \qquad \qedsymbol
+Hence
 %
 %
+\begin{equation*}
+\begin{split}
+  d\left( x_{n+k},x_n \right)
+  & \le (\alpha^{n } +\alpha^{n+1} + \cdots +
+  \alpha^{n+k-2} + \alpha^{n+k-1})d(x_{1}, x_{0}) 
+  \\
+  & \to 0 \ \text{as} \ n \to \infty
+\end{split}
+\end{equation*}
+%
+%
+since $0 < \alpha < 1$. 
+\end{proof}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -729,79 +1011,14 @@ contraction inequality gives
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Proof of \autoref{ode-thm}}
-	\label{sec:proof-ode-thm}
-We will in fact prove a stronger result.
-\begin{theorem}[Banach Space ODE Theorem]
-	\label{thm:stronger-ode}
-	Let $X$ be Banach, $E \subset X$ open, $u_0 \in E$, and let $(-a, a)$ be an
-	open interval in $\rr$. If $f: (-a, a) \times E \to X$ satisfies the
-	inequality
-	%
-	%
-	\begin{equation}
-		\label{stronger-ode}
-		\begin{split}
-			\|f(t, x) - f(t, y) \|_X \le c \|x - y\|_X, \qquad \forall t \in (-a, a),
-			\qquad \forall x, y \in E,
-		\end{split}
-	\end{equation}
-	%
-	%
-	then for a sufficiently small $h > 0$ there exists a unique
-	differentiable map $u: (-h, h) \to E$ such that for all $t \in (-h, h)$
-	%
-	%
-	\begin{gather}
-			u'(t) = f(t, u(t)),
-			\\
-			u(0) = u_0.
-	\end{gather}
-\end{theorem}
-	%
-	%
-	%
-	This is a stronger result than \autoref{ode-thm} due to the following
-	lemma, whose proof relies upon the mean value theorem in Banach spaces
-	and can be found in 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%
-	%
-	%				Cont Dif Implies Lip
-	%
-	%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%
-	%
-	\begin{lemma}
-		\label{lem:dif-implies-lip}
-		Let $X$ be Banach, $E \subset X$ open, and let $(-a, a)$ be an
-	open interval in $\rr$. If $f: (-a, a) \times E \to X$ is \emph{continuously
-	differentiable}, then for $t \in [-h, h] \subset (-a, a)$,
-	$f(t)$ is Lipschitz continuous on
-	$E$. That is
-	%
-	%
-	\begin{equation}
-		\label{dif-implies-lip}
-		\begin{split}
-			\|f(t, x) - f(t, y) \|_X \le c \|x - y\|_X, \qquad \forall t \in [-h, h],
-			\qquad \forall x, y \in E.
-		\end{split}
-	\end{equation}
-	%
-	%
-	\end{lemma}
-	%
-	%
-	{\bf Proof of \autoref{thm:stronger-ode}.}		
+\section{Proof of \hyperref[ode-thm]{Banach Space ODE Theorem}}
 	%
 	%
 	Since $f(t)$ is Lipschitz continuous on $E$ for $t \in (-a, a)$, it is
 	continuous on $E$. Hence, using the theory of Banach space integration
-	developed in the last section, it is easy to check that for $t \in (-a,
-	a)$, the initial value problem
-	\eqref{ode-thm-eq}-\eqref{ode-thm-init-data} is equivalent to the
+  developed earlier and the fundamental theorem of calculus,
+  one can check that for $t \in (-a, a)$, the initial value problem
+  \eqref{ode-thm-eq}-\eqref{ode-thm-init-data} is equivalent to the
 	integral equation
 	%
 	%
@@ -896,32 +1113,260 @@ Restricting $h < 1/(M_2)$, we obtain
 	\end{split}
 \end{equation*}
 Hence, for $h < \min\left\{r/M_1, 1/M_2  \right\}$, $T$ is a contraction on
-$V_h$.  This completes the proof. \qquad \qedsymbol
+$V_h$.  This completes \\ the proof. \qed
 %
 %
+\appendix
+\section{Differentiation in Banach Spaces}
+\begin{definition}
+	\label{def:diff}
+	Let $X,Y$ be Banach spaces, and consider the map $f: X \to Y$.
+	Then $f$ is differentiable at $x_0$ if there
+	is a continuous linear map $Df(x_0): X \to Y$ such that
+	%
+	%
+	%
+	%
+	\begin{equation}
+		\label{diff-limit}
+		\begin{split}
+			\lim_{h \to 0} \frac{\|f(x_0+ h) - f(x_0) -
+			Df(x_0)(h) \|_Y}{\|h\|_{X}} = 0
+		\end{split}
+	\end{equation}
+	%
+	%
+	This map, which we call the \emph{total derivative} of $f$ at $t_0$, is 
+	unique. If $Df(x_0)$ exists for all $x_0 \in X$,
+	then we say that $f$ is
+	\emph{differentiable} in $X$. If $f$ is differentiable in $X$, and 
+	$\|Df(x_0 + h) - Df(x_0) \|_Y \to 0$ as $\|h\|_{X} \to 0$ for all $x_0 \in X$,
+	then we say that $f$ is \emph{continuously differentiable in $X$}. 	
+\end{definition}
+	%
+  \begin{framed}
+	\begin{remark}
+		\label{rem:usual-diff}
+		Consider the map $f: \rr \to \rr$. Then \autoref{def:diff} 
+		coincides with the usual definitions of
+		differentiability and continuous differentiability for maps
+		from $\rr $ to $\rr$.
+		To see this, assume $f$ is differentiable at $x_0$.
+		Let us first verify that the map  $D(x_0): \rr ~\to~\rr$
+		defined by $Df(x_0)(x) =
+		xf'(x_0)$ is the total derivative of $f$. Assume without loss of generality
+		that $h \to 0^+$. Then
+		%
+		%
+		\begin{equation}
+			\label{2}
+			\begin{split}
+				 \lim_{h \to 0^+} \frac{| f( x_0 + h) - f(x_0) -
+				Df(x_0)(h) |}{|h|}
+				 & = \lim_{h\to 0^+} \left |\frac{f(x_0+h) -
+				f(x_0)}{h} - \frac{Df(x_0)(h)}{h}  \right |
+				\\
+				 & =\lim_{h \to 0^+} \left |\frac{f(x_0+h) - f(x_0)}{h} -
+				f'(x_0) \right | = 0.
+			\end{split}
+		\end{equation}
+		%
+		%
 %
-\begin{thebibliography}{Die60}
-\bibitem[Die60]{Dieudonne-1960-Foundations-of-modern-analysis}
-J.~Dieudonn{{\'e}}.
-\newblock {\em Foundations of modern analysis}.
-\newblock Pure and Applied Mathematics, Vol. X. Academic Press, New York, 1960.
-\bibitem[Fol99]{Folland-1999-Real-analysis}
-Gerald~B. Folland.
-\newblock {\em Real analysis}.
-\newblock Pure and Applied Mathematics (New York). John Wiley \& Sons Inc., New
-  York, second edition, 1999.
-\newblock Modern techniques and their applications, A Wiley-Interscience
-  Publication.
+%
+For any $a \in \rr$, define the map $T_{a} \in L(\rr , \rr)$ by
+$T_{a}(x) = ax$. Then the map $a \mapsto T_a$ is an isometric
+isomorphism from $\rr$ to $L( \rr, \rr)$. Hence, 
+we may identify $f'(x_0)$ with $T_{f'(x_0)} = Df(x_0)$,
+which by \eqref{2} is the total derivative of $f$.  Using this identification,
+it follows that $f$ is continuously
+differentiable in $\rr$ if and only if $f'$ is a continuous function of
+$x_0$, for all $x_0 \in \rr$. \qed
+%
+\end{remark}
+\end{framed}
+%
+%
+In general, for an arbitrary Banach space $X$, open interval $(a,b) \subset
+\rr$, and map $f:(a,b) \to X$, we can identify $Df(x_0)$ with an
+element of $X$ via the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Lemma Isometry	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+	\label{lem:isometry} Let $(a,b) \subset \rr$ be an open interval, $X$ a Banach
+	space, with $x \in X$. Define the map $T_x \in L\left ( (a,b) , X \right )$ by
+	$T_x(t_0) = x t_0$. Then the map $x \mapsto T_x$ is an
+	isometric isomorphism from
+	$X$ to $L((a,b) , X)$. 
+\end{lemma}
+%
+%
+\begin{proof} Note that 
+%
+%
+\begin{equation*}
+	\begin{split}
+		| | | T_x | | |
+		& = \sup_{|t_0| = 1} \| T_x (t_0) \|_X
+		= \| x t_0\|_X
+		= \|x\|_X.
+	\end{split}
+\end{equation*}
+%
+%
+Hence, the map $x \mapsto T_x$ is an isometry from $X$ into $L((a,b),
+X)$. It remains to show that it is onto. Let $U \in L( (a,b), X)$. Then
+by linearity
+%
+%
+\begin{equation*}
+	\begin{split}
+		U(t_0) = U(1)t_0. 
+	\end{split}
+\end{equation*}
+%
+%
+Hence, $U = T_{U(1)}$, completing the proof. 
+\end{proof}
+%
+%
+Applying the lemma, we see that if $Df(t_0)$ exists for a map $f: (a,b) \to X$,
+then it can be viewed as an
+element of $X$. Similarly, if $Df(t_0)$ exists for all $t_0 \in (a,b)$, then
+we may view the map $t_0 \to Df(t_0)$ as an
+element of $L( (a,b), X)$. Hence, for a
+map $f:(a,b) \to X$, we see that Definition \ref{def:diff-simp} is an equivalent
+reformulation of \autoref{def:diff}. 
+Lastly, we include the following.
+%
+%
+\begin{proposition}
+		(Chain Rule) Let $X,Y,Z$ be Banach spaces, $g: Y \to Z$ and $f:
+		X \to Y$ continuously differentiable maps. Then for all $x_0,
+		x \in X$ we have \begin{equation*} (g \circ f)' (x_0) =
+			g'(f(x_0)) \circ (f'(x_0)).
+		\end{equation*} 
+	\end{proposition}
+  \begin{proof} Choose $0<\ee<1$. Since 
+			\begin{equation*}
+				\lim_{s \to 0} \frac{\|f (x_0 + s) - f(x_0) -
+				f'(x_0)(s)\|}{\|s\|} = 0
+			\end{equation*}
+			we can find $\delta > 0$ such that 
+			\begin{equation*}
+				\frac{\|f (x_0 + s) - f(x_0) -
+				f'(x_0)(s)\|}{\|s\|} < \ee
+			\end{equation*}
+			for $\|s\| < \delta$. This implies
+			\begin{equation*}
+				\|f(x_0 + s) - f(x_0) - f'(x_0)(h) \| < \ee \|s\|.
+			\end{equation*}
+			Hence, we can write
+			\begin{equation*}
+				f(x_0 + s) = f(x_0) + f'(x_0)(s) + O_1(s)
+			\end{equation*}
+			with $\|O_1(s)\| < \ee \|s\|$. Similarly, for $\|t\| <
+			\delta$ we have 
+			\begin{equation*}
+				g(x_0 + t) = g(x_0) + g'(x_0)(t)+ O_2(t)
+			\end{equation*}
+			with $\|O_2(t)\| < \ee \|t\|$. In addition, since $f'(x_0)$
+			and $g'(f(x_0))$ are continous linear operators, we have
+			\begin{equation*}
+				\begin{split}
+					&\|f'(x_0)(s) \| < a \|s \|,
+					\\
+					&\|g'(x_0)(t) \| < b \|t \|
+				\end{split}
+			\end{equation*}
+			for some constants $a , b$. Hence
+			\begin{equation*}
+				\|f'(x_0)(s) + O_1(s) \| < (a + 1) \|s\|
+			\end{equation*}
+			for $\|s\| < \delta$. Then for $\|s \| <
+			\delta/(a+1)$ we have
+			\begin{equation}
+				\label{key_estimate}
+				\begin{split}
+					&\| O_2 [f'(x_0)(h) + O_1(s)] \| < \ee(a+1)\|s \|,
+					\\
+					& \|g'(f(x_0))(O_1(s))\| < b \ee \|s\|.
+				\end{split}
+			\end{equation}
+			Hence
+			\begin{equation*}
+				\begin{split}
+					h(x_0 + s) &= g(f(x_0 +s)
+					\\
+					&= g(f(x_0) + f'(x_0)(s) + O_1(s))
+					\\
+					&= g(f(x_0)) + g'(f(x_0))(f'(x_0)(s) + O_1(s)) 
+					+ O_2(f'(x_0)(s) + O_1(s))
+					\\
+					&= g(f(x_0)) + g'(f(x_0))f'(x_0)(s) +
+					g'(f(x_0))(O_1(s)) + O_2(f'(x_0)(s) + O_1(s))
+				\end{split}
+			\end{equation*}
+			Applying \eqref{key_estimate}, we conclude that
+			\begin{equation*}
+				\begin{split}
+				&h(x_0 + s) = g(f(x_0)) + g'(f(x_0))(f'(x_0)(s)) +
+				O_3(s), \; 
+			\text{where}
+				\\
+				&\|O_3(s)\| < (a + b + 1) \ee \|s\|
+			\end{split}
+			\end{equation*}
+     completing the proof. 
+   \end{proof}
+%
+%
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{Kna05b}
+
+\bibitem[Die69]{Dieudonne_1969_Foundations-of-}
+J.~Dieudonn{\'e}, \emph{Foundations of modern analysis}, 1969.
+
+\bibitem[Fol99]{Folland_1999_Real-analysis}
+Gerald~B. Folland, \emph{Real analysis}, 1999.
+
 \bibitem[Jos98]{Jost-1998-Postmodern-analysis}
-J{{\"u}}rgen Jost.
-\newblock {\em Postmodern analysis}.
-\newblock Universitext. Springer-Verlag, Berlin, 1998.
-\newblock Translated from the German manuscript by Hassan Azad.
+J{\"u}rgen Jost, \emph{Postmodern analysis}, 1998.
+
+\bibitem[Kna05a]{Knapp:2005rm}
+A.W. Knapp, \emph{Advanced real analysis}, Birkhauser, 2005.
+
+\bibitem[Kna05b]{Knapp:2005yg}
+\bysame, \emph{Basic real analysis}, Birkhauser, 2005.
+
+\bibitem[Rud76]{Rudin:1976uq}
+Walter Rudin, \emph{Principles of mathematical analysis}, third ed.,
+  McGraw-Hill Book Co., New York, 1976, International Series in Pure and
+  Applied Mathematics. \MR{0385023 (52 \#5893)}
+
+\bibitem[Yos80]{Yosida:1980fk}
+K{\^o}saku Yosida, \emph{Functional analysis}, sixth ed., Grundlehren der
+  Mathematischen Wissenschaften [Fundamental Principles of Mathematical
+  Sciences], vol. 123, Springer-Verlag, Berlin, 1980. \MR{617913 (82i:46002)}
+
 \end{thebibliography}
 %
 %
-%
-%\nocite{*}
-%\bibliography{/Users/davidkarapetyan/Documents/Math/bib-files/book.bib}
-%\bibliographystyle{alpha}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%\bibliographystyle{amsalpha}
 \end{document}
