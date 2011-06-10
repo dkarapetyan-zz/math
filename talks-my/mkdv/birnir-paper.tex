@@ -948,12 +948,13 @@ In fact, using the method of residues, one can compute $\wh{u_{n}}(\xi, t, k)$
 \hspace{-20mm}
 \subfloat{\includegraphics[scale=0.4]{sech-ep-01}}
 \\
-\vspace{-30mm}
+\vspace{-50mm}
 \subfloat{\includegraphics[scale=0.4]{sech-ep-001}}
 \end{center}
 \end{figure}
 %
 %
+\vspace{-30mm}
 %
 \begin{framed}
   \begin{remark}
@@ -1171,10 +1172,237 @@ In fact, using the method of residues, one can compute $\wh{u_{n}}(\xi, t, k)$
         \qed
         %
         %
+        \appendix
+        \section{Soliton Computations for KDV and mKDV}
+        We first compute the solitons for mKDV. Substituting the ansatz
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+        u(x,t) = f(x-ct)
+        \end{split}
+        \end{equation*}
+        %
+        %
+        into the mKDV equation gives
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          -cf' + f''' + f^{2}f' = 0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Integrating once, we get
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          -cf + f'' + \frac{1}{3}f^{3} -a = 0.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Multiplfying by $f'$ and integrating gives
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          -\frac{c}{2}f^{2} + \frac{1}{2}(f')^{2} + \frac{1}{12}f^{4} -af -b =
+          0
+        \end{split}
+        \end{equation*}
+        %
+        or
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          (f')^{2} = -\frac{1}{6}f^{4} + cf^{2} + 2af + 2b.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        We assume a priori that $f$ is a soliton. Then $f, f', f'' \to 0$ as $x
+        \to \infty$. This implifes $a=0$, and so
+        %
+        %
+        \begin{equation}
+          \label{mkdv-ode-with-const}
+        \begin{split}
+          (f')^{2} = -\frac{1}{6}f^{4} + cf^{2} + 2bf
+        \end{split}
+        \end{equation}
+        %
+        %
+        or
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \frac{(f')^{2}}{f} = -\frac{1}{6}f^{3} + cf + 2b.
+        \end{split}
+        \end{equation*}
+        %
+        %
+        But by L'H{\^o}pital's rule
         %
         %
         %
+        \begin{equation*}
+        \begin{split}
+          \lim_{x \to \infty} \frac{(f')^{2}}{f} = \lim_{x \to \infty} \frac{2
+          f' f''}{f'} = 2 \lim_{x \to \infty} f'' = 0.
+        \end{split}
+        \end{equation*}
         %
+        %
+        Coupling this with the fact that $f \to 0$ as $x \to \infty$, we see
+        that we must have $b = 0$. Hence \eqref{mkdv-ode-with-const} reduces to
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          (f')^{2} = \frac{1}{6}f^{2}(6c - f^{2}).
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Assume $| f | \le \sqrt{6c}$. Then
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          f' = \sqrt{\frac{1}{6}} f \left( 6c - f^{2} \right)^{1/2}
+        \end{split}
+        \end{equation*}
+        %
+        %
+        or
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \frac{df}{f\left( 6c - f^{2} \right)^{1/2}} = \sqrt{\frac{1}{6}}dx
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Integrating both sides and applying the formula
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \int \frac{1}{t(a^{2} - t^{2})^{1/2}}dt = -\frac{1}{a} \log | \frac{a
+          + (a^{2}-t^{2})^{1/2}}{t}
+          |, \quad t^{2} < a^{2}
+        \end{split}
+        \end{equation*}
+        %
+        %
+       gives
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         -\frac{1}{\sqrt{6c}} \log | \frac{\sqrt{6c} + (6c - f^{2})^{1/2}}{f} |
+         = \sqrt{\frac{1}{6}} + C
+       \end{split}
+       \end{equation*}
+       %
+       %
+       or
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \frac{\sqrt{6c} + (6c - f^{2})^{1/2}}{f} = D e^{- \sqrt{c} x}.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Let 
+       \begin{equation}
+         \label{sub}
+         f(x) = \sqrt{6c} \sech v.
+       \end{equation}
+       Then 
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \frac{\sqrt{6c} + (6c - 6c \sech^{2}v)^{1/2}}{\sqrt{6c} \sech v} =
+         D e^{- \sqrt{c} x}
+       \end{split}
+       \end{equation*}
+       %
+       %
+       or 
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \frac{1 + \tanh v}{\sech v} = De^{-\sqrt{c} x}
+       \end{split}
+       \end{equation*}
+       %
+       %
+       or
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \cosh v + \sinh v = De^{-\sqrt{c} x}.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Using the definitions of $\cosh v$ and $\sinh v$, we see that
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \frac{e^{v} + e^{-v}}{2} + \frac{e^{v} - e^{-v}}{2}  = De^{-\sqrt{c} x}
+       \end{split}
+       \end{equation*}
+       %
+       %
+       or
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         e^{v} = De^{-\sqrt{c} x}. 
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Letting $D =1$, we see that
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         \sech v =  \frac{2}{e^{v} + e^{-v}} = \frac{2}{e^{- \sqrt{c}x} +
+         e^{\sqrt{c}x}} = \sech{\sqrt{c} x}.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       Substituting back into \eqref{sub}, we obtain
+       %
+       %
+       \begin{equation*}
+       \begin{split}
+         f(x) = \sqrt{6 c} \sech{\sqrt{c} x}.
+       \end{split}
+       \end{equation*}
+       %
+       %
+       %
+       %
+       %
+       %
 
         
 

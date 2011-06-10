@@ -1034,7 +1034,7 @@ $x \in D \subset \rr$. Then
 %
 \begin{equation*}
 \begin{split}
-  f' = \sqrt{\frac{2}{3}}f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}.
+  f' = \sqrt{\frac{2}{3}}f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}
 \end{split}
 \end{equation*}
 %
@@ -1049,207 +1049,56 @@ dx
 \end{split}
 \end{equation*}
 %
-Integrating both sides, we obtain
-%
-%
-%
-%
-\begin{equation*}
-\begin{split}
-\int \frac{df}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} = \sqrt{\frac{2}{3}}
-x + A, \quad A \in \rr
-\end{split}
-\end{equation*}
-%
-%
-Using the substitution $f = -\frac{3}{2}c^{2}\sec^{2} \theta$, we see that
+Integrating both sides and applying the formula
 %
 %
 \begin{equation*}
 \begin{split}
-\int \frac{df}{ f \left[ -\frac{3}{2}c^{2} -f \right]^{1/2}} 
-& = \int \frac{-3 c^{2} \sec^{2}\theta \tan \theta d
-\theta}{-\frac{3}{2}c^{2} \sec^{2} \theta \left[ -\frac{3}{2}c^{2} +
-\frac{3}{2}c^{2} \sec^{2} \theta \right]^{1/2}}
-\\
-& = \int \frac{4}{3c^{2}} d \theta
-\\
-& = \frac{4}{3c^{2}} \theta
-\\
-& = \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}f \right )
+  \int \frac{dx}{x(a-x)^{1/2}} = \frac{2}{(-a)^{1/2}} \tan^{-1}\left[
+  \frac{(a-x)^{1/2}}{(-a)^{1/2}}
+  \right], \quad a < 0,\ a -x >0
 \end{split}
 \end{equation*}
 %
 %
-and so
+we obtain
 %
 %
 \begin{equation*}
 \begin{split}
- \frac{4}{3c^{2}} \sec^{-2}\left (-\frac{2}{3c^{2}}f \right )
-= \sqrt{\frac{2}{3}}
-x + A
+  \frac{2\sqrt{\frac{2}{3}}}{c} \tan^{-1}\left[ 2
+  \sqrt{\frac{2}{3}}(-\frac{3}{2} c^{2} -f)^{1/2}
+  \right] = \sqrt{\frac{2}{3}} + A
 \end{split}
 \end{equation*}
+%
 %
 or
 %
 %
 \begin{equation*}
 \begin{split}
-  f(x) = -\frac{3c^{2}}{2} \sec^{2}\left[ \frac{3c^{2}}{4} \sqrt{\frac{2}{3}} \left (x
-  - x_{0} \right)\right].
+  (-\frac{3}{2} c^{2}-f)^{1/2} = \frac{1}{2} \sqrt{\frac{3}{2}} \tan\left[
+  \frac{c}{2}(x- x_{0})
+  \right].
 \end{split}
 \end{equation*}
 %
 %
-This blows up as $$ \left[ \frac{3c^{2}}{4} \sqrt{\frac{2}{3}} (x-x_{0})
-\right] \to \frac{\pi}{2},$$
+or
 %
-contradicting our earlier assumptions about $f$. 
 %
-%Suppose that we try to obtain solitons following a different route. Note that the analog for 
-%\eqref{hh} for $B_{4}$ is
-%\begin{equation}
-  %\label{hhb4}
-%\begin{split}
-  %(f')^{2} = -\frac{2}{3} \left [ f^{3} + \frac{3}{2}c^{2}f^{2} + 3bf +d \right ]
-%\end{split}
-%\end{equation}
-%Set $$f(0) = 0, \ f'(0) = 0.$$ Then we must have $d=0$, giving 
-%the ivp
-%%
-%%
-%\begin{gather}
-  %(f')^{2} = -\frac{2}{3}\left [ f^{3} + \frac{3}{2}c^{2}f^{2} + 3bf \right ]
-  %\label{b4-ivp-eq}
-  %\\
-  %f(0)=0, \quad f'(0) = 0.
-%\end{gather}
-%%
-%Assume $b \ge 0$. Then we can write \eqref{b4-ivp-eq} as
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %(f')^{2} = -\frac{2}{3}f (f + r)^{2}, \qquad r = \frac{4b}{c^{2}}.
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Assume $f \le 0$. Then
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %f' = \sqrt{\frac{2}{3}} (-f)^{1/2}(f+r)
-%\end{split}
-%\end{equation*}
-%%
-%%
-%or
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\int \frac{df}{(-f)^{1/2}(f+r)} =  \sqrt{\frac{2}{3}} x + A
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Using the change of variable $y = f-r$ on the left hand side, and applying
-%\eqref{key-int-form}, we obtain
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %-\frac{2}{\sqrt{r}} \tanh^{-1}\left( \frac{\sqrt{r-y}}{\sqrt{r}} \right) =
-  %\sqrt{\frac{2}{3}}x + A
-%\end{split}
-%\end{equation*}
-%%
-%or
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-%\tanh^{-1}\left( \frac{\sqrt{r-y}}{\sqrt{r}} \right) =
-  %-\sqrt{\frac{r}{6}}x + B
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Assume that $y(x_{0}) = r$ for fixed $x_{0}$. Then
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %0 = \tan^{-1}(0) = -\sqrt{\frac{r}{6}}x_{0} + B
-%\end{split}
-%\end{equation*}
-%%
-%or
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-%B = \sqrt{\frac{r}{6}}x_{0}.
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Therefore
-%%
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-%\left( \frac{\sqrt{r-y}}{\sqrt{r}} \right) =
-%\tanh \left[ -\sqrt{\frac{r}{6}}(x - x_{0}) \right]
-%\end{split}
-%\end{equation*}
-%or
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %y = r\left \{ 1 - \tanh^{2} \left[ -\sqrt{\frac{r}{6}}(x- x_{0}) \right] \right \}
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Using the identities
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %& 1 - \tanh^{2}x = \sech^{2}x,
-  %\\
-  %& \sech^{2}(-x) = \sech^{2}x
-%\end{split}
-%\end{equation*}
-%%
-%we obtain 
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %y = r\sech^{2} \left[ \sqrt{\frac{r}{6}}(x- x_{0}) \right] 
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Recalling that $y = f-r$ and $r = 4b/c^{2}$, we see that
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %f(x) = \frac{4b}{c^{2}}\left\{ 1 + \sech^{2} \left[ \frac{1}{c}
-  %\sqrt{\frac{2b}{3}} (x-x_{0}) \right] \right\}.
-%\end{split}
-%\end{equation*}
-%%
-%%
-%But $f > 0$, violating our earlier assumption.
-
+\begin{equation*}
+\begin{split}
+  f(x) = -\frac{3}{8} \tan^{2}\left[ \frac{c}{2}(x- x_{0}) \right] - \frac{3}{2}c^{2}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+which blows up as $$ x \to x_{0} + \frac{\pi}{c}.$$ Hence, $f(x)$ cannot be a
+soliton.
+%
+%
 \end{document}

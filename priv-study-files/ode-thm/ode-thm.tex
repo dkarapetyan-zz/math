@@ -14,6 +14,7 @@
 	citecolor=blue,
 	urlcolor=blue,
 }
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \synctex=1
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \numberwithin{figure}{section}
@@ -51,6 +52,8 @@
 \newtheorem{remark}{Remark}
 \newtheorem{example}{Example}
 %
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
 %
 %
 \def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
@@ -113,7 +116,7 @@
 \address{Department of Mathematics  \\
 	University  of Notre Dame\\
 		Notre Dame, IN 46556 }
-		\date{06/08/2011}
+		\date{\today}
 		%
 		\maketitle
 		%
@@ -348,7 +351,7 @@ Folland \cite{Folland_1999_Real-analysis}, Jost
 %
 %
 \begin{definition}[Banach Space Integration for Step Functions]
-	Let $(a,b)$ be an open interval in $\rr$, $X$ a Banach space, $f: [a,b] \to
+	Let $X$ be a Banach space, $f: [a,b] \to
 	X$ a step function as in \eqref{step-function}. 
 	Then 
 	%
@@ -459,7 +462,7 @@ following. %
 %
 \begin{lemma}
 	\label{lem:dense}
-	Let $[a, b] \subset \rr$ be a closed interval in $\rr$, $X$ a Banach space, and
+	Let $X$ be a Banach space, and
 	suppose the function $f:[a,b] \to X$ is continuous . Then
 	there exists a sequence of step functions $\left\{ f_n \right\}$
 	such that $\|f - f_n\|_{L^\infty( [a,b], X)} \to 0$. 
@@ -586,10 +589,11 @@ of the step functions chosen. Proceeding, we first prove the following lemma.
   \\
   & \le  \sum_{j=1}^{m} \| \alpha_{j} \|_{X} (t_{j+1} - t_{j})
   \\
-  & = \int_{a}^{b} \| f(t) \|_{X} dt.
+  & = \int_{a}^{b} \| f(t) \|_{X} dt
 \end{split}
 \end{equation*}
 %
+which completes the proof.
 %
 \end{proof}
 %
@@ -667,7 +671,8 @@ Hence,
 %
 \begin{equation*}
 \begin{split}
-\| \int_{a}^{b} f_{n}(t) dt - \int_{a}^{b} f_{m}(t) dt \|_{X} \le 2(b-a) \ee.
+\| \int_{a}^{b} f_{n}(t) dt - \int_{a}^{b} f_{m}(t) dt \|_{X} \le 2(b-a) \ee,
+\quad m,n > N.
 \end{split}
 \end{equation*}
 %
@@ -753,8 +758,94 @@ Since $\ee$ can be chosen arbitrarily small, we see that we must have $F = G$.
 \end{proof}
 %
 %
-We conclude the section by showing that Banach space integration and
-differentiation are inverse operations.
+We conclude the section by proving the fundamental theorem of calculus, 
+thereby establishing that Banach space integration and
+differentiation are inverse operations. We shall need the following lemma.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                int prop
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  Let $X$ be a Banach space, and suppose $f: [a,b] \to X$ is continuous. Then for
+  $a \le b \le c$ 
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{a}^{c} f(t) dt = \int_{a}^{b} f(t) dt + \int_{b}^{c} f(t) dt.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:int-splitting}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+  %
+  Since $\| f - f_{n} \|_{L^{\infty}\left( [a,b], X \right)} \to 0$ for some sequence
+  $f_{n}$ of simple functions, we have
+  %
+  \begin{equation*}
+  \begin{split}
+    \int_{a}^{c} f(t) dt = \lim_{n \to \infty} \int_{a}^{c} f_{n}(t) dt.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  Recall that the value of $\int_{a}^{c}f_{n}(t) dt$ does not depend upon the
+  partioning we use for $f_{n}(t)$. Partition $f_{n}$ such that
+  \begin{equation}
+    \begin{split}
+  & f_{n}(t) = f_{n, [a,b]} + f_{n, (b, c]},  
+    \\
+    & f_{n, [a,b]}(t) =0, \quad b< t \le c, \quad f_{n, (b, c]}(t) = 0, \quad
+    a \le t \le b.
+\end{split}
+\end{equation}
+Then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \int_{a}^{c} f_{n}(t) dt & = \int_{a}^{c} f_{n, [a,b]}(t)dt  +
+    \int_{a}^{c} f_{n, (b,c]}(t)dt 
+    \\
+    & = \int_{a}^{b} f_{n}(t)dt  +
+    \int_{b}^{c} f_{n}(t)dt.
+  \end{split}
+  \end{equation*}
+  %
+  %
+Hence 
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   \int_{a}^{c} f(t) dt 
+   & = \lim_{n \to \infty} \int_{a}^{c} f_{n}(t) dt
+   \\
+   &= \lim_{n \to \infty} \left ( \int_{a}^{b} f_{n}(t)dt  +
+    \int_{b}^{c} f_{n}(t)dt \right )
+    \\
+    & =\int_{a}^{b} f(t) dt + \int_{b}^{c} f(t) dt
+ \end{split}
+ \end{equation*}
+ %
+ %
+which concludes the proof.
+\end{proof}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -795,7 +886,7 @@ Furthermore, $F$ is differentiable at all $t_{0} \in [a,b]$, and
 %
 %
 \begin{proof}
-We first establish the continuity of the map $t \mapsto F(t)$. Assume without
+We first establish the Lipschitz continuity of the map $t \mapsto F(t)$. Assume without
 loss of generality that $t_{1} \le t_{2}$. We have
 %
 %
@@ -805,7 +896,8 @@ loss of generality that $t_{1} \le t_{2}$. We have
   & = \| \int_{a}^{t_{1}}f(s)ds -
   \int_{a}^{t_{2}} f(s)ds \|_{X}
   \\
-  & = \| \int_{t_{1}}^{t_{2}} f(s) ds \|_{X}
+  & = \| \int_{t_{1}}^{t_{2}} f(s) ds \|_{X}, \quad \text{Lemma
+  \ref{lem:int-splitting}}
   \\
   & \le \int_{t_{1}}^{t_{2}}\| f(s) \|_{X} ds.
 \end{split}
@@ -818,7 +910,7 @@ for all $s \in [a,b]$. Hence
 %
 \begin{equation*}
 \begin{split}
-  \| F(t_{1}) - F(t_{2}) \| \le M(t_{2} - t_{1}).
+  \| F(t_{1}) - F(t_{2}) \| \le M(t_{2} - t_{1})
 \end{split}
 \end{equation*}
 %
@@ -830,14 +922,15 @@ differentiation given in \eqref{diff-limit-simp} and see that
 %
 \begin{equation*}
 \begin{split}
-  \| \frac{F(t_{0} + h) - F(t_{0})}{h}  - f(t_{0}) \|_{X}
+   \| \frac{F(t_{0} + h) - F(t_{0})}{h}  - f(t_{0}) \|_{X}
   & = \| \frac{\int_{a}^{t_{0}+h}f(s)ds - \int_{a}^{t_{0}}f(s)ds}{h} -
   f(t_{0}) \|_{X}
   \\
   & = \| \int_{a}^{t_{0}+h}\frac{f(s)}{h}ds  -
   \int_{t_{0}}^{t_{0} + h} \frac{f(t_{0})}{h} ds \|_{X}
   \\
-  & = \frac{1}{h} \| \int_{t_{0}}^{t_{0} + h}[f(s) - f(t_{0})]ds \|_{X}
+  & = \frac{1}{h} \| \int_{t_{0}}^{t_{0} + h}[f(s) - f(t_{0})]ds \|_{X}, \qquad
+  \text{Lemma \ref{lem:int-splitting}}
   \\
   & \le \frac{1}{h} \int_{t_{0}}^{t_{0} + h} \| f(s) - f(t_{0})
   \|_{L^{\infty}\left( [t_{0}, t_{0} + h], X \right)}
@@ -905,7 +998,8 @@ concluding the proof.
 %
 %
 \section{Contraction Mapping Lemma}
-Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
+\begin{definition}
+  Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 \emph{contraction} if there exists an $\alpha$, $0 < \alpha <1$ such that
 %
 %
@@ -915,6 +1009,7 @@ Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 	\end{split}
 \end{equation*}
 %
+\end{definition}
 %
 \begin{framed}
 \begin{remark}
@@ -925,8 +1020,8 @@ Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 %
 \begin{framed}
 \begin{example}
-	The function $T(x) = 0.1x^2$ defines a contraction mapping in the metric space
-	$X = [-4, 4]$ with distance $d(x,y) = |x-y|$. 
+	The function $T(x) = 0.1x^2$ defines a contraction mapping in the set 
+	$X = [-4, 4]$ equipped with the metric $d(x,y) = |x-y|$. 
 \end{example}
 \end{framed}
 	%
@@ -1330,41 +1425,72 @@ Lastly, we include the following.
    \end{proof}
 %
 %
-\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
-\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
-% \MRhref is called by the amsart/book/proc definition of \MR.
-\providecommand{\MRhref}[2]{%
-  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Dieudonne_1969_Foundations-of-}{book}{
+      author={Dieudonn{\'e}, J.},
+       title={Foundations of modern analysis},
+        date={1969},
+         url={http://ams.org/mathscinet-getitem?mr=0349288},
 }
-\providecommand{\href}[2]{#2}
-\begin{thebibliography}{Kna05b}
 
-\bibitem[Die69]{Dieudonne_1969_Foundations-of-}
-J.~Dieudonn{\'e}, \emph{Foundations of modern analysis}, 1969.
+\bib{Folland_1999_Real-analysis}{book}{
+      author={Folland, Gerald~B.},
+       title={Real analysis},
+        date={1999},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1681462},
+}
 
-\bibitem[Fol99]{Folland_1999_Real-analysis}
-Gerald~B. Folland, \emph{Real analysis}, 1999.
+\bib{Jost-1998-Postmodern-analysis}{book}{
+      author={Jost, J{\"u}rgen},
+       title={Postmodern analysis},
+        date={1998},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1490832},
+}
 
-\bibitem[Jos98]{Jost-1998-Postmodern-analysis}
-J{\"u}rgen Jost, \emph{Postmodern analysis}, 1998.
+\bib{Knapp:2005rm}{book}{
+      author={Knapp, A.W.},
+       title={Advanced real analysis},
+   publisher={Birkhauser},
+        date={2005},
+        ISBN={0817643826},
+}
 
-\bibitem[Kna05a]{Knapp:2005rm}
-A.W. Knapp, \emph{Advanced real analysis}, Birkhauser, 2005.
+\bib{Knapp:2005yg}{book}{
+      author={Knapp, A.W.},
+       title={Basic real analysis},
+   publisher={Birkhauser},
+        date={2005},
+        ISBN={0817632506},
+}
 
-\bibitem[Kna05b]{Knapp:2005yg}
-\bysame, \emph{Basic real analysis}, Birkhauser, 2005.
+\bib{Rudin:1976uq}{book}{
+      author={Rudin, Walter},
+       title={Principles of mathematical analysis},
+     edition={Third},
+   publisher={McGraw-Hill Book Co.},
+     address={New York},
+        date={1976},
+        note={International Series in Pure and Applied Mathematics},
+}
 
-\bibitem[Rud76]{Rudin:1976uq}
-Walter Rudin, \emph{Principles of mathematical analysis}, third ed.,
-  McGraw-Hill Book Co., New York, 1976, International Series in Pure and
-  Applied Mathematics. \MR{0385023 (52 \#5893)}
+\bib{Yosida:1980fk}{book}{
+      author={Yosida, K{\^o}saku},
+       title={Functional analysis},
+     edition={Sixth},
+      series={Grundlehren der Mathematischen Wissenschaften [Fundamental
+  Principles of Mathematical Sciences]},
+   publisher={Springer-Verlag},
+     address={Berlin},
+        date={1980},
+      volume={123},
+        ISBN={3-540-10210-8},
+}
 
-\bibitem[Yos80]{Yosida:1980fk}
-K{\^o}saku Yosida, \emph{Functional analysis}, sixth ed., Grundlehren der
-  Mathematischen Wissenschaften [Fundamental Principles of Mathematical
-  Sciences], vol. 123, Springer-Verlag, Berlin, 1980. \MR{617913 (82i:46002)}
-
-\end{thebibliography}
+\end{biblist}
+\end{bibdiv}
 %
 %
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
