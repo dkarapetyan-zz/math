@@ -843,7 +843,7 @@ is given by Definition \ref{wp-def}.
 \begin{framed}
 \begin{remark}
   The technical reason is
-\eqref{terms-small-decay}--a computation of the second iterate yields a factor
+that the computation of the second iterate yields a factor
 of $N^{-1}$
 which can be nullified if the amplitude of the initial data is $N^{1/2}$. See
 \eqref{ill-pos-ce}. This is why well-posdness for $s > -1/4$ does not suffice to
@@ -1110,47 +1110,20 @@ Integrating and neglecting constants, \eqref{pre-neg-const} gives
  \label{term-dec-4}
 \end{align}
 %
-%
-Note that
-\begin{equation}
-  \label{terms-large-decay}
-  \eqref{term-dec-2}, \eqref{term-dec-3} = O(N^{-2}).
-\end{equation} 
-Furthermore, examining \eqref{term-dec-1} and \eqref{term-dec-4},
-we see that
-%
-%
-\begin{equation}
-  \label{terms-small-decay}
-\begin{split}
-& | \frac{\cos[t - t(2 -2N)] - \cos t}{2 - 2N}
-+ \frac{\cos[t - 2tN] - \cos t}{2N} |
-\\
-& = | \frac{\cos[t -2tN] - \cos t}{2 - 2N}
-+ \frac{\cos[t - 2tN] - \cos t}{2N} |
-\\
-& \gtrsim \frac{\cos[t(2N -1)] - \cos t}{N}, \quad N >> 1.
-\end{split}
-\end{equation}
-%
-%
-Setting $t = \delta$, and applying \eqref{terms-large-decay} and
-\eqref{terms-small-decay} to expression \eqref{term-dec-0}-\eqref{term-dec-4}, 
-we obtain the lower bound
-%
-%
+which simplifies to
 %
 %
 \begin{equation*}
 \begin{split}
-c (\cos[\delta (2N-1)] - \cos \delta ), \quad N >> 1
+  \frac{1}{2} \sup_{0 \le t \le \delta} | \frac{\cos\left[ t(1-2N) \right]
+  - \cos
+  t}{(1-N)} + \frac{\cos\left[ t\left( 1 + 2N^{2} - 2N \right) \right] - \cos
+  t}{(1-N)(1 + N^{2} - N)}|  
 \end{split}
 \end{equation*}
 %
-%
-which does not decay to $0$ as $N \to \infty$ (in fact, it does not even
-converge). This completes the proof. 
 \end{proof}
+%
 %
 %
 %

@@ -1,0 +1,822 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+\title{Notes on the Holder Continuity of the Data to Solution Map for HR in the
+Weak Topology}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+    University  of Notre Dame\\
+        Notre Dame, IN 46556 }
+        \date{06/14/2011}
+        %
+        \maketitle
+        %
+        %
+        %
+        %
+        %
+        %
+        \section{Introduction}
+%
+%
+%
+We consider the hyperelastic rod (HR) Cauchy problem
+\begin{gather}
+ \p_t u =  -\gamma u \p_x u -
+\Lambda^{-1} \left[ \frac{3-\gamma}{2}u^2 +
+\frac{\gamma}{2} \left( \p_x u \right)^2
+\right],
+\label{hyperelastic-rod-equation}
+\\
+ u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+\label{init-cond}
+\end{gather}
+%
+%
+where 
+\begin{equation*}
+	\Lambda^{-1} = \p_x (1 - \p_x^2)^{-1}.
+\end{equation*}
+
+%
+Let $u_{0}(x), v_{0}(x)
+\in B_{H^{s}}(R)$, $s > 3/2$ be two initial datum. Then from
+the well-posedness theory, we
+know that there exists unique corresponding solutions $u, v \in C(I,
+B_{H^{s}}(2R))$ to \eqref{hyperelastic-rod-equation}.
+Set $v=u-w$. Then $v$ solves the Cauchy-problem
+%
+%
+\begin{align}
+	\label{uniqueness-exp}
+& \p_t v
+=  -\frac{\gamma}{2} \p_x [v(u + w)] 
+\\
+\notag
+& \phantom{\p_t v = }- D^{-2} \p_x \left\{
+\frac{3-\gamma}{2}[v(u+w)] + \frac{\gamma}{2}[\p_x v \cdot \p_x (u+w)]
+\right\},
+\\
+& v(x,0) = u_{0}(x) - v_{0}(x).
+\label{uniqueness-init-data}
+\end{align}
+%
+%
+%
+%
+Applying $D^r$ to both sides of \eqref{uniqueness-exp}, then 
+multiplying both sides by $D^r v$ and integrating, we obtain
+%
+%
+\begin{equation}
+\begin{split}
+ \frac{1}{2} \frac{d}{dt} \|v\|_{H^r}^2
+ = & -\frac{\gamma}{2} \int_{\rr} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx
+\\
+& - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  
+\\
+& - \frac{\gamma}{2} \int_{\rr} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx .
+\label{2v}
+\end{split}
+\end{equation}
+%
+%
+We now estimate \eqref{2v} in parts.
+
+\subsection{Estimate of Integral 1} Note that
+%
+%
+\begin{equation}
+\begin{split}
+& \left |  -\frac{\gamma}{2} \int_{\rr} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx \right |
+\\
+& =
+\left |
+-\frac{\gamma}{2} \int_{\rr} \left[ D^r \p_x, \ u+w \right]v \cdot
+D^r v \ dx - \frac{\gamma}{2} \int_{\rr} (u+w) D^r
+\p_x v \cdot D^r v\ dx
+\right | \\
+& \le \left |
+-\frac{\gamma}{2} \int_{\rr} \left[ D^r \p_x, \ u+w \right]v \cdot
+D^r v \ dx \right |
++ \left | \frac{\gamma}{2} \int_{\rr} (u+w) D^r \p_x v
+\cdot D^r v\
+dx \right |.
+\label{4v}
+\end{split}
+\end{equation}
+%
+%
+Observe that by integrating by parts gives
+%
+%
+\begin{equation}
+\begin{split}
+\left | \frac{\gamma}{2}\int_{\rr} (u+w) D^r \p_x v \cdot
+D^r v \ dx \right |
+\lesssim \|\p_x (u+w)\|_{L^\infty}
+\|v\|_{H^r}^2.
+\label{4'v}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+To estimate the remaining integral of \eqref{4v}, we shall need the following
+following result taken from \cite{Himonas_2009_Non-uniform-dep-per}:
+%
+\begin{lemma}
+\label{cor1}
+If $s > 3/2$ and $-1 \le r  \le s -1$, then
+%
+%
+\begin{equation}
+\begin{split}
+\|[D^r \p_x ,f]g\|_{L^2} \le C \|f\|_{H^s} \|g\|_{H^r}.
+\label{15}
+\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+%
+Set $s > 3/2$ and $-1 \le r \le s -1$. An application of 
+Cauchy-Schwartz and Lemma \ref{cor1} then yields 
+%
+%
+\begin{equation}
+\begin{split}
+ \left | -\frac{\gamma}{2} \int_{\rr} [D^r \p_x, \ u+w] v
+\cdot D^r v \ dx \right |
+& \lesssim \|u+w\|_{H^s} 
+\|v\|_{H^r}^2.
+\label{7v}
+\end{split}
+\end{equation}
+%
+%
+Combining \eqref{4'v} and \eqref{7v} and applying the Sobolev Imbedding 
+Theorem, we obtain the estimate
+%
+%
+\begin{equation}
+\begin{split}
+\left |  -\frac{\gamma}{2} \int_{\rr} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx \right |
+ \lesssim \|u+w\|_{H^s} \|v\|_{H^r}^2.
+\label{8v}
+\end{split}
+\end{equation}
+%
+%
+
+\subsection{Estimate of Integral 2} We shall need the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                frac deriv est
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+For $0 \le r \le s$, $s > 3/2$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| fg \|_{H^{r-1}} \le \| f \|_{H^{r}} \| g \|_{H^{s}}.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:frac-deriv}
+\end{lemma}
+%
+%
+%
+%
+%
+%
+Applying Cauchy-Schwartz and Lemma \ref{lem:frac-deriv}, we obtain
+%
+%
+%
+\begin{equation}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+ \lesssim \|u+w\|_{H^{r -1}} \|v\|_{H^r}^2.
+\label{3v}
+\end{split}
+\end{equation}
+%
+%
+%
+
+\subsection{Estimate of Integral 3} We first apply
+Cauchy-Schwartz to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\left | - \frac{\gamma}{2} \int_{\rr} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx \right | 
+ \lesssim 
+\|[\p_x v \cdot \p_x (u+w)] \|_{H^{r -1}}
+\|v\|_{H^r}.
+\end{split}
+\end{equation*}
+%
+We now need the following result.
+%
+%
+%
+\begin{lemma}
+\label{impo}
+If  $0 \le r \le s$ and $s + r \ge 2$,  then
+%
+%
+\begin{equation}
+\begin{split}
+  \|f_{x}g_{x}\|_{H^{r - 1}} \le C \|f\|_{H^{r}}
+\|g\|_{H^{s}}.
+\label{11}
+\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+
+%
+Applying the lemma, we conclude that
+%
+\begin{equation}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+ \lesssim \|u+w \|_{H^{s}}
+\|v\|_{H^r}^2.
+\label{3'v}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+%
+%
+Grouping \eqref{8v}, \eqref{3v}, and \eqref{3'v}, and 
+applying
+the Sobolev Imbedding Theorem, we obtain
+%
+%
+\begin{equation}
+\begin{split}
+\frac{1}{2} \frac{d}{dt}
+\|v\|_{H^r}^2
+& \lesssim \|u+w\|_{H^s}
+\|v\|_{H^r}^2
+\\
+& \le 2R \| v \|_{H^{r}}^{2}, \quad | t | < T.
+\label{9v}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+%
+Letting $y(t) = \| v \|^{2}_{H^{r}}$, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dy}{dt} \le cy
+\end{split}
+\end{equation*}
+%
+where $c = c(s, r, R)$. 
+This admits the solution
+%
+%
+\begin{equation*}
+\begin{split}
+  y(t) \le y(0) e^{ct}, \quad | t | < T
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+  y(t) \le y(0) e^{cT}
+\end{split}
+\end{equation*}
+%
+%
+Substituting back in for $y$, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| v \|_{H^{r}}^{2} \le \| v(0) \|^{2}_{H^{r}}e^{cT}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation}
+  \label{lip-ineq}
+\begin{split}
+  & \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}, 
+  \\
+  & \text{for} \ | t | < T,
+  \ s > 3/2, \ 0 \le r \le s-1, \ s + r \ge 2.
+\end{split}
+\end{equation}
+%
+Hence, for $s > 3/2, \ 0 \le r \le s-1, \ \text{and} \ s + r \ge 2$, the data to solution map is locally Lipschitz from
+$B_{H^{s}(R)}$ (in the $H^{r}$
+topology) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
+%
+%
+To handle the remaining cases, we partition the set
+$$\Omega = \left\{ (s,r): s > 3/2, \ 0 \le r \le s-1, \ s + r \ge 2
+\right\}^{c}$$ into four pieces
+%
+%
+\begin{equation*}
+\begin{split}
+  & \Omega_{1} = \left\{ (s, \ r): s<3/2 \right\}\\
+  & \Omega_{2} = \left\{ (s, \ r): s>3/2, \  r <0  \right\}
+  \\
+  & \Omega_{3} = \left\{ (s, \ r): s>3/2, \  r > s-1  \right\}
+  \\
+  & \Omega_{4} = \left\{ (s, \ r): s>3/2, \  0 \le r < 2-s  \right\}.
+\end{split}
+\end{equation*}
+%
+%
+
+%
+%
+%
+%
+\subsection{Case $\Omega_{1}$.} 
+\label{ssec:case-1}
+No results. Want to prove ill-posedness. In particular, if uniqueness fails,
+it wouldn't make sense to talk about H\"older continuity.
+%
+%
+\subsection{Case $\Omega_{2}$.} 
+\label{ssec:case-bb}
+Open problem.
+%
+%
+%
+\subsection{Case $\Omega_{3}$} 
+\label{ssec:case-2}
+If $r \ge s$, we have non-uniform dependence, and so H\"older continuity must
+fail. Hence, assume $s-1 < r <s$, with $s > 3/2$.
+By interpolation and the fact that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \|v\|_{H^{s}} = \|u + w \|_{H^{s}} \le 2R
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation}
+  \label{pre-lip-ap}
+\begin{split}
+  \| v(t) \|_{r} & \lesssim \| v(t) \|_{H^{s-1}}^{s-r} \|v(t) \|_{H^{s}}^{1-s+r}
+  \\
+  & \lesssim \| v(t) \|_{H^{s-1}}^{s-r}.
+\end{split}
+\end{equation}
+%
+%
+Notice that $0 \le s-1 \le s-1$, and $s + (s-1) = 2s-1 \ge 2$ for $s >3/2$.
+Hence, we may apply \eqref{lip-ineq} to bound \eqref{pre-lip-ap} by
+%
+%
+\begin{equation*}
+\begin{split}
+  C \|v(0) \|_{H^{s-1}}^{s-r}
+  & \lesssim \|v(0) \|_{H^{s-1}}^{s-r} 
+  = \|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
+\end{split}
+\end{equation*}
+%
+\subsection{Case $\Omega_{4}$} 
+\label{ssec:case-4}
+Notice that $0 \le 2-s \le s-1$ for $s>3/2$ and $s + (2-s) = 2 \ge 2$. Hence,
+interpolating and applying
+\eqref{lip-ineq}, we bound 
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| v(t) \|_{H^{r}}
+  & \le \|w(t) \|_{H^{2-s}}
+  \\
+  & \lesssim \|v(0) \|_{H^{2-s}}
+  \\
+  & \lesssim \| v(0) \|_{H^{r}}^{\frac{2(s-1)}{2-r}} \|v(0)
+  \|_{H^{s}}^{\frac{2-s-r}{s-r}}
+  \\
+  & \lesssim \| u_{0} - v_{0} \|_{H^{r}}^{\frac{2(s-1)}{2-r}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+\appendix
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                proofs of lemmas
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Proofs of Lemmas} 
+\label{sec:pf-lemmas}
+%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:frac-deriv}]
+If $0 \le r \le 1$, then
+%
+%
+\begin{equation*}
+\begin{split}
+  \| fg \|_{H^{r-1}}
+  & \le \| fg \|_{L^{2}}
+  \\
+  & \le \| f \|_{L^{\infty}} \| g \|_{L^{2}}
+  \\
+  & \lesssim \| f \|_{H^{s}} \| g \|_{H^{r}}
+\end{split}
+\end{equation*}
+%
+%
+where the last step follows from the Sobolev Embedding lemma. If $1 < r < s$,
+then
+%
+%
+\begin{equation*}
+\begin{split}
+  \| fg \|_{H^{r-1}}^{2}
+  & = \int_{\rr} (1 + \xi^{2})^{r-1} | \wh{f} *
+  \wh{g}(\xi) |^{2} d \xi
+  \\
+  & =  \int_{\rr} (1 + \xi^{2})^{r-1} | \int_{\rr} \wh{f}(\xi - \eta)
+  \wh{g}(\eta) |^{2} d \eta
+  \\
+  & \lesssim \int_{\rr} \left( \int_{\rr} \left\{ \left[ 1 + (\xi - 
+  \eta)^{2} \right]^{\frac{r-1}{2}} + \left[ 1 + \eta^{2}
+  \right]^{\frac{r-1}{2}} \right\} | \wh{f}(\xi - \eta) \wh{g}(\eta) | d \eta
+  \right)^{2} d \xi
+\end{split}
+\end{equation*}
+%
+Using the inequality
+%
+%
+\begin{equation*}
+\begin{split}
+  (a + b)^{2} \le 4(a^{2} + b^{2})
+\end{split}
+\end{equation*}
+%
+%
+we bound the last integral above by
+%
+%
+\begin{equation*}
+\begin{split}
+  & 4 \int_{\rr} \left( \int_{\rr} \left[ 1 + (\xi - 
+  \eta)^{2} \right]^{\frac{r-1}{2}} | \wh{f}(\xi - \eta) \wh{g}(\eta) | d \eta
+  \right)^{2} d \xi
+  \\
+  & +  4 \int_{\rr} \left( \int_{\rr} 
+  \left[ 1 + \eta^{2} \right]^{\frac{r-1}{2}} 
+  | \wh{f}(\xi - \eta) \wh{g}(\eta) | d \eta
+  \right)^{2} d \xi
+  \\ 
+  & \simeq \| \left\{ \left[ 1 + (\cdot)^{2} \right]^{\frac{r-1}{2}} |
+  \wh{f}(\cdot)
+  | * | \wh{g}(\cdot) | \right\}(\xi) \|_{L^{2}}^{2} + \| | \wh{f}(\cdot) |*
+  \left[ 1 + (\cdot)^{2} \right]^{\frac{r-1}{2}} \wh{g}(\cdot)
+  \|_{L^{2}}^{2}.
+\end{split}
+\end{equation*}
+%
+%
+Applying Young's inequality, this is bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \left[ 1 + \xi^{2} \right]^{\frac{r-1}{2}} | \wh{f} |
+  \|_{L^{2}}^{2} \| \wh{g}\|^{2}_{L^{1}} + \| \wh{f}
+  \|^{2}_{L^{2}} \| \left[ 1 + \xi^{2}
+  \right]^{\frac{r-1}{2}}\wh{g} \|_{L^{1}}^{2}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f \|_{H^{r-1}}^{2} \| \wh{g} \|_{L^{1}}^{2} + \| f
+  \|_{L^{2}}^{2} \| \left[ 1 + \xi^{2}
+  \right]^{\frac{r-1}{2}}\wh{g} \|_{L^{1}}^{2}
+\end{split}
+\end{equation*}
+%
+which is bounded by 
+\begin{equation}
+  \label{pre-sob-imbed}
+\begin{split}
+  \| f \|_{H^{r-1}}^{2} \| \wh{g} \|_{L^{1}}^{2} + \| f
+  \|_{H^{s}}^{2} \| \left[ 1 + \xi^{2}
+  \right]^{\frac{r-1}{2}}\wh{g} \|_{L^{1}}^{2}
+\end{split}
+\end{equation}
+%
+Applying the inequalities
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \wh{g} \|_{L^{1}} 
+  & = \| \wh{g} (1 + \xi^{2})^{s/2} (1 + \xi^{2})^{-s/2} \|
+  \\
+  & \le \| g \|_{H^{s}} \| (1 + \xi^{2})^{-s/2} \|_{L^{2}}
+  \\
+  & \simeq \| g \|_{H^{s}}, \qquad s > 1/2
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+\begin{split}
+\| \left[ 1 + \xi^{2}
+  \right]^{\frac{r-1}{2}}\wh{g} \|_{L^{1}}^{2}
+  & = \| \left[ 1 + \xi^{2}
+  \right]^{\frac{s}{2}} \left[ 1 + \xi^{2}
+  \right]^{\frac{r-1 -s}{2}} \wh{g} \|_{L^{1}}^{2}
+  \\
+  & \le \| g \|_{H^{s}} \| \left[ 1 + \xi^{2} \right]^{\frac{r-1 -s}{2}}
+  \|_{L^{2}}
+  \\
+  & \simeq \| g \|_{H^{s}}, \qquad r < s+\frac{1}{2}
+\end{split}
+\end{equation*}
+%
+%
+we bound \eqref{pre-sob-imbed} by 
+%
+%
+\begin{equation*}
+\begin{split}
+  2 \| f \|^{2}_{H^{r-1}} \| g \|_{H^{s}}^{2}
+\end{split}
+\end{equation*}
+%
+%
+which concludes the proof.
+\end{proof}
+%
+%
+\begin{proof}[Proof of Lemma \ref{impo}]
+For the case $r=1$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{L^{2}}^{2}
+  & = \int_{\rr} | \int_{\rr} (\xi -
+  \eta) \wh{f}(\xi - \eta) \eta \wh{g}(\eta) d \eta |^{2} d \xi
+  \\
+  & \le \int_{\rr} \left [ \int_{\rr} |\xi -
+  \eta| | \wh{f}(\xi - \eta) | | \eta |  | \wh{g}(\eta) | 
+  d \eta \right ]^{2} d \xi
+  \\
+  & = \int_{\rr}  \left [ \int_{\rr} |\xi -
+  \eta| | \wh{f}(\xi - \eta) | | \eta |  | \wh{g}(\eta) | (1 +
+  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
+  d \eta \right ]^{2} d \xi
+  \\
+  & \le \int_{\rr}  \left [ \int_{\rr} |\xi -
+  \eta| | \wh{f}(\xi - \eta) | | \wh{g}(\eta) | (1 +
+  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s}{2}}
+  d \eta \right ]^{2} d \xi
+\end{split}
+\end{equation*}
+%
+Applying Cauchy Schwartz, we bound this by
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f \|_{H^{s}}^{2} \int_{\rr}  \int_{\rr} \frac{(\xi -
+  \eta)^{2} | \wh{w}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi
+  \end{split}
+\end{equation*}
+%
+%
+Applying a change of variable, we get
+%
+\begin{equation*}
+\begin{split}
+  \| f \|_{H^{s}}^{2} \int_{\rr} \int_{\rr} \frac{\eta^{2}
+  | \wh{g}(\eta) |^{2}}{[1 + (\xi - \eta)^{2}]^{s-1}} d \eta d \xi
+  \end{split}
+\end{equation*}
+which by Fubini is equal to
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{ \eta^{2}}{\left[ 1 + (\xi - \eta)^{2} \right]^{s-1}} d \xi d \eta.
+\end{split}
+\end{equation*}
+%
+A last change of variable gives 
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{ \eta^{2}}{\left[ 1 + (\xi - \eta)^{2} \right]^{s-1}} d \xi d \eta
+  & = \int_{\rr} | \wh{g}(\eta) |^{2} \eta^{2} \int_{\rr} \frac{
+  \eta^{2}}{\left[ 1 + \lambda^{2} \right]^{s-1}} d \lambda d \eta
+  \\
+  & \lesssim \| g \|_{H^{1}}^{2}, \qquad s > 3/2.
+\end{split}
+\end{equation*}
+%
+%
+Hence, for $r=1$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| f \|_{H^{s}} \| g \|_{H^{r}}
+\end{split}
+\end{equation*}
+%
+%
+For the case $r=s$, we shall need the following commutator estimate of Kato and
+Ponce \cite{Kato_1988_Commutator-esti}. 
+%
+%
+\begin{lemma}[Kato-Ponce] \label{KP-lemma}
+If  $s>0$ then there is $c_s>0$ such that 
+%
+%
+%
+\begin{equation} \label{KP-com-est}
+\| D^{s} \big(fg) -  f D^s g\|_{L^2(\ci)}
+\le
+c_s \big(
+\| D^{s}f \|_{L^2(\ci)}    \| g \|_{L^\infty(\ci)} +
+\| \p_xf \|_{L^\infty(\ci)}    \| D^{s-1}g \|_{L^2(\ci)}   \big).
+\end{equation}
+%
+%
+%
+\end{lemma}
+%
+%
+%
+%
+%
+\end{proof}
+
+
+
+
+
+
+        %\nocite{*}
+        \bibliography{/Users/davidkarapetyan/math/bib-files/references}
+
+        \end{document}
