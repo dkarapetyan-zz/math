@@ -22,8 +22,6 @@ linkcolor=blue,
 citecolor=blue,
 urlcolor=blue,
 }
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
-\usepackage{cleveref} %must be last loaded package to work properly
 %
 %
 \newcommand{\ds}{\displaystyle}
@@ -80,13 +78,13 @@ urlcolor=blue,
 \newcommand{\tphi}{{\tilde{\phi}}}
 \synctex=1
 \begin{document}
-\title{Notes on the Holder Continuity of the Data to Solution Map for HR in the
+\title[H\"older Continuity of the Data to Solution Map for HR]{Notes on the Holder Continuity of the Data to Solution Map for HR in the
 Weak Topology}
 \author{David Karapetyan}
 \address{Department of Mathematics  \\
     University  of Notre Dame\\
         Notre Dame, IN 46556 }
-        \date{06/14/2011}
+        \date{\today}
         %
         \maketitle
         %
@@ -116,11 +114,10 @@ where
 \begin{equation*}
 	\Lambda^{-1} = \p_x (1 - \p_x^2)^{-1}.
 \end{equation*}
-
 %
 Let $u_{0}(x), v_{0}(x)
 \in B_{H^{s}}(R)$, $s > 3/2$ be two initial datum. Then from
-the well-posedness theory, we
+the well-posedness theory for HR, we
 know that there exists unique corresponding solutions $u, v \in C(I,
 B_{H^{s}}(2R))$ to \eqref{hyperelastic-rod-equation}.
 Set $v=u-w$. Then $v$ solves the Cauchy-problem
@@ -475,9 +472,43 @@ Open problem.
 %
 \subsection{Case $\Omega_{3}$} 
 \label{ssec:case-2}
-If $r \ge s$, we have non-uniform dependence, and so H\"older continuity must
-fail. Hence, assume $s-1 < r <s$, with $s > 3/2$.
-By interpolation and the fact that 
+Taking $r \ge s$ makes little sense, since we assume a priori that our initial
+data is in $H^{s}$ (i.e. it may not even be in $H^{r}$ if $r > s$). If it is in
+$H^{r}$, then we are back where we started.
+Hence, assume $s-1 < r <s$. We now need the following interpolation
+result. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                interp
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  For $s_{1} < s < s_{2}$,
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| f \|_{H^{s}} \le \| f \|_{H^{s_{1}}}^{(s_{2}-s)/(s_{2} - s_{1})} \| f
+    \|_{H^{s_{2}}}^{(s -s_{1})/(s_{2} - s_{1})}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  %
+  %
+   %
+  %
+\label{lem:interp}
+\end{lemma}
+%
+%
+Applying Lemma \ref{lem:interp} and the fact that 
 %
 %
 \begin{equation*}
@@ -515,8 +546,7 @@ Hence, we may apply \eqref{lip-ineq} to bound \eqref{pre-lip-ap} by
 \subsection{Case $\Omega_{4}$} 
 \label{ssec:case-4}
 Notice that $0 \le 2-s \le s-1$ for $s>3/2$ and $s + (2-s) = 2 \ge 2$. Hence,
-interpolating and applying
-\eqref{lip-ineq}, we bound 
+applying Lemma \ref{lem:interp} and \eqref{lip-ineq}, we bound 
 %
 %
 %
@@ -777,28 +807,25 @@ A last change of variable gives
 Hence, for $r=1$, we have
 %
 %
-\begin{equation*}
+\begin{equation}
+  \label{pre-interp-1}
 \begin{split}
   \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| f \|_{H^{s}} \| g \|_{H^{r}}
 \end{split}
-\end{equation*}
+\end{equation}
 %
 %
-For the case $r=s$, we shall need the following commutator estimate of Kato and
-Ponce \cite{Kato_1988_Commutator-esti}. 
+For the case $r=s$, we shall need the following. 
 %
 %
-\begin{lemma}[Kato-Ponce] \label{KP-lemma}
-If  $s>0$ then there is $c_s>0$ such that 
+\begin{lemma}[Algebra Property]
+  \label{KP-lemma}
+If  $s>1/2$ then there is $c_s>0$ such that 
 %
 %
 %
 \begin{equation} \label{KP-com-est}
-\| D^{s} \big(fg) -  f D^s g\|_{L^2(\ci)}
-\le
-c_s \big(
-\| D^{s}f \|_{L^2(\ci)}    \| g \|_{L^\infty(\ci)} +
-\| \p_xf \|_{L^\infty(\ci)}    \| D^{s-1}g \|_{L^2(\ci)}   \big).
+  \| fg\|_{H^{s}} \le c_s \| f \|_{H^{s}} \| g \|_{H^{s}}
 \end{equation}
 %
 %
@@ -809,14 +836,385 @@ c_s \big(
 %
 %
 %
+Hence,
+%
+%
+\begin{equation}
+  \label{pre-interp-2}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{s-1}}
+  & \lesssim   \|f_{x}  \|_{H^{s-1}} \| g \|_{H^{s-1}}, \quad s >3/2
+  \\
+  & \le \| f \|_{H^{s}} \| g \|_{H^{s}}.
+\end{split}
+\end{equation}
+%
+\begin{framed}
+%
+%
+\begin{remark}
+\label{rem:chen-mistake}
+Chen and company say that they are using Kato-Ponce to estimate the term above,
+when they are actually using the algebra property of Sobolev spaces.
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+%
+%
+We now wish to interpolate to obtain estimates for the whole range $1 \le r \le s$.
+We need the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}[Sobolev Interpolation]
+  For fixed $k \le q, m \le s$ suppose that \\ $T: H^{k} \to H^{m}$ continuously and $T: H^{q} \to H^{s}$
+  continuously. Then\\
+  $T: H^{\theta q + (1 - \theta)k} \to H^{\theta s +
+  (1 - \theta) m}$ continuously for all $\theta \in [0,1]$.
+\label{prop:sob-interp}
+\end{proposition}
+%
+To apply Proposition \ref{prop:sob-interp}, we note that \eqref{pre-interp-1}
+and \eqref{pre-interp-2} imply
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| g \|_{H^{r}}, \quad
+  r=1, \  r =s, \ \| f \|_{H^{s}} =1.
+\end{split}
+\end{equation*}
+%
+%
+That is, for fixed $f \in H^{s}$ with $\| f \|_{H^{s}} =1$, the map $g \mapsto
+Tg = f_{x} g_{x}$ is continuous from $H^{1}$ to $L^{2}$ and from $H^{s}$ to
+$H^{s-1}$.Therefore, by Proposition \ref{prop:sob-interp}, it is continuous from
+$H^{\theta s + 1 - \theta}$ to $H^{\theta(s-1)}$ for all $\theta \in
+(0, 1)$. Setting $\theta = r-1/(s-1)$, $ 1 \le r \le s$, we obtain that $T$ is continuous from $H^{r}$ to $H^{r-1}$; that is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| g \|_{H^{r}}, \quad 1 \le r \le s, \
+  \| f \|_{H^{s}} =1
+\end{split}
+\end{equation*}
+which for general $f \in H^{s}$ implies 
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \|f \|_{H^{s}}
+  \| g \|_{H^{r}}, \quad 1 \le r \le s. 
+\end{split}
+\end{equation*}
+%
+This completes the proof.
 \end{proof}
+%Following Klainerman \cite{Klainerman:fk}, we introduce the following.  
+%\begin{definition}
+  %Let $T_{z}$ be a family of linear operators indexed by $z \in D$. We say the
+  %$T_{z}$ are an analytic family of operators if
+  %\begin{enumerate}
+    %\item{$T_{z}$ maps simple functions into measurable functions}
+    %\item{ The map $z \mapsto T_{z}$ is analytic in the interior of the strip
+      %%
+      %%
+      %\begin{equation*}
+      %\begin{split}
+        %0 \le \text{Re}\, z \le 1
+      %\end{split}
+      %\end{equation*}
+      %%
+      %%
+      %and bounded and continuous on the boundary.}
+  %\end{enumerate}
+%\end{definition}
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%                stein-interp
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%\begin{lemma}[Stein Complex Interpolation]
+  %Let $T_{z}$ be an analytic family of operators and assume there are positive
+  %constants $M_{0}, M_{1}$ such that, for every $b \in \rr$
+  %%
+  %%
+  %\begin{equation*}
+  %\begin{split}
+    %\| T_{ib} \|_{L^{q_{0}}} \le M_{0} \| f \|_{L^{p_{0}}}, \quad \|
+    %T_{1 + ib} f \|_{L^{q_{1}}} \le M \| f \|_{L^{p_{1}}}
+  %\end{split}
+  %\end{equation*}
+  %%
+  %%
+  %with $1 \le q_{0}, p_{0}, q_{1}, p_{1} \le \infty$. Then, for $z = a + ib \in
+  %D$, $T_{z}$ extends to a bounded operator from $L^{p}$ to $L^{q}$ and
+  %%
+  %%
+  %\begin{equation*}
+  %\begin{split}
+    %\| T_{z} f \|_{L^{q}} \le M_{0}^{1-a} M_{1}^{a} \| f \|_{L^{p}}
+  %\end{split}
+  %\end{equation*}
+  %%
+  %%
+  %where
+  %%
+  %%
+  %\begin{equation*}
+  %\begin{split}
+    %\frac{1}{p} = \frac{1-a}{p_{0}} + \frac{a}{p_{1}}, \quad \frac{1}{q} =
+    %\frac{1-a}{q_{0}} + \frac{a}{q_{1}}.
+  %\end{split}
+  %\end{equation*}
+  %%
+  %%
+%\label{lem:stein}
+%\end{lemma}
+%%
+%%
+%%
+%To apply the lemma, we need some preliminaries. First, recall that for $r \in
+%\rr$
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %(1 - \p_x^{2})^{r}h(x) 
+  %\overset{\text{it.}}{=} & \int_{\rr} e^{ix
+  %\xi}(1 + \xi^{2})^{r} \wh{h}(\xi) d \xi
+  %\\
+   %\overset{\text{abs. conv.}}{=}  & \lim_{j \to \infty} \frac{1}{2 \pi} \int_{\rr}
+  %\int_{\rr} e^{i(x-y)}
+  %\chi( \xi/j) (1 + \xi^{2})^{r}dy d \xi
+%\end{split}
+%\end{equation*}
+%%
+%%
+%where $\chi(\xi)$ is a cutoff function symmetric about the origin. 
+%%we fix $g \in H^{s}$ with $\| g\|_{H^{s}} = 1$
+%%
+%%
+%%
+%%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:interp}]
+ We have
+ %
+ %
+ \begin{equation}
+   \label{pre-hold}
+ \begin{split}
+   \| f \|_{H^{s}}^{2}
+   & = \int_{\rr} (1 + \xi^{2})^{s} | \wh{f}(\xi) |^{2} d \xi
+   \\
+   & = \int_{\rr} | \wh{f}(\xi) | (1 + \xi^{2})^{s_{1}/p} | \wh{f}(\xi) |
+   (1 + \xi^{2})^{s_{2}/p} 
+ \end{split}
+ \end{equation}
+ %
+ %
+ where
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   s_{1}/p + s_{2}/q =s, \quad 1/p + 1/q =1.
+ \end{split}
+ \end{equation*}
+ %
+ %
+ Solving for $1/p = 1/p(s, s_{1}, s_{2})$ and $1/q = 1/q(s, s_{1}, s_{2})$, we obtain
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   1/p = (s_{2} -s)/(s_{2} -s_{1}), \quad 1/q = (s -s_{1})/(s_{2} -s_{1}). 
+ \end{split}
+ \end{equation*}
+ %
+ %
+ Applying H\"older to the right hand side of \eqref{pre-hold}, we obtain the
+ bound
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   \| f \|_{H^{s}}^{s}
+   & \le  \left[ \int_{\rr} (1 + \xi^{2})^{s_{1}} | \wh{f}(\xi) |^{2} d \xi
+   \right]^{(s_{2} - s)/(s_{2} -s_{1})} \left[ \int_{\rr} (1 + \xi^{2})^{s_{1}}
+   | \wh{f}(\xi) |^{2} d \xi \right]^{(s - s_{1})/(s_{2} -s_{1})}
+   \\
+   & = \| f \|_{H^{s_{1}}}^{2 (s_{2} - s)/(s_{2} -s_{1})}
+   \| f \|_{H^{s_{2}}}^{2 (s - s_{1})/(s_{2} -s_{1})}.
+ \end{split}
+ \end{equation*}
+ %
+ %
+ Taking square roots of both sides completes the proof.
+  \end{proof}
+  \section{Proof of Proposition \ref{prop:sob-interp}}
+\label{ssec:pf-sob-interp}
+The proof follows immediately from the following two lemmas and the continuous
+embedding $H^{s'} \subset H^{s}$, $s < s'$.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+\label{lem:rest-bound}
+Let $X, Y, U, V$ be Banach spaces with $U \subset X, V \subset Y$ continuously,
+and suppose $T$ is a bounded linear operator from $X$ to $Y$. If $T$ maps $U$
+to $V$, then $T$ is bounded from $U$ to $V$.
+\end{lemma}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Interpolation spaces 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+\label{lem:interp-spaces}
+For fixed $k \le q, \ m \le s$ suppose that $T: H^{k} \to H^{m}$
+continuously and $T: H^{q} \to H^{s}$. Then
+$T: H^{\theta q + (1 - \theta)k} \to H^{\theta s +
+(1 - \theta) m}$ for all $\theta \in [0,1]$.
+%
+%
+%
+\end{lemma}
+%
+%
+%
+Hence, to complete the proof of Proposition \ref{prop:sob-interp},
+it will be enough to prove these lemmas.
+%
+\begin{proof}[Proof of Lemma \ref{lem:rest-bound}]
+We frst recall the following.
+\begin{definition}
+Let $X$ and $Y$ be Banach spaces, and $T: X \to Y$ be linear. We say that $T$ is
+\emph{closed} if 
+%
+%
+%\begin{equation*}
+%\begin{split}
+  %\Gamma(T) = \left\{ (x, Tx) \in X \times Y \right\}
+%\end{split}
+%\end{equation*}
+%%
+%%
+%is a closed subspace of $X \times Y$ in the product topology. That is,
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\| x -x_{n} \|_{X} + \| Tx - Tx_{n} \|_{Y} \to 0.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%<++>
+$x_{n} \to x$ and $Tx_{n} \to y$ imply $y = Tx$. 
+\end{definition}
+
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                closed graph theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Closed Graph Theorem]
+\label{lem:closed-graph}
+If $X$ and $Y$ are Banach, and $T: X \to Y$ is a closed linear map, then $T$ is
+bounded.
+\end{lemma}
+%
+%
+Proceeding with the proof of Lemma \ref{lem:rest-bound},
+suppose $x_{n} \to x$ in $U$; that is
+%
+%
+\begin{equation}
+  \label{1hh}
+\begin{split}
+  \| x - x_{n} \|_{U} \to 0.
+\end{split}
+\end{equation}
+%
+%
+Since $U \subset X$
+continuously and
+$T: X \to Y$ is bounded, we have
+%
+%
+\begin{equation}
+  \label{2hh}
+\begin{split}
+  \| Tx - Tx_{n} \|_{Y} = \| T(x - x_{n}) \|_{Y} \lesssim \| x -
+  x_{n} \| \le  \| x - x_{n} \|_{U} \to 0.
+\end{split}
+\end{equation}
+%
+%
+Since $T:U \to V$ and $x_{n}, x \in U$, it follows that $T x_{n}, Tx \in V$.
+Furthermore, from \eqref{2hh} and the continuous embedding $V \subset Y$, 
+it follows that if $Tx_{n} \to v$ in $V$, then $v = Tx$. 
+Therefore, $T$ is closed from
+$U$ to $V$. Applying the closed graph theorem concludes the proof. 
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:interp-spaces}]
+  We refer the reader to \cite{Taylor:1996zr}, pp.322-324.
+\end{proof}
+%
+%
+For additional reading on interpolation spaces, please consult
+\cite{Taylor:1996zr}, \cite{bergh1976interpolation}, and \cite{Bennett:1988ys}.
+%
+%
 
 
 
 
-
-
-        %\nocite{*}
-        \bibliography{/Users/davidkarapetyan/math/bib-files/references}
-
+  %\nocite{*}
+  \bibliographystyle{amsalpha}
+  \bibliography{/Users/davidkarapetyan/math/bib-files/references}
         \end{document}
