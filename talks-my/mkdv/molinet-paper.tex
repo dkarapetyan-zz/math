@@ -1,0 +1,1100 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+%\usepackage{showkeys}
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+\title{Notes on Molinet}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+    University  of Notre Dame\\
+        Notre Dame, IN 46556 }
+        \date{\today}
+        %
+        \maketitle
+        %
+        %
+        %
+        %
+        %
+        %
+        \section{Notions of Well-Posedness}
+        We consider the modified 
+        Kortewew-de Vries (mKDV) ivp
+        \begin{gather}
+          \label{mkdv}
+          u_{t} + u_{xxx} + u^{2} u_{x} = 0
+          \\
+          u(x,0) = u_{0}(x), \ x \in \ci, \ t \in \rr.
+          \label{mkdv-init}
+        \end{gather}
+        viewing $w(x,t) \doteq u^{2} u_{x}$ as a forcing term.
+        Taking the spatial Fourier transform of its linearization
+        %
+        %
+        \begin{gather*}
+          \label{lin-mkdv}
+          u_{t} + u_{xxx} =0
+          \\
+          u(x,0) = u_{0}(x)
+          \label{lin-mkdv-init}
+        \end{gather*}
+        %
+        %
+ %
+ %
+ we obtain
+ \begin{equation*}
+ \begin{split}
+   \wh{u_{t}}(n, t) =  i n^{3}\wh{u}(n,t) 
+   \\
+   \wh{u}(0) = \wh{u_{0}}(n).
+ \end{split}
+ \end{equation*}
+ %
+ %
+ This admits the unique solution
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   \wh{u}(n,t) = \wh{u_{0}}(n) e^{i n^{3}t}
+ \end{split}
+ \end{equation*}
+ %
+ %
+ which by Fourier inversion gives
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   u(x,t) = \sum_{n \in \zz} \wh{u_{0}}(n) e^{i\left( nx + n^{3}t \right)} \doteq S(t)u_{0}(x).  \end{split}
+ \end{equation*}
+ %
+ %
+Hence, by Duhamel's principle, 
+%
+%
+\begin{equation}
+  \label{int-reform-mkdv}
+\begin{split}
+  u(t) = S(t)u_{0} + \int_{0}^{t} S(t- \tau) w(\tau) d \tau, \quad w =
+  -u^{2}u_{x}
+\end{split}
+\end{equation}
+%
+%
+is the integral formulation of of the mKDV ivp. 
+        \subsection{Kenig-Ponce-Vega Well-Posedness} 
+        \label{ssec:kpv-wp}
+	We say that the mKDV ivp is
+	\emph{locally well posed} in a Banach function space
+	$X$ if 
+	\begin{enumerate}
+		\item For every $u_{0}(x) \in
+	B_R$ there exists $T>0$ depending on $R$ and a function
+	\\
+	$u \in C([0, T],
+  X)$ satisfying \eqref{int-reform-mkdv} for all $t \in [0, T]$.
+\item The solution $u(x,t)$ is unique in a subspace $Y \hookrightarrow
+  C([0, T], X)$.  
+\item The data to solution map $u_0 \mapsto u$ is locally uniformly continuous. That is,
+  if$\{u_{0,n}\} \subset B_R$, and 
+	$\|u_0 - u_{0, n} \|_{X(\ci)} \to 0$, then $\|u(\cdot, t) - u_{n}(\cdot,t) \|_{X} \to
+	0$ for $t \in [0, T]$.
+	\end{enumerate}
+  \subsection{Classical Hadamard Well-Posedness} 
+  \label{ssec:hadamard-wp}
+   We say that the mKDV ivp
+   is
+	\emph{locally well posed} in a Banach function space $X$ if
+	\begin{enumerate}
+    \item For every $u_{0}(x)$ there exists $T>0$ depending on $u_{0}(x)$
+      and a function $u \in C([0, T],
+  X)$ satisfying \eqref{int-reform-mkdv} for all $t \in [0, T]$.
+\item The solution $u(x,t)$ is unique in $C([0,T], X)$.  
+    \item
+      The data to solution map $u_0 \mapsto u$ is continuous. That
+      is, given a sequence $\{u_{0,n} \} \in X$
+      such that $$\|u_{0} - u_{0,n} \|_{X} \to 0$$
+      with corresponding solutions $u_{n} \in
+      C([0,
+      \delta_{n}])$ and $u \in C([0, \delta_{\infty}])$
+      then there exists $0 < \delta \le \inf\left\{
+      \delta_{n}, \delta_{\infty} \right\}$ such that 
+      $$\|u(\cdot, t) - u_{n}(\cdot, t) \|_{X} \to 0 \ \text{for} \ t \in
+      [0, \delta].$$
+  \end{enumerate}
+  \subsection{Kappeler-Topalov \cite{Kappeler:2006uq} Well-Posedness} 
+  \label{ssec:kap-wp}
+  We first cite the following result of Bourgain \cite{Bourgain-Fourier-transfo} used
+  by Kappeler and Topalov.
+  %
+  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  %
+  %                bona thm
+  %
+  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  %
+  \begin{theorem}[Bourgain]
+    For initial data $u_{0}(x) \in H^{s}(\ci)$, $1\le s \le \infty$, 
+    there exists a unique global solution $u \in C(\rr, H^{s}(\ci))$ to
+    \eqref{int-reform-mkdv}. Furthermore, the data to solution map $u_{0}
+    \mapsto u$ is Lipschitz.
+    \label{thm:bour}
+  \end{theorem}
+  %
+  %
+  %
+  %
+  \begin{framed}
+  %
+  %
+  \begin{remark}
+  We obtain an improvement for the above result for $s = \infty$ via the Banach
+  Space ODE Theorem; see appendix.
+  \label{rem:ode-thm}
+  \end{remark}
+  %
+  %
+  \end{framed}
+  %
+  We say that a continuous curve $\gamma: (a,b) \to H^{\beta}(\ci)$ with $0 \in
+  (a,b)$ and $\gamma(0) = u_{0}$ is a solution of the mKDV in
+  $H^{\beta}(\ci)$ with initial data $u_{0}$ iff for any $C^{\infty}$ sequence
+  of initial data $\left\{ u_{0,n} \right\}$ converging to $u_{0}$ in
+  $H^{\beta}(\ci)$ and for any $t \in [a,b]$, the sequence of emanating
+  solutions $u_{n}$ of the mKDV equation satisfies $u_{n}(t) \to
+  \gamma(t)$ in $H^{\beta}(\ci)$.
+  %
+  %
+  %
+  \begin{framed}
+  %
+  %
+  \begin{remark}
+  Uniqueness of the solution and continuous dependence on initial data follows from the Lipschitz continuity of the data
+  to solution map for $C^{\infty}$ initial data. To see this, we denote $\|f 
+  \|_{k} \doteq \sup_{x \in \ci} \p_{k} f$. Assume $v_{0,n} \subset C^{\infty}$,
+  $v_{0,n} \to v_{0}$ in $H^{\beta}$, and $v_{n}(t) \to v(t)$ in $H^{\beta}$ for
+  $t \in [a,b]$. Then
+  %
+  %
+  \begin{equation}
+    \label{yuu}
+  \begin{split}
+    \|u(t) - v(t) \|_{k} 
+    & = \|u(t) \pm u_{n}(t) \pm v_{n}(t) - v(t) \|_{k}
+    \\
+    & \le \| u(t) - u_{n}(t) \|_{k} + \| u_{n}(t) - v_{n}(t) \|_{k} + \|
+    v(t) -
+    v_{n}(t) \|_{k}
+    \\
+    & \le \| u(t) - u_{n}(t) \|_{k} + C_{k} \| u_{0,n} - v_{0,n} \|_{k} + \|
+    v(t) -
+    v_{n}(t) \|_{k}.
+  \end{split}
+  \end{equation}
+  %
+  If $u_{0} = v_{0}$, the right hand side converges to $0$ as $n \to \infty$,
+  implying the uniqueness.
+  Also, for fixed $t \in [a,b]$ and $\ee > 0$, there exists $N$ such that for $n > N$,
+  \eqref{yuu} implies
+  %
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  \|u(t) - v(t) \|_{k} 
+       \le 2 \ee +  C_{k} \| u_{0,n} - v_{0,n} \|_{k}.
+     \end{split}
+  \end{equation*}
+  %
+  %
+  Hence, solutions to the mKDV (in the sense of Kappeler-Topalov) depend
+  continuously on the initial data.
+  \label{rem:uniqueness}
+  \end{remark}
+  %
+  %
+  \end{framed}
+  %
+  %
+  
+
+  
+  \section{Outline of the Paper}
+        \label{sec:outline}
+        \begin{theorem}
+          \label{thm:cont-fail}
+        There exists $T > 0$ such that the data to solution map $u_{0} \mapsto u$ for
+        the mKDV is not continuous at any $u_{0} \in H^{\infty}$ from $L^{2}(\ci)$
+        equipped with the weak topology to $D'\left([0, T] \times \ci
+        \right)$. More precisely, if 
+        \begin{equation}
+          \langle u_{0,n}, \vp \rangle  \to \langle u_{0}, \vp \rangle , \quad
+          \text{for all} \ \vp \in L^{2}(\ci)
+        \end{equation}
+        then for any 
+        $\psi \in C_{0}^{\infty}([0, T] \times \ci)$ 
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+          \langle u_{n}, \psi \rangle  \not \to \langle u, \psi \rangle. 
+        \end{split}
+        \end{equation*}
+        %
+        %
+        \end{theorem}
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    %
+    %                ill-pos
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    Assuming Theorem \ref{thm:cont-fail} for now, we obtain the following
+    corollary.
+    %
+    \begin{corollary}[Ill-Posedness]
+   The mKDV ivp is ill-posed for $s < 0$.  
+    \label{prop:ill-pos}
+    \end{corollary}
+    %
+    %
+    %
+    %
+    \begin{proof}
+      Let 
+      $\left\{ u_{0,n} \right\} \subset H^{\infty}$ be a uniformly bounded
+      sequence in $L^{2}$ such that $u_{0,n}
+      \rightharpoonup u_{0}$ in $L^{2}(\ci)$. 
+      %
+      %
+      Since the
+      inclusion $L^{2}(\ci) \subset H^{s}(\ci)$ is compact for $s<0$, there
+      exists a subsequence $u_{0,n_{k}}$ such that
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        u_{0,n_{k}} \xrightarrow{H^{s}} v_{0}.
+      \end{split}
+      \end{equation*}
+      %
+      %
+      We claim that $v_{0} = u_{0}$. To see this, note that
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        \langle u_{0, n_{k}}, \vp \rangle  \to \langle u_{0}, \vp \rangle \
+        \text{for all} \ \vp \in H^{-s}.
+      \end{split}
+      \end{equation*}
+      %
+      Since $H^{-s} \subset L^{2}$, $s < 0$, this implies
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+      \langle u_{0, n_{k}}, \vp \rangle  \to \langle u_{0}, \vp \rangle \
+      \text{for all} \ \vp \in L^{2}.
+      \end{split}
+      \end{equation*}
+      %
+      %
+      Since $u_{0,n} \rightharpoonup u_{0}$ in $L^{2}$ by assumption, it follows that
+      $u_{0} = v_{0}$. Hence,
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        u_{0,n_{k}} \xrightarrow{H^{s}}u_{0}, \quad s<0.
+      \end{split}
+      \end{equation*}
+      %
+      %
+      If existence or uniqueness fails for $s<0$ in the sense of
+      Kappeler-Topalov, we are done. So assume
+      they don't fail. Furthermore, assume continuity of the data to solution map for
+      holds from $H^{s}$ to $C([0, T], H^{s})$, $s < 0$. Then
+      %
+      %
+      \begin{equation}
+        \label{s-conv}
+      \begin{split}
+      u_{n_{k}} \xrightarrow{C\left( [0,T], H^{s} \right)} u.
+      \end{split}
+      \end{equation}
+      %
+      This implies
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        u_{n_{k}} \xrightarrow{D'(\ci \times [0, T])} u
+      \end{split}
+      \end{equation*}
+      %
+      since for any $\phi(x,t) \in C^{\infty}\left( \ci \times [0,T] \right)$,
+      we have
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        | \int_{\ci \times [0,T]} (u - u_{n_{k}}) \phi(x,t) d (x \times t) |
+        & \le  \int_{\ci \times [0,T]} | (u - u_{n_{k}}) \phi(x,t)| d (x \times t) 
+        \\
+        & = \int_{\ci} \int_{[0,T]} | u - u_{n_{k}} | | \phi | dt dx
+        \\
+        & \le \| u - u_{n_{k}} \|_{L^{\infty}\left( [0,T], H^{s} \right)} \|
+        \phi \|_{L^{\infty}\left( [0,T], H^{-s} \right)}
+        \\
+        & \simeq \| u - u_{n_{k}} \|_{L^{\infty}\left( [0,T], H^{s} \right)} \to
+        0.
+      \end{split}
+      \end{equation*}
+      %
+      %
+     This contradicts Theorem \ref{thm:cont-fail}.
+      %
+      %
+    \end{proof}
+    %
+    %
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Proof of thm
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Proof of Theorem \ref{thm:cont-fail}}
+\label{sec:pf-thm}
+Let $u_{0} \in H^{\infty}$ be a non constant. Set
+%
+%
+\begin{equation}
+  \label{ill-pos-init-data}
+\begin{split}
+  u_{0,n} = u_{0} + k \cos(nx), \quad k\in \rr, k \neq 0.
+\end{split}
+\end{equation}
+%
+We have the following convergence properties for $u_{0,n}$. 
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+We have
+%
+%
+\begin{gather}
+  u_{0,n}\overset{L^{2}}{\rightharpoonup} u_{0}
+  \\
+  \| u_{0,n} \|_{L^{2}}^{2} \to \| u_{0} \|_{L^{2}}^{2} + \pi k^{2}.
+\end{gather}
+\label{lem:conv-prop-init}
+\end{lemma}
+%
+%
+%
+%
+Now, do the corresponding solutions $u_{n}(t)$ converge in some sense to
+$u(t)$? This question is
+the central issue of the paper, and is resolved in the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                key prop
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+  Let $\left\{ u_{0,n} \right\} \subset
+  H^{\infty}$ be such that and $u_{0,n} \overset{L^{2}}{\rightharpoonup} u_{0}$.
+  Then there exists a weak solution solution $u \in C(\rr,
+  L^{2})$ solving the ivp
+  %
+  %
+  \begin{gather}
+    \label{n-mkdv}
+    u_{t} + u_{xxx} + \left( u^{2} - \int_{\ci} u^{2} dx \right)u_{x} = 0,
+    \\
+    u(0) = u_{0}(x)
+    \label{n-mkdv-init}
+  \end{gather}
+  %
+  %
+  and a subsequence $\left\{ u_{n_{k}} \right\}$ of solutions to the ivp
+  \begin{gather}
+    u_{t} + u_{xxx} + \left( u^{2} - \int_{\ci} u^{2} dx \right)u_{x} = 0,
+    \\
+    u(0) = u_{0,n}(x)
+  \end{gather}
+%
+%
+  such that
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sup_{t \in [0, T]} \langle u_{n_{k}}(t), \vp \rangle \to \langle
+    u(t), \vp
+    \rangle, \quad \vp \in L^{2}(\ci).
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{prop:key-paper}
+\end{proposition}
+%
+%
+%
+%
+%\begin{framed}
+%%
+%%
+%\begin{remark}
+  %In fact, $u_{n_{k}} \in C(\rr, H^{\infty})$, due to Bourgain's global well-posedness
+  %result for mKDV \eqref{thm:bour}.
+  %It follows that $u_{n_{k}} \in C^{\infty}(\rr, H^{\infty})$.
+  %To see this, we note that for any solution to the mKDV equation, its
+  %derivative in $t$ exists if it is thrice differentiable in $x$. 
+  %Since $u_{n,k}$ is $C^{\infty}$ in $x$, it is $C^{\infty}$ in $t$. Hence,
+  %$u_{n_{k}}$ is a classical solution to the mKDV. 
+%\label{rem:smooth-soln}
+%\end{remark}
+%%
+%%
+%\end{framed}
+%
+%
+%
+%
+%
+%
+Next, we choose a sequence of initial data as in \eqref{ill-pos-init-data},
+convering to $u_{0}$ weakly in $L^{2}$.  
+Then by Proposition \ref{prop:key-paper}, there exists a sequence
+$u_{n} \in C(\rr, L^{2})$ of corresponding solutions to the normalized mKDV, and
+a subsequence 
+\begin{equation*}
+  u_{n_{k}}(t) \overset{L^{2}}{\rightharpoonup} u(t) \ \text{for
+all} \ t \in \rr.
+\end{equation*}
+Next, note that if $u_{n_{k}}$ is a solution to the
+normalized mKDV, then  
+%
+\begin{equation}
+  \label{mkdv-sol}
+\begin{split}
+  v_{n_{k}}(x,t) \doteq u_{n,k}\left( x - t \| u_{0,n} \|^{2}_{L^{2}}, t \right)
+\end{split}
+\end{equation}
+%
+%
+is a solution to mKDV.  
+\begin{framed}
+  \begin{remark}
+    To see this, we plug in
+$v_{n}(x,t)$ into the mKDV and get, via the chain rule
+%
+%
+\begin{equation*}
+\begin{split}
+  & \p_{t} v_{n}(x,t) + \p_{x} v_{n} \cdot -\| u_{0,n} \|_{L^{2}}^{2} +
+  \p_{x}^{3} v_{n}(x,t) + v_{n}^{2}(x,t) \p_{x} v_{n}(x,t)
+  \\
+  & = \p_{t} v_{n}(x,t) + \p_{x}^{3} v_{n}(x,t) + \left( v_{n}^{2}(x,t) -
+  \int_{\ci} u_{0,n}^{2} dx \right)
+  \\
+  & = \p_{t} u_{n}(x - t \| u_{0} \|^{2}_{L^{2}},t) + \p_{x}^{3} u(x - t \|
+  u_{0} \|^{2}_{L^{2}},t) + \left[ u^{2}(x - t \| u_{0},t) \|^{2}_{L^{2}}) -
+  \int_{\ci} u^{2}_{0,n} dx \right]
+  \\
+  & = 0
+\end{split}
+\end{equation*}
+%
+%
+due to conservation of the $L^{2}$ norm for solution to the normalized mKDV.
+\end{remark}
+\end{framed}
+%
+%
+Since $v_{n_{k}}(0) = u_{0,n_{k}} \in
+H^{\infty}$, Theorem \ref{thm:bour} implies that $v_{n_{k}}\in C^{\infty}(\rr,
+H^{\infty})$. Hence $u_{n_{k}} \in C^{\infty}(\rr, H^{\infty})$. Having done
+enough introductory work, we now prove ill-posedness via contradiction. 
+Assume that the data to soluion map at $u_{0}$ is continuous from
+$L^{2}$ equipped with the weak topology into $D'\left( \ci \times [0,T]
+\right)$. Since $v_{n}(0) = u_{0,n} \overset{L^{2}}{\rightharpoonup}
+u_{0}$, we must have %
+%
+\begin{equation*}
+\begin{split}
+  v_{n_{k}} \to v \ \text{in} \ D'\left( \ci \times [0,T] \right).
+\end{split}
+\end{equation*}
+%
+%
+Therefore, we have
+%
+%
+%
+%
+%
+%
+\begin{equation}
+  \label{fgg}
+\begin{split}
+  u_{n_{k}}(x - t \| u_{0,n_{k}} \|_{L^{2}}^{2}, t) \to v(x,t) \ \text{in} \
+  D'\left( \ci \times [0,T] \right).
+\end{split}
+\end{equation}
+%
+We now need the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                diagonal conv
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                conv
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  Suppose $c_{n} \xrightarrow{\rr} c$, and $u_{n}(x,t) \in C^{\infty}$ for fixed $t
+  \in U \subset \rr$. If there exists $u(x,t)$ such that $u_{n}(t)
+  \overset{L^{2}}{\rightharpoonup} u(t)$ for $t \in U$, then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    u_{n}(x + c_{n}, t)\overset{L^{2}}{\rightharpoonup} u(x + c, t).
+  \end{split}
+  \end{equation*}
+  %
+  %
+%
+%
+\label{lem:key-conv}
+\end{lemma}
+%
+%
+%
+%
+Hence, by \eqref{fgg} and Lemma \ref{lem:key-conv}, we have
+%
+%
+\begin{equation*}
+\begin{split}
+& u_{n_{k}}(x - t \| u_{0,n_{k}} \|_{L^{2}}^{2}, t) \to v(x,t) \ \text{in} \
+  D'\left( \ci \times [0,T] \right),
+  \\
+  & u_{n_{k}}(x - t \| u_{0,n_{k}} \|_{L^{2}}^{2}, t) 
+  \overset{L^{2}}{\rightharpoonup}
+  u(x - t [\| u_{0} \|_{L^{2}}^{2} + \pi k^{2}], t).
+\end{split}
+\end{equation*}
+%
+%
+Hence, by the uniqueness of the limit
+%
+%
+\begin{equation*}
+\begin{split}
+  u(x,t) = v(x + t [\|u_{0}  \|_{L^{2}}^{2} + \kappa^{2} \pi],t) \ \text{on} \left[
+  0,T \right].
+\end{split}
+\end{equation*}
+%
+%
+Note that $v(0) = u_{0} \in H^{\infty}$, and so $v(t) \in H^{\infty}$ for
+$0 \le t \le T$ by Theorem \ref{thm:bour}. Therefore, $u(x,t)$ is a classical solution of the normalized mKDV for $t \in
+[0,T]$ which also solves
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{t} + u_{xxx} + \left( u^{2} - \int_{\ci} u^{2} dx  - k^{2} \pi
+  \right)u_{x}.
+\end{split}
+\end{equation*}
+%
+%
+Subtracting normalized mKDV from the above, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  k^{2} \pi u_{x} = 0
+\end{split}
+\end{equation*}
+%
+%
+which implies $u(0)$ is constant, which is a contradiction. \qed
+    
+
+\appendix
+\section{}
+\begin{remark}
+  When authors are proving results on mKDV, they often substitute the mKDV ivp
+  with \eqref{n-mkdv}-\eqref{n-mkdv-init}. To see why, recall the mKDV ivp
+  \eqref{mkdv}-\eqref{mkdv-init}. Set $u_{0} = \vp(x)$ and define $c =
+  \int_{\ci} \vp^{2} dx$. Consider the ivp
+  \begin{gather*}
+    u_{t} + u_{xxx} + c u_{x} u = 0,
+    \\
+    u(0) = \vp(x).
+  \end{gather*}
+ Taking the spatial Fourier transform in space, we obtain
+ %
+ %
+ \begin{gather*}
+   \wh{u_{t}}(n, t) = \left[ \wh{u}(n,t) \right]i\left( n^{3} - cn \right)
+   \\
+   \wh{u}(0) = \wh{\vp}(n).
+ \end{gather*}
+ %
+ %
+ This admits the unique solution
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   \wh{u}(n,t) = \wh{\vp}(n) e^{i\left( n^{3} - cn \right)t}
+ \end{split}
+ \end{equation*}
+ %
+ %
+ which by Fourier inversion gives
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   u(x,t) = \sum_{n \in \zz} \wh{\vp}(n) e^{i\left[ nx + \left( n^{3} - cn
+   \right)t \right]} \doteq S(t)\vp(x).
+ \end{split}
+ \end{equation*}
+ %
+ %
+Now consider the integral equation
+%
+%
+\begin{equation}
+  \label{n-mkdv-like-int}
+\begin{split}
+  u(t) = S(t)\vp + \int_{0}^{t} S(t- \tau) w(\tau), \quad w =\left[
+  -u^{2} + \int_{\ci} u^{2}(x,t) dx
+  \right] u_{x}.
+\end{split}
+\end{equation}
+%
+%
+By Duhamel's principle, this is the integral formulation of the ivp
+\begin{gather*}
+  u_{t} + u_{xxx} + c u_{x} + w = 0,
+  \\
+  u(x,0) = \vp(x)
+\end{gather*}
+or
+\begin{gather*}
+  u_{t} + u_{xxx} + c u_{x} = \left[ \int_{\ci} u^{2} dx - u^{2}
+  \right]u_{x}
+  \\
+  u(x,0) = \vp(x).
+\end{gather*}
+which obeys the conservation law $\int_{\ci}u^{2} dx = \int_{\ci} \vp(x)^{2}
+dx$. To see this, multiply both sides by $u$ and integrate; rearranging terms,
+one obtains $\p_{t} \int_{\ci} u^{2} dx$ on one side, and vanishing terms on the
+other. Hence, we conclude that any solution of \eqref{n-mkdv-like-int} is a
+solution to the mKDV ivp. 
+  \label{rem:n-mkdv}
+\end{remark}
+%
+\begin{proof}[Proof of Lemma \ref{lem:conv-prop-init}]
+For $\vp \in C^{\infty}(\ci)$
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\ci} u_{0,n}(x) \vp dx
+  & = \int_{\ci} u_{0}(x) \vp(x) dx + k \int_{\ci} \vp(x) \cos(nx) dx.
+\end{split}
+\end{equation*}
+%
+%
+But
+%
+%
+\begin{equation*}
+\begin{split}
+| k \int_{\ci} \vp(x) \cos(nx) dx | 
+& = | \frac{k}{n} \int_{\ci} \vp \left ( \frac{x}{n} \right )  \cos x dx|
+\\
+& \le \frac{k}{n} \int_{\ci} | \vp\left( \frac{x}{n} \right) \cos x dx | 
+\\
+& \le \frac{2 \pi k}{n} \sup_{0 \le x \le 2 \pi} | \vp(x) | 
+\\
+& \simeq \frac{1}{n}.
+\end{split}
+\end{equation*}
+%
+%
+Applying a dominated convergence argument, we obtain $k \int_{\ci} \vp(x)
+\cos(nx) dx \to 0$ and so
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{0,n} \overset{L^{2}}{\rightharpoonup} u_{0}.
+\end{split}
+\end{equation*}
+Consider now
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{0,n} \|_{L^{2}}^{2} 
+  & = \| u_{0}  + k \cos nx \|_{L^{2}}^{2}
+  \\
+  & = \int_{\ci} \left( u_{0} + k \cos nx \right)^{2} dx
+  \\
+  & = \int_{\ci} \left[ u_{0}^{2} + 2k u_{0} \cos nx + k^{2} \cos^{2}nx
+  \right]dx
+  \\
+  & = \| u_{0} \|_{L^{2}}^{2} + 2k \int_{\ci} u_{0} \cos nx dx + k^{2}
+  \int_{\ci} \cos^{2}nx dx.
+\end{split}
+\end{equation*}
+%
+%
+We have
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\ci} u_{0} \cos nx dx 
+  & = \frac{2k}{n} \int_{\ci} u_{0} \p_{x} \sin nx dx
+  \\
+  & = \frac{2k}{n} \left[ u_{0} \sin nx \vert_{0}^{2\pi} - \int_{\ci}
+  \p_{x}u_{0} \sin nx dx \right]
+  \\
+  & = \frac{2k}{n} \left[ u_{0} \sin 2\pi nx - \int_{\ci}
+  \p_{x}u_{0} \sin nx dx \right]
+\end{split}
+\end{equation*}
+with absolute value bounded by
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{2k}{n}\left[ | u_{0} | + \int_{\ci} | \p_{x} u_{0} \sin nx | dx\right]
+  \le \frac{2k}{n}\left[ | u_{0} | + \int_{\ci} | \p_{x} u_{0} | dx\right] \to
+  0.
+\end{split}
+\end{equation*}
+%
+%
+Also,
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{0}^{2 \pi} \cos^{2}nx 
+  & = k^{2} \int_{0}^{2 \pi} \frac{1 - \cos 2nx}{2}dx
+  \\
+  & = \frac{k^{2}}{2} \int_{0}^{2 \pi}\left[ 1 - \cos 2nx \right]dx
+  \\
+  & = \pi k^{2}.
+\end{split}
+\end{equation*}
+%
+%
+%
+We conclude that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{0,n} \|^{2}_{L^{2}} \to \| u_{0} \|_{L^{2}}^{2} + \pi k^{2}
+\end{split}
+\end{equation*}
+%
+%
+which completes the proof.
+%
+\end{proof}
+
+%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:key-conv}]
+  Note that for $\vp (x)\in C^{\infty}(\ci)$
+%
+%
+\begin{equation}
+  \label{gfh}
+\begin{split}
+  | \int_{\ci} \left[ u(x+c, t) - u_{n}(x + c_{n}, t) \right] \vp(x) dx |
+  & = | \int_{\ci} \left[ u(x +c, t) \pm u_{n}(x+c, t) - u_{n}(x + c_{n}, t)
+  \right] \vp(x) |
+  \\
+  & \le | \int_{\ci} [ u(x +c, t) - u_{n}(x +c, t) ] \vp(x) dx |
+  \\
+  & + \int_{\ci} | u_{n}(x +c, t) - u_{n}(x +c_{n}, t) | | \vp(x) | dx.
+\end{split}
+\end{equation}
+%
+%
+Since $u_{n}(t) \in C^{\infty}(\ci)$, it is Lipschitz. Hence for the first term
+we have the bound
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\ci} | u_{n}(x +c, t) - u_{n}(x + c_{n}, t) | | \vp(x) | dx
+  \le | c -c_{n} | \int_{\ci} | \vp(x) | dx \to 0.
+\end{split}
+\end{equation*}
+%
+%
+while for the second term, a change of variable gives
+%
+%
+\begin{equation*}
+\begin{split}
+   | \int_{\ci} \left[ u(x +c, t) - u_{n}(x +c, t) \right] \vp(x) | 
+   & = \int_{c}^{2 \pi +c} \left[ u(x,t) - u_{n}(x,t) \right] \vp(x-c) dx
+   \\
+   & = \int_{\ci^{*}} \left[ u(x,t) - u_{n}(x,t) \right] \vp^{*}(x) dx \to 0
+\end{split}
+\end{equation*}
+%
+%
+since $u_{n}(t) \overset{L^{2}}{\rightharpoonup} u(t)$. This concludes the proof.
+\end{proof}
+%
+%
+%
+%
+%
+\begin{lemma}
+Let $X$ be Banach, and $L(X)$ be the space of continuous linear functionals on
+$X$, equipped with the operator norm. Suppose 
+%
+%
+\begin{gather*}
+  x_{k} \xrightarrow{X} x,
+  \\
+  T_{k} \xrightarrow{L(X)} T.
+\end{gather*}
+%
+%
+Then
+\begin{gather*}
+  T_{k} x_{k} \to Tx.
+\end{gather*}
+%
+\label{lem:diag}
+\end{lemma}
+
+\begin{proof}[Proof of Lemma \ref{lem:diag}]
+  Since $x_{k} \xrightarrow{X} x$, there exists $N > 0$ such that for $k > N$,
+  we have $\|x -x_{k} \|_{X} \le 1$. Furthermore, if we denote $B_{X}(R) \doteq
+  \left\{ x \in X: \| x \|_{X} \le 1 \right\}$, then $T_{k}
+  \xrightarrow{L(X)} T$ is by definition equivalent to 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sup_{B_{X}(1)}  | (T - T_{k})(x) | \to 0.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  Hence, for $k > N$, 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    | Tx - T_{k}x_{k} |
+    & = | Tx - T_{k}x + T_{k}x - T_{k}x_{k} |
+    \\
+    & \le | (T - T_{k})x | + | T_{k}(x -x_{k}) |
+    \\
+    & \le | (T - T_{k})x |
+    + \| x - x_{k}\|_{X} \sup_{y \in B_{x}(1)} | T_{k}y |
+    \\
+    & \to 0
+  \end{split}
+  \end{equation*}
+  %
+  %
+  which completes the proof.
+\end{proof}
+%
+%
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Bourgain-Fourier-transfo}{article}{
+      author={Bourgain, Jean},
+       title={Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. ii. the
+  kdv-equation},
+        date={1993},
+     journal={Geom. Funct. Anal.},
+      volume={3},
+      number={3},
+       pages={209\ndash 262},
+  url={http://www.ams.org.proxy.library.nd.edu/mathscinet-getitem?mr=1215780},
+}
+
+\bib{Kappeler:2006uq}{article}{
+      author={Kappeler, T.},
+      author={Topalov, P.},
+       title={Global wellposedness of {K}d{V} in {$H^{-1}(\Bbb T,\Bbb R)$}},
+        date={2006},
+        ISSN={0012-7094},
+     journal={Duke Math. J.},
+      volume={135},
+      number={2},
+       pages={327\ndash 360},
+         url={http://dx.doi.org/10.1215/S0012-7094-06-13524-X},
+      review={\MR{2267286 (2007i:35199)}},
+}
+
+\end{biblist}
+\end{bibdiv}
+%
+        %\nocite{*}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+
+        \end{document}

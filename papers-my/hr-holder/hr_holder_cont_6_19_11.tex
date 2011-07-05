@@ -1,0 +1,1704 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+%
+\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+\title[H\"older Continuity of the Data to Solution Map for HR]{H\"older Continuity of the Data to Solution Map for HR in the
+Weak Topology}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+    University  of Notre Dame\\
+        Notre Dame, IN 46556 }
+        \date{\today}
+        %
+        \maketitle
+        %
+        %
+        %
+        %
+        %
+        
+        David, Please do the following:
+        
+        1) State theorem for both the line and the circle,
+        after you define the quantities  needed.
+        
+        2) Prove the periodic case if it is different.
+        Otherwise, write the proof  in a unified way.
+        
+        3) Prove that $\alpha$ is optimal, like in the b-family.
+        
+        4)  Write introduction and complete the references.
+        
+       5)  When these are done and the document is proofread
+       then send it to me.  Soon after we will meet 
+       to produce a short version for a journal submission,
+       which can be done by the end of June.
+       
+       6) Spend most (80\%) of your your time on ill-posedness
+       of Bussinesq and related papers to prepare for Dan's visit
+       on July 11.
+        
+        %
+        \section{Introduction}
+%
+%
+%
+We consider the hyperelastic rod (HR) Cauchy problem
+\begin{gather}
+ \p_t u =  -\gamma u \p_x u -
+ \p_{x} D^{-2} \left[ \frac{3-\gamma}{2}u^2 +
+\frac{\gamma}{2} \left( \p_x u \right)^2
+\right],
+\label{hyperelastic-rod-equation}
+\\
+ u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+\label{init-cond}
+\end{gather}
+%
+%
+where 
+\begin{equation*}
+	D^{m} = \p_x (1 - \p_x^2)^{m}, \quad m \in \rr
+\end{equation*}
+and prove the following.
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Main theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  For $\gamma \neq 0$, the
+  data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (in
+  the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
+  3/2$, $-1 \le r < s$. More
+  precisely, decompose the set $\Omega = \left\{ (s, r, \gamma) \in \rr^{3}  \right\}$
+  into the pieces
+  
+  \hrule
+  Fix  $\gamma \ne 0$ and define/draw the the regions in an $sr$-plane,
+    \hrule
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    & \Omega_{1} = \left\{ (s, \ r): \gamma \neq 0, \ s < 3/2 \right\}
+    \\
+    & \Omega_{2} = \left\{ (s, \ r):
+    \gamma \neq 0, \ s>3/2, \ r < -1  \right\}
+    \\
+    & \Omega_{3} = \left\{ (s, \ r):
+    \gamma \neq 0, \ s>3/2, \ r > s  \right\}
+    \\
+    & \Omega_{4} = \left\{ (s, \ r):
+    \gamma \neq 0, \ s>3/2, \ -1 \le r \le s-1, \ s + r \ge 2  \right\}
+    \\
+    & \Omega_{5} = \left\{ (s, \ r):
+    \gamma \neq 0, \ s>3/2, \ -1 \le r \le s-1, \ s + r < 2  \right\}
+    \\
+    & \Omega_{6} = \left\{ (s, \ r):
+    \gamma \neq 0,\  s>3/2, \  s-1 < r < s  \right\}
+    \end{split}
+\end{equation*}
+  %
+  %
+\label{thm:main-thm}
+\end{theorem}
+%
+%
+Then for two initial data $u_{0}, v_{0} \in B_{H^{s}}(R)$, there exist unique
+corresponding solutions $u(x,t), v(x,t)$ for $0 \le t \le T= T(R)$ to the
+HR equation \eqref{hyperelastic-rod-equation} which satisfy 
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|^{\alpha(s, r, \gamma)},
+  \quad 0
+  \le t \le T
+\end{split}
+\end{equation*}
+%
+%
+where 
+%
+%
+\begin{equation*}
+\begin{split}
+\alpha = 
+\begin{cases}
+  & 1, \quad (s,r, \gamma) \in \Omega_{4} 
+  \\
+  & \frac{2(s-1)}{2-r}, \quad (s, r, \gamma) \in \Omega_{5}
+  \\
+  & s-r, \quad (s, r, \gamma) \in \Omega_{6}.
+\end{cases}
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+\section{Proof of Theorem \ref{thm:main-thm}}
+%
+%
+%
+%
+\subsection{Region $\Omega_{1}$} 
+\label{ssec:reg-2}
+This is open. In particular, well-posedness of HR must be proved or disproved
+below $3/2$ before we can even consider discussing H\"older continuity in weak
+topologies.
+\subsection{Region $\Omega_{2}$} 
+\label{ssec:reg-6}
+Open. The lower bound on $r$ comes from Lemma \ref{cor1}. Perhaps the lemma can
+be strengthened.
+\subsection{Region $\Omega_{3}$} 
+\label{ssec:reg-7}
+It makes little sense to talk about region
+$\Omega_{7}$, i.e. we assume a priori that our initial
+data is in $H^{s}$ (i.e. it may not even be in $H^{r}$ if $r > s$). If it is in
+$H^{r}$, then we are back where we started.
+\subsection{Region $\Omega_{4}$} 
+\label{ssec:reg-m-imp}
+%
+%
+Let $u_{0}(x), v_{0}(x)
+\in B_{H^{s}}(R)$, $s > 3/2$ be two initial datum. Then from
+the well-posedness theory for HR \cite{Karapetyan:2010fk}, we
+know that there exists unique corresponding solutions $u, v \in C(I,
+B_{H^{s}}(2R))$ to \eqref{hyperelastic-rod-equation}.
+Set $v=u-w$. Then $v$ solves the Cauchy-problem
+%
+%
+\begin{align}
+	\label{uniqueness-exp}
+& \p_t v
+=  -\frac{\gamma}{2} \p_x [v(u + w)] 
+\\
+\notag
+& \phantom{\p_t v = }- D^{-2} \p_x \left\{
+\frac{3-\gamma}{2}[v(u+w)] + \frac{\gamma}{2}[\p_x v \cdot \p_x (u+w)]
+\right\},
+\\
+& v(x,0) = u_{0}(x) - v_{0}(x).
+\label{uniqueness-init-data}
+\end{align}
+%
+%
+%
+%
+Applying $D^r$ to both sides of \eqref{uniqueness-exp}, then 
+multiplying both sides by $D^r v$ and integrating, we obtain
+%
+%
+\begin{equation}
+\begin{split}
+ \frac{1}{2} \frac{d}{dt} \|v\|_{H^r}^2
+ = & -\frac{\gamma}{2} \int_{\rr} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx
+\\
+& - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  
+\\
+& - \frac{\gamma}{2} \int_{\rr} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx .
+\label{2v}
+\end{split}
+\end{equation}
+%
+%
+We now estimate \eqref{2v} in parts.
+
+\subsection{Estimate of Integral 1} Note that
+%
+%
+\begin{equation}
+\begin{split}
+& \left |  -\frac{\gamma}{2} \int_{\rr} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx \right |
+\\
+& =
+\left |
+-\frac{\gamma}{2} \int_{\rr} \left[ D^r \p_x, \ u+w \right]v \cdot
+D^r v \ dx - \frac{\gamma}{2} \int_{\rr} (u+w) D^r
+\p_x v \cdot D^r v\ dx
+\right | \\
+& \le \left |
+-\frac{\gamma}{2} \int_{\rr} \left[ D^r \p_x, \ u+w \right]v \cdot
+D^r v \ dx \right |
++ \left | \frac{\gamma}{2} \int_{\rr} (u+w) D^r \p_x v
+\cdot D^r v\
+dx \right |.
+\label{4v}
+\end{split}
+\end{equation}
+%
+%
+Observe that integrating by parts gives
+%
+%
+\begin{equation}
+\begin{split}
+\left | \frac{\gamma}{2}\int_{\rr} (u+w) D^r \p_x v \cdot
+D^r v \ dx \right |
+\lesssim \|\p_x (u+w)\|_{L^\infty}
+\|v\|_{H^r}^2.
+\label{4'v}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+To estimate the remaining integral of \eqref{4v}, we shall need the following
+following result taken from \cite{Himonas_2009_Non-uniform-dep-per}:
+%
+\begin{lemma}
+\label{cor1}
+If $s > 3/2$ and $-1 \le r  \le s -1$, then
+%
+%
+\begin{equation}
+\begin{split}
+\|[D^r \p_x ,f]g\|_{L^2} \le C \|f\|_{H^s} \|g\|_{H^r}.
+\label{15}
+\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+%
+Set $s > 3/2$ and $-1 \le r \le s -1$. An application of 
+Cauchy-Schwartz and Lemma \ref{cor1} then yields 
+%
+%
+\begin{equation}
+\begin{split}
+ \left | -\frac{\gamma}{2} \int_{\rr} [D^r \p_x, \ u+w] v
+\cdot D^r v \ dx \right |
+& \lesssim \|u+w\|_{H^s} 
+\|v\|_{H^r}^2.
+\label{7v}
+\end{split}
+\end{equation}
+%
+%
+Combining \eqref{4'v} and \eqref{7v} and applying the Sobolev Imbedding 
+Theorem, we obtain the estimate
+%
+%
+\begin{equation}
+\begin{split}
+\left |  -\frac{\gamma}{2} \int_{\rr} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx \right |
+ \lesssim \|u+w\|_{H^s} \|v\|_{H^r}^2, \quad s > 3/2, \ -1 \le r \le s-1.
+\label{8v}
+\end{split}
+\end{equation}
+%
+%
+
+\subsection{Estimate of Integral 2} We shall need the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                frac deriv est
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+For $s > 3/2$, $r \le s$, $s + r \ge 2$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| fg \|_{H^{r-1}} \le \| f \|_{H^{r-1}} \| g \|_{H^{s}}.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:frac-deriv}
+\end{lemma}
+%
+%
+%
+%
+%
+%
+Applying Cauchy-Schwartz and Lemma \ref{lem:frac-deriv}, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+ & \lesssim \|u+w\|_{H^{r -1}} \|v\|_{H^r}^2
+\end{split}
+\end{equation*}
+%
+%
+which implies
+\begin{equation}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+ & \lesssim \|u+w\|_{H^{s}} \|v\|_{H^r}^2
+ \label{3v}
+\end{split}
+\end{equation}
+%
+for $s > 3/2, \ r \le s, \ \text{and} \ s + r \ge 2$.
+%
+%
+\subsection{Estimate of Integral 3} We first apply
+Cauchy-Schwartz to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\left | - \frac{\gamma}{2} \int_{\rr} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx \right | 
+ \lesssim 
+\|[\p_x v \cdot \p_x (u+w)] \|_{H^{r -1}}
+\|v\|_{H^r}.
+\end{split}
+\end{equation*}
+%
+We now need the following result.
+%
+%
+%
+\begin{lemma}
+\label{impo}
+If  $s > 3/2$, $r \le s$, and $s + r \ge 2$,  then
+%
+%
+\begin{equation}
+\begin{split}
+  \|f_{x}g_{x}\|_{H^{r - 1}} \le C \|f\|_{H^{r}}
+\|g\|_{H^{s}}.
+\label{11}
+\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+Applying the lemma, we conclude that
+%
+\begin{equation}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\rr}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+ \lesssim \|u+w \|_{H^{s}}
+\|v\|_{H^r}^2
+\label{3'v}
+\end{split}
+\end{equation}
+%
+%
+for $s > 3/2, \ r \le s, \ \text{and} \ s + r \ge 2$.
+%
+%
+%
+%
+Grouping \eqref{8v}, \eqref{3v}, and \eqref{3'v}, and 
+applying
+the Sobolev Imbedding Theorem, we obtain
+%
+%
+\begin{equation}
+\begin{split}
+\frac{1}{2} \frac{d}{dt}
+\|v\|_{H^r}^2
+& \lesssim \|u+w\|_{H^s}
+\|v\|_{H^r}^2, \quad | t | < T
+\\
+& \le 2R \| v \|_{H^{r}}^{2}.
+\label{9v}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+%
+Letting $y(t) = \| v \|^{2}_{H^{r}}$, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dy}{dt} \le cy
+\end{split}
+\end{equation*}
+%
+where $c = c(s, r, R)$. 
+This admits the solution
+%
+%
+\begin{equation*}
+\begin{split}
+  y(t) \le y(0) e^{ct}, \quad | t | < T
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+  y(t) \le y(0) e^{cT}
+\end{split}
+\end{equation*}
+%
+%
+Substituting back in for $y$, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| v \|_{H^{r}}^{2} \le \| v(0) \|^{2}_{H^{r}}e^{cT}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation}
+  \label{lip-ineq}
+\begin{split}
+  & \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}, 
+  \\
+  & \text{for} \ | t | < T,
+  \ s > 3/2, \ -1 \le r \le s-1, \ s + r \ge 2.
+\end{split}
+\end{equation}
+%
+Hence, in region $\Omega_{2}$, the data to solution map is locally Lipschitz from
+$B_{H^{s}(R)}$ (in the $H^{r}$
+topology) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\subsection{Region $\Omega_{5}$} 
+\label{ssec:case-4}
+Note that $2-s < s-1$ for $s > 3/2$. Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+  \Omega_{4} = \left\{ (s, \ r, \ \gamma):
+  \gamma \neq 0, \ s>3/2, \ -1 \le r < 2-s  \right\}.
+\end{split}
+\end{equation*}
+%
+%
+We now need the following interpolation
+result. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                interp
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  For $s_{1} < s < s_{2}$,
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| f \|_{H^{s}} \le \| f \|_{H^{s_{1}}}^{(s_{2}-s)/(s_{2} - s_{1})} \| f
+    \|_{H^{s_{2}}}^{(s -s_{1})/(s_{2} - s_{1})}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  %
+  %
+   %
+  %
+\label{lem:interp}
+\end{lemma}
+Note that   $-1 \le 2-s \le s-1$ for $s>3/2$ and $s + (2-s) = 2 \ge 2$.
+Hence, applying Lemma \ref{lem:interp} and \eqref{lip-ineq}, we bound 
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| v(t) \|_{H^{r}}
+  & \le \|w(t) \|_{H^{2-s}}
+  \\
+  & \lesssim \|v(0) \|_{H^{2-s}}
+  \\
+  & \lesssim \| v(0) \|_{H^{r}}^{\frac{2(s-1)}{2-r}} \|v(0)
+  \|_{H^{s}}^{\frac{2-s-r}{s-r}}
+  \\
+  & \lesssim \| u_{0} - v_{0} \|_{H^{r}}^{\frac{2(s-1)}{2-r}}.
+\end{split}
+\end{equation*}
+%
+%
+\subsection{Region $\Omega_{6}$} 
+\label{ssec:case-2}
+%
+%
+Applying Lemma \ref{lem:interp} and the fact that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \|v\|_{H^{s}} = \|u + w \|_{H^{s}} \le 2R
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation}
+  \label{pre-lip-ap}
+\begin{split}
+  \| v(t) \|_{r} & \lesssim \| v(t) \|_{H^{s-1}}^{s-r} \|v(t) \|_{H^{s}}^{1-s+r}
+  \\
+  & \lesssim \| v(t) \|_{H^{s-1}}^{s-r}.
+\end{split}
+\end{equation}
+%
+%
+Notice that $-1 \le s-1 \le s-1$, and $s + (s-1) = 2s-1 \ge 2$ for $s >3/2$.
+Hence, we may apply \eqref{lip-ineq} to bound \eqref{pre-lip-ap} by
+%
+%
+\begin{equation*}
+\begin{split}
+  C \|v(0) \|_{H^{s-1}}^{s-r}
+  & \lesssim \|v(0) \|_{H^{s-1}}^{s-r} 
+  = \|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
+\end{split}
+\end{equation*}
+%
+%
+This completes the proof of Theorem \ref{thm:main-thm}. \qed
+\appendix
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                proofs of lemmas
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Proofs of Lemmas} 
+\label{sec:pf-lemmas}
+%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:frac-deriv}]
+For the non-periodic case we have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| fg\|_{H^{r-1}}^{2}
+  & = \int_{\rr} (1 + \xi^{2})^{r-1}| \int_{\rr}
+  \wh{f}(\xi - \eta) \wh{g}(\eta) d \eta |^{2} d \xi
+  \\
+  & \le \int_{\rr} (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
+  | \wh{f}(\xi - \eta) |  | \wh{g}(\eta) | 
+  d \eta \right ]^{2} d \xi
+  \\
+  & = \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
+  | \wh{f}(\xi - \eta) |  | \wh{g}(\eta) | (1 +
+  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
+  d \eta \right ]^{2} d \xi
+  \\
+  & \le \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr} 
+  | \wh{f}(\xi - \eta) | | \wh{g}(\eta) | (1 +
+  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s}{2}}
+  d \eta \right ]^{2} d \xi
+\end{split}
+\end{equation*}
+%
+Applying Cauchy Schwartz in $\eta$, we bound this by
+%
+%
+%
+\begin{equation}
+  \label{np-key-term}
+\begin{split}
+  \| f \|_{H^{s}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{| \wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi
+  \end{split}
+\end{equation}
+%
+%
+Applying a change of variable, we get
+%
+\begin{equation*}
+\begin{split}
+  \| f \|_{H^{s}}^{2} \int_{\rr} (1 + \xi^{2})^{r-1} \int_{\rr} \frac{
+  | \wh{g}(\eta) |^{2}}{[1 + (\xi - \eta)^{2}]^{s-1}} d \eta d \xi
+  \end{split}
+\end{equation*}
+which by Fubini is equal to
+%
+%
+\begin{equation}
+  \label{int-pre-calc-lem}
+\begin{split}
+  \|f \|_{H^{s}}^{2} \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1 + (\xi - \eta)^{2} \right]^{s-1} (1 + \xi^{2})^{r-1}} d \xi d \eta.
+\end{split}
+\end{equation}
+%
+%
+We now need the following lemma, whose proof is provided in the appendix.
+%
+%
+\begin{lemma}
+	\label{lem:calc}
+ %
+ Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p, q, p+q-1
+ \right\}$. Adopt the notation
+ $\langle x - \alpha \rangle  \doteq 1 + | x - \alpha |$. Then 
+ %
+ \begin{enumerate}[(I)]
+   \item
+For $\alpha=\beta \ \text{or} \ p \neq 1 \ \text{or} \ q \neq 1$
+ \begin{equation*}
+\begin{split}
+  & \int_{\rr} \frac{1}{\langle x - \alpha \rangle ^{p} \langle x -
+  \beta \rangle
+  ^{q}} d x
+  \le \frac{c_{p,q}}{\langle \alpha - \beta \rangle ^{r}}, 
+  \end{split}
+\end{equation*}
+  \item
+    \begin{equation*}
+  \int_{\rr} \frac{1}{\langle x - \alpha \rangle  \langle x - \beta
+  \rangle} d x
+  \le  \frac{4 \log \langle \alpha - \beta \rangle}{\langle \alpha - \beta
+  \rangle}, \quad \alpha \neq \beta.
+\end{equation*}
+\end{enumerate}
+\end{lemma}
+
+
+To be able to apply the lemma to the integral term in \eqref{int-pre-calc-lem}, 
+we must first check
+that its conditions are met. Let $ s = 3/2 + \ee$, $r = 1- \delta$, $\ee > 0$, $
+\delta \ge 0$ and observe that
+%
+%
+\begin{equation*}
+\begin{split}
+2(s-1) + 2(1-r)
+& = 2(s-r)
+\\
+& = 2[3/2 + \ee - (1 - \delta)]
+\\
+& = 2(1/2 + \ee + \delta)
+\\
+& = 1 + 2 \ee + 2 \delta > 1.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, $2(s-1), 2(1-r) > 0$. Hence, Lemma \ref{lem:calc} is applicable. 
+Lastly, observe that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \min\left\{ 2(s-1), 2(1-r), 2(s-1) + 2(1-r) -1 \right\}
+  & = \min\left\{ 1 + 2 \ee, 2 \delta, 2(\ee + \delta) \right\}
+  \\
+  & = \min\left\{ 1 + 2 \ee, 2 \delta\right\}
+  \\
+  & = 2 \delta, \quad \delta \le 1/2 + \ee.
+\end{split}
+\end{equation*}
+%
+%
+Hence, the integral term of \eqref{int-pre-calc-lem} is bounded by
+\begin{equation*}
+\begin{split}
+  C_{s,r} \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + 2 |\eta| \right]^{2 \delta}} d \xi d \eta 
+  & \lesssim
+  \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + |\eta| \right]^{2 \delta}} d \xi d \eta  
+  \\
+  & \le \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + \eta^{2} \right]^{\delta}} d \xi d \eta  
+  \\
+  & \le \| w \|_{H^{-\delta}}^{2}
+  \\
+  & = \| w \|_{H^{r-1}}^{2}.
+\end{split}
+\end{equation*}
+%
+Note that this bound is valid for all $\delta \le 1/2 + \ee$, $\delta \ge 0, \ee >
+0$. Recasting this in terms of $r$ and $s$, we have $1-r \le 1/2 + s - 3/2$, or 
+$s + r \ge 2,  \  s > 3/2, r \le 1$. Therefore, 
+%
+%
+%
+%
+\begin{equation}
+  \label{yhh}
+\begin{split}
+  \| f g \|_{H^{r-1}} \lesssim \| f \|_{H^{s}} \| g \|_{H^{r-1}},
+  \quad s + r \ge 2, \ s > 3/2, \ r \le 1.
+\end{split}
+\end{equation}
+We will now establish this bound for $r=s$, and then interpolate to obtain
+bounds for the whole range $1 \le r \le s$. We shall need the following. 
+%
+%
+\begin{lemma}[Algebra Property]
+  \label{lem:alg-prop}
+If  $s>1/2$ then there is $c_s>0$ such that 
+%
+%
+%
+\begin{equation} \label{KP-com-est}
+  \| fg\|_{H^{s}} \le c_s \| f \|_{H^{s}} \| g \|_{H^{s}}
+\end{equation}
+%
+%
+%
+\end{lemma}
+%
+%
+%
+%
+%
+Hence,
+%
+%
+\begin{equation}
+  \label{pre-interp-1}
+\begin{split}
+  \| f g \|_{H^{s-1}}
+  & \lesssim   \|f  \|_{H^{s-1}} \| g \|_{H^{s-1}}, \quad s >3/2
+  \\
+  & \le \| f \|_{H^{s}} \| g \|_{H^{s-1}}.
+\end{split}
+\end{equation}
+%
+%
+%
+%
+%
+%
+%
+We now wish to interpolate to obtain estimates for the whole range $1 \le r \le s$.
+We need the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}[Sobolev Interpolation]
+  For fixed $k \le q, m \le s$ suppose that \\ $T: H^{k} \to H^{m}$ continuously and $T: H^{q} \to H^{s}$ . Then\\
+  $T: H^{\theta q + (1 - \theta)k} \to H^{\theta s +
+  (1 - \theta) m}$ continuously for all $\theta \in [0,1)$.
+\label{prop:sob-interp}
+\end{proposition}
+%
+To apply Proposition \ref{prop:sob-interp}, we note that \eqref{r-lt-1-range}
+and \eqref{pre-interp-1} imply
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f g \|_{H^{r-1}} \lesssim \| g \|_{H^{r-1}}, \quad
+  r=1, \  r =s, \ \| f \|_{H^{s}} =1.
+\end{split}
+\end{equation*}
+%
+%
+That is, for fixed $f \in H^{s}$ with $\| f \|_{H^{s}} =1$, the map $g \mapsto
+Tg = fg$ is continuous from $L^{2}$ to $L^{2}$ and from $H^{s}$ to
+$H^{s}$. Therefore, by Proposition \ref{prop:sob-interp}, it is continuous from
+$H^{\theta s }$ to $H^{\theta s}$ for all $\theta \in
+[0, 1)$. Setting $\theta = (r-1)/s$, $ 1 \le r \le s$, we obtain that $T$ is
+continuous from $H^{r-1}$ to $H^{r-1}$; that is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f g \|_{H^{r-1}} \lesssim \| g \|_{H^{r-1}}, \quad 1 \le r \le s, \
+  \| f \|_{H^{s}} =1
+\end{split}
+\end{equation*}
+which for general $f \in H^{s}$ implies 
+%
+\begin{equation}
+  \label{hhh}
+\begin{split}
+  \| f g \|_{H^{r-1}} \lesssim \|f \|_{H^{s}}
+  \| g \|_{H^{r-1}}, \quad 1 \le r \le s. 
+\end{split}
+\end{equation}
+%
+Combining \eqref{yhh} and \eqref{hhh} completes the proof in the non-periodic
+case. For the periodic case, we note that the analogue of the integral term in \eqref{np-key-term} is
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{| \wh{g}(n - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta 
+\end{split}
+\end{equation*}
+%
+%
+which is bounded by
+\begin{equation*}
+\begin{split}
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\rr} \frac{| \wh{g}(n - \eta)
+  |^{2}}{(1 + \eta^{2})^{s-1}} d \eta. 
+\end{split}
+\end{equation*}
+The remainder of the proof is analagous to that in the non-periodic case.
+\end{proof}
+%
+\begin{proof}[Proof of Lemma \ref{impo}]
+We have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}}^{2}
+  & = \int_{\rr} (1 + \xi^{2})^{r-1}| \int_{\rr} (\xi -
+  \eta) \wh{f}(\xi - \eta) \eta \wh{g}(\eta) d \eta |^{2} d \xi
+  \\
+  & \le \int_{\rr} (1 + \xi^{2})^{r-1}\left [ \int_{\rr} |\xi -
+  \eta| | \wh{f}(\xi - \eta) | | \eta |  | \wh{g}(\eta) | 
+  d \eta \right ]^{2} d \xi
+  \\
+  & = \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr} |\xi -
+  \eta| | \wh{f}(\xi - \eta) | | \eta |  | \wh{g}(\eta) | (1 +
+  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
+  d \eta \right ]^{2} d \xi
+  \\
+  & \le \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr} |\xi -
+  \eta| | \wh{f}(\xi - \eta) | | \wh{g}(\eta) | (1 +
+  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s}{2}}
+  d \eta \right ]^{2} d \xi
+\end{split}
+\end{equation*}
+%
+Applying Cauchy Schwartz in $\eta$, we bound this by
+%
+%
+%
+\begin{equation}
+  \label{np-key-term-d}
+\begin{split}
+  \| f \|_{H^{s}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{(\xi -
+  \eta)^{2} | \wh{w}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi
+  \end{split}
+\end{equation}
+%
+%
+Applying a change of variable, we get
+%
+\begin{equation*}
+\begin{split}
+  \| f \|_{H^{s}}^{2} \int_{\rr} (1 + \xi^{2})^{r-1} \int_{\rr} \frac{\eta^{2}
+  | \wh{g}(\eta) |^{2}}{[1 + (\xi - \eta)^{2}]^{s-1}} d \eta d \xi
+  \end{split}
+\end{equation*}
+which by Fubini is equal to
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} \eta^{2} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1 + (\xi - \eta)^{2} \right]^{s-1} (1 + \xi^{2})^{r-1}} d \xi d \eta.
+\end{split}
+\end{equation*}
+%
+Using the inequality 
+\begin{equation}
+  \label{simp-ineq}
+  1 + a^{2} \ge (1 + a)^{2}/4
+\end{equation}
+and a change of
+variable, we bound this by
+%
+%
+%
+\begin{equation}
+  \label{pre-int-lem-calc}
+\begin{split}
+  C_{s,r} \int_{\rr} \eta^{2} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + |\xi - \eta| \right]^{2(s-1)} (1 + |\xi+ \eta|)^{2(r-1)}} d \xi d \eta.
+\end{split}
+\end{equation}
+%
+%
+To be able to apply the lemma to \eqref{pre-int-lem-calc}, we must first check
+that its conditions are met. Let $ s = 3/2 + \ee$, $r = 1- \delta$, $\ee > 0$, $
+\delta \ge 0$ and observe that
+%
+%
+\begin{equation*}
+\begin{split}
+2(s-1) + 2(1-r)
+& = 2(s-r)
+\\
+& = 2[3/2 + \ee - (1 - \delta)]
+\\
+& = 2(1/2 + \ee + \delta)
+\\
+& = 1 + 2 \ee + 2 \delta > 1.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, $2(s-1), 2(1-r) > 0$. Hence, Lemma \ref{lem:calc} is applicable. 
+Lastly, observe that 
+%
+%
+\begin{equation*}
+\begin{split}
+  \min\left\{ 2(s-1), 2(1-r), 2(s-1) + 2(1-r) -1 \right\}
+  & = \min\left\{ 1 + 2 \ee, 2 \delta, 2(\ee + \delta) \right\}
+  \\
+  & = \min\left\{ 1 + 2 \ee, 2 \delta\right\}
+  \\
+  & = 2 \delta, \quad \delta \le 1/2 + \ee.
+\end{split}
+\end{equation*}
+%
+%
+Hence, \eqref{pre-int-lem-calc} is bounded by
+\begin{equation*}
+\begin{split}
+  C_{s,r} \int_{\rr} \eta^{2} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + 2 |\eta| \right]^{2 \delta}} d \xi d \eta 
+  & \lesssim
+  \int_{\rr} \eta^{2} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + |\eta| \right]^{2 \delta}} d \xi d \eta  
+  \\
+  & \le \int_{\rr} \eta^{2} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
+  + \eta^{2} \right]^{\delta}} d \xi d \eta  
+  \\
+  & \le \| w \|_{H^{1- \delta}}^{2}
+  \\
+  & = \| w \|_{H^{r}}^{2}.
+\end{split}
+\end{equation*}
+%
+Note that this bound is valid for all $\delta \le 1/2 + \ee$, $\delta \ge 0, \ee >
+0$. Recasting this in terms of $r$ and $s$, we have $1-r \le 1/2 + s - 3/2$, or 
+$s + r \ge 2,  \  s > 3/2, \ r \le 1$. Therefore, 
+%
+%
+%
+%
+\begin{equation}
+  \label{r-lt-1-range}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| f \|_{H^{s}} \| g \|_{H^{r}},
+  \quad s + r \ge 2, \ s > 3/2, \ r \le 1.
+\end{split}
+\end{equation}
+%
+%
+We will now establish this bound for $r=s$, and then interpolate to obtain
+bounds for the whole range $1 \le r \le s$. Applying Lemma \ref{lem:alg-prop},
+we obtain
+%
+%
+%
+\begin{equation}
+  \label{pre-interp-2}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{s-1}}
+  & \lesssim   \|f_{x}  \|_{H^{s-1}} \| g \|_{H^{s-1}}, \quad s >3/2
+  \\
+  & \le \| f \|_{H^{s}} \| g \|_{H^{s}}.
+\end{split}
+\end{equation}
+%
+\begin{framed}
+%
+%
+\begin{remark}
+\label{rem:chen-mistake}
+Chen and company say that they are using Kato-Ponce to estimate the term above,
+when they are actually using the algebra property of Sobolev spaces.
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+%
+%
+%
+To apply Proposition \ref{prop:sob-interp}, we note that \eqref{r-lt-1-range}
+and \eqref{pre-interp-2} imply
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| g \|_{H^{r}}, \quad
+  r=1, \  r =s, \ \| f \|_{H^{s}} =1.
+\end{split}
+\end{equation*}
+%
+%
+That is, for fixed $f \in H^{s}$ with $\| f \|_{H^{s}} =1$, the map $g \mapsto
+Tg = f_{x} g_{x}$ is continuous from $H^{1}$ to $L^{2}$ and from $H^{s}$ to
+$H^{s-1}$.Therefore, by Proposition \ref{prop:sob-interp}, it is continuous from
+$H^{\theta s + 1 - \theta}$ to $H^{\theta(s-1)}$ for all $\theta \in
+(0, 1)$. Setting $\theta = r-1/(s-1)$, $ 1 \le r \le s$, we obtain that $T$ is continuous from $H^{r}$ to $H^{r-1}$; that is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \| g \|_{H^{r}}, \quad 1 \le r \le s, \
+  \| f \|_{H^{s}} =1
+\end{split}
+\end{equation*}
+which for general $f \in H^{s}$ implies 
+%
+\begin{equation}
+  \label{r-g-1-range}
+\begin{split}
+  \| f_{x} g_{x} \|_{H^{r-1}} \lesssim \|f \|_{H^{s}}
+  \| g \|_{H^{r}}, \quad 1 \le r \le s. 
+\end{split}
+\end{equation}
+%
+Combining \eqref{r-lt-1-range} and \eqref{r-g-1-range} completes the proof in
+the non-periodic case. For the periodic case, we note that the analogue of the
+integral term in \eqref{np-key-term-d} is
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{ (n - \eta)^{2}| \wh{g}(n - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta 
+\end{split}
+\end{equation*}
+%
+%
+which is bounded by
+\begin{equation*}
+\begin{split}
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\rr} \frac{(n - \eta)^{2}| \wh{g}(n - \eta)
+  |^{2}}{(1 + \eta^{2})^{s-1}} d \eta. 
+\end{split}
+\end{equation*}
+The remainder of the proof is analagous to that in the non-periodic case.
+\end{proof}
+%Following Klainerman \cite{Klainerman:fk}, we introduce the following.  
+%\begin{definition}
+  %Let $T_{z}$ be a family of linear operators indexed by $z \in D$. We say the
+  %$T_{z}$ are an analytic family of operators if
+  %\begin{enumerate}
+    %\item{$T_{z}$ maps simple functions into measurable functions}
+    %\item{ The map $z \mapsto T_{z}$ is analytic in the interior of the strip
+      %%
+      %%
+      %\begin{equation*}
+      %\begin{split}
+        %0 \le \text{Re}\, z \le 1
+      %\end{split}
+      %\end{equation*}
+      %%
+      %%
+      %and bounded and continuous on the boundary.}
+  %\end{enumerate}
+%\end{definition}
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%                stein-interp
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%\begin{lemma}[Stein Complex Interpolation]
+  %Let $T_{z}$ be an analytic family of operators and assume there are positive
+  %constants $M_{0}, M_{1}$ such that, for every $b \in \rr$
+  %%
+  %%
+  %\begin{equation*}
+  %\begin{split}
+    %\| T_{ib} \|_{L^{q_{0}}} \le M_{0} \| f \|_{L^{p_{0}}}, \quad \|
+    %T_{1 + ib} f \|_{L^{q_{1}}} \le M \| f \|_{L^{p_{1}}}
+  %\end{split}
+  %\end{equation*}
+  %%
+  %%
+  %with $1 \le q_{0}, p_{0}, q_{1}, p_{1} \le \infty$. Then, for $z = a + ib \in
+  %D$, $T_{z}$ extends to a bounded operator from $L^{p}$ to $L^{q}$ and
+  %%
+  %%
+  %\begin{equation*}
+  %\begin{split}
+    %\| T_{z} f \|_{L^{q}} \le M_{0}^{1-a} M_{1}^{a} \| f \|_{L^{p}}
+  %\end{split}
+  %\end{equation*}
+  %%
+  %%
+  %where
+  %%
+  %%
+  %\begin{equation*}
+  %\begin{split}
+    %\frac{1}{p} = \frac{1-a}{p_{0}} + \frac{a}{p_{1}}, \quad \frac{1}{q} =
+    %\frac{1-a}{q_{0}} + \frac{a}{q_{1}}.
+  %\end{split}
+  %\end{equation*}
+  %%
+  %%
+%\label{lem:stein}
+%\end{lemma}
+%%
+%%
+%%
+%To apply the lemma, we need some preliminaries. First, recall that for $r \in
+%\rr$
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %(1 - \p_x^{2})^{r}h(x) 
+  %\overset{\text{it.}}{=} & \int_{\rr} e^{ix
+  %\xi}(1 + \xi^{2})^{r} \wh{h}(\xi) d \xi
+  %\\
+   %\overset{\text{abs. conv.}}{=}  & \lim_{j \to \infty} \frac{1}{2 \pi} \int_{\rr}
+  %\int_{\rr} e^{i(x-y)}
+  %\chi( \xi/j) (1 + \xi^{2})^{r}dy d \xi
+%\end{split}
+%\end{equation*}
+%%
+%%
+%where $\chi(\xi)$ is a cutoff function symmetric about the origin. 
+%%we fix $g \in H^{s}$ with $\| g\|_{H^{s}} = 1$
+%%
+%%
+%%
+%%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:interp}]
+ We have
+ %
+ %
+ \begin{equation}
+   \label{pre-hold}
+ \begin{split}
+   \| f \|_{H^{s}}^{2}
+   & = \int_{\rr} (1 + \xi^{2})^{s} | \wh{f}(\xi) |^{2} d \xi
+   \\
+   & = \int_{\rr} | \wh{f}(\xi) | (1 + \xi^{2})^{s_{1}/p} | \wh{f}(\xi) |
+   (1 + \xi^{2})^{s_{2}/p} 
+ \end{split}
+ \end{equation}
+ %
+ %
+ where
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   s_{1}/p + s_{2}/q =s, \quad 1/p + 1/q =1.
+ \end{split}
+ \end{equation*}
+ %
+ %
+This implies 
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   1/p = (s_{2} -s)/(s_{2} -s_{1}), \quad 1/q = (s -s_{1})/(s_{2} -s_{1}). 
+ \end{split}
+ \end{equation*}
+ %
+ %
+ Applying H\"older to the right hand side of \eqref{pre-hold}, we obtain the
+ bound
+ %
+ %
+ \begin{equation*}
+ \begin{split}
+   \| f \|_{H^{s}}^{s}
+   & \le  \left[ \int_{\rr} (1 + \xi^{2})^{s_{1}} | \wh{f}(\xi) |^{2} d \xi
+   \right]^{(s_{2} - s)/(s_{2} -s_{1})} \left[ \int_{\rr} (1 + \xi^{2})^{s_{1}}
+   | \wh{f}(\xi) |^{2} d \xi \right]^{(s - s_{1})/(s_{2} -s_{1})}
+   \\
+   & = \| f \|_{H^{s_{1}}}^{2 (s_{2} - s)/(s_{2} -s_{1})}
+   \| f \|_{H^{s_{2}}}^{2 (s - s_{1})/(s_{2} -s_{1})}.
+ \end{split}
+ \end{equation*}
+ %
+ %
+ Taking square roots of both sides completes the proof in the non-periodic case.
+ The proof in the periodic case is analogous to the non-periodic proof (i.e.
+ integrals are replaced with sums in the proof).
+  \end{proof}
+\begin{proof}[Proof of Lemma \ref{lem:calc}]
+%
+By the change of variable $x \mapsto x + (\alpha + \beta)/2$, we have
+%
+%
+\begin{equation*}
+	\begin{split}
+    \int_{\rr} \frac{1}{\langle x - \alpha \rangle^{p} \langle  x -
+    \beta
+    \rangle^{q}}d x.
+    & = \int_{\rr} \frac{1}{\langle x - (\alpha - \beta)/2  \rangle^{p}
+    \langle  x + (\alpha - \beta)/2 \rangle^{q}} d x.
+	\end{split}
+\end{equation*}
+%
+%
+Hence, we seek to bound
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
+  ^{q}} d x
+\end{split}
+\end{equation*}
+%
+which for $a =0$ reduces to 
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\rr} \frac{1}{\langle x \rangle ^{p+q}} d x 
+  & = 2 \int_{0}^{\infty} \frac{1}{(1 + x)^{p+q}} d x
+  \\
+  & = \frac{2}{p+q -1}
+  \\
+  & = \frac{2}{(p+q -1)\langle a \rangle}.
+\end{split}
+\end{equation*}
+%
+%
+By symmetry, we now assume without loss of generality that $a > 0$ and split 
+%
+%
+\begin{equation*}
+\begin{split}
+\int_{\rr} \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
+  ^{q}} d x
+  & = \int_{-2a}^{2a}
+  \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
+  ^{q}} d x
+  \\
+  & + \int_{| x | \ge 2a} 
+\frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
+  ^{q}} d x
+  \\
+  & = I + II.
+\end{split}
+\end{equation*}
+%
+%
+If $p=1$ and $q=1$, then 
+%
+%
+\begin{equation*}
+\begin{split}
+  I
+  & \le \sup_{-2a \le x \le 2a} \frac{1}{\langle a - x \rangle
+} \int_{-2a}^{2a} \frac{1}{\langle a + x \rangle} d x
+  \\
+  & = \frac{1}{\langle a \rangle} \int_{-2a}^{2a} \frac{1}{(1 + | a -
+  x
+  |)} d x
+  \\
+  & = \frac{4}{\langle a \rangle} \int_{0}^{a} \frac{1}{(1 + a -
+  x)} d x.
+\end{split}
+\end{equation*}
+%
+%
+Integrating, we obtain
+%
+%
+\begin{equation*}
+ I
+ \le 
+ \frac{4 \log \langle a \rangle}{\langle a \rangle}, \qquad p =1, \ q =1.
+\end{equation*}
+Otherwise, assume that $q \neq 1$. Then
+\begin{equation*}
+\begin{split}
+  I
+  & \le \sup_{-2a \le x \le 2a} \frac{1}{\langle a + x \rangle
+  ^{p}} \int_{-2a}^{2a} \frac{1}{\langle a - x \rangle ^{q}} d x
+  \\
+  & = \frac{1}{\langle a \rangle ^{p}} \int_{-2a}^{2a} \frac{1}{(1 + | a -
+  x
+  |)^{q}} d x
+  \\
+  & = \frac{4}{\langle a \rangle ^{p}} \int_{0}^{a} \frac{1}{(1 + a -
+  x)^{q}} d x.
+\end{split}
+\end{equation*}
+Evaluating the integral, we obtain
+\begin{equation*}
+  I \le \frac{4}{|q-1| \langle a \rangle ^{p +q -1}}, \qquad q \neq 1.
+\end{equation*}
+%
+%
+A similar computation yields
+\begin{equation*}
+  I \le \frac{4}{|q-1| \langle a \rangle ^{p +q -1}}, \qquad p \neq 1.
+\end{equation*}
+%
+%
+Also
+%
+%
+\begin{equation*}
+\begin{split}
+  II 
+  & \simeq \int_{x \ge 2a} \frac{1}{\langle a - x \rangle ^{p} \langle a
+  + x \rangle ^{q} d x}
+  \\ 
+  & = \int_{x \ge 2a} \frac{1}{(1 + x - a)^{p} (1 + x +
+  a)^{q}} d x
+  \\
+  & \le \int_{x \ge 2a} \frac{1}{(1 + x -a)^{p+q}} d x
+  \\
+  & = \frac{1}{[(p + q)-1] \langle a \rangle ^{p+q -1}}, \qquad p + q > 1.
+\end{split}
+\end{equation*}
+%
+%
+Collecting our estimates for $I$ and $II$ we see that for 
+$p, q > 0$ such that $p +q >1$, and $r =\min\left\{p, q, p+q-1
+ \right\}$, we have 
+%
+\begin{align*}
+  & \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
+  ^{q}} d x
+  \le \frac{c_{p,q}}{\langle a \rangle ^{r}}, \qquad a = 0 \ \text{or} \
+  p \neq 1 \ \text{or} \ q \neq 1
+  \\
+  & \int_{\rr} \frac{1}{\langle a - x \rangle  \langle a + x \rangle
+} d x
+  \le  \frac{4 \log \langle a \rangle}{\langle a \rangle}, \qquad a > 0.
+  \label{est-2}
+\end{align*}
+By symmetry, the second inequality also holds for $a < 0$. Substituting $(\alpha -
+\beta)$ for $a$ completes the proof.
+\end{proof}
+
+  \section{Proof of Proposition \ref{prop:sob-interp}}
+\label{ssec:pf-sob-interp}
+The proof follows immediately from the following two lemmas and the continuous
+embedding $H^{s'} \subset H^{s}$, $s < s'$.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+\label{lem:rest-bound}
+Let $X, Y, U, V$ be Banach spaces with $U \subset X, V \subset Y$ continuously,
+and suppose $T$ is a bounded linear operator from $X$ to $Y$. If $T$ maps $U$
+to $V$, then $T$ is bounded from $U$ to $V$.
+\end{lemma}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Interpolation spaces 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+\label{lem:interp-spaces}
+For fixed $k \le q, \ m \le s$ suppose that $T: H^{k} \to H^{m}$
+continuously and $T: H^{q} \to H^{s}$. Then
+$T: H^{\theta q + (1 - \theta)k} \to H^{\theta s +
+(1 - \theta) m}$ for all $\theta \in [0,1]$.
+%
+%
+%
+\end{lemma}
+%
+%
+%
+Hence, to complete the proof of Proposition \ref{prop:sob-interp},
+it will be enough to prove these lemmas.
+%
+\begin{proof}[Proof of Lemma \ref{lem:rest-bound}]
+We frst recall the following.
+\begin{definition}
+Let $X$ and $Y$ be Banach spaces, and $T: X \to Y$ be linear. We say that $T$ is
+\emph{closed} if 
+%
+%
+%\begin{equation*}
+%\begin{split}
+  %\Gamma(T) = \left\{ (x, Tx) \in X \times Y \right\}
+%\end{split}
+%\end{equation*}
+%%
+%%
+%is a closed subspace of $X \times Y$ in the product topology. That is,
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\| x -x_{n} \|_{X} + \| Tx - Tx_{n} \|_{Y} \to 0.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%<++>
+$x_{n} \to x$ and $Tx_{n} \to y$ imply $y = Tx$. 
+\end{definition}
+
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                closed graph theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Closed Graph Theorem]
+\label{lem:closed-graph}
+If $X$ and $Y$ are Banach, and $T: X \to Y$ is a closed linear map, then $T$ is
+bounded.
+\end{lemma}
+%
+%
+Proceeding with the proof of Lemma \ref{lem:rest-bound},
+suppose $x_{n} \to x$ in $U$; that is
+%
+%
+\begin{equation}
+  \label{1hh}
+\begin{split}
+  \| x - x_{n} \|_{U} \to 0.
+\end{split}
+\end{equation}
+%
+%
+Since $U \subset X$
+continuously and
+$T: X \to Y$ is bounded, we have
+%
+%
+\begin{equation}
+  \label{2hh}
+\begin{split}
+  \| Tx - Tx_{n} \|_{Y} = \| T(x - x_{n}) \|_{Y} \lesssim \| x -
+  x_{n} \| \le  \| x - x_{n} \|_{U} \to 0.
+\end{split}
+\end{equation}
+%
+%
+Since $T:U \to V$ and $x_{n}, x \in U$, it follows that $T x_{n}, Tx \in V$.
+Furthermore, from \eqref{2hh} and the continuous embedding $V \subset Y$, 
+it follows that if $Tx_{n} \to v$ in $V$, then $v = Tx$. 
+Therefore, $T$ is closed from
+$U$ to $V$. Applying the closed graph theorem concludes the proof. 
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of Lemma \ref{lem:interp-spaces}]
+  We refer the reader to \cite{Taylor:1996zr}, pp.322-324.
+\end{proof}
+%
+%
+For additional reading on interpolation spaces, please consult
+\cite{Taylor:1996zr}, \cite{bergh1976interpolation}, and \cite{Bennett:1988ys}.
+%
+%
+
+
+
+
+  %\nocite{*}
+  %\bibliographystyle{amsalpha}
+  %\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{HKM09}
+
+\bibitem[BL76]{bergh1976interpolation}
+J.~Bergh and J.~L{\"o}fstr{\"o}m, \emph{Interpolation spaces: an introduction},
+  vol. 223, Springer-Verlag, 1976.
+
+\bibitem[BS88]{Bennett:1988ys}
+C.~Bennett and R.C. Sharpley, \emph{Interpolation of operators}, vol. 129,
+  Academic Pr, 1988.
+
+\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
+A. Himonas, C.E. Kenig, and G.Misiolek, \emph{Non-uniform dependence for
+  the periodic ch equation.}, To appear in Communications in Partial
+  Differential Equations (2009).
+
+\bibitem[Kar10]{Karapetyan:2010fk}
+D. Karapetyan, \emph{Non-uniform dependence and well-posedness for the
+  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826.
+
+\bibitem[Tay96]{Taylor:1996zr}
+M.E. Taylor, \emph{Partial differential equations: basic theory}, vol.~1,
+  Springer, 1996.
+
+\end{thebibliography}
+        \end{document}
