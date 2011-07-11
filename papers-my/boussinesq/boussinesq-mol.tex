@@ -2,8 +2,9 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
-%\usepackage{showkeys}
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
@@ -22,6 +23,7 @@ citecolor=blue,
 urlcolor=blue,
 }
 %\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+%\usepackage{cleveref} %must be last loaded package to work properly
 %
 %
 \newcommand{\ds}{\displaystyle}
@@ -78,7 +80,7 @@ urlcolor=blue,
 \newcommand{\tphi}{{\tilde{\phi}}}
 \synctex=1
 \begin{document}
-\title{Notes on Molinet Paper}
+\title{Preparation for Proving Ill-Posedness for Boussinesq}
 \author{Dan Geba, Alex Himonas, and David Karapetyan}
 \address{Department of Mathematics  \\
     University  of Notre Dame\\
@@ -88,11 +90,9 @@ urlcolor=blue,
         \maketitle
         %
         %
+        \tableofcontents
         %
-        %
-        %
-        %
-        \section{Notions of Well-Posedness}
+\section{Notions of Well-Posedness for mKDV}
         We consider the modified 
         Kortewew-de Vries (mKDV) ivp
         \begin{gather}
@@ -166,7 +166,7 @@ is the integral formulation of of the mKDV ivp.
 	$X$ if 
 	\begin{enumerate}
 		\item For every $u_{0}(x) \in
-	B_R$ there exists $T>0$ depending on $R$ and a function
+      B_{X}(R)$ there exists $T>0$ depending on $R$ and a function
 	\\
 	$u \in C([0, T],
   X)$ satisfying \eqref{int-reform-mkdv} for all $t \in [0, T]$.
@@ -497,7 +497,7 @@ We have
 %
 Now, do the corresponding solutions $u_{n}(t)$ converge in some sense to
 $u(t)$? This question is
-the central issue of the paper, and is resolved in the following.
+the central issue of Molinet's paper, and is resolved in the following.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -593,9 +593,10 @@ normalized mKDV, then
 \end{equation}
 %
 %
-is a solution to mKDV.  
+is a solution to mKDV. 
 \begin{framed}
   \begin{remark}
+    \label{rem:key-comp}
     To see this, we plug in
 $v_{n}(x,t)$ into the mKDV and get, via the chain rule
 %
@@ -612,7 +613,7 @@ $v_{n}(x,t)$ into the mKDV and get, via the chain rule
   u_{0} \|^{2}_{L^{2}},t) + \left[ u^{2}(x - t \| u_{0},t) \|^{2}_{L^{2}}) -
   \int_{\ci} u^{2}_{0,n} dx \right]
   \\
-  & = 0
+  & = 0.
 \end{split}
 \end{equation*}
 %
@@ -753,10 +754,518 @@ Subtracting normalized mKDV from the above, we obtain
 %
 %
 which implies $u(0)$ is constant, which is a contradiction. \qed
+ \section{Notions of Well-Posedness for Boussinesq}
+        We consider the initial value problem (ivp) for the 
+        Boussinesq equation 
+\begin{align}
+  & u_{tt} + u_{xxxx} + (u^2)_{xx} = 0, \quad x \in \ci, \ t \in \rr
+  \label{eqn:mb-2}
+  \\
+  & u(x,0) = u_{0}(x) \in H^{s}, \quad \p_t u(x, 0) = u_1(x) \in H^{s-2}
+  \label{eqn:mb-init-data-2}
+  \end{align}
+%
+%
+which we write in integral form
+%
+%
+%
+\begin{equation}
+  \begin{split}
+    u(x,t)
+    & = \frac{1}{2\pi}\sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+    \\
+    & + \frac{1}{2 \pi}\sum_{n \in \zz} e^{inx}
+    \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
+    \\
+    & + \frac{1}{4 i \pi}\sum_{n \in \zz} e^{inx}
+    \int_{0}^{t}[e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}]
+    \wh{u^{2}}(n, t') dt'.
+  \end{split}
+  \label{eqn:integral-form}
+\end{equation}
+%
+where
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} \vert_{n=0} \doteq t 
+\end{split}
+\end{equation*}
+%
+%
+
+\subsection{Kenig-Ponce-Vega Well-Posedness} 
+        \label{ssec:kpv-wp-bous}
+	Equip $H^{s} \times H^{s-2}$ with the 
+  topology defined by the norm $\|(u_{0}, u_{1})\|_{H^{s} \times H^{s-2}}
+  = \|u_{0}\|_{H^{s}} + \|u_{1}\|_{H^{s-2}}$.
+   We say that the Boussinesq ivp
+  \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} is
+	\emph{locally well posed} in
+  $H^s \times H^{s-2}$ if 
+	\begin{enumerate}
+    \item Given $(u_{0}, u_{1}) \in B_{H^{s} \times H^{s-2}}(R)$
+      there exists $T>0$ depending on $R$
+      such that \eqref{eqn:integral-form}
+      has a solution $u \in C([0, T], H^s)$ satisfying \eqref{eqn:integral-form}
+      for all $t \in [0, T]$.
+    \item The solution is unique in a subspace $Y \hookrightarrow
+      C([0, T], H^{s})$.
+    \item
+      The data to solution map $(u_0, u_{1}) \mapsto u(x,t)$ is uniformly
+      continuous. That
+      is, given a sequence $\{(u_{0,n}, u_{1,n} ) \} \in H^{s} \times H^{s-2}$
+      such that $$\|(u_{0}, u_{1})
+      - (u_{0,n}, v_{1,n}) \|_{H^{s} \times
+      H^{s-2}} \to 0,$$ then $\sup_{t \in [0, T]} \| u(\cdot, t) -
+      u_{n}(\cdot, t) \|_{H^{s}} \to 0$.
+  \end{enumerate}
+  %
+  %
+  \subsection{Classical Hadamard Well-Posedness} 
+  \label{ssec:hadamard-wp-bous}
+   We say that the Boussinesq ivp
+   is
+   \emph{locally well posed} in $H^{s}$ if
+	\begin{enumerate}
+    \item For every $(u_{0}, u_{1}) \in H^{s} \times H^{s-2}$
+      there exists $T>0$ depending on $(u_{0}, u_{1})$
+      and a function $u \in C([0, T],
+  H^{s})$ satisfying \eqref{eqn:integral-form} for all $t \in [0, T]$.
+\item The solution $u(x,t)$ is unique in $C([0,T], H^{s})$.  
+    \item
+      The data to solution map $u_0 \mapsto u$ is continuous. That
+      is, given a sequence $\{(u_{0,n}, u_{1,n} \} \in H^{s} \times H^{s-2}$
+      such that $$\|(u_{0}, u_{1}) - (u_{0,n}, u_{1,n}) \|_{H^{s} \times
+      H^{s-2}} \to 0$$
+      with corresponding solutions $u_{n} \in
+      C([0,
+      \delta_{n}])$ and $u \in C([0, \delta_{\infty}])$
+      then there exists $0 < \delta \le \inf\left\{
+      \delta_{n}, \delta_{\infty} \right\}$ such that 
+      $$\sup_{t \in [0, \delta]} \|u(\cdot, t) - u_{n}(\cdot, t)
+      \|_{H^{s}} \to 0 
+      .$$
+  \end{enumerate}
+  \subsection{Kappeler-Topalov \cite{Kappeler:2006uq} Well-Posedness} 
+  \label{ssec:kap-wp-bous}
+  We first cite the following result of Farah \cite{Farah:2010ys}. 
+  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  %
+  %                bona thm
+  %
+  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  %
+  \begin{theorem}[Farah]
+    For initial data $(u_{0}, u_{1}) \in H^{s}(\ci) \times H^{s-2}(\ci)$,
+    $s > -\frac{1}{4}$, the Boussinesq equation is locally well posed in the sense
+    of Kenig-Ponce-Vega. 
+    \label{thm:farah}
+  \end{theorem}
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  We say that a continuous curve $\gamma: (a,b) \to H^{\beta}(\ci)$ with $0 \in
+  (a,b)$ and $\gamma(0) = u_{0}$ is a solution of the Boussinesq in
+  $H^{\beta}(\ci)$ with initial data $u_{0}$ iff for any $C^{\infty}$ sequence
+  of initial data $\left\{ u_{0,n} \right\}$ converging to $u_{0}$ in
+  $H^{\beta}(\ci)$ and for any $t \in [a,b]$, the sequence of emanating
+  solutions $u_{n}$ of the Boussinesq equation satisfies $u_{n}(t) \to
+  \gamma(t)$ in $H^{\beta}(\ci)$.
+  %
+  %
+ \begin{framed}
+  \begin{remark}
+    Uniqueness of the solution in $H^{\beta}$ follows from the definition. We
+    note that continuous dependence on initial data for $\beta > -1/4$ follows
+    from the Lipschitz continuity of the data to solution map for $H^{\beta}$
+    initial data, $\beta > -1/4$. To see this, assume $v_{0,n} \subset C^{\infty}$,
+    $(v_{0,n}, v_{1,n}) \to (v_{0, v_{1})}$ in $H^{\beta} \times H^{\beta-2}$,
+    and $v_{n}(t) \to v(t)$ in $H^{\beta}$ for
+  $t \in [a,b]$. Then
+  %
+  %
+  \begin{equation}
+    \label{yuu-bous}
+  \begin{split}
+    \|u(t) - v(t) \|_{H^{\beta}} 
+    & = \|u(t) \pm u_{n}(t) \pm v_{n}(t) - v(t) \|_{H^{\beta}}
+    \\
+    & \le \| u(t) - u_{n}(t) \|_{H^{\beta}} + \| u_{n}(t) - v_{n}(t) \|_{H^{\beta}} + \|
+    v(t) -
+    v_{n}(t) \|_{H^{\beta}}
+    \\
+    & \le \| u(t) - u_{n}(t) \|_{H^{\beta}} + C_{\beta} \| (u_{0,n},
+    u_{1,n}) - (v_{0,n}, v_{1,n})\|_{H^{\beta}} + \| v(t) -
+    v_{n}(t) \|_{H^{\beta}}.
+  \end{split}
+  \end{equation}
+  %
+  For fixed $t \in [a,b]$ and $\ee > 0$, there exists $N$ such that
+  \eqref{yuu-bous} implies
+  %
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  \|u(t) - v(t) \|_{\beta} \le 3 \ee, \quad n > N.
+     \end{split}
+  \end{equation*}
+  %
+  %
+  Hence, solutions to the periodic Boussinesq (in the sense of Kappeler-Topalov) depend
+  continuously on the initial data for $\beta > -1/4$.
+  \label{rem:uniqueness-bous}
+  \end{remark}
+  %
+  %
+  \end{framed}
+
+  %
+  %
+  %
+   %
+  %
+  %
+  %
+  
+
+  
+  \section{Outline of Results We Will Try to Prove}
+        \label{sec:outline-bous}
+        Following \cite{Molinet:2011uq}, we wish to prove the following.
+        \begin{theorem}
+          \label{thm:cont-fail-bous}
+        There exists $T > 0$ such that the data to solution map $u_{0} \mapsto u$ for
+        the Boussinesq is not continuous at any $u_{0} \in H^{\infty}$ from $H^{-1}(\ci)$
+        equipped with the weak topology to $D'\left([0, T] \times \ci
+        \right)$. More precisely, if 
+        \begin{equation}
+          \langle u_{0,n}, \vp \rangle  \to \langle u_{0}, \vp \rangle  \ 
+          \text{for all} \ \vp \in H^{1}(\ci)
+        \end{equation}
+        then there exists $\psi \in C^{\infty}_{0}(\ci \times \left[ 0, T
+        \right])$ such that
+                %
+        %
+        \begin{gather*}
+           \langle u_{n}, \psi \rangle  \not \to \langle u, \psi \rangle 
+          \\
+          (\text{i.e.} \ u_{n} \not \to u \ \text{in} \ D'\left( \ci \times [0,T]
+          \right)).
+        \end{gather*}
+        %
+        %
+        \end{theorem}
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    %
+    %                ill-pos
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    Assuming Theorem \ref{thm:cont-fail} for now, we obtain the following
+    corollary.
+    %
+    \begin{corollary}[Ill-Posedness]
+   The Boussinesq ivp is ill-posed for $s < -1$.  
+    \label{prop:ill-pos-bous}
+    \end{corollary}
+    %
+    %
+    %
+    %
+    \begin{proof}
+      Let 
+      $\left\{ u_{0,n} \right\} \subset H^{\infty}$ be a sequence such that $u_{0,n}
+      \rightharpoonup u_{0}$ in $H^{-1}(\ci)$. By Banach-Steinhaus, $\left\{
+      u_{0,n}
+      \right\}$ is uniformly bounded in $H^{-1}$.
+      %
+      %
+      Since the
+      inclusion $H^{-1}(\ci) \subset H^{s}(\ci)$ is compact for $s<-1$, there
+      exists a subsequence $u_{0,n_{k}}$ such that
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        u_{0,n_{k}} \xrightarrow{H^{s}} v_{0}.
+      \end{split}
+      \end{equation*}
+      %
+      %
+      By the uniqueness of the limit in $D'(\ci)$, we see that $v_{0} = u_{0}$. 
+      Hence,
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        u_{0,n_{k}} \xrightarrow{H^{s}}u_{0}, \quad s<-1.
+      \end{split}
+      \end{equation*}
+      %
+      %
+      If existence fails for $s<-1$ in the sense of
+      Kappeler-Topalov, we are done. So assume
+      existence holds. Furthermore, assume continuity of the data to solution map for
+      holds from $H^{s}$ to $C([0, T], H^{s})$, $s < -1$. Then
+      %
+      %
+      \begin{equation}
+        \label{s-conv-bous}
+      \begin{split}
+      u_{n_{k}} \xrightarrow{C\left( [0,T], H^{s} \right)} u.
+      \end{split}
+      \end{equation}
+      %
+      This implies
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        u_{n_{k}} \xrightarrow{D'(\ci \times [0, T])} u
+      \end{split}
+      \end{equation*}
+      %
+      since for any $\phi(x,t) \in C^{\infty}\left( \ci \times [0,T] \right)$,
+      we have
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+        | \int_{\ci \times [0,T]} (u - u_{n_{k}}) \phi(x,t) d (x \times t) |
+        & \le  \int_{\ci \times [0,T]} | (u - u_{n_{k}}) \phi(x,t)| d (x \times t) 
+        \\
+        & = \int_{\ci} \int_{[0,T]} | u - u_{n_{k}} | | \phi | dt dx
+        \\
+        & \le \| u - u_{n_{k}} \|_{L^{\infty}\left( [0,T], H^{s} \right)} \|
+        \phi \|_{L^{\infty}\left( [0,T], H^{-s} \right)}
+        \\
+        & \simeq \| u - u_{n_{k}} \|_{L^{\infty}\left( [0,T], H^{s} \right)} \to
+        0.
+      \end{split}
+      \end{equation*}
+      %
+      %
+     This contradicts Theorem \ref{thm:cont-fail-bous}.
+      %
+      %
+
+    \end{proof}
+\section{Proof of Theorem \ref{thm:cont-fail-bous}}
+\label{sec:pf-thm-bous}
+Let $u_{0}, u_{1} \in H^{\infty}$ be  non zero constants. Set
+%
+%
+\begin{equation}
+  \label{ill-pos-init-data-bous}
+\begin{split}
+  (u_{0,n}, u_{1,n}) = [u_{0} + nk \cos(nx), u_{1} +
+  n^{3} \cos(nx)], \quad k \in \rr, k \neq 0.
+\end{split}
+\end{equation}
+%
+The sequence $\left\{ (u_{0,n}, u_{1,n}) \right\}$ has the following convergence properties.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+We have
+%
+%
+\begin{gather}
+  (u_{0,n}, u_{1,n})\overset{H^{-1} \times H^{-3}}{\rightharpoonup} (u_{0},
+  u_{1})
+  \\
+  \| (u_{0,n}, u_{1,n}) \|_{H^{-1} \times H^{-3}}^{2} \to \| (u_{0},
+  u_{1}) \|_{H^{-1} \times H^{-3}}^{2} + \pi k^{2}.
+\end{gather}
+\label{lem:conv-prop-init-bous}
+\end{lemma}
+%
+%
+%
+%
+Now, do the corresponding solutions $u_{n}(t)$ converge in some sense to
+$u(t)$? This question is
+the central issue of the paper, and we'd like to resolve it by proving the
+following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                key prop
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+  Let $\left\{ (u_{0,n}, v_{0,n}) \right\} \subset
+  H^{\infty} \times H^{\infty}$
+  be such that and $(u_{0,n}, v_{0,n}) \overset{H^{-1} \times
+  H^{-3}}{\rightharpoonup} (u_{0}, v_{0})$.
+  Then there exists $T > 0$ and a weak solution $u \in C([0, T],
+  H^{-1})$ solving the normalized Boussinesq ivp
+  %
+  %
+  \begin{gather}
+    \label{n-bous}
+    u_{tt} -u_{xx} + u_{xxxx} + (u^{2} - \int u_{t}^{2})_{xx} = 0,
+    \\
+    u(0) = u_{0}(x), \ u_{t}(0) = u_{1}(x)
+    \label{n-bous-init}
+  \end{gather}
+  %
+  %
+  and a subsequence $\left\{ u_{n_{k}} \right\}$ of solutions to the ivp
+  \begin{gather}
+    u_{tt} - u_{xx} + u_{xxxx} + \left( u^{2} \right )_{xx}  - 2u_{xx}
+    \int_{\ci} u dx= 0,
+    \\
+    u(0) = u_{0,n}(x), \ u_{t}(0) = u_{1,n}(x)
+  \end{gather}
+%
+%
+  such that for $T > 0$ sufficiently small
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sup_{t \in [0, T]} \langle u_{n_{k}}(t), \vp \rangle \to \langle
+    u(t), \vp
+    \rangle, \quad \vp \in H^{1}(\ci).
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{prop:key-paper-bous}
+\end{proposition}
+%
+%
+%
+%
+\begin{framed}
+  This theorem is not what we really want to prove, but it is close.
+  Notice, the $\int u_{t}^{2}$ term is unhelpful, since it vanishes after hitting it
+  with two derivatives. Suppose we consider the mean-zero variant of Boussinesq,
+  i.e.
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    u_{tt} - 2 u_{xx}(\wh{u_{0}} + t \wh{u_{1}}) + u_{xxxx} + (u^{2})_{xx}
+  \end{split}
+  \end{equation*}
+  %
+  which we obtain via the mapping $u \mapsto u - \wh{u_{0}} - t \wh{u_{1}}.$
+  There is no term here that is the $L^{2}$ norm of $u$. Hence, we need to
+  modify \eqref{mkdv-sol}, so that the spatial variable of our $v_{n,k}$ is a
+  function of something other than the $L^{2}$ norm of the initial datum.
+  Furthermore, it has to be a function of a conserved quantity (see the last two
+  lines of Remark \ref{rem:key-comp}). In short, Molinet's technique is heavily
+  dependent on the $L^{2}$ conserved quantity for mKDV and the ``normalized''
+  mKDV. Since $L^{2}$ is not conserved in Boussinesq for $u$ or its derivatives
+  in time, I don't know how to proceed. Again, I stress that the the beauty of mKDV is
+  that $L^{2}$ is conserved \emph{and} that there is a $\| u
+  \|_{L^{2}}^{2}$ term in the normalized mKDV (which also conserves
+  $\|u\|_{L^{2}}$.
+\end{framed}
+%
+%
+%
+%
+%\begin{framed}
+%%
+%%
+%\begin{remark}
+  %In fact, $u_{n_{k}} \in C(\rr, H^{\infty})$, due to Bourgain's global well-posedness
+  %result for bous \eqref{thm:bour}.
+  %It follows that $u_{n_{k}} \in C^{\infty}(\rr, H^{\infty})$.
+  %To see this, we note that for any solution to the bous equation, its
+  %derivative in $t$ exists if it is thrice differentiable in $x$. 
+  %Since $u_{n,k}$ is $C^{\infty}$ in $x$, it is $C^{\infty}$ in $t$. Hence,
+  %$u_{n_{k}}$ is a classical solution to the bous. 
+%\label{rem:smooth-soln}
+%\end{remark}
+%%
+%%
+%\end{framed}
+%
+%
+%
+%
+%
+%
+Next, we choose a sequence of initial data as in \eqref{ill-pos-init-data-bous},
+convering to $(u_{0}, u_{1})$ weakly in $H^{-1} \times H^{-3}$.  
+Then by Proposition \ref{prop:key-paper-bous}, there exists a sequence
+$u_{n} \in C([0,T], H^{-1})$ of corresponding solutions to the normalized Boussinesq, and
+a subsequence 
+\begin{equation*}
+  u_{n_{k}}(t) \overset{H^{-1}}{\rightharpoonup} u(t) \ \text{for
+all} \ t \in \rr.
+\end{equation*}
+Next, note that if $u_{n_{k}}$ is a solution to the
+normalized Boussinesq, then  
+%
+\begin{equation}
+  \label{bous-sol}
+\begin{split}
+  v_{n_{k}}(x,t) \doteq ????
+\end{split}
+\end{equation}
+%
+%
+is a solution to Boussinesq. The rest of the proof should be analogous to that
+of ill-posedness for mKDV.
+%
+%
     
 
 \appendix
-\section{Conserved Quantities for the g-KDV and Normalized mKDV Needed in the Paper}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\section{Conserved Quantities for g-KDV and Normalized mKDV}
 We consider the generalized Korteweg-de Vries (g-KDV) initial value problem
 %
 %
@@ -849,6 +1358,108 @@ But
 \end{equation*}
 %
 %
+\section{Conserved Quantities for the Boussinesq}
+\subsection{Conservation of $\int u_{t}$} 
+\label{ssec:c-mass-bous}
+Integrate both sides of \eqref{eqn:mb-2} with respect to $x$
+and apply the fundamental theorem of
+calculus to get
+%
+%
+\begin{equation*}
+\begin{split}
+  \int u_{tt} = 0
+\end{split}
+\end{equation*}
+%
+%
+where we are deliberately ambiguous about the limits of integration. 
+%
+%
+\subsection{Conservation of Momentum} 
+\label{ssec:c-moment-bous}
+The Boussinesq ivp has the equivalent formulation
+%
+%
+\begin{gather}
+  u_{t} = v_{x},
+  \label{eq-1}
+  \\
+  v_{t} = u_{x} - u_{xxx} - (u^{2})_{x}
+  \label{eq-2}
+  \\
+  u(x,0) = u_{0}(x), \ v(x,0) = v_{0}(x)
+  \label{eq-3}
+\end{gather}
+%
+%
+which preserves the momentum 
+%
+%
+\begin{equation*}
+\begin{split}
+  I = \int u v dx.
+\end{split}
+\end{equation*}
+%
+%
+To see this, we differentiate in time and apply the fundamental theorem of
+calculus to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dI}{dt} 
+  & = \int [u v_{t} + u_{t} v]
+  \\
+  & = \int [u (u_{x} - u_{xxx} - (u^{2})_{x}) + v_{x} v] dx
+  \\
+  & = \int \left [\frac{1}{2} (u^{2})_{x} - (u_{xx})_{x} - (u^{2})_{x} + \frac{1}{2}
+  (v^{2})_{x} \right ] dx
+  \\
+  & = 0.
+\end{split}
+\end{equation*}
+%
+%
+\subsection{Conservation of Energy} 
+\label{ssec:c-en-bous}
+The ivp \eqref{eq-1}-\eqref{eq-3} conserves 
+%
+%
+\begin{equation*}
+\begin{split}
+  E = \frac{1}{2} \int \left[ v^{2} + u^{2} + u_{x}^{2} - \frac{2}{3} u^{3} \right] dx.
+\end{split}
+\end{equation*}
+%
+%
+To see this, we differentiate in time, integrate by parts, and apply
+the fundamental theorem of calculus to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dE}{dt}
+  & = \int \left[ v v_{t} + u u_{t} + u_{x} u_{tx} - u^{2}u_{t}
+  \right] dx
+  \\
+  & = \int \left[ v(u_{x} - u_{xxx} - (u^{2})_{x}) + u v_{x} + u_{x}
+  v_{xx} - u^{2} v_{x} \right] dx
+  \\
+  & = \int \left [ u_{x}v - v u_{xxx} - v (u^{2})_{x} + uv_{x} + u_{x} v_{xx} - u^{2}
+  v_{x} \right ] dx
+  \\
+  & = \int [(uv)_{x} + v_{x} u_{xx} + \cancel{v_{x} u^{2}} + u_{x} v_{xx} -
+  \cancel{u^{2} v_{x}}]dx
+  \\
+  & = \int \left[ (uv)_{x} + (u_{x} v_{x})_{x} \right] dx
+  \\
+  & = 0.
+\end{split}
+\end{equation*}
+%
+%
 %
 %
 \section{Substituting Normalized mKDV for mKDV}
@@ -932,6 +1543,14 @@ some useful cancellations of terms when one rewrites it using fourier sums (see
 %
 %
 %
+%
+\begin{proof}[Proof of Lemma \ref{lem:conv-prop-init}]
+  It is analogous to the the proof of Lemma \ref{lem:conv-prop-init-bous}, which
+  is presented later in this section.
+\end{proof}
+%
+%
+%
 \begin{proof}[Proof of Lemma \ref{lem:key-conv}]
 First, note that $u_{n_{k}}(x + c_{n_{k}}, t)$
 is Cauchy in the weak
@@ -986,18 +1605,161 @@ Hence, invoking the conservation of mass one last time, we see that
 \end{equation*}
 %
 %
-Therefore, by the uniqueness of the limit in weak $L^{2}$, the proof is complete. 
+Therefore, by the uniqueness of the limit in $D'(\ci)$, the proof is complete. 
 %
 %
 %
 \end{proof}
-% %
+        %
+        %
+        %
+\begin{proof}[Proof of Lemma \ref{lem:conv-prop-init-bous}]
+  For $\vp \in H^{1}(\ci)$
+%
+%
+\begin{equation*}
+\begin{split}
+  \int_{\ci} u_{0,n}(x) \vp dx
+  & = \int_{\ci} u_{0} \vp(x) dx + nk \int_{\ci} \cos(nx) \vp(x) dx.
+\end{split}
+\end{equation*}
+%
+%
+Now by Parseval
+%
+%
+\begin{equation}
+  \label{fg}
+\begin{split}
+  nk \int_{\ci} \cos nx \vp(x) dx
+  & = \frac{nk}{2 \pi} \sum_{\xi \in \zz} \wh{\cos nx}(\xi) \wh{\vp}(\xi)
+  \\
+  & = \frac{nk}{2 \pi} \sum_{\xi \in \zz} \wh{\vp}(\xi) \int_{\ci} e^{ix \xi} \frac{e^{inx} +
+  e^{-inx}}{2} dx
+  \\
+  & = nk \wh{\vp}(n).
+\end{split}
+\end{equation}
+%
+%
+Since $\vp \in H^{1}(\ci)$, $\wh{\vp}(n) = o(| n |)$.
+\begin{framed}
+  \begin{remark}
+    \label{rem:cont}
+    This follows from the fact that for any $\phi \in H^{1}$, 
+    $\p_{x} \phi \in L^{2}$, and so by Parseval,
+%
+%
+\begin{equation*}
+\begin{split}
+ \frac{1}{2 \pi} \sum_{\xi \in \zz} | i \xi \wh{\phi}(\xi)
+  |^{2}  = \| \p_{x} \phi \|_{L^{2}}^{2} < \infty
+\end{split}
+\end{equation*}
+%
+%
+which implies $\wh{\phi}(\xi) = o(|\xi|)$. 
+\end{remark}
+\end{framed}
+Hence, we conclude from \eqref{fg} that 
+%
+%
+\begin{equation*}
+\begin{split}
+  nk \int_{\ci} \cos nx \vp(x) dx = o(1)
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{0,n} \overset{H^{-1}}{\rightharpoonup} u_{0}.
+\end{split}
+\end{equation*}
+%
+%
+Consider now
 %
 %
 %
 %
+\begin{equation*}
+\begin{split}
+  \| u_{0,n} \|_{H^{-1}}
+  & = 
+  \|u_{0} + nk \cos(nx) \|_{H^{-1}}^{2}
+  \\
+  &= \| u_{0} \|^{2}_{H^{-1}} + \| nk \cos nx \|^{2}_{H^{-1}} + \frac{nk}{\pi}
+  \sum_{\xi \in \zz} (1 + \xi^{2})^{-1} \text{Re}[\wh{u_{0}}(\xi) \wh{\cos
+  nx}(\xi)].
+\end{split}
+\end{equation*}
 %
-\newcommand{\etalchar}[1]{$^{#1}$}
+%
+Note that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| nk \cos nx \|_{H^{-1}}^{2} 
+  & = \frac{n^{2} k^{2}}{2 \pi} \sum_{\xi \in \zz} (1 + \xi^{2})^{-1} | \int_{\ci}
+  e^{-ix \xi} \cos nx dx |^{2}
+  \\
+  & = \frac{n^{2}k^{2}}{8 \pi} \sum_{\xi \in \zz} (1 + \xi^{2})^{-1} |
+  \int_{\ci} e^{-ix \xi} [e^{inx} + e^{-inx}] dx |^{2}
+  \\
+  & = \pi n^{2} k^{2} (1 + n^{2})^{-1} \to \pi k^{2}
+\end{split}
+\end{equation*}
+%
+%
+while
+%
+%
+\begin{equation*}
+\begin{split}
+  | \frac{nk}{\pi}
+  \sum_{\xi \in \zz} (1 + \xi^{2})^{-1} \text{Re}[\wh{u_{0}}(\xi) \wh{\cos
+  nx}(\xi)] |
+  & \le \frac{nk}{\pi} \sum_{\xi \in \zz} (1 + \xi^{2})^{-1} | \wh{u_{0}}(\xi) \wh{\cos
+  nx}(\xi) |
+  \\
+  & = \frac{2nk}{\pi} \sum_{\xi \in \zz} (1 + \xi^{2})^{-1} |\wh{u_{0}}(\xi)  \int_{\ci}
+  e^{-ix \xi} \cos nx dx |
+  \\
+  & = \frac{nk}{\pi} \sum_{n \in \zz} (1 + \xi^{2})^{-1} | \wh{u_{0}}(\xi)  \int_{\ci}
+  e^{-ix \xi} [e^{inx} + e^{-inx}]dx|
+  \\
+  & = 4 nk (1 + n^{2})^{-1} [| \wh{u_{0}}(n) |  + | \wh{u_{0}}(-n) | ] 
+  \\
+  & \to 0
+\end{split}
+\end{equation*}
+%
+%
+where the last line follows from Remark \ref{rem:cont}.
+We conclude that
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{0,n} \|_{H^{-1}} \to \| u_{0} \|_{H^{-1}} + \pi k^{2}
+\end{split}
+\end{equation*}
+%
+%
+%
+which completes the proof.
+%
+%
+%
+%
+\end{proof}
+
+        \newcommand{\etalchar}[1]{$^{#1}$}
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -1017,10 +1779,15 @@ J. Colliander, M. Keel, G. Staffilani, H. Takaoka, and T. Tao, \emph{Sharp globa
   well-posedness for kdv and modified kdv on {$\Bbb R$} and {$\Bbb T$}}, J.
   Amer. Math. Soc. \textbf{16} (2003), no.~3, 705--749 (electronic).
 
+\bibitem[FS10]{Farah:2010ys}
+L. G. Farah and M. Scialom, \emph{On the periodic ``good''
+  {B}oussinesq equation}, Proc. Amer. Math. Soc. \textbf{138} (2010), no.~3,
+  953--964. 
+
 \bibitem[KT05]{Kappeler:2005kx}
-T.~Kappeler and P.~Topalov, \emph{Global well-posedness of m{K}d{V} in
+T. Kappeler and P. Topalov, \emph{Global well-posedness of m{K}d{V} in
   {$L^2(\Bbb T,\Bbb R)$}}, Comm. Partial Differential Equations \textbf{30}
-  (2005), no.~1-3, 435--449.
+  (2005), no.~1-3, 435--449. 
 
 \bibitem[KT06]{Kappeler:2006uq}
 \bysame, \emph{Global wellposedness of {K}d{V} in {$H^{-1}(\Bbb T,\Bbb R)$}},
@@ -1030,7 +1797,9 @@ T.~Kappeler and P.~Topalov, \emph{Global well-posedness of m{K}d{V} in
 L. Molinet, \emph{Sharp ill-posedness results for the kdv and mkdv equations
   on the torus}.
 
-\end{thebibliography}        %\nocite{*}
+\end{thebibliography}
+
+        %\nocite{*}
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 %\bibliographystyle{amsalpha}
         \end{document}
