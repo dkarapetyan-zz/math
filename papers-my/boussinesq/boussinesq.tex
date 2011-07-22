@@ -807,7 +807,7 @@ N(u, v)
 \end{equation*}
 %
 %
-Then we let $A_{n}: H^{s} \times H^{s-2} \to C([0, \delta], H^{s}), \ n = 1, 2, \dots$ be the
+Then we let $A_{n}: H^{s} \times H^{s-2} \to C([-\delta, \delta], H^{s}), \ n = 1, 2, \dots$ be the
 recursively defined maps
 %
 %
@@ -867,7 +867,7 @@ above. More precisely, we have the following.
   well-posedness is given by Definition \ref{wp-def}. Then for
   $f \in B_{H^{s} \times H^{s-2}}(r)$, $s \ge -1/2$,  and $\delta=\delta(r)$
 sufficiently small, we have the absolutely convergent
-(in $C([0, \delta], H^{s})$) power series expansion
+(in $C([-\delta, \delta], H^{s})$) power series expansion
 %
 %
 \begin{equation}
@@ -901,26 +901,21 @@ following.
 %
 \begin{theorem}
   Let $N$ be a positive integer. Consider initial data $$f_{N}(x) =
-  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{N^{1/2}}{2
-  \pi} \left( e^{iNx} + e^{i(1-N)x} \right), 0 \right )$$ and assume
-  the $B_{4}$ ivp is well-posed for initial data in $H^{s} \times H^{s-2}$, $s
-  \ge -1/2$, where our notion of well-posedness is given by Definition \ref{wp-def}.
-  Then for $s < -1/2$
+  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N^{-\beta}}{2 \pi}\left[ e^{iNx} + e^{i(1-N)x} \right], 0
+  \right ), \quad \beta = 1/4 + 2 \ee.$$ Then 
   %
   %
     \begin{enumerate}[(I)]
       \item{
-    $ f_{N} \in B_{H^{-1/2} \times H^{-5/2}}(1) \ \text{with associated
+    $ f_{N} \in B_{H^{-1/4 + \ee} \times H^{-5/2 + \ee}}(r) \ \text{with associated
     solutions}
-    \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([0, \delta],
+    \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
     H^{-1/2})$}
+      \text{but} 
     \\
   \item
-    $ f_{N} \to 0 \ \text{in} \ H^{s} \times H^{s-2}, \
-    \text{but} $
-    \\
-  \item
-    $ A_{2}[f_{N}] \not \to 0 \ \text{in} \ C([0, \delta], H^{s})$.
+    $ \|A_{2}[f_{N}]\|_{C\left( [-\delta, \delta, H^{s}] \right)}/ \| f_{N}
+    \|_{H^{s}} \not \to 0$. 
 \end{enumerate}
   %
   %
@@ -938,8 +933,7 @@ following.
 %
 %
 \begin{proof}
-  The method of proof will be to bound $A_{2}(f_{N})$ from below by a
-  non-convergent sequence of constants $c_{N}$.
+  We first bound $A_{2}(f_{N})$ from below.
   First, note that $f_{N} \in C^{\infty}$. In particular
 %
 %
@@ -947,11 +941,11 @@ following.
   \label{ill-pos-ce}
 \begin{split}
   \wh{f_{N,1}}(n)
-  & = \frac{N^{1/2}}{2 \pi} \int_{\ci} [e^{-ix(n - N)} + e^{-ix(n - (1-N))}]  dx  
+  & = r N^{-\beta}\int_{\ci} [e^{-ix(n - N)} + e^{-ix(n - (1-N))}]  dx  
   \\ 
   & = 
   \begin{cases}
-    N^{1/2},  \quad  & n = N \ \text{or} \ n = 1-N
+    2 \pi r N^{-\beta},  \quad  & n = N \ \text{or} \ n = 1-N
     \\
      0, \quad  & \text{otherwise}.
   \end{cases}
@@ -965,10 +959,10 @@ Hence
   \label{ill-pos-ced}
 \begin{split}
   \| f_{N,1} \|_{H^{s}}
-  & = \frac{N^{1/2}}{2 \pi} \left( \sum_{n \in \zz} (1 + | n |)^{2s} |
+  & = \frac{2 \pi r N^{-\beta}}{2 \pi} \left( \sum_{n \in \zz} (1 + | n |)^{2s} |
   \wh{f_{N,1}}(n) |^{2} \right)^{1/2}
   \\
-  & \le N^{1/2+s}.
+  & \le r N^{s-\beta}.
 \end{split}
 \end{equation}
 %
@@ -976,42 +970,39 @@ Hence
 Therefore, from \eqref{ill-pos-ced} we see that 
 \begin{equation*}
   \begin{split}
-    & (f_{N,1}, 0) \in B_{H^{-1/2} \times H^{-5/2}}(1)
-    \\
-    & (f_{N,1}, 0) \to 0 \  \text{in}  \ H^{s} \times H^{s-2} \ \text{for} \ s <
-    -1/2.
-  \end{split}
+    & (f_{N,1}, 0) \in B_{H^{-1/4 + \ee} \times H^{-5/2 + \ee}}(r)
+    \end{split}
 \end{equation*}
 Note that since we have assumed well-posedness for the $B_{4}$ equation for $s
-\ge -1/2$, and since $f_{N} \in B_{H^{s} \times H^{s-2}}(1)$, the associated
+\ge -1/2$, and since $f_{N} \in B_{H^{s} \times H^{s-2}}(r)$, the associated
 solutions $u[f_{N}]$ have common lifespan $\delta$ \emph{which does not depend
-on $N$}. 
-To complete the proof, we now will establish a lower bound for
-$\|A_{2}(f_{N})\|_{C([0, \delta], H^{s} \times H^{s-2})}$
-which does not converge as $N \to \infty$ for $s < -1/2$. Observe that
+on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
+Observe that
 %
 %
 \begin{equation*}
 \begin{split}
-  & \| A_{2}(f_{N}) \|_{C([0, \delta], H^{s})} 
+  & \| A_{2}(f_{N}) \|_{C([-1, 1], H^{s})} 
   \\
-  & =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, \delta],
+& \ge \| A_{2}(f_{N}) \|_{C([1/2, 1], H^{s})} 
+\\
+  & =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([1/2, 1],
   H^{s})} 
   \\
-  & = \sup_{0 \le t \le \delta} \| \psi_{\delta}(t) (1 + | n |)^{s}
+  & = \sup_{1/2 \le t \le 1} \| \psi_{1}(t) (1 + | n |)^{s}
   \frac{1}{4 i \pi}
-  \int_{0}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  \int_{1/2}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
   \wh{[L(f_{N})]^{2}}(n, t') dt' \|_{\ell^{2}_{n}}
   \\
-  & = \sup_{0 \le t \le \delta} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
-  \int_{0}^{t} \sum_{n_{1}}
+  & = \sup_{1/2 \le t \le 1} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
+  \int_{1/2}^{t} \sum_{n_{1}}
   \\
   & \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
   \wh{L(f_{N})}(n - n_{1}, t')\wh{L(f_{N})}(n_{1}, t') dt'
   \|_{\ell^{2}_{n}}
   \\
-  &= \sup_{0 \le t \le \delta} \frac{1}{16 i \pi^{2}}\| (1 + | n |)^{s}
-  \int_{0}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  &= \sup_{1/2 \le t \le 1} \frac{1}{16 i \pi^{2}}\| (1 + | n |)^{s}
+  \int_{1/2}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
   \\
   & \times \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
   e^{-i(n - n_{1})^{2}t'} \right)}{2} \right ]
@@ -1026,8 +1017,8 @@ which is equal to
 \begin{equation}
   \label{pre-loc}
 \begin{split}
-& \sup_{0 \le t \le \delta} \frac{1}{8 \pi^{2}}\| (1 + | n |)^{s}
-\int_{0}^{t} \sum_{n_{1}} \sin[n^{2}(t-t')] \cos[(n - n_{1})^{2}t']
+& \sup_{1/2 \le t \le 1} \frac{1}{8 \pi^{2}}\| (1 + | n |)^{s}
+\int_{1/2}^{t} \sum_{n_{1}} \sin[n^{2}(t-t')] \cos[(n - n_{1})^{2}t']
 \cos(n_{1}^{2}t') \wh{f_{N}}(n - n_{1})\wh{f_{N}}(n_{1}) dt'
 \|_{\ell_{2}}.
 \end{split}
@@ -1039,8 +1030,8 @@ Using the inequality $\| a_{n} \|_{\ell^{2}} \ge
 \begin{equation}
   \label{yut}
 \begin{split}
-  & \frac{2^{s}}{8\pi^{2}} \sup_{0 \le t \le \delta} 
-  | \int_{0}^{t} \sum_{n_{1}} \sin(t-t') \cos[(1 -n_{1})^{2}t']
+  & \frac{2^{s}}{8\pi^{2}} \sup_{1/2 \le t \le 1} 
+  | \int_{1/2}^{t} \sum_{n_{1}} \sin(t-t') \cos[(1 -n_{1})^{2}t']
 \cos(n_{1}^{2}t') \wh{f_{N}}(1 - n_{1})\wh{f_{N}}(n_{1}) dt' |.
 \end{split}
 \end{equation}
@@ -1059,69 +1050,56 @@ Substituting
 \begin{equation}
   \label{rxx}
 \begin{split}
- \frac{2^{s}}{4\pi^{2}}  N \sup_{0 \le t \le \delta} 
- | \int_{0}^{t} \sin(t-t') [\cos(N^{2}t')] [\cos( (1 - N)^{2}t')] dt' |.
+  & \frac{2^{s}}{4\pi^{2}}  N^{-2 \beta} \sup_{1/2 \le t \le 1} 
+ | \int_{1/2}^{t} \sin(t-t') [\cos(N^{2}t')] [\cos( (1 - N)^{2}t')] dt' |
+ \\
+ & \gtrsim N^{-2 \beta} | \int_{1/2}^{1} \sin(1-t') [\cos(N^{2}t')] [\cos( (1 -
+ N)^{2}t')] dt' |.
 \end{split}
 \end{equation}
 %
-%
-which by trigonometric product-to-sum formula
+Let $N = \sqrt{2 \pi k}, k \in \mathbb{N}$. Noting that 
 %
 %
 \begin{equation*}
 \begin{split}
-\sin \theta \cos \vp = \frac{\sin (\theta + \vp) + \sin(\theta - \vp)}{2}
+  (1 - N)^{2} = \left( \frac{N-1}{N} \right)^{2} N^{2}
 \end{split}
 \end{equation*}
 %
 %
-is equal to
+and choosing $k$ sufficiently large such that $\left ( \frac{N-1}{N} \right
+)^{2} > 0.99$, we bound \eqref{rxx} below by
 %
-%
-\begin{equation}
-  \label{pre-neg-const}
-\begin{split}
-  \frac{2^{s}}{16\pi^{2}}  N \sup_{0 \le t \le \delta} 
- | \int_{0}^{t} & \left\{  \sin[t - 2t'(1 - N)] +  \sin[t - 2t'(-N^{2} + N)]
- \right.
- \\
- & + \left . \sin[t - 2t'(1 + N^{2} - N)] + \sin[t - 2t'N]
- \right\} dt' |.
-\end{split}
-\end{equation}
-%
-%
-Integrating and neglecting constants, \eqref{pre-neg-const} gives
-%
-%
-\begin{align}
-  \label{term-dec-0}
- & N \sup_{0 \le t \le \delta}  
- \\
- & | \big \{ \frac{\cos[t - t(2 -2N)] - \cos t}{2 - 2N}
- \label{term-dec-1}
- \\
- & + \frac{\cos[t - t(-2N^{2} + 2N)] - \cos t}{-2N^{2} + 2N}
- \label{term-dec-2}
- \\
- & + \frac{\cos [t -t(2 + 2N^{2} - 2N)] - \cos t }{2 + 2N^{2} - 2N}
- \label{term-dec-3}
- \\
- & + \frac{\cos[t - 2tN] - \cos t}{2N} \big \} |
- \label{term-dec-4}
-\end{align}
-%
-which simplifies to
 %
 %
 \begin{equation*}
 \begin{split}
-  \frac{1}{2} \sup_{0 \le t \le \delta} | \frac{\cos\left[ t(1-2N) \right]
-  - \cos
-  t}{(1-N)} + \frac{\cos\left[ t\left( 1 + 2N^{2} - 2N \right) \right] - \cos
-  t}{(1-N)(1 + N^{2} - N)}|  
+\frac{1}{4}
+& N^{-2 \beta} | \int_{1/2}^{1} \sin(1-t') dt' |
+\\ & \simeq N^{-2 \beta}.
 \end{split}
 \end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{\|A_{2}[f_{N}]\|_{C\left( [-\delta, \delta, H^{s}] \right)}}{ \| f_{N}
+  \|_{H^{s}}} 
+  & \gtrsim \frac{N^{-2 \beta}}{N^{s-\beta}}
+  \\
+  & = N^{-s - \beta}
+  \\
+  & = N^{-s - 1/4 + \ee}
+  \\
+  & \ge 1, \quad s \le -1/4 - \ee
+\end{split}
+\end{equation*}
+%
+%
 %
 \end{proof}
 %
@@ -1197,7 +1175,7 @@ the following.
   \label{lem:qnls-asymp}
   For $f \in B_{H^{s}}(r)$, $s \ge -1$ and $\delta=\delta(r)$
 sufficiently small, we have the absolutely convergent
-(in $C([0, \delta], H^{s})$) power series expansion
+(in $C([-\delta, \delta], H^{s})$) power series expansion
 %
 %
 \begin{equation}
