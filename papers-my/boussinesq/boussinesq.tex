@@ -14,6 +14,19 @@
 \newtheorem{examp}{Example}[section]
 \newtheorem {exercise}[theorem] {Exercise}
 
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
@@ -231,6 +244,187 @@ i) Obviously, the second condition in \eqref{ip} is sufficient to infer that $A_
 ii) \textbf{However, equally important in \eqref{ip} is the first limit, which makes this strategy go through. This happens because the LWP has to happen in the strongest sense, i.e., the time of existence $T=T(\|f\|_D)$, and so $\lim_{N\to \infty} \|f_N\|_D=0$ assures that all the corresponding solutions (or alternatively, for $N$ sufficiently large) $u_N$'s exist for the same amount of time.} This is not precisely stated in \cite{BT06}, being quite formally addressed. 
 \label{remip}
 \end{remark}
+
+\section{The Well-Posedness Spaces for Boussinesq}
+\subsection{The non-periodic case} 
+\label{ssec:non-per-spaces}
+It is enough to consider the integral equation
+%
+%
+\begin{equation*}
+\begin{split}
+  u(t) = U(t) u_{0} -i \int_{0}^{t} U(t -t')N(u(t')) dt'
+\end{split}
+\end{equation*}
+%
+%
+where 
+%
+%
+\begin{equation*}
+\begin{split}
+  & U(t) = e^{-it \p_x^{2}},
+  \\
+  & N(u) = -u + (u + \bar{u})/2 + \omega^{2}(u + \bar{u})^{2}/4
+\end{split}
+\end{equation*}
+%
+%
+Partition $\rr^{2}$ as follows.
+%
+%
+\begin{equation*}
+\begin{split}
+  & P_{1} = \left\{ (\tau, \xi) \in \rr^{2}: | \tau - \xi^{2} | \le \frac{| \xi
+  |}{4} \ \text{and} \ | \xi | \ge 1 \right\},
+  \\
+  & P_{2} = \left\{ (\tau, \xi) \in \rr^{2}: | \tau - \xi^{2} | \ge \frac{| \xi
+  |}{4} \ \text{and} \ | \xi | < 1 \right\}.
+\end{split}
+\end{equation*}
+%
+%
+Set
+%
+%
+\begin{equation*}
+\begin{split}
+  w_{s} = 
+  \begin{cases}
+    \langle \xi \rangle ^{s} \langle \tau - \xi^{2} \rangle , \quad & (\tau,
+    \xi) \in P_{1},
+    \\
+    \langle \xi \rangle ^{1/2} \langle \tau - \xi^{2} \rangle^{1/2}, \quad
+    & (\tau, \xi) \in P_{2}
+  \end{cases}
+\end{split}
+\end{equation*}
+%
+%
+and let $Z^{s}, Y^{s}$ be the completion of the space of schwartz functions
+$S(\rr^{2})$ under the norms
+%
+%
+\begin{equation*}
+\begin{split}
+  & \| u \|_{Z^{s}} = \| w_{s} \wh{u} \|_{L^{2}_{\tau, \xi}},
+  \\
+  & \| u \|_{Y^{s}} = \| \int_{\rr} \langle \xi \rangle^{s} | \wh{u} | d \tau
+  \|_{L^{2}_{\xi}}.
+\end{split}
+\end{equation*}
+%
+%
+Our candidate for the well-posedness space (in the Picard iterative sense) is
+$Z^{s} \cap L^{\infty}\left( [0, T], H^{s} \right)$. Indeed, we have the
+following.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               init data bound
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Prop 2.6 in Kishimoto]
+  For $u \in Z^{s} \cap L^{\infty}\left( [0,T], H^{s} \right)$
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| u \|_{Z^{s}} + \| u \|_{L^{\infty}\left( [0,T], H^{s} \right)} \lesssim
+    \| u_{0} \|_{H^{s}}
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{lem:init-data-b}.
+\end{lemma}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Prop 2.7 in Kishimoto]
+  Let $\vp(t)$ be a smooth cutoff
+  function symmetric about the origin, equal to the identity in $[-1, 1]$, and
+  supported in $[-2,2]$. Denote $U(t) = e^{it \p_{x}^{2}}$, and let 
+  $u = \vp(t) \int_{0}^{t} U(t - t') F(t') dt'$. Then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| u \|_{Z^{s}} + \| u \|_{L^{\infty}\left( [0,T], H^{s} \right)} \lesssim
+    \| \mathcal{F}^{-1} \langle \tau - \xi^{2} \rangle ^{-1} \wh{F}
+    \|_{Z^{s}} + \| F^{-1}\langle \tau - \xi^{2} \rangle^{-1} \wh{F}
+    \|_{Y^{s}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  \label{lem:non-lin-to-bilin}
+\end{lemma}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                bilinear estimates
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Bilinear Estimates, Prop 4.4 in Kishimoto]
+For $u = u(x,t)$, $v = v(x,t)$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  & \|\mathcal{F}^{-1} \langle \tau - \xi^{2} \rangle \wh{\omega^{2} uv}
+  \|_{Z^{s}} \lesssim \| u \|_{Z^{s}} \|v \|_{Z^{s}}
+  \\
+  & \| \mathcal{F}^{-1} \langle \tau - \xi^{2} \rangle ^{-1} \wh{\omega^{2} uv}
+  \|_{Y^{s}} \lesssim \| u \|_{Z^{s}} \| v \|_{Z^{s}}
+\end{split}
+\end{equation*}
+%
+where $\omega$ is the pseudo-differential operator defined by
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{\omega}(\xi) = \frac{\xi}{ \sqrt{1 + \xi^{2}}}.
+\end{split}
+\end{equation*}
+%
+%
+These estimates also hold with $uv$ replaced by $u \bar v$ or $\bar u \bar v$.
+%
+\label{lem:bilinear-estimates}
+\end{lemma}
+%
+%
+We conclude from the lemmas above that the Schrodinger type equation is
+qualitatively well-posed. Hence, the Tao-Bejenaru machinery applies.
+%
+%
+
 
 \section{Precise computations for the Boussinesq equation}
 
