@@ -1,7 +1,8 @@
 \documentclass{amsart}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\synctex=1
 \usepackage{amsfonts}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -245,6 +246,329 @@ ii) \textbf{However, equally important in \eqref{ip} is the first limit, which m
 \label{remip}
 \end{remark}
 
+%
+%
+
+
+\section{Precise computations for the Boussinesq equation}
+
+\subsection{The non-periodic case} The first step is to write formulas for $L$ and $N$. We start with the homogeneous problem
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}\,=\,0, \quad x\in\mathbb{R}, \quad t>0,\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
+\end{array}\right.
+\label{hom}
+\end{equation}
+which, using the Fourier transform in the spatial variable, leads to
+\begin{equation}
+\hat{u}(t,\xi)\,=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)\,+\,\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),
+\label{homf}\end{equation}
+where $\lambda(\xi)=\sqrt{\xi^2+\xi^4}$.
+
+The inhomogeneous problem 
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}\,=\,F, \quad x\in\mathbb{R}, \quad t>0,\\
+\\
+u(0,x)\,=\,0,\qquad u_t(0,x)\,=\,0,\\
+\end{array}\right.
+\label{ih}
+\end{equation}
+can then be solved using \eqref{homf} and the Duhamel's principle, which gives us
+\begin{equation}
+\hat{u}(t,\xi)\,=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\hat{F}(s,\xi)\,ds.
+\label{ihf}
+\end{equation}
+
+Putting together \eqref{homf} and \eqref{ihf}, we obtain that \eqref{main} can be rewritten as
+\begin{equation}
+\aligned
+\hat{u}(t,\xi)\,&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)-\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\widehat{(u^2)_{xx}}(s,\xi)\,ds\\
+&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)+\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u^2}(s,\xi)\,ds\endaligned
+\label{mainf}
+\end{equation}
+which is nothing but the Fourier version of \eqref{LN}, with
+\begin{equation}
+\aligned
+\widehat{Lf}(t,\xi)\,=\,\cos(t \lambda(\xi))& \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),\quad f=(u_0,u_1),\\
+\widehat{N(u,v)}(t,\xi)&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u\cdot v}(s,\xi)\,ds.\endaligned
+\label{lnf}
+\end{equation}
+
+\textbf{Our IP result will be proved by showing that $A_2$ is not continuous (as in pages 241-242 in \cite{BT06})}. Based on \eqref{An} and \eqref{lnf}, it follows that:
+\begin{equation}
+\aligned
+A_2(f)(t,x)\,&=\,N(A_1(f),A_1(f))(t,x)\,=\,N(L(f),L(f))(t,x),\\
+\widehat{A_2(f)}(t,\xi)\,&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{(Lf)^2}(s,\xi)\,ds\\
+&=\,\int_0^t \int_{\mathbb{R}}\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{Lf}(s,\xi-\eta)\,\widehat{Lf}(s,\eta)\,d\eta\,ds.\endaligned
+\label{A2f}
+\end{equation}
+
+We will choose the sequence of initial data $(f_N)_{N\geq 10}$ that satisfies \eqref{ip} as
+\begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{1}{N^\alpha}\,\left\{
+\begin{array}{l}
+1,\quad \text{for} \quad N-1\leq |\xi| \leq N+1,\\
+\\
+0,\quad \text{otherwise},\\
+\end{array}\right.
+\label{fn}
+\end{equation}
+$\alpha$ being a real parameter to be chosen later. A simple computation yields
+\begin{equation}
+\|f_N\|_{H^\beta\times H^{\beta-2}}\,=\,\|g_N\|_{H^\beta}\,\simeq\,N^{\beta-\alpha}
+\label{hsfn}
+\end{equation}
+Therefore, in order to have 
+\[
+\lim_{N\to \infty} \|f_N\|_{H^\beta \times H^{\beta -2}}\,=\,0
+\]
+we need to impose $\beta<\alpha$. This $\beta$ has to be in the well-posedness range obtained in \cite{KT10}, i.e., $\beta>-1/2$; hence, it would suffice to take $\alpha >-1/2$. This choice assures, as mentioned in Remark \ref{remip}, that all the solutions corresponding to sequence of initial data $(f_N)_N$ exist for at least an identical amount of time, which can be normalized to be equal to $1$. 
+
+Plugging \eqref{fn} into \eqref{A2f} and using \eqref{lnf}, we obtain
+\begin{equation}
+\aligned
+&\widehat{A_2(f_N)}(t,\xi)\\
+&=\int_0^t \int_{\mathbb{R}} \frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \xi^2 \cos(s \lambda(\xi-\eta))\cos(s\lambda(\eta))\widehat{g_N}(\xi-\eta)\widehat{g_N}(\eta)d\eta\,ds\\
+&=\frac{\xi^2}{N^{2\alpha}}\int_0^t \int_{N-1\leq |\xi-\eta|, |\eta| \leq N+1}\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\cos(s \lambda(\xi-\eta))\cos(s\lambda(\eta))d\eta\,ds.\endaligned
+\label{A2fn}
+\end{equation}
+On another hand
+\begin{equation}
+\aligned
+\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))} &\geq \|A_2(f_N)(t_N)\|_{H^{s'}(1/4\leq |\xi| \leq 1/2)}\\ &\gtrsim \|A_2(f_N)(t_N)\|_{L^2(1/4\leq |\xi| \leq 1/2)},\label{hsA2}
+\endaligned
+\end{equation}
+with $t_N=\frac{1}{100 N^2}$ and $s'$ is an arbitrary real number.
+
+Thus, we will be working in the regime given by
+\[
+0\leq s\leq t_N=\frac{1}{100 N^2}, \quad |\xi|\sim 1, \quad |\eta|\sim N,\]
+which implies
+\[
+0 \leq (t_N-s) \lambda(\xi),\,s \lambda(\xi-\eta),\, s\lambda(\eta) \ll 1. \]
+This allows us to infer
+\[
+0 \leq \sin ((t_N-s) \lambda(\xi)),
+\]
+\[
+1/2 < \min\{\cos(s \lambda(\xi-\eta)), \cos(s\lambda(\eta))\},
+\]
+for $N$ sufficiently large. 
+
+We can then estimate $\widehat{A_2(f_N)}(t_N,\xi)$ (for $1/4\leq |\xi| \leq 1/2$) as follows
+\[
+\widehat{A_2(f_N)}(t_N,\xi)\,\gtrsim\,\frac{1}{N^{2\alpha}}\,\int_0^{t_N}\, \sin((t_N-s) \lambda(\xi))\,ds\,=\,\frac{1-\cos(t_N \lambda(\xi))}{\lambda(\xi)\,N^{2\alpha}}\,\gtrsim \frac{1}{N^{2\alpha+4}},\]
+which, based on \eqref{hsA2}, yields
+\begin{equation}
+\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}\,\gtrsim \frac{1}{N^{2\alpha+4}}.
+\end{equation}
+
+Combining this with \eqref{hsfn}, we deduce 
+\begin{equation}
+\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}}
+\end{equation}
+for $N$ sufficiently large, $(f_N)_{N\geq 10}$ given by \eqref{fn}, and $\alpha>-1/2$. Therefore, for $s<-\alpha-4$ and $s'$ a real arbitrary number, the conclusion is that
+\begin{equation}
+\lim_{N\to\infty}\,\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,=\,0,
+\end{equation}
+which proves Theorem \ref{mth} in the non-periodic case, based on the Bejenaru-Tao technique.
+
+\subsection{The periodic case} Here, the computations are almost identical, the only difference being that, instead of integrals in $\xi$ or $\eta$, we have to sum up series over integers in $n$ or $m$. Also, as mentioned in the introduction, the best LWP for the periodic problem is for $s>-1/4$ (\cite{FS10}), thus forcing $\alpha>-1/4$. 
+
+We start by writing \eqref{mainf} and \eqref{lnf} in the periodic case, simply by replacing $\xi$ with $n\in\mathbb{Z}$, i.e.,
+\begin{equation}
+\aligned
+\hat{u}(t,n)\,=\,\cos(t \lambda(n))& \hat{u}_0(n)+\frac{\sin(t \lambda(n))}{\lambda(n)} \hat{u}_1(n)+\int_0^t\,\frac{\sin((t-s) \lambda(n))}{\lambda(n)}\, n^2\, \widehat{u^2}(s,n)\,ds\\
+\widehat{Lf}(t,n)\,&=\,\cos(t \lambda(n)) \hat{u}_0(n)+\frac{\sin(t \lambda(n))}{\lambda(n)} \hat{u}_1(n),\quad f=(u_0,u_1),\\
+\widehat{N(u,v)}&(t,n)=\,\int_0^t\,\frac{\sin((t-s) \lambda(n))}{\lambda(n)}\, n^2\, \widehat{u\cdot v}(s,n)\,ds.\endaligned
+\end{equation}
+
+The sequence of initial data $(f_N)_{N\geq 10}$ modifies accordingly, 
+\begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(n)\,=\,\frac{1}{N^\alpha}\,\left\{
+\begin{array}{l}
+1,\quad \text{for} \quad N-1\leq |n| \leq N+1,\\
+\\
+0,\quad \text{otherwise},\\
+\end{array}\right.
+\end{equation}
+with $\alpha>-1/4$, as discussed above.
+
+Hence, \eqref{A2fn} becomes
+\begin{equation}
+\aligned
+&\widehat{A_2(f_N)}(t,n)\\
+&=\frac{n^2}{N^{2\alpha}} \sum_{N-1\leq |n-m|, |m| \leq N+1} \int_0^t \frac{\sin((t-s) \lambda(n))}{\lambda(n)}\cos(s \lambda(n-m))\cos(s\lambda(m))\,ds,
+\endaligned
+\end{equation}
+which, as in the periodic case, leads to 
+\[
+\widehat{A_2(f_N)}\left(\frac{1}{100N^2},1\right)\,\gtrsim\,\frac{1}{N^{2\alpha+4}},\]
+for $N$ sufficiently large. Thus, one obtains
+\begin{equation}
+\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}},
+\end{equation}
+which finishes the proof.
+
+\appendix
+\section{}
+Recall the Boussinesq ivp \eqref{main}. Factoring, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  (i \p_{t} - \p_{x}^{2})(-i \p_{t} - \p_{x}^{2})u - \p_{x}^{2} u +
+  \p_{x}^{2}(u^{2}) = 0
+\end{split}
+\end{equation*}
+%
+%
+which is equivalent to
+%
+%
+\begin{equation*}
+\begin{split}
+  (i \p_{t} - \p_{x}^{2} + 1)(-i \p_{t} - \p_{x}^{2} +1)u = (1 -
+  \p_{x}^{2})u - \p_{x}^{2}(u^{2})
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{(i \p_{t} - \p_{x}^{2} + 1)(-i \p_{t} - \p_{x}^{2} +1)u}{(1 -
+  \p_{x}^{2})} = u - \frac{\p_{x}^{2}}{1 - \p_{x}^{2}}(u^{2}). 
+\end{split}
+\end{equation*}
+%
+%
+Set
+%
+%
+\begin{equation*}
+\begin{split}
+  v & = \left( \frac{-i \p_{t} + 1 -\p_{x}^{2}}{1 - \p_{x}^{2}} \right)u
+  \\
+  & = u - i(1 - \p_{x}^{2})^{-1} \p_{t}u
+\end{split}
+\end{equation*}
+and
+\begin{equation*}
+  \begin{split}
+    \bar{w} & = \left( \frac{i \p_{t} + 1 -\p_{x}^{2}}{1 - \p_{x}^{2}} \right)u
+  \\
+  & = u + i(1 - \p_{x}^{2})^{-1} \p_{t}u
+\end{split}
+\end{equation*}
+%
+Then we obtain the equations
+\begin{gather*}
+  (i \p_{t} + 1 - \p_{x}^{2})v = \frac{1}{2}(v + \bar{w}) -
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}
+  \\
+  (-i \p_{t} + 1 - \p_{x}^{2})\bar{w}= \frac{1}{2}(v + \bar{w}) -
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}
+\end{gather*}
+%
+Since solutions for the Boussinesq are real-valued, we obtain that $v=w$. Hence,
+the above system reduces to
+\begin{gather}
+  \label{simp-sys}
+  (i \p_{t} - \p_{x}^{2})v = \frac{1}{2}(\bar{v} -v) -
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{v})^{2}}{4}
+  \\
+  v(x,0) = v_{0}(x) = u_{0} - i(1 - \p_{x}^{2})^{-1}u.
+  \label{simp-sys-init}
+\end{gather}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                init-data-lip
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  The map $$u_{0}, u_{1} \mapsto 
+  u_{0} - i(1 - \p_{x}^{2})^{-1}u_{1}$$ is Lipschitz from $H^{s} \times
+  H^{s-2}$ to $H^{s}$.
+\label{lem:lip-init-data}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{0} - i(1 - \p_{x}^{2})^{-1} u_{1} \|_{H^{s}} 
+  & \le \| u_{0} \|_{H^{s}} + \| (1 - \p_{x}^{2})^{-1} u_{1} \|_{H^{s}}
+  \\
+  & = \| (u_{0}, u_{1}) \|_{H^{s} \times H^{s-2}}.
+\end{split}
+\end{equation*}
+%
+%
+\end{proof}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                lip-sol
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  Let $v_{0,n} \subset B_{H^{s}}(R)$ be a sequence of initial data for the ivp
+  \eqref{simp-sys}-\eqref{simp-sys-init}. Then the map $$v \mapsto
+  \frac{1}{2}(v + \bar{v})$$ is Lipschitz from $B_{H^{s}}(R)$ to $B_{H^{s}}(2R)$.
+\label{lem:}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+%
+%
+\begin{equation*}
+\begin{split}
+  \sup_{0 \le t \le T} \| u(t) \|_{C\left( [0, T], H^{s} \right)}
+  & = \sup_{0 \le t \le T} \frac{1}{2} \| v + \bar v \|_{H^{s}}
+  \\
+  & \le 2 \sup_{0 \le t \le T} \| v \|_{H^{s}}.
+\end{split}
+\end{equation*}
+%
+%
+<++>
+\end{proof}
+%
+%
+<++>
+%
+%
+%
+%
+%
 \section{The Well-Posedness Spaces for Boussinesq}
 \subsection{The non-periodic case} 
 \label{ssec:non-per-spaces}
@@ -422,176 +746,9 @@ These estimates also hold with $uv$ replaced by $u \bar v$ or $\bar u \bar v$.
 %
 We conclude from the lemmas above that the Schrodinger type equation is
 qualitatively well-posed. Hence, the Tao-Bejenaru machinery applies.
-%
-%
 
-
-\section{Precise computations for the Boussinesq equation}
-
-\subsection{The non-periodic case} The first step is to write formulas for $L$ and $N$. We start with the homogeneous problem
-\begin{equation}
-\left\{
-\begin{array}{l}
-u_{tt}-u_{xx}+u_{xxxx}\,=\,0, \quad x\in\mathbb{R}, \quad t>0,\\
-\\
-u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
-\end{array}\right.
-\label{hom}
-\end{equation}
-which, using the Fourier transform in the spatial variable, leads to
-\begin{equation}
-\hat{u}(t,\xi)\,=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)\,+\,\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),
-\label{homf}\end{equation}
-where $\lambda(\xi)=\sqrt{\xi^2+\xi^4}$.
-
-The inhomogeneous problem 
-\begin{equation}
-\left\{
-\begin{array}{l}
-u_{tt}-u_{xx}+u_{xxxx}\,=\,F, \quad x\in\mathbb{R}, \quad t>0,\\
-\\
-u(0,x)\,=\,0,\qquad u_t(0,x)\,=\,0,\\
-\end{array}\right.
-\label{ih}
-\end{equation}
-can then be solved using \eqref{homf} and the Duhamel's principle, which gives us
-\begin{equation}
-\hat{u}(t,\xi)\,=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\hat{F}(s,\xi)\,ds.
-\label{ihf}
-\end{equation}
-
-Putting together \eqref{homf} and \eqref{ihf}, we obtain that \eqref{main} can be rewritten as
-\begin{equation}
-\aligned
-\hat{u}(t,\xi)\,&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)-\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\widehat{(u^2)_{xx}}(s,\xi)\,ds\\
-&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)+\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u^2}(s,\xi)\,ds\endaligned
-\label{mainf}
-\end{equation}
-which is nothing but the Fourier version of \eqref{LN}, with
-\begin{equation}
-\aligned
-\widehat{Lf}(t,\xi)\,=\,\cos(t \lambda(\xi))& \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),\quad f=(u_0,u_1),\\
-\widehat{N(u,v)}(t,\xi)&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u\cdot v}(s,\xi)\,ds.\endaligned
-\label{lnf}
-\end{equation}
-
-\textbf{Our IP result will be proved by showing that $A_2$ is not continuous (as in pages 241-242 in \cite{BT06})}. Based on \eqref{An} and \eqref{lnf}, it follows that:
-\begin{equation}
-\aligned
-A_2(f)(t,x)\,&=\,N(A_1(f),A_1(f))(t,x)\,=\,N(L(f),L(f))(t,x),\\
-\widehat{A_2(f)}(t,\xi)\,&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{(Lf)^2}(s,\xi)\,ds\\
-&=\,\int_0^t \int_{\mathbb{R}}\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{Lf}(s,\xi-\eta)\,\widehat{Lf}(s,\eta)\,d\eta\,ds.\endaligned
-\label{A2f}
-\end{equation}
-
-We will choose the sequence of initial data $(f_N)_{N\geq 10}$ that satisfies \eqref{ip} as
-\begin{equation}
-f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{1}{N^\alpha}\,\left\{
-\begin{array}{l}
-1,\quad \text{for} \quad N-1\leq |\xi| \leq N+1,\\
-\\
-0,\quad \text{otherwise},\\
-\end{array}\right.
-\label{fn}
-\end{equation}
-$\alpha$ being a real parameter to be chosen later. A simple computation yields
-\begin{equation}
-\|f_N\|_{H^\beta\times H^{\beta-2}}\,=\,\|g_N\|_{H^\beta}\,\simeq\,N^{\beta-\alpha}
-\label{hsfn}
-\end{equation}
-Therefore, in order to have 
-\[
-\lim_{N\to \infty} \|f_N\|_{H^\beta \times H^{\beta -2}}\,=\,0
-\]
-we need to impose $\beta<\alpha$. This $\beta$ has to be in the well-posedness range obtained in \cite{KT10}, i.e., $\beta>-1/2$; hence, it would suffice to take $\alpha >-1/2$. This choice assures, as mentioned in Remark \ref{remip}, that all the solutions corresponding to sequence of initial data $(f_N)_N$ exist for at least an identical amount of time, which can be normalized to be equal to $1$. 
-
-Plugging \eqref{fn} into \eqref{A2f} and using \eqref{lnf}, we obtain
-\begin{equation}
-\aligned
-&\widehat{A_2(f_N)}(t,\xi)\\
-&=\int_0^t \int_{\mathbb{R}} \frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \xi^2 \cos(s \lambda(\xi-\eta))\cos(s\lambda(\eta))\widehat{g_N}(\xi-\eta)\widehat{g_N}(\eta)d\eta\,ds\\
-&=\frac{\xi^2}{N^{2\alpha}}\int_0^t \int_{N-1\leq |\xi-\eta|, |\eta| \leq N+1}\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\cos(s \lambda(\xi-\eta))\cos(s\lambda(\eta))d\eta\,ds.\endaligned
-\label{A2fn}
-\end{equation}
-On another hand
-\begin{equation}
-\aligned
-\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))} &\geq \|A_2(f_N)(t_N)\|_{H^{s'}(1/4\leq |\xi| \leq 1/2)}\\ &\gtrsim \|A_2(f_N)(t_N)\|_{L^2(1/4\leq |\xi| \leq 1/2)},\label{hsA2}
-\endaligned
-\end{equation}
-with $t_N=\frac{1}{100 N^2}$ and $s'$ is an arbitrary real number.
-
-Thus, we will be working in the regime given by
-\[
-0\leq s\leq t_N=\frac{1}{100 N^2}, \quad |\xi|\sim 1, \quad |\eta|\sim N,\]
-which implies
-\[
-0 \leq (t_N-s) \lambda(\xi),\,s \lambda(\xi-\eta),\, s\lambda(\eta) \ll 1. \]
-This allows us to infer
-\[
-0 \leq \sin ((t_N-s) \lambda(\xi)),
-\]
-\[
-1/2 < \min\{\cos(s \lambda(\xi-\eta)), \cos(s\lambda(\eta))\},
-\]
-for $N$ sufficiently large. 
-
-We can then estimate $\widehat{A_2(f_N)}(t_N,\xi)$ (for $1/4\leq |\xi| \leq 1/2$) as follows
-\[
-\widehat{A_2(f_N)}(t_N,\xi)\,\gtrsim\,\frac{1}{N^{2\alpha}}\,\int_0^{t_N}\, \sin((t_N-s) \lambda(\xi))\,ds\,=\,\frac{1-\cos(t_N \lambda(\xi))}{\lambda(\xi)\,N^{2\alpha}}\,\gtrsim \frac{1}{N^{2\alpha+4}},\]
-which, based on \eqref{hsA2}, yields
-\begin{equation}
-\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}\,\gtrsim \frac{1}{N^{2\alpha+4}}.
-\end{equation}
-
-Combining this with \eqref{hsfn}, we deduce 
-\begin{equation}
-\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}}
-\end{equation}
-for $N$ sufficiently large, $(f_N)_{N\geq 10}$ given by \eqref{fn}, and $\alpha>-1/2$. Therefore, for $s<-\alpha-4$ and $s'$ a real arbitrary number, the conclusion is that
-\begin{equation}
-\lim_{N\to\infty}\,\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,=\,0,
-\end{equation}
-which proves Theorem \ref{mth} in the non-periodic case, based on the Bejenaru-Tao technique.
-
-\subsection{The periodic case} Here, the computations are almost identical, the only difference being that, instead of integrals in $\xi$ or $\eta$, we have to sum up series over integers in $n$ or $m$. Also, as mentioned in the introduction, the best LWP for the periodic problem is for $s>-1/4$ (\cite{FS10}), thus forcing $\alpha>-1/4$. 
-
-We start by writing \eqref{mainf} and \eqref{lnf} in the periodic case, simply by replacing $\xi$ with $n\in\mathbb{Z}$, i.e.,
-\begin{equation}
-\aligned
-\hat{u}(t,n)\,=\,\cos(t \lambda(n))& \hat{u}_0(n)+\frac{\sin(t \lambda(n))}{\lambda(n)} \hat{u}_1(n)+\int_0^t\,\frac{\sin((t-s) \lambda(n))}{\lambda(n)}\, n^2\, \widehat{u^2}(s,n)\,ds\\
-\widehat{Lf}(t,n)\,&=\,\cos(t \lambda(n)) \hat{u}_0(n)+\frac{\sin(t \lambda(n))}{\lambda(n)} \hat{u}_1(n),\quad f=(u_0,u_1),\\
-\widehat{N(u,v)}&(t,n)=\,\int_0^t\,\frac{\sin((t-s) \lambda(n))}{\lambda(n)}\, n^2\, \widehat{u\cdot v}(s,n)\,ds.\endaligned
-\end{equation}
-
-The sequence of initial data $(f_N)_{N\geq 10}$ modifies accordingly, 
-\begin{equation}
-f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(n)\,=\,\frac{1}{N^\alpha}\,\left\{
-\begin{array}{l}
-1,\quad \text{for} \quad N-1\leq |n| \leq N+1,\\
-\\
-0,\quad \text{otherwise},\\
-\end{array}\right.
-\end{equation}
-with $\alpha>-1/4$, as discussed above.
-
-Hence, \eqref{A2fn} becomes
-\begin{equation}
-\aligned
-&\widehat{A_2(f_N)}(t,n)\\
-&=\frac{n^2}{N^{2\alpha}} \sum_{N-1\leq |n-m|, |m| \leq N+1} \int_0^t \frac{\sin((t-s) \lambda(n))}{\lambda(n)}\cos(s \lambda(n-m))\cos(s\lambda(m))\,ds,
-\endaligned
-\end{equation}
-which, as in the periodic case, leads to 
-\[
-\widehat{A_2(f_N)}\left(\frac{1}{100N^2},1\right)\,\gtrsim\,\frac{1}{N^{2\alpha+4}},\]
-for $N$ sufficiently large. Thus, one obtains
-\begin{equation}
-\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}},
-\end{equation}
-which finishes the proof.
 \bibliographystyle{amsplain}
 \bibliography{bousbib}
 
-
 \end{document}
+
