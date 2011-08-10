@@ -113,7 +113,7 @@ Weak Topology}
        which can be done by the end of June.}
        
        \sout{6) Spend most (80\%) of your your time on ill-posedness
-       of Bussinesq and related papers to prepare for Dan's visit
+       of Boussinesq and related papers to prepare for Dan's visit
        on July 11.}
         
         %
@@ -337,7 +337,7 @@ We remark that this result improves upon the H\"older continuity result in
 \section{Proof of Theorem \ref{thm:main-thm}}
 %
 %
-The proof in the periodic case is analagous to that in the non-periodic case.
+The proof in the periodic case is analogous to that in the non-periodic case.
 Hence, we restrict our attention to the non-periodic case. 
 
 %
@@ -858,7 +858,7 @@ For the non-periodic case we have
   & \le \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr} 
   | \wh{f}(\eta) | | \wh{g}(\xi - \eta) | (1 +
   \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s}{2}}
-  d \eta \right ]^{2} d \xi
+  d \eta \right ]^{2} d \xi.
 \end{split}
 \end{equation*}
 %
@@ -869,7 +869,8 @@ Applying Cauchy Schwartz in $\eta$, we bound this by
 \begin{equation}
   \label{np-key-term}
 \begin{split}
-  \| f \|_{H^{s}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{| \wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi
+  \| f \|_{H^{s}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{|
+  \wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi.
   \end{split}
 \end{equation}
 %
@@ -1099,19 +1100,13 @@ case. For the periodic case, we note that the analogue of the integral term in \
 %
 \begin{equation*}
 \begin{split}
-  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{| \wh{g}(n - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta 
-\end{split}
-\end{equation*}
-%
-%
-which is bounded by
-\begin{equation*}
-\begin{split}
-  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\rr} \frac{| \wh{g}(n - \eta)
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{| \wh{g}(n - \eta)
   |^{2}}{(1 + \eta^{2})^{s-1}} d \eta. 
 \end{split}
 \end{equation*}
-The remainder of the proof is analagous to that in the non-periodic case.
+%
+%
+The remainder of the proof is analogous to that in the non-periodic case.
 \end{proof}
 %
 \begin{proof}[Proof of Lemma \ref{impo}]
@@ -1149,7 +1144,7 @@ Applying Cauchy Schwartz in $\eta$, we bound this by
   \label{np-key-term-d}
 \begin{split}
   \| f \|_{H^{s}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{(\xi -
-  \eta)^{2} | \wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi
+  \eta)^{2} | \wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi.
   \end{split}
 \end{equation}
 %
@@ -1327,19 +1322,13 @@ integral term in \eqref{np-key-term-d} is
 %
 \begin{equation*}
 \begin{split}
-  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{ (n - \eta)^{2}| \wh{g}(n - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta 
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{ (n - \eta)^{2}| \wh{g}(n
+  - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta. 
 \end{split}
 \end{equation*}
 %
 %
-which is bounded by
-\begin{equation*}
-\begin{split}
-  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\rr} \frac{(n - \eta)^{2}| \wh{g}(n - \eta)
-  |^{2}}{(1 + \eta^{2})^{s-1}} d \eta. 
-\end{split}
-\end{equation*}
-The remainder of the proof is analagous to that in the non-periodic case.
+The remainder of the proof is analogous to that in the non-periodic case.
 \end{proof}
 %Following Klainerman \cite{Klainerman:fk}, we introduce the following.  
 %\begin{definition}
@@ -1692,7 +1681,7 @@ Hence, to complete the proof of Proposition \ref{prop:sob-interp},
 it will be enough to prove these lemmas.
 %
 \begin{proof}[Proof of Lemma \ref{lem:rest-bound}]
-We frst recall the following.
+We first recall the following.
 \begin{definition}
 Let $X$ and $Y$ be Banach spaces, and $T: X \to Y$ be linear. We say that $T$ is
 \emph{closed} if 
@@ -1781,11 +1770,126 @@ For additional reading on interpolation spaces, please consult
 \cite{Taylor:1995kx}, \cite{bergh1976interpolation}, and \cite{Bennett:1988ys}.
 %
 %
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{HKM09}
+
+\bibitem[BBM72]{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
+  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+  A \textbf{272} (1972), no.~1220, 47--78.
+
+\bibitem[BC07]{Bressan_2007_Global-conserva}
+A.~Bressan and A.~Constantin, \emph{Global conservative solutions of the
+  camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
+  215--239.
+
+\bibitem[BCK06]{Bendahmane_2006_Hsp-1-perturbat}
+M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen, \emph{$h^1$-perturbations of
+  smooth solutions for a weakly dissipative hyperelastic-rod wave equation},
+  Mediterr. J. Math. \textbf{3} (2006), no.~3-4, 419--432.
+
+\bibitem[Ben72]{Benjamin_1972_The-stability-o}
+T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+  (London) Ser. A \textbf{328} (1972), 153--183.
+
+\bibitem[BL76]{bergh1976interpolation}
+J.~Bergh and J.~L{\"o}fstr{\"o}m, \emph{Interpolation spaces: an introduction},
+  vol. 223, Springer-Verlag, 1976.
+
+\bibitem[BS88]{Bennett:1988ys}
+C.~Bennett and R.~Sharpley, \emph{Interpolation of operators}, vol. 129,
+  Academic Pr, 1988.
+
+\bibitem[Che11]{Chen:2011fk}
+R.~M. Chen, \emph{The h{\"o}lder continuity of the solution map to the
+  $b$-family equation in weak topology}, 2011.
+
+\bibitem[CHK05]{Coclite_2005_Global-weak-sol}
+G.~M. Coclite, H.~Holden, and K.~H. Karlsen, \emph{Global weak solutions to a
+  generalized hyperelastic-rod wave equation}, SIAM J. Math. Anal. \textbf{37}
+  (2005), no.~4, 1044--1069 (electronic).
+
+\bibitem[CS00]{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
+  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+  140--148.
+
+\bibitem[Dai98]{Dai_1998_Model-equations}
+H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
+  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+  193--207.
+
+\bibitem[DDH00]{Dai_2000_Head-on-collisi}
+H.-H. Dai, S.~Dai, and Y.~Huo, \emph{Head-on collision between two solitary
+  waves in a compressible mooney-rivlin elastic rod}, Wave Motion \textbf{32}
+  (2000), no.~2, 93--111.
+
+\bibitem[DH00]{Dai_2000_Solitary-shock-}
+H.-H. Dai and Y.~Huo, \emph{Solitary shock waves and other travelling waves in
+  a general compressible hyperelastic rod}, R. Soc. Lond. Proc. Ser. A Math.
+  Phys. Eng. Sci. \textbf{456} (2000), no.~1994, 331--363.
+
+\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
+A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
+  periodic ch equation.}, To appear in Communications in Partial Differential
+  Equations (2009).
+
+\bibitem[HR07]{Holden_2007_Global-conserva}
+H.~Holden and X.~Raynaud, \emph{Global conservative solutions of the
+  generalized hyperelastic-rod wave equation}, J. Differential Equations
+  \textbf{233} (2007), no.~2, 448--484.
+
+\bibitem[Kar10]{Karapetyan:2010fk}
+D.~Karapetyan, \emph{Non-uniform dependence and well-posedness for the
+  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826. \MR{2652154 (2011g:35352)}
+
+\bibitem[Kat75]{Kato_1975_Quasi-linear-eq}
+T.~Kato, \emph{Quasi-linear equations of evolution, with applications to
+  partial differential equations}, 1975, pp.~25--70. Lecture Notes in Math.,
+  Vol. 448.
+
+\bibitem[Len06]{Lenells_2006_Traveling-waves}
+J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
+  Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
+
+\bibitem[Mus07]{Mustafa_2007_Global-conserva}
+O.~G. Mustafa, \emph{Global conservative solutions of the hyperelastic rod
+  equation}, Int. Math. Res. Not. IMRN (2007), no.~13, Art. ID rnm040, 26.
+
+\bibitem[RB01]{Rodriguez-Blanco_2001_On-the-Cauchy-p}
+G.~Rodr\'iguez-Blanco, \emph{On the cauchy problem for the camassa-holm
+  equation}, Nonlinear Anal. \textbf{46} (2001), no.~3, Ser. A: Theory Methods,
+  309--327.
+
+\bibitem[Tay91]{Taylor_1991_Pseudodifferent}
+M.~E. Taylor, \emph{Pseudodifferential operators and nonlinear pde}, vol. 100,
+  1991.
+
+\bibitem[Tay95]{Taylor:1995kx}
+M.~E. Taylor, \emph{Partial differential equations i, basic theory}, Applied
+  Mathematical Sciences, vol. 115, Springer-Verlag, New York, 1995.
+
+\bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
+Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
+  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
+
+\bibitem[Zho05]{Zhou_2005_Local-well-pose}
+Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
+  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
+
+\end{thebibliography}
 %
 %
 %
 %
-\bibliographystyle{amsalpha-custom}
-\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+%\bibliographystyle{amsalpha-custom}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 
         \end{document}

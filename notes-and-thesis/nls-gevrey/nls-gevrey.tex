@@ -50,7 +50,7 @@ where $\lambda =\pm 1$, and prove the following theorem.
 %
 \section{Introduction to the Proof of Spatial Analyticity} 
 \label{psec:space-anal}
-We follow \cite{Gorsky:2005fk}, and differentiate
+We follow \cite{Gorsky:2005kx}, and differentiate
 \eqref{peqn:nls}-\eqref{peqn:nls-data} $k$-times to obtain the system
 %
 %
@@ -1707,13 +1707,200 @@ We have
 %
 where $\lambda = \pm 1$. As we
 shall see, the value of $\lambda$ does not influence the proof. Therefore, we
-set $\lambda =1$ without loss of generality. 
-
-
-
-
-
-
+set $\lambda =1$ without loss of generality. We first prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  Solutions to the Cauchy problem \eqref{peqn:nls-t}-\eqref{peqn:nls-t-data}
+  are not in general better than $G^{2}$ in time. More precisely, there exists
+  $\vp \in  \mathcal{C}^\omega(\mathbb{T})$ such that the associated solution
+  $u(x,t)$ to \eqref{peqn:nls-t} is not $G^{\sigma}$ for any $1 \le \sigma <
+  2$. 
+\label{thm:sharp}
+\end{theorem}
+%
+%
+\subsection{The Spaces} 
+\label{ssec:strategy}
+Let $I^{s, \delta}$ be the completion of
+$L^{2}(\ci)$ functions under the norm
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f \|_{G^{s, \delta}}^{2} = \sum_{n \in \zz} \langle n \rangle ^{2s}
+  e^{2 \delta n} | \wh{f}(n) |^{2}
+\end{split}
+\end{equation*}
+%
+%
+and 
+$G^{s,b, \sigma, \delta}$ be the completion
+of functions Schwartz in time and $L^{2}(\ci)$ in space under the norm
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u \|^{2}_{G^{s,b, \sigma, \delta}} = \int_{\rr} \sum_{n \in \zz} \langle
+  \tau - n^{2} \rangle^{2b} \langle n \rangle^{2s}  (| \tau |!)^{2 \sigma}
+  e^{2 \delta n} | \wh{u}(n, \tau) |^{2} d \tau.
+\end{split}
+\end{equation*}
+%
+\begin{framed}
+\begin{remark}
+Recall that $z!$ is well defined via the gamma function for all complex numbers except negative
+integers; that is
+%
+%
+\begin{equation*}
+\begin{split}
+ z! = \Gamma(z + 1) = \int_{0}^{\infty} t^{z + 1} e^{-t} dt.
+\end{split}
+\end{equation*}
+%
+\end{remark}
+\end{framed}
+%
+%
+These spaces have the following important properties.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  If $f \in I^{s, \delta}$, 
+      then it is real analytic on all of $\ci$, with a complex
+  analytic extension to a symmetric strip around the real axis with width $\delta$.
+\label{lem:analy-embed}
+\end{lemma}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+  If $u \in G^{s, b, \sigma, \delta}$, then $u \in G^{\sigma + \ee}(\rr,
+  \mathcal{C}^{\omega})$
+\label{lem:main-space-embed}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+  We shall need the following.
+  \begin{framed}
+  \begin{claim}
+    Let $b \ge 0$. Then for fixed $ \ee > 0$,
+    there exists a constant $C_{b}$ depending on $b$ such
+    that for all $\tau \in \rr$
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \langle \tau \rangle ^{b} \le C_{b} (| \tau |!)^{\ee}.
+    \end{split}
+    \end{equation*}
+    %
+    %
+  \end{claim}
+\end{framed}
+If $u \in G^{s, b, \sigma, \delta}$, then we must have
+%
+%
+\begin{equation*}
+\begin{split}
+| \wh{u}(n, \tau) |
+& <  \langle \tau - n^{2} \rangle ^{b} \langle n \rangle ^{s}  e^{\delta n}
+(| \tau |!)^{\sigma}
+\\
+& <  \langle\tau  \rangle ^{b} \langle n \rangle ^{2b} \langle n \rangle
+^{s} e^{\delta n} (| \tau |!)^{\sigma}
+\\
+& \lesssim (| \tau |!)^{\sigma + \ee} \langle n \rangle ^{2b + s}
+e^{\delta n}
+\end{split}
+\end{equation*}
+%
+where the last step follows from the claim.
+%
+\end{proof}
+%
+%
+%
+%
+\begin{proof}[Proof of Theorem \ref{thm:sharp}]
+%
+%
+We rewrite the NLS Cauchy problem as an integral equation   
+  %
+  \begin{equation*}
+  \begin{split}
+    u(x,t)
+    & = e^{it \Delta} \vp + \int_{0}^{t} e^{i(t - t') \Delta}(u u \bar{u})
+    dt'
+    \\
+    & = T(u)
+  \end{split}
+  \end{equation*}
+  %
+  %
+  where $T = T_{\vp}$. From the well-posedness theory of NLS, for given initial
+  data $\vp \in H^{s}(\ci)$, $s \ge 0$, $T_{\vp}$ is a contraction on
+  $B_{X_{s,b}}(R)$, where $R = R(\|\vp \|_{H^{s}})$. Proceeding by
+  contradiction, assume the picard iteration
+  converges (in $X_{s,b}$) to a solution $u(x,t) \in G^{s,b, \sigma, \delta}$.
+  Then it follows that $T_{\vp}$ is a contraction on $B_{G^{s,b, \sigma,
+  \delta}}(R')$, for some $R' > 0$. But this is impossible, due to the following
+  key proposition.
+  %
+  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  %
+  %                non-contraction
+  %
+  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  %
+  \begin{proposition}[Key Result We Need to Prove]
+    For any $u \in G^{s,b, \sigma, \delta}$, we have
+  \begin{equation}
+    \| \int_{0}^{t} e^{i(t - t') \Delta}(u u \bar{u})
+    dt' \|_{G^{s,b, \sigma, \delta}} \ge \|u \|_{G^{s,b, \sigma, \delta}}.
+  \end{equation}
+  \label{prop:non-cont}
+  \end{proposition}
+  %
+  %
+By contradiction, the proof is complete. 
+\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1738,6 +1925,6 @@ set $\lambda =1$ without loss of generality.
 %
 Here we would like to find an analog to the construction
  of non-analytic in time solutions for KdV (or gKdV)
- (see  Gorsky-Himonas \cite{Gorsky:2005fk} and Byers-Himonas
+ (see  Gorsky-Himonas \cite{Gorsky:2005kx} and Byers-Himonas
  \cite{Byers-2006-Existence-time-for-the-Camassa-Holm})
  for NLS. 

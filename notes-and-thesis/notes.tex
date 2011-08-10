@@ -49,12 +49,11 @@ linkcolor=blue,
 citecolor=blue,
 urlcolor=blue,
 }
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+%\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{cleveref} %must be last loaded package to work properly
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{claim}[theorem]{Claim}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{no}[theorem]{Notation}
@@ -78,6 +77,8 @@ urlcolor=blue,
 \newcommand{\wt}{\widetilde}
 %
 %
+\theoremstyle{remark}
+\newtheorem{claim}[theorem]{Claim}
 %
 %
 %
@@ -159,7 +160,8 @@ urlcolor=blue,
 %
 %
 \backmatter
-\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliographystyle{amsalpha}
 %
 %If want reference in normal size, do \begin{biblist}[\normalsize]
 \end{document}
