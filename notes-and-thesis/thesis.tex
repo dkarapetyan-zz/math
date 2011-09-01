@@ -28,6 +28,8 @@
 \setcounter{secnumdepth}{1} %number only sections, not subsections
 \usepackage[T1]{fontenc}
 \usepackage{ae,aecompl} 
+\usepackage{appendix}
+\usepackage{tikz}
 \usepackage{fix-cm} %allow arbitrary size fonts
 \usepackage{type1ec} %ditto
 \usepackage{amsmath}
@@ -109,8 +111,8 @@ urlcolor=blue,
 
 \frontmatter         % All the items before Chapter 1 go in ``frontmatter''
 
-\title{Well-Posedness and Ill-Posedness for Strongly and Weakly Dispersive
-Equations}            % Title of Work
+\title{WELL-POSEDNESS AND ILL-POSEDNESS FOR STRONGLY AND WEAKLY DISPERSIVE
+EQUATIONS}            % Title of Work
 \author{David Karapetyan, B.S., M.S.}           % Author's name
 \work{Dissertation}             % ``Dissertation'' or ``Thesis''
 \degprior{ }         % All prior degrees
@@ -127,8 +129,20 @@ Equations}            % Title of Work
                        % uncomment out \makecopyright
  % \makepublicdomain   % Uncomment this to make your work public domain
 
- % \begin{abstract}
- % \end{abstract}
+\begin{abstract}
+
+It is shown that the solution map for the hyperelastic rod equation is not 
+uniformly continuous on bounded sets of Sobolev spaces with exponent 
+greater than 3/2 in the periodic case and greater than 1 in the 
+non-periodic case. The proof is based on the method of approximate 
+solutions and well-posedness estimates for the solution and its lifespan.
+Building upon this work, we also prove H\"older continuity of the data to
+solution map for the hyperelastic rod equation for
+initial data in Sobolev spaces with eponent greater than 3/2 in
+weaker Sobolev topologies with index greater than -1. Following this, we
+consider a generalized non-linear Schr\"odinger equation, and prove a
+well-posedness result. Lastly, we produce numerics for all these equations.
+\end{abstract}
  %                         % Either place the text between begin/end, or
  % \include{abstract}  % put it in a file to be included
 
@@ -172,11 +186,10 @@ Equations}            % Title of Work
 \mainmatter
  % Place the text body here.
  \input{./hr/hr.tex}
+ \input{./hr-holder/hr_holder_cont.tex}
  \input{./mnls/mnls}
  \chapter{Numerics}
 \appendix
-\chapter{}
-\input{./mnls/mnls-appen.tex}
 \chapter{Calculus on Banach Spaces}
 \input{./ode-thm/ode-thm.tex}
  % If you have appendices, add them here.
@@ -187,8 +200,215 @@ Equations}            % Title of Work
 
 \backmatter              % Place for bibliography and index
 %\bibliographystyle{nddiss2e}
-\bibliographystyle{amsalpha-custom} 
-\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{HKM09}
+
+\bibitem[BBM72]{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
+  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+  A \textbf{272} (1972), no.~1220, 47--78.
+
+\bibitem[BC07]{Bressan_2007_Global-conserva}
+A.~Bressan and A.~Constantin, \emph{Global conservative solutions of the
+  camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
+  215--239.
+
+\bibitem[BCK06]{Bendahmane_2006_Hsp-1-perturbat}
+M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen, \emph{$h^1$-perturbations of
+  smooth solutions for a weakly dissipative hyperelastic-rod wave equation},
+  Mediterr. J. Math. \textbf{3} (2006), no.~3-4, 419--432.
+
+\bibitem[Ben72]{Benjamin_1972_The-stability-o}
+T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+  (London) Ser. A \textbf{328} (1972), 153--183.
+
+\bibitem[BGT02]{Burq_Gerad_Tzvetkov-An-instability-}
+N.~Burq, P.~G{\'e}rad, and N.~Tzvetkov, \emph{An instability property of the
+  nonlinear schr{\"o}dinger equation on {\$}s\^{}d{\$}}, Math. Res. Lett.
+  \textbf{9} (2002), no.~2-3, 323--335.
+
+\bibitem[BL76]{bergh1976interpolation}
+J.~Bergh and J.~L{\"o}fstr{\"o}m, \emph{Interpolation spaces: an introduction},
+  vol. 223, Springer-Verlag, 1976.
+
+\bibitem[BS88]{Bennett:1988ys}
+C.~Bennett and R.~Sharpley, \emph{Interpolation of operators}, vol. 129,
+  Academic Pr, 1988.
+
+\bibitem[BT09]{Bona_2009_Sharp-well-pose}
+J.~L. Bona and N.~Tzvetkov, \emph{Sharp well-posedness results for the bbm
+  equation}, Discrete Contin. Dyn. Syst. \textbf{23} (2009), no.~4, 1241--1252.
+
+\bibitem[CCT03]{Christ_2003_Asymptotics-fre}
+M.~Christ, J.~Colliander, and T.~Tao, \emph{Asymptotics, frequency modulation,
+  and low regularity ill-posedness for canonical defocusing equations}, Amer.
+  J. Math. \textbf{125} (2003), no.~6, 1235--1293.
+
+\bibitem[Che11]{Chen:2011fk}
+R.~M. Chen, \emph{The h{\"o}lder continuity of the solution map to the
+  $b$-family equation in weak topology}, 2011.
+
+\bibitem[CHK05]{Coclite_2005_Global-weak-sol}
+G.~M. Coclite, H.~Holden, and K.~H. Karlsen, \emph{Global weak solutions to a
+  generalized hyperelastic-rod wave equation}, SIAM J. Math. Anal. \textbf{37}
+  (2005), no.~4, 1044--1069 (electronic).
+
+\bibitem[CS00]{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
+  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+  140--148.
+
+\bibitem[Dai98]{Dai_1998_Model-equations}
+H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
+  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+  193--207.
+
+\bibitem[DDH00]{Dai_2000_Head-on-collisi}
+H.-H. Dai, S.~Dai, and Y.~Huo, \emph{Head-on collision between two solitary
+  waves in a compressible mooney-rivlin elastic rod}, Wave Motion \textbf{32}
+  (2000), no.~2, 93--111.
+
+\bibitem[DH00]{Dai_2000_Solitary-shock-}
+H.-H. Dai and Y.~Huo, \emph{Solitary shock waves and other travelling waves in
+  a general compressible hyperelastic rod}, R. Soc. Lond. Proc. Ser. A Math.
+  Phys. Eng. Sci. \textbf{456} (2000), no.~1994, 331--363.
+
+\bibitem[Die69]{Dieudonne_1969_Foundations-of-}
+J.~Dieudonn{\'e}, \emph{Foundations of modern analysis}, 1969.
+
+\bibitem[Fol99]{Folland_1999_Real-analysis}
+G.~B. Folland, \emph{Real analysis}, 1999.
+
+\bibitem[HK09]{Himonas:2009fk}
+A.~Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
+  the ch equation on the line}, Differential Integral Equations \textbf{22}
+  (2009), no.~3-4, 201--224.
+
+\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
+A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
+  periodic ch equation.}, To appear in Communications in Partial Differential
+  Equations (2009).
+
+\bibitem[HM01a]{Himonas_2001_The-Cauchy-prob}
+A.~Himonas and G.~Misiolek, \emph{The cauchy problem for an integrable
+  shallow-water equation}, Differential Integral Equations \textbf{14} (2001),
+  no.~7, 821--831.
+
+\bibitem[HM01b]{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}
+\bysame, \emph{A priori estimates for schr{\"o}dinger type multipliers},
+  Illinois J. Math. \textbf{45} (2001), no.~2, 631--640.
+
+\bibitem[HM05]{Himonas:2005kx}
+A.~Himonas and G.~Misiolek, \emph{High-frequency smooth solutions and
+  well-posedness of the {C}amassa-{H}olm equation}, Int. Math. Res. Not.
+  (2005), no.~51, 3135--3151. \MR{2187502 (2006i:35315)}
+
+\bibitem[HM09]{Himonas_2009_Non-uniform-dep-euler}
+A.~Himonas and G.~Misiolek, \emph{Non-uniform dependence on initial data of
+  solutions to the euler equations of hydrodynamics}, Communications in
+  Mathematical Physics (2009).
+
+\bibitem[HMP07]{Himonas_2007_Non-uniform-con}
+A.~Himonas, G.~Misiolek, and G.~Ponce, \emph{Non-uniform continuity in {\$}h\^
+  1{\$} of the solution map of the ch equation}, Asian J. Math. \textbf{11}
+  (2007), no.~1, 141--150.
+
+\bibitem[HR07]{Holden_2007_Global-conserva}
+H.~Holden and X.~Raynaud, \emph{Global conservative solutions of the
+  generalized hyperelastic-rod wave equation}, J. Differential Equations
+  \textbf{233} (2007), no.~2, 448--484.
+
+\bibitem[Jos98]{Jost-1998-Postmodern-analysis}
+J.~Jost, \emph{Postmodern analysis}, 1998.
+
+\bibitem[Kar10]{Karapetyan:2010fk}
+D.~Karapetyan, \emph{Non-uniform dependence and well-posedness for the
+  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826. \MR{2652154 (2011g:35352)}
+
+\bibitem[Kat75]{Kato_1975_Quasi-linear-eq}
+T.~Kato, \emph{Quasi-linear equations of evolution, with applications to
+  partial differential equations}, 1975, pp.~25--70. Lecture Notes in Math.,
+  Vol. 448.
+
+\bibitem[Kna05a]{Knapp:2005rm}
+A.~Knapp, \emph{Advanced real analysis}, Birkhauser, 2005.
+
+\bibitem[Kna05b]{Knapp:2005yg}
+\bysame, \emph{Basic real analysis}, Birkhauser, 2005.
+
+\bibitem[KP88]{Kato:1988zr}
+T.~Kato and G.~Ponce, \emph{Commutator estimates and the {E}uler and
+  {N}avier-{S}tokes equations}, Comm. Pure Appl. Math. \textbf{41} (1988),
+  no.~7, 891--907. \MR{951744 (90f:35162)}
+
+\bibitem[KPV01]{Kenig_2001_On-the-ill-pose}
+C.~E. Kenig, G.~Ponce, and L.~Vega, \emph{On the ill-posedness of some
+  canonical dispersive equations}, Duke Math. J. \textbf{106} (2001), no.~3,
+  617--633.
+
+\bibitem[KT05]{Koch_2005_Nonlinear-wave-}
+H.~Koch and N.~Tzvetkov, \emph{Nonlinear wave interactions for the benjamin-ono
+  equation}, Int. Math. Res. Not. (2005), no.~30, 1833--1847.
+
+\bibitem[Len06]{Lenells_2006_Traveling-waves}
+J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
+  Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
+
+\bibitem[LO00]{Li_2000_Well-posedness-}
+Y.~A. Li and P.~J. Olver, \emph{Well-posedness and blow-up solutions for an
+  integrable nonlinearly dispersive model wave equation}, J. Differential
+  Equations \textbf{162} (2000), no.~1, 27--63.
+
+\bibitem[Mus07]{Mustafa_2007_Global-conserva}
+O.~G. Mustafa, \emph{Global conservative solutions of the hyperelastic rod
+  equation}, Int. Math. Res. Not. IMRN (2007), no.~13, Art. ID rnm040, 26.
+
+\bibitem[Ols06]{Olson_2006_Non-uniform-dep}
+E.~Olson, \emph{Non-uniform dependence on initial data for a family of
+  non-linear evolution equations}, Differential Integral Equations \textbf{19}
+  (2006), no.~10, 1081--1102.
+
+\bibitem[RB01]{Rodriguez-Blanco_2001_On-the-Cauchy-p}
+G.~Rodr\'iguez-Blanco, \emph{On the cauchy problem for the camassa-holm
+  equation}, Nonlinear Anal. \textbf{46} (2001), no.~3, Ser. A: Theory Methods,
+  309--327.
+
+\bibitem[Rud76]{Rudin:1976uq}
+W.~Rudin, \emph{Principles of mathematical analysis}, third ed., McGraw-Hill
+  Book Co., New York, 1976, International Series in Pure and Applied
+  Mathematics. \MR{0385023 (52 \#5893)}
+
+\bibitem[Tay91]{Taylor_1991_Pseudodifferent}
+M.~E. Taylor, \emph{Pseudodifferential operators and nonlinear pde}, vol. 100,
+  1991.
+
+\bibitem[Tay95]{Taylor:1995kx}
+M.~E. Taylor, \emph{Partial differential equations i, basic theory}, Applied
+  Mathematical Sciences, vol. 115, Springer-Verlag, New York, 1995.
+
+\bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
+Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
+  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
+
+\bibitem[Yos80]{Yosida:1980fk}
+K.~Yosida, \emph{Functional analysis}, sixth ed., Grundlehren der
+  Mathematischen Wissenschaften [Fundamental Principles of Mathematical
+  Sciences], vol. 123, Springer-Verlag, Berlin, 1980. \MR{617913 (82i:46002)}
+
+\bibitem[Zho05]{Zhou_2005_Local-well-pose}
+Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
+  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
+
+\end{thebibliography}
+%\bibliographystyle{amsalpha-custom} 
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 
 \end{document}
 
