@@ -5,6 +5,7 @@
 *.pdfsync
 *.dvi
 *.fig
+*.xlsx
 *.zip
 *.nav
 *.snm
