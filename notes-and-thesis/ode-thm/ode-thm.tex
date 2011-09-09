@@ -30,7 +30,8 @@ Our goal will be to prove the following.
 %
 \begin{theorem}[Metric Space ODE Theorem]
 	\label{ode-thm}
-  Let $(X,d)$ be a metric, $E \subset X$ open, $\vp \in E$, and $(-a, a)$ an
+  Let $X$ be a topological vector space over $\rr$
+  with topology induced by a metric $d$, $E \subset X$ open, $\vp \in E$, and $(-a, a)$ an
 	open interval in $\rr$. If $f: (-a, a) \times E \to X$ satisfies the
 	inequality
 	%
@@ -100,10 +101,12 @@ generalization of the following classical result.
 	\end{theorem}
 To prove \autoref{ode-thm}, we will first define
 integration over Banach space. (To extend the theory of integration
-to arbitrary complete metric spaces, one need only replace norms with metrics in
-the definitions. We leave this to the reader.) Using which we will use to
-rewrite \eqref{ode-thm-eq} as an integral equation. A fixed point
-argument will then complete the proof. These notes are heavily influenced by a
+to arbitrary complete topological vector spaces with topology induced by a
+metric, one need
+only replace norms with metrics in the definitions. We leave this to the
+reader.) Then we will rewrite
+\eqref{ode-thm-eq} as an integral equation. A fixed point argument will complete
+the proof. These notes are heavily influenced by a
 number of excellent books, among them Dieudonn{\'e}
 \cite{Dieudonne_1969_Foundations-of-}, Yosida \cite{Yosida:1980fk},
 Folland \cite{Folland_1999_Real-analysis}, Jost
@@ -923,7 +926,7 @@ since $0 \le \alpha < 1$.
 	%
 	%
 	Since $f(t)$ is Lipschitz continuous on $E$ for $t \in (-a, a)$, it is
-	continuous on $E$. Hence, using the theory of Banach space integration
+	continuous on $E$. Hence, using the theory of metric space integration
   developed earlier and the fundamental theorem of calculus,
   one can check that the initial value problem
   \eqref{ode-thm-eq}-\eqref{ode-thm-init-data} is equivalent to the
@@ -939,14 +942,27 @@ since $0 \le \alpha < 1$.
 	%
 	%
 	%
-	Let $[-h, h] \subset (-a, a)$ be a closed interval, with $t \in [-h, h]$,
+	Let $[-h, h] \subset [-a/2, a/2]$ be a closed interval, with $t \in [-h, h]$,
 	and $r$ chosen such that
 	$$B_r(\vp) \doteq \left\{ u \in X: d(\vp, u) \le r \right\}$$
 	is a subset of $E$. Define 
 	$$V_h = \left\{ \text{all maps} \; \;  v: [-h, h]
-		\to B_r(\vp)\right\}.$$ Then $V_h$ is a Banach
-		space under the norm defined by $$| | | v_1 - v_2 | | | = \sup_{s \in [-h,
-    h]} d[v_1(s),v_2(s)].$$ Let $T$ be a map
+    \to B_r(\vp)\right\}.$$ Then $(V_h, \mathfrak{d})$ is a complete metric space
+    where the metric $\mathfrak{d}$ is defined by
+    $$\mathfrak{d}(v_{1}, v_{2}) = \sup_{s \in [-h,
+    h]} d[v_1(s),v_2(s)].$$ 
+    We shall also use the notation
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+    ||| v ||| = \sup_{s \in [-h,
+    h]} d[v(s),0]. 
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Let $T$ be a map
 	acting on $V_h$ via the relation $$Tv(t) = \vp + \int_0^t f(s, v(s) ) \ ds.$$
 	Recalling \autoref{lem:fixed-point}, we see that to complete the proof it will be enough to show that $T$ is a contraction on
 	$V_h$, for suitably small $h >0$. First, note that for $v \in V_h$, we have
@@ -959,17 +975,52 @@ since $0 \le \alpha < 1$.
 		& = | | | \int_0^t f(s, v(s) ) \ ds | | |
 		\\
     & \le  \int_0^{|t|} | | | f(s, v(s) ) | | | ds
-		\\
-    & \le   \int_0^{|t|} M_1 ds
-		\\
-		& =  |t| M_1
-		\\
-		& \le  h M_1.
-	\end{split}
-\end{equation}
+    \end{split}
+    \end{equation}
+To estimate the integrand, we recall that $f(t, x)$ is continuous in the time
+variable in the interval $(-a, a)$. Hence, for $t \in [-a/2, a/2]$ and fixed $x
+\in E$, we have
 %
 %
-Choosing $h \le r/M_1$, it follows that $T: V_h \to V_h$. 
+\begin{equation*}
+\begin{split}
+d(f(t, x), 0) \le M
+\end{split}
+\end{equation*}
+%
+%
+for some constant $M > 0$. Using this and the Lipschitz continuity of $f(t, x)$
+in the spatial variable on $E$, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+| | | f(s, v(s) ) | | | 
+& \le | | | f(s, v(s)) - f(s, v(0)) ||| + ||| f(s, v(0)) |||
+\\
+& \le c \sup_{s \in [-h, h]}  d(v(s), v(0)) +  M
+\\
+& \le 2cr + M.
+\end{split}
+\end{equation*}
+%
+%
+Substituting this relation into \eqref{cont-map-into}, we see that
+\begin{equation*}
+  \begin{split}
+| | | Tv - \vp| | |
+& \le 
+\int_0^{|t|} [2cr + M ] ds
+    \\
+    & \le  |t| [ 2cr + M]
+		\\
+    & \le  h [ 2cr + M].
+\end{split}
+\end{equation*}
+%
+%
+%
+Choosing $h \le 1/[2cr + M]$, it follows that $T: V_h \to V_h$. 
 %Since $[-h, h] \subset (-a, a)$, we can find a compact set $C$ such that $(-h,
 %h) \subset C \subset (-a, a)$. Since $f$ is a continuous function of two
 %variables, $f( (C \times K) )$ is compact, and so \eqref{cont-map-into} gives
@@ -997,32 +1048,31 @@ V_h$, we have
 		\\
     & = \int_0^{|t|} \sup_{s \in [-h, h]} d[f(s, v_1(s) ), f(s, v_2 (s) )] \ ds
 		\\
-    & \le \int_0^{|t|} M_2 \sup_{s \in [-h, h]} d[v_1(s), v_2 (s)] \
+    & \le c \int_0^{|t|}  \sup_{s \in [-h, h]} d[v_1(s), v_2 (s)] \
 		ds
 		\end{split}
 \end{equation}
 %
 %
-where the last step follows from \eqref{stronger-ode}.
-Hence
+where the last step follows from \eqref{stronger-ode}. Hence
 \begin{equation*}
 	\begin{split}
 		| | | Tv_2 - Tv_1 | | | 
-		& \le M_2 h \sup_{s \in [-h, h]} d[v_1(s), v_2 (s)]
+		& \le c h \sup_{s \in [-h, h]} d[v_1(s), v_2 (s)]
 		\\
-		& = M_2 h   | | | v_2 - v_1 | | |_X.  
+		& = ch |||v_2 - v_1|||.
 	\end{split}
 \end{equation*}
 %
 %
-Restricting $h < 1/(M_2)$, we obtain
+Restricting $h \le 1/(2c)$, we obtain
 \begin{equation*}
 	\begin{split}
-		| | | Tv_2 - Tv_1 | | | & \le c | | | v_2 - v_1 | | |_X, \qquad c <1. 
+		| | | Tv_2 - Tv_1 | | | & \le \frac{1}{2} | | | v_2 - v_1 | | |. 
 	\end{split}
 \end{equation*}
-Hence, for $h < \min\left\{r/M_1, 1/M_2  \right\}$, $T$ is a contraction on
-$V_h$.  This completes \\ the proof. \qed
+Hence, for $h \le \min\left\{1/(2c), 1/[2cr + M] \right\}$, $T$ is a
+contraction on $V_h$. This completes the proof. \qed
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1033,12 +1083,46 @@ $V_h$.  This completes \\ the proof. \qed
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Regularity in Time for Solutions to ODEs} 
+\section{Regularity for Solutions to ODEs} 
 \label{sec:dep-param}
 %
 %
-Following Taylor \cite{Taylor:1995kx}, $U \subset C^{k}$ be an open subset, and
-$F: U \to C^{k}$. Consider the non-autonomous system
+Following Taylor \cite{Taylor:1995kx}, let $X \subset \rr$ be an open subset,
+$U \subset C^{k}(X)$ be an open subset, where $k \in \mathbb{N}\cup \omega$, and
+$F: U \to C^{k}(X)$. We endow $C^{k}(X), k \in \mathbb{N}$ with the metric
+induced by its seminorms
+%
+%
+\begin{equation*}
+\begin{split}
+d(f, g) \doteq \sum_{k \in \mathbb{N}} \sum_{j \in \mathbb{N}} 2^{-j -k} \frac{|
+f-g |_{j, k}}{1 + | f-g |_{j, k}}
+\end{split}
+\end{equation*}
+%
+where
+%
+%
+\begin{gather*}
+|h|_{j,k}  = \sup_{x \in K_j} \sum_{k \in \mathbb{N}} |d^{k}h(x)|,
+\\
+\{ K_{j} \} \ \text{a family of compact subsets of} \ X \  \text{covering} \ X
+\end{gather*}
+%
+%
+%
+and equip the set of real analytic functions $C^{\omega}(X)$ with the
+metric
+%
+%
+\begin{equation*}
+\begin{split}
+\rho(f,g) \doteq \sup_{x \in X} |f(x) - g(x)|.
+\end{split}
+\end{equation*}
+%
+%
+Consider the non-autonomous system
 %
 %
 \begin{gather}
@@ -1074,7 +1158,7 @@ autonomous system
 \frac{dy}{dt} = F\left( y(x,t) \right)
 \label{ode-eq}
 \\
-y(0) = y_{0}(x), \quad x \in \ci \ \text{or} \ \rr,t \in \rr
+y(0) = y_{0}(x), \quad x \in \ci \ \text{or} \ \rr
 \label{ode-init-data}
 \end{gather}
 %
@@ -1095,7 +1179,7 @@ for which we shall prove the following.
 %
 \begin{corollary}[Regularity With Respect to Parameters]
   \label{cor:reg-param}
-  Let $U \subset C^{k}$ be an open subset, $ k \ge 0$.  
+  Let $U \subset C^{k}$ be an open subset, $ k \in \mathbb{N} \cup \omega$.  
 Consider the ode
 \begin{gather}
   \label{ode-param-naut}
@@ -1116,23 +1200,7 @@ this solution is $C^{k}$ in $x$ and $\tau$.
 \end{corollary}
 %
 \begin{proof}
-  Letting $z = \left[ y(x, \tau, t), \tau \right]$, we get
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  \frac{dz}{dt}
-  & = \left( \frac{dy}{dt}, 0 \right)
-  \\
-  & = \left( F\left[ y(x,\tau, t), \tau \right], 0 \right)
-  \\
-  & = \left( F[y(z)], 0 \right)
-  \\
-  & \doteq G(z).
-  \end{split}
-  \end{equation*}
-  %
-  Hence, without loss of generality, we restrict our attention to the ivp
+  Without loss of generality, we restrict our attention to the homogeneous ivp
 \begin{gather}
   \label{ode-param}
 \frac{dy}{dt} = F \left [ y(x, \tau, t) \right]
@@ -1178,16 +1246,15 @@ $C^{k}$ in $x$ and $\tau$, concluding the proof.
 %
 We are now prepared to prove the following. 
 \begin{theorem}
-  Let $U \subset C^{k}$ be an open subset, $k \ge 0$. Suppose $G: U \to C^{k}$
+  Let $U \subset C^{k}$ be an open subset, $k \in \mathbb{N} \cup \omega$. Suppose $G: U \times \rr
+  \to C^{k}$
   is Lipschitz. If $y_{0} \in C^{k}$, then there exists an open set $I \subset
   \rr$
 such that the ivp 
 \begin{gather}
-\frac{dy}{dt} = G\left( y(x,t) \right)
-\label{cc}
+\frac{dy}{dt} = G\left( y(x,t), t \right)
 \\
 y(0) = y_{0}(x), \quad x \in \ci \ \text{or} \ \rr,t \in \rr
-\label{dd}
 \end{gather}
 %
 %
@@ -1198,6 +1265,15 @@ this solution is $C^{k}$ in $x$ and $t$.
 %
 %
 \begin{proof}
+Without loss of generality, we restrict our attention to the homogeneous ivp
+\begin{gather}
+\frac{dy}{dt} = G\left( y(x,t) \right)
+\label{cc}
+\\
+y(0) = y_{0}(x), \quad x \in \ci \ \text{or} \ \rr,t \in \rr.
+\label{dd}
+\end{gather}
+
   We choose $F: U \times \rr \to C^{k}$ in \eqref{ode-param-naut}
   such that it is $C^{k}$ and satisfies 
   %
@@ -1227,7 +1303,7 @@ this solution is $C^{k}$ in $x$ and $t$.
 %
 Then if $y(x, t, \tau)$ is a solution to
 \eqref{ode-param-naut}-\eqref{ode-param-init-naut}, we have $y(x, \tau, t ) =
-y(x, 1, \tau t)$. To see this, note that
+y(x, 1, \tau t)$. To see this, we compute
 %
 %
 \begin{equation*}
@@ -1250,10 +1326,10 @@ y(x, 1, \tau t)$. But formally, by the chain rule, we have
 \begin{equation}
   \label{chain-comp}
 \begin{split}
-\frac{dy}{d \tau}(x, \tau, t) 
-& = \frac{d}{d \tau}\left[ y(x, 1, \tau t) \right]
+\frac{d^{k}y}{d \tau^{k}}(x, \tau, t) 
+& = \frac{d}{d \tau^{k}}\left[ y(x, 1, \tau t) \right]
 \\
-& = \tau \frac{dy}{dt}\left[ y(x, 1, \tau t) \right] 
+& = \tau^{k} \frac{d^{k}y}{dt^{k}}(x, 1, \tau t) + \dots
 \end{split}
 \end{equation}
 %
@@ -1262,16 +1338,18 @@ By Corollary \ref{cor:reg-param}, $y$ is $C^{k}$ in $\tau$. Hence, from
 \eqref{chain-comp}, we conclude that $y$ is $C^{k}$ in $t$. $C^{k}$
 differentiability in $x$ follows from Corollary \ref{cor:reg-param}.
 Running an induction, one obtains the corresponding result
-for the case $k = \infty$. Lastly, for any given $G$, we can find $F$ satisfying
-\eqref{hjj} and such that
+for the case $k = \infty$. The case $k = \omega$ is identical to the case
+$k \in \mathbb{N}$. Lastly, for any given $G$,
+we can find $F$ satisfying \eqref{hjj} and such that
 $G(\cdot) = F(\cdot, 1)$. This concludes the proof.
 %
 \end{proof}
 %
 %
 \section{Differentiation in Banach Spaces}
-We remark that the theory presented below can be extended to arbitrary complete
-metric spaces (and hence, Fr\'echet spaces) by replacing norms with metrics.
+We remark that the theory presented below can be extended to arbitrary
+topological vector spaces with a topology induced by a metric (in particular,
+Fr\'echet spaces) by replacing norms with metrics in what follows.
 \begin{definition}
 	\label{def:diff}
 	Let $X,Y$ be Banach spaces over the real numbers, $U \subset X$ open,
@@ -1555,11 +1633,12 @@ Lastly, we include the following.
 %
 %
 \begin{proposition}
-		(Chain Rule) Let $X,Y,Z$ be Banach spaces, $g: Y \to Z$ and $f:
-		X \to Y$ continuously differentiable maps. Then for all $x_0
-		\in X$ we have \begin{equation*} (g \circ f)' (x_0) =
-			g'(f(x_0)) \circ (f'(x_0)).
+    (Chain Rule) Let $X,Y,Z$ be Banach spaces, $f: X \to Y$ and $g: Y \to Z$
+    continuously differentiable maps. Then for all $x_0 \in X$ we have
+    %
+    \begin{equation*} (g \circ f)' (x_0) = g'(f(x_0)) \circ (f'(x_0)).
 		\end{equation*} 
+    %
 	\end{proposition}
   \begin{proof} Since $f$ and $g$ are continuously differentiable, we can write
 			\begin{equation*}
@@ -1581,7 +1660,7 @@ Lastly, we include the following.
 					+ o_{2}(f'(x_0)(s) + o_{1}(s))
 					\\
 					&= g(f(x_0)) + g'(f(x_0)) \circ f'(x_0)(s) +
-					g'(f(x_0)) \circ o_{1}(s) + o_{2}(f'(x_0)(s) + o_{1}(s))
+					g'(f(x_0)) \circ o_{1}(s) + o_{2}(f'(x_0)(s) + o_{1}(s)).
 				\end{split}
 			\end{equation}
       Since $f'(x_0)$
