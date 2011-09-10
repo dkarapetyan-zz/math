@@ -1345,6 +1345,424 @@ $G(\cdot) = F(\cdot, 1)$. This concludes the proof.
 %
 \end{proof}
 %
+\section{Smoothness of the Data-to-Solution Map for ODEs} 
+\label{sec:dep-param-smooth}
+%
+%
+Following Taylor \cite{Taylor:1995kx}, let $X$ be a Banach space, $U \subset X$ an open subset, and $F: U \to X$. Consider the non-autonomous system
+%
+%
+\begin{gather}
+  \label{aa-sm}
+\frac{dy}{dt} = F(y(x,t), t),
+\\
+y(0)= y_{0}(x) \in X, \quad x \in \ci^{n} \ \text{or} \ \rr^{n},t \in \rr.
+\label{bb-sm}
+\end{gather}
+%
+Letting $z = (y(x,t), t)$, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dz}{dt}  
+& = \left (\frac{dy}{dt}, 1 \right )
+\\
+& = \left( F(y(t), t), 1 \right)
+\\
+& = \left( F(z), 1 \right)
+\\
+& \doteq G(z).
+\end{split}
+\end{equation*}
+%
+%
+Hence, without loss of generality, we may restrict our attention to the
+autonomous system
+%
+%
+\begin{gather}
+\frac{dy}{dt} = F\left( y(x,t) \right)
+\label{ode-eq-sm}
+\\
+y(0) = y_{0}(x), \quad x \in \ci^{n} \ \text{or} \ \rr^{n},t \in \rr
+\label{ode-init-data-sm}
+\end{gather}
+%
+%
+%
+for which we shall prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                dep on init cond
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+  Let $U \subset C^{k}$ be an open subset, $k \ge 0$. Suppose
+  $F: U \to C^{k}$ is Lipschitz and $k$ times differentiable. 
+  Then the flow map $\vp \mapsto u(t, \vp) \doteq S_{t}(\vp)$ is Lipschitz and
+  $k$ times differentiable.
+  \label{prop:reg-result}
+\end{proposition}
+%
+%
+%
+%
+\begin{proof}
+  We divide our work into cases.
+  \subsection{Case $k = 0$.} Integral formulation
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  u(t, \vp) = \vp + \int_{0}^{t} F[u(\tau, \vp)] d \tau
+  \end{split}
+  \end{equation*}
+  %
+  For $h$ sufficiently small, theorem tells us that there exists a unique solution $u(t, \vp)$ for $t \in [-t, t]$. Therefore
+  %
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  u(t, \vp) - u(t, \psi) = \vp - \psi + \int_{0}^{t} \{F[u(\tau, \vp)] - F[u(\tau, \psi)]\} d \tau.
+  \end{split}
+  \end{equation*}
+  %
+  %
+ Applying the triangle inequality and the Lipschitz condition, we obtain the estimate
+  \begin{equation*}
+  \begin{split}
+  \sup_{t \in [-t, t]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
+  & \le \|\vp -
+  \psi\|_{L^{\infty}} +  h \sup_{t \in [-h, h]} \|F[u(t, \vp)] - F[u(t, \psi)] \|_{L^{\infty}}
+  \\
+  & \le \|\vp - \psi\|_{L^{\infty}} +  ch \sup_{t \in [-h, h]} \|[u(t, \vp)] -
+  [u(t, \psi)] \|_{L^{\infty}}.
+  \end{split}
+  \end{equation*}
+Choosing $h < 1/c$ and rearranging terms, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\sup_{t \in [-h, h]} \| u(t, \vp) - u(t, \psi) \|_{L^{\infty}} \le \frac{1}{1-ch} \| \vp - \psi \|_{L^{\infty}}
+\end{split}
+\end{equation*}
+%
+%
+concluding the proof.
+ \label{ssec:case-0}
+ \subsection{Case $k=1$} 
+  \label{ssec:case-k}
+ % 
+ %
+Formally differentiate
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm} with respect to $\vp$ and obtain
+%
+%
+%
+\begin{gather}
+  W' = DF(y) \circ W
+  \label{ode-lin}
+  \\
+  W(0) = I
+  \label{ode-lin-init-data}
+\end{gather}
+%
+%
+where $W \doteq D_{\vp} y(\vp,t)$ and $y$ is the unique solution to
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}. Let $w(\vp,t) = D_{\vp}y(\vp,t) \circ h$, where $h \in U$ is
+arbitrary. Then
+from \eqref{ode-lin}-\eqref{ode-lin-init-data} we
+obtain
+%
+%
+\begin{gather}
+  w' = DF(y) \circ w 
+  \label{ode-lin-h}
+  \\
+  w(0) = h
+  \label{ode-lin-init-data-h}
+\end{gather}
+%
+%
+Since $F$ is $C^{1}(U)$, $Df(y): U \to C^{1}$ continuously. Therefore, by the Banach Peano
+existence theorem, there exists a solution $w = w(\vp,t)$ (not necessarily unique) to
+\eqref{ode-lin-h}-\eqref{ode-lin-init-data-h} for $t$ in some open subset of
+$\rr$. We now show that this solution is in fact $D_{\vp} y(\vp,t)$ as follows. Let
+$z(\vp,t) = y(\vp + h, t) - y(\vp,t)$. Note that
+%
+%
+\begin{equation}
+  \label{uhh}
+\begin{split}
+\frac{dz}{dt} 
+& = F\left[ y(\vp + h, t) \right] - F\left[ y(\vp,t) \right]
+\\
+& = \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
+\\
+& = \int_{0}^{1} \frac{d}{ds} F\left[ sz(\vp,t) + y(\vp,t) \right] ds
+\\
+& = F(y+z) - F(y)
+\end{split}
+\end{equation}
+%
+%
+which by the definintion of the Banach space derivative implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dz}{dt} = DF(y) \circ z + R_{1}(y,z), \quad R_{1}(y,z) = R_{1}[z(t)] = o(\|
+  z(t) \|_{C^{1}})
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d}{dt}(z-w) = DF(y) \circ (z-w) + R_{1}(y,z).
+\end{split}
+\end{equation*}
+%
+%
+Noting that %
+%
+\begin{equation*}
+\begin{split}
+  (z-w)(0) & = 0
+\end{split}
+\end{equation*}
+%
+%
+we seek to solve the inhomogeneous ode
+%
+%
+\begin{gather}
+  \frac{d}{dt}(z-w)  = Df(y) \circ (z-w) + R_{1}(y,z)
+\label{inhom-ode}
+  \\
+  (z-w)(0) = 0.
+  \label{inhom-ode-init}
+\end{gather}
+%
+%
+To do so, we first solve the homogenous ode
+\begin{gather}
+  \frac{d}{dt}(z-w)  = DF(y) \circ (z-w) 
+\label{hom-ode}
+  \\
+  (z-w)(0) = 0.
+  \label{hom-ode-init}
+\end{gather}
+Letting $v(\vp,t) = z(\vp,t) - w(\vp,t)$, this is equivalent to
+%
+%
+%
+\begin{gather*}
+  \frac{dv}{dt}  = DF(y) \circ v
+  \\
+  v(0) = 0
+\end{gather*}
+which admits the unique solution
+%
+%
+\begin{equation*}
+\begin{split}
+  v(\vp,t) 
+  & = e^{\int_{0}^{t} DF\left[ y(\vp,s) \right]ds} \circ R_{2}(\vp,h) 
+  \\
+  & \doteq S(t)R_{2}(\vp,h).
+\end{split}
+\end{equation*}
+%
+%
+By Duhamel's principle, the solution to \eqref{inhom-ode}-\eqref{inhom-ode-init}
+is then given by
+%
+%
+\begin{equation*}
+\begin{split}
+  z(t) - w(t) = \int_{0}^{t} S(t-t') R_{1}\left[ y(\vp,t'), z(\vp,t') \right]dt'.
+\end{split}
+\end{equation*}
+%
+%
+But
+%
+%
+\begin{equation}
+  \label{yui}
+\begin{split}
+  \|z(t) - w(t) \|_{C^{1}}
+  & = \| \int_{0}^{t} S(t-t') R_{1}\left[ y(\vp,t'), z(\vp,t')
+  \right]dt' \|_{C^{1}}
+  \\
+  & \le \int_{0}^{t} \| S(t-t') R_{1}\left[ y(\vp,t'), z(\vp,t') \right]
+  \|_{C^{1}} dt'
+  \\
+  & \le \int_{0}^{t}  | | | S(t-t')  | | |_{L(U, C^{1})} \| R_{1}\left[ y(\vp,t'),
+  z(\vp,t')
+  \right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt'
+\end{split}
+\end{equation}
+%
+%
+where $\| \cdot \|_{L(U, C^{1})}$ denotes the operator norm on the space
+$L(U,C^{1})$ of linear continuous functions from $U$ to $C^{1}$. We have the bound
+%
+%
+\begin{equation}
+  \label{op-norm}
+\begin{split}
+  | | | S(t-t') | | |_{L(U, C^{1})} 
+  & = | | | e^{\int_{0}^{t-t'} DF \left[ y(\vp,s)
+  \right] ds} | | |_{L(U, C^{1})}
+  \\\
+  & \le e^{\int_{0}^{t-t'} | | | DF\left[ y(\vp,s) \right]| | |_{L(U, C^{1})}ds} 
+  \\
+  & \le e^{M(t-t')}.
+\end{split}
+\end{equation}
+%
+%
+We now need an estimate global in $[0,t]$ for
+$$ \| R_{1}\left[ y(\vp,t'), z(\vp,t')
+\right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt'.$$ Since 
+$$ \| R_{1}\left[ y(\vp,t'), z(\vp,t')
+\right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt' = o\| z(t)
+\|_{C^{1}}$$ for fixed
+$y$, it will be enough to bound $\| z(t') \|_{C^{1}}$ for $0 \le t' \le t$. From the
+second line of \eqref{uhh}, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{dt} \| z(t) \|
+& \le \| \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
+\|_{C^{1}}
+\\
+& \le \| \int_{0}^{1} DF\left[  sy(\vp+h, t) + (1-s)y(\vp,t) \right] \circ z ds
+\|_{C^{1}}
+\\
+& \le \| z(t) \|_{C^{1}} | | | DF | | |_{L(U, C^{1})}
+\\
+& = M \| z(t) \|_{C^{1}}.
+\end{split}
+\end{equation*}
+%
+%
+Hence, setting $\vp(t) =  \| z(t) \|_{C^{1}}$, we wish to solve
+%
+%
+\begin{gather*}
+\frac{d \vp}{dt} = M \vp
+\\
+\vp(0) = \| y_{0}(\vp+h) - y_{0}(\vp) \|_{C^{1}}
+\end{gather*}
+%
+%
+which gives
+%
+%
+\begin{equation*}
+\begin{split}
+  \vp(t) & = \vp(0)e^{Mt}
+  \\
+  & = \| y_{0}(\vp+h) - y_{0}(\vp) \|_{C^{1}} e^{Mt}.
+\end{split}
+\end{equation*}
+%
+%
+Since $y_{0}(\vp) \in C^{1}(U)$, $Dy_{0}(\vp) \in \text{C}(U)$, and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \vp(t) = o(|h|)
+\end{split}
+\end{equation*}
+%
+%
+Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+  \| z(t) \|_{C^{1}}  =  o (| h | ) \ \text{for all } \ t \in I
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+\begin{equation}
+  \begin{split}
+    \label{ihh}
+    \| R_{1}\left[ y(\vp,t'), z(\vp,t')
+    \right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt' 
+    & = o\| z(t) |_{C^{1}} 
+    \\
+    & = o(| h |).
+  \end{split}
+\end{equation}
+%
+%
+%
+Combining \eqref{yui}, \eqref{op-norm}, and \eqref{ihh}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  \| z(t) - w(t) \|_{C^{1}} 
+  & \le \int_{0}^{t} t e^{M(t - t')} o(| h
+  |) dt'
+  \\
+  & = te^{Mt} o(| h |) \int_{0}^{t} e^{-Mt'} dt'
+  \\
+  & = o(| h |),
+\end{split}
+\end{equation*}
+%
+%
+that is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| y(\vp + h, t) - y(\vp,t) - w(\vp,t) \|_{C^{1}} = o(| h |).
+\end{split}
+\end{equation*}
+%
+%
+Hence, by the definintion of the Banach space derivative, $D_{\vp}y(\vp,t)$ exists and
+is equal to $w(\vp,t)$. The proof for the case $k=1$ is complete.
+\subsection{Case $k >1$} 
+\label{ssec:case-kg1}
+For finite $k$, formally differentiating
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}
+$k$ times with respect to $x$, we obtain
+\begin{gather*}
+  W' = DG(y) \circ W
+  \\
+  W(0) = W_{0}
+\end{gather*}
+where $G \doteq D^{k-1}F$, $W \doteq D_{x}^{k} y(x,t)$. Hence, the proof of
+$k$-time differentiability in $x$ reduces to the proof in the case $k=1$, which
+comples the proof for finite $k$. If $k = \infty$, we run an induction on $k$ to
+obtain the corresponding result.
+\end{proof}
+
 %
 \section{Differentiation in Banach Spaces}
 We remark that the theory presented below can be extended to arbitrary
