@@ -1580,9 +1580,9 @@ which admits the unique solution
 \begin{equation*}
 \begin{split}
   v(\vp,t) 
-  & = e^{\int_{0}^{t} DF\left[ y(\vp,s) \right]ds} \circ R_{2}(\vp,h) 
+  & = e^{\int_{0}^{t} DF\left[ y(\vp,s) \right]ds} \circ 0
   \\
-  & \doteq S(t)R_{2}(\vp,h).
+  & \doteq S(t)(0).
 \end{split}
 \end{equation*}
 %
@@ -1668,7 +1668,7 @@ Hence, setting $\vp(t) =  \| z(t) \|_{C^{1}}$, we wish to solve
 \begin{gather*}
 \frac{d \vp}{dt} = M \vp
 \\
-\vp(0) = \| y_{0}(\vp+h) - y_{0}(\vp) \|_{C^{1}}
+\vp(0) = \| h \|_{C^{1}}
 \end{gather*}
 %
 %
@@ -1679,17 +1679,9 @@ which gives
 \begin{split}
   \vp(t) & = \vp(0)e^{Mt}
   \\
-  & = \| y_{0}(\vp+h) - y_{0}(\vp) \|_{C^{1}} e^{Mt}.
-\end{split}
-\end{equation*}
-%
-%
-Since $y_{0}(\vp) \in C^{1}(U)$, $Dy_{0}(\vp) \in \text{C}(U)$, and so
-%
-%
-\begin{equation*}
-\begin{split}
-  \vp(t) = o(|h|)
+  & = \| h \|_{C^{1}} e^{Mt}.
+  \\
+  & = o(\|h|\|_{C^{1}}).
 \end{split}
 \end{equation*}
 %
@@ -1699,7 +1691,7 @@ Hence,
 %
 \begin{equation*}
 \begin{split}
-  \| z(t) \|_{C^{1}}  =  o (| h | ) \ \text{for all } \ t \in I
+  \| z(t) \|_{C^{1}}  =  o (\| h \|_{C^{1}} ) \ \text{for all } \ t \in I
 \end{split}
 \end{equation*}
 %
@@ -1711,9 +1703,9 @@ and so
     \label{ihh}
     \| R_{1}\left[ y(\vp,t'), z(\vp,t')
     \right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt' 
-    & = o\| z(t) |_{C^{1}} 
+    & = o\| z(t) \|_{C^{1}} 
     \\
-    & = o(| h |).
+    & = o(\| h \|_{C^{1}}).
   \end{split}
 \end{equation}
 %
@@ -1730,7 +1722,7 @@ Combining \eqref{yui}, \eqref{op-norm}, and \eqref{ihh}, we obtain
   \\
   & = te^{Mt} o(| h |) \int_{0}^{t} e^{-Mt'} dt'
   \\
-  & = o(| h |),
+  & = o(\| h \|_{C^{1}}),
 \end{split}
 \end{equation*}
 %
@@ -1740,22 +1732,22 @@ that is
 %
 \begin{equation*}
 \begin{split}
-  \| y(\vp + h, t) - y(\vp,t) - w(\vp,t) \|_{C^{1}} = o(| h |).
+  \| y(\vp + h, t) - y(\vp,t) - w(\vp,t) \|_{C^{1}} = o(\| h \|_{C^{1}}).
 \end{split}
 \end{equation*}
 %
 %
-Hence, by the definintion of the Banach space derivative, $D_{\vp}y(\vp,t)$ exists and
-is equal to $w(\vp,t)$. The proof for the case $k=1$ is complete.
+Hence, by the definintion of the Banach space derivative, $D_{\vp}y(\vp,t)$
+exists and is equal to $w(\vp,t)$. The proof for the case $k=1$ is complete.
 \subsection{Case $k >1$} 
 \label{ssec:case-kg1}
 For finite $k$, formally differentiating
 \eqref{ode-eq-sm}-\eqref{ode-init-data-sm}
-$k$ times with respect to $x$, we obtain
+$k$ times with respect to $\vp$, we obtain
 \begin{gather*}
   W' = DG(y) \circ W
   \\
-  W(0) = W_{0}
+  W(0) = I
 \end{gather*}
 where $G \doteq D^{k-1}F$, $W \doteq D_{x}^{k} y(x,t)$. Hence, the proof of
 $k$-time differentiability in $x$ reduces to the proof in the case $k=1$, which

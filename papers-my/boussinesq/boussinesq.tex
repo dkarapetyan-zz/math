@@ -2,7 +2,7 @@
 \documentclass{amsart}
 \usepackage{showkeys}
 \usepackage{framed}
-\synctex=1
+\usepackage{enumerate}
 \usepackage{amssymb}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
@@ -15,6 +15,7 @@ urlcolor=blue,
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{no}[theorem]{Notation}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
@@ -55,6 +56,7 @@ urlcolor=blue,
 \newcommand{\tA}{{\tilde{A}}}
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
 \begin{document}
 \title{Ill-posedness issues for the Boussinesq equation}
 
@@ -483,7 +485,7 @@ Then we obtain the equations
   \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}
   \\
   (-i \p_{t} + 1 - \p_{x}^{2})\bar{w}= \frac{1}{2}(v + \bar{w}) -
-  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}.
 \end{gather*}
 %
 Since solutions for the Boussinesq are real-valued, we obtain that $v=w$. Hence,
@@ -505,6 +507,13 @@ the above system reduces to
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\subsection{NLS-type WP implies Boussinesq WP} 
+\label{ssec:wp-imp-wp}
+We will need the following lemmas.
 %
 %
 \begin{lemma}
@@ -547,7 +556,7 @@ the above system reduces to
 \begin{lemma}
   Let $v_{0,n} \subset B_{H^{s}}(R)$ be a sequence of initial data for the ivp
   \eqref{simp-sys}-\eqref{simp-sys-init}. Then the map $$v \mapsto
-  \frac{1}{2}(v + \bar{v})$$ is Lipschitz from $B_{H^{s}}(R)$ to $B_{H^{s}}(2R)$.
+  \frac{1}{2}(v + \bar{v})$$ is Lipschitz from $C([0, T], H^{s})$ to itself, where $T = T(R)$.  
 \label{lem:lip-sol}
 \end{lemma}
 %
@@ -559,7 +568,7 @@ the above system reduces to
 %
 \begin{equation*}
 \begin{split}
-  \sup_{0 \le t \le T} \| u(t) \|_{C\left( [0, T], H^{s} \right)}
+  \sup_{0 \le t \le T} \| u(t) \|_{H^{s}}
   & = \sup_{0 \le t \le T} \frac{1}{2} \| v + \bar v \|_{H^{s}}
   \\
   & \le \sup_{0 \le t \le T} \| v \|_{H^{s}}.
@@ -568,10 +577,7 @@ the above system reduces to
 %
 %
 \end{proof}
-%
-%
-\subsection{NLS-type WP implies Boussinesq WP} 
-\label{ssec:wp-imp-wp}
+
 From Lemma \ref{lem:lip-init-data}, Lemma \ref{lem:lip-sol}, and the fact that
 the map
 %
@@ -594,10 +600,10 @@ implies well-posedness in $H^{s}$ for the Boussinesq ivp \eqref{main}.
 %
 %
 \begin{remark}
-More precisely, Lemma \ref{lem:lip-init-data} and Lemma \ref{lem:lip-sol} yield
-propagation of continuity of the data-to-solution map in $H^{s}$, while
-\eqref{solution-prop} yields the propagation of existence and uniqueness in
-$H^{s}$.
+More precisely, if we assume continuity of the data-to-solution map in $H^{s}$ for the NLS-type equation, then Lemma \ref{lem:lip-init-data}
+and Lemma \ref{lem:lip-sol} imply the same for Boussinesq. Similarly, if we assume existence and uniqueness for the NLS-type equation in $H^{s}$, then 
+\eqref{solution-prop} implies existence and uniqueness in
+$H^{s}$ for Boussinesq.
 \label{rem:wp-imp-wp}
 \end{remark}
 %
@@ -608,33 +614,24 @@ $H^{s}$.
 \label{ssec:ip-no-ip}
 %
 Suppose the data-to-solution map for the NLS-type equation is not continuous at
-$0$ in $H^{s}$, for some $s \in \rr$. This is equivalent to saying that for
-fixed $\ee, \delta > 0$, there exists a sequence $v_{0,n}
-\xrightarrow{H^{s}}{0}$ such that
+$0$ in $H^{s}$, for some $s \in \rr$. This is equivalent to saying that 
+there exists a sequence $v_{0,n} \to 0$ in $H^{s}$ such that for fixed $\ee, \delta > 0$ there exists an $N = N(\ee, \delta)$ such that
 %
 %
 \begin{equation*}
 \begin{split}
-\| v_{0,n} \|_{H^{s}} < \ee, \ \text{but} \ \| v_{n} \|_{C([0,T], H^{s})} > \delta.
+\| v_{0,N} \|_{H^{s}} < \ee, \ \text{but} \ \| v_{N} \|_{C([0,T], H^{s})} >
+\delta.
 \end{split}
 \end{equation*}
 %
 %
-Suppose $v_{0,n}$ can be written in form
+Set
 %
 %
 \begin{equation*}
 \begin{split}
-v_{0,n} = u_{0,n} - i(1 - \p_{x}^{2})^{-1}u_{1,n}.
-\end{split}
-\end{equation*}
-%
-for some $u_{0,n} \in H^{s}, u_{1,n} \in H^{s-2}$. Then 
-%
-%
-\begin{equation*}
-\begin{split}
-v_{0} = u_{0} - i(1- \p_{x}^{2})^{-1}u_{1}.
+u_{0,n} = v_{0,n}.
 \end{split}
 \end{equation*}
 %
@@ -644,47 +641,40 @@ We would like to show that
 %
 \begin{equation*}
 \begin{split}
-\| (u_{0,n}, u_{1,n}) \|_{H^{s} \times H^{s-2}} < \ee \ \text{but} \ \| u \|_{C([0,T], H^{s})} > \delta.
+\| (u_{0,N}, 0) \|_{H^{s} \times H^{s-2}} < \ee \ \text{but} \ \| u_{N} \|_{C([0,T], H^{s})} > \delta
 \end{split}
 \end{equation*}
 %
 %
-Recall that
+%
+%
+%
+%
+or, equivalently, 
 %
 %
 \begin{equation*}
 \begin{split}
-u = \frac{1}{2}(v + \bar{v}).
+\| u_{0,N} \|_{H^{s}} < \ee \ \text{but} \ \| u_{N} \|_{C([0, T], H^{s})} >
+\delta
 \end{split}
 \end{equation*}
 %
-%
-Taking $v_{0}$ such that $u_{1,n}=0$, we reduce to showing that
-%
-%
-\begin{equation*}
-\begin{split}
-\| u_{0,n} \|_{H^{s}} < \ee \ \text{but} \ \| u_{n} \|_{C([0, T], H^{s})} > \delta.
-\end{split}
-\end{equation*}
-%
-%
-It would be possible to do so if, for example, the maps in Lemma
+for some $N$. It would be possible to do so if, for example, the maps in Lemma
 \ref{lem:lip-init-data} and \ref{lem:lip-sol} were bi-Lipschitz. I don't see a
-clear cut way to prove this though.
+clear cut way to prove this.
 %
 %
-\section{The Well-Posedness Spaces for Boussinesq}
-\subsection{The non-periodic case} 
-\label{ssec:non-per-spaces}
+\section{The Kishimoto Well-Posedness Spaces for Boussinesq on the Line}
 It is enough to consider the integral equation
 %
 %
-\begin{equation*}
+\begin{equation}
+  \label{nls-type-int}
 \begin{split}
   u(t) = U(t) u_{0} -i \int_{0}^{t} U(t -t')N(u(t')) dt'
 \end{split}
-\end{equation*}
+\end{equation}
 %
 %
 where 
@@ -694,7 +684,7 @@ where
 \begin{split}
   & U(t) = e^{-it \p_x^{2}},
   \\
-  & N(u) = -u + (u + \bar{u})/2 + \omega^{2}(u + \bar{u})^{2}/4
+  & N(u) = -u + (u + \bar{u})/2 + \omega^{2}(u + \bar{u})^{2}/4.
 \end{split}
 \end{equation*}
 %
@@ -767,12 +757,12 @@ following.
   \begin{equation*}
   \begin{split}
     \| u \|_{Z^{s}} + \| u \|_{L^{\infty}\left( [0,T], H^{s} \right)} \lesssim
-    \| u_{0} \|_{H^{s}}
+    \| u_{0} \|_{H^{s}}.
   \end{split}
   \end{equation*}
   %
   %
-\label{lem:init-data-b}.
+\label{lem:init-data-b}
 \end{lemma}
 %
 %
@@ -849,11 +839,170 @@ These estimates also hold with $uv$ replaced by $u \bar v$ or $\bar u \bar v$.
 \end{lemma}
 %
 %
-We conclude from the lemmas above that the Schrodinger type equation is
-qualitatively well-posed. Hence, the Tao-Bejenaru machinery applies.
+We conclude from the lemmas above that the Schr\"odinger type equation \eqref{nls-type-int} is
+qualitatively well-posed. Hence, the Tao-Bejenaru machinery applies for the
+Schr\"odinger type equation, but NOT necessarily for Boussinesq. That is, to
+my knowledge, no one has proved the analogous bilinear estimates for Boussinesq
+in the Kishimoto spaces. 
+\section{The Farah Well-Posedness Spaces for Boussinesq on the Line and Circle}
+\subsection{Introduction} 
+\label{ssec:}
 
-\bibliographystyle{amsalpha-custom}
-\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+\begin{definition}
+  For $f =f(x)= (f_{1}(x), f_{2}(x)), u = u(x,t), v = v(x,t)$ formally define 
+%
+%
+\begin{equation*}
+\begin{split}
+  L(f)
+  \doteq \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{inx}
+  \wh{f_{1}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+  & + \psi(t) \sum_{n \in \zz} e^{inx}
+  \wh{f_{2}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+\begin{split}
+N(u, v)
+& \doteq \frac{1}{4 \pi i} \psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
+    \int_{0}^{t}[e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}]
+    \wh{uv}(n, t') dt'
+\end{split}
+\end{equation*}
+%
+where $\psi(t)$ is a smooth cutoff function symmetric about the origin, with $\psi(t)=1$ for $t \in [-1, 1]$ and support in $[-2, 2]$, and where $\psi_{\delta}(t) =\psi(t/\delta)$.
+
+%
+\end{definition}
+%
+Recall that the Boussinesq ivp with initial data $f \in H^{s} \times H^{s-2}$ can be localized and rewritten as
+%
+%
+\begin{equation*}
+\begin{split}
+u = L(f) + N(u, u).
+\end{split}
+\end{equation*}
+%
+%
+%
+\label{ssec:non-per-spaces}
+\subsection{The Circle} 
+%
+%
+\begin{definition}
+  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
+  \begin{enumerate}[(I)]
+   \item{$F: \ci \times \rr \to \cc$}.
+   \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
+   \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
+  \end{enumerate}
+  For $s, b \in \rr$, $X_{s,b}$ denotes the completion of $\mathcal{Y}$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
+    (1 + | | \tau | - n^{2} |)^{2b} |\wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm}
+  \end{equation}
+  %
+    %
+  %
+  %
+\end{definition}
+%
+We have the following key estimates.
+\begin{enumerate}
+  \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{X_{s,b}} \le C \delta^{b - 1/2} \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}, \quad s > -1/4$} 
+\end{enumerate}
+for some constant $C > 0$.
+%%
+%
+Therefore, by \eqref{estim} and the introduction preceding it, the Tao-Bejanaru machinery applies.
+%
+%
+%
+%
+%
+\subsection{The Line} 
+\begin{definition}
+  Let $S(\rr^{2})$ denote the space of Schwartz functions on
+  $\rr^{2}$.  For $s, b \in \rr$, $\mathcal{X}_{s,b}$
+  denotes the completion of $S(\rr^{2})$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{\mathcal{X}_{s,b}} = \left( \int_{\rr} \int_{\rr} (1 + \xi^{2})^{s}
+    (1 + | | \tau | - \xi^{2} |) \wh{F}(n, \tau) d \tau d \xi \right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm-real}
+  \end{equation}
+  %
+  \end{definition}
+  %
+We have the following key estimates.
+%
+\begin{enumerate}
+  \item{$\|L(f)\|_{\mathcal{X}_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{\mathcal{X}_{s,b}} \le C \delta^{b - 1/2} \| u \|_{\mathcal{X}_{s,b}} \| v \|_{\mathcal{X}_{s,b}}, \quad s > -1/4$} 
+\end{enumerate}
+for some constant $C > 0$. Therefore, by \eqref{estim} and the introduction preceding it, the Tao-Bejanaru machinery applies.
+%
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{Far09}
+
+\bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
+I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
+  for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
+  \textbf{233} (2006), no.~1, 228--259.
+
+\bibitem[Far09]{Farah:2009uq}
+L.~G. Farah, \emph{Local solutions in sobolev spaces with negative indices for
+  the ``good'' boussinesq equation}, Comm. Partial Differential Equations
+  \textbf{34} (2009), no.~1-3, 52--73.
+
+\bibitem[FG96]{Fang:1996zr}
+Y.-F. Fang and M.~G. Grillakis, \emph{Existence and uniqueness for {B}oussinesq
+  type equations on a circle}, Comm. Partial Differential Equations \textbf{21}
+  (1996), no.~7-8, 1253--1277. 
+
+\bibitem[FS10]{Farah:2010ys}
+L.~G. Farah and M.~Scialom, \emph{On the periodic ``good'' {B}oussinesq
+  equation}, Proc. Amer. Math. Soc. \textbf{138} (2010), no.~3, 953--964.
+  
+
+\bibitem[KT10]{Kishimoto:2010ly}
+N.~Kishimoto and K.~Tsugawa, \emph{Local well-posedness for quadratic nonlinear
+  {S}chr{\"o}dinger equations and the ``good'' {B}oussinesq equation},
+  Differential Integral Equations \textbf{23} (2010), no.~5-6, 463--493.
+  
+
+\bibitem[Lin93]{Linares:1993ly}
+F.~Linares, \emph{Global existence of small solutions for a generalized
+  {B}oussinesq equation}, J. Differential Equations \textbf{106} (1993), no.~2,
+  257--293. 
+
+\end{thebibliography}
+%
+%\bibliographystyle{amsalpha-custom}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 
 \end{document}
 
