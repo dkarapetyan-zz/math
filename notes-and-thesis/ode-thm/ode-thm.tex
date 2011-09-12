@@ -14,8 +14,6 @@
 %
 %
 %
-
-
 Our goal will be to prove the following.
 %
 %
@@ -31,8 +29,8 @@ Our goal will be to prove the following.
 \begin{theorem}[Metric Space ODE Theorem]
 	\label{ode-thm}
   Let $X$ be a topological vector space over $\rr$
-  with topology induced by a metric $d$, $E \subset X$ open, $\vp \in E$, and $(-a, a)$ an
-	open interval in $\rr$. If $f: (-a, a) \times E \to X$ satisfies the
+  with topology induced by a metric $d$, $E \subset X$ open, and $(-a, a)$ an
+	open interval in $\rr$. Suppose $f: (-a, a) \times E \to X$ satisfies the
 	inequality
 	%
 	%
@@ -40,12 +38,14 @@ Our goal will be to prove the following.
 		\label{stronger-ode}
 		\begin{split}
       d[f(t, x), f(t, y)] \le c d(x, y), \qquad \forall t \in (-a, a),
-			\qquad \forall x, y \in E,
+			\qquad \forall x, y \in E.
 		\end{split}
 	\end{equation}
 	%
-  then for sufficiently small $h > 0$ there exists a unique
-	differentiable map $u: (-h, h) \to E$ such that for all $t \in (-h, h)$
+  and let $B_{r}$ be a ball of radius $r$ contained in $E$. Then there exists a
+  sufficiently small $h = h(r) > 0$ such that for each $\vp \in B_{r}$, there
+  exists a unique differentiable map $u: (-h, h) \to E$ which for all $t \in
+  (-h, h)$ satisfies
 	%
 	%
 	\begin{gather}
@@ -944,7 +944,7 @@ since $0 \le \alpha < 1$.
 	%
 	Let $[-h, h] \subset [-a/2, a/2]$ be a closed interval, with $t \in [-h, h]$,
 	and $r$ chosen such that
-	$$B_r(\vp) \doteq \left\{ u \in X: d(\vp, u) \le r \right\}$$
+	$$B_r(\vp) \doteq \left\{ \psi \in X: d(\vp, \psi) \le r \right\}$$
 	is a subset of $E$. Define 
 	$$V_h = \left\{ \text{all maps} \; \;  v: [-h, h]
     \to B_r(\vp)\right\}.$$ Then $(V_h, \mathfrak{d})$ is a complete metric space
@@ -1106,7 +1106,7 @@ where
 \begin{gather*}
 |h|_{j,k}  = \sup_{x \in K_j} \sum_{k \in \mathbb{N}} |d^{k}h(x)|,
 \\
-\{ K_{j} \} \ \text{a family of compact subsets of} \ X \  \text{covering} \ X
+\{ K_{j} \} \ \text{a family of compact subsets of} \ X \  \text{satisfying} \ \bigcup_{j} K_{j} = X 
 \end{gather*}
 %
 %
@@ -1416,30 +1416,29 @@ for which we shall prove the following.
 %
 \begin{proof}
   We divide our work into cases.
-  \subsection{Case $k = 0$.} Integral formulation
+  \subsection{Case $k = 0$.} The ivp \eqref{ode-eq-sm}-\eqref{ode-init-data-sm} is equivalent to 
   %
   %
   \begin{equation*}
   \begin{split}
-  u(t, \vp) = \vp + \int_{0}^{t} F[u(\tau, \vp)] d \tau
+  u(t, \vp) = \vp + \int_{0}^{t} F[u(\tau, \vp)] d \tau.
   \end{split}
   \end{equation*}
   %
-  For $h$ sufficiently small, theorem tells us that there exists a unique solution $u(t, \vp)$ for $t \in [-t, t]$. Therefore
+  and so
   %
   %
   %
   \begin{equation*}
-  \begin{split}
+    \begin{split}
   u(t, \vp) - u(t, \psi) = \vp - \psi + \int_{0}^{t} \{F[u(\tau, \vp)] - F[u(\tau, \psi)]\} d \tau.
   \end{split}
   \end{equation*}
   %
-  %
- Applying the triangle inequality and the Lipschitz condition, we obtain the estimate
+ Recall that Theorem \ref{ode-thm} tells us that for any $\vp \in B_{r} \subset U$ there exists a unique solution $u(t, \vp)$ for $t \in [-h, h]$, where $h = h(r)$. Therefore, applying the triangle inequality and the Lipschitz condition, we obtain the estimate
   \begin{equation*}
   \begin{split}
-  \sup_{t \in [-t, t]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
+  \sup_{t \in [-h, h]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
   & \le \|\vp -
   \psi\|_{L^{\infty}} +  h \sup_{t \in [-h, h]} \|F[u(t, \vp)] - F[u(t, \psi)] \|_{L^{\infty}}
   \\
@@ -1447,7 +1446,7 @@ for which we shall prove the following.
   [u(t, \psi)] \|_{L^{\infty}}.
   \end{split}
   \end{equation*}
-Choosing $h < 1/c$ and rearranging terms, we obtain
+Restricting $h < 1/c$ and rearranging terms, we obtain
 %
 %
 \begin{equation*}
@@ -1458,7 +1457,6 @@ Choosing $h < 1/c$ and rearranging terms, we obtain
 %
 %
 concluding the proof.
- \label{ssec:case-0}
  \subsection{Case $k=1$} 
   \label{ssec:case-k}
  % 
@@ -1582,7 +1580,9 @@ which admits the unique solution
   v(\vp,t) 
   & = e^{\int_{0}^{t} DF\left[ y(\vp,s) \right]ds} \circ 0
   \\
-  & \doteq S(t)(0).
+  & \doteq S(t)(0)
+  \\
+  & = 0.
 \end{split}
 \end{equation*}
 %
@@ -1636,7 +1636,7 @@ $L(U,C^{1})$ of linear continuous functions from $U$ to $C^{1}$. We have the bou
 \end{equation}
 %
 %
-We now need an estimate global in $[0,t]$ for
+We now need an estimate in $[0,t]$ for
 $$ \| R_{1}\left[ y(\vp,t'), z(\vp,t')
 \right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt'.$$ Since 
 $$ \| R_{1}\left[ y(\vp,t'), z(\vp,t')

@@ -256,11 +256,10 @@ i) Obviously, the second condition in \eqref{ip} is sufficient to infer that $A_
 ii) \textbf{However, equally important in \eqref{ip} is the first limit, which makes this strategy go through. This happens because the LWP has to happen in the strongest sense, i.e., the time of existence $T=T(\|f\|_D)$, and so $\lim_{N\to \infty} \|f_N\|_D=0$ assures that all the corresponding solutions (or alternatively, for $N$ sufficiently large) $u_N$'s exist for the same amount of time.} This is not precisely stated in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}, being quite formally addressed. 
 \label{remip}
 \end{remark}
-
 %
 %
-
-
+%
+%
 \section{Precise computations for the Boussinesq equation}
 
 \subsection{The non-periodic case} The first step is to write formulas for $L$ and $N$. We start with the homogeneous problem
@@ -425,10 +424,83 @@ for $N$ sufficiently large. Thus, one obtains
 \frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}},
 \end{equation}
 which finishes the proof.
+%
+\section{Checking that the Key Estimate \eqref{estim} to the Tao-Bejanaru Method holds for Boussinesq (DAVID's WORK)}
+\subsection{The Circle} 
+%
+%
+\begin{definition}
+  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
+  \begin{enumerate}[(I)]
+   \item{$F: \ci \times \rr \to \cc$}.
+   \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
+   \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
+  \end{enumerate}
+  For $s, b \in \rr$, $X_{s,b}$ denotes the completion of $\mathcal{Y}$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
+    (1 + | | \tau | - n^{2} |)^{2b} |\wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm}
+  \end{equation}
+  %
+    %
+  %
+  %
+\end{definition}
+%
+We have the following key estimates.
+\begin{enumerate}
+  \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{X_{s,b}} \le C \delta^{b - 1/2} \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}, \quad s > -1/4$} 
+\end{enumerate}
+for some constant $C > 0$.
+%%
+%
+Furthermore, $X_{s,b} \subset C(\rr, H^{s})$
+continuously. Therefore, by \eqref{estim} and the bulleted comments preceding
+\eqref{ip}, the Tao-Bejanaru machinery applies.
+%
+%
+%
+%
+%
+\subsection{The Line} 
+\begin{definition}
+  Let $S(\rr^{2})$ denote the space of Schwartz functions on
+  $\rr^{2}$.  For $s, b \in \rr$, $\mathcal{X}_{s,b}$
+  denotes the completion of $S(\rr^{2})$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{\mathcal{X}_{s,b}} = \left( \int_{\rr} \int_{\rr} (1 + \xi^{2})^{s}
+    (1 + | | \tau | - \xi^{2} |) \wh{F}(n, \tau) d \tau d \xi \right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm-real}
+  \end{equation}
+  %
+  \end{definition}
+  %
+We have the following key estimates.
+%
+\begin{enumerate}
+  \item{$\|L(f)\|_{\mathcal{X}_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{\mathcal{X}_{s,b}} \le C \delta^{b - 1/2} \| u \|_{\mathcal{X}_{s,b}} \| v \|_{\mathcal{X}_{s,b}}, \quad s > -1/4$} 
+\end{enumerate}
+for some constant $C > 0$. Furthermore, $X_{s,b} \subset C(\rr, H^{s})$
+continuously. Therefore, by \eqref{estim} and the bulleted comments preceding
+\eqref{ip}, the Tao-Bejanaru machinery applies.
 
-\appendix
 \section{Why We Must Redo the Bilinear Estimates in the
-Kishimoto Paper for Boussinesq}
+    Kishimoto Paper for Boussinesq (DAVID's WORK)}
+\subsection{Introduction} 
+
 Recall the Boussinesq ivp \eqref{main}. Factoring, we obtain
 %
 %
@@ -665,7 +737,7 @@ for some $N$. It would be possible to do so if, for example, the maps in Lemma
 clear cut way to prove this.
 %
 %
-\section{The Kishimoto Well-Posedness Spaces for Boussinesq on the Line}
+\section{The Kishimoto Well-Posedness Spaces for Boussinesq on the Line (DAVID's WORK)}
 It is enough to consider the integral equation
 %
 %
@@ -844,120 +916,6 @@ qualitatively well-posed. Hence, the Tao-Bejenaru machinery applies for the
 Schr\"odinger type equation, but NOT necessarily for Boussinesq. That is, to
 my knowledge, no one has proved the analogous bilinear estimates for Boussinesq
 in the Kishimoto spaces. 
-\section{The Farah Well-Posedness Spaces for Boussinesq on the Line and Circle}
-\subsection{Introduction} 
-\label{ssec:}
-
-\begin{definition}
-  For $f =f(x)= (f_{1}(x), f_{2}(x)), u = u(x,t), v = v(x,t)$ formally define 
-%
-%
-\begin{equation*}
-\begin{split}
-  L(f)
-  \doteq \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f_{1}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
-  & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f_{2}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
-\end{split}
-\end{equation*}
-%
-%
-and
-%
-%
-\begin{equation*}
-\begin{split}
-N(u, v)
-& \doteq \frac{1}{4 \pi i} \psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}[e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}]
-    \wh{uv}(n, t') dt'
-\end{split}
-\end{equation*}
-%
-where $\psi(t)$ is a smooth cutoff function symmetric about the origin, with $\psi(t)=1$ for $t \in [-1, 1]$ and support in $[-2, 2]$, and where $\psi_{\delta}(t) =\psi(t/\delta)$.
-
-%
-\end{definition}
-%
-Recall that the Boussinesq ivp with initial data $f \in H^{s} \times H^{s-2}$ can be localized and rewritten as
-%
-%
-\begin{equation*}
-\begin{split}
-u = L(f) + N(u, u).
-\end{split}
-\end{equation*}
-%
-%
-%
-\label{ssec:non-per-spaces}
-\subsection{The Circle} 
-%
-%
-\begin{definition}
-  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
-  \begin{enumerate}[(I)]
-   \item{$F: \ci \times \rr \to \cc$}.
-   \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
-   \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
-  \end{enumerate}
-  For $s, b \in \rr$, $X_{s,b}$ denotes the completion of $\mathcal{Y}$ with
-  respect to the norm
-  %
-  %
-  \begin{equation}
-  \begin{split}
-    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
-    (1 + | | \tau | - n^{2} |)^{2b} |\wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
-  \end{split}
-  \label{eqn:bous-norm}
-  \end{equation}
-  %
-    %
-  %
-  %
-\end{definition}
-%
-We have the following key estimates.
-\begin{enumerate}
-  \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
-  \item{$\| N(u, v) \|_{X_{s,b}} \le C \delta^{b - 1/2} \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}, \quad s > -1/4$} 
-\end{enumerate}
-for some constant $C > 0$.
-%%
-%
-Therefore, by \eqref{estim} and the introduction preceding it, the Tao-Bejanaru machinery applies.
-%
-%
-%
-%
-%
-\subsection{The Line} 
-\begin{definition}
-  Let $S(\rr^{2})$ denote the space of Schwartz functions on
-  $\rr^{2}$.  For $s, b \in \rr$, $\mathcal{X}_{s,b}$
-  denotes the completion of $S(\rr^{2})$ with
-  respect to the norm
-  %
-  %
-  \begin{equation}
-  \begin{split}
-    \|F\|_{\mathcal{X}_{s,b}} = \left( \int_{\rr} \int_{\rr} (1 + \xi^{2})^{s}
-    (1 + | | \tau | - \xi^{2} |) \wh{F}(n, \tau) d \tau d \xi \right)^{1/2}.
-  \end{split}
-  \label{eqn:bous-norm-real}
-  \end{equation}
-  %
-  \end{definition}
-  %
-We have the following key estimates.
-%
-\begin{enumerate}
-  \item{$\|L(f)\|_{\mathcal{X}_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
-  \item{$\| N(u, v) \|_{\mathcal{X}_{s,b}} \le C \delta^{b - 1/2} \| u \|_{\mathcal{X}_{s,b}} \| v \|_{\mathcal{X}_{s,b}}, \quad s > -1/4$} 
-\end{enumerate}
-for some constant $C > 0$. Therefore, by \eqref{estim} and the introduction preceding it, the Tao-Bejanaru machinery applies.
 %
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
