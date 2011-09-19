@@ -2,6 +2,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
+\usepackage{showkeys}
 \usepackage{tikz}
 \usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
@@ -10,8 +11,8 @@
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
-\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+%\setcounter{secnumdepth}{1} %number only sections, not subsections
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \numberwithin{figure}{section}
@@ -317,6 +318,7 @@ where
 \end{cases}
 \end{split}
 \end{equation*}
+%
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -820,6 +822,365 @@ Hence, we may apply \eqref{lip-ineq} to bound \eqref{pre-lip-ap} by
 %
 %
 This completes the proof of Theorem \ref{thm:main-thm}. \qed
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Optimality
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Optimality} 
+\label{sec:optimality}
+\subsection{Burgers} 
+\label{ssec:burgers-opt}
+
+We first consider the Burgers initial value problem
+%
+%
+\begin{gather*}
+u_{t} + uu_{x} = 0,
+\\
+u(x,0) = u_{0}(x)
+\end{gather*}
+%
+%
+By the method of characteristics, this admits the unique solution
+%
+%
+\begin{equation*}
+\begin{split}
+u(x,t) = u_{0}(x - tu)
+\end{split}
+\end{equation*}
+%
+%
+for $t$ in some bounded interval in $\rr$. We shall prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			solution burgers 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+%
+Let $u_{0}^{\lambda}(x) = (\lambda +
+x_{+}^{\alpha + 1}) \vp(x)$ be a family of initial data indexed by $\lambda \in
+[-1, 1]$, where $\alpha > 0$, $x_{+} \doteq \max\{0, x\}$ and $\vp$ is a smooth cutoff
+function equal to the identity in $[-2, 2]$ and with support in $[-4,4]$. Then the associated solutions $u^{\lambda}(x,t)$ take the form
+\begin{equation}
+    \label{u-lam-explicit-form}
+    \begin{split}
+        u^{\lambda}(x,t) = \lambda + (x - \lambda t)^{\alpha + 1}_{+} p(t(x- \lambda t)^{\alpha}_{+}), \quad | x | \le 1, \quad | \lambda | \le 1
+    \end{split}
+\end{equation}
+%
+%
+for sufficiently small $| t |$, where $p(z)$ is a power series in $z$ with $p(0) =1$ and a positive radius of convergence.
+\label{lem:sol-burg}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}(Kato)
+Since $u_{0}^{\lambda}$ is uniformly bounded in $\lambda$ in $H^{s}$, the
+$u^{\lambda}$ have a common lifespan $T$ and are uniformly bounded (via an
+energy estimate--see HR). Therefore, choosing $T$ sufficiently small, we have
+%
+%
+\begin{equation}
+    \label{burg-sol-cont}
+\begin{split}
+    | t u^{\lambda}(x,t) | \le 1, \quad x \in \rr, \ | t | \le T, \ | \lambda | \le 1.
+\end{split}
+\end{equation}
+%
+%
+%
+%
+Set
+%
+%
+\begin{equation}
+    \label{burg-sol-not}
+\begin{split}
+y(x,t) = x - t u^{\lambda}(x,t).
+\end{split}
+\end{equation}
+%
+%
+Then by \eqref{burg-sol-cont}, we have
+%
+%
+\begin{equation*}
+\begin{split}
+    | y(x,t) | & \le | x | + | tu^{\lambda} |
+    \\
+    & \le 2, \quad | x | \le 1, \ | t | \le T, | \lambda | \le 1.
+\end{split}
+\end{equation*}
+%
+%
+Hence, $\vp(y) =1$ and so
+%
+%
+\begin{equation}
+    \label{burg-sol-redux}
+\begin{split}
+u^{\lambda}(x,t) 
+& = u_{0}^{\lambda}(x - tu)
+\\
+& = [\lambda + (x - tu^{\lambda})_{+}^{\alpha + 1}] \vp(x - tu^{\lambda})
+\\
+& = [\lambda + (x - tu^{\lambda})_{+}^{\alpha + 1}].
+\end{split}
+\end{equation}
+%
+%
+Multiplying both sides by $t$, we get
+%
+%
+\begin{equation*}
+\begin{split}
+t u^{\lambda}(x,t) = t \lambda + t (x - tu^{\lambda})_{+}^{\alpha + 1}
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+x - tu^{\lambda} = x - t \lambda - t(x - tu^{\lambda})_{+}^{\alpha + 1}.
+\end{split}
+\end{equation*}
+%
+%
+Set 
+\begin{equation}
+    \label{y-for-u}
+    y(x,t) = x - tu^{\lambda}. 
+\end{equation}
+%
+%
+%
+%
+Then
+%
+%
+\begin{equation*}
+\begin{split}
+y = x - t \lambda - t y_{+}^{\alpha + 1}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+\begin{equation*}
+\begin{split}
+y + ty_{+}^{\alpha + 1} = x - t \lambda
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation}
+    \label{y-equation}
+\begin{split}
+[1 + ty_{+}^{\alpha + 1}]y_{+} = (x - t \lambda)_{+}.
+\end{split}
+\end{equation}
+%
+%
+Solving this equation for $y$ and then substituting back into \eqref{y-for-u} completes the proof.
+\end{proof}
+\begin{framed}
+    \textbf{I spent $7+$ hours, but couldn't figure out how to solve \eqref{y-equation} in order to get \eqref{u-lam-explicit-form}. I go about proving Lemma \ref{lem:sol-burg} in slightly different fashion; see the next section}.
+\end{framed}
+%
+%
+\begin{proof}(David)
+Notice from \eqref{burg-sol-redux} that
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda}(x, 0) = \lambda + x_{+}^{\alpha +1}.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, \eqref{burg-sol-redux} implies that
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda} - \lambda
+& = (x - tu^{\lambda})^{\alpha + 1}
+\\
+& = [x - t(u^{\lambda} \pm \lambda)]^{\alpha + 1}_{+}
+\\
+& = [x - t(u^{\lambda - \lambda}) - t \lambda]_{+}^{\alpha + 1}.
+\end{split}
+\end{equation*}
+%
+%
+Set $y = u^{\lambda} - \lambda$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+y = [x - t \lambda - ty]_{+}^{\alpha + 1}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+y^{1/(\alpha + 1)} = [x - t \lambda - ty]_{+}.
+\end{split}
+\end{equation*}
+%
+%
+Hence, $y(t \lambda, t) = 0$, and so $$u^{\lambda}(t \lambda, t) = \lambda.$$
+%
+%
+Hence, it is natural to guess that $u^{\lambda}(x,t) = \lambda + (x - \lambda
+t)^{\alpha + 1}_{+} p(z)$ for some power series $p(z)$, where $z = z(x,t)$ and
+$p(z(x,0)) =1$. We now show that this is indeed the case. Substituting our ansatz
+into
+\eqref{burg-sol-redux}, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+(x - \lambda t)^{\alpha + 1}_{+} p(z) = \{x - t[\lambda + (x - \lambda
+    t)_{+}^{\alpha +1} p(z)]\} 
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+x - \lambda t - (t + 1)(x - \lambda t)_{+}^{\alpha + 1} p(z) = 0.
+\end{split}
+\end{equation*}
+%
+%
+Assume $x - \lambda t \neq 0$. Dividing through by $x - \lambda t$ and simplifying, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+p(z) =\frac{1}{(t+1)(x - \lambda t)^{\alpha}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+\begin{framed}
+    \textbf{This function is NOT analytic at $x = \lambda t$. 
+    Hence, I am very confused by Kato's claim that we can arrange that $p(z)$ be a
+    power series with $p(0)=1$ and a positive radius of convergence. I feel that
+    I have just shown that this is impossible. I will accept it for the time
+    being.}
+\end{framed}
+%
+%
+%
+\end{proof}
+%
+%
+Applying Lemma \ref{lem:sol-burg}, we have
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda} - u^{0} = \lambda + (x - \lambda t)^{\alpha + 1}_{+}p(t(x- \lambda t)^{\alpha}_{+}) - (x)_{+}^{\alpha + 1}p(tx_{+}^{\alpha}) + \ \text{positive higher order terms}.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, for integer $s \ge 2$ (we need to have well-posedness) and real $\alpha > (s-1)$
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) = (\alpha + 1)(\alpha) \cdots (\alpha + 1 -s)[(x - \lambda t)^{\alpha + 1 -s}_{+} - (x)_{+}^{\alpha + 1 -s}] + \ \text{positive higher order terms}.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+\| u^{\lambda} - u^{0} \|_{H^{s}}^{2} 
+& \ge \| \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) \|_{L^{2}}^{2}
+\\
+& \ge \int_{-1}^{1} | \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) |^{2} dx
+\\
+& \ge \int_{-1}^{1} \{(\alpha + 1)(\alpha) \cdots (\alpha + 1 -s   )[(x - \lambda t)_{+}^{\alpha + 1 -s} - x_{+}^{\alpha + 1 -s}]\}^{2} dx
+\\
+& \simeq \int_{0}^{\lambda t} (x^{\alpha + 1 -s})^{2} dx + \int_{\lambda t}^{1} [(x - \lambda t)^{\alpha +1 -s} -x^{\alpha + 1 -s}]^{2} dx
+\\
+& \ge \int_{0}^{\lambda t} x^{2(\alpha + 1 -s)} dx 
+\\
+& \simeq  | \lambda t |^{2 \alpha + 3 -2s}
+\end{split}
+\end{equation*}
+%
+%
+and so
+\begin{equation}
+    \begin{split}
+    \label{holder-lb}
+\| u^{\lambda} - u^{0} \|_{H^{s}} & \ge c_{\alpha, s} | \lambda t |^{\alpha -s + 3/2}
+\\
+&  = c_{\alpha, s} | \lambda t |^{3/4}, \quad \alpha = s - 3/4.
+\end{split}
+\end{equation}
+But
+%
+%
+\begin{equation}
+    \label{init-lb}
+\begin{split}
+    \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}} 
+    & \simeq |\lambda |.
+\end{split}
+\end{equation}
+%
+Hence, from \eqref{holder-lb} and \eqref{init-lb},
+we see that for any fixed constant $c > 0$ there exists sufficiently small $T = T(c) >
+0$ such that for all $|t| \le T$
+%
+\begin{equation*}
+\| u^{\lambda} - u^{0} \|_{H^{s}} \ge c \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}} 
+\end{equation*}
+Therefore, the Burgers initial value problem on the line with initial data $u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
 \appendix
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
