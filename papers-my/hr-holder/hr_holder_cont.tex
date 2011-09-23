@@ -2,7 +2,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \usepackage{tikz}
 \usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
@@ -841,24 +841,101 @@ This completes the proof of Theorem \ref{thm:main-thm}. \qed
 We first consider the Burgers initial value problem
 %
 %
-\begin{gather*}
+\begin{gather}
+    \label{burgers}
 u_{t} + uu_{x} = 0,
 \\
+\label{burgers-init}
 u(x,0) = u_{0}(x)
-\end{gather*}
+\end{gather}
 %
 %
-By the method of characteristics, this admits the unique solution
+To solve this, we apply the method of characteristics. That is, we seek a curve
+$s \mapsto (x(s), t(s))$ such that
 %
 %
 \begin{equation*}
 \begin{split}
-u(x,t) = u_{0}(x - tu)
+\frac{d}{ds} u(x(s), t(s)) = 0.
+\end{split}
+\end{equation*}
+%
+Formally differentiating the left hand side, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{du}{dx} \frac{dx}{ds} + \frac{du}{dt} \frac{dt}{ds}.
 \end{split}
 \end{equation*}
 %
 %
-for $t$ in some bounded interval in $\rr$. We shall prove the following.
+Setting
+%
+%
+\begin{gather}
+    \label{char-ode-space}
+    \frac{dx}{ds} = u,
+    \\
+    \label{char-ode-time}
+    \frac{dt}{ds}=1
+\end{gather}
+and recalling the Burgers equation \eqref{burgers}, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{ds} u(x(s), t(s)) = 0.
+\end{split}
+\end{equation*}
+%
+%
+Hence, $u$ is constant along the characteristic curve $(x(s), t(s))$ given by
+the characteristic ode's \eqref{char-ode-space}-\eqref{char-ode-time}. Solving
+them, we obtain
+\begin{gather}
+    \label{0j}
+    x(s) = c_{1} + \int_{0}^{s} u(x(s'), t(s'))ds'
+    \\
+    t(s) = s + c_{2}.
+\end{gather}
+We remark that by the inverse function theorem, \eqref{0j} admits a solution
+$u(x(s), t(s))$ for $s$ in some bounded interval in $\rr$.  By construction, this $u$ will be constant along the characteristic curve $(x(s), t(s))$. Hence, we obtain
+%
+%
+\begin{gather}
+    \label{1j}
+    x(s) = c_{1} + su
+    \\
+    \label{2j}
+    t(s) = s + c_{2}.
+\end{gather}
+%
+%
+Setting $s = -c_{2}$, it follows that 
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u(x(-c_{2}), t(-c_{2})) = u(c_{1} - c_{2}u, 0 ) = u_{0}(c_{1} - c_{2} u).
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u(x,t) = u_{0}(x - tu).
+\end{split}
+\end{equation*}
+%
+%
+We shall prove the following.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1060,14 +1137,13 @@ y^{1/(\alpha + 1)} = [x - t \lambda - ty]_{+}.
 \end{equation*}
 %
 %
-Hence, $y(t \lambda, t) = 0$, and so $$u^{\lambda}(t \lambda, t) = \lambda.$$
+Therefore, $y(t \lambda, t) = 0$, and so $$u^{\lambda}(t \lambda, t) = \lambda.$$
 %
 %
 Hence, it is natural to guess that $u^{\lambda}(x,t) = \lambda + (x - \lambda
 t)^{\alpha + 1}_{+} p(z)$ for some power series $p(z)$, where $z = z(x,t)$ and
 $p(z(x,0)) =1$. We now show that this is indeed the case. Substituting our ansatz
-into
-\eqref{burg-sol-redux}, we see that
+into \eqref{burg-sol-redux}, we see that
 %
 %
 \begin{equation*}
@@ -1178,9 +1254,10 @@ we see that for any fixed constant $c > 0$ there exists sufficiently small $T = 
 0$ such that for all $|t| \le T$
 %
 \begin{equation*}
-\| u^{\lambda} - u^{0} \|_{H^{s}} \ge c \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}} 
+\| u^{\lambda} - u^{0} \|_{H^{s}} \ge c \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}}.
 \end{equation*}
-Therefore, the Burgers initial value problem on the line with initial data $u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
+Therefore, the Burgers initial value problem on the line with initial data
+$u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
 \appendix
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
