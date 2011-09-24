@@ -26,6 +26,7 @@ citecolor=blue,
 urlcolor=blue,
 }
 %
+\DeclareMathOperator{\sgn}{sgn}
 %
 \newcommand{\ds}{\displaystyle}
 \newcommand{\ts}{\textstyle}
@@ -55,9 +56,9 @@ urlcolor=blue,
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{examp}{Example}[section]
-\newtheorem {exercise}[theorem] {Exercise}
+\newtheorem {exercise}[theorem]{Exercise}
 %
-\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
 %makes proof environment bold instead of italic
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
@@ -96,27 +97,6 @@ Weak Topology}
         %
         %
         %        
-        David, Please do the following:
-        
-        \sout{ 1) State theorem for both the line and the circle,
-        after you define the quantities  needed.}
-        
-        \sout{2) Prove the periodic case if it is different.
-        Otherwise, write the proof  in a unified way.}
-        
-        3) Prove that $\alpha$ is optimal, like in the b-family.
-        
-        \sout{4)  Write introduction and complete the references.}
-        
-       \sout{5)  When these are done and the document is proofread
-       then send it to me.  Soon after we will meet 
-       to produce a short version for a journal submission,
-       which can be done by the end of June.}
-       
-       \sout{6) Spend most (80\%) of your your time on ill-posedness
-       of Boussinesq and related papers to prepare for Dan's visit
-       on July 11.}
-        
         %
         \section{Introduction}
 %
@@ -214,20 +194,22 @@ Shiqiang Dai, and Huo \cite{Dai_2000_Head-on-collisi} using a reductive
 perturbation method coupled with the technique of strained coordinates. 
 \\
 \\
-In this work we study the continuity properties of the data-to-solution map for the HR 
+In this work we study the continuity properties of the data-to-solution map for
+the HR 
 equation, expanding upon the work in \cite{Karapetyan:2010fk}, in which it was
 shown that the data-to-solution map is not better than continuous in Sobolev
 spaces $H^{s}$ on the line
-and the circle. More precisely, following \cite{Chen:2011fk} we show the following result:
+and the circle. More precisely, following \cite{Chen:2011fk} we show the
+following result:
 %
 %
 \begin{theorem}
-  For $\gamma \neq 0$, the
-  data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (in
-  the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
-  3/2$, $-1 \le r < s$. More
-  precisely, decompose the set $\Omega = \left\{ (s, r) \in \rr^{2}  \right\}$
-  into the pieces
+For $\gamma \neq 0$, the
+data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (in
+the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
+3/2$, $-1 \le r < s$. More
+precisely, decompose the set $\Omega = \left\{ (s, r) \in \rr^{2}  \right\}$
+into the pieces
   %
   %
   \begin{equation*}
@@ -262,10 +244,10 @@ and the circle. More precisely, following \cite{Chen:2011fk} we show the followi
 % Draw x and y axis lines
 \draw [->] (0,0) -- (3,0) node [below] {$s$};
 \draw [->] (0,-2) -- (0,3) node [left] {$r$};
-\draw [->, dashed] (0,0) -- (3,3) ;
-\draw [->, dashed] (0,-1) -- (3,2) ;
-\draw [->, dashed] (0,2) -- (3,-1) ;
-\draw [->, dashed] (0,-1) -- (3,-1) ;
+\draw [->, dashed] (0,0) -- (3,3);
+\draw [->, dashed] (0,-1) -- (3,2);
+\draw [->, dashed] (0,2) -- (3,-1);
+\draw [->, dashed] (0,-1) -- (3,-1);
 \draw [->, dashed] (3/2,-2) -- (3/2, 3);
 \fill[color=green, fill opacity=0.3] (1.5, 0.5) -- (3,2) -- (3,0) -- (3,-1);
 \fill[color=red, fill opacity=0.3] (1.5, 0.5) -- (1.5,1.5) -- (3,3) -- (3,2);
@@ -275,7 +257,7 @@ and the circle. More precisely, following \cite{Chen:2011fk} we show the followi
 \fill[color=cyan, fill opacity=0.3] (1.5, -1) -- (3, -1) -- (3, -2) -- (1.5, -2);
 
 
-\foreach \x/\xtext in { 1, 2}
+\foreach \x/\xtext in {1, 2}
     \draw[shift={(\x,0)}]  node[below] {$\xtext$};
 \foreach \y/\ytext in {-1, 1, 2}
     \draw[shift={(0,\y)}]  node[left] {$\ytext$};
@@ -336,7 +318,7 @@ We remark that this result improves upon the H\"older continuity result in
 %
 %
 %
-\section{Proof of Theorem \ref{thm:main-thm}}
+\section{Proof of Theorem~\ref{thm:main-thm}}
 %
 %
 The proof in the periodic case is analogous to that in the non-periodic case.
@@ -351,13 +333,13 @@ below $3/2$ before we can even consider discussing H\"older continuity in weak
 topologies.
 \subsection{Region $\Omega_{2}$} 
 \label{ssec:reg-6}
-Open. The lower bound on $r$ comes from Lemma \ref{cor1}. Perhaps the lemma can
+Open. The lower bound on $r$ comes from Lemma~\ref{cor1}. Perhaps the lemma can
 be strengthened.
 \subsection{Region $\Omega_{3}$} 
 \label{ssec:reg-7}
 It makes little sense to talk about this region, 
-i.e. we assume a priori that our initial
-data is in $H^{s}$ (i.e. it may not even be in $H^{r}$ if $r > s$). If it is in
+i.e.\ we assume a priori that our initial
+data is in $H^{s}$ (i.e.\ it may not even be in $H^{r}$ if $r > s$). If it is in
 $H^{r}$, then we are back where we started.
 \subsection{Region $\Omega_{4}$} 
 \label{ssec:reg-m-imp}
@@ -404,7 +386,7 @@ D^r v \ dx
 \\
 & - \frac{\gamma}{2} \int_{\rr} D^{r 
 -2} \p_x [ \p_x v
-\cdot \p_x (u+w)]\cdot D^r v \ dx .
+\cdot \p_x (u+w)]\cdot D^r v \ dx.
 \label{2v}
 \end{split}
 \end{equation}
@@ -473,7 +455,7 @@ If $s > 3/2$ and $-1 \le r  \le s -1$, then
 %
 %
 Set $s > 3/2$ and $-1 \le r \le s -1$. An application of 
-Cauchy-Schwartz and Lemma \ref{cor1} then yields 
+Cauchy-Schwartz and Lemma~\ref{cor1} then yields 
 %
 %
 \begin{equation}
@@ -533,7 +515,7 @@ For $s > 3/2$, $r \le s$, $s + r \ge 2$, we have
 %
 %
 %
-Applying Cauchy-Schwartz and Lemma \ref{lem:frac-deriv}, we obtain
+Applying Cauchy-Schwartz and Lemma~\ref{lem:frac-deriv}, we obtain
 %
 %
 %
@@ -785,7 +767,7 @@ We conclude that
 \label{ssec:case-2}
 %
 %
-Applying Lemma \ref{lem:interp} and the fact that 
+Applying Lemma~\ref{lem:interp} and the fact that 
 %
 %
 \begin{equation*}
@@ -821,7 +803,7 @@ Hence, we may apply \eqref{lip-ineq} to bound \eqref{pre-lip-ap} by
 \end{equation*}
 %
 %
-This completes the proof of Theorem \ref{thm:main-thm}. \qed
+This completes the proof of Theorem~\ref{thm:main-thm}. \qed
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1085,7 +1067,10 @@ which implies
 Solving this equation for $y$ and then substituting back into \eqref{y-for-u} completes the proof.
 \end{proof}
 \begin{framed}
-    \textbf{I spent $7+$ hours, but couldn't figure out how to solve \eqref{y-equation} in order to get \eqref{u-lam-explicit-form}. I go about proving Lemma \ref{lem:sol-burg} in slightly different fashion; see the next section}.
+    \textbf{I spent $7+$ hours, but couldn't figure out how to solve
+\eqref{y-equation} in order to get \eqref{u-lam-explicit-form}. I go about
+proving Lemma~\ref{lem:sol-burg} in slightly different fashion; see the next
+section}.
 \end{framed}
 %
 %
@@ -1188,7 +1173,7 @@ p(z) =\frac{1}{(t+1)(x - \lambda t)^{\alpha}}.
 \end{proof}
 %
 %
-Applying Lemma \ref{lem:sol-burg}, we have
+Applying Lemma~\ref{lem:sol-burg}, we have
 %
 %
 \begin{equation*}
@@ -1258,15 +1243,267 @@ we see that for any fixed constant $c > 0$ there exists sufficiently small $T = 
 \end{equation*}
 Therefore, the Burgers initial value problem on the line with initial data
 $u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
-\appendix
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Optimality HR
+%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%                proofs of lemmas
+\section{Optimality for HR} 
+\label{sec:op-hr}
+We recall the hyperelastic-rod (HR) ivp
+\begin{gather}
+    \label{hr}
+    u_{t} + \frac{\gamma}{2}(u^{2})_{x} + P_{x} = 0
+    \\
+    \label{hr-data}
+    u(x,0) = u_{0}(x)
+\end{gather}
+where
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation*}
+\begin{split}
+P(x,t) \doteq \frac{1}{2}e^{-| x |} * \left [\frac{3 - \gamma}{2}
+    u^{2}(x,t) + \frac{\gamma}{2} u_{2}^{2}(x,t) \right ].
+\end{split}
+\end{equation*}
+%
+\begin{framed}
+We remark that $e^{-| x |}$ is a weak solution to the ode $(1 + \p_{x}^{2})u =
+2\delta$. Taking Fourier transforms of both sides, it follows that
+$\widehat{e^{-| \cdot |}}(\xi) = 2(1 + \xi^{2})$. Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{1}{2} e^{-| x |} * f = (1 - \p_{x}^2)f
+\end{split}
+\end{equation*}
+%
+%
+Therefore, the form of HR which we all know and love is equivalent to
+\eqref{hyperelastic-rod-equation}.
+\end{framed}
+%
+Following Bressan \cite{Bressan_2007_Global-conserva}, we let $\xi \in \rr$ be an energy variable, and for tixed $t \in \rr$ define the map $t \mapsto y(\xi, t)$ implicitly by 
+%
+%
+\begin{equation*}
+\begin{split}
+    \int_{0}^{y(\xi, t)} [1 + u^{2}(x,t)]dx = \xi.
+\end{split}
+\end{equation*}
+%
+%
+Consider also the initial value problem
+%
+%
+\begin{gather}
+    \label{en-eq}
+\frac{dy}{dt}(\xi, t) = u(y(\xi, t), t),
+\\
+\label{en-data}
+y(\xi, 0) = y_{0}(\xi)
+\end{gather}
+%
+%
+and define
+\begin{gather}
+    \label{var-1}
+    w(\xi, t) \doteq \gamma u(y(\xi, t), t)
+    \\
+    \label{var-2}
+    v(\xi, t) \doteq u_{x}(y(\xi, t), t)
+    \\
+    \label{var-3}
+    q(\xi, t) \doteq y_{\xi}(\xi, t)
+\end{gather}
+where we adopt the notation $$u_{x}(y(\xi, t),t) \doteq \frac{d}{dz}u(z,t) \big
+|_{z = y(\xi, t)}$$ for the remainder of the paper. Using ivp
+\eqref{en-eq}-\eqref{en-data}, we will rewrite the HR ivp
+\eqref{hr}-\eqref{hr-data} as an ode system for the variables \eqref{var-1},
+\eqref{var-2}, and \eqref{var-3}. Proceeding, we note that by the chain rule
+%
+%
+\begin{equation}
+\label{w-deriv}
+\begin{split}
+\frac{d}{dt}w(\xi, t)
+& = \gamma u_{y} y_{t}(y(\xi, t), t) + u_{t}(y(\xi, t), )
+\\
+& = \gamma u u_{x}(y(\xi, t ), t) + u_{t}(y(\xi, t))
+\\
+& = -P_{x}(y(\xi, t), t).
+\end{split}
+\end{equation}
+%
+%
+Now, we want to get $P_{x}(y(\xi, t), t)$ in "nice" form as we will be estimating later. Notice that
+%
+%
+\begin{equation*}
+\begin{split}
+P(x,t) = \frac{1}{2} \int_{\rr}e^{-| x - x_{1} |} \left [\frac{3 - \gamma}{2}
+u^{2}(x_{1}, t) + \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ]
+\end{split}
+\end{equation*}
+%
+%
+and so 
+%
+%
+\begin{equation*}
+\begin{split}
+P(y(\xi, t), t) = \frac{1}{2} \int_{\rr} e^{-| y(\xi, t) - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2}u_{x}^{2} \right ] (x_{1}, t) d x_{1}.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore
+%
+%
+\begin{equation}
+\begin{split}
+\label{p}
+P_{x}(x,t)
+& = \frac{1}{2}\p_{x} e^{-| x |}* \left [ \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = \frac{1}{2} \int_{\rr} \sgn(x - x_{1}) e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) + \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] 
+\\
+& \frac{1}{2} \left ( \int_{x}^{\infty} - \int_{-\infty}^{x} \right )
+e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
+\frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] dx_{1}
+\end{split}
+\end{equation}
+%
+%
+and so%
+%
+\begin{equation}
+\label{p-deriv}
+\begin{split}
+P_{x}(y(\xi, t), t)
+& = \frac{1}{2} \left ( \int_{y(\xi, t)}^{\infty} - \int_{-\infty}^{y(\xi, t)} \right ) e^{-| y(\xi, t) - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
+\frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] dx_{1}.
+\end{split}
+\end{equation}
+%
+%
+Adopt the notation 
+%
+%
+\begin{equation*}
+\begin{split}
+q(\xi, t) \doteq y_{\xi}(\xi, t).
+\end{split}
+\end{equation*}
+%
+%
+Then applying the change of variable $x_{1} = y(\xi_{1}, t)$, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\eqref{p} & = \frac{1}{2} \int_{\rr} e^{-| y(\xi, t) - y(\xi_{1}, t) |} \left [
+\frac{3 -\gamma}{2} w^{2}q + \frac{\gamma}{2} v^{2} q  \right ](\xi_{1}, t) d \xi_{1}
+\\
+& \doteq Q = Q(v, w, q)(\xi, t) 
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+\begin{split}
+\eqref{p-deriv} & = \frac{1}{2} \left ( \int_{\xi}^{\infty} -
+\int_{-\infty}^{\xi} \right ) e^{-| \int_{\xi_{1}}^{\xi} q(\lambda, t) d \lambda 
+|} \left [ \frac{3 - \gamma}{2} w^{2} q + \frac{\gamma}{2} v^{2} q \right ] (\xi_{1}, t) d \xi_{1}
+\\
+& \doteq R = R(v, w, q)(\xi, t). 
+\end{split}
+\end{equation*}
+%
+Substituting this into \eqref{w-deriv}, we see that
+%
+%
+\begin{equation}
+\label{w-ode}
+\begin{split}
+\frac{d}{dt}w(\xi, t) = -R(w, v, q)(\xi, t).
+\end{split}
+\end{equation}
+%
+%
+Now, we find analogues of \eqref{w-ode} for $v$ and $q$. Observe that by the
+chain rule 
+%
+\begin{equation}
+\label{lkk}
+\begin{split}
+\frac{d}{dt}v(\xi, t)
+&  = \frac{du_{x}}{dy}(y(\xi, t), t) \frac{dy}{dt}(\xi, t) + u_{xt}(y(\xi, t), t)
+\\
+& =  (u_{xx}u + u_{xt})(y(\xi, t), t).
+\end{split}
+\end{equation}
+%
+Differentiating \eqref{hyperelastic-rod-equation} formally with respsect to $x$,
+and using the fact that
+%
+%
+\begin{equation*}
+\begin{split}
+P_{xx}
+&  = \frac{1}{2} \p_{x}^{2}e^{-| x |}* \left [ \frac{3 - \gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = \frac{1}{2} \left [ e^{-| x |} - 2 \delta \right ] * \left [ \frac{3 - \gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = \frac{1}{2} e^{-| x |} * \left [ \frac{3 - \gamma}{2}u^{2} +
+\frac{\gamma}{2} u_{x}^{2} \right ] - \frac{1}{2} \left [ \frac{3 -
+\gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = P - \left [ \frac{3 -
+\gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+u_{xt} + u u_{xx} + u_{x}^{2} + P - \left [ \frac{3 -
+\gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ]  = 0.
+\end{split}
+\end{equation*}
+%
+%
+Substituting this into \eqref{lkk}, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{dt}v(\xi, t)
+& = \left \{ u_{xx} u + big[-uu_{xx} - u_{x}^{2} - P + \left ( \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2}u_{x}^{2} \right ) ] \right \}(y(\xi, t), t)
+\\
+& = \left \{- P  + \frac{3 - \gamma}{2} u^{2} + \frac{\gamma-2}{2} u_{x}^{2} \right \}(y(\xi, t), t)
+\\
+& = \left \{-Q + \frac{3- \gamma}{2 \gamma^{2}}w^{2} + \frac{\gamma-2}{2}
+v^{2} \right \}(\xi, t).
+\end{split}
+\end{equation*}
+%
+%
+%
 %
 %
 \section{Proofs of Lemmas} 
@@ -1274,7 +1511,7 @@ $u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
 %
 %
 %
-\begin{proof}[Proof of Lemma \ref{lem:frac-deriv}]
+\begin{proof}[Proof of Lemma~\ref{lem:frac-deriv}]
 For the non-periodic case we have
 %
 %
@@ -1317,8 +1554,8 @@ Applying a change of variable, we get
 %
 \begin{equation*}
 \begin{split}
-  \| f \|_{H^{s}}^{2} \int_{\rr} (1 + \xi^{2})^{r-1} \int_{\rr} \frac{
-  | \wh{g}(\eta) |^{2}}{[1 + (\xi - \eta)^{2}]^{s-1}} d \eta d \xi
+  \| f \|_{H^{s}}^{2} \int_{\rr} (1 + \xi^{2})^{r-1} \int_{\rr}
+\frac{| \wh{g}(\eta) |^{2}}{[1 + (\xi - \eta)^{2}]^{s-1}} d \eta d \xi
   \end{split}
 \end{equation*}
 which by Fubini is equal to
@@ -1385,7 +1622,7 @@ that its conditions are met. Let $ s = 3/2 + \ee$, $r = 1- \delta$, $\ee > 0$, $
 \end{equation*}
 %
 %
-Furthermore, $2(s-1), 2(1-r) > 0$. Hence, Lemma \ref{lem:calc} is applicable. 
+Furthermore, $2(s-1), 2(1-r) > 0$. Hence, Lemma~\ref{lem:calc} is applicable. 
 Lastly, observe that 
 %
 %
@@ -1489,13 +1726,13 @@ We need the following.
 %
 %
 \begin{proposition}[Sobolev Interpolation]
-  For fixed $k \le q, m \le s$ suppose that \\ $T: H^{k} \to H^{m}$ continuously and $T: H^{q} \to H^{s}$ . Then\\
-  $T: H^{\theta q + (1 - \theta)k} \to H^{\theta s +
-  (1 - \theta) m}$ continuously for all $\theta \in [0,1)$.
+  For fixed $k \le q, m \le s$ suppose that \\ $T: H^{k} \to H^{m}$ continuously
+and $T: H^{q} \to H^{s}$. Then\\ $T: H^{\theta q + (1 - \theta)k} \to H^{\theta
+s + (1 - \theta) m}$ continuously for all $\theta \in [0,1)$.
 \label{prop:sob-interp}
 \end{proposition}
 %
-To apply Proposition \ref{prop:sob-interp}, we note that \eqref{yhh}
+To apply Proposition~\ref{prop:sob-interp}, we note that \eqref{yhh}
 and \eqref{pre-interp-1} imply
 %
 %
@@ -1509,7 +1746,7 @@ and \eqref{pre-interp-1} imply
 %
 That is, for fixed $f \in H^{s}$ with $\| f \|_{H^{s}} =1$, the map $g \mapsto
 Tg = fg$ is continuous from $L^{2}$ to $L^{2}$ and from $H^{s-1}$ to
-$H^{s-1}$. Therefore, by Proposition \ref{prop:sob-interp}, it is continuous from
+$H^{s-1}$. Therefore, by Proposition~\ref{prop:sob-interp}, it is continuous from
 $H^{\theta (s-1) }$ to $H^{\theta (s-1)}$ for all $\theta \in
 [0, 1)$. Setting $\theta = (r-1)/(s-1)$, $ 1 \le r \le s$, we obtain that $T$ is
 continuous from $H^{r-1}$ to $H^{r-1}$; that is
@@ -1547,7 +1784,7 @@ case. For the periodic case, we note that the analogue of the integral term in \
 The remainder of the proof is analogous to that in the non-periodic case.
 \end{proof}
 %
-\begin{proof}[Proof of Lemma \ref{impo}]
+\begin{proof}[Proof of Lemma~\ref{impo}]
 We have
 %
 %
@@ -1643,7 +1880,7 @@ that its conditions are met. Let $ s = 3/2 + \ee$, $r = 1- \delta$, $\ee > 0$, $
 \end{equation*}
 %
 %
-Furthermore, $2(s-1), 2(1-r) > 0$. Hence, Lemma \ref{lem:calc} is applicable. 
+Furthermore, $2(s-1), 2(1-r) > 0$. Hence, Lemma~\ref{lem:calc} is applicable. 
 Lastly, observe that 
 %
 %
@@ -1696,7 +1933,7 @@ $$s + r \ge 2,  \quad  r \le 1, \ s > 3/2.$$ Therefore,
 %
 We will now establish this bound for $r=s$ where $s > 3/2$, and then interpolate
 to obtain bounds for the whole range $1 \le r \le s$, where again $s > 3/2$.
-Applying Lemma \ref{lem:alg-prop}, we obtain
+Applying Lemma~\ref{lem:alg-prop}, we obtain
 %
 %
 %
@@ -1717,7 +1954,7 @@ Applying Lemma \ref{lem:alg-prop}, we obtain
 %
 %
 %
-To apply Proposition \ref{prop:sob-interp}, we note that \eqref{r-lt-1-range}
+To apply Proposition~\ref{prop:sob-interp}, we note that \eqref{r-lt-1-range}
 and \eqref{pre-interp-2} imply
 %
 %
@@ -1731,7 +1968,7 @@ and \eqref{pre-interp-2} imply
 %
 That is, for fixed $f \in H^{s}$ with $\| f \|_{H^{s}} =1$, the map $g \mapsto
 Tg = f_{x} g_{x}$ is continuous from $H^{1}$ to $L^{2}$ and from $H^{s}$ to
-$H^{s-1}$. Therefore, by Proposition \ref{prop:sob-interp}, it is continuous from
+$H^{s-1}$. Therefore, by Proposition~\ref{prop:sob-interp}, it is continuous from
 $H^{\theta s + 1 - \theta}$ to $H^{\theta(s-1)}$ for all $\theta \in
 (0, 1)$. Setting $\theta = (r-1)/(s-1)$, $ 1 \le r \le s$, we obtain that $T$ is continuous from $H^{r}$ to $H^{r-1}$; that is
 %
@@ -1760,7 +1997,7 @@ integral term in \eqref{np-key-term-d} is
 %
 \begin{equation*}
 \begin{split}
-  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{ (n - \eta)^{2}| \wh{g}(n
+  \sum_{n \in \zz}   (1 + n^{2})^{r-1}\int_{\ci} \frac{(n - \eta)^{2}| \wh{g}(n
   - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta. 
 \end{split}
 \end{equation*}
@@ -1863,7 +2100,7 @@ The remainder of the proof is analogous to that in the non-periodic case.
 %%
 %
 %
-\begin{proof}[Proof of Lemma \ref{lem:interp}]
+\begin{proof}[Proof of Lemma~\ref{lem:interp}]
  We have
  %
  %
@@ -1917,10 +2154,10 @@ This implies
  %
  %
  Taking square roots of both sides completes the proof in the non-periodic case.
- The proof in the periodic case is analogous to the non-periodic proof (i.e.
+ The proof in the periodic case is analogous to the non-periodic proof (i.e.\
  integrals are replaced with sums in the proof).
   \end{proof}
-\begin{proof}[Proof of Lemma \ref{lem:calc}]
+\begin{proof}[Proof of Lemma~\ref{lem:calc}]
 %
 By the change of variable $x \mapsto x + (\alpha + \beta)/2$, we have
 %
@@ -2069,7 +2306,7 @@ By symmetry, the second inequality also holds for $a < 0$. Recalling
 \eqref{rry}, the proof is complete.
 \end{proof}
 
-  \section{Proof of Proposition \ref{prop:sob-interp}}
+  \section{Proof of Proposition~\ref{prop:sob-interp}}
 \label{ssec:pf-sob-interp}
 The proof follows immediately from the following two lemmas and the continuous
 embedding $H^{s'} \subset H^{s}$, $s < s'$.
@@ -2115,10 +2352,10 @@ $T: H^{\theta q + (1 - \theta)k} \to H^{\theta s +
 %
 %
 %
-Hence, to complete the proof of Proposition \ref{prop:sob-interp},
+Hence, to complete the proof of Proposition~\ref{prop:sob-interp},
 it will be enough to prove these lemmas.
 %
-\begin{proof}[Proof of Lemma \ref{lem:rest-bound}]
+\begin{proof}[Proof of Lemma~\ref{lem:rest-bound}]
 We first recall the following.
 \begin{definition}
 Let $X$ and $Y$ be Banach spaces, and $T: X \to Y$ be linear. We say that $T$ is
@@ -2164,7 +2401,7 @@ bounded.
 \end{lemma}
 %
 %
-Proceeding with the proof of Lemma \ref{lem:rest-bound},
+Proceeding with the proof of Lemma~\ref{lem:rest-bound},
 suppose $x_{n} \to x$ in $U$; that is
 %
 %
@@ -2199,7 +2436,7 @@ $U$ to $V$. Applying the closed graph theorem concludes the proof.
 %
 %
 %
-\begin{proof}[Proof of Lemma \ref{lem:interp-spaces}]
+\begin{proof}[Proof of Lemma~\ref{lem:interp-spaces}]
   We refer the reader to \cite{Taylor:1995kx}, pp.322-324.
 \end{proof}
 %
@@ -2330,4 +2567,4 @@ Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
 %\bibliographystyle{amsalpha-custom}
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 
-        \end{document}
+\end{document}
