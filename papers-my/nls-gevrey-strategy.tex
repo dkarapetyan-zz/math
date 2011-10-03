@@ -56,7 +56,7 @@ urlcolor=blue,
 \newtheorem{examp}{Example}[section]
 \newtheorem {exercise}[theorem] {Exercise}
 %
-\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
 %makes proof environment bold instead of italic
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
@@ -82,15 +82,15 @@ urlcolor=blue,
 \begin{document}
 \title{Strategy for Proof of Sharp $G^{2}$ Regularity in Time for NLS}
 \author{Alex Himonas, David Karapetyan, and Gerson Petronilho}
-        \date{\today}
-        %
-        \maketitle
-        %
-        %
-        %
-        %
-        %
-        %
+\date{\today}
+%
+\maketitle
+%
+%
+%
+%
+%
+%
 \section{Sharp $G^2$ regularity in time for NLS} 
 \label{pg2-rreg-3}
 %
@@ -125,7 +125,7 @@ prove the following.
   $\vp \in  \mathcal{C}^\omega(\mathbb{T})$ such that the associated solution
   $u(x,t)$ to \eqref{peqn:nls-t} is not $G^{\sigma}$ in time for any $1 \le \sigma <
   2$. 
-\label{thm:sharp}
+  \label{thm:sharp}
 \end{theorem}
 %
 %
@@ -136,20 +136,20 @@ of $L^{2}(\ci^{2})$ under the norm
 %
 %
 \begin{equation*}
-\begin{split}
-  \| u \|^{2}_{G^{\sigma, \delta}} = \sum_{n, \tau \in \zz} \langle
-  \tau - n^{2} \rangle  [(\min \{ |\tau -1 |, |\tau + 1| \})!]^{2 \sigma}
-  e^{2 \delta n} | \wh{u}(n, \tau) |^{2} 
-\end{split}
+  \begin{split}
+    \| u \|^{2}_{G^{\sigma, \delta}} = \sum_{n, \tau \in \zz} \langle
+    \tau - n^{2} \rangle  [(\min \{ |\tau -1 |, |\tau + 1| \})!]^{2 \sigma}
+    e^{2 \delta n} | \wh{u}(n, \tau) |^{2} 
+  \end{split}
 \end{equation*}
 %
 where we adopt the notation
 %
 %
 \begin{equation*}
-\begin{split}
-\langle k \rangle  = 1 + | k |, \quad k \in \rr.
-\end{split}
+  \begin{split}
+    \langle k \rangle  = 1 + | k |, \quad k \in \rr.
+  \end{split}
 \end{equation*}
 %
 %
@@ -168,7 +168,7 @@ is as follows.
   $\vp \in  \mathcal{C}^\omega(\mathbb{T})$ such that the associated solution
   $u(x,t)$ to \eqref{peqn:nls-t} is not in $G^{\sigma, \delta}$
   in time for any $1 \le \sigma < 2$. 
-\label{thm:sharp-weak}
+  \label{thm:sharp-weak}
 \end{theorem}
 %
 Recall the Bourgain space $X \doteq X^{0,1/2}$ adapted to the problem of proving
@@ -176,10 +176,10 @@ $L^{2}$ well-posedness of
 NLS, with norm given by
 %
 \begin{equation*}
-\begin{split}
-  \| u \|_{X}^{2} = \sum_{n, \tau \in \zz} \langle \tau - n^{2} \rangle 
-  | \wh{u}(n, \tau) |^{2}.
-\end{split}
+  \begin{split}
+    \| u \|_{X}^{2} = \sum_{n, \tau \in \zz} \langle \tau - n^{2} \rangle 
+    | \wh{u}(n, \tau) |^{2}.
+  \end{split}
 \end{equation*}
 %
 %
@@ -197,58 +197,58 @@ continuously. Furthermore, we have the following important property. %
   Fix $\sigma \ge 1$ and $\delta > 0$.
   If $u \in G^{\sigma, \delta}$, then $u \in G^{\sigma}(\ci,
   \mathcal{C}^{\omega})$.
-\label{lem:main-space-embed}
+  \label{lem:main-space-embed}
 \end{lemma}
 %
 %
 %
 %
 \begin{proof}
-If $u \in G^{\sigma, \delta}$, then we must have
-%
-%
-\begin{equation*}
-\begin{split}
-| \wh{u}(n, \tau) |
-& <  \langle \tau - n^{2} \rangle^{1/2}    e^{-\delta n}
-[(\min \{ |\tau -1 |, |\tau + 1| \})!]^{ \sigma}
-\\
-& <  \langle \tau - n^{2} \rangle e^{-\delta n}
-[(\min \{ |\tau -1 |, |\tau + 1| \})!]^{ \sigma}
-\\
-& \lesssim \langle \tau \rangle \langle n \rangle ^{2}
-e^{-\delta n}
-[(\min \{ |\tau -1 |, |\tau + 1| \})!]^{ \sigma}
-\\
-& < \langle n \rangle ^{2}
-e^{-\delta n}
-(| \tau |)!^{ \sigma}
-\\
-& < C_{\delta} e^{-\delta n/2} (| \tau |)!^{\sigma}
-\end{split}
-\end{equation*}
-%
-which completes the proof.
-%
+  If $u \in G^{\sigma, \delta}$, then we must have
+  %
+  %
+  \begin{equation*}
+    \begin{split}
+      | \wh{u}(n, \tau) |
+      & <  \langle \tau - n^{2} \rangle^{1/2}    e^{-\delta n}
+      [(\min \{|\tau -1 |, |\tau + 1|\})!]^{\sigma}
+      \\
+      & <  \langle \tau - n^{2} \rangle e^{-\delta n}
+      [(\min \{ |\tau -1 |, |\tau + 1| \})!]^{\sigma}
+      \\
+      & \lesssim \langle \tau \rangle \langle n \rangle ^{2}
+      e^{-\delta n}
+      [(\min \{ |\tau -1 |, |\tau + 1| \})!]^{sigma}
+      \\
+      & < \langle n \rangle ^{2}
+      e^{-\delta n}
+      (| \tau |)!^{\sigma}
+      \\
+      & < C_{\delta} e^{-\delta n/2} (| \tau |)!^{\sigma}
+    \end{split}
+  \end{equation*}
+  %
+  which completes the proof.
+  %
 \end{proof}
 %
 %
 %
 %
-\begin{proof}[Proof of Theorem \ref{thm:sharp-weak}]
-%
-%
-We rewrite the NLS Cauchy problem as a time localized integral equation   
+\begin{proof}[Proof of Theorem~\ref{thm:sharp-weak}]
+  %
+  %
+  We rewrite the NLS Cauchy problem as a time localized integral equation   
   %
   \begin{equation*}
-  \begin{split}
-    u(x,t)
-    & = \psi(t) e^{it \Delta} \vp + \psi(t)
-    \int_{0}^{t} e^{i(t - t') \Delta}(u u \bar{u})
-    dt'
-    \\
-    & = T(u)
-  \end{split}
+    \begin{split}
+      u(x,t)
+      & = \psi(t) e^{it \Delta} \vp + \psi(t)
+      \int_{0}^{t} e^{i(t - t') \Delta}(u u \bar{u})
+      dt'
+      \\
+      & = T(u)
+    \end{split}
   \end{equation*}
   %
   %
@@ -268,15 +268,15 @@ We rewrite the NLS Cauchy problem as a time localized integral equation
   \\
   \\
   \begin{center}
-  \begin{tikzpicture}
-  \fill[color=green, opacity=0.2] (0,0) circle  (130pt) ;
-  \fill[color=yellow, opacity=0.3] (0,0) circle  (50pt); 
-  \fill[color=red] (-0.4,-1) circle  (2pt); 
-  \draw (0, 3) node[scale=1.5] {$X$};
-  \draw (0,0) node[scale=1.5] {$G^{\sigma, \delta}$};
-  \draw (0,-1) node[scale=0.8] {$u$};
-\end{tikzpicture}
-\end{center}
+    \begin{tikzpicture}
+      \fill[color=green, opacity=0.2] (0,0) circle  (130pt) ;
+      \fill[color=yellow, opacity=0.3] (0,0) circle  (50pt); 
+      \fill[color=red] (-0.4,-1) circle  (2pt); 
+      \draw (0, 3) node[scale=1.5] {$X$};
+      \draw (0,0) node[scale=1.5] {$G^{\sigma, \delta}$};
+      \draw (0,-1) node[scale=0.8] {$u$};
+    \end{tikzpicture}
+  \end{center}
   But this is
   impossible, due to the following key proposition.
   %
@@ -294,19 +294,15 @@ We rewrite the NLS Cauchy problem as a time localized integral equation
     Fix $\delta > 0$, $1 < \sigma < 2$. Then there exists
     $\vp \in \mathcal{C}^{\omega}$ such that for
     any $u \in G^{\sigma, \delta}$, we have
-  \begin{equation}
-    \| T_{\vp}(u) \|_{G^{\sigma, \delta}} > \|u \|_{G^{\sigma, \delta}}.
-  \end{equation}
-  \label{prop:non-cont}
+    \begin{equation}
+      \| T_{\vp}(u) \|_{G^{\sigma, \delta}} > \|u \|_{G^{\sigma, \delta}}.
+    \end{equation}
+    \label{prop:non-cont}
   \end{proposition}
   %
   %
-By contradiction, the proof is complete. 
+  By contradiction, the proof is complete. 
 \end{proof}
-
-
-
-        %\nocite{*}
-        %\bibliography{/Users/davidkarapetyan/math/bib-files/references}
-
-        \end{document}
+\end{document}
+%\nocite{*}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}

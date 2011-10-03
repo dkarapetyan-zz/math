@@ -1,8 +1,6 @@
 \documentclass[12pt,reqno]{amsbook}
 %
 %
-
-
 \usepackage[utf8]{inputenc}
 \usepackage{showkeys}
 \usepackage[T1]{fontenc} %otherwise have font issues
@@ -112,20 +110,20 @@ urlcolor=blue,
 \tableofcontents
 \mainmatter
 \part{Strongly Dispersive Equations}
-\input{./mnls/mnls}
-\input{./nls-l4/nls-l4}
-\input{./dnls/dnls}
-\input{./kdv/kdv}
-\input{./knls/knls}
-\input{./mkdv/mkdv}
-\input{./nls-gevrey/nls-gevrey}
+\include{./mnls/mnls}
+\include{./nls-l4/nls-l4}
+\include{./dnls/dnls}
+\include{./kdv/kdv}
+\include{./knls/knls}
+\include{./mkdv/mkdv}
+\include{./nls-gevrey/nls-gevrey}
 \part{Weakly Dispersive Equations}
-\input{./hr/hr}
+\include{./hr/hr}
 %
 %
 \part{Appendix}
 %
-\input{./ode-thm/ode-thm.tex}
+\include{./ode-thm/ode-thm.tex}
 %
 \backmatter
 \bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
