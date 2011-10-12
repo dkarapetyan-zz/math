@@ -107,58 +107,78 @@ urlcolor=blue,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\subsection{Current Research} 
-\label{sec:cur-res}
+\subsection{Introduction} 
+\label{ssec:cur-res}
 The main focus of my research so far has been well-posedness and ill-posedness
-for the hyperelastic rod (HR) equation.
+for non-linear partial differential equations modeling the evolution of
+shallow-water waves in a channel. I have been primarily interested in
+strongly dispersive/diffusive and weakly dispersive equations. More precisely, I have researched
+equations with a Burgers type (i.e. $u\p_x u$) or polynomial type nonlinearity
+(i.e. $u^{2}$, $| u |^{2} u$) which is "smoothed" out by
+the presence of a dispersive of diffusive term. To date, I have investigated
+Korteweg-–de Vries equation (KDV), the modified Korteweg--de Vries equation
+(mKDV), the cubic nonlinear Schr\"odinger equation (NLS), the modified nonlinear
+Schr\"odinger equation (mNLS), the nonlinear Schr\"odinger equation with quadratic
+nonlinearity (qNLS), the Boussinesq equation, and the hyperelastic hod equation
+(HR). All of these equations, with the exception of HR, are strongly dispersive
+or strongly dissipative, in the sense that the dispersive or diffusive term
+regularizes the initial data. In the case of HR, no regularization of the
+initial data occurs. However, unlike the other equations mentioned above, the HR
+equation has the notable property that it admits traveling wave solutions which
+break in finite time, such as "peakons" (for example, $e^{-| x |}$) and
+"cuspons". These primary difference between the peakons and cuspons is that the
+peakons have bounded derivative, whereas the cuspons do not. Visually, the peakons are crest shaped, whereas the cuspons are much steeper.
 %
 %
-%\begin{gather}
-%\label{hr}
-%\p_t u
-%-
-%\p_t \p_x^2 u
-%+
-%3u\p_x u
-%=
-%\gamma \big (
-%2\p_x u \p_x^2 u
-%+
-%u \p_x^3 u
-%\big ), \quad \gamma \neq 0
-%\\
-%\label{hr-data} u(x, 0) = u_0 (x),
-%\quad x  \in \ci, \ \ \text{or} \ \ \rr \quad t \in \rr,
-%\end{gather}
-%%
-%%
-%the Korteweg-–de Vries equation (KDV) 
-%\begin{gather}
-  %u_{t} + 6u_{xx} + u u_{x} = 0,
-  %\\
-  %u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
-%\end{gather}
-%%
-%%
-%the cubic nonlinear Schr\"odinger
-%equation (NLS)
-%\begin{gather}
-  %iu_{t} + u_{xx} + | u |^{2}u = 0,
-%\\
-%u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
-%\end{gather}
-%%
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%and the Boussinesq
-%equation
-%\begin{gather}
-   %u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
-  %\\
-   %u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
-  %\quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
-%\end{gather}
+\subsection{Weakly Dispersive Equations} 
+\label{ssec:weak-disp}
+The HR equation
+\begin{gather}
+\label{hr}
+\p_t u
+-
+\p_t \p_x^2 u
++
+3u\p_x u
+=
+\gamma \big (
+2\p_x u \p_x^2 u
++
+u \p_x^3 u
+\big )
+\\
+\label{hr-data} u(x, 0) = u_0 (x),
+\quad x  \in \ci, \ \ \text{or} \ \ \rr \quad t \in \rr,
+\end{gather}
+was first
+derived by Dai in \cite{Dai_1998_Model-equations} as a one-dimensional 
+model for finite-length and
+small-amplitude axial deformation waves in thin cylindrical
+rods composed of a compressible Mooney-Rivlin
+material. The derivation relied upon a reductive perturbation technique, 
+and took into account the nonlinear dispersion of pulses propagating 
+along a rod. It was assumed that each cross-section of the rod is 
+subject to a stretching and rotation in space. The solution $u(x,t)$ to the 
+HR equation represents the radial stretch relative
+to a pre-stressed state, while $\gamma$ is a fixed constant depending upon 
+the pre-stress and the material used in
+the rod, with values ranging from $- 29.4760$ to $3.4174$.
+
+Setting $\gamma = 0$ gives the 
+BBM equation, which was proposed by 
+Benjamin, Bona, and Mahony 
+\cite{Benjamin_1972_Model-equations} as a model for 
+the unidirectional evolution of long waves.
+Solitary-wave solutions to this 
+equation are global and orbitally stable (see Benjamin 
+\cite{Benjamin_1972_The-stability-o}, 
+\cite{Benjamin_1972_Model-equations}, and 
+\cite{Constantin_2000_Stability-of-a-}).
+Setting $\gamma =1$ gives the Camassa-Holm equation, a celebrated bi-Hamiltonian
+model for the evolution of shallow water waves in a channel, with the notable
+property that it possesses traveling wave solutions which break in
+finite time.
+
 I recently published a paper on the HR equation entitled 
 {\it ``Non-Uniform Dependence  and well-posedness
 for the
@@ -189,10 +209,43 @@ failure of uniform continuity of the data-to-solution map to failure of
 continuity for sufficiently rough initial data. More generally, I am interested
 in disproving well-posedness in the sense of Hadamard (failure of existence,
 uniqueness, or continuity for the data-to-solution map). 
-
-I also have recent work (joint with Alex Himonas and Gerson Petronilho) on the
-well-posedness of periodic NLS in analytic spaces. Using a suitable modification
-of the Bourgain spaces \cite{Bourgain-Fourier-transfo}, we show that for analytic initial data $u_{0}(x)$ with
+\subsection{Strongly Dispersive/Diffusive Equations} 
+\label{ssec:strong-disp}
+%My focus has been on the KDV
+%%%
+%%%
+%\begin{gather}
+  %u_{t} + 6u_{xx} + u u_{x} = 0,
+  %\\
+  %u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+%\end{gather}
+%%%
+%the NLS
+%\begin{gather}
+  %iu_{t} + u_{xx} + | u |^{2}u = 0,
+%\\
+%u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+%\end{gather}
+%%%
+%%%
+%and the Boussinesq
+%\begin{gather}
+   %u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
+  %\\
+   %u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
+  %\quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
+%\end{gather} 
+%equations.
+I have recent work (joint with Alex Himonas and Gerson Petronilho) on the
+well-posedness of periodic NLS 
+\begin{gather}
+  iu_{t} + u_{xx} + | u |^{2}u = 0,
+\\
+u(x,0) = u_{0} \in H^{s}, \quad t \in \rr
+\end{gather}
+in analytic spaces. Using a suitable modification
+of the Bourgain spaces \cite{Bourgain-Fourier-transfo}, we show that for
+analytic initial data $u_{0}(x)$ with
 complex analytic extension to a symmetric strip about the real axis with width
 $\delta$, there exists a unique local
 solution $u(x,t)$ to the NLS which for $| t | < T$
@@ -245,7 +298,14 @@ continuous for initial data in $H^{s}, s \le 0$.
 %
 %
 I am also working on proving failure of the continuity of the data-to-solution map for
-initial data in $H^{s} \times H^{s-2}, s < -1/2$ for the Boussinesq equation. I am using three
+initial data in $H^{s} \times H^{s-2}, s < -1/2$ for the Boussinesq 
+\begin{gather}
+   u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
+  \\
+   u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
+  \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
+\end{gather} 
+equation. I am using three
 different approaches to gain insight into the problem. The first is motivated by
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. More
 specifically, the approach runs as follows:
@@ -309,6 +369,15 @@ insight into proving ill-posedness for HR in Sobolev spaces with index $s \le
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{dLKT07}
 
+\bibitem[BBM72]{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
+  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+  A \textbf{272} (1972), no.~1220, 47--78.
+
+\bibitem[Ben72]{Benjamin_1972_The-stability-o}
+T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+  (London) Ser. A \textbf{328} (1972), 153--183.
+
 \bibitem[BGT02]{Burq_Gerad_Tzvetkov-An-instability-}
 N.~Burq, P.~G{\'e}rad, and N.~Tzvetkov, \emph{An instability property of the
   nonlinear schr{\"o}dinger equation on {\$}s\^{}d{\$}}, Math. Res. Lett.
@@ -323,6 +392,16 @@ J.~Bourgain, \emph{Fourier transform restriction phenomena for certain lattice
 I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
   for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
   \textbf{233} (2006), no.~1, 228--259.
+
+\bibitem[CS00]{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
+  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+  140--148.
+
+\bibitem[Dai98]{Dai_1998_Model-equations}
+H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
+  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+  193--207.
 
 \bibitem[dLKT07]{Lellis_2007_Low-regularity-}
 C.~de~Lellis, T.~Kappeler, and P.~Topalov, \emph{Low-regularity solutions of
@@ -355,7 +434,7 @@ E.~Olson, \emph{Non-uniform dependence on initial data for a family of
   (2006), no.~10, 1081--1102.
 
 \end{thebibliography}
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 %\bibliographystyle{amsalpha-custom}
 \end{document}
 
