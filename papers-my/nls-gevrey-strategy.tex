@@ -54,15 +54,15 @@ urlcolor=blue,
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{examp}{Example}[section]
-\newtheorem {exercise}[theorem] {Exercise}
+\newtheorem{exercise}[theorem]{Exercise}
 %
 %\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
 %makes proof environment bold instead of italic
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
-\newcommand{\R}{\mathbb R}
-\newcommand{\RR}{\mathcal R}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RR}{\mathcal{R}}
 \newcommand{\al}{\alpha}
 \newcommand{\ve}{q}
 \newcommand{\tg}{{tan}}
@@ -71,8 +71,8 @@ urlcolor=blue,
 \newcommand{\ta}{{\tilde{a}}}
 \newcommand{\tb}{{\tilde{b}}}
 \newcommand{\tc}{{\tilde{c}}}
-\newcommand{\tS}{{\tilde S}}
-\newcommand{\tP}{{\tilde P}}
+\newcommand{\tS}{{\tilde{S}}}
+\newcommand{\tP}{{\tilde{P}}}
 \newcommand{\tu}{{\tilde{u}}}
 \newcommand{\tw}{{\tilde{w}}}
 \newcommand{\tA}{{\tilde{A}}}
@@ -100,7 +100,7 @@ Recall the cubic non-linear Schr\"odinger (NLS) Cauchy problem
 %
 \begin{gather}
   \label{peqn:nls-t}
-  \partial_tu + i\partial_x^2u+i |u|^2u,
+  \partial_{t}u + i\partial_{x}^2u+i |u|^2u,
   \\
   \label{peqn:nls-t-data}
   u(x,0)=\varphi(x) \in \mathcal{C}^\omega(\mathbb{T}).
@@ -125,7 +125,7 @@ prove the following.
   $\vp \in  \mathcal{C}^\omega(\mathbb{T})$ such that the associated solution
   $u(x,t)$ to \eqref{peqn:nls-t} is not $G^{\sigma}$ in time for any $1 \le \sigma <
   2$. 
-  \label{thm:sharp}
+\label{thm:sharp}
 \end{theorem}
 %
 %
@@ -152,7 +152,7 @@ where we adopt the notation
   \end{split}
 \end{equation*}
 %
-%
+*
 \begin{framed}
   I have not seen the spaces $G^{\sigma, \delta}$ anywhere in the
   literature. However, they seem reasonable, as they are a natural extension of
@@ -168,7 +168,7 @@ is as follows.
   $\vp \in  \mathcal{C}^\omega(\mathbb{T})$ such that the associated solution
   $u(x,t)$ to \eqref{peqn:nls-t} is not in $G^{\sigma, \delta}$
   in time for any $1 \le \sigma < 2$. 
-  \label{thm:sharp-weak}
+\label{thm:sharp-weak}
 \end{theorem}
 %
 Recall the Bourgain space $X \doteq X^{0,1/2}$ adapted to the problem of proving
@@ -197,9 +197,8 @@ continuously. Furthermore, we have the following important property. %
   Fix $\sigma \ge 1$ and $\delta > 0$.
   If $u \in G^{\sigma, \delta}$, then $u \in G^{\sigma}(\ci,
   \mathcal{C}^{\omega})$.
-  \label{lem:main-space-embed}
+\label{lem:main-space-embed}
 \end{lemma}
-%
 %
 %
 %
@@ -228,10 +227,9 @@ continuously. Furthermore, we have the following important property. %
     \end{split}
   \end{equation*}
   %
-  which completes the proof.
+  which completes the proof. 
   %
 \end{proof}
-%
 %
 %
 %
@@ -269,7 +267,7 @@ continuously. Furthermore, we have the following important property. %
   \\
   \begin{center}
     \begin{tikzpicture}
-      \fill[color=green, opacity=0.2] (0,0) circle  (130pt) ;
+      \fill[color=green, opacity=0.2] (0,0) circle  (130pt);
       \fill[color=yellow, opacity=0.3] (0,0) circle  (50pt); 
       \fill[color=red] (-0.4,-1) circle  (2pt); 
       \draw (0, 3) node[scale=1.5] {$X$};
@@ -291,13 +289,13 @@ continuously. Furthermore, we have the following important property. %
   %
   %
   \begin{proposition}[Key Result We'd Like to Prove]
-    Fix $\delta > 0$, $1 < \sigma < 2$. Then there exists
-    $\vp \in \mathcal{C}^{\omega}$ such that for
-    any $u \in G^{\sigma, \delta}$, we have
-    \begin{equation}
-      \| T_{\vp}(u) \|_{G^{\sigma, \delta}} > \|u \|_{G^{\sigma, \delta}}.
-    \end{equation}
-    \label{prop:non-cont}
+      Fix $\delta > 0$, $1 < \sigma < 2$. Then there exists
+      $\vp \in \mathcal{C}^{\omega}$ such that for
+      any $u \in G^{\sigma, \delta}$, we have
+      \begin{equation}
+          \| T_{\vp}(u) \|_{G^{\sigma, \delta}} > \|u \|_{G^{\sigma, \delta}}.
+      \end{equation}
+      \label{prop:non-cont}
   \end{proposition}
   %
   %
@@ -305,4 +303,4 @@ continuously. Furthermore, we have the following important property. %
 \end{proof}
 \end{document}
 %\nocite{*}
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}

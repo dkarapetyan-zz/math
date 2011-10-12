@@ -1,0 +1,1902 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage{showkeys}
+\usepackage{tikz}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage[normalem]{ulem} %for striking out non-math text
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+%\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+%\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+%
+\DeclareMathOperator{\sgn}{sgn}
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem]{Exercise}
+%
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
+\begin{document}
+\title[H\"older Continuity of the Data to Solution Map for HR]{H\"older Continuity of the Data to Solution Map for HR in the
+Weak Topology}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+    University  of Notre Dame\\
+        Notre Dame, IN 46556 }
+        \date{\today}
+        %
+        \maketitle
+        %
+        %
+        %
+        %
+        %
+        %        
+        %
+        \section{Introduction}
+%
+%
+%
+We consider the hyperelastic rod (HR) Cauchy problem
+\begin{gather}
+ \p_t u =  -\gamma u \p_x u -
+ \p_{x} D^{-2} \left[ \frac{3-\gamma}{2}u^2 +
+\frac{\gamma}{2} \left( \p_x u \right)^2
+\right],
+\label{hyperelastic-rod-equation}
+\\
+ u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+\label{init-cond}
+\end{gather}
+%
+%
+where 
+\begin{equation*}
+	D^{m} = (1 - \p_x^2)^{m/2}, \quad m \in \rr
+\end{equation*}
+and  $\gamma$  is a  nonzero constant. 
+%
+%
+\begin{theorem}
+For $\gamma \neq 0$, the data to solution map for HR is H\"older continuous from
+$B_{H^{s}}(R)$ (in the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T =
+T(R)$, for $s > 3/2$, $s-1 < r < s$. More precisely, for two initial data
+$u_{0}, v_{0} \in B_{H^{s}}(R)$, there exist unique corresponding solutions
+$u(x,t), v(x,t)$ for $0 \le t \le T= T(R)$ to the HR equation
+\eqref{hyperelastic-rod-equation} which satisfy 
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|^{s-r}
+  \quad 0
+  \le t \le T.
+\end{split}
+\end{equation*}
+%
+Furthermore, the exponent $s-r$ is optimal in the following sense: for any
+$\delta$ > 0 there are constants $\lambda_{0}, t_{0} > 0$, a family of constant
+$c^{\lambda} \to \infty$ as $\lambda \to 0$ and a family of uniformly bounded
+functions $u^{\lambda}(0)$, $0 \le \lambda \le \lambda_{0}$ such that
+%
+%
+%
+%
+<++>
+\end{theorem}
+%
+%
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Main theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Optimality
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Optimality} 
+\label{sec:optimality}
+\subsection{Burgers} 
+\label{ssec:burgers-opt}
+
+We first consider the Burgers initial value problem
+%
+%
+\begin{gather}
+    \label{burgers}
+u_{t} + uu_{x} = 0,
+\\
+\label{burgers-init}
+u(x,0) = u_{0}(x)
+\end{gather}
+%
+%
+To solve this, we apply the method of characteristics. That is, we seek a curve
+$s \mapsto (x(s), t(s))$ such that
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{ds} u(x(s), t(s)) = 0.
+\end{split}
+\end{equation*}
+%
+Formally differentiating the left hand side, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{du}{dx} \frac{dx}{ds} + \frac{du}{dt} \frac{dt}{ds}.
+\end{split}
+\end{equation*}
+%
+%
+Setting
+%
+%
+\begin{gather}
+    \label{char-ode-space}
+    \frac{dx}{ds} = u,
+    \\
+    \label{char-ode-time}
+    \frac{dt}{ds}=1
+\end{gather}
+and recalling the Burgers equation \eqref{burgers}, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{ds} u(x(s), t(s)) = 0.
+\end{split}
+\end{equation*}
+%
+%
+Hence, $u$ is constant along the characteristic curve $(x(s), t(s))$ given by
+the characteristic ode's \eqref{char-ode-space}-\eqref{char-ode-time}. Solving
+them, we obtain
+\begin{gather}
+    \label{0j}
+    x(s) = c_{1} + \int_{0}^{s} u(x(s'), t(s'))ds'
+    \\
+    t(s) = s + c_{2}.
+\end{gather}
+We remark that by the inverse function theorem, \eqref{0j} admits a solution
+$u(x(s), t(s))$ for $s$ in some bounded interval in $\rr$.  By construction, this $u$ will be constant along the characteristic curve $(x(s), t(s))$. Hence, we obtain
+%
+%
+\begin{gather}
+    \label{1j}
+    x(s) = c_{1} + su
+    \\
+    \label{2j}
+    t(s) = s + c_{2}.
+\end{gather}
+%
+%
+Setting $s = -c_{2}$, it follows that 
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u(x(-c_{2}), t(-c_{2})) = u(c_{1} - c_{2}u, 0 ) = u_{0}(c_{1} - c_{2} u).
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u(x,t) = u_{0}(x - tu).
+\end{split}
+\end{equation*}
+%
+%
+We shall prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			solution burgers 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+%
+Let $u_{0}^{\lambda}(x) = (\lambda +
+x_{+}^{\alpha + 1}) \vp(x)$ be a family of initial data indexed by $\lambda \in
+[-1, 1]$, where $\alpha > 0$, $x_{+} \doteq \max\{0, x\}$ and $\vp$ is a smooth cutoff
+function equal to the identity in $[-2, 2]$ and with support in $[-4,4]$. Then the associated solutions $u^{\lambda}(x,t)$ take the form
+\begin{equation}
+    \label{u-lam-explicit-form}
+    \begin{split}
+        u^{\lambda}(x,t) = \lambda + (x - \lambda t)^{\alpha + 1}_{+} p(t(x- \lambda t)^{\alpha}_{+}), \quad | x | \le 1, \quad | \lambda | \le 1
+    \end{split}
+\end{equation}
+%
+%
+for sufficiently small $| t |$, where $p(z)$ is a power series in $z$ with $p(0) =1$ and a positive radius of convergence.
+\label{lem:sol-burg}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}(Kato)
+Since $u_{0}^{\lambda}$ is uniformly bounded in $\lambda$ in $H^{s}$, the
+$u^{\lambda}$ have a common lifespan $T$ and are uniformly bounded (via an
+energy estimate--see HR). Therefore, choosing $T$ sufficiently small, we have
+%
+%
+\begin{equation}
+    \label{burg-sol-cont}
+\begin{split}
+    | t u^{\lambda}(x,t) | \le 1, \quad x \in \rr, \ | t | \le T, \ | \lambda | \le 1.
+\end{split}
+\end{equation}
+%
+%
+%
+%
+Set
+%
+%
+\begin{equation}
+    \label{burg-sol-not}
+\begin{split}
+y(x,t) = x - t u^{\lambda}(x,t).
+\end{split}
+\end{equation}
+%
+%
+Then by \eqref{burg-sol-cont}, we have
+%
+%
+\begin{equation*}
+\begin{split}
+    | y(x,t) | & \le | x | + | tu^{\lambda} |
+    \\
+    & \le 2, \quad | x | \le 1, \ | t | \le T, | \lambda | \le 1.
+\end{split}
+\end{equation*}
+%
+%
+Hence, $\vp(y) =1$ and so
+%
+%
+\begin{equation}
+    \label{burg-sol-redux}
+\begin{split}
+u^{\lambda}(x,t) 
+& = u_{0}^{\lambda}(x - tu)
+\\
+& = [\lambda + (x - tu^{\lambda})_{+}^{\alpha + 1}] \vp(x - tu^{\lambda})
+\\
+& = [\lambda + (x - tu^{\lambda})_{+}^{\alpha + 1}].
+\end{split}
+\end{equation}
+%
+%
+Multiplying both sides by $t$, we get
+%
+%
+\begin{equation*}
+\begin{split}
+t u^{\lambda}(x,t) = t \lambda + t (x - tu^{\lambda})_{+}^{\alpha + 1}
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+x - tu^{\lambda} = x - t \lambda - t(x - tu^{\lambda})_{+}^{\alpha + 1}.
+\end{split}
+\end{equation*}
+%
+%
+Set 
+\begin{equation}
+    \label{y-for-u}
+    y(x,t) = x - tu^{\lambda}. 
+\end{equation}
+%
+%
+%
+%
+Then
+%
+%
+\begin{equation*}
+\begin{split}
+y = x - t \lambda - t y_{+}^{\alpha + 1}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+\begin{equation*}
+\begin{split}
+y + ty_{+}^{\alpha + 1} = x - t \lambda
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation}
+    \label{y-equation}
+\begin{split}
+[1 + ty_{+}^{\alpha + 1}]y_{+} = (x - t \lambda)_{+}.
+\end{split}
+\end{equation}
+%
+%
+Solving this equation for $y$ and then substituting back into \eqref{y-for-u} completes the proof.
+\end{proof}
+\begin{framed}
+    \textbf{I spent $7+$ hours, but couldn't figure out how to solve
+\eqref{y-equation} in order to get \eqref{u-lam-explicit-form}. I go about
+proving Lemma~\ref{lem:sol-burg} in slightly different fashion; see the next
+section}.
+\end{framed}
+%
+%
+\begin{proof}(David)
+Notice from \eqref{burg-sol-redux} that
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda}(x, 0) = \lambda + x_{+}^{\alpha +1}.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, \eqref{burg-sol-redux} implies that
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda} - \lambda
+& = (x - tu^{\lambda})^{\alpha + 1}
+\\
+& = [x - t(u^{\lambda} \pm \lambda)]^{\alpha + 1}_{+}
+\\
+& = [x - t(u^{\lambda - \lambda}) - t \lambda]_{+}^{\alpha + 1}.
+\end{split}
+\end{equation*}
+%
+%
+Set $y = u^{\lambda} - \lambda$. Then
+%
+%
+\begin{equation*}
+\begin{split}
+y = [x - t \lambda - ty]_{+}^{\alpha + 1}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+y^{1/(\alpha + 1)} = [x - t \lambda - ty]_{+}.
+\end{split}
+\end{equation*}
+%
+%
+Therefore, $y(t \lambda, t) = 0$, and so $$u^{\lambda}(t \lambda, t) = \lambda.$$
+%
+%
+Hence, it is natural to guess that $u^{\lambda}(x,t) = \lambda + (x - \lambda
+t)^{\alpha + 1}_{+} p(z)$ for some power series $p(z)$, where $z = z(x,t)$ and
+$p(z(x,0)) =1$. We now show that this is indeed the case. Substituting our ansatz
+into \eqref{burg-sol-redux}, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+(x - \lambda t)^{\alpha + 1}_{+} p(z) = \{x - t[\lambda + (x - \lambda
+    t)_{+}^{\alpha +1} p(z)]\} 
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+x - \lambda t - (t + 1)(x - \lambda t)_{+}^{\alpha + 1} p(z) = 0.
+\end{split}
+\end{equation*}
+%
+%
+Assume $x - \lambda t \neq 0$. Dividing through by $x - \lambda t$ and simplifying, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+p(z) =\frac{1}{(t+1)(x - \lambda t)^{\alpha}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+\begin{framed}
+    \textbf{This function is NOT analytic at $x = \lambda t$. 
+    Hence, I am very confused by Kato's claim that we can arrange that $p(z)$ be a
+    power series with $p(0)=1$ and a positive radius of convergence. I feel that
+    I have just shown that this is impossible. I will accept it for the time
+    being.}
+\end{framed}
+%
+%
+%
+\end{proof}
+%
+%
+Applying Lemma~\ref{lem:sol-burg}, we have
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda} - u^{0} = \lambda + (x - \lambda t)^{\alpha + 1}_{+}p(t(x- \lambda t)^{\alpha}_{+}) - (x)_{+}^{\alpha + 1}p(tx_{+}^{\alpha}) + \ \text{positive higher order terms}.
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, for integer $s \ge 2$ (we need to have well-posedness) and real $\alpha > (s-1)$
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) = (\alpha + 1)(\alpha) \cdots (\alpha + 1 -s)[(x - \lambda t)^{\alpha + 1 -s}_{+} - (x)_{+}^{\alpha + 1 -s}] + \ \text{positive higher order terms}.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+\| u^{\lambda} - u^{0} \|_{H^{s}}^{2} 
+& \ge \| \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) \|_{L^{2}}^{2}
+\\
+& \ge \int_{-1}^{1} | \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) |^{2} dx
+\\
+& \ge \int_{-1}^{1} \{(\alpha + 1)(\alpha) \cdots (\alpha + 1 -s   )[(x - \lambda t)_{+}^{\alpha + 1 -s} - x_{+}^{\alpha + 1 -s}]\}^{2} dx
+\\
+& \simeq \int_{0}^{\lambda t} (x^{\alpha + 1 -s})^{2} dx + \int_{\lambda t}^{1} [(x - \lambda t)^{\alpha +1 -s} -x^{\alpha + 1 -s}]^{2} dx
+\\
+& \ge \int_{0}^{\lambda t} x^{2(\alpha + 1 -s)} dx 
+\\
+& \simeq  | \lambda t |^{2 \alpha + 3 -2s}
+\end{split}
+\end{equation*}
+%
+%
+and so
+\begin{equation}
+    \begin{split}
+    \label{holder-lb}
+\| u^{\lambda} - u^{0} \|_{H^{s}} & \ge c_{\alpha, s} | \lambda t |^{\alpha -s + 3/2}
+\\
+&  = c_{\alpha, s} | \lambda t |^{3/4}, \quad \alpha = s - 3/4.
+\end{split}
+\end{equation}
+But
+%
+%
+\begin{equation}
+    \label{init-lb}
+\begin{split}
+    \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}} 
+    & \simeq |\lambda |.
+\end{split}
+\end{equation}
+%
+Hence, from \eqref{holder-lb} and \eqref{init-lb},
+we see that for any fixed constant $c > 0$ there exists sufficiently small $T = T(c) >
+0$ such that for all $|t| \le T$
+%
+\begin{equation*}
+\| u^{\lambda} - u^{0} \|_{H^{s}} \ge c \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}}.
+\end{equation*}
+Therefore, the Burgers initial value problem on the line with initial data
+$u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Optimality HR
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Optimality for HR} 
+\label{sec:op-hr}
+We recall the hyperelastic-rod (HR) ivp
+\begin{gather}
+    \label{hr}
+    u_{t} + \frac{\gamma}{2}(u^{2})_{x} + P_{x} = 0
+    \\
+    \label{hr-data}
+    u(x,0) = u_{0}(x)
+\end{gather}
+where
+%
+%
+\begin{equation*}
+\begin{split}
+P(x,t) \doteq \frac{1}{2}e^{-| x |} * \left [\frac{3 - \gamma}{2}
+    u^{2}(x,t) + \frac{\gamma}{2} u_{2}^{2}(x,t) \right ].
+\end{split}
+\end{equation*}
+%
+\begin{framed}
+We remark that $e^{-| x |}$ is a weak solution to the ode $(1 + \p_{x}^{2})u =
+2\delta$. Taking Fourier transforms of both sides, it follows that
+$\widehat{e^{-| \cdot |}}(\xi) = 2/(1 + \xi^{2})$. Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{1}{2} e^{-| x |} * f = (1 - \p_{x}^2)f
+\end{split}
+\end{equation*}
+%
+%
+Therefore, the form of HR which we all know and love is equivalent to
+\eqref{hyperelastic-rod-equation}.
+\end{framed}
+%
+Following Bressan \cite{Bressan_2007_Global-conserva}, we let $\xi \in \rr$ be an energy variable, and for fixed $t \in \rr$ define the map $t \mapsto y(\xi, t)$ implicitly by 
+%
+%
+\begin{equation}
+\label{potent-def}
+\begin{split}
+    \int_{0}^{y(\xi, t)} [1 + u^{2}(x,t)]dx = \xi.
+\end{split}
+\end{equation}
+%
+%
+Consider also the initial value problem
+%
+%
+\begin{gather}
+    \label{en-eq}
+\frac{dy}{dt}(\xi, t) = u(y(\xi, t), t),
+\\
+\label{en-data}
+y(\xi, 0) = \xi
+\end{gather}
+%
+%
+and define
+\begin{gather}
+    \label{var-1}
+    w(\xi, t) \doteq \gamma u(y(\xi, t), t)
+    \\
+    \label{var-2}
+    v(\xi, t) \doteq u_{x}(y(\xi, t), t)
+    \\
+    \label{var-3}
+    q(\xi, t) \doteq y_{\xi}(\xi, t)
+\end{gather}
+where we adopt the notation $$u_{x}(y(\xi, t),t) \doteq \frac{d}{dz}u(z,t) \big
+|_{z = y(\xi, t)}$$ for the remainder of the paper. Using ivp
+\eqref{en-eq}-\eqref{en-data}, we will rewrite the HR ivp
+\eqref{hr}-\eqref{hr-data} as an ode system for the variables \eqref{var-1},
+\eqref{var-2}, and \eqref{var-3}. Proceeding, we note that by the chain rule
+%
+%
+\begin{equation}
+\label{w-deriv}
+\begin{split}
+\frac{d}{dt}w(\xi, t)
+& = \gamma u_{y} y_{t}(y(\xi, t), t) + u_{t}(y(\xi, t), )
+\\
+& = \gamma u u_{x}(y(\xi, t ), t) + u_{t}(y(\xi, t))
+\\
+& = -P_{x}(y(\xi, t), t).
+\end{split}
+\end{equation}
+%
+%
+Now, we want to get $P_{x}(y(\xi, t), t)$ in "nice" form as we will be estimating later. Notice that
+%
+%
+\begin{equation*}
+\begin{split}
+P(x,t) = \frac{1}{2} \int_{\rr}e^{-| x - x_{1} |} \left [\frac{3 - \gamma}{2}
+u^{2}(x_{1}, t) + \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ]
+\end{split}
+\end{equation*}
+%
+%
+and so 
+%
+%
+\begin{equation}
+\label{yuu}
+\begin{split}
+P(y(\xi, t), t) = \frac{1}{2} \int_{\rr} e^{-| y(\xi, t) - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2}u_{x}^{2} \right ] (x_{1}, t) d x_{1}.
+\end{split}
+\end{equation}
+%
+%
+Furthermore
+%
+%
+\begin{equation}
+\begin{split}
+\label{p}
+P_{x}(x,t)
+& = \frac{1}{2}\p_{x} e^{-| x |}* \left [ \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = \frac{1}{2} \int_{\rr} \sgn(x - x_{1}) e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) + \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] 
+\\
+& =\frac{1}{2} \left ( \int_{x}^{\infty} - \int_{-\infty}^{x} \right )
+e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
+\frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] dx_{1}
+\end{split}
+\end{equation}
+%
+%
+and so%
+%
+\begin{equation}
+\label{p-deriv}
+\begin{split}
+P_{x}(y(\xi, t), t)
+& = \frac{1}{2} \left ( \int_{y(\xi, t)}^{\infty} - \int_{-\infty}^{y(\xi, t)} \right ) e^{-| y(\xi, t) - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
+\frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] dx_{1}.
+\end{split}
+\end{equation}
+%
+%
+Adopt the notation 
+%
+%
+\begin{equation*}
+\begin{split}
+q(\xi, t) \doteq y_{\xi}(\xi, t).
+\end{split}
+\end{equation*}
+%
+%
+Then applying the change of variable $x_{1} = y(\xi_{1}, t)$, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\eqref{yuu} & = \frac{1}{2} \int_{\rr} e^{-| y(\xi, t) - y(\xi_{1}, t) |} \left [
+\frac{3 -\gamma}{2} w^{2}q + \frac{\gamma}{2} v^{2} q  \right ](\xi_{1}, t) d \xi_{1}
+\\
+& = \frac{1}{2} \int_{\rr} e^{-| \int_{\xi_{1}}^{\xi} q(\lambda, t) d \lambda |} \left [
+\frac{3 -\gamma}{2} w^{2}q + \frac{\gamma}{2} v^{2} q  \right ](\xi_{1}, t) d \xi_{1}
+\\
+& \doteq Q = Q(v, w, q)(\xi, t).
+\end{split}
+\end{equation*}
+%
+%
+Similarly
+%
+%
+\begin{equation}
+\label{R-def}
+\begin{split}
+\eqref{p-deriv} & = \frac{1}{2} \left ( \int_{\xi}^{\infty} -
+\int_{-\infty}^{\xi} \right ) e^{-| \int_{\xi_{1}}^{\xi} q(\lambda, t) d \lambda 
+|} \left [ \frac{3 - \gamma}{2} w^{2} q + \frac{\gamma}{2} v^{2} q \right ] (\xi_{1}, t) d \xi_{1}
+\\
+& \doteq R = R(v, w, q)(\xi, t). 
+\end{split}
+\end{equation}
+%
+Substituting this into \eqref{w-deriv}, we see that
+%
+%
+\begin{equation}
+\label{w-ode}
+\begin{split}
+\frac{d}{dt}w(\xi, t) = -R(w, v, q)(\xi, t).
+\end{split}
+\end{equation}
+%
+%
+Now, we find analogues of \eqref{w-ode} for $v$ and $q$. Observe that by the
+chain rule 
+%
+\begin{equation}
+\label{lkk}
+\begin{split}
+\frac{d}{dt}v(\xi, t)
+&  = \frac{du_{x}}{dy}(y(\xi, t), t) \frac{dy}{dt}(\xi, t) + u_{xt}(y(\xi, t), t)
+\\
+& =  (u_{xx}u + u_{xt})(y(\xi, t), t).
+\end{split}
+\end{equation}
+%
+Differentiating \eqref{hyperelastic-rod-equation} formally with respsect to $x$,
+and using the fact that
+%
+%
+\begin{equation*}
+\begin{split}
+P_{xx}
+&  = \frac{1}{2} \p_{x}^{2}e^{-| x |}* \left [ \frac{3 - \gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = \frac{1}{2} \left [ e^{-| x |} - 2 \delta \right ] * \left [ \frac{3 - \gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = \frac{1}{2} e^{-| x |} * \left [ \frac{3 - \gamma}{2}u^{2} +
+\frac{\gamma}{2} u_{x}^{2} \right ] - \left [ \frac{3 -
+\gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\\
+& = P - \left [ \frac{3 -
+\gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+u_{xt} + u u_{xx} + u_{x}^{2} + P - \left [ \frac{3 -
+\gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ]  = 0.
+\end{split}
+\end{equation*}
+%
+%
+Substituting this into \eqref{lkk}, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{dt}v(\xi, t)
+& = \left \{ u_{xx} u + \big[-uu_{xx} - u_{x}^{2} - P + \left ( \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2}u_{x}^{2} \right ) ] \right \}(y(\xi, t), t)
+\\
+& = \left \{- P  + \frac{3 - \gamma}{2} u^{2} + \frac{\gamma-2}{2} u_{x}^{2} \right \}(y(\xi, t), t)
+\\
+& = \left \{-Q + \frac{3- \gamma}{2 \gamma^{2}}w^{2} + \frac{\gamma-2}{2}
+v^{2} \right \}(\xi, t).
+\end{split}
+\end{equation*}
+%
+Lastly,
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dq}{dt}(\xi, t)
+& = \frac{d}{d\xi}\frac{d}{dt}y(\xi, t)
+\\
+& = \frac{d}{d \xi}u(y(\xi, t), t)
+\\
+& = \frac{du}{dy}(y(\xi,t),t)
+\\
+& = u_{x}(y(\xi, t), t)q(\xi, t)
+\\
+& = \frac{vq}{\gamma}(\xi,t).
+\end{split}
+\end{equation*}
+%
+%
+Next, note that $y(\xi, 0) = 0$, and so
+%
+%
+\begin{equation*}
+\begin{split}
+w(\xi, 0)
+& = \gamma u(y(\xi, 0), 0)
+\\
+& = \gamma u(\xi, 0)
+\\
+& = \gamma u_{0}(\xi).
+\end{split}
+\end{equation*}
+%
+%
+
+
+Also, 
+%
+%
+\begin{equation*}
+\begin{split}
+v(\xi, 0)
+& = u_{x}(y(\xi, 0), 0)
+\\
+& = u_{x}(\xi, 0)
+\\
+& = u_{0}'(\xi)
+\end{split}
+\end{equation*}
+%
+%
+and
+%
+%
+\begin{equation*}
+\begin{split}
+q(\xi,0)
+& = y_{\xi}(\xi, 0)
+\\
+& = 1.
+\end{split}
+\end{equation*}
+%
+%
+Hence, we are interested in solving the ode Cauchy-problem
+%
+%
+%
+%
+\begin{gather}
+\label{ode-system}
+\frac{d}{dt}(w, v, q) = \left ( -R, -Q + \frac{3 - \gamma}{2 \gamma^{2}}w^{2} + \frac{\gamma -2}{2}v^{2}, \frac{vq}{\gamma} \right ) 
+\\
+\label{ode-system-init}
+(w, v, q)(0) = (\gamma u_{0}(\xi), u_{0}'(\xi), 1).
+\end{gather}
+%
+Denoting
+%
+%
+\begin{equation*}
+\begin{split}
+  Y = H^{1} \times L^{\infty} \cap L^{2} \times L^{\infty},
+\end{split}
+\end{equation*}
+%
+%
+we recall the following.
+%
+\begin{proposition}[Metric Space ODE Theorem]
+	\label{prop:ode-thm}
+  Let $X$ be a topological vector space over $\rr$
+  with topology induced by a metric $d$, $E \subset X$ open, and $(-a, a)$ an
+	open interval in $\rr$. Suppose $f: (-a, a) \times E \to X$ satisfies the
+	inequality
+	%
+	%
+	\begin{equation}
+		\label{stronger-ode}
+		\begin{split}
+      d[f(t, x), f(t, y)] \le c d(x, y), \qquad \forall t \in (-a, a),
+			\qquad \forall x, y \in E
+		\end{split}
+	\end{equation}
+	%
+  Then for given $\vp \in E$, there exists sufficiently small $h > 0$ and a
+  unique differentiable map $u: (-h, h) \to E$ which for all $t \in (-h, h)$
+  satisfies 
+	%
+	\begin{gather}
+    \label{ode-thm-eq}
+			u'(t) = f(t, u(t)),
+			\\
+      \label{ode-thm-init-data}
+			u(0) = \vp.
+	\end{gather}
+\end{proposition}
+We will obtain the following result as a corollary. 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Existence of Solution to ODE system
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  Assume $u_{0} \in H^{1} \cap C^{1}$. Then for sufficiently small $T > 0$
+the Cauchy problem \eqref{ode-system}-\eqref{ode-system-init} has a unique
+solution $(w, v, q) \in C^{1}([0, T], Y)$.
+\label{thm:ode-sys-sol}
+\end{theorem}
+%
+%
+\begin{proof}
+  Due to \eqref{prop:ode-thm}, it will
+  be will be enough to show that the map $$(w, v, q) \mapsto
+\left ( -R, -Q + \frac{3 - \gamma}{2 \gamma^{2}}w^{2} + \frac{\gamma
+-2}{2}v^{2}, \frac{vw}{\gamma} \right ) \doteq F(w, v, q)$$ is Lipschitz on
+an open subset $U$ of $Y$. 
+%
+Using the notation $Q_{1} \doteq Q(w_{1}, v_{1}, q_{1})$ and $Q_{2} \doteq
+Q(w_{2}, v_{2}, q_{2})$, we have
+%
+%
+\begin{equation}
+  \label{lip-diff}
+\begin{split}
+  & (w_{2}, v_{2}, q_{2}) - (w_{1}, v_{1}, q_{1})
+  \\
+  & = \left( -(R_{2} - R_{1}),
+  -(Q_{2} - Q_{1}) + \frac{3 - \gamma}{2 \gamma^{2}}(w_{2}^{2} -
+  w_{1}^{2}) + \frac{\gamma -2}{2} (v_{2}^{2} - v_{1}^{2}),
+  \frac{1}{\gamma}(v_{2} w_{2} - v_{1} w_{1}) \right).
+\end{split}
+\end{equation}
+%
+Let $r>0$, $w_{1}, w_{2} \in B_{C^{1} \cap L^{2}}(r)$, $v_{1}, v_{2} \in B_{L^{\infty} \cap L^{2}}(r)$, and
+$q_{1}, q_{2} \in L^{\infty}(r)$, where $0 < c < q_{1} < r$ and $0 < c < q_{2} <r$.
+Note that $L^{\infty} \cap L^{2}$ is an algebra, since
+%
+%
+\begin{equation*}
+\begin{split}
+  \| fg \|_{L^{\infty} \cap L^{2}} & = \| fg \|_{L^{\infty}} + \| fg \|_{L^{2}}
+  \\
+  & \le \| f \|_{L^{\infty}} \| g \|_{L^{\infty}} + \| f \|_{L^{2}}\| g \|_{L^{\infty}}
+  \\
+  & \le \| f \|_{L^{\infty} \cap L^{2}} \| g \|_{L^{\infty} \cap L^{2}}.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+%
+\begin{equation}
+  \label{1aa}
+\begin{split}
+  \| v_{2}w_{2} - v_{1}w_{1} \|_{L^{\infty} \cap L^{2}}
+  & = \| v_{2}w_{2} \pm v_{2}w_{1} - v_{1}w_{1} \|_{L^{\infty} \cap L^{2}}
+  \\
+  & \le \| v_{2}(w_{2} - w_{1}) \|_{L^{\infty} \cap L^{2}}  
+  + \| w_{1}(v_{2} - v_{1}) \|_{L^{\infty} \cap L^{2}}  
+  \\
+  & \lesssim_{r} \| w_{2} - w_{1} \|_{L^{\infty} \cap L^{2}} +
+  \| v_{2} - v_{1} \|_{L^{\infty} \cap L^{2}}
+\end{split}
+\end{equation}
+%
+%
+and
+%
+\begin{equation}
+  \label{2aa}
+\begin{split}
+  \| w^{2}_{2} - w_{1}^{2} \|_{L^{\infty} \cap L^{2}} 
+  & = \| (w_{2} - w_{1})(w_{2} + w_{1}) \|_{L^{\infty} \cap L^{2}}
+    \\
+    & \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2} \cap L^{\infty} \cap L^{2}}.
+\end{split}
+\end{equation}
+%
+Similarly
+%
+%
+\begin{equation}
+  \label{3aa}
+\begin{split}
+\| v^{2}_{2} - v_{1}^{2} \|_{L^{\infty} \cap L^{2}} 
+& \lesssim_{r}\| v_{2} - v_{1} \|_{L^{\infty} \cap L^{2}}.
+\end{split}
+\end{equation}
+%
+%
+It remains to estimate $(R_{2} - R_{1})$ and $(Q_{2} - Q_{1})$ in $H^{1}$
+and $L^{\infty} \cap L^{2}$, respectively. First, note that
+%
+%
+\begin{equation}
+\begin{split}
+  \| Q_{2} - Q_{1} \|_{L^{\infty}}
+  & \le \| \frac{3 - \gamma}{2} (w_{2}^{2} q_{2} - w_{1}^{2} q_{1}) +
+  \frac{\gamma}{2}(v_{2}^{2}q_{2} - v_{1}^{2}q_{1}) \|_{L^{1}}
+\end{split}
+\end{equation}
+%
+%
+Now
+%
+%
+\begin{equation*}
+\begin{split}
+  w_{2}^{2} q_{2} - w_{1}^{2} q_{1}
+  & = w_{2}^{2} q_{2} - w_{1}^{2} q_{2} + w_{1}^{2} q_{2} - w_{1}^{2} q_{1}
+  \\
+  & = (w_{2} - w_{1})(w_{2} + w_{1})q_{2} + (q_{2} - q_{1})w_{1}^{2}.
+\end{split}
+\end{equation*}
+%
+%
+Similarly
+%
+%
+\begin{equation*}
+\begin{split}
+  v_{2}^{2}q_{2} - v_{1}^{2} q_{1} = (v_{2} - v_{1})(v_{2}  + v_{1})q_{2} + (q_{2} - q_{1})v_{1}^{2}.
+\end{split}
+\end{equation*}
+%
+%
+Hence, applying H\'older, we have 
+\begin{equation}
+  \label{q-init-bound}
+  \begin{split}
+  & \| \frac{3 - \gamma}{2} (w_{2}^{2} q_{2} - w_{1}^{2} q_{1}) +
+  \frac{\gamma}{2}(v_{2}^{2}q_{2} - v_{1}^{2}q_{1}) \|_{L^{1}}
+  \\
+  & \lesssim \| q_{2} \|_{L^{\infty}} \| (w_{2} - w_{1})(w_{2} + w_{1})
+  + (v_{2} - v_{1})(v_{2} + v_{1}) \|_{L^{1}}
+  + \| q_{2} - q_{1} \|_{L^{\infty}} \| w_{1}^{2} + v_{1}^{2}\|_{L^{1}} 
+  \\
+  & \le \| q_{2} \|_{L^{\infty}} \| (w_{2} - w_{1})(w_{2} + w_{1})
+  + (v_{2} - v_{1})(v_{2} + v_{1}) \|_{L^{1}}
+  + \| q_{2} - q_{1} \|_{L^{\infty}} (\| w_{1}\|_{L^{2}}^{2} + \|
+  v_{1}\|_{L^{2}}^{2}) 
+  \\
+  & \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+\end{split}
+\end{equation}
+where the last step follows from Cauchy-Schwartz and the a priori bounds
+on $w_{i}, v_{i}, q_{i}$, $i \in \{1,2\}$. Therefore, 
+%
+%
+\begin{equation}
+  \label{pi}
+\begin{split}
+  \| Q_{2} - Q_{1} \|_{L^{\infty}} \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}.
+\end{split}
+\end{equation}
+%
+%
+Also, note that
+%
+%
+%
+%
+\begin{equation}
+  \label{I-II-split}
+\begin{split}
+  & Q_{2} - Q_{1}
+  \\
+  & = \frac{1}{2} \int_{\rr} \left\{ e^{-| \int_{\xi_{1}}^{\xi}
+  q_{2}(\lambda) d \lambda|}\left[ \frac{3 - \gamma}{2} w_{2}^{2} q_{2} +
+    \frac{\gamma}{2} v_{2}^{2} q_{2} \right] - e^{-| \int_{\xi_{1}}^{\xi}
+    q_{1}(\lambda) d \lambda |} \left[ \frac{3 - \gamma}{2} w_{1}^{2}
+      q_{1} + \frac{\gamma}{2} v_{1}^{2} q_{1} \right] \right\} d \xi_{1}
+      \\
+      & = I + II
+\end{split}
+\end{equation}
+%
+%
+where
+\begin{gather*}
+  I = \int_{\rr} e^{-| \int_{\xi_{1}}^{\xi} q_{1}(\lambda) |} \left[ \frac{3-
+  \gamma}{2}(w_{2}^{2} q_{2} - w_{1}^{2} q_{1}) +
+  \frac{\gamma}{2}(v_{2}^{2} q_{2} - v_{1}^{2} q_{1}) \right]
+  \\
+  II = \int_{\rr} f\left[ \frac{3-\gamma}{2}w_{2}^{2}q_{2} + \frac{\gamma}{2}
+    v_{2}^{2} q_{2} \right]d \xi_{1}, \quad
+    f = e^{-| \int_{\xi_{1}}^{\xi} q_{2}(\lambda) d \lambda |} -
+      e^{- | \int_{\xi_{1}}^{\xi} q_{1}(\lambda) d \lambda |}.
+\end{gather*}
+Observe that
+%
+\begin{equation}
+  \label{q-l2-pre}
+\begin{split}
+  \| I \|_{L^{2}}^{2} & = \frac{1}{4} \int_{\rr} | \int_{\rr} e^{-| \int_{\xi_{1}}^{\xi}q_{1}(\lambda) d \lambda |}  \left[ \frac{3 - \gamma}{2}(w_{2}^{2} q_{2} -
+  w_{1}^{2}q_{1}) + \frac{\gamma}{2}(v_{2}^{2} q_{2} - v_{1}^{2} q_{1}) \right]  d
+  \xi_{1} |^{2} d \xi.
+\end{split}
+\end{equation}
+%
+%We shall first bound the exponential by analyzing it's argument. More precisley, recall that
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %\int_{0}^{y(\xi, t)} \left[ 1 + u(x, t) \right]^{2} dx = \xi.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%Differentiating both sides with respect to $\xi$ gives
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %y_{\xi} = \frac{1}{1 + y^{2}}.
+%\end{split}
+%\end{equation*}
+%%%
+%%%
+%Fix $t$ and assume without loss of generality that $\xi \ge \xi_{1}$. If $y(s) \le 1$ for all $s \in [\xi_{1}, \xi]$, then
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+  %| y(\xi) - y(\xi_{1}) | 
+  %& = | \int_{\xi_{1}}^{\xi} y_{s} ds|
+  %\\
+  %& = | \int_{\xi_{1}}^{\xi} \frac{1}{1 + y^{2}} ds |
+  %\\
+  %& \ge \frac{1}{2}| \xi - \xi_{1} |.
+%\end{split}
+%\end{equation*}
+%%%
+%%%
+%Otherwise, since $y(s)$ is continuous and increasing, there exists $\xi_{1} \le \xi^{*} \le \xi$ such that $y(\xi^{*}) \ge 1$. Then
+%%%
+%%%
+%\begin{equation*}
+%\begin{split}
+  %| y(\xi) - y(\xi_{1}) | & = | \int_{\left\{ s \in [\xi_{1}, \xi^{*}]: y \le 1
+  %\right\}} \frac{1}{1 + y^{2}} ds + 
+  %\int_{\left\{ s \in [\xi_{1}, \xi^{*}]: y \ge 1    
+  %\right\}}  \frac{1}{1 + y^{2}} ds | 
+  %\\
+  %& \ge | \int_{\left \{ s \in [\xi_{1}, \xi^{*}]: y \le 1 \right\}}
+  %\frac{1}{1 + y^{2}} ds + 
+  %\int_{\left\{ s \in [\xi_{1}, \xi^{*}]: 1 \le y \le 2 \right\}} \frac{1}{1 +
+  %y^{2}} ds \\
+  %& \ge \frac{1}{2} | \xi^{*} - \xi_{1} | + \frac{1}{5} | \xi - \xi^{*} |
+  %\\
+  %& \ge \frac{2}{5} | \xi - \xi_{1} |.
+%\end{split}
+%\end{equation*}
+%%
+%%
+%%
+Since $0 < c_{1} < q_{1}$, we bound \eqref{q-l2-pre} by
+%
+%
+\begin{equation*}
+\begin{split}
+  & \frac{1}{4} \int_{\rr} \left( \int_{\rr} | e^{-c_{1} | \xi - \xi_{1} |} \left[ \frac{3 - \gamma}{2}(w_{2}^{2} q_{2} - w_{1}^{2}q_{1}) + \frac{\gamma}{2}(v_{2}^{2} q_{2} - v_{1}^{2} q_{1}) \right] | d \xi_{1} \right)^{2} d \xi
+  \\
+  & = \frac{1}{4} \| e^{-c_{1} | \cdot |} * \left[ \frac{3 - \gamma}{2}(w_{2}^{2} q_{2} - w_{1}^{2}q_{1}) + \frac{\gamma}{2}(v_{2}^{2} q_{2} - v_{1}^{2} q_{1}) \right]  \|_{L^{2}}^{2}.
+\end{split}
+\end{equation*}
+%
+Applying Young's inequality, we obtain the bound
+%
+%
+\begin{equation*}
+\begin{split}
+  \| e^{-c_{1} | x |    } \|_{L^{2}}^{2} \|  \frac{3 -
+  \gamma}{2}(w_{2}^{2} q_{2} - w_{1}^{2}q_{1}) + \frac{\gamma}{2}(v_{2}^{2} q_{2} -
+  v_{1}^{2} q_{1})\|_{L^{1}}^{2}
+  & \lesssim \|  \frac{3 -
+  \gamma}{2}(w_{2}^{2} q_{2} - w_{1}^{2}q_{1}) + \frac{\gamma}{2}(v_{2}^{2} q_{2} -
+  v_{1}^{2} q_{1})\|_{L^{1}}^{2}
+  \\
+  & \lesssim_{r}
+  (\| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}})^{2}
+\end{split}
+\end{equation*}
+%
+%
+where the last step follows from \eqref{q-init-bound}. Therefore
+%
+%
+\begin{equation}
+  \label{I-est}
+  \| I \|_{L^{2}} \lesssim_{r}
+  \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+\end{equation}
+To bound $II$, we first note that
+%
+%
+\begin{equation*}
+\begin{split}
+  f & = e^{- | \int_{\xi_{1}}^{\xi} q_{1}(\lambda) d \lambda|} \left[
+    e^{| \int_{\xi_{1}}^{\xi} q_{1}(\lambda) |}e^{-|
+      \int_{\xi_{1}}^{\xi}q_{2}(\lambda) d \lambda |} - 1
+    \right]
+    \\
+    & = e^{- | \int_{\xi_{1}}^{\xi} q_{1}(\lambda) d \lambda |} \left(
+    \sum_{n = 1}^{\infty} \frac{z^{n}}{n!}
+    \right)
+\end{split}
+\end{equation*}
+%
+%
+where
+%
+%
+\begin{equation*}
+\begin{split}
+  z = | \int_{\xi_{1}}^{\xi} q_{1}(\lambda)d \lambda | - | \int_{\xi_{1}}^{\xi} q_{2}(\lambda) d \lambda |.
+\end{split}
+\end{equation*}
+%
+%
+By the reverse triangle inequality
+%
+%
+\begin{equation*}
+\begin{split}
+| z | & \le | \int_{\xi_{1}}^{\xi} q_{1}(\lambda)d \lambda  -  \int_{\xi_{1}}^{\xi} q_{2}(\lambda) d \lambda |
+\\
+& = | \int_{\xi_{1}}^{\xi} [q_{1} -  q_{2}](\lambda) d \lambda |
+\\
+& \le \| q_{1} - q_{2} \|_{L^{\infty}} | \xi - \xi_{1} |.
+\end{split}
+\end{equation*}
+%
+%
+Due to the fact
+that $0 < c_{1} <q_{1}$, we also have
+%
+%
+\begin{equation*}
+\begin{split}
+  | \int_{\xi_{1}}^{\xi} q_{1}(\lambda) d \lambda | \ge c_{1} | \xi - \xi_{1} |.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  | f | &  \le e^{-c_{1} | \xi - \xi_{1} |} \sum_{n = 1}^{\infty} \frac{\left[ \| q_{2} - q_{1} \|_{L^{\infty}}| \xi - \xi_{1} | \right]^{n}}{n!}
+  \\
+  & \le e^{-c_{1} | \xi - \xi_{1} |} \| q_{2} - q_{1} \|_{L^{\infty}} \sum_{n =
+  1}^{\infty} \frac{(\| q_{2} - q_{1} \|_{L^{\infty}})^{n-1}| \xi - \xi_{1} |^{n}
+    }{n!}
+\\
+&  \le e^{-c_{1} | \xi - \xi_{1} |} \| q_{2} - q_{1} \|_{L^{\infty}} \sum_{n =
+1}^{\infty} \frac{(2c_{2} )^{n-1}| \xi - \xi_{1} |^{n}
+    }{n!}
+    \\
+    & \le e^{-c_{1}| \xi - \xi_{1} |} \| q_{2} - q_{1} \|_{L^{\infty}} e^{2c_{2}| \xi - \xi_{1} |}
+    \\
+    & = e^{-2c_{1} + c_{2}| \xi - \xi_{1} |} \| q_{2} - q_{1} \|_{L^{\infty}}.
+\end{split}
+\end{equation*}
+%
+%
+Choose $c_{1}, c_{2}$ such that $-2c_{1} + c_{2} = -1/4$. Then we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  | f | \le e^{-\frac{1}{4} | \xi - \xi_{1} |} \| q_{2} - q_{1} \|_{L^{\infty}}
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| II \|_{L^{2}}^{2}
+  & = \| q_{2} - q_{1} \|_{L^{\infty}}^{2} \int_{\rr} |\int_{\rr} f\left[ \frac{3-\gamma}{2}w_{2}^{2}q_{2} + \frac{\gamma}{2}
+    v_{2}^{2} q_{2} \right]d \xi_{1} | ^{2} d \xi  
+    \\
+    & \le \| q_{2} - q_{1} \|_{L^{\infty}}^{2} \int_{\rr} \left (\int_{\rr} e^{-\frac{1}{4}| \xi - \xi_{1} |} |\left[ \frac{3-\gamma}{2}w_{2}^{2}q_{2} + \frac{\gamma}{2}
+    v_{2}^{2} q_{2} \right] | d \xi_{1} \right ) ^{2} d \xi 
+    \\
+    & = \| q_{2} - q_{1} \|_{L^{\infty}}^{2} \| e^{-\frac{1}{4} | \cdot |} * \left[ \frac{3 - \gamma}{2}w_{2}^{2} q_{2}
+    + \frac{\gamma}{2}v_{2}^{2} q_{2}  \right]  \|_{L^{2}}^{2}.
+  \end{split}
+\end{equation*}
+%
+%
+Applying Young's inequality, we bound this by
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\| e^{-\frac{1}{4} | \cdot |} * \left[ \frac{3 - \gamma}{2}w_{2}^{2} q_{2}
+    + \frac{\gamma}{2}v_{2}^{2} q_{2}  \right]  \|_{L^{2}}^{2}
+    & \le \| e^{-\frac{1}{4}| x |} \|_{L^{2}}^{2} \| \frac{3 - \gamma}{2}w_{2}^{2} q_{2}
+    + \frac{\gamma}{2}v_{2}^{2} q_{2}\|_{L^{1}}^{2}
+    \\
+    & \lesssim \| q_{2} \|_{L^{2}}^{2} \| \frac{3 - \gamma}{2} w_{2}^{2} + \frac{\gamma}{2} v_{2}^{2} \|_{L^{1}}
+    \\
+    & \lesssim_{r} 1 
+\end{split}
+\end{equation*}
+%
+since $w_{2}, v_{2}, q_{2} \in B_{L^{2}}(r)$.
+%
+Therefore
+%
+%
+\begin{equation}
+  \label{II-est}
+\begin{split}
+  \| II \|_{L^{2}} \lesssim_{r} \| q_{2} - q_{1} \|_{L^{\infty}}.
+\end{split}
+\end{equation}
+%
+%
+Combining \eqref{I-est}, \eqref{II-est} and recalling \eqref{I-II-split}, we obtain
+%
+%
+%
+%
+\begin{equation}
+  \label{yi}
+\begin{split}
+  \| Q_{2} - Q_{1} \|_{L^{2}} \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+\end{split}
+\end{equation}
+%
+%
+Combining \eqref{pi} and \eqref{yi}, we see that
+%
+%
+\begin{equation}
+  \label{Q-diff-fin-est}
+\begin{split}
+  \| Q_{2} - Q_{1} \|_{L^{2} \cap L^{\infty}} \lesssim_{r} \| v_{2} - v_{1}
+  \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+\end{split}
+\end{equation}
+%
+%
+Next, we turn our attention to the term 
+$(R_{2} - R_{1})$. Recall that if
+%
+%
+\begin{equation*}
+\begin{split}
+F(\xi) = \int_{a(\xi)}^{b(\xi)} f(\xi, \tau) d \tau
+\end{split}
+\end{equation*}
+%
+%
+with $a(\xi), b(\xi)$ continuous over some region $[\xi_{0}, \xi_{1}]$ and $f, f_{\xi}$ continuous over $[\xi_{0}, \xi_{1}] \times [\tau_{0}, \tau_{1}]$, then by the Leibniz integral rule, we have
+%
+%
+\begin{equation*}
+\begin{split}
+F'(\xi) = b'(\xi) f(b(\xi)) - a'(\xi) f(a(\xi)) + \int_{a(\xi)}^{b(\xi)} f_{\xi}(\xi, \tau) d \tau.
+\end{split}
+\end{equation*}
+%
+%
+Recall the definition of $R$ in \eqref{R-def}, and let $f(\xi, \xi_{1}, t)$ denote
+its integrand. Then
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d}{d \xi} \int_{\xi}^{\infty}f(\xi, \xi_{1}, t) d \xi_{1}
+& = -f(\xi, \xi, t) + \int_{\xi}^{\infty} f_{\xi}(\xi, \xi_{1}, t) d \xi_{1}.
+\end{split}
+\end{equation*}
+%
+%
+Similarly
+\begin{equation*}
+\begin{split}
+\frac{d}{d \xi} \int_{-\infty}^{\xi}f(\xi, \xi_{1}, t) d \xi_{1}
+& = f(\xi, \xi, t) + \int_{-\infty}^{\xi} f_{\xi}(\xi, \xi_{1}, t) d \xi_{1}.
+\end{split}
+\end{equation*}
+Note that
+\begin{gather*}
+    f(\xi, \xi, t) = \left [ \frac{3 - \gamma}{2}w^{2}q + \frac{\gamma}{2} v^{2} q \right ](\xi, t)
+\end{gather*}
+and
+%
+%
+\begin{equation}
+\label{oii}
+\begin{split}
+f_{\xi}(\xi, \xi_{1}, t) = \sgn \left [ \int_{\xi_{1}}^{\xi} q(\lambda, t) d \lambda \right ]q(\xi, t) \left [ \frac{3- \gamma}{2} w^{2} q + \frac{\gamma}{2} v^{2}q \right ] (\xi_{1}, t).
+\end{split}
+\end{equation}
+%
+%
+Now, from \eqref{potent-def}, it follows that $y(\xi, t)$ is an increasing function of $\xi$. Therefore, 
+%
+%
+\begin{equation*}
+\begin{split}
+\sgn \left [ \int_{\xi_1}^{\xi} q(\lambda, t) d \lambda \right ]  = \sgn(\xi - \xi_1)
+\end{split}
+\end{equation*}
+%
+%
+which in conjunction with \eqref{oii} gives
+%
+%
+\begin{equation*}
+\begin{split}
+\int_{\xi}^{\infty} f_{\xi}(\xi, \xi_{1}, t) d \xi_{1} - \int_{-\infty}^{\xi} f_{\xi}(\xi, \xi_{1}, t) d \xi_{1}
+& = q(\xi, t) \int_{-\infty}^{\infty} \left [ \frac{3- \gamma}{2} w^{2} q + \frac{\gamma}{2} v^{2}q \right ] (\xi_{1}, t).
+\\
+& = q Q(\xi, t).
+\end{split}
+\end{equation*}
+%
+%
+Therefore,
+%
+%
+\begin{equation*}
+\begin{split}
+R_{\xi}(\xi, t) = \frac{1}{2} \left [ \frac{3- \gamma}{2} w^{2} + \frac{\gamma}{2} v^{2} + Q \right ]q(\xi, t)
+\end{split}
+\end{equation*}
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  (R_{2})_{\xi} - (R_{1})_{\xi} 
+  & \simeq \left[ \frac{3 - \gamma}{2} w_{2}^{2} +
+  \frac{\gamma}{2}v_{2}^{2} + Q_{2}  \right]q_{2} - \left[ \frac{3 - \gamma}{2}
+  w_{1}^{2} + \frac{\gamma}{2}v_{1}^{2} + Q_{1}  \right]q_{1}  
+  \\
+  & = \left[ \frac{3 - \gamma}{2} (w_{2}^{2} - w_{1}^{2}) +
+  \frac{\gamma}{2}(v_{2}^{2} - v_{1}^{2}) + Q_{2} - Q_{1}  \right]q_{1} + \left[
+  \frac{3 + \gamma}{2} w_{2}^{2} + \frac{\gamma}{2}v_{2}^{2} + Q_{2}
+  \right](q_{2} - q_{1}).  
+\end{split}
+\end{equation*}
+%
+By H\"older and the algebra property of $L^{\infty}$, we have the estimates
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| (w_{2}^{2} - w_{1}^{2})q_{1} \|_{L^{2}}
+  & = \| (w_{2} - w_{1})(w_{2} + w_{1})q \|_{L^{2}} \le \| w_{2} - w_{1} \|_{L^{2}} 
+  \| w_{2} + w_{1} \|_{L^{\infty}} \| q_{2} \|_{L^{\infty}}
+  \\
+  & \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2}}
+\end{split}
+\end{equation*}
+%
+%
+and 
+%
+\begin{equation*}
+\begin{split}
+  \| (v_{2}^{2} - v_{1}^{2})q_{1} \|_{L^{2}}
+  & = \| (v_{2} - v_{1})(v_{2} + v_{1})q \|_{L^{2}}
+  \\
+  & \le \| v_{2} - v_{1} \|_{L^{2}} 
+  \| v_{2} + v_{1} \|_{L^{\infty}} \| q_{2} \|_{L^{\infty}}
+  \\
+  & \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}}.
+\end{split}
+\end{equation*}
+Applying H\"older and \eqref{yi}, we also have
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| (Q_{2} - Q_{1})q_{1} \|_{L^{2}} 
+  & \le \| Q_{2} - Q_{1} \|_{L^{2}} \| q_{1} \|_{L^{\infty}}
+  \\
+  & \le (\| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}})\| q_{1} \|_{L^{\infty}}
+  \\
+  & \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}.
+\end{split}
+\end{equation*}
+%
+%
+Lastly,
+%
+\begin{equation*}
+\begin{split}
+ \| \left[
+  \frac{3 + \gamma}{2} w_{2}^{2} + \frac{\gamma}{2}v_{2}^{2} + Q_{2}
+  \right](q_{2} - q_{1}) \|_{L^{\infty}}
+  & \lesssim_{r} \| q_{2} - q_{1} \|_{L^{\infty}} 
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+  \| (R_{2})_{\xi} - (R_{1})_{\xi} \|_{L^{\infty}} \lesssim_{r} \| w_{2} - w_{1} \|_{L^{\infty}} + \| v_{2} - v_{1} \|_{L^{\infty}}
++ \| q_{2} - q_{1} \|_{L^{\infty}}.
+\end{split}
+\end{equation*}
+%
+%
+which implies
+\begin{equation}
+  \label{R-diff-fin-est}
+\begin{split}
+  \| R_{2} - R_{1} \|_{H^{1}} \lesssim_{r} \| w_{2} - w_{1} \|_{L^{\infty}} + \| v_{2} - v_{1} \|_{L^{\infty}}
++ \| q_{2} - q_{1} \|_{L^{\infty}}.
+\end{split}
+\end{equation}
+%
+%
+Recalling \eqref{lip-diff}, combining estimates \eqref{1aa}-\eqref{3aa},
+\eqref{Q-diff-fin-est}, and \eqref{R-diff-fin-est}, and applying the estimates
+$\| f \|_{L^{\infty}} \lesssim \| f \|_{H^{1}}$ and $\| f \|_{L^{\infty}} \le \| f
+\|_{L^{2} \cap L^{\infty}}$, we conclude that
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \|(w_{2}, v_{2}, q_{2}) - (w_{2}, v_{2}, q_{2})\|_{Y} \lesssim_{r} \| w_{2} - w_{1} \|_{H^{1}} + \| v_{2} - v_{1} \|_{L^{2} \cap L^{\infty}}  + \| q_{2} - q_{1} \|_{L^{\infty}}
+\end{split}
+\end{equation*}
+%
+%
+ending the proof.
+%
+\end{proof} 
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				norm equivalence
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+We have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(y(\xi)) \|_{H^{s}_{\xi}} \sim \| u(\xi) \|_{H^{s}_{\xi}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+%
+\label{lem:norm-equiv}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+For non-integer $s \ge 0$, write
+%
+%
+\begin{equation*}
+\begin{split}
+  s = k + \sigma, \ k \in \mathbb{N}, \ 0 < \sigma < 1. 
+\end{split}
+\end{equation*}
+%
+%
+Then 
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(y(\xi)) \|_{H^{s}_{\xi}} = \sum_{j = 0}^{k} \| \p_{\xi}^{j} u (y(\xi))
+  \|_{L^{2}_{\xi}} + \int_{\rr} \int_{\rr} \frac{| u(y(\xi)) - u(y(\eta))
+    |^{2}}{| \xi - \eta |^{1 + 2 \sigma}} d \xi d \eta.
+\end{split}
+\end{equation*}
+%
+%
+For the second term, we use the change of variable $z_{1} = y(\xi)$ and $z_{2} = y(\eta)$. Since the map $\xi \mapsto y(\xi)$ is a $C^{1}$ diffeomorphism on $\rr$, we have
+%
+%
+\begin{gather*}
+   \xi= y^{-1}(z_{1}), \quad \eta = y^{-1}(z_{2})
+  \\
+   d \xi(z_{1}) = \frac{dz_{1}}{y'(y^{-1}(z_{1}))}, \quad d \xi(z_{2}) = \frac{dz_{2}}{y'(y^{-1}(z_{2}))}
+\end{gather*}
+%
+%
+and so
+%
+%
+\begin{equation}
+  \label{hg}
+\begin{split}
+\int_{\rr} \int_{\rr} \frac{| u(y(\xi)) - u(y(\eta))
+    |^{2}}{| \xi - \eta |^{1 + 2 \sigma}} d \xi d \eta & = \int_{\rr} \int_{\rr}
+    \frac{| u(z_{1}) - u(z_{2}) |^{2}}{| y^{-1}(z_{1}) - y^{-1}(z_{2}) |^{1 + 2
+    \sigma}} \frac{1}{y'(y^{-1}(z_{1})) y'(y^{-1}(z_{2}))} d z_{1} d z_{2}
+    \\
+    & \sim \int_{\rr} \int_{\rr} \frac{| u(z_{1}) - u(z_{2}) |^{2}}{|
+      y^{-1}(z_{1}) - y^{-1}(z_{2}) |^{1 + 2 \sigma}} d z_{1} dz_{2}
+\end{split}
+\end{equation}
+%
+%
+where the last step follows from the fact that since $y$ is $C^{1}$
+diffeomorphic  and non-negative, we can find $c_{1}, c_{2} > 0$ such that
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{1} \le \inf y' \le \sup y' \le c_{2}.
+\end{split}
+\end{equation*}
+%
+%
+From this fact, it also follows that
+%
+%
+\begin{equation*}
+\begin{split}
+  | y^{-1}(z_{1}) - y^{-1}(z_{2}) | = | \int_{z_{2}}^{z_{1}} (y^{-1})'(z) dz | \sim | z_{1} - z_{2} |.
+\end{split}
+\end{equation*}
+%
+%
+Applying this relation to \eqref{hg}, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+\int_{\rr} \int_{\rr} \frac{| u(y(\xi)) - u(y(\eta))
+    |^{2}}{| \xi - \eta |^{1 + 2 \sigma}} d \xi d \eta
+    \sim 
+\int_{\rr} \int_{\rr} \frac{| u(z_{1}) - u(z_{2}) |^{2}}{| z_{1} - z_{2} |^{1 + 2 \sigma}} d z_{1} dz_{2}.
+\end{split}
+\end{equation*}
+%
+%
+<++>
+\end{proof}
+%
+%
+%
+%
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{HKM09}
+
+\bibitem[BBM72]{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
+  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+  A \textbf{272} (1972), no.~1220, 47--78.
+
+\bibitem[BC07]{Bressan_2007_Global-conserva}
+A.~Bressan and A.~Constantin, \emph{Global conservative solutions of the
+  camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
+  215--239.
+
+\bibitem[BCK06]{Bendahmane_2006_Hsp-1-perturbat}
+M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen, \emph{$h^1$-perturbations of
+  smooth solutions for a weakly dissipative hyperelastic-rod wave equation},
+  Mediterr. J. Math. \textbf{3} (2006), no.~3-4, 419--432.
+
+\bibitem[Ben72]{Benjamin_1972_The-stability-o}
+T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+  (London) Ser. A \textbf{328} (1972), 153--183.
+
+\bibitem[BL76]{bergh1976interpolation}
+J.~Bergh and J.~L{\"o}fstr{\"o}m, \emph{Interpolation spaces: an introduction},
+  vol. 223, Springer-Verlag, 1976.
+
+\bibitem[BS88]{Bennett:1988ys}
+C.~Bennett and R.~Sharpley, \emph{Interpolation of operators}, vol. 129,
+  Academic Pr, 1988.
+
+\bibitem[Che11]{Chen:2011fk}
+R.~M. Chen, \emph{The h{\"o}lder continuity of the solution map to the
+  $b$-family equation in weak topology}, 2011.
+
+\bibitem[CHK05]{Coclite_2005_Global-weak-sol}
+G.~M. Coclite, H.~Holden, and K.~H. Karlsen, \emph{Global weak solutions to a
+  generalized hyperelastic-rod wave equation}, SIAM J. Math. Anal. \textbf{37}
+  (2005), no.~4, 1044--1069 (electronic).
+
+\bibitem[CS00]{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
+  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+  140--148.
+
+\bibitem[Dai98]{Dai_1998_Model-equations}
+H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
+  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+  193--207.
+
+\bibitem[DDH00]{Dai_2000_Head-on-collisi}
+H.-H. Dai, S.~Dai, and Y.~Huo, \emph{Head-on collision between two solitary
+  waves in a compressible mooney-rivlin elastic rod}, Wave Motion \textbf{32}
+  (2000), no.~2, 93--111.
+
+\bibitem[DH00]{Dai_2000_Solitary-shock-}
+H.-H. Dai and Y.~Huo, \emph{Solitary shock waves and other travelling waves in
+  a general compressible hyperelastic rod}, R. Soc. Lond. Proc. Ser. A Math.
+  Phys. Eng. Sci. \textbf{456} (2000), no.~1994, 331--363.
+
+\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
+A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
+  periodic ch equation.}, To appear in Communications in Partial Differential
+  Equations (2009).
+
+\bibitem[HR07]{Holden_2007_Global-conserva}
+H.~Holden and X.~Raynaud, \emph{Global conservative solutions of the
+  generalized hyperelastic-rod wave equation}, J. Differential Equations
+  \textbf{233} (2007), no.~2, 448--484.
+
+\bibitem[Kar10]{Karapetyan:2010fk}
+D.~Karapetyan, \emph{Non-uniform dependence and well-posedness for the
+  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826. \MR{2652154 (2011g:35352)}
+
+\bibitem[Kat75]{Kato_1975_Quasi-linear-eq}
+T.~Kato, \emph{Quasi-linear equations of evolution, with applications to
+  partial differential equations}, 1975, pp.~25--70. Lecture Notes in Math.,
+  Vol. 448.
+
+\bibitem[Len06]{Lenells_2006_Traveling-waves}
+J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
+  Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
+
+\bibitem[Mus07]{Mustafa_2007_Global-conserva}
+O.~G. Mustafa, \emph{Global conservative solutions of the hyperelastic rod
+  equation}, Int. Math. Res. Not. IMRN (2007), no.~13, Art. ID rnm040, 26.
+
+\bibitem[RB01]{Rodriguez-Blanco_2001_On-the-Cauchy-p}
+G.~Rodr\'iguez-Blanco, \emph{On the cauchy problem for the camassa-holm
+  equation}, Nonlinear Anal. \textbf{46} (2001), no.~3, Ser. A: Theory Methods,
+  309--327.
+
+\bibitem[Tay91]{Taylor_1991_Pseudodifferent}
+M.~E. Taylor, \emph{Pseudodifferential operators and nonlinear pde}, vol. 100,
+  1991.
+
+\bibitem[Tay95]{Taylor:1995kx}
+M.~E. Taylor, \emph{Partial differential equations i, basic theory}, Applied
+  Mathematical Sciences, vol. 115, Springer-Verlag, New York, 1995.
+
+\bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
+Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
+  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
+
+\bibitem[Zho05]{Zhou_2005_Local-well-pose}
+Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
+  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
+
+\end{thebibliography}
+%
+%
+%
+%
+%\bibliographystyle{amsalpha-custom}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+
+\end{document}

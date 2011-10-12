@@ -54,8 +54,8 @@ urlcolor=blue,
 \newtheorem{examp}{Example}[section]
 \newtheorem {exercise}[theorem] {Exercise}
 %
-\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
-%makes proof environment bold instead of italic
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%%makes proof environment bold instead of italic
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
@@ -83,7 +83,7 @@ urlcolor=blue,
 \begin{document}
 \title{Research Statement} 
 \author{{\it David Karapetyan}\\
-University of Notre Dame}
+    \/ University of Notre Dame}
 \maketitle
 
 
@@ -96,57 +96,69 @@ University of Notre Dame}
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
 \setcounter{section}{0}
-
-The main focus of my research so far has been well-posedness and ill-posedness
-for the hyperelastic rod (HR) equation
-%
-%
-\begin{gather}
-\label{hr}
-\p_t u
--
-\p_t \p_x^2 u
-+
-3u\p_x u
-=
-\gamma \big (
-2\p_x u \p_x^2 u
-+
-u \p_x^3 u
-\big ), \quad \gamma \neq 0
-\\
-\label{hr-data} u(x, 0) = u_0 (x),
-\quad x  \in \ci, \text{  or  } \rr \quad t \in \rr,
-\end{gather}
-%
-%
-the Korteweg-–de Vries equation (KDV) 
-\begin{gather}
-  u_{t} + 6u_{xx} + u u_{x} = 0,
-  \\
-  u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
-\end{gather}
-%
-%
-the cubic nonlinear Schr\"odinger
-equation (NLS)
-\begin{gather}
-  iu_{t} + u_{xx} + | u |^{2}u = 0,
-\\
-u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
-\end{gather}
-%
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-and the Boussinesq
-equation
-\begin{gather}
-   u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
-  \\
-   u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
-  \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
-\end{gather}
+%
+%
+%				Current Research
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\subsection{Current Research} 
+\label{sec:cur-res}
+The main focus of my research so far has been well-posedness and ill-posedness
+for the hyperelastic rod (HR) equation.
+%
+%
+%\begin{gather}
+%\label{hr}
+%\p_t u
+%-
+%\p_t \p_x^2 u
+%+
+%3u\p_x u
+%=
+%\gamma \big (
+%2\p_x u \p_x^2 u
+%+
+%u \p_x^3 u
+%\big ), \quad \gamma \neq 0
+%\\
+%\label{hr-data} u(x, 0) = u_0 (x),
+%\quad x  \in \ci, \ \ \text{or} \ \ \rr \quad t \in \rr,
+%\end{gather}
+%%
+%%
+%the Korteweg-–de Vries equation (KDV) 
+%\begin{gather}
+  %u_{t} + 6u_{xx} + u u_{x} = 0,
+  %\\
+  %u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+%\end{gather}
+%%
+%%
+%the cubic nonlinear Schr\"odinger
+%equation (NLS)
+%\begin{gather}
+  %iu_{t} + u_{xx} + | u |^{2}u = 0,
+%\\
+%u(x,0) = u_{0} \in H^{s}, \quad t \in \rr, \ x \in \ci \ \text{or} \ \rr
+%\end{gather}
+%%
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%and the Boussinesq
+%equation
+%\begin{gather}
+   %u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
+  %\\
+   %u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
+  %\quad t \in \rr, \ x \in \ci \ \text{or} \ \rr.
+%\end{gather}
 I recently published a paper on the HR equation entitled 
 {\it ``Non-Uniform Dependence  and well-posedness
 for the
@@ -157,7 +169,7 @@ continuous in Sobolev spaces $H^s(\ci)$, $s>3/2$.
 This extended a result proved by Olson 
 \cite{Olson_2006_Non-uniform-dep} in the periodic
 case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire well-posedness
-range) for HR. Furthermore, motivated by the work of Himonas and
+range) for HR\@. Furthermore, motivated by the work of Himonas and
 Kenig~\cite{Himonas:2009fk}, \cite{Himonas:2009fk}, and 
 Himonas, Kenig, and Misiolek~\cite{Himonas_2009_Non-uniform-dep-per},
 I established non-uniform dependence on initial data
@@ -265,7 +277,29 @@ Lastly, the third approach involves numerical simulation in Matlab. More
 precisely, to get clues as to what which traveling wave solutions might allow me
 to prove failure of continuity, I have been numerically solving various ODEs
 with adjustable parameters. 
+\subsection{Future Research} 
+\label{ssec:fut-research}
+While it is known that the inviscid Burgers initial value problem
+\begin{gather*}
+    u_{t} + u u_{x} = 0
+    \\
+    u(x, 0) = u_{0}(x), \quad x \in \ci \ \text{or} \rr, \ t \in \rr
+\end{gather*}
+is well-posed (in the sense of Hadamard) in $H^{s}$ for $s > 3/2$, it is unknown
+whether it is ill-posed for $s \le 3/2$. I intend to pursue the question of
+ill-posedness for Burgers in the future, in order to shed-light on ill-posedness
+issues for equations involving a perturbation of Burgers (such as HR).
 
+Another goal is to better understand the framework given in the work De Lelllis,
+Kappeler, and Topalov \cite{Lellis_2007_Low-regularity-} for constructing
+low-regularity solutions to the Camassa-Holm, and then applying these techniques
+to the HR equation. More precisely, for initial data $u_{0} \in H^{s}$, $s =1$
+or $s > 3/2$, the HR well-posedness theory states that there exist corresponding
+classical solutions $u(x,t) \in H^{s}$. However, what occurs in the regime $1 <
+s \le 3/2$ is unclear. De Lelllis et al.\ addressed this gap for the
+Camassa-Holm. I am of the hope that understanding their work will give greater
+insight into proving ill-posedness for HR in Sobolev spaces with index $s \le
+3/2$. 
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -273,7 +307,7 @@ with adjustable parameters.
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{HKM09}
+\begin{thebibliography}{dLKT07}
 
 \bibitem[BGT02]{Burq_Gerad_Tzvetkov-An-instability-}
 N.~Burq, P.~G{\'e}rad, and N.~Tzvetkov, \emph{An instability property of the
@@ -282,7 +316,7 @@ N.~Burq, P.~G{\'e}rad, and N.~Tzvetkov, \emph{An instability property of the
 
 \bibitem[Bou93]{Bourgain-Fourier-transfo}
 J.~Bourgain, \emph{Fourier transform restriction phenomena for certain lattice
-  subsets and applications to nonlinear evolution equations. ii. the
+  subsets and applications to nonlinear evolution equations.\ ii.\ the
   kdv-equation}, Geom. Funct. Anal. \textbf{3} (1993), no.~3, 209--262.
 
 \bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
@@ -290,13 +324,18 @@ I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
   for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
   \textbf{233} (2006), no.~1, 228--259.
 
+\bibitem[dLKT07]{Lellis_2007_Low-regularity-}
+C.~de~Lellis, T.~Kappeler, and P.~Topalov, \emph{Low-regularity solutions of
+  the periodic camassa-holm equation}, Comm. Partial Differential Equations
+  \textbf{32} (2007), no.~1-3, 87--126.
+
 \bibitem[Gor04]{Gorsky-The-Cauchy-prob}
 J.~M. Gorsky, \emph{The cauchy problem for a modified camassa-holm equation
   with analytic initial data}, Differential Integral Equations \textbf{17}
   (2004), no.~11-12, 1233--1254.
 
 \bibitem[HK09]{Himonas:2009fk}
-A.~A. Himonas and C.~Kenig, \emph{Non-uniform dependence on initial data for
+A.~Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
   the ch equation on the line}, Differential Integral Equations \textbf{22}
   (2009), no.~3-4, 201--224.
 
@@ -306,7 +345,7 @@ A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
   Equations (2009).
 
 \bibitem[HM05]{Himonas:2005kx}
-A.~A. Himonas and G.~Misiolek, \emph{High-frequency smooth solutions and
+A.~Himonas and G.~Misiolek, \emph{High-frequency smooth solutions and
   well-posedness of the {C}amassa-{H}olm equation}, Int. Math. Res. Not.
   (2005), no.~51, 3135--3151. \MR{2187502 (2006i:35315)}
 

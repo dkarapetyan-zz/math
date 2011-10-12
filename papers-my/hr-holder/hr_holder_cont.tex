@@ -2,7 +2,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
-\usepackage{showkeys}
+%\usepackage[notref, notcite]{showkeys}
 \usepackage{tikz}
 \usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
@@ -931,14 +931,22 @@ We shall prove the following.
 %
 \begin{lemma}
 %
-Let $u_{0}^{\lambda}(x) = (\lambda +
-x_{+}^{\alpha + 1}) \vp(x)$ be a family of initial data indexed by $\lambda \in
+Let 
+\begin{equation}
+  \label{key-init-data}
+  u_{0}^{\lambda}(x) = (\lambda +
+x_{+}^{\alpha + 1}) \vp(x)
+\end{equation}
+be a family of initial data indexed by $\lambda \in
 [-1, 1]$, where $\alpha > 0$, $x_{+} \doteq \max\{0, x\}$ and $\vp$ is a smooth cutoff
 function equal to the identity in $[-2, 2]$ and with support in $[-4,4]$. Then the associated solutions $u^{\lambda}(x,t)$ take the form
 \begin{equation}
     \label{u-lam-explicit-form}
     \begin{split}
-        u^{\lambda}(x,t) = \lambda + (x - \lambda t)^{\alpha + 1}_{+} p(t(x- \lambda t)^{\alpha}_{+}), \quad | x | \le 1, \quad | \lambda | \le 1
+        u^{\lambda}(x,t) = \lambda + (x - \lambda
+        t)^{\alpha + 1}_{+} p(t(x- \lambda
+        t)_{+}), \quad | x | \le 1, \quad
+        | \lambda | \le 1
     \end{split}
 \end{equation}
 %
@@ -948,12 +956,220 @@ for sufficiently small $| t |$, where $p(z)$ is a power series in $z$ with $p(0)
 \end{lemma}
 %
 %
+\begin{framed}
 %
 %
-\begin{proof}(Kato)
+\begin{remark}
+Kato's statement of the theorem has $p(t(x - \lambda t)^{\alpha}_{+})$. This is a typo.
+\label{rem:kato-typo}
+\end{remark}
+%
+%
+\end{framed}
+%
+%
+
+%
+%
+%
+%
+%
+Applying Lemma~\ref{lem:sol-burg}, we have
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda} - u^{0} = \lambda  + \sum_{k=0}^{\infty}c_{k}t^{k}\left[ (x - \lambda
+  t)^{\alpha + 1 + k}_{+} - x_{+}^{\alpha + 1 + k}
+  \right].
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, for integer $s \ge 2$ (we need to have well-posedness, and don't want to deal with fractional differentiation) and real $\alpha > (s-2)$
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) & = (\alpha + 1)(\alpha) \cdots (\alpha
++ 2 -s)\{\sum_{k=1}^{\infty}c_{k}t^{k}\left[ (x - \lambda t)^{\alpha + 1 + k -s}_{+} -
+  x_{+}^{\alpha + 1 + k -s} \right] \}.
+\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+\| u^{\lambda} - u^{0} \|_{H^{s}}^{2} 
+& \ge \| \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) \|_{L^{2}}^{2}
+\\
+& \ge \int_{0}^{\lambda t} | \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) |^{2} dx
+\\
+& \simeq \int_{0}^{\lambda t}
+\{ \sum_{k=0}^{\infty}c_{k}t^{k}\left[ (x - \lambda t)^{\alpha + 1 + k -s}_{+} -
+  x_{+}^{\alpha + 1 + k -s} \right] \}^{2}dx
+\\
+& = \int_{0}^{\lambda t}
+( \sum_{k=0}^{\infty}c_{k}t^{k} x_{+}^{\alpha + 1 + k -s} )^{2}dx
+\\
+& =\int_{0}^{\lambda t}
+x^{2(\alpha + 1 -s)} [ \sum_{k=0}^{\infty}c_{k}(tx_{+})^{k} ]^{2}dx.
+\end{split}
+\end{equation*}
+%
+But since $\sum_{k=0}^{\infty}c_{k}(tx_{+})^{k}$ is continuous in
+$x$ and $c_{0} =1$, we can find $T > 0$ sufficiently small such that for $0 \le x \le T$ 
+%
+%
+\begin{equation*}
+\begin{split}
+  [\sum_{k=0}^{\infty}c_{k}(x_{+})^{k}]^{2} \ge 1/2. 
+\end{split}
+\end{equation*}
+%
+%
+Hence, restricting $t \le \min \{1, T/\lambda \}$, we obtain the bound
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\| u^{\lambda} - u^{0} \|_{H^{s}}^{2} 
+& \gtrsim \int_{0}^{\lambda t} x^{2(\alpha + 1 -s)} dx 
+\\
+& \simeq  | \lambda t |^{2 \alpha + 3 -2s}
+\end{split}
+\end{equation*}
+%
+%
+and so
+\begin{equation}
+    \begin{split}
+    \label{holder-lb}
+\| u^{\lambda} - u^{0} \|_{H^{s}} & > c_{\alpha, s} | \lambda t |^{\alpha -s +
+    3/2}, \quad t \le \min \{1, T/\lambda \}.
+\end{split}
+\end{equation}
+%
+%
+Suppose the map $u_{0} \mapsto u(t)$ is locally
+H\"older continuous in $H^{r}$, $r<s$,
+with index $\gamma > 0$. Then for a sequence of initial data $f_{0}^{\lambda} \in B_{H^{s}}(R)$, there exists $t_{0} > 0$ depending on $R$ such that for $0 < t <
+t_{0}$
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f^{\lambda}(t) - f^{0}(t) \|_{H^{r}}
+  \le c_{r, \gamma} \| f^{\lambda}_{0} - f^{0}_{0} \|_{H^{r}}^{\gamma}.
+  \\
+  &
+\end{split}
+\end{equation*}
+%
+%
+To disprove H\"older continuity, we proceed by contradiction and choose a uniformly bounded sequence motivated by \eqref{key-init-data}, that is
+%
+%
+\begin{equation*}
+\begin{split}
+  u_{0}^{\lambda}(x) = \left\{ (\lambda + x^{\alpha + 1}_{+})\vp \right\}_{0 \le
+      \lambda < 1}.
+\end{split}
+\end{equation*}
+%
+%
+Assume H\"older continuity holds. Then there exists $t_{0} > 0$ independent of $\lambda$ such that for $0 < t \le t_{0}$
+%
+%
+\begin{equation}
+  \label{rg}
+\begin{split}
+  \| u^{\lambda}(t) - u^{0}(t) \| 
+  & \le c_{\gamma} \| u_{0}^{\lambda} - u^{0}_{0} \|^{\gamma}_{H^{r}}
+  \\
+  & = c_{\gamma, \vp} \lambda^{\gamma}.
+\end{split}
+\end{equation}
+%
+%
+Next, fix $\lambda$, and restrict $t_{0} < \{1, T/\lambda \}$.
+Then for $t = t_{0}$, \eqref{holder-lb} gives
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u^{\lambda}(t_{0}) - u^{0}(t_{0}) \|_{H^{r}} > c_{\alpha,s, t_{0}} \lambda^{\alpha - s + 3/2}.
+\end{split}
+\end{equation*}
+%
+Recall that our only restriction on $\alpha$ was that $\alpha > s-2$. 
+Let $\ee <<1$, and choose $\alpha = s - 3/2 + \gamma - \ee$. 
+Then
+\begin{equation*}
+\begin{split}
+  \| u^{\lambda}(t_{0}) - u^{0}(t_{0}) \| 
+  &  > c_{\alpha,s, t_{0}} \lambda^{\gamma - \ee}
+\end{split}
+\end{equation*}
+%
+which for 
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{\alpha,s, t_{0}}\lambda^{-\ee} > c_{\gamma, \vp}
+\end{split}
+\end{equation*}
+%
+%
+or 
+%
+%
+\begin{equation}
+  \label{lam-bound}
+\begin{split}
+    \left (\frac{c_{\gamma, \vp}}{c_{\alpha, s, t_{0}}} \right)^{\ee} < \lambda < 1
+\end{split}
+\end{equation}
+%
+%
+gives
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u^{\lambda}(t_{0}) - u^{0}(t_{0}) \| 
+  &  > c_{\gamma, \vp} \lambda^{\gamma}
+\end{split}
+\end{equation*}
+%
+contradicting \eqref{rg}.
+%
+\begin{framed}
+  \begin{remark}
+  We can always choose $\ee > 0$ sufficiently small such that
+\begin{equation*}
+\begin{split}
+  \left (\frac{c_{\alpha, s, t_{0}}}{c_{\gamma, \vp}} \right)^{\ee} \right ) < 1
+\end{split}
+\end{equation*}
+and so relation \eqref{lam-bound} makes sense.
+\end{remark}
+\end{framed}
+Hence, since $\gamma$ was arbitrary, we see that Burgers
+initial value problem on the line with initial data $u_{0} \in H^{s}$, $s \ge 2$
+is not H\"older continuous for any exponent. This completes the proof.
+%
+%
+\begin{proof}[Proof of Lemma~\ref{lem:sol-burg}]
 Since $u_{0}^{\lambda}$ is uniformly bounded in $\lambda$ in $H^{s}$, the
 $u^{\lambda}$ have a common lifespan $T$ and are uniformly bounded (via an
-energy estimate--see HR). Therefore, choosing $T$ sufficiently small, we have
+energy estimate--see \cite{Karapetyan:2010fk}). Therefore, choosing $T$
+sufficiently small, we have
 %
 %
 \begin{equation}
@@ -1048,95 +1264,63 @@ or
 %
 \begin{equation*}
 \begin{split}
-y + ty_{+}^{\alpha + 1} = x - t \lambda
+y + ty_{+}^{\alpha + 1} = x - t \lambda.
 \end{split}
 \end{equation*}
 %
 %
-which implies
-%
-%
+Without loss of generality, assume $t \ge 0$, $\lambda \ge 0$. 
+Restricting our attention to the case $\alpha =2$, we obtain
 \begin{equation}
     \label{y-equation}
 \begin{split}
-[1 + ty_{+}^{\alpha + 1}]y_{+} = (x - t \lambda)_{+}.
+y + ty_{+}^{3} = x - t \lambda.
+\end{split}
+\end{equation}
+which is equivalent to the system
+%
+%
+\begin{gather}
+    \label{y-simp}
+    y= x - t \lambda, \quad x \le t \lambda
+    \\
+    \label{y-rest}
+    y + ty^{3} = x - t \lambda, \quad x \ge t \lambda
+\end{gather}
+for $x \ge t \lambda$. We shall first solve \eqref{y-rest} without any
+restrictions on $x$, that is, we are looking for a
+solution to 
+%
+%
+\begin{equation}
+    \label{f-eq}
+\begin{split}
+f + tf^{3} = x - t \lambda
 \end{split}
 \end{equation}
 %
 %
-Solving this equation for $y$ and then substituting back into \eqref{y-for-u} completes the proof.
-\end{proof}
-\begin{framed}
-    \textbf{I spent $7+$ hours, but couldn't figure out how to solve
-\eqref{y-equation} in order to get \eqref{u-lam-explicit-form}. I go about
-proving Lemma~\ref{lem:sol-burg} in slightly different fashion; see the next
-section}.
-\end{framed}
-%
-%
-\begin{proof}(David)
-Notice from \eqref{burg-sol-redux} that
+which we will then use to 
+construct a solution to the system
+\eqref{y-simp}-\eqref{y-rest}. Let
 %
 %
 \begin{equation*}
 \begin{split}
-u^{\lambda}(x, 0) = \lambda + x_{+}^{\alpha +1}.
+    g(x,t) = f(x + \lambda t, t).
 \end{split}
 \end{equation*}
 %
 %
-Furthermore, \eqref{burg-sol-redux} implies that
+Then
 %
 %
-%
-%
-\begin{equation*}
+\begin{equation}
+    \label{g-eq}
 \begin{split}
-u^{\lambda} - \lambda
-& = (x - tu^{\lambda})^{\alpha + 1}
-\\
-& = [x - t(u^{\lambda} \pm \lambda)]^{\alpha + 1}_{+}
-\\
-& = [x - t(u^{\lambda - \lambda}) - t \lambda]_{+}^{\alpha + 1}.
+[1 + t g^{2}]g = x
 \end{split}
-\end{equation*}
-%
-%
-Set $y = u^{\lambda} - \lambda$. Then
-%
-%
-\begin{equation*}
-\begin{split}
-y = [x - t \lambda - ty]_{+}^{\alpha + 1}
-\end{split}
-\end{equation*}
-%
-%
-or
-%
-%
-\begin{equation*}
-\begin{split}
-y^{1/(\alpha + 1)} = [x - t \lambda - ty]_{+}.
-\end{split}
-\end{equation*}
-%
-%
-Therefore, $y(t \lambda, t) = 0$, and so $$u^{\lambda}(t \lambda, t) = \lambda.$$
-%
-%
-Hence, it is natural to guess that $u^{\lambda}(x,t) = \lambda + (x - \lambda
-t)^{\alpha + 1}_{+} p(z)$ for some power series $p(z)$, where $z = z(x,t)$ and
-$p(z(x,0)) =1$. We now show that this is indeed the case. Substituting our ansatz
-into \eqref{burg-sol-redux}, we see that
-%
-%
-\begin{equation*}
-\begin{split}
-(x - \lambda t)^{\alpha + 1}_{+} p(z) = \{x - t[\lambda + (x - \lambda
-    t)_{+}^{\alpha +1} p(z)]\} 
-\end{split}
-\end{equation*}
+\end{equation}
 %
 %
 which implies
@@ -1144,107 +1328,121 @@ which implies
 %
 \begin{equation*}
 \begin{split}
-x - \lambda t - (t + 1)(x - \lambda t)_{+}^{\alpha + 1} p(z) = 0.
+g(0, t) = 0.
 \end{split}
 \end{equation*}
 %
 %
-Assume $x - \lambda t \neq 0$. Dividing through by $x - \lambda t$ and simplifying, we obtain
+Differentiating both sides of \eqref{g-eq} with respect to $x$ once, twice, and
+three times, respectively, we obtain
+%
+%
+\begin{gather*}
+    g_{x}\left \{ 2t g^{\alpha - 1} + 1 \right \} = 1,
+    \\
+    g_{xx}(3tg^{2} + 1) + 6tgg_{x}^{2} = 0,
+    \\
+    g_{xxx}(3tg^{2} + 1) + 18tgg_{x}g_{xx} + 6tg_{x}^{3} = 0
+\end{gather*}
+%
+%
+which implies
+%
+%
+\begin{gather*}
+g_{x}(0, t) =1,
+\\
+g_{xx}(0, t) = 0,
+\\
+g_{xxx}(0, t) = -6t.
+\end{gather*}
+%
+Continuing in this fashion, we obtain
 %
 %
 \begin{equation*}
 \begin{split}
-p(z) =\frac{1}{(t+1)(x - \lambda t)^{\alpha}}.
+\frac{d^{k}}{dx^{k}} g |_{(0, t)} = c_{k}t^{k-2}
 \end{split}
 \end{equation*}
 %
 %
-%
-\begin{framed}
-    \textbf{This function is NOT analytic at $x = \lambda t$. 
-    Hence, I am very confused by Kato's claim that we can arrange that $p(z)$ be a
-    power series with $p(0)=1$ and a positive radius of convergence. I feel that
-    I have just shown that this is impossible. I will accept it for the time
-    being.}
-\end{framed}
+and hence
 %
 %
+\begin{equation*}
+\begin{split}
+g(x,t) & = x - tx^{3} + ct^{2}x^{4} + \ldots
+\\
+& = x - t[x^{3}(1 + c_{1}tx + c_{2}t^{2}x^{2} + \ldots)] 
+\end{split}
+\end{equation*}
+%
+%
+Therefore
+%
+%
+\begin{equation*}
+\begin{split}
+f(x,t) 
+& = x - \lambda t - t \left \{ (x - \lambda t)^{3}[1 + c_{1}t(x - \lambda t) + c_{2}t^{2}(x - \lambda t)^{2} + \ldots] \right \}
+\\
+& = x - t \left \{ \lambda  + (x - \lambda t)^{3} [1 + c_{1}t(x - \lambda t) + c_{2}t^{2}(x - \lambda t)^{2} + \ldots] \right \}
+\end{split}
+\end{equation*}
+%
+solves \eqref{f-eq}. By observation, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+y(x,t) 
+& = x - t \left \{ \lambda  + (x - \lambda
+    t)_{+}^{3} [1 + c_{1}t(x - \lambda t)_{+} +
+    c_{2}t^{2}(x - \lambda t)_{+}^{2} + \ldots] \right \}
+\end{split}
+\end{equation*}
+%
+%
+solves the system \eqref{y-simp}-\eqref{y-rest}.
+%
+%
+%
+Recalling that
+%
+%
+\begin{equation*}
+\begin{split}
+y(x,t) = x - tu^{\lambda}
+\end{split}
+\end{equation*}
+%
+%
+we conclude that
+%
+%
+%
+\begin{equation*}
+\begin{split}
+u^{\lambda}(x,t) = \lambda + (x - \lambda
+t)_{+}^{2 + 1}[1 + c_{1}t(x - \lambda t)_{+} +
+c_{2}t^{2}(x - \lambda t)_{+}^{2} + \ldots].
+\end{split}
+\end{equation*}
+%
+For general $\alpha \ge 0$, a similar argument (using Laurent expansions) gives
+\begin{equation}
+    \label{ode-sol}
+\begin{split}
+u^{\lambda}(x,t) = \lambda + (x - \lambda
+t)_{+}^{\alpha + 1}[1 + c_{1}t(x - \lambda t)_{+} +
+c_{2}t^{2}(x - \lambda t)_{+}^{2} + \ldots]
+\end{split}
+\end{equation}
+where $c_{k} = c_{k}(\alpha)$. This completes the proof.
 %
 \end{proof}
-%
-%
-Applying Lemma~\ref{lem:sol-burg}, we have
-%
-%
-\begin{equation*}
-\begin{split}
-u^{\lambda} - u^{0} = \lambda + (x - \lambda t)^{\alpha + 1}_{+}p(t(x- \lambda t)^{\alpha}_{+}) - (x)_{+}^{\alpha + 1}p(tx_{+}^{\alpha}) + \ \text{positive higher order terms}.
-\end{split}
-\end{equation*}
-%
-%
-Furthermore, for integer $s \ge 2$ (we need to have well-posedness) and real $\alpha > (s-1)$
-%
-%
-\begin{equation*}
-\begin{split}
-\frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) = (\alpha + 1)(\alpha) \cdots (\alpha + 1 -s)[(x - \lambda t)^{\alpha + 1 -s}_{+} - (x)_{+}^{\alpha + 1 -s}] + \ \text{positive higher order terms}.
-\end{split}
-\end{equation*}
-%
-%
-Hence
-%
-%
-\begin{equation*}
-\begin{split}
-\| u^{\lambda} - u^{0} \|_{H^{s}}^{2} 
-& \ge \| \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) \|_{L^{2}}^{2}
-\\
-& \ge \int_{-1}^{1} | \frac{d^{s}}{dx^{s}}(u^{\lambda} - u^{0}) |^{2} dx
-\\
-& \ge \int_{-1}^{1} \{(\alpha + 1)(\alpha) \cdots (\alpha + 1 -s   )[(x - \lambda t)_{+}^{\alpha + 1 -s} - x_{+}^{\alpha + 1 -s}]\}^{2} dx
-\\
-& \simeq \int_{0}^{\lambda t} (x^{\alpha + 1 -s})^{2} dx + \int_{\lambda t}^{1} [(x - \lambda t)^{\alpha +1 -s} -x^{\alpha + 1 -s}]^{2} dx
-\\
-& \ge \int_{0}^{\lambda t} x^{2(\alpha + 1 -s)} dx 
-\\
-& \simeq  | \lambda t |^{2 \alpha + 3 -2s}
-\end{split}
-\end{equation*}
-%
-%
-and so
-\begin{equation}
-    \begin{split}
-    \label{holder-lb}
-\| u^{\lambda} - u^{0} \|_{H^{s}} & \ge c_{\alpha, s} | \lambda t |^{\alpha -s + 3/2}
-\\
-&  = c_{\alpha, s} | \lambda t |^{3/4}, \quad \alpha = s - 3/4.
-\end{split}
-\end{equation}
-But
-%
-%
-\begin{equation}
-    \label{init-lb}
-\begin{split}
-    \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}} 
-    & \simeq |\lambda |.
-\end{split}
-\end{equation}
-%
-Hence, from \eqref{holder-lb} and \eqref{init-lb},
-we see that for any fixed constant $c > 0$ there exists sufficiently small $T = T(c) >
-0$ such that for all $|t| \le T$
-%
-\begin{equation*}
-\| u^{\lambda} - u^{0} \|_{H^{s}} \ge c \| u^{\lambda}(0) - u^{0}(0) \|_{H^{r}}.
-\end{equation*}
-Therefore, the Burgers initial value problem on the line with initial data
-$u_{0} \in H^{s}, s \ge 2$ is not H\"older continuous for any exponent.
-%
-%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -1307,7 +1505,7 @@ Consider also the initial value problem
 %
 \begin{gather}
     \label{en-eq}
-\frac{dy}{dt}(\xi, t) = u(y(\xi, t), t),
+\frac{dy}{dt}(\xi, t) = \gamma u(y(\xi, t), t),
 \\
 \label{en-data}
 y(\xi, 0) = \xi
@@ -1317,7 +1515,7 @@ y(\xi, 0) = \xi
 and define
 \begin{gather}
     \label{var-1}
-    w(\xi, t) \doteq \gamma u(y(\xi, t), t)
+    w(\xi, t) \doteq u(y(\xi, t), t)
     \\
     \label{var-2}
     v(\xi, t) \doteq u_{x}(y(\xi, t), t)
@@ -1336,7 +1534,7 @@ where we adopt the notation $$u_{x}(y(\xi, t),t) \doteq \frac{d}{dz}u(z,t) \big
 \label{w-deriv}
 \begin{split}
 \frac{d}{dt}w(\xi, t)
-& = \gamma u_{y} y_{t}(y(\xi, t), t) + u_{t}(y(\xi, t), )
+& = \gamma u_{x} y_{t}(y(\xi, t), t) + u_{t}(y(\xi, t), )
 \\
 & = \gamma u u_{x}(y(\xi, t ), t) + u_{t}(y(\xi, t))
 \\
@@ -1345,7 +1543,7 @@ where we adopt the notation $$u_{x}(y(\xi, t),t) \doteq \frac{d}{dz}u(z,t) \big
 \end{equation}
 %
 %
-Now, we want to get $P_{x}(y(\xi, t), t)$ in "nice" form as we will be estimating later. Notice that
+Now, we want to get $P_{x}(y(\xi, t), t)$ in ``nice'' form as we will be estimating later. Notice that
 %
 %
 \begin{equation*}
@@ -1376,9 +1574,9 @@ Furthermore
 P_{x}(x,t)
 & = \frac{1}{2}\p_{x} e^{-| x |}* \left [ \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ] 
 \\
-& = \frac{1}{2} \int_{\rr} \sgn(x - x_{1}) e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) + \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] 
+& = -\frac{1}{2} \int_{\rr} \sgn(x - x_{1}) e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) + \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] 
 \\
-& =\frac{1}{2} \left ( \int_{x}^{\infty} - \int_{-\infty}^{x} \right )
+& =-\frac{1}{2} \left ( \int_{x}^{\infty} - \int_{-\infty}^{x} \right )
 e^{-| x - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
 \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] dx_{1}
 \end{split}
@@ -1391,7 +1589,7 @@ and so%
 \label{p-deriv}
 \begin{split}
 P_{x}(y(\xi, t), t)
-& = \frac{1}{2} \left ( \int_{y(\xi, t)}^{\infty} - \int_{-\infty}^{y(\xi, t)} \right ) e^{-| y(\xi, t) - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
+& = -\frac{1}{2} \left ( \int_{y(\xi, t)}^{\infty} - \int_{-\infty}^{y(\xi, t)} \right ) e^{-| y(\xi, t) - x_{1} |} \left [ \frac{3 - \gamma}{2} u^{2}(x_{1}, t) +
 \frac{\gamma}{2} u_{x}^{2}(x_{1}, t) \right ] dx_{1}.
 \end{split}
 \end{equation}
@@ -1412,10 +1610,10 @@ Then applying the change of variable $x_{1} = y(\xi_{1}, t)$, we obtain
 %
 \begin{equation*}
 \begin{split}
-\eqref{yuu} & = \frac{1}{2} \int_{\rr} e^{-| y(\xi, t) - y(\xi_{1}, t) |} \left [
+\eqref{yuu} & = -\frac{1}{2} \int_{\rr} e^{-| y(\xi, t) - y(\xi_{1}, t) |} \left [
 \frac{3 -\gamma}{2} w^{2}q + \frac{\gamma}{2} v^{2} q  \right ](\xi_{1}, t) d \xi_{1}
 \\
-& = \frac{1}{2} \int_{\rr} e^{-| \int_{\xi_{1}}^{\xi} q(\lambda, t) d \lambda |} \left [
+& = -\frac{1}{2} \int_{\rr} e^{-| \int_{\xi_{1}}^{\xi} q(\lambda, t) d \lambda |} \left [
 \frac{3 -\gamma}{2} w^{2}q + \frac{\gamma}{2} v^{2} q  \right ](\xi_{1}, t) d \xi_{1}
 \\
 & \doteq Q = Q(v, w, q)(\xi, t).
@@ -1455,13 +1653,13 @@ chain rule
 \label{lkk}
 \begin{split}
 \frac{d}{dt}v(\xi, t)
-&  = \frac{du_{x}}{dy}(y(\xi, t), t) \frac{dy}{dt}(\xi, t) + u_{xt}(y(\xi, t), t)
+&  = u_{xx}(y(\xi, t), t) y_{t}(\xi, t) + u_{xt}(y(\xi, t), t)
 \\
-& =  (u_{xx}u + u_{xt})(y(\xi, t), t).
+& =  (\gamma u_{xx}u + u_{xt})(y(\xi, t), t).
 \end{split}
 \end{equation}
 %
-Differentiating \eqref{hyperelastic-rod-equation} formally with respsect to $x$,
+Differentiating \eqref{hyperelastic-rod-equation} formally with respect to $x$,
 and using the fact that
 %
 %
@@ -1487,7 +1685,7 @@ we obtain
 %
 \begin{equation*}
 \begin{split}
-u_{xt} + u u_{xx} + u_{x}^{2} + P - \left [ \frac{3 -
+u_{xt} + \gamma u u_{xx} + \gamma u_{x}^{2} + P - \left [ \frac{3 -
 \gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ]  = 0.
 \end{split}
 \end{equation*}
@@ -1499,7 +1697,7 @@ Substituting this into \eqref{lkk}, we get
 \begin{equation*}
 \begin{split}
 \frac{d}{dt}v(\xi, t)
-& = \left \{ u_{xx} u + \big[-uu_{xx} - u_{x}^{2} - P + \left ( \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2}u_{x}^{2} \right ) ] \right \}(y(\xi, t), t)
+& = \left \{ \gamma u_{xx} u + \big[- \gamma uu_{xx} - u_{x}^{2} - P + \left ( \frac{3 - \gamma}{2} u^{2} + \frac{\gamma}{2}u_{x}^{2} \right ) ] \right \}(y(\xi, t), t)
 \\
 & = \left \{- P  + \frac{3 - \gamma}{2} u^{2} + \frac{\gamma-2}{2} u_{x}^{2} \right \}(y(\xi, t), t)
 \\
@@ -1518,13 +1716,13 @@ Lastly,
 \frac{dq}{dt}(\xi, t)
 & = \frac{d}{d\xi}\frac{d}{dt}y(\xi, t)
 \\
-& = \frac{d}{d \xi}u(y(\xi, t), t)
+& = \gamma \frac{d}{d \xi}u(y(\xi, t), t)
 \\
-& = \frac{du}{dy}(y(\xi,t),t)
+& = \gamma \frac{du}{dy}(y(\xi,t),t)
 \\
-& = u_{x}(y(\xi, t), t)q(\xi, t)
+& = \gamma u_{x}(y(\xi, t), t)q(\xi, t)
 \\
-& = \frac{vq}{\gamma}(\xi,t).
+& = \gamma vq(\xi, t).
 \end{split}
 \end{equation*}
 %
@@ -1535,11 +1733,11 @@ Next, note that $y(\xi, 0) = 0$, and so
 \begin{equation*}
 \begin{split}
 w(\xi, 0)
-& = \gamma u(y(\xi, 0), 0)
+& =  u(y(\xi, 0), 0)
 \\
-& = \gamma u(\xi, 0)
+& =  u(\xi, 0)
 \\
-& = \gamma u_{0}(\xi).
+& =  u_{0}(\xi).
 \end{split}
 \end{equation*}
 %
@@ -1584,7 +1782,7 @@ Hence, we are interested in solving the ode Cauchy-problem
 \frac{d}{dt}(w, v, q) = \left ( -R, -Q + \frac{3 - \gamma}{2 \gamma^{2}}w^{2} + \frac{\gamma -2}{2}v^{2}, \frac{vq}{\gamma} \right ) 
 \\
 \label{ode-system-init}
-(w, v, q)(0) = (\gamma u_{0}(\xi), u_{0}'(\xi), 1).
+(w, v, q)(0) = (u_{0}(\xi), u_{0}'(\xi), 1).
 \end{gather}
 %
 Denoting
@@ -1640,7 +1838,7 @@ We will obtain the following result as a corollary.
 %
 %
 \begin{theorem}
-  Assume $u_{0} \in H^{1} \cap C^{1}$. Then for sufficiently small $T > 0$
+  Assume $u_{0} \in H^{1}$. Then for sufficiently small $T > 0$
 the Cauchy problem \eqref{ode-system}-\eqref{ode-system-init} has a unique
 solution $(w, v, q) \in C^{1}([0, T], Y)$.
 \label{thm:ode-sys-sol}
@@ -1670,8 +1868,9 @@ Q(w_{2}, v_{2}, q_{2})$, we have
 \end{split}
 \end{equation}
 %
-Let $r>0$, $w_{1}, w_{2} \in B_{C^{1} \cap L^{2}}(r)$, $v_{1}, v_{2} \in B_{L^{\infty} \cap L^{2}}(r)$, and
-$q_{1}, q_{2} \in L^{\infty}(r)$, where $0 < c < q_{1} < r$ and $0 < c < q_{2} <r$.
+Let $r>0$, $w_{1}, w_{2} \in B_{H^{1}}(r)$, $v_{1}, v_{2} \in B_{L^{\infty} \cap L^{2}}(r)$, and
+$q_{1}, q_{2} \in B_{L^{\infty}}(r)$, where $0 < c < q_{1} < r$ and $0 < c <
+q_{2} <r$.
 Note that $L^{\infty} \cap L^{2}$ is an algebra, since
 %
 %
@@ -1713,7 +1912,7 @@ and
   \| w^{2}_{2} - w_{1}^{2} \|_{L^{\infty} \cap L^{2}} 
   & = \| (w_{2} - w_{1})(w_{2} + w_{1}) \|_{L^{\infty} \cap L^{2}}
     \\
-    & \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2} \cap L^{\infty} \cap L^{2}}.
+    & \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2} \cap L^{\infty}}.
 \end{split}
 \end{equation}
 %
@@ -1737,7 +1936,7 @@ and $L^{\infty} \cap L^{2}$, respectively. First, note that
 \begin{split}
   \| Q_{2} - Q_{1} \|_{L^{\infty}}
   & \le \| \frac{3 - \gamma}{2} (w_{2}^{2} q_{2} - w_{1}^{2} q_{1}) +
-  \frac{\gamma}{2}(v_{2}^{2}q_{2} - v_{1}^{2}q_{1}) \|_{L^{1}}
+  \frac{\gamma}{2}(v_{2}^{2}q_{2} - v_{1}^{2}q_{1}) \|_{L^{1}}.
 \end{split}
 \end{equation}
 %
@@ -1781,7 +1980,7 @@ Hence, applying H\'older, we have
   + \| q_{2} - q_{1} \|_{L^{\infty}} (\| w_{1}\|_{L^{2}}^{2} + \|
   v_{1}\|_{L^{2}}^{2}) 
   \\
-  & \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+  & \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2}} + \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
 \end{split}
 \end{equation}
 where the last step follows from Cauchy-Schwartz and the a priori bounds
@@ -1791,7 +1990,7 @@ on $w_{i}, v_{i}, q_{i}$, $i \in \{1,2\}$. Therefore,
 \begin{equation}
   \label{pi}
 \begin{split}
-  \| Q_{2} - Q_{1} \|_{L^{\infty}} \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}.
+  \| Q_{2} - Q_{1} \|_{L^{\infty}} \lesssim_{r}\| w_{2} -w_{1} \|_{L^{2}} + \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}.
 \end{split}
 \end{equation}
 %
@@ -1920,7 +2119,7 @@ Applying Young's inequality, we obtain the bound
   v_{1}^{2} q_{1})\|_{L^{1}}^{2}
   \\
   & \lesssim_{r}
-  (\| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}})^{2}
+  (\| w_{2} - w_{1} \|_{L^{2}} + \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}})^{2}
 \end{split}
 \end{equation*}
 %
@@ -1930,7 +2129,7 @@ where the last step follows from \eqref{q-init-bound}. Therefore
 %
 \begin{equation}
   \label{I-est}
-  \| I \|_{L^{2}} \lesssim_{r}
+  \| I \|_{L^{2}} \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2}}+ 
   \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
 \end{equation}
 To bound $II$, we first note that
@@ -2077,7 +2276,7 @@ Combining \eqref{I-est}, \eqref{II-est} and recalling \eqref{I-II-split}, we obt
 \begin{equation}
   \label{yi}
 \begin{split}
-  \| Q_{2} - Q_{1} \|_{L^{2}} \lesssim_{r} \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+  \| Q_{2} - Q_{1} \|_{L^{2}} \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2}} + \| v_{2} - v_{1} \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
 \end{split}
 \end{equation}
 %
@@ -2088,8 +2287,8 @@ Combining \eqref{pi} and \eqref{yi}, we see that
 \begin{equation}
   \label{Q-diff-fin-est}
 \begin{split}
-  \| Q_{2} - Q_{1} \|_{L^{2} \cap L^{\infty}} \lesssim_{r} \| v_{2} - v_{1}
-  \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}
+  \| Q_{2} - Q_{1} \|_{L^{2} \cap L^{\infty}} \lesssim_{r} \| w_{2} - w_{1} \|_{L^{2}} + \| v_{2} - v_{1}
+  \|_{L^{2}} + \| q_{2} - q_{1} \|_{L^{\infty}}.
 \end{split}
 \end{equation}
 %
@@ -2277,14 +2476,17 @@ which implies
 %
 Recalling \eqref{lip-diff}, combining estimates \eqref{1aa}-\eqref{3aa},
 \eqref{Q-diff-fin-est}, and \eqref{R-diff-fin-est}, and applying the estimates
-$\| f \|_{L^{\infty}} \lesssim \| f \|_{H^{1}}$ and $\| f \|_{L^{\infty}} \le \| f
+$\| f \|_{L^{2}} \le \| f \|_{H^{1}}$, $\| f \|_{L^{\infty}} \lesssim \| f \|_{H^{1}}$ and $\| f \|_{L^{\infty}} \le \| f
 \|_{L^{2} \cap L^{\infty}}$, we conclude that
 %
 %
 %
 \begin{equation*}
 \begin{split}
-  \|(w_{2}, v_{2}, q_{2}) - (w_{2}, v_{2}, q_{2})\|_{Y} \lesssim_{r} \| w_{2} - w_{1} \|_{H^{1}} + \| v_{2} - v_{1} \|_{L^{2} \cap L^{\infty}}  + \| q_{2} - q_{1} \|_{L^{\infty}}
+    \|F(w_{2}, v_{2}, q_{2}) - F(w_{1}, v_{1}, q_{1})\|_{Y}
+    & \lesssim_{r} \| w_{2} - w_{1} \|_{H^{1}} + \| v_{2} - v_{1} \|_{L^{2} \cap L^{\infty}}  + \| q_{2} - q_{1} \|_{L^{\infty}}
+    \\
+    & = \| (w_{2}, v_{2}, q_{2}) - (w_{1}, v_{1}, q_{1}) \|_{Y}
 \end{split}
 \end{equation*}
 %
@@ -2292,6 +2494,125 @@ $\| f \|_{L^{\infty}} \lesssim \| f \|_{H^{1}}$ and $\| f \|_{L^{\infty}} \le \|
 ending the proof.
 %
 \end{proof} 
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				norm equivalence
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+We have
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(y(\xi)) \|_{H^{s}_{\xi}} \sim \| u(\xi) \|_{H^{s}_{\xi}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+%
+\label{lem:norm-equiv}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+For non-integer $s \ge 0$, write
+%
+%
+\begin{equation*}
+\begin{split}
+  s = k + \sigma, \ k \in \mathbb{N}, \ 0 < \sigma < 1. 
+\end{split}
+\end{equation*}
+%
+%
+Then 
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(y(\xi)) \|_{H^{s}_{\xi}} = \sum_{j = 0}^{k} \| \p_{\xi}^{j} u (y(\xi))
+  \|_{L^{2}_{\xi}} + \int_{\rr} \int_{\rr} \frac{| u(y(\xi)) - u(y(\eta))
+    |^{2}}{| \xi - \eta |^{1 + 2 \sigma}} d \xi d \eta.
+\end{split}
+\end{equation*}
+%
+%
+For the second term, we use the change of variable $z_{1} = y(\xi)$ and $z_{2} = y(\eta)$. Since the map $\xi \mapsto y(\xi)$ is a $C^{1}$ diffeomorphism on $\rr$, we have
+%
+%
+\begin{gather*}
+   \xi= y^{-1}(z_{1}), \quad \eta = y^{-1}(z_{2})
+  \\
+   d \xi(z_{1}) = \frac{dz_{1}}{y'(y^{-1}(z_{1}))}, \quad d \xi(z_{2}) = \frac{dz_{2}}{y'(y^{-1}(z_{2}))}
+\end{gather*}
+%
+%
+and so
+%
+%
+\begin{equation}
+  \label{hg}
+\begin{split}
+\int_{\rr} \int_{\rr} \frac{| u(y(\xi)) - u(y(\eta))
+    |^{2}}{| \xi - \eta |^{1 + 2 \sigma}} d \xi d \eta & = \int_{\rr} \int_{\rr}
+    \frac{| u(z_{1}) - u(z_{2}) |^{2}}{| y^{-1}(z_{1}) - y^{-1}(z_{2}) |^{1 + 2
+    \sigma}} \frac{1}{y'(y^{-1}(z_{1})) y'(y^{-1}(z_{2}))} d z_{1} d z_{2}
+    \\
+    & \sim \int_{\rr} \int_{\rr} \frac{| u(z_{1}) - u(z_{2}) |^{2}}{|
+      y^{-1}(z_{1}) - y^{-1}(z_{2}) |^{1 + 2 \sigma}} d z_{1} dz_{2}
+\end{split}
+\end{equation}
+%
+%
+where the last step follows from the fact that since $y$ is $C^{1}$
+diffeomorphic  and non-negative, we can find $c_{1}, c_{2} > 0$ such that
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{1} \le \inf y' \le \sup y' \le c_{2}.
+\end{split}
+\end{equation*}
+%
+%
+From this fact, it also follows that
+%
+%
+\begin{equation*}
+\begin{split}
+  | y^{-1}(z_{1}) - y^{-1}(z_{2}) | = | \int_{z_{2}}^{z_{1}} (y^{-1})'(z) dz | \sim | z_{1} - z_{2} |.
+\end{split}
+\end{equation*}
+%
+%
+Applying this relation to \eqref{hg}, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+\int_{\rr} \int_{\rr} \frac{| u(y(\xi)) - u(y(\eta))
+    |^{2}}{| \xi - \eta |^{1 + 2 \sigma}} d \xi d \eta
+    \sim 
+\int_{\rr} \int_{\rr} \frac{| u(z_{1}) - u(z_{2}) |^{2}}{| z_{1} - z_{2} |^{1 + 2 \sigma}} d z_{1} dz_{2}.
+\end{split}
+\end{equation*}
+%
+%
+\end{proof}
+%
 %
 \section{Proofs of Lemmas} 
 \label{sec:pf-lemmas}
