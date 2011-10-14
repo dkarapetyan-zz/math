@@ -451,7 +451,7 @@ which completes the proof.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-Definition \ref{def:banach} is then well-defined due to the following two
+Definition~\ref{def:banach} is then well-defined due to the following two
 lemmas.
 %
 %
@@ -488,17 +488,16 @@ lemmas.
   \begin{equation}
     \begin{split}
   \| \int_{a}^{b} f_{n}(t) dt - \int_{a}^{b} f_{m}(t) dt \|_{X}
-  & = \| \int_{a}^{b}\left[ f_{n}(t) - f_{m}(t) \right]dt \|_{X}, \quad \text{Lemma
-  \ref{lem:indep-part}}
+  & = \| \int_{a}^{b}\left[ f_{n}(t) - f_{m}(t) \right]dt \|_{X}, \quad \text{Lemma~\ref{lem:indep-part}}
   \\
   & \le \int_{a}^{b} \| f_{n}(t) - f_{m}(t) \|_{X} dt,
-  \quad \phantom{m} \text{Lemma \ref{lem:tri-ineq-int}}
+  \quad \phantom{m} \text{Lemma~\ref{lem:tri-ineq-int}}
   \\
   & \le \int_{a}^{b} (\| f(t) - f_{n}(t) \|_{X} + \| f(t) - f_{m}(t) \|_{X})dt.
 \end{split}
 \end{equation}
 %
-Fix $\ee$. By Remark \ref{rem:unif}, we see that there exists $N$ such
+Fix $\ee$. By Remark~\ref{rem:unif}, we see that there exists $N$ such
 that for $m, n > N$
 %
 %
@@ -563,18 +562,17 @@ Since $\ee$ can be chosen arbitrarily small, the proof is complete.
 \begin{split}
   \| F - G \|_{X} & = \| \int_{a}^{b} f(t) dt - \int_{a}^{b} g(t) dt \|_{X}
   \\
-  & = \| \int_{a}^{b}\left[ f(t) - g(t) \right]dt \|_{X}, \quad \text{Lemma
-  \ref{lem:indep-part}}
+  & = \| \int_{a}^{b}\left[ f(t) - g(t) \right]dt \|_{X}, \quad \text{Lemma~\ref{lem:indep-part}}
   \\
   & \le \int_{a}^{b} \| f(t) - g(t) \|_{X} dt,
-  \quad \phantom{m} \text{Lemma \ref{lem:tri-ineq-int}}
+  \quad \phantom{m} \text{Lemma~\ref{lem:tri-ineq-int}}
   \\
   & \le \int_{a}^{b} (\| f(t) - f_{n}(t) \|_{X} + \| f(t) - g_{n}(t) \|_{X})dt.
 \end{split}
 \end{equation*}
 %
 %
-Fix $\ee$. By Remark \ref{rem:unif}, we see that there exists $N$ such
+Fix $\ee$. By Remark~\ref{rem:unif}, we see that there exists $N$ such
 that for $n > N$
 %
 %
@@ -742,7 +740,7 @@ differentiation given in \eqref{diff-limit-simp} and see that
   \int_{t_{0}}^{t_{0} + h} \frac{f(t_{0})}{h} ds \|_{X}
   \\
   & = \frac{1}{h} \| \int_{t_{0}}^{t_{0} + h}[f(s) - f(t_{0})]ds \|_{X}, \qquad
-  \text{Lemma \ref{lem:int-splitting}}
+  \text{Lemma~\ref{lem:int-splitting}}
   \\
   & \le \frac{1}{h} \int_{t_{0}}^{t_{0} + h} \| f(s) - f(t_{0})
   \|_{L^{\infty}\left( [t_{0}, t_{0} + h], X \right)}
@@ -1237,7 +1235,7 @@ y(0) = y_{0}(x) \in C^{k}, \quad \tau, x \in \ci \ \text{or} \
   \end{gather*}
 %
 where $Y_{0}(z) = Y_{0}(x, \tau)$ is a constant function of $\tau$. 
-Applying Theorem \ref{ode-thm},  we obtain a solution $Y(z,t)$ which is
+Applying Theorem~\ref{ode-thm},  we obtain a solution $Y(z,t)$ which is
 $C^{k}$ in $z$ locally in time. Since $z = (x, \tau)$, this implies that $Y(z,t)$ is
 $C^{k}$ in $x$ and $\tau$, concluding the proof. 
 %
@@ -1334,9 +1332,9 @@ y(x, 1, \tau t)$. But formally, by the chain rule, we have
 \end{equation}
 %
 %
-By Corollary \ref{cor:reg-param}, $y$ is $C^{k}$ in $\tau$. Hence, from
+By Corollary~\ref{cor:reg-param}, $y$ is $C^{k}$ in $\tau$. Hence, from
 \eqref{chain-comp}, we conclude that $y$ is $C^{k}$ in $t$. $C^{k}$
-differentiability in $x$ follows from Corollary \ref{cor:reg-param}.
+differentiability in $x$ follows from Corollary~\ref{cor:reg-param}.
 Running an induction, one obtains the corresponding result
 for the case $k = \infty$. The case $k = \omega$ is identical to the case
 $k \in \mathbb{N}$. Lastly, for any given $G$,
@@ -1435,7 +1433,7 @@ for which we shall prove the following.
   \end{split}
   \end{equation*}
   %
- Recall that Theorem \ref{ode-thm} tells us that for any $\vp \in B_{r} \subset U$ there exists a unique solution $u(t, \vp)$ for $t \in [-h, h]$, where $h = h(r)$. Therefore, applying the triangle inequality and the Lipschitz condition, we obtain the estimate
+ Recall that Theorem~\ref{ode-thm} tells us that for any $\vp \in B_{r} \subset U$ there exists a unique solution $u(t, \vp)$ for $t \in [-h, h]$, where $h = h(r)$. Therefore, applying the triangle inequality and the Lipschitz condition, we obtain the estimate
   \begin{equation*}
   \begin{split}
   \sup_{t \in [-h, h]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
@@ -1911,10 +1909,9 @@ Fr\'echet spaces) by replacing norms with metrics in what follows.
 		differentiability and continuous differentiability for maps
 		from $\rr $ to $\rr$.
 		To see this, assume $f$ is differentiable at $x_0$.
-		Let us first verify that the map  $D(x_0): \rr ~\to~\rr$
-		defined by $Df(x_0)(x) =
-		xf'(x_0)$ is the total derivative of $f$. Assume without loss of generality
-		that $h \to 0^+$. Then
+        Let us first verify that the map  $D(x_0):\rr~\to~\rr$ defined by
+        $Df(x_0)(x)=xf'(x_0)$ is the total derivative of $f$. Assume without
+        loss of generality that $h \to 0^+$. Then
 		%
 		%
 		\begin{equation}

@@ -466,7 +466,7 @@ we let the low frequency part $u_\ell = u_{l,
 & u_\ell(x,0) = \omega \lambda^{-1} \tilde{\phi} \left(
 \frac{x}{\lambda^{\delta}}
 \right), \quad x \in \rr, \quad t \in \rr
-\label{apple1**}
+\label{apple1ah}
 \end{align}
 %
 %
@@ -478,7 +478,7 @@ where $\tilde{\phi}$ is a $C^{\infty}_0(\rr)$ function such that
 %
 %
 \begin{equation}
-\label{apple1***}
+\label{apple1ah7}
 \tilde{\phi}(x) = 1 \; \;  \text{if} \; \;
 x \in \text{supp} \; \phi.
 \end{equation}
@@ -577,9 +577,7 @@ E_3 & = \gamma u^h \p_x u_\ell, \; \; E_4 = \gamma u^h \p_x u^h, \ E_5  =
 E_6 & = (3- \gamma)\Lambda^{-1}
   \left[ u_\ell u^h \right], \  E_7 = \frac{\gamma}{2} \Lambda^{-1} \left[ 
  \left(
-\p_x u^h \right)^2 \right ], \; \;
-E_8 = \gamma \Lambda^{-1} \left[  \p_x u_\ell \p_x u^h \right]
-.
+\p_x u^h \right)^2 \right ], \ E_8 = \gamma \Lambda^{-1} \left[  \p_x u_\ell \p_x u^h \right].
 \end{split}
 \end{equation}
 %
@@ -753,7 +751,7 @@ by the following:
 \label{appleb}
 Let $0<\delta<2$, $\lambda >>1$, with $\omega$ belonging to a bounded
 subset of $\rr$. Then the initial value problem
-\eqref{u-l-apple1'}-\eqref{apple1**}
+\eqref{u-l-apple1'}-\eqref{apple1ah}
 has a unique solution
 $u_\ell \in C( [-T,T], H^s(\rr))$ for all $s
 > 3/2$ which satisfies
@@ -832,7 +830,7 @@ we obtain \eqref{E-est}. \qquad \qedsymbol
 \textbf{Construction of  solutions.}
 We wish now to estimate the difference between approximate and actual 
 solutions to
-the HR i.v.p. with common initial data. Let
+the HR i.v.p.\ with common initial data. Let
 $u_{\omega,\lambda}(x,t)$ be the unique solution to the HR equation
 with initial data $u^{\omega,\lambda}(x,0)$. That is,
 $u_{\omega,\lambda}$ solves the initial value problem
@@ -890,7 +888,7 @@ v(t)
 \end{proposition}
 %
 %
-\textbf{  Proof.}  First we observe that $v$ satisfies 
+\textbf{Proof.}  First we observe that $v$ satisfies 
 %
 %
 \begin{equation*}
@@ -906,7 +904,7 @@ u^{\omega,\lambda} \p_x v) \\
 %%
 It follows immediately that
 		\begin{equation}
-			\label{applev-dtv-pseudo-functional-equality*}
+			\label{applev-dtv-pseudo-functional-equalityu}
 			\begin{split}
 			v(1-\p_x^2)\p_t v &= v(1- \p_x^2)E + v\gamma(1- \p_x^2)(v\p_x v 
 			- v\p_x u^{\omega,\lambda} -
@@ -917,7 +915,7 @@ It follows immediately that
 		\end{split}
 	\end{equation}
 	Applying the relation $v\p_t v = v(1-\p_x^2) \p_t v + v\p_x^2 \p_t v$ to
-	\eqref{applev-dtv-pseudo-functional-equality*}, we obtain
+	\eqref{applev-dtv-pseudo-functional-equalityu}, we obtain
 	\begin{equation}
 		\label{pre-int}
 		\begin{split}
@@ -932,7 +930,7 @@ It follows immediately that
 	Adding $\p_x v \p_t \p_x v$ to both sides of \eqref{pre-int} and 
 	integrating gives
 	\begin{equation}
-		\label{appleenergy-est*}
+		\label{appleenergy-estu}
 		\begin{split}
 			&\frac{1}{2} \frac{d}{dt} \|v\|_{H^1(\rr)}^2  
 			\\
@@ -958,7 +956,7 @@ Noting that the the last integral can be rewritten as
 \end{split}
 \end{equation*}
 %
-we can simplify \eqref{appleenergy-est*} to obtain
+we can simplify \eqref{appleenergy-estu} to obtain
 %
 %
 \begin{equation}
@@ -1110,7 +1108,7 @@ Applying Gronwall's Inequality completes the proof. \qquad \qedsymbol%
 %
 
 \textbf{Non-Uniform Dependence for $s>3/2$.}
-Let $u_{\pm 1,\lambda}$ be solutions to the HR i.v.p. with initial 
+Let $u_{\pm 1,\lambda}$ be solutions to the HR i.v.p.\ with initial 
 data $u^{\pm 1,
 n}(0)$. We wish to show that the $H^s$ norm of the difference of $u_{\pm 1,
 n}$ and the associated approximate solution $u^{\pm 1,\lambda}$
@@ -1274,7 +1272,7 @@ u_{1,\lambda}(t)
 -u^{-1,\lambda}(t)
 +
 u_{-1,\lambda}(t)
-\|_{H^s(\rr)} .
+\|_{H^s(\rr)}.
 \end{split}
 \end{equation}
 %
@@ -1498,12 +1496,12 @@ E_1 + E_2 + E_3 \label{57}
 %
 where
 \begin{align}
-\label{90*}
+\label{90u}
 & E_1 =
 - \frac{\gamma}{2}n^{-2s+1}\sin\left[ 2\left( nx - \gamma \omega t \right)
 \right],
 \\
-\label{90**}
+\label{90ah}
 & E_2 = - \Lambda^{-1} \bigg[ \frac{3-\gamma}{2} \bigg (
 n^{-2s+1} \sin\left( 2(nx - \gamma \omega t \right) + 2\omega n^{-s} \sin( 
 2(nx - \gamma \omega t))
@@ -1567,7 +1565,6 @@ Then for the error $E$ we have
 \begin{split}
 \|\Lambda^{-1}f \|_{H^{k}(\ci)} \le
 \|f\|_{H^{k-1}(\ci)}. \qquad \qedsymbol
-\label{operator norm of pseudo-diff operator we use}
 \end{split}
 \end{equation*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1893,7 +1890,7 @@ the proof. \qquad \qedsymbol
 %
 %
 %
-Let $u_{\pm 1, n}$ be solutions to the HR i.v.p. with common initial data 
+Let $u_{\pm 1, n}$ be solutions to the HR i.v.p.\ with common initial data 
 $u^{\pm 1,
 n}(0)$, respectively.
 We wish to show that the $H^s$ norm of the difference of $u_{\pm 1,
@@ -2016,8 +2013,7 @@ analogous to that on the real line. \qquad \qedsymbol
 %
 %
 %
-We will now prove well-posedness for HR.
-Since the proof for the circle and the line are similar,
+We will now prove well-posedness for HR\@. Since the proof for the circle and the line are similar,
 we will provide it only for circle.
 For the line, we present only the
 needed modifications.
@@ -2496,7 +2492,7 @@ it, we obtain the following:
 \begin{lemma}
 \label{hr_wp}
 Let  $u_0(x) \in  H^s(\ci)$, $s >3/2$. Then for any $\ee\in (0, 1]$
-the i.v.p. for the mollified HR equation 
+the i.v.p.\ for the mollified HR equation 
 %
 %
 %
@@ -2524,7 +2520,7 @@ has a unique solution $u_\ee( t)\in C([-T, T], H^s(\ci))$.  In particular,
 \begin{equation} \label{life-est}
 T
 =
-\frac{1}{ 2 c_s \|u_0\|_{H^s(\ci)}}
+\frac{1}{2 c_s \|u_0\|_{H^s(\ci)}}
 \end{equation}
 %
 %
@@ -2620,13 +2616,13 @@ That is
 %
 \begin{equation*}
 \label{weak-conv}
-\lim_{n\to \infty} T_{u_{\ee_k}}(\phi)  =  T_u (\phi) \; \;		\text{ for 
-all } \;\;  \phi \in L^1(I, H^{s}(\ci)).
+\lim_{n\to \infty} T_{u_{\ee_k}}(\phi)  =  T_u (\phi) \; \; \ \text{for 
+all} \ \;\;  \phi \in L^1(I, H^{s}(\ci)).
 \end{equation*}
 %
 %
 %
-In order to show that $u$ solves the HR i.v.p. we need to obtain a 
+In order to show that $u$ solves the HR i.v.p.\ we need to obtain a 
 subsequence of $\{u_{\ee}\}$ with a stronger convergence, so that we can take 
 the limit in the mollified HR equation. First we will need the following 
 interpolation result:
@@ -2650,7 +2646,7 @@ Applying \cref{interpolation-lem} gives
 %
 \begin{equation*}
 \label{equic-1}
-\sup_{t \neq t'} \frac { \|u_\ee(t) - u_\ee(t') \|_{H^{s -
+\sup_{t \neq t'} \frac{\|u_\ee(t) - u_\ee(t') \|_{H^{s -
 \sigma}(\ci)}}{|t - t'|^\sigma} < c 
 \end{equation*}
 %
@@ -2662,8 +2658,8 @@ or
 %
 \begin{equation*}
 \label{equic-2}
-\|u_\ee(t) - u_\ee(t') \|_{H^{s - \sigma}(\ci)}< c|t - t'|^\sigma, \text{ 
-for all }  \,\,  t, t'\in I,
+\|u_\ee(t) - u_\ee(t') \|_{H^{s - \sigma}(\ci)}< c|t - t'|^\sigma, \ \text{for
+    all} \ \,\,  t, t'\in I,
 \end{equation*}
 %
 %
@@ -2728,7 +2724,7 @@ Furthermore, since \eqref{strong-conv-of-u_ep} holds, we have
 \begin{equation}
 \label{weak-conv-2}
 T_{u_{\ee_n}}(\phi)  \longrightarrow  T_u(\phi) \;
-\text{ for all } \;  \phi \in L^1(I, H^{s}(\ci))
+\ \text{for all} \ \;  \phi \in L^1(I, H^{s}(\ci))
 \end{equation}
 %
 %
@@ -2740,8 +2736,7 @@ which implies
 %
 \begin{equation}
 \label{distib-conv-2}
-T_{\p_t u_{\ee_n}}(\phi)  \longrightarrow  T_{\p_t u}(\phi) \;
-\text{ for all } \;  \phi \in L^1(I, H^{s}(\ci)).
+T_{\p_t u_{\ee_n}}(\phi)  \longrightarrow  T_{\p_t u}(\phi) \; \ \text{for all} \ \;  \phi \in L^1(I, H^{s}(\ci)).
 \end{equation}
 %
 %
@@ -2761,7 +2756,7 @@ that
 %
 %
 Thus we have constructed a solution $u \in L^\infty(I, H^s(\ci))$
-to the HR i.v.p. It remains to prove that $u \in C(I, H^s(\ci)).$
+to the HR i.v.p. It remains to prove that $u \in C(I, H^s(\ci))$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -2932,7 +2927,7 @@ D^\sigma v \ dx
 \\
 & - \frac{\gamma}{2} \int_{\ci} D^{\sigma 
 -2} \p_x [ \p_x v
-\cdot \p_x (u+w)]\cdot D^\sigma v \ dx .
+\cdot \p_x (u+w)]\cdot D^\sigma v \ dx.
 \label{2v}
 \end{split}
 \end{equation}
@@ -3193,7 +3188,7 @@ Cauchy-problem
 \begin{align}
 \label{4u}
 & \p_t v  =  - \gamma (v \p_x v + v \p_x u^\ee + u^\ee \p_x v)  \\
-& \phantom{ \p_t v  =} - D^{-2} \p_x \left\{ \left (\frac{3-\gamma}{2} \right )(v^2 +
+& \phantom{\p_t v  =} - D^{-2} \p_x \left\{ \left (\frac{3-\gamma}{2} \right )(v^2 +
 2u^\ee v) + \frac{\gamma}{2}\left[ (\p_x v)^2 + 2 \p_x u^\ee \p_x v \right]
 \right\}, \notag
 \\
@@ -3683,7 +3678,7 @@ Recalling the construction of $J_\ee$ in
 \xi)] \cdot \widehat{u}(\xi) |^2
 (1+\xi^2)^r, \ \ \text{and}
 \\
-& |1 - \widehat{ j }(\ee \xi)| \le |\ee \xi |^{s-r}, \quad 
+& |1 - \widehat{j}(\ee \xi)| \le |\ee \xi |^{s-r}, \quad 
 \xi \in \rr, \ \ee > 0.
 \label{2r}
 \end{align}
@@ -3856,7 +3851,7 @@ which implies
 \begin{equation*}
 	\begin{split}
 		y(t) 
-		& \le e^{ct} \cdot \frac{ \left [y(0) - \alpha \right ]
+		& \le e^{ct} \cdot \frac{\left [y(0) - \alpha \right ]
 		\left [y(t) - \beta \right ]}{y(0) - 
 		\beta} + \alpha
 		 \lesssim \left [y(0) - \alpha \right ] \left [y(t) - \beta \right ] + \alpha, \quad |t| \le T
@@ -3906,7 +3901,7 @@ $v$ solves the Cauchy problem
 \begin{align}
 \label{4qu}
 & \p_t v  =  -\gamma (v \p_x v + v \p_x u^\ee + u^\ee \p_x v)  \\
-& \phantom{ \p_t v  =} - D^{-2} \p_x \left\{ \left (\frac{3-\gamma}{2} \right )(v^2 +
+& \phantom{\p_t v  =} - D^{-2} \p_x \left\{ \left (\frac{3-\gamma}{2} \right )(v^2 +
 2u^\ee v) + \frac{\gamma}{2}\left[ (\p_x v)^2 + 2 \p_x u^\ee \p_x v \right]
 \right\}, \notag
 \\
@@ -4116,7 +4111,7 @@ proof is analogous to that of \eqref{enough_to_prove1}. \qquad \qedsymbol
 \textbf{Extending Well-Posedness to the Non-Periodic Case.}
 In the proof of existence on the line, we will have difficulties in 
 arranging
-that the solutions $\{u_\ee\}$ to the mollified HR i.v.p. converge in $C(I,
+that the solutions $\{u_\ee\}$ to the mollified HR i.v.p.\ converge in $C(I,
 H^{s- \sigma}(\rr))$, $0 < \sigma < 1$ to a candidate solution $u$ of the 
 HR i.v.p., since the inclusion $H^s(\rr) \subset H^{s-\sigma}(\rr)$ is not 
 compact for $\sigma > 0$ (contrast this with the situation on the circle).  
@@ -4242,7 +4237,7 @@ Given this construction, the proofs of \cref{lem5r} and
 analogous to those in the periodic case.
 Hence, how we
 construct the mollifier $J_\ee$ plays a critical role in the proofs of
-well-posedness for the HR i.v.p. in both the periodic and non-periodic 
+well-posedness for the HR i.v.p. \ in both the periodic and non-periodic 
 cases. %
 
 \textbf{Acknowledgements.} The author thanks his advisor Alex Himonas for 
