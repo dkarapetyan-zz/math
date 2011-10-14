@@ -146,19 +146,12 @@ u_{t} + \gamma u u_{x}+ \p_{x} (1 - \p_{x}^{2})^{-1} \left [ \frac{3 - \gamma}{2
 $$
 we see that the HR equation can be thought of as a 
 weekly dispersive perturbation of
-Burgers, unlike the Korteweg-de Vries (KDV) equation
+Burgers equation, unlike the Korteweg-de Vries (KDV) equation
 \begin{align}
-    & u_{t} + u u_{x} + u_{xxx}=0,
-    \\
-& u(x, 0) = u_0 (x), \quad x  \in \ci \ \text{or} \  \rr, \ t \in \rr,
+     u_{t} + u u_{x} + u_{xxx}=0,
 \end{align}
 which is a dispersive perturbation of Burgers equation.
-\hrule
-\textbf{This isn't the correct form of KDV--we need the constant $6$ in front of the dispersive term. Is this all right? We
-need the $6$ for integrability reasons. Will the reader understand what I am getting at by leaving the $6$ out?
-Anyways, the constant in front of the dispersive term makes makes no difference
-in the well-posedness analysis}
-\hrule
+%
 Furthermore, unlike KDV,
 the HR equation admits traveling wave solutions which are not smooth. In fact,
 it admits a wide variety of traveling wave solutions, some of which break in
@@ -196,8 +189,10 @@ On the other hand, if we set $\gamma =1$, we obtain the Camassa-Holm equation, a
 model for the evolution of shallow water waves in a channel, with the notable
 property that it does possess traveling wave solutions which break in
 finite time (including peakons and cuspons). The CH equation has an extensive
-literature, see \cite{Himonas_2009_Non-uniform-dep-euler} and the references
+literature, see Himonas-Kenig \cite{Himonas_2010_Non-uniform-dep-per} and the references
 therein.
+
+
 %
 %
 \subsection{Results Obtained on HR} 
@@ -219,10 +214,6 @@ I recently published a paper on the HR equation entitled
 {\it ``Non-Uniform Dependence and well-posedness
 for the
 Hyperelastic Rod Equation''}. 
-\hrule
-\textbf{I have no idea how to get rid of the "I" in this sentence without making the sentence passive. Furthermore, the grammar would be hideous.
-    If that's standard, I will go ahead and change it.}
-\hrule
 In it, it is proved that the dependence of
 solutions on initial data is not uniformly continuous in Sobolev spaces
 $H^s(\ci)$, $s>3/2$.  More precisely: 
@@ -237,19 +228,16 @@ from any bounded subset of  $H^s$ into $C([-T, T], H^s)$
 for $s>3/2$ on the line and the circle.
 %
 \end{theorem}
-\hrule
-\textbf{Question on math notation: I have seen authors use both "data-to-solution" and "data to solution". Which do you recommend?}
-\hrule
+%
 This extended a result proved by Olson 
 \cite{Olson_2006_Non-uniform-dep} in the periodic
 case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire well-posedness
 range) for HR\@. Furthermore, motivated by the work of Himonas and
-Kenig~\cite{Himonas:2009fk}, \cite{Himonas:2009fk}, and 
-Himonas, Kenig, and Misiolek~\cite{Himonas_2009_Non-uniform-dep-per},
+Kenig~\cite{Himonas:2009fk},
+ \cite{Himonas_2010_Non-uniform-dep-euler},
+  and 
+Himonas, Kenig, and Misiolek~\cite{Himonas_2010_Non-uniform-dep-per},
 I established non-uniform dependence on initial data in the non-periodic case.
-\hrule
-\textbf{I could substitute "it was shown" for "I" and rewrite this sentence, but then this leaves ambiguity: who showed what?}
-\hrule
 The method of proof involved choosing approximate solutions to the HR equation
 such that the size of the difference between approximate and actual solutions
 with identical initial data was negligible. Hence, to understand the degree of
@@ -260,10 +248,7 @@ for the size of the actual solutions to the HR equation, as well a lower bound
 for their lifespan. This was needed in order to obtain an upper bound for the
 size of the difference of approximate and actual solutions. More precisely, 
 the following was proved. 
-\hrule
-\textbf{Again, passive phrasing, but I got rid of the "I". I dislike this sentence. It might be academic writing,
-    but from an English standpoint it is simply poor writing (I would use "we", but the HR paper is a solo work). Again, if it is standard, I will leave it as is.}
-\hrule
+%
 \begin{theorem}
 \label{thm:HR_existence_continuous_dependence}
 If   $s>3/2$  then we have:
@@ -322,10 +307,7 @@ For $\gamma \neq 0$, the
 data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (measured in the $H^{r}$ norm)
 to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
 3/2$, $-1 \le r < s$. 
-\hrule
-\textbf{The preprint has the result for $-1 \le r < s$. If I change the result in the research statement to $0 \le r < s$, it will contradict
-    what I am going to publish. Confused as to what I should do.}
-\hrule
+%
 More precisely, for two initial data $u_{0}, v_{0} \in B_{H^{s}}(R)$, $s > 3/2$, there exist unique
 corresponding solutions $u(x,t), v(x,t)$ for $0 \le t \le T= T(R)$ to the
 HR equation which satisfy 
@@ -365,13 +347,7 @@ was proved in \cite{Chen:2011fk}.
 
 \subsection{Future Research} 
 \label{ssec:fut-res}
-For Camassa-Holm (HR with $\gamma =1$), it is known that $s = 3/2$ is the critical index for well-posedness of HR
-in the sense of Hadamard (existence, uniqueness, and continuity of the data to solution map).
-\hrule
-\textbf{I can reference Byer's paper and your work on well-posedness if you like, explaining it a bit}
-\hrule
-Hence, it is suspected that $s = 3/2$ is the critical index for HR with arbitrary $\gamma \neq 0$.
-Using this as motivation, I am interested in strengthening the well-posedness
+ I am interested in strengthening the well-posedness
 result for HR from failure of uniform continuity of the data-to-solution map
 when $s<3/2$ to failure of continuity for sufficiently rough initial data,  that
 is $s<3/2$.
@@ -389,7 +365,8 @@ pursue this question in the future, in order to shed-light on ill-posedness
 issues for equations involving a perturbation of Burgers (such as HR).
 
 Another approach to tackling the ill-posedness question for HR
-is to better understand the framework given in the work De Lelllis,
+is to better understand the framework given in the work 
+of De Lelllis,
 Kappeler, and Topalov \cite{Lellis_2007_Low-regularity-} for constructing
 low-regularity solutions to the Camassa-Holm, and then applying these techniques
 to the HR equation. More precisely, for initial data $u_{0} \in H^{s}$, $s =1$
@@ -400,7 +377,7 @@ Camassa-Holm in the periodic case. I am of the hope that understanding their
 work will give greater insight into proving ill-posedness for HR in Sobolev
 spaces with index $s \le 3/2$. 
 
-Also, in collaboration with Dan Geba and Alex Himonas
+Also, in collaboration with Dan Geba and Alex Himonas,
 I am investigating failure of the continuity of the data-to-solution map for
 initial data in $H^{s} \times H^{s-2}, s < -1/2$ for the Boussinesq equation
 \begin{align}
@@ -410,7 +387,7 @@ initial data in $H^{s} \times H^{s-2}, s < -1/2$ for the Boussinesq equation
   \quad x \in \ci \ \text{or} \ \rr, \ t \in \rr. 
 \end{align} 
 I am using three
-different approaches to gain insight into the problem. The first is motivated by
+different approaches (forget approaches--mention Farah. No Tao results) to gain insight into the problem. The first is motivated by
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. More
 specifically, the approach runs as follows:
 \begin{enumerate}[I.]
@@ -431,16 +408,12 @@ specifically, the approach runs as follows:
    \end{enumerate}
 %		Bibliography		
 %
-\hrule
-\textbf{Is this too much information? I haven't asked Dan, and feel that I should talk to him before
-    finalizing this section. I am inclined to omit some details of the approach}
-\hrule
+A possible approach
 The second approach is motivated by Birnir \cite{Birnir:1996uq}. That is,
 to prove the failure of continuity of the data-to-solution map, I am attempting
 to find a sequence of traveling wave solutions $u_{n}(x,t)$ to the Boussinesq with
 corresponding initial data $u_{0,n}$ in a sufficiently rough Sobolev space such 
 $u_{0,n} \to u_{0}$ in $H^{s}$ but $u_{n}(x,t) \not \to u(x,t)$ in $H^{s}$. 
-
 The third approach involves numerical experimentation in Matlab. More
 precisely, to get clues as to what traveling wave solutions might allow me
 to prove failure of continuity, I have been numerically solving various ODEs
@@ -519,15 +492,15 @@ A.~Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
   the ch equation on the line}, Differential Integral Equations \textbf{22}
   (2009), no.~3-4, 201--224.
 
-\bibitem[HKM09]{Himonas_2009_Non-uniform-dep-per}
+\bibitem[HKM10]{Himonas_2010_Non-uniform-dep-per}
 A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
-  periodic ch equation.}, To appear in Communications in Partial Differential
-  Equations (2009).
-
-\bibitem[HM09]{Himonas_2009_Non-uniform-dep-euler}
+  periodic ch equation}, 
+  Comm. Partial Differential Equations {\bf 35}  (2010), 1145-1162. 
+  
+\bibitem[HM10]{Himonas_2010_Non-uniform-dep-euler}
 A.~Himonas and G.~Misiolek, \emph{Non-uniform dependence on initial data of
-  solutions to the euler equations of hydrodynamics}, Communications in
-  Mathematical Physics (2009).
+  solutions to the euler equations of hydrodynamics}, 
+ Commun. Math. Phys. {\bf 296}, 285--301 (2010).
 
 \bibitem[Len06]{Lenells_2006_Traveling-waves}
 J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
