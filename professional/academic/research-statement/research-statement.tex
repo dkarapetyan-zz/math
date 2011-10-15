@@ -2,6 +2,8 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
+%\usepackage[T1]{fontenc}%needed in order to use Polish Characters !!!
+%\usepackage{ae,aecompl}%to make it all look better using T1
 \usepackage{fix-cm}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
@@ -109,7 +111,7 @@ urlcolor=blue,
 %
 \subsection{Introduction} 
 \label{ssec:cur-res}
-The main focus of my research so far has been well-posedness and ill-posedness
+The main focus of my research so far has been well-posedness and \\ ill-posedness
 for the hyperelastic rod equation (HR)
 \begin{align}
 \label{hr}
@@ -145,7 +147,7 @@ $$
 u_{t} + \gamma u u_{x}+ \p_{x} (1 - \p_{x}^{2})^{-1} \left [ \frac{3 - \gamma}{2}u^{2} + \frac{\gamma}{2} u_{x}^{2} \right ]=0
 $$
 we see that the HR equation can be thought of as a 
-weekly dispersive perturbation of
+weakly dispersive perturbation of
 Burgers equation, unlike the Korteweg-de Vries (KDV) equation
 \begin{align}
      u_{t} + u u_{x} + u_{xxx}=0,
@@ -159,7 +161,7 @@ finite time. A complete classification can be found in the work of Lenells
 \cite{Lenells_2006_Traveling-waves}.  These traveling wave solutions are
 obtained using various combinations of peaks, cusps, compactons, fractal-like
 waves, and plateaus. Orbital stability of solitary wave solutions was proved in
-\cite{Constantin_2000_Stability-of-a-}.  Solitary shock wave formation was
+Constantin and Strauss \cite{Constantin_2000_Stability-of-a-}.  Solitary shock wave formation was
 analyzed in Dai and Huo \cite{Dai_2000_Solitary-shock-} using traveling wave
 solutions of the HR equation to derive a system of ordinary differential
 equations, with a vertical singular line in the phase plane corresponding with
@@ -170,7 +172,7 @@ with the technique of strained coordinates.
 
 Among the most interesting of the breaking
 traveling wave solutions are the ``peakons" and
-``cuspons". These primary difference between the peakons and cuspons is that the
+``cuspons". The primary difference between the peakons and cuspons is that the
 peakons have bounded derivative, whereas the cuspons do not. Visually, the
 peakons are crest shaped, whereas the cuspons are much steeper. 
 
@@ -189,7 +191,7 @@ On the other hand, if we set $\gamma =1$, we obtain the Camassa-Holm equation, a
 model for the evolution of shallow water waves in a channel, with the notable
 property that it does possess traveling wave solutions which break in
 finite time (including peakons and cuspons). The CH equation has an extensive
-literature, see Himonas-Kenig \cite{Himonas_2010_Non-uniform-dep-per} and the references
+literature. For more information, see Himonas-Kenig \cite{Himonas:2010ch} and the references
 therein.
 
 
@@ -211,16 +213,14 @@ therein.
 %
 %
 I recently published a paper on the HR equation entitled 
-{\it ``Non-Uniform Dependence and well-posedness
-for the
-Hyperelastic Rod Equation''}. 
+{\it ``Non-uniform dependence and well-posedness for the hyperelastic rod equation''}. 
 In it, it is proved that the dependence of
 solutions on initial data is not uniformly continuous in Sobolev spaces
-$H^s(\ci)$, $s>3/2$.  More precisely: 
+$H^s$, $s>3/2$.  More precisely: 
 \begin{theorem}
 \label{hr-non-unif-dependence}
 Let $\gamma$ be a nonzero constant. Then 
-the data to solution map $u_{0} \mapsto u$ of the Cauchy-problem
+the data-to-solution map $u_{0} \mapsto u$ of the Cauchy-problem
 for the HR equation
 \eqref{hr}-\eqref{hr-data}
 is not uniformly continuous
@@ -229,16 +229,13 @@ for $s>3/2$ on the line and the circle.
 %
 \end{theorem}
 %
-This extended a result proved by Olson 
-\cite{Olson_2006_Non-uniform-dep} in the periodic
-case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire well-posedness
-range) for HR\@. Furthermore, motivated by the work of Himonas and
-Kenig~\cite{Himonas:2009fk},
- \cite{Himonas_2010_Non-uniform-dep-euler},
-  and 
-Himonas, Kenig, and Misiolek~\cite{Himonas_2010_Non-uniform-dep-per},
-I established non-uniform dependence on initial data in the non-periodic case.
-The method of proof involved choosing approximate solutions to the HR equation
+This extended a result proved by Olson \cite{Olson_2006_Non-uniform-dep} in the
+periodic case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire
+well-posedness range) for HR\@. Furthermore, motivated by the work of Himonas
+and Kenig~\cite{Himonas:2009fk} and Himonas, Kenig, and
+Misiolek~\cite{Himonas:2010ch}, I established non-uniform dependence on initial
+data in the non-periodic case.  The method of proof involved choosing
+approximate solutions to the HR equation
 such that the size of the difference between approximate and actual solutions
 with identical initial data was negligible. Hence, to understand the degree of
 dependence, it sufficed to focus on the behavior of the approximate solutions
@@ -247,17 +244,17 @@ In order for the method to go through, it was necessary to prove well-posedness 
 for the size of the actual solutions to the HR equation, as well a lower bound
 for their lifespan. This was needed in order to obtain an upper bound for the
 size of the difference of approximate and actual solutions. More precisely, 
-the following was proved. 
+the following was proved: 
 %
 \begin{theorem}
 \label{thm:HR_existence_continuous_dependence}
-If   $s>3/2$  then we have:
+If   $s>3/2$,  then we have:
 
-(i) If $u_0\in H^s$  then  there exists a unique solution to
-the Cauchy problem  \eqref{hr}--\eqref{hr-data} in $C([-T, T], H^s)$, where 
-the lifespan  $T$ depends on the size
+(i) If $u_0\in H^s$ then there exists a unique solution to
+the Cauchy problem  \eqref{hr}--\eqref{hr-data} in \\ $C([-T, T], H^s)$, where 
+the lifespan $T$ depends on the size
 of the initial data $u_0$. Moreover, 
-the  lifespan $T$ satisfies the lower bound estimate 
+the lifespan $T$ satisfies the lower bound estimate 
 %
 %
 %
@@ -270,7 +267,7 @@ T
 %
 
 (ii)
-The data to solution map $u_0 \mapsto u$ is continuous from
+The data-to-solution map $u_0 \mapsto u$ is continuous from
 bounded sets of $H^s$ into \\ $C([-T, T], H^s)$,
 and the solution $u$ satisfies the estimate
 %
@@ -293,10 +290,10 @@ u_0
 \end{theorem}
 
 Recall that when  $\gamma=0$ the HR equation becomes the BBM
-equation.  Bona and Tzvetkov \cite{Bona_2009_Sharp-well-pose} have recently
-proved  that this equation  is globally well-posed in  Sobolev spaces $H^s$, if
-$s \ge 0$, and that its data-to-solution map is smooth. Hence, the failure of
-non-uniform continuity for HR does not apply in this case. 
+equation. Bona and Tzvetkov \cite{Bona_2009_Sharp-well-pose} have recently
+proved  that this equation  is globally well-posed in  Sobolev spaces $H^s$ for
+$s \ge 0$, and that its data-to-solution map is smooth. Hence, non-uniform
+dependence for HR cannot extend to the case $\gamma = 0$. 
 
 Motivated by the failure of non-uniform continuity for HR for $\gamma \neq 0$ in
 the $H^{s}$ topology and the work of Chen \cite{Chen:2011fk}, I recently also proved the following.
@@ -304,7 +301,7 @@ the $H^{s}$ topology and the work of Chen \cite{Chen:2011fk}, I recently also pr
 %
 \begin{theorem}
 For $\gamma \neq 0$, the
-data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (measured in the $H^{r}$ norm)
+data-to-solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (measured in the $H^{r}$ norm)
 to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
 3/2$, $-1 \le r < s$. 
 %
@@ -315,7 +312,7 @@ HR equation which satisfy
 %
 \begin{equation*}
 \begin{split}
-  \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|^{\alpha(s, r)},
+  \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}^{\alpha(s, r)},
   \quad 0
   \le t \le T
 \end{split}
@@ -331,7 +328,7 @@ where
 \begin{cases}
     1,  \quad  & -1 \le r \le s-1, \ s + r \ge 2  
   \\
-  2(s-1)/(2-r), \quad  &  -1 \le r < 2-s 
+  2(s-1)/(s-r), \quad  &  -1 \le r < 2-s 
   \\
   s-r, \quad  & s-1 < r < s. 
 \end{cases}
@@ -340,89 +337,73 @@ where
   %
 \label{thm:main-thm}
 \end{theorem}
-For the b-family and for the nonperiodic case this result
-was proved in \cite{Chen:2011fk}.
-
-
-
+This result was proved in \cite{Chen:2011fk} for the $b$-family in the
+non-periodic case.
+%
+%
 \subsection{Future Research} 
 \label{ssec:fut-res}
  I am interested in strengthening the well-posedness
 result for HR from failure of uniform continuity of the data-to-solution map
-when $s<3/2$ to failure of continuity for sufficiently rough initial data,  that
-is $s<3/2$.
-More generally, I am interested in proving
-ill-posedness in the sense of Hadamard (failure of existence, uniqueness, or
+when $s<3/2$ to failure of continuity for sufficiently rough initial data, that
+is, $s<3/2$. More generally, I am interested in proving ill-posedness in the
+sense of Hadamard (failure of existence, uniqueness, or
 continuity for the data-to-solution map). In order to obtain ill-posedness
 results for HR, I have begun researching a series of other equations. Since HR is a perturbation of the
-inviscid Burgers  equation
+inviscid Burgers equation
 $
     u_{t} + u u_{x} = 0,
 $
 and Burgers is well-posed for initial data in Sobolev space $H^{s}$, $s > 3/2$,
-it seems natural to ask whether Burgers is ill-posed for $s \le 3/2$. I intend to
+it is natural to ask whether Burgers is ill-posed for $s \le 3/2$. I intend to
 pursue this question in the future, in order to shed-light on ill-posedness
 issues for equations involving a perturbation of Burgers (such as HR).
 
-Another approach to tackling the ill-posedness question for HR
-is to better understand the framework given in the work 
-of De Lelllis,
-Kappeler, and Topalov \cite{Lellis_2007_Low-regularity-} for constructing
-low-regularity solutions to the Camassa-Holm, and then applying these techniques
-to the HR equation. More precisely, for initial data $u_{0} \in H^{s}$, $s =1$
-or $s > 3/2$, the HR well-posedness theory states that there exist corresponding
-classical solutions $u(x,t) \in H^{s}$. However, what occurs in the region $1 <
-s \le 3/2$ is unclear. De Lelllis et al.\ addressed this gap for the
-Camassa-Holm in the periodic case. I am of the hope that understanding their
-work will give greater insight into proving ill-posedness for HR in Sobolev
-spaces with index $s \le 3/2$. 
+Another approach to tackling the ill-posedness question for HR is to better
+understand the framework given in the work of De Lelllis, Kappeler, and Topalov
+\cite{Lellis_2007_Low-regularity-} for constructing low-regularity solutions to
+the Camassa-Holm, and then applying these techniques to the HR equation. More
+precisely, for initial data $u_{0} \in H^{s}$, $s =1$ or $s > 3/2$, the HR
+well-posedness theory states that there exist corresponding classical solutions
+$u(x,t) \in H^{s}$. However, what occurs in the region $1 < s \le 3/2$ is
+unclear. De Lelllis et al.\ addressed this gap for the Camassa-Holm in the
+periodic case. I am of the hope that understanding their work will give greater
+insight into proving ill-posedness for HR in Sobolev spaces with index $s \le
+3/2$. 
 
 Also, in collaboration with Dan Geba and Alex Himonas,
 I am investigating failure of the continuity of the data-to-solution map for
-initial data in $H^{s} \times H^{s-2}, s < -1/2$ for the Boussinesq equation
+initial data in $H^{s} \times H^{s-2}$, $s < -1/2$ for the Boussinesq equation
 \begin{align}
    & u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
   \\
    & u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
   \quad x \in \ci \ \text{or} \ \rr, \ t \in \rr. 
 \end{align} 
-I am using three
-different approaches (forget approaches--mention Farah. No Tao results) to gain insight into the problem. The first is motivated by
-\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. More
-specifically, the approach runs as follows:
-\begin{enumerate}[I.]
-  \item
-    Prove well-posedness in $H^{s} \times H^{s-2}, s \ge -1/2$.
- \item
-   Show that the well-posedness implies that for a solution $u(x,t)$ with
-   initial data $u_{0} \in H^{s} \times H^{s-2}$, we have the following
-   decomposition (local in $t$) 
-   $$u(x,t) = \sum_{n} A_{n},$$ where the $A_{n}$ are non-linear functions of
-   the initial data. 
- \item 
-   Choose an appropriate sequence of initial datum $u_{0,n}(x) \in H^{-1/2}
-   \times H^{-3/2}$ such that
-   we have failure of continuity for some iterate $A_{k}$ for $s < -1/2$.
-   This will imply
-   failure of the data-to-solution map for $s < -1/2$.
-   \end{enumerate}
-%		Bibliography		
-%
-A possible approach
-The second approach is motivated by Birnir \cite{Birnir:1996uq}. That is,
-to prove the failure of continuity of the data-to-solution map, I am attempting
-to find a sequence of traveling wave solutions $u_{n}(x,t)$ to the Boussinesq with
-corresponding initial data $u_{0,n}$ in a sufficiently rough Sobolev space such 
-$u_{0,n} \to u_{0}$ in $H^{s}$ but $u_{n}(x,t) \not \to u(x,t)$ in $H^{s}$. 
-The third approach involves numerical experimentation in Matlab. More
-precisely, to get clues as to what traveling wave solutions might allow me
-to prove failure of continuity, I have been numerically solving various ODEs
-with adjustable parameters. 
+For the non-periodic Boussinesq, the current optimal ill-posedness result, due to Farah
+\cite{Farah:2009uq}, is that the data-to-solution map is not $C^{2}$ at $0$ for
+initial data in $H^{s}$, $s < -2$. There is no analogous result for the periodic
+case, though Farah and Scialom \cite{Farah:2010ys} derive a series of other
+results suggesting that $s = -1/4$ is close to the critical index for
+well-posedness in the sense of Hadamard. I am interested in sharpening the
+ill-posedness result in the non-periodic case from failure of $C^{2}$ continuity for $s
+< -2$ to failure of continuity. I am also interested in proving failure of
+continuity in the periodic case for sufficiently rough initial data. One
+possible approach is motivated by Birnir
+\cite{Birnir:1996uq}. That is, to prove the failure of continuity of the
+data-to-solution map, I am attempting to find a sequence of traveling wave
+solutions $u_{n}(x,t)$ to the Boussinesq with corresponding initial data
+$u_{0,n}$ in a sufficiently rough Sobolev space such that $u_{0,n} \to u_{0}$ in
+$H^{s}$ but $u_{n}(x,t) \not \to u(x,t)$ in $H^{s}$. To get clues as to
+what traveling wave solutions might help prove failure of continuity, I
+have been using MATLAB to numerically solve various ODEs with adjustable
+parameters, in addition to running other numerical experimentations in MATLAB
+and C++. 
 
 Finally, I am involved in a project of Alex Himonas 
-and Gerson Petronilho about  Gevrey
+and Gerson Petronilho about Gevrey
 and analytic regularity of the NLS equation.
-While attending the {\em ``VI Workshop on Geometric Analysis of PDEs and Several Complex Variables"} \/in Sao Paulo, Brazil, last August,
+While attending the {\em ``VI Workshop on Geometric Analysis of PDEs and Several Complex Variables"} \/in Sao Paulo, Brazil last August,
 I had the opportunity to explore ways for constructing
 non-analytic in time solutions of the NLS equation
 when the initial data are analytic. 
@@ -436,84 +417,87 @@ when the initial data are analytic.
 \begin{thebibliography}{dLKT07}
 
 \bibitem[BBM72]{Benjamin_1972_Model-equations}
-T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
-  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
-  A \textbf{272} (1972), no.~1220, 47--78.
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{{Model equations for long
+  waves in nonlinear dispersive systems}}, Philosophical Transactions of the
+  Royal Society of London. Series A. Mathematical and Physical Sciences
+  \textbf{272} (1972), no.~1220, 47--78.
 
 \bibitem[Ben72]{Benjamin_1972_The-stability-o}
-T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+T.~B. Benjamin, \emph{{The stability of solitary waves}}, Proc. Roy. Soc.
   (London) Ser. A \textbf{328} (1972), 153--183.
 
 \bibitem[BPS96]{Birnir:1996uq}
-B.~Birnir, G.~Ponce, and N.~Svanstedt, \emph{The local ill-posedness of the
-  modified {K}d{V} equation}, Ann. Inst. H. Poincar{\'e} Anal. Non Lin{\'e}aire
-  \textbf{13} (1996), no.~4, 529--535. \MR{1404320 (97e:35152)}
-
-\bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
-I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
-  for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
-  \textbf{233} (2006), no.~1, 228--259.
+B.~Birnir, G.~Ponce, and N.~Svanstedt, \emph{{The local ill-posedness of the
+  modified KdV equation}}, Annales de l'Institut Henri Poincar{\'e}. Analyse
+  Non Lin{\'e}aire \textbf{13} (1996), no.~4, 529--535.
 
 \bibitem[BT09]{Bona_2009_Sharp-well-pose}
-J.~L. Bona and N.~Tzvetkov, \emph{Sharp well-posedness results for the bbm
-  equation}, Discrete Contin. Dyn. Syst. \textbf{23} (2009), no.~4, 1241--1252.
+J.~L. Bona and N.~Tzvetkov, \emph{{Sharp well-posedness results for the BBM
+  equation}}, Discrete Contin. Dyn. Syst. \textbf{23} (2009), no.~4,
+  1241--1252.
 
 \bibitem[Che11]{Chen:2011fk}
-R.~M. Chen, \emph{The h{\"o}lder continuity of the solution map to the
-  $b$-family equation in weak topology}, 2011.
+R.M. Chen, Y. Liu, and P.Z. Zhang, \emph{{The H{\"o}lder Continuity of the Solution Map to the
+  b-family Equation in weak topology}}, submitted.
 
 \bibitem[CS00]{Constantin_2000_Stability-of-a-}
-A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
-  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+A.~Constantin and W.~A. Strauss, \emph{{Stability of a class of solitary waves
+  in compressible elastic rods}}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
   140--148.
 
 \bibitem[Dai98]{Dai_1998_Model-equations}
-H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
-  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+H.-H. Dai, \emph{{Model equations for nonlinear dispersive waves in a
+  compressible Mooney-Rivlin rod}}, Acta Mech. \textbf{127} (1998), no.~1-4,
   193--207.
 
 \bibitem[DDH00]{Dai_2000_Head-on-collisi}
-H.-H. Dai, S.~Dai, and Y.~Huo, \emph{Head-on collision between two solitary
-  waves in a compressible mooney-rivlin elastic rod}, Wave Motion \textbf{32}
+H.-H. Dai, S.~Dai, and Y.~Huo, \emph{{Head-on collision between two solitary
+  waves in a compressible Mooney-Rivlin elastic rod}}, Wave Motion \textbf{32}
   (2000), no.~2, 93--111.
 
 \bibitem[DH00]{Dai_2000_Solitary-shock-}
-H.-H. Dai and Y.~Huo, \emph{Solitary shock waves and other travelling waves in
-  a general compressible hyperelastic rod}, R. Soc. Lond. Proc. Ser. A Math.
+H.-H. Dai and Y.~Huo, \emph{{Solitary shock waves and other travelling waves in
+  a general compressible hyperelastic rod}}, R. Soc. Lond. Proc. Ser. A Math.
   Phys. Eng. Sci. \textbf{456} (2000), no.~1994, 331--363.
 
 \bibitem[dLKT07]{Lellis_2007_Low-regularity-}
-C.~de~Lellis, T.~Kappeler, and P.~Topalov, \emph{Low-regularity solutions of
-  the periodic camassa-holm equation}, Comm. Partial Differential Equations
-  \textbf{32} (2007), no.~1-3, 87--126.
+C.~de~Lellis, T.~Kappeler, and P.~Topalov, \emph{{Low-regularity solutions of
+  the periodic Camassa-Holm equation}}, Communications in Partial Differential
+  Equations \textbf{32} (2007), no.~1-3, 87--126.
+
+\bibitem[Far09]{Farah:2009uq}
+L.~G. Farah, \emph{{Local solutions in Sobolev spaces with negative indices for
+  the ``good'' Boussinesq equation}}, Communications in Partial Differential
+  Equations \textbf{34} (2009), no.~1-3, 52--73.
+
+\bibitem[FS10]{Farah:2010ys}
+L.~G. Farah and M.~Scialom, \emph{{On the periodic ``good'' Boussinesq
+  equation}}, Proceedings of the American Mathematical Society \textbf{138}
+  (2010), no.~3, 953--964.
 
 \bibitem[HK09]{Himonas:2009fk}
-A.~Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
-  the ch equation on the line}, Differential Integral Equations \textbf{22}
-  (2009), no.~3-4, 201--224.
+A.~Himonas and C.~E. Kenig, \emph{{Non-uniform dependence on initial data for
+  the CH equation on the line}}, Differential and Integral Equations. An
+  International Journal for Theory \& Applications \textbf{22} (2009),
+  no.~3-4, 201--224.
 
-\bibitem[HKM10]{Himonas_2010_Non-uniform-dep-per}
-A.~Himonas, C.~E. Kenig, and G.~Misiolek, \emph{Non-uniform dependence for the
-  periodic ch equation}, 
-  Comm. Partial Differential Equations {\bf 35}  (2010), 1145-1162. 
-  
-\bibitem[HM10]{Himonas_2010_Non-uniform-dep-euler}
-A.~Himonas and G.~Misiolek, \emph{Non-uniform dependence on initial data of
-  solutions to the euler equations of hydrodynamics}, 
- Commun. Math. Phys. {\bf 296}, 285--301 (2010).
+\bibitem[HKM10]{Himonas:2010ch}
+A. Himonas, C.~Kenig, and G.~Misiolek, \emph{{Non-uniform dependence for
+  the periodic CH equation}}, Communications in Partial Differential Equations
+  \textbf{35} (2010), no.~6, 1145--1162.
 
 \bibitem[Len06]{Lenells_2006_Traveling-waves}
-J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
+J.~Lenells, \emph{{Traveling waves in compressible elastic rods}}, Discrete
   Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
 
 \bibitem[Ols06]{Olson_2006_Non-uniform-dep}
-E.~Olson, \emph{Non-uniform dependence on initial data for a family of
-  non-linear evolution equations}, Differential Integral Equations \textbf{19}
-  (2006), no.~10, 1081--1102.
+E.~Olson, \emph{{Non-uniform dependence on initial data for a family of
+  non-linear evolution equations}}, Differential and Integral Equations. An
+  International Journal for Theory \& Applications \textbf{19} (2006),
+  no.~10, 1081--1102.
 
 \end{thebibliography}
-
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references-papers}
 %\bibliographystyle{amsalpha-custom}
 \end{document}
 

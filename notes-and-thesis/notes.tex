@@ -2,7 +2,7 @@
 %
 %
 \usepackage[utf8]{inputenc}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \usepackage[T1]{fontenc} %otherwise have font issues
 \usepackage{lmodern} %this with above font packages give us all possible diacritics
 \usepackage{amsmath}
@@ -109,24 +109,23 @@ urlcolor=blue,
 \maketitle
 \tableofcontents
 \mainmatter
-\part{Strongly Dispersive Equations}
-\include{./mnls/mnls}
-\include{./nls-l4/nls-l4}
-\include{./dnls/dnls}
-\include{./kdv/kdv}
-\include{./knls/knls}
-\include{./mkdv/mkdv}
-\include{./nls-gevrey/nls-gevrey}
-\part{Weakly Dispersive Equations}
-\include{./hr/hr}
-%
-%
+%\part{Strongly Dispersive Equations}
+%\include{mnls/mnls}
+%\include{nls-l4/nls-l4}
+%\include{dnls/dnls}
+%\include{kdv/kdv}
+%\include{knls/knls}
+%\include{mkdv/mkdv}
+%\include{nls-gevrey/nls-gevrey}
+%\part{Weakly Dispersive Equations}
+\input{hr/hr}
+\input{hr/hr-appen}
 \part{Appendix}
 %
-\include{./ode-thm/ode-thm.tex}
+\input{ode-thm/ode-thm}
 %
 \backmatter
-\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 \bibliographystyle{amsalpha-custom}
 %
 %If want reference in normal size, do \begin{biblist}[\normalsize]
