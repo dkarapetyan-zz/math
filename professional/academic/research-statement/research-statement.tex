@@ -296,7 +296,8 @@ $s \ge 0$, and that its data-to-solution map is smooth. Hence, non-uniform
 dependence for HR cannot extend to the case $\gamma = 0$. 
 
 Motivated by the failure of non-uniform continuity for HR for $\gamma \neq 0$ in
-the $H^{s}$ topology and the work of Chen \cite{Chen:2011fk}, I recently also proved the following.
+the $H^{s}$ topology and the work of Chen \cite{Chen:2011fk}, I recently also
+proved the following:
 %
 %
 \begin{theorem}
@@ -373,40 +374,42 @@ insight into proving ill-posedness for HR in Sobolev spaces with index $s \le
 
 Also, in collaboration with Dan Geba and Alex Himonas,
 I am investigating failure of the continuity of the data-to-solution map for
-initial data in $H^{s} \times H^{s-2}$, $s < -1/2$ for the Boussinesq equation
+initial data in $H^{s} \times H^{s-2}$ for the Boussinesq equation
 \begin{align}
    & u_{tt} - u_{xx} + u_{xxxx} + (u^{2})_{xx} = 0,
   \\
    & u(x,0) = u_{0}(x) \in H^{s}, \  u_{t}(x,0) = u_{1}(x) \in H^{s-2},
   \quad x \in \ci \ \text{or} \ \rr, \ t \in \rr. 
 \end{align} 
-For the non-periodic Boussinesq, the current optimal ill-posedness result, due to Farah
-\cite{Farah:2009uq}, is that the data-to-solution map is not $C^{2}$ at $0$ for
-initial data in $H^{s}$, $s < -2$. There is no analogous result for the periodic
-case, though Farah and Scialom \cite{Farah:2010ys} derive a series of other
-results suggesting that $s = -1/4$ is close to the critical index for
-well-posedness in the sense of Hadamard. I am interested in sharpening the
-ill-posedness result in the non-periodic case from failure of $C^{2}$ continuity for $s
-< -2$ to failure of continuity. I am also interested in proving failure of
-continuity in the periodic case for sufficiently rough initial data. One
-possible approach is motivated by Birnir
+Farah and Scialom \cite{Farah:2010ys}  have shown that this equation is well-posed on the circle
+when $s>-1/4$. On the line, well-posedness was proved 
+by Farah \cite{Farah:2009uq} when $s>-1/4$. Kishimoto and Tsugawa
+\cite{Kishimoto:2010ly} then improved this result to $s>-1/2$.  I  plan to
+investigate whether the Sobolev exponents 
+$s=-1/4$ (in the circle case) and  $s=-1/2$ (in the line case) 
+are optimal concerning well-posedness in Sobolev spaces.
+In the non-periodic case, it is known  \cite{Farah:2009uq} that
+the data-to-solution map is not $C^2$.
+I would like to explore failure of continuity
+for the data-to-solution map for both the periodic
+and non-periodic cases. One possible approach is motivated by Birnir
 \cite{Birnir:1996uq}. That is, to prove the failure of continuity of the
 data-to-solution map, I am attempting to find a sequence of traveling wave
 solutions $u_{n}(x,t)$ to the Boussinesq with corresponding initial data
-$u_{0,n}$ in a sufficiently rough Sobolev space such that $u_{0,n} \to u_{0}$ in
-$H^{s}$ but $u_{n}(x,t) \not \to u(x,t)$ in $H^{s}$. To get clues as to
+$(u_{0,n}, u_{1,n})$ in a sufficiently rough product of Sobolev spaces $H^{s} \times
+H^{s-2}$ such that $(u_{0,n}, u_{1,n}) \to (u_{0}, u_{1})$ in
+$H^{s} \times H^{s-2}$ but $u_{n}(x,t) \not \to u(x,t)$ in $H^{s}$. To get clues as to
 what traveling wave solutions might help prove failure of continuity, I
 have been using MATLAB to numerically solve various ODEs with adjustable
 parameters, in addition to running other numerical experimentations in MATLAB
 and C++. 
 
-Finally, I am involved in a project of Alex Himonas 
-and Gerson Petronilho about Gevrey
-and analytic regularity of the NLS equation.
-While attending the {\em ``VI Workshop on Geometric Analysis of PDEs and Several Complex Variables"} \/in Sao Paulo, Brazil last August,
-I had the opportunity to explore ways for constructing
-non-analytic in time solutions of the NLS equation
-when the initial data are analytic. 
+Finally, I am involved in a project of Alex Himonas and Gerson Petronilho about
+Gevrey and analytic regularity of the NLS equation.  While attending the {\em
+    ``VI Workshop on Geometric Analysis of PDEs and Several Complex Variables"}
+\/in Sao Paulo, Brazil last August, I had the opportunity to explore ways for
+constructing non-analytic in time solutions of the NLS equation when the initial
+data are analytic. 
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -485,6 +488,12 @@ A.~Himonas and C.~E. Kenig, \emph{{Non-uniform dependence on initial data for
 A. Himonas, C.~Kenig, and G.~Misiolek, \emph{{Non-uniform dependence for
   the periodic CH equation}}, Communications in Partial Differential Equations
   \textbf{35} (2010), no.~6, 1145--1162.
+  
+  \bibitem[KT10]{Kishimoto:2010ly}
+N.~Kishimoto and K.~Tsugawa, \emph{Local well-posedness for quadratic nonlinear
+  {S}chr{\"o}dinger equations and the ``good'' {B}oussinesq equation},
+  Differential Integral Equations \textbf{23} (2010), no.~5-6, 463--493.
+  
 
 \bibitem[Len06]{Lenells_2006_Traveling-waves}
 J.~Lenells, \emph{{Traveling waves in compressible elastic rods}}, Discrete

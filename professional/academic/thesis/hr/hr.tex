@@ -1,263 +1,14 @@
-%
-\documentclass[12pt,reqno]{amsart}
-\usepackage{amscd}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{appendix}
-\usepackage{fancyhdr}
-\usepackage{latexsym}
-\usepackage{cancel}
-\usepackage{amsxtra}
-\synctex=1
-\usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
-citecolor=blue, urlcolor=blue]{hyperref}
-%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{color}
-\definecolor{red}{rgb}{1.00, 0.00, 0.00}
-\definecolor{darkgreen}{rgb}{0.00, 1.00, 0.00}
-\definecolor{blue}{rgb}{0.00, 0.00, 1.00}
-\definecolor{cyan}{rgb}{0.00, 1.00, 1.00}
-\definecolor{magenta}{rgb}{1.00, 0.00, 1.00}
-\definecolor{deepskyblue}{rgb}{0.00, 0.75, 1.00}
-\definecolor{darkgreen}{rgb}{0.00, 0.39, 0.00}
-\definecolor{springgreen}{rgb}{0.00, 1.00, 0.50}
-\definecolor{darkorange}{rgb}{1.00, 0.55, 0.00}
-\definecolor{orangered}{rgb}{1.00, 0.27, 0.00}
-\definecolor{deeppink}{rgb}{1.00, 0.08, 0.57}
-\definecolor{darkviolet}{rgb}{0.58, 0.00, 0.82}
-\definecolor{saddlebrown}{rgb}{0.54, 0.27, 0.07}
-\definecolor{black}{rgb}{0.00, 0.00, 0.00}
-\definecolor{dark-magenta}{rgb}{.5,0,.5}
-\definecolor{myblack}{rgb}{0,0,0}
-\definecolor{darkgray}{gray}{0.5}
-\definecolor{lightgray}{gray}{0.75}
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  for importing pictures  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{graphicx}
-%% page setup %%
-\setlength{\textheight}{20.8truecm}
-\setlength{\textwidth}{14.8truecm}
-\marginparwidth  0truecm
-\oddsidemargin   01truecm
-\evensidemargin  01truecm
-\marginparsep    0truecm
-\renewcommand{\baselinestretch}{1.1}
-\renewcommand{\qedsymbol}{\ensuremath{\square}}
-%% new commands %%
-\newcommand{\tf}{\tilde{f}}
-\newcommand{\ti}{\tilde}
-\newcommand{\bigno}{\bigskip\noindent}
-\newcommand{\ds}{\displaystyle}
-\newcommand{\medno}{\medskip\noindent}
-\newcommand{\smallno}{\smallskip\noindent}
-\newcommand{\nin}{\noindent}
-\newcommand{\ts}{\textstyle}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\p}{\partial}
-\newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
-\newcommand{\ci}{\mathbb{T}}
-\newcommand{\ee}{\varepsilon}
-\newcommand{\vp}{\varphi}
-\def\autorefer #1\par{\noindent\hangindent=\parindent\hangafter=1 #1\par}
-%% equation numbers %%
-\renewcommand{\theequation}{\thesection.\arabic{equation}}
-%% new environments %%
-%\swapnumbers
-\theoremstyle{plain}  % default
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{claim}{Claim}
-\newtheorem{remark}{Remark}
-\newtheorem{conjecture}[subsection]{conjecture}
-%
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
-\makeautorefname{equation}{Equation}
-\makeautorefname{footnote}{footnote}
-\makeautorefname{item}{item}
-\makeautorefname{figure}{Figure}
-\makeautorefname{table}{Table}
-\makeautorefname{part}{Part}
-\makeautorefname{appendix}{Appendix}
-\makeautorefname{chapter}{Chapter}
-\makeautorefname{section}{Section}
-\makeautorefname{subsection}{Section}
-\makeautorefname{subsubsection}{Section}
-\makeautorefname{paragraph}{Paragraph}
-\makeautorefname{subparagraph}{Paragraph}
-\makeautorefname{theorem}{Theorem}
-\makeautorefname{theo}{Theorem}
-\makeautorefname{thm}{Theorem}
-\makeautorefname{addendum}{Addendum}
-\makeautorefname{addend}{Addendum}
-\makeautorefname{add}{Addendum}
-\makeautorefname{maintheorem}{Main theorem}
-\makeautorefname{mainthm}{Main theorem}
-\makeautorefname{corollary}{Corollary}
-\makeautorefname{corol}{Corollary}
-\makeautorefname{coro}{Corollary}
-\makeautorefname{cor}{Corollary}
-\makeautorefname{lemma}{Lemma}
-\makeautorefname{lemm}{Lemma}
-\makeautorefname{lem}{Lemma}
-\makeautorefname{sublemma}{Sublemma}
-\makeautorefname{sublem}{Sublemma}
-\makeautorefname{subl}{Sublemma}
-\makeautorefname{proposition}{Proposition}
-\makeautorefname{proposit}{Proposition}
-\makeautorefname{propos}{Proposition}
-\makeautorefname{propo}{Proposition}
-\makeautorefname{prop}{Proposition}
-\makeautorefname{proposition}{Proposition}
-\makeautorefname{property}{Property}
-\makeautorefname{proper}{Property}
-\makeautorefname{scholium}{Scholium}
-\makeautorefname{step}{Step}
-\makeautorefname{conjecture}{Conjecture}
-\makeautorefname{conject}{Conjecture}
-\makeautorefname{conj}{Conjecture}
-\makeautorefname{question}{Question}
-\makeautorefname{questn}{Question}
-\makeautorefname{quest}{Question}
-\makeautorefname{ques}{Question}
-\makeautorefname{qn}{Question}
-\makeautorefname{definition}{Definition}
-\makeautorefname{defin}{Definition}
-\makeautorefname{defi}{Definition}
-\makeautorefname{def}{Definition}
-\makeautorefname{dfn}{Definition}
-\makeautorefname{notation}{Notation}
-\makeautorefname{nota}{Notation}
-\makeautorefname{notn}{Notation}
-\makeautorefname{remark}{Remark}
-\makeautorefname{rema}{Remark}
-\makeautorefname{rem}{Remark}
-\makeautorefname{rmk}{Remark}
-\makeautorefname{rk}{Remark}
-\makeautorefname{remarks}{Remarks}
-\makeautorefname{rems}{Remarks}
-\makeautorefname{rmks}{Remarks}
-\makeautorefname{rks}{Remarks}
-\makeautorefname{example}{Example}
-\makeautorefname{examp}{Example}
-\makeautorefname{exmp}{Example}
-\makeautorefname{exam}{Example}
-\makeautorefname{exa}{Example}
-\makeautorefname{algorithm}{Algorith}
-\makeautorefname{algo}{Algorith}
-\makeautorefname{alg}{Algorith}
-\makeautorefname{axiom}{Axiom}
-\makeautorefname{axi}{Axiom}
-\makeautorefname{ax}{Axiom}
-\makeautorefname{case}{Case}
-\makeautorefname{claim}{Claim}
-\makeautorefname{clm}{Claim}
-\makeautorefname{assumption}{Assumption}
-\makeautorefname{assumpt}{Assumption}
-\makeautorefname{conclusion}{Conclusion}
-\makeautorefname{concl}{Conclusion}
-\makeautorefname{conc}{Conclusion}
-\makeautorefname{condition}{Condition}
-\makeautorefname{condit}{Condition}
-\makeautorefname{cond}{Condition}
-\makeautorefname{construction}{Construction}
-\makeautorefname{construct}{Construction}
-\makeautorefname{const}{Construction}
-\makeautorefname{cons}{Construction}
-\makeautorefname{criterion}{Criterion}
-\makeautorefname{criter}{Criterion}
-\makeautorefname{crit}{Criterion}
-\makeautorefname{exercise}{Exercise}
-\makeautorefname{exer}{Exercise}
-\makeautorefname{exe}{Exercise}
-\makeautorefname{problem}{Problem}
-\makeautorefname{problm}{Problem}
-\makeautorefname{probm}{Problem}
-\makeautorefname{prob}{Problem}
-\makeautorefname{solution}{Solution}
-\makeautorefname{soln}{Solution}
-\makeautorefname{sol}{Solution}
-\makeautorefname{summary}{Summary}
-\makeautorefname{summ}{Summary}
-\makeautorefname{sum}{Summary}
-\makeautorefname{operation}{Operation}
-\makeautorefname{oper}{Operation}
-\makeautorefname{observation}{Observation}
-\makeautorefname{observn}{Observation}
-\makeautorefname{obser}{Observation}
-\makeautorefname{obs}{Observation}
-\makeautorefname{ob}{Observation}
-\makeautorefname{convention}{Convention}
-\makeautorefname{convent}{Convention}
-\makeautorefname{conv}{Convention}
-\makeautorefname{cvn}{Convention}
-\makeautorefname{warning}{Warning}
-\makeautorefname{warn}{Warning}
-\makeautorefname{note}{Note}
-\makeautorefname{fact}{Fact}
-%
-\begin{document}
-%
-%
-%
-%
-\title{Non-Uniform Dependence  and well-posedness\\
-for the
-Hyperelastic Rod Equation}
-\author{{\it David Karapetyan}\\
-University of Notre Dame}
-\begin{abstract}
-It is shown that the solution map for the hyperelastic rod equation is not 
-uniformly continuous on bounded sets of Sobolev spaces with exponent 
-greater than 3/2 in the periodic case and greater than 1 in the 
-non-periodic case. The proof is based on the method of approximate 
-solutions and well-posedness estimates for the solution and its lifespan.%
-\end{abstract}
-
-
-
-\keywords{Hyperelastic rod equation, periodic,  non-periodic,
-initial value problem, Sobolev spaces,  well-posedness,  
-continuity of solution map,
-non-uniform dependence,
- approximate  solutions, energy estimates.}
-
-\subjclass[2000]{Primary: 35Q53}
-
-
-
-
-
-
-
-\maketitle
-\markboth{Non-Uniform Dependence for the Hyperelastic Rod Equation}{David 
-Karapetyan}
-\parindent0in
-\parskip0.1in
-%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%      introduction
-%
-%%%%%%%%%%%%%%%%%%%%%%%%
-\section{introduction}
-\setcounter{equation}{0}
+\chapter{Non-Uniform Dependence and Well-posedness for 
+HR}
+\section{Introduction}
 %
 We consider the  initial value problem for
 the hyperelastic rod (HR)  equation
 %
 %
-\begin{equation}
+\begin{align}
 \label{hr}
-\p_t u
+& \p_t u
 -
 \p_t \p_x^2 u
 +
@@ -268,15 +19,15 @@ the hyperelastic rod (HR)  equation
 +
 u \p_x^3 u
 \big ),
-\end{equation}
-%
-%
-%
-%
-\begin{equation}
-\label{hr-data} u(x, 0) = u_0 (x),
+\\
+\label{hr-data}
+& u(x, 0) = u_0 (x),
 \quad x  \in \ci, \text{  or  } \rr \quad t \in \rr,
-\end{equation}
+\end{align}
+%
+%
+%
+%
 %
 %
 where  $\gamma$  is a  nonzero constant,
@@ -287,7 +38,7 @@ Thus, we extend the result proved by Olson
 case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire 
 well-posedness range)
 for HR. Furthermore,  motivated by the work of
- Himonas  and Kenig \cite{Himonas_2009_Non-uniform-dep},
+ Himonas  and Kenig \cite{Himonas:2009fk},
 we establish non-uniform dependence
 in the non-periodic case, where the method of traveling wave solutions used in  
 \cite{Olson_2006_Non-uniform-dep} does not seem to work.
@@ -371,7 +122,7 @@ $u_0  \mapsto u$ of the periodic HR equation is not uniformly continuous
 from any bounded set in $H^s(\ci)$ into $C([0, T ], H^s(\ci))$ for $s \ge 
 2$ and $\gamma \neq 3$. Non-uniform dependence for the non-periodic CH 
 equation in 
-$H^s(\rr)$ for $s>1$ was proven in \cite{Himonas_2009_Non-uniform-dep} 
+$H^s(\rr)$ for $s>1$ was proven in \cite{Himonas:2009fk} 
 using the method of approximate solutions and well-posedness estimates. The 
 case $s=1$ for both the line and the circle
  was proved earlier by Himonas, Misiolek, and Ponce in 
@@ -385,7 +136,7 @@ case $s=1$ for both the line and the circle
  We mention that the continuity of the data-to-solution map  for CH has 
  been studied in  \cite{Himonas_2007_Non-uniform-con},
  \cite{Himonas_2001_The-Cauchy-prob}, and 
- \cite{Himonas_2005_High-frequency-}, and for the Euler equations in 
+ \cite{Himonas:2005kx}, and for the Euler equations in 
  \cite{Himonas_2009_Non-uniform-dep-euler}. Continuity of this map for  
  the  Benjamin-Ono equation was studied in  Koch and  Tzvetkov 
  \cite{Koch_2005_Nonlinear-wave-}. For related ill-posedness results, we 
@@ -415,7 +166,7 @@ for the HR equation
 \eqref{hr}-\eqref{hr-data}
 is not uniformly continuous
 from any bounded subset of  $H^s$ into $C([-T, T], H^s)$
-for $s>1$ on the line  and for $s>3/2$ on the circle.
+for $s>3/2$ on the line and circle.
 %
 \end{theorem}
 %
@@ -428,8 +179,8 @@ is globally well-posed in  Sobolev spaces $H^s$, if $s \ge 0$,
 and that its data-to-solution map is smooth.
 
 %
-Our approach  for proving \autoref{hr-non-unif-dependence}  
-mirrors  that in Himonas and Kenig \cite{Himonas_2009_Non-uniform-dep} and 
+Our approach  for proving \cref{hr-non-unif-dependence}  
+mirrors  that in Himonas and Kenig \cite{Himonas:2009fk} and 
 Himonas, Kenig, and Misiolek \cite{Himonas_2009_Non-uniform-dep-per}.
 That is, we will choose 
 approximate solutions to the HR equation such that the size of the difference between approximate and actual solutions with 
@@ -517,23 +268,128 @@ which are key ingredients in our work,
 following an alternative approach used for nonlinear hyperbolic equations
 in Taylor \cite{Taylor_1991_Pseudodifferent}.
 
+\hrule
+\textbf{Furthermore, following \cite{Chen:2011fk}, we expand upon our non-uniform
+dependence results by studying the data-to-solution map in a weaker topology.
+More precisely, we show the following result:}
+\hrule
+%
+%
+\begin{theorem}
+For $\gamma \neq 0$, the
+data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (measured
+in $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s > 3/2$, $-1 \le r <
+s$. More precisely, decompose the set $\Omega = \left\{ (s, r) \in \rr^{2}
+\right\}$ into the pieces
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    & \Omega_{1} = \left\{ (s, \ r):  \ s < 3/2 \right\}
+    \\
+    & \Omega_{2} = \left\{ (s, \ r):
+     \ s>3/2, \ r < -1  \right\}
+    \\
+    & \Omega_{3} = \left\{ (s, \ r):
+     \ s>3/2, \ r > s  \right\}
+    \\
+    & \Omega_{4} = \left\{ (s, \ r):
+     \ s>3/2, \ -1 \le r \le s-1, \ s + r \ge 2  \right\}
+    \\
+    & \Omega_{5} = \left\{ (s, \ r):
+     \ s>3/2, \ -1 \le r < 2-s \right\}
+    \\
+    & \Omega_{6} = \left\{ (s, \ r):
+    \  s>3/2, \  s-1 < r < s  \right\}.
+    \end{split}
+\end{equation*}
+  %
+  %
+\label{thm:main-thm}
+\end{theorem}
+%
+\begin{center}
+\begin{tikzpicture}[scale=2]
+% Draw thin grid lines with color 40% gray + 60% white
+
+% Draw x and y axis lines
+\draw [->] (0,0) -- (3,0) node [below] {$s$};
+\draw [->] (0,-2) -- (0,3) node [left] {$r$};
+\draw [->, dashed] (0,0) -- (3,3);
+\draw [->, dashed] (0,-1) -- (3,2);
+\draw [->, dashed] (0,2) -- (3,-1);
+\draw [->, dashed] (0,-1) -- (3,-1);
+\draw [->, dashed] (3/2,-2) -- (3/2, 3);
+\fill[color=green, fill opacity=0.3] (1.5, 0.5) -- (3,2) -- (3,0) -- (3,-1);
+\fill[color=red, fill opacity=0.3] (1.5, 0.5) -- (1.5,1.5) -- (3,3) -- (3,2);
+\fill[color=yellow, fill opacity=0.3] (0, -2) -- (1.5, -2) -- (1.5, 3) -- (0, 3);
+\fill[color=blue, fill opacity=0.3] (1.5, 0.5) -- (1.5, -1) -- (3, -1);
+\fill[color=brown, fill opacity=0.3] (1.5, 1.5) -- (3, 3) -- (1.5, 3);
+\fill[color=cyan, fill opacity=0.3] (1.5, -1) -- (3, -1) -- (3, -2) -- (1.5, -2);
 
 
+\foreach \x/\xtext in {1, 2}
+    \draw[shift={(\x,0)}]  node[below] {$\xtext$};
+\foreach \y/\ytext in {-1, 1, 2}
+    \draw[shift={(0,\y)}]  node[left] {$\ytext$};
+    \draw (1,0.5) node {$\Omega_{1}$};
+    \draw (2,2.5) node {$\Omega_{3}$};
+    \draw (2,1.5) node {$\Omega_{6}$};
+    \draw (2,-1.5) node {$\Omega_{2}$};
+    \draw (2,0.5) node {$\Omega_{4}$};
+    \draw (2,-0.5) node {$\Omega_{5}$};
+\end{tikzpicture}
+\end{center}
+%
+%
+Then for two initial data $u_{0}, v_{0} \in B_{H^{s}}(R)$, there exist unique
+corresponding solutions $u(x,t), v(x,t)$ for $0 \le t \le T= T(R)$ to the
+HR equation \eqref{hyperelastic-rod-equation} which satisfy 
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}^{\alpha(s, r)},
+  \quad 0
+  \le t \le T
+\end{split}
+\end{equation*}
+%
+%
+where 
+%
+%
+\begin{equation*}
+\begin{split}
+\alpha = 
+\begin{cases}
+   1, \quad & (s,r) \in \Omega_{4} 
+  \\
+   2(s-1)/(s-r),  \quad & (s, r) \in \Omega_{5}
+  \\
+   s-r, \quad & (s, r) \in \Omega_{6}.
+\end{cases}
+\end{split}
+\end{equation*}
+%
 
-The  paper is structured as follows. In \autoref{sec:2} we prove 
-\autoref{hr-non-unif-dependence} on the line and 
-in  \autoref{sec:3}  we prove it on the circle.
+
+This work is structured as follows. In \cref{sec:2} we prove 
+\cref{hr-non-unif-dependence} on the line and 
+in \cref{sec:3} we prove it on the circle.
 As mentioned above, we begin with two sequences of
 appropriate approximate solutions and then 
 we construct  actual solutions
 coinciding at time zero  with the approximate solutions.
-The key  step  is to show that  the $H^s$-size of
+The key step is to show that  the $H^s$-size of
 the difference between approximate and actual solutions 
 converges to zero (see propositions \ref{applelem:bound_for_difference-of-approx-and-actual-soln}
 and  \ref{prop:bound_for_difference-of-approx-actual-soln}). 
-In \autoref{sec:4} we  prove 
-\autoref{thm:HR_existence_continuous_dependence} 
+In \cref{sec:4} we  prove 
+\cref{thm:HR_existence_continuous_dependence} 
 using a Galerkin-type argument and energy estimates.
+In \cref{sec:pf-holder}, we provide the proof of Theorem \ref{thm:main-thm}.
+
 %
 %
 %
@@ -544,7 +400,7 @@ using a Galerkin-type argument and energy estimates.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
-%           Proof of  \autoref on the line
+%           Proof of  \cref on the line
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -552,8 +408,7 @@ using a Galerkin-type argument and energy estimates.
 %
 %
 %
-\section{
-Proof of  \autoref{hr-non-unif-dependence} on the line
+\section{Proof of Non-Uniform Dependence on the line
 }
 \label{sec:2}
 %
@@ -561,7 +416,7 @@ Proof of  \autoref{hr-non-unif-dependence} on the line
 %
 %
 We begin by outlining the method of the proof,
-as it has been applied for the case $\gamma=1$ in \cite{Himonas_2009_Non-uniform-dep}.
+as it has been applied for the case $\gamma=1$ in \cite{Himonas:2009fk}.
 We will show  that there there exist two sequences of solutions 
 $u_n(t)$
 and $v_n(t)$ in $C([-T, T], H^s)$ such that
@@ -655,9 +510,8 @@ where
 %
 %
 %
-
-{\bf  Approximate solutions.}
-Following \cite{Himonas_2009_Non-uniform-dep}, our approximate solutions
+\textbf{Approximate solutions.}
+Following \cite{Himonas:2009fk}, our approximate solutions
 \\ $u^{\omega, \lambda} = u^{\omega,
 \lambda}(x,t)$ to \eqref{apple1'}-\eqref{apple2'} will
 consist of a low frequency and a high frequency part,
@@ -705,7 +559,7 @@ where $\phi$ is a $C^\infty$ cut-off function such that
 %
 %
 %
-and by \autoref{thm:HR_existence_continuous_dependence} 
+and by \cref{thm:HR_existence_continuous_dependence} 
 we let the low frequency part $u_\ell = u_{l,
 \omega, \lambda}(x,t)$ be the unique solution to the Cauchy problem
 %
@@ -744,7 +598,7 @@ We remark that for $\lambda >>1$ and $\delta < 2$ the approximate solutions
 $u^{\omega, \lambda}$ share a common lifespan $T >> 1$. To see why, we 
 first note that the high frequency part $u^{h, \omega, \lambda}$ has 
 infinite lifespan by the following, whose 
-proof can be found in \cite{Himonas_2009_Non-uniform-dep}: 
+proof can be found in \cite{Himonas:2009fk}: 
 %
 %
 \begin{lemma}
@@ -861,11 +715,11 @@ T.
 %
 %
 %
-{\bf Proof.}
+\textbf{Proof.}
 It will suffice to estimate the $H^1$ norms of each $E_i$.
 Here we estimate only $E_1$. 
 The remaining error terms are estimated 
-like in \cite{Himonas_2009_Non-uniform-dep} for the case $\gamma=1$.
+like in \cite{Himonas:2009fk} for the case $\gamma=1$.
 We have
 %
 %
@@ -1010,7 +864,7 @@ subset of $\rr$. Then the initial value problem
 \eqref{u-l-apple1'}-\eqref{apple1**}
 has a unique solution
 $u_\ell \in C( [-T,T], H^s(\rr))$ for all $s
-\ge 0$ which satisfies
+> 3/2$ which satisfies
 %
 %
 \begin{equation}
@@ -1022,7 +876,7 @@ $u_\ell \in C( [-T,T], H^s(\rr))$ for all $s
 %
 \end{lemma}
 %
-An analogous result can be found in \cite{Himonas_2009_Non-uniform-dep}. %
+An analogous result can be found in \cite{Himonas:2009fk}. 
 %
 %
 %
@@ -1049,7 +903,7 @@ the Sobolev Imbedding Theorem, we obtain
 \end{equation*}
 %
 %
-which by \autoref{appleb} gives
+which by \cref{appleb} gives
 %
 %
 \begin{equation}
@@ -1083,7 +937,7 @@ we obtain \eqref{E-est}. \qquad \qedsymbol
 %
 %
 
-{\bf Construction of  solutions.}
+\textbf{Construction of  solutions.}
 We wish now to estimate the difference between approximate and actual 
 solutions to
 the HR i.v.p. with common initial data. Let
@@ -1144,7 +998,7 @@ v(t)
 \end{proposition}
 %
 %
-{\bf   Proof.}  First we observe that $v$ satisfies 
+\textbf{  Proof.}  First we observe that $v$ satisfies 
 %
 %
 \begin{equation*}
@@ -1311,7 +1165,7 @@ u^h\|_{L^\infty(\rr)} \lesssim \lambda^{- \frac{\delta}{2} - s +2 }.
 \end{equation*}
 %
 %
-Furthermore, by the Sobolev Imbedding Theorem and \autoref{appleb}, we have
+Furthermore, by the Sobolev Imbedding Theorem and \cref{appleb}, we have
 %
 %
 %
@@ -1363,7 +1217,7 @@ Applying Gronwall's Inequality completes the proof. \qquad \qedsymbol%
 %
 %
 
-{\bf Non-Uniform Dependence for $s>1$.}
+\textbf{Non-Uniform Dependence for $s>3/2$.}
 Let $u_{\pm 1,\lambda}$ be solutions to the HR i.v.p. with initial 
 data $u^{\pm 1,
 n}(0)$. We wish to show that the $H^s$ norm of the difference of $u_{\pm 1,
@@ -1385,7 +1239,7 @@ decays as $\lambda \to \infty$. Note that
 \end{equation*}
 %
 %
-where the last step follows from \autoref{applea} and \autoref{appleb}.
+where the last step follows from \cref{applea} and \cref{appleb}.
 Using \eqref{u_x-Linfty-Hs}, we have 
 %
 \begin{equation*}
@@ -1412,7 +1266,7 @@ Hence
 %
 %
 Furthermore, by 
-\autoref{applelem:bound_for_difference-of-approx-and-actual-soln} 
+\cref{applelem:bound_for_difference-of-approx-and-actual-soln} 
 %
 %
 \begin{equation}
@@ -1453,11 +1307,11 @@ gives
 %
 %
 Next, we will use estimate \eqref{apple65} to prove non-uniform
-dependence when $s > 1$.
+dependence when $s > 3/2$.
 %%%%%%%%%%%%% Behavior at time  t = 0  %%%%%%%%%%%% 
 
 %
-{\bf Behavior at time $t=0$.}  We have
+\textbf{Behavior at time $t=0$.}  We have
 %
 %
 %
@@ -1494,7 +1348,7 @@ Applying \eqref{tildphi} and recalling that $1<\delta<2$, we conclude that
 %  
 %
 
-{\bf Behavior at time  $t>0$.}  Using the reverse triangle inequality, we 
+\textbf{Behavior at time  $t>0$.}  Using the reverse triangle inequality, we 
 have
 %
 %
@@ -1609,7 +1463,7 @@ u_{\ell,1,\lambda}(t) - u_{\ell,-1,\lambda}(t) +
 \end{equation}
 %
 %
-Now, by  \autoref{appleb} we have
+Now, by  \cref{appleb} we have
 %
 %
 \begin{equation*}
@@ -1646,7 +1500,7 @@ t|
 %
 %
 %
-Letting $\lambda$ go to $\infty$,  \autoref{applea}
+Letting $\lambda$ go to $\infty$,  \cref{applea}
 with \eqref{apple90}  gives
 %
 %
@@ -1666,7 +1520,7 @@ u^{- 1,\lambda}(t)
 %
 Combining \eqref{appleHR-slns-to-ap-est} with \eqref{apple91}, and 
 recalling that $T >>1$, we obtain \eqref{bdd-away-from-0}. This completes 
-the proof of \autoref{hr-non-unif-dependence} for the
+the proof of \cref{hr-non-unif-dependence} for the
 non-periodic case. \qquad \qedsymbol
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1679,10 +1533,10 @@ non-periodic case. \qquad \qedsymbol
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\section{Proof of \autoref{hr-non-unif-dependence}
+\section{Proof of Non-Uniform Dependence 
 on the circle}
 \label{sec:3}
-\setcounter{equation}{0}
+
 %
 Here we follow the proof in \cite{Himonas_2009_Non-uniform-dep-per}. 
 Consider the periodic Cauchy problem for the HR equation
@@ -1812,7 +1666,7 @@ Then for the error $E$ we have
 %
 %
 %
-{\bf Proof.} It follows from \eqref{1m} and the inequality
+\textbf{Proof.} It follows from \eqref{1m} and the inequality
 %
 %
 %
@@ -1861,7 +1715,7 @@ v(t)
 \end{proposition}
 %
 %
-{\bf{Proof.}} The difference $v = u^{\omega,n} - u_{\omega,n}$ satisfies 
+\textbf{{Proof.}} The difference $v = u^{\omega,n} - u_{\omega,n}$ satisfies 
 the i.v.p
 \begin{align}
 \label{1.7}
@@ -1921,7 +1775,7 @@ D^\sigma v \ dx.
 We now estimate each integral of the right-hand side
 of \eqref{X}.
 
-{\bf Estimate of Integral 1.} Applying Cauchy-Schwartz, we obtain
+\textbf{Estimate of Integral 1.} Applying Cauchy-Schwartz, we obtain
 %
 %
 \begin{equation}
@@ -1934,7 +1788,7 @@ of \eqref{X}.
 %
 %
 %
-{\bf Estimate of Integral 2.} We can rewrite
+\textbf{Estimate of Integral 2.} We can rewrite
 %
 %
 \begin{equation}
@@ -1990,7 +1844,7 @@ If $\rho > 3/2$ and $0 \le \sigma + 1 \le \rho$, then
 %
 Let $\sigma = 1/2 + \ee$ and $\rho = 3/2 + \ee$, where 
 $\ee > 0$ is
-arbitrarily small. Applying Cauchy-Schwartz and \autoref{cor1}, we obtain 
+arbitrarily small. Applying Cauchy-Schwartz and \cref{cor1}, we obtain 
 %
 %
 %
@@ -2026,7 +1880,7 @@ u^{\omega,n} +
 %
 %
 
-{\bf Estimate of Integral 3.} Using Cauchy-Schwartz, and recalling that
+\textbf{Estimate of Integral 3.} Using Cauchy-Schwartz, and recalling that
 $\sigma = 1/2 + \ee$,  we obtain
 %
 %
@@ -2043,7 +1897,7 @@ $\sigma = 1/2 + \ee$,  we obtain
 %
 %
 %
-{\bf Estimate of Integral 4.}
+\textbf{Estimate of Integral 4.}
 We will need the following result whose proof can be found in 
 \cite{Himonas_2009_Non-uniform-dep-per}:
 %
@@ -2065,7 +1919,7 @@ If  $1/2 < \sigma < 1 $ then
 %
 \end{lemma}
 %
-Applying Cauchy-Schwartz and  \autoref{impo}, we obtain
+Applying Cauchy-Schwartz and  \cref{impo}, we obtain
 %
 %
 \begin{equation}
@@ -2116,7 +1970,7 @@ lifespan $T$. Hence, applying the triangle inequality,
 %
 %proof of existence relies on an argument similar to that used on the line to prove 
 %the existence of a common lifespan for the approximate solutions).
-Using \autoref{lem:error_of_approx_solution} and
+Using \cref{lem:error_of_approx_solution} and
 substituting \eqref{total-error-approx-solution} and \eqref{3r}
 into \eqref{10}, we obtain
 %
@@ -2143,7 +1997,7 @@ the proof. \qquad \qedsymbol
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{\bf Non-Uniform Dependence for $s > 3/2$.}
+\textbf{Non-Uniform Dependence for $s > 3/2$.}
 %
 %
 %
@@ -2155,7 +2009,7 @@ n}$ and the associated approximate solution $u^{\pm 1, n}$ decays.
 We assume
 $s > 3/2 $ and $\sigma = 1/2 + \ee$ \ for a sufficiently small
 $\ee= \ee(s) > 0$. 
-Then by \autoref{prop:bound_for_difference-of-approx-actual-soln} we 
+Then by \cref{prop:bound_for_difference-of-approx-actual-soln} we 
 have
 %
 %
@@ -2250,7 +2104,7 @@ analogous to that on the real line. \qquad \qedsymbol
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Well-Posedness for HR}
 \label{sec:4}
-\setcounter{equation}{0}
+
 %
 %
 %
@@ -2350,7 +2204,7 @@ lifespan of the family $\{u_\ee\}$ of solutions.
 %
 %
 
-{\bf Estimates for the Lifespan and Sobolev norm of $u_\ee$.}
+\textbf{Estimates for the Lifespan and Sobolev norm of $u_\ee$.}
 %
 We will show that there is a lower bound  $T$
 for $T_\ee$ which is independent of $\ee\in(0, 1]$.
@@ -2480,7 +2334,7 @@ where the last step follows from
 %
 %
 which is a simple corollary of the following Kato-Ponce commutator 
-estimate, whose proof can be found in \cite{Kato_1988_Commutator-esti}: 
+estimate, whose proof can be found in \cite{Kato:1988zr}.
 %
 %
 \begin{lemma}[Kato-Ponce] \label{KP-lemma}
@@ -2501,7 +2355,7 @@ c_s \big(
 \end{lemma}
 %
 %
-A proof by Kato and Ponce can be found in \cite{Kato_1988_Commutator-esti}.
+A proof by Kato and Ponce can be found in \cite{Kato:1988zr}.
 Recalling \eqref{B-moli-int-v}, we apply Cauchy-Schwartz
 to estimate the remaining integral
 %
@@ -2598,7 +2452,7 @@ it, we obtain the following:
 %
 %   
 %
-%{\bf  Lifespan estimate of $u_\ee$.} To derive an explicit formula for
+%\textbf{ Lifespan estimate of $u_\ee$.} To derive an explicit formula for
 %$T_\ee$ we proceed as follows.  Letting  $y(t)=
 %\|u_\ee(t)\|_{H^s(\ci)}^2$ inequality  \eqref{B-diff-ineq} takes the
 %form
@@ -2709,7 +2563,7 @@ it, we obtain the following:
 %%   
 %%
 %\noindent
-%{\bf  Size of the solution estimate.} If we choose  $T=\frac12 T_0$,
+%\textbf{ Size of the solution estimate.} If we choose  $T=\frac12 T_0$,
 %then for $|t| \le T$, estimates \eqref{norm-u(t)-formula} and
 %\eqref{norm-u(t)-formula-prime} imply 
 %%
@@ -2808,11 +2662,11 @@ Here  $c_s$ is a constant depending only on $s$.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-{\bf Choosing  a convergent subsequence.}
+\textbf{Choosing  a convergent subsequence.}
 %
 Next we shall show that  the family $\{ u_\ee\}$ has a convergent 
 subsequence
-whose limit $u$ solves the HR i.v.p.  Let I= [-T, T]. By  \autoref{hr_wp} and the compactness of $I$ we have a uniformly bounded 
+whose limit $u$ solves the HR i.v.p.  Let I= [-T, T]. By  \cref{hr_wp} and the compactness of $I$ we have a uniformly bounded 
 family
 %
 %
@@ -2884,7 +2738,7 @@ If $v \in C(I, H^s(\ci)) \cap C^1(I, H^{s-1}(\ci))$
 then $v \in C^\sigma (I, H^{s- \sigma}(\ci))$ for  $0 < \sigma < 1$.
 \end{lemma}
 %
-Applying \autoref{interpolation-lem} gives 
+Applying \cref{interpolation-lem} gives 
 %
 %
 %
@@ -2938,7 +2792,7 @@ u_{\ee_n} \to u \; \; \text{in} \; \; C(I, H^{s-\sigma}(\ci)).
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{\bf Verifying that $u$ solves the HR equation.} Using 
+\textbf{Verifying that $u$ solves the HR equation.} Using 
 \eqref{strong-conv-of-u_ep}
 and the Sobolev Imbedding Theorem, we see that
 %
@@ -3011,7 +2865,7 @@ to the HR i.v.p. It remains to prove that $u \in C(I, H^s(\ci)).$
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{\bf Proof that $u \in C(I, H^s(\ci))$.} Since $u \in L^\infty(I, 
+\textbf{Proof that $u \in C(I, H^s(\ci))$.} Since $u \in L^\infty(I, 
 H^s(\ci))$, it is a
 continuous function from $I$ to $H^s(\ci)$ with respect to the weak
 topology on $H^s(\ci)$. That is, for $\{t_n\} \subset I$ such that $t_n \to t$, we
@@ -3131,7 +2985,7 @@ is uniformly bounded for $|t| \le T$ by
 %
 %
 
-{\bf Uniqueness.}
+\textbf{Uniqueness.}
 %
 %
 Let $u,\omega \in C(I, H^s(\ci)), \ s>3/2,$ be two solutions to the
@@ -3180,7 +3034,7 @@ D^\sigma v \ dx
 %
 We now estimate \eqref{2v} in parts.
 
-{\bf Estimate of Integral 1.} Note that
+\textbf{Estimate of Integral 1.} Note that
 %
 %
 \begin{equation}
@@ -3224,7 +3078,7 @@ D^\sigma v \ dx \right |
 To estimate the remaining integral of \eqref{4v}, we first 
 choose $\ 3/2 < \rho
 < s$ and $ 1/2 < \sigma \le \rho -1$. An application of 
-Cauchy-Schwartz and \autoref{cor1} then yields 
+Cauchy-Schwartz and \cref{cor1} then yields 
 %
 %
 \begin{equation}
@@ -3253,7 +3107,7 @@ D^\sigma v \ dx \right |
 %
 %
 
-{\bf Estimate of Integral 2.} Applying Cauchy-Schwartz, the algebra property of Sobolev spaces, and the 
+\textbf{Estimate of Integral 2.} Applying Cauchy-Schwartz, the algebra property of Sobolev spaces, and the 
 Sobolev Imbedding Theorem, we obtain 
 %
 %
@@ -3272,7 +3126,7 @@ D^\sigma v \ dx  \right |
 %
 %
 
-{\bf Estimate of Integral 3.} We first apply
+\textbf{Estimate of Integral 3.} We first apply
 Cauchy-Schwartz and the Sobolev Imbedding Theorem to obtain
 %
 %
@@ -3288,7 +3142,7 @@ Cauchy-Schwartz and the Sobolev Imbedding Theorem to obtain
 \end{equation*}
 %
 %
-Restrict $1/2 < \sigma < 1$. Then applying \autoref{impo} and the Sobolev 
+Restrict $1/2 < \sigma < 1$. Then applying \cref{impo} and the Sobolev 
 Imbedding Theorem, we conclude that
 %
 %
@@ -3333,7 +3187,7 @@ inequality that $v = 0$. \qquad \qedsymbol
 %
 %
 
-{\bf Continuous Dependence.}
+\textbf{Continuous Dependence.}
 Let $\left\{ u_{0, n} \right\}_n \subset H^s(\ci)$ be a uniformly bounded
 sequence converging to $u_0$ in $H^s(\ci)$.
 Consider solutions $u $, $u^\ee$, $u^\ee_n$, and $u_n$ to the 
@@ -3424,7 +3278,7 @@ The proof of \eqref{enough_to_prove3} will be analogous to that of
 %
 %
 
-{\bf Proof of \eqref{enough_to_prove1}.}
+\textbf{Proof of \eqref{enough_to_prove1}.}
 Consider two solutions $u $ and $u^\ee$ to the Cauchy-problem
 \eqref{hyperelastic-rod-equation}-\eqref{init-cond}
 with associated initial data $u_0$ and
@@ -3513,7 +3367,7 @@ Next we estimate $B$ in parts:
 %
 %
 
-{\bf Estimate of Integral 1.} We can rewrite
+\textbf{Estimate of Integral 1.} We can rewrite
 %
 %
 \begin{equation}
@@ -3578,7 +3432,7 @@ dx \right | \lesssim \|u^\ee \|_{H^s(\ci)} \|v\|_{H^s(\ci)}^2 + \|u^\ee
 %
 %
 %
-{\bf Estimate of Integral 2}. We can rewrite
+\textbf{Estimate of Integral 2}. We can rewrite
 %
 %
 \begin{equation}
@@ -3637,7 +3491,7 @@ dx \right |
 \end{equation}
 %
 %
-{\bf Estimate of Integral 3.} Applying Cauchy-Schwartz, the 
+\textbf{Estimate of Integral 3.} Applying Cauchy-Schwartz, the 
 algebra property of Sobolev spaces, and the Sobolev Imbedding Theorem gives
 %
 %
@@ -3654,7 +3508,7 @@ v \ dx \right |  \lesssim \|u^\ee\|_{H^{s}(\ci)} \|v\|_{H^{s}(\ci)}^2.
 %
 %
 %
-{\bf Estimate of Integral 4.} Applying Cauchy-Schwartz, the 
+\textbf{Estimate of Integral 4.} Applying Cauchy-Schwartz, the 
 algebra property of Sobolev spaces, and the Sobolev Imbedding Theorem, we 
 obtain
 %
@@ -3729,7 +3583,7 @@ For $r \ge s > 3/2$ and $0 < \ee <1$,
 \end{lemma}
 %
 %
-{\bf Proof.} Recalling the construction of $J_\ee$ in 
+\textbf{Proof.} Recalling the construction of $J_\ee$ in 
 \eqref{0'u}-\eqref{widehat-def},  we have
 %
 %
@@ -3775,7 +3629,7 @@ For $\sigma$ such that $1/2 < \sigma < 1$ and $\sigma + 1 \le s$, we have
 %
 %
 %
-{\bf Proof.}
+\textbf{Proof.}
 Recall that $v$ solves the Cauchy-problem \eqref{4u}-\eqref{5u}.
 Applying $D^\sigma$ to both sides of \eqref{4u}, then multiplying by
 $D^\sigma v$ and integrating, we obtain 
@@ -3911,7 +3765,7 @@ For $r \le s$ and $\ee>0$
 \end{lemma}
 %
 %
-{\bf Proof.}
+\textbf{Proof.}
 Let $u \in H^s(\ci)$ and $r, s \in \rr$ such that $r \le s$. 
 Recalling the construction of $J_\ee$ in
 \eqref{0'u}-\eqref{widehat-def}, we have
@@ -3978,7 +3832,7 @@ completes the proof. \qquad \qedsymbol
 
 We now return to analyzing the $\ee^{-1}
 \|v\|_{H^{s-1}(\ci)} $ term of \eqref{15u}.
-Applying \eqref{16u} and \autoref{prop:6r}, 
+Applying \eqref{16u} and \cref{prop:6r}, 
 we obtain
 %
 %
@@ -4121,7 +3975,7 @@ Noting that $\|v\|_{H^s(\ci)}$ is uniformly bounded in $\ee$ by
 \begin{split}
 \|v(0)\|_{H^s(\ci)} = \|u_0 - J_\ee u_0 \|_{H^s(\ci)} \to 0 \end{split}
 \end{equation*}
-by  \autoref{lem4r}, we conclude from \eqref{key-decay-ineq} that
+by  \cref{lem4r}, we conclude from \eqref{key-decay-ineq} that
 %
 %
 \begin{equation}
@@ -4141,7 +3995,7 @@ completing the proof of \eqref{enough_to_prove1}. \qquad \qedsymbol
 %
 %
 
-{\bf Proof of \eqref{enough_to_prove2}.} Let $v = u^\ee_n - u^\ee$. Then 
+\textbf{Proof of \eqref{enough_to_prove2}.} Let $v = u^\ee_n - u^\ee$. Then 
 $v$ solves the Cauchy problem
 \begin{align}
 \label{4qu}
@@ -4169,7 +4023,7 @@ obtain
 \end{equation*}
 %
 %
-which by differentiating the left-hand side and applying \autoref{lem5r} to 
+which by differentiating the left-hand side and applying \cref{lem5r} to 
 the right-hand side simplifies to
 \begin{equation}
 \begin{split}
@@ -4208,7 +4062,7 @@ For $\sigma$ such that $1/2 < \sigma < 1$ and $\sigma + 1 \le s$,
 %
 %
 %
-{\bf Proof.}
+\textbf{Proof.}
 Repeating calculations \eqref{X}-\eqref{12}, with $E$ set to zero, 
 $u^{\omega,n}$
 replaced by $u^\ee_n$, $u_{\omega,n}$ replaced by $u^\ee$, and $\sigma$ and 
@@ -4273,7 +4127,7 @@ We now return to analyzing the $\ee^{-1}
 \|v\|_{H^{s-1}(\ci)}$ term of \eqref{15qu}.
 Applying the 
 interpolation estimate \eqref{16u} and
-\autoref{prop:left} gives
+\cref{prop:left} gives
 %
 %
 %
@@ -4353,7 +4207,7 @@ proof is analogous to that of \eqref{enough_to_prove1}. \qquad \qedsymbol
 %
 %
 
-{\bf Extending Well-Posedness to the Non-Periodic Case.}
+\textbf{Extending Well-Posedness to the Non-Periodic Case.}
 In the proof of existence on the line, we will have difficulties in 
 arranging
 that the solutions $\{u_\ee\}$ to the mollified HR i.v.p. converge in $C(I,
@@ -4477,255 +4331,24 @@ From \eqref{non-per-pars} it follows that
 %
 %
 %
-Given this construction, the proofs of \autoref{lem5r} and 
-\autoref{lem4r} for the non-periodic case will be
+Given this construction, the proofs of \cref{lem5r} and 
+\cref{lem4r} for the non-periodic case will be
 analogous to those in the periodic case.
 Hence, how we
 construct the mollifier $J_\ee$ plays a critical role in the proofs of
 well-posedness for the HR i.v.p. in both the periodic and non-periodic 
 cases. %
-
-{\bf Acknowledgements.} The author thanks his advisor Alex Himonas for 
-his guidance and many helpful remarks. The author also thanks the Department of 
-Mathematics at the University of Notre Dame and the Arthur J. Schmitt Foundation for 
-supporting his doctoral 
-studies.
 %
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of Theorem~\ref{thm:main-thm}}
+\label{sec:pf-holder}
+%
+In preparation.
 %
 %
-%		Bibliography		
+%
+
+
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%\bibliographystyle{custom}
-%\bibliography{hr.bib}
-\begin{thebibliography}{10}
-\newcommand{\enquote}[1]{``#1''}
-
-\bibitem{Bendahmane_2006_Hsp-1-perturbat}
-\textsc{M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen}.
-\newblock \enquote{{$H\sp 1$}-perturbations of smooth solutions for a weakly
-  dissipative hyperelastic-rod wave equation.}
-\newblock \emph{Mediterr. J. Math.}, \textbf{3} (2006), no. 3-4, 419--432.
-
-\bibitem{Benjamin_1972_The-stability-o}
-\textsc{T.~B. Benjamin}.
-\newblock \enquote{The stability of solitary waves.}
-\newblock \emph{Proc. Roy. Soc. (London) Ser. A}, \textbf{328} (1972),
-  153--183.
-
-\bibitem{Benjamin_1972_Model-equations}
-\textsc{T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony}.
-\newblock \enquote{Model equations for long waves in nonlinear dispersive
-  systems.}
-\newblock \emph{Philos. Trans. Roy. Soc. London Ser. A}, \textbf{272} (1972),
-  no. 1220, 47--78.
-
-\bibitem{Bona_2009_Sharp-well-pose}
-\textsc{J.~L. Bona and N.~Tzvetkov}.
-\newblock \enquote{Sharp well-posedness results for the {BBM} equation.}
-\newblock \emph{Discrete Contin. Dyn. Syst.}, \textbf{23} (2009), no.~4,
-  1241--1252.
-
-\bibitem{Bressan_2007_Global-conserva}
-\textsc{A.~Bressan and A.~Constantin}.
-\newblock \enquote{Global conservative solutions of the {C}amassa-{H}olm
-  equation.}
-\newblock \emph{Arch. Ration. Mech. Anal.}, \textbf{183} (2007), no.~2,
-  215--239.
-
-\bibitem{Christ_2003_Asymptotics-fre}
-\textsc{M.~Christ, J.~Colliander, and T.~Tao}.
-\newblock \enquote{Asymptotics, frequency modulation, and low regularity
-  ill-posedness for canonical defocusing equations.}
-\newblock \emph{Amer. J. Math.}, \textbf{125} (2003), no.~6, 1235--1293.
-
-\bibitem{Coclite_2005_Global-weak-sol}
-\textsc{G.~M. Coclite, H.~Holden, and K.~H. Karlsen}.
-\newblock \enquote{Global weak solutions to a generalized hyperelastic-rod wave
-  equation.}
-\newblock \emph{SIAM J. Math. Anal.}, \textbf{37} (2005), no.~4, 1044--1069
-  (electronic).
-
-\bibitem{Constantin_2000_Stability-of-a-}
-\textsc{A.~Constantin and W.~A. Strauss}.
-\newblock \enquote{Stability of a class of solitary waves in compressible
-  elastic rods.}
-\newblock \emph{Phys. Lett. A}, \textbf{270} (2000), no. 3-4, 140--148.
-
-\bibitem{Dai_1998_Model-equations}
-\textsc{H.-H. Dai}.
-\newblock \enquote{Model equations for nonlinear dispersive waves in a
-  compressible mooney-rivlin rod.}
-\newblock \emph{Acta Mech.}, \textbf{127} (1998), no. 1-4, 193--207.
-
-\bibitem{Dai_2000_Head-on-collisi}
-\textsc{H.-H. Dai, S.~Dai, and Y.~Huo}.
-\newblock \enquote{Head-on collision between two solitary waves in a
-  compressible mooney-rivlin elastic rod.}
-\newblock \emph{Wave Motion}, \textbf{32} (2000), no.~2, 93--111.
-
-\bibitem{Dai_2000_Solitary-shock-}
-\textsc{H.-H. Dai and Y.~Huo}.
-\newblock \enquote{Solitary shock waves and other travelling waves in a general
-  compressible hyperelastic rod.}
-\newblock \emph{R. Soc. Lond. Proc. Ser. A Math. Phys. Eng. Sci.}, \textbf{456}
-  (2000), no. 1994, 331--363.
-
-\bibitem{Dieudonne_1969_Foundations-of-}
-\textsc{J.~Dieudonn{{\'e}}}.
-\newblock \emph{Foundations of modern analysis}.
-\newblock Academic Press, New York, 1969.
-\newblock Enlarged and corrected printing, Pure and Applied Mathematics, Vol.
-  10-I.
-
-\bibitem{Folland_1999_Real-analysis}
-\textsc{G.~B. Folland}.
-\newblock \emph{Real analysis}.
-\newblock Pure and Applied Mathematics (New York). John Wiley \& Sons Inc., New
-  York, second edn., 1999.
-\newblock Modern techniques and their applications, A Wiley-Interscience
-  Publication.
-
-\bibitem{Himonas_2009_Non-uniform-dep}
-\textsc{A.~Himonas and C.~E. Kenig}.
-\newblock \enquote{Non-uniform dependence on initial data for the ch equation
-  on the line.}
-\newblock \emph{Differential Integral Equations}, \textbf{22} (2009), no. 3-4,
-  201--224.
-
-\bibitem{Himonas_2009_Non-uniform-dep-per}
-\textsc{A.~Himonas, C.~E. Kenig, and G.~Misio{\l}ek}.
-\newblock \enquote{Non-uniform dependence for the periodic ch equation.}
-\newblock \emph{To appear in Communications in Partial Differential Equations},
-   (2009).
-
-\bibitem{Himonas_2001_The-Cauchy-prob}
-\textsc{A.~Himonas and G.~Misio{\l}ek}.
-\newblock \enquote{The {C}auchy problem for an integrable shallow-water
-  equation.}
-\newblock \emph{Differential Integral Equations}, \textbf{14} (2001), no.~7,
-  821--831.
-
-\bibitem{Himonas_2005_High-frequency-}
----{}---{}---.
-\newblock \enquote{High-frequency smooth solutions and well-posedness of the
-  {C}amassa-{H}olm equation.}
-\newblock \emph{Int. Math. Res. Not.},  (2005), no.~51, 3135--3151.
-
-\bibitem{Himonas_2009_Non-uniform-dep-euler}
----{}---{}---.
-\newblock \enquote{Non-uniform dependence on initial data of solutions to the
-  euler equations of hydrodynamics.}
-\newblock \emph{Communications in Mathematical Physics},  (2009, to appear).
-
-\bibitem{Himonas_2007_Non-uniform-con}
-\textsc{A.~Himonas, G.~Misio{\l}ek, and G.~Ponce}.
-\newblock \enquote{Non-uniform continuity in {$H\sp 1$} of the solution map of
-  the ch equation.}
-\newblock \emph{Asian J. Math.}, \textbf{11} (2007), no.~1, 141--150.
-
-\bibitem{Holden_2007_Global-conserva}
-\textsc{H.~Holden and X.~Raynaud}.
-\newblock \enquote{Global conservative solutions of the generalized
-  hyperelastic-rod wave equation.}
-\newblock \emph{J. Differential Equations}, \textbf{233} (2007), no.~2,
-  448--484.
-
-\bibitem{Kato_1975_Quasi-linear-eq}
-\textsc{T.~Kato}.
-\newblock \enquote{Quasi-linear equations of evolution, with applications to
-  partial differential equations.}
-\newblock In \emph{Spectral theory and differential equations ({P}roc.
-  {S}ympos., {D}undee, 1974; dedicated to {K}onrad {J}{\"o}rgens)}, pp. 25--70.
-  Lecture Notes in Math., Vol. 448. Springer, Berlin, 1975.
-
-\bibitem{Kato_1988_Commutator-esti}
-\textsc{T.~Kato and G.~Ponce}.
-\newblock \enquote{Commutator estimates and the {E}uler and {N}avier-{S}tokes
-  equations.}
-\newblock \emph{Comm. Pure Appl. Math.}, \textbf{41} (1988), no.~7, 891--907.
-
-\bibitem{Kenig_2001_On-the-ill-pose}
-\textsc{C.~E. Kenig, G.~Ponce, and L.~Vega}.
-\newblock \enquote{On the ill-posedness of some canonical dispersive
-  equations.}
-\newblock \emph{Duke Math. J.}, \textbf{106} (2001), no.~3, 617--633.
-
-\bibitem{Koch_2005_Nonlinear-wave-}
-\textsc{H.~Koch and N.~Tzvetkov}.
-\newblock \enquote{Nonlinear wave interactions for the {B}enjamin-{O}no
-  equation.}
-\newblock \emph{Int. Math. Res. Not.},  (2005), no.~30, 1833--1847.
-
-\bibitem{Lenells_2006_Traveling-waves}
-\textsc{J.~Lenells}.
-\newblock \enquote{Traveling waves in compressible elastic rods.}
-\newblock \emph{Discrete Contin. Dyn. Syst. Ser. B}, \textbf{6} (2006), no.~1,
-  151--167 (electronic).
-
-\bibitem{Li_2000_Well-posedness-}
-\textsc{Y.~A. Li and P.~J. Olver}.
-\newblock \enquote{Well-posedness and blow-up solutions for an integrable
-  nonlinearly dispersive model wave equation.}
-\newblock \emph{J. Differential Equations}, \textbf{162} (2000), no.~1, 27--63.
-
-\bibitem{Mustafa_2007_Global-conserva}
-\textsc{O.~G. Mustafa}.
-\newblock \enquote{Global conservative solutions of the hyperelastic rod
-  equation.}
-\newblock \emph{Int. Math. Res. Not. IMRN},  (2007), no.~13, Art. ID rnm040,
-  26.
-
-\bibitem{Olson_2006_Non-uniform-dep}
-\textsc{E.~Olson}.
-\newblock \enquote{Non-uniform dependence on initial data for a family of
-  non-linear evolution equations.}
-\newblock \emph{Differential Integral Equations}, \textbf{19} (2006), no.~10,
-  1081--1102.
-
-\bibitem{Rodriguez-Blanco_2001_On-the-Cauchy-p}
-\textsc{G.~Rodr{\'{\i}}guez-Blanco}.
-\newblock \enquote{On the {C}auchy problem for the {C}amassa-{H}olm equation.}
-\newblock \emph{Nonlinear Anal.}, \textbf{46} (2001), no. 3, Ser. A: Theory
-  Methods, 309--327.
-
-\bibitem{Taylor_1991_Pseudodifferent}
-\textsc{M.~E. Taylor}.
-\newblock \emph{Pseudodifferential operators and nonlinear {PDE}}, vol. 100 of
-  \emph{Progress in Mathematics}.
-\newblock Birkh{\"a}user Boston Inc., Boston, MA, 1991.
-
-\bibitem{Yin_2003_On-the-Cauchy-p}
-\textsc{Z.~Yin}.
-\newblock \enquote{On the cauchy problem for a nonlinearly dispersive wave
-  equation.}
-\newblock \emph{J. Nonlinear Math. Phys.}, \textbf{10} (2003), no.~1, 10--15.
-
-\bibitem{Zhou_2005_Local-well-pose}
-\textsc{Y.~Zhou}.
-\newblock \enquote{Local well-posedness and blow-up criteria of solutions for a
-  rod equation.}
-\newblock \emph{Math. Nachr.}, \textbf{278} (2005), no.~14, 1726--1739.
-
-\end{thebibliography}
- 
-  
-\vskip0.1in
-
-\noindent{\bf David Karapetyan}\\
-Department of Mathematics\\
-University of Notre Dame\\
-Notre Dame, IN 46556\\
-E-mail: dkarapet@nd.edu
-
-
-
-
-\end{document}
-
