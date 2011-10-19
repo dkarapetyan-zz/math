@@ -11,21 +11,21 @@
 \catcode`\@=11
 %%%%%%%%%%%%%%%%%%%%
 %: runTypes
-%% prelim : a is always the right answer and minimal space between problems; no answer sheets
-%% final : answers are permuted and spacing is introduced; blank and marked answer sheets
+%% prelim : a is always the right answer and minimal space between
+%% problems; no answer sheets
+%% final : answers are permuted and spacing is introduced; blank and
+%% marked answer sheets
 %%     - this is the printed version
-%% webpage: answers are permuted but spacing is minimal; no blank answer sheet; solutions can
+%% webpage: answers are permuted but spacing is minimal; no blank
+%% answer sheet; solutions can
 %%      be printed as well.
-%%     - good for posting as a web page 
-\long\def\runPrelim{prelim}
-\long\def\runFinal{final}
+%%     - good for posting as a web page
+\long\def\runPrelim{prelim} \long\def\runFinal{final}
 \long\def\runWebPage{webpage}
 
 %: document size to override amsart.sty
-\global\hoffset=-1in
-\global\hsize=6.25true in
-\global\textwidth=\hsize
-\global\vsize=8true in
+\global\hoffset=-1in \global\hsize=6.25true in
+\global\textwidth=\hsize \global\vsize=8true in
 \global\textheight=8true in
 
 %: make \frac always be displaystyle
@@ -36,7 +36,7 @@
 
 
 %: commands to set spacing between problems
-%%  partial credit typically sets 1 problem per page 
+%%  partial credit typically sets 1 problem per page
 %% multiple choice typically sets 2 problems per page
 %% Extra page breaks can be introduced in the multiple choice part
 %% and page breaks can be suppressed in the partial credit part
@@ -56,31 +56,31 @@
 \def\problemSpacing{%
 \ifx\LRTrunType\runPrelim\relax \bigskip%
 \else\ifx\LRTrunType\runWebPage\relax\bigskip%
-\else\ifx\problemSp\spEvenOdd\relax{\ifodd\value{problem}\vfill \else\mcNewPage\fi}%
-\else\ifx\problemSp\spOddEven\relax{\ifodd\value{problem}\mcNewPage\else\vfill\fi}%
+\else\ifx\problemSp\spEvenOdd\relax{\ifodd\value{problem}\vfill
+\else\mcNewPage\fi}%
+\else\ifx\problemSp\spOddEven\relax{\ifodd\value{problem}\mcNewPage\else
+\vfill\fi}%
 \else\ifx\problemSp\spOnePerPage\relax\pcNewPage%
 \else\ifx\problemSp\spJustVfill\relax\vfill%
 \else\customProblemSpacing\fi\fi\fi\fi\fi\fi}
 
 \newcommand{\problemSp}{prelim}
-\long\def\spPrelim{prelim}
-\long\def\spEvenOdd{evenodd}
-\long\def\spOddEven{oddeven}
-\long\def\spOnePerPage{oneperpage}
+\long\def\spPrelim{prelim} \long\def\spEvenOdd{evenodd}
+\long\def\spOddEven{oddeven} \long\def\spOnePerPage{oneperpage}
 \long\def\spJustVfill{justvfill}
 
-\newcommand{\customProblemSpacing}{\typeout{}\typeout{Set customProblemSpacing.}\typeout{}%
+\newcommand{\customProblemSpacing}{\typeout{}\typeout{Set
+customProblemSpacing.}\typeout{}%
 \par xxxxxxxxxxxxx\par}
 
 \newcount\problemType
 
-\gdef\partialcreditList{}
-\gdef\multiplechoiceList{}
+\gdef\partialcreditList{} \gdef\multiplechoiceList{}
 \gdef\currentProblemNumber{}
 %: problem ENVIRONMENT
 \newcounter{problem}
 \setcounter{problem}{1}
-\newcount\isMultiplechoice\global\isMultiplechoice=1 
+\newcount\isMultiplechoice\global\isMultiplechoice=1
 
 \newenvironment{problem}%
 {\par\null\vskip2pt\global\problemType=0%
@@ -88,19 +88,23 @@
 \noindent{\bf \number\currentProblemNumber\problemPunct}\problemPoints}%
 %
 %%%%%%%\showthe\isMultiplechoice
-% if not multiple choice add to partialcreditList, else add to multiplechoiceList
+% if not multiple choice add to partialcreditList, else add to
+% multiplechoiceList
 {\par\problemSpacing%
 \xdef\ff{\number\value{problem}}%
-\ifnum\isMultiplechoice=1 \relax\expandafter\rightappenditem\ff\to\partialcreditList%
+\ifnum\isMultiplechoice=1
+\relax\expandafter\rightappenditem\ff\to\partialcreditList%
 \else\expandafter\rightappenditem\ff\to\multiplechoiceList\fi%
 \addtocounter{problem}{1}\global\isMultiplechoice=1 %
 }
 
 %: answers ENVIRONMENT
 \newenvironment{answers}%
-%pick up answers 
-%    - on entry we know permutation \csname perm#\endcsname where # is problem number
-%   - first variable is flag telling how to display answers, then answers
+%pick up answers
+%    - on entry we know permutation \csname perm#\endcsname where # is
+% problem number
+%   - first variable is flag telling how to display answers, then
+% answers
 {\global\isMultiplechoice=0 \par\Answers}
 {%\showthe\isMultiplechoice
 \global\problemType=1 \vskip10pt%
@@ -109,12 +113,14 @@
 \newcount\tmpcount
 \newdimen\boxsize\boxsize=0in
 \def\defaultPerm{abcde}
-\gdef\problemsPerLine{}%first digit is size, others are problems on successive lines
+\gdef\problemsPerLine{}%first digit is size, others are problems on
+% successive lines
 \gdef\empty{}
 
 \long\def\Answers#1#2\\#3\\#4\\#5\\#6\\{%
-\ifx\LRTrunType\runPrelim\relax% default permutation if in preliminary mode
-\expandafter\xdef\csname perm\number\value{problem}\endcsname{\defaultPerm}\fi%
+\ifx\LRTrunType\runPrelim\relax% default permutation if in preliminary
+mode \expandafter\xdef\csname
+perm\number\value{problem}\endcsname{\defaultPerm}\fi%
 \xdef\localPerm{\csname perm\number\value{problem}\endcsname}%
 %
 \putinAnswerBox\localPerm @#2\\%
@@ -142,14 +148,15 @@
 \tmpcount=\xx%
 {\loopuntil%
 \crackPerm{\localPerm}%
-\vbox{\hsize=\boxsize\hbox to \boxsize{\csname answerBox\xx\endcsname\hss}}%
+\vbox{\hsize=\boxsize\hbox to \boxsize{\csname
+answerBox\xx\endcsname\hss}}%
 \advance\tmpcount by -1 %
 \ifnum\tmpcount=0\relax\repeat\relax}%
 \hfill}%
 \ifx\problemsPerLine\empty \relax\repeat%
 }%
 }
- 
+
 \def\putinAnswerBox#1@#2\\{
 \crackPerm{#1}%
 \expandafter\gdef\csname answerBox\xx\endcsname{(\xx)\quad#2}%
@@ -211,9 +218,9 @@
 %  to read it, answer (a), the correct answers, goes into position #2
 %  answer (b) goes into position #3
 %  answer (c) goes into position #4, etc.
-%  We use numbers for the permutation positions so that changing 
+%  We use numbers for the permutation positions so that changing
 %  \defaultPerm does not require changing the \ll's
-%  Incidentally, ll is two lower case L's. 
+%  Incidentally, ll is two lower case L's.
 \def\ll#1 #2#3#4#5#6{%
 \numberToDefaultPerm{#2}\xdef\aa{\xx}%
 \numberToDefaultPerm{#3}\xdef\bb{\xx}%
@@ -243,25 +250,29 @@
 
 %: multiplechoiceStyle ENVIRONMENT
 \newenvironment{multiplechoiceStyle}[1][blank]%
-{\long\def\xx{#1}\ifx\xx\typeBlank\relax\global\whichPagebreakAnswerSheetMacro=0 \else%
+{\long\def\xx{#1}\ifx\xx\typeBlank\relax\global\whichPagebreakAnswerShee
+tMacro=0 \else%
 \global\whichPagebreakAnswerSheetMacro=1 \fi}%
 {}
 
 %: answersheetmatter ENVIRONMENT
-%  variable is flag for which kind of answer sheet 
-%  currently supported options are regular 
+%  variable is flag for which kind of answer sheet
+%  currently supported options are regular
 %  (the standard some multiple choice followed by some partial credit)
 %  and final (all multiple choice)
-%  You can put anything else for the variable and define your own 
-%  \myAnswerSheetData (which takes no variables but can do what you want.
+%  You can put anything else for the variable and define your own
+%  \myAnswerSheetData (which takes no variables but can do what you
+%  want.
 \newenvironment{answersheetmatter}[1][regular]%
 {\gdef\answerSheetStyle{#1}}
 %
 {\setAnswerSheetData}%
 
 \def\setAnswerSheetData{%
-\ifx\answerSheetStyle\regularAnswerSheetStyle \relax\setRegularAnswerSheetData\else%
-\ifx\answerSheetStyle\finalAnswerSheetStyle \relax\setFinalAnswerSheetData\else%
+\ifx\answerSheetStyle\regularAnswerSheetStyle
+\relax\setRegularAnswerSheetData\else%
+\ifx\answerSheetStyle\finalAnswerSheetStyle
+\relax\setFinalAnswerSheetData\else%
 \myAnswerSheetData\fi\fi}
 
 
@@ -335,16 +346,22 @@
 \def\regulardate#1/#2/#3@{%
 \global\c@page=-1 %
 \cy=\year\cm=\month\cd=\day\ey=#3\em=#1\ed=#2%
-\ifnum\ey<\cy \ifprintWarn{}\vfill\eject\fi%
+\ifnum\ey<\cy \ifprintWarn{\Huge #1/#2/#3 is a bad
+date.}\vfill\eject\fi%
 \else{\ifnum\ey>\cy \relax%
-\else\ifnum\em<\cm  \ifprintWarn{}\vfill\eject\fi%
+\else\ifnum\em<\cm  \ifprintWarn{\Huge #1/#2/#3 is a bad
+date.}\vfill\eject\fi%
 \else\ifnum\em>\cm\relax%
-\else\ifnum\ed<\cd  \ifprintWarn{}\vfill\eject\fi%
+\else\ifnum\ed<\cd  \ifprintWarn{\Huge #1/#2/#3 is a bad
+date.}\vfill\eject\fi%
 \fi\fi\fi\fi}\fi%
 
-\global\c@page=2
-\gdef\thisDate{\ifcase#1 \relax ZZZ \or January\or February\or March \or April \or May\or June%
-\or July\or August\or September\or October\or November\or December\else XXXX\fi\ %
+\global\c@page=2 \gdef\thisDate{\ifcase#1 \relax ZZZ \or January\or
+February\or March
+\or April \or May\or June%
+\or July\or August\or September\or October\or November\or
+December\else
+XXXX\fi\ %
 \expandafter\crackNumber#2@, #3}}
 
 %: \setNameBox
@@ -355,50 +372,52 @@
 \hbox to0pt{\hss\vtop to 0pt{\vss\hsize=\TW%
 \setbox0=\hbox{Name: }\LW=\TW \advance\LW by -\wd0 %
 \advance\LW by -12pt%
-Name: $\underline{\hskip \LW}$\par\vskip4pt% 
-\setbox0=\hbox{Instructor: }\LW=\TW \advance\LW by -\wd0 %
+Name: $\underline{\hskip \LW}$\par\vskip4pt%
+\setbox0=\hbox{Section : }\LW=\TW \advance\LW by -\wd0 %
 \advance\LW by -12pt%
-Instructor: \hbox to 0pt{$\underline{\hskip \LW}$\hss}\ \Instructor%
+Section: \hbox to 0pt{$\underline{\hskip \LW}$\hss}\ \Instructor%
 }}}}%
 }
 %: exam ENVIRONMENT
 \gdef\setHeader#1{%
 \gdef\@oddhead{#1}\global\let\@evenhead\@oddhead%
- }
+  }
 
 \newenvironment{exam}[1][]%
 {%
 \gdef\pageBreaks{}%
-\pagestyle{plain}
-\thispagestyle{plain}
-\global\c@page=2
+\pagestyle{plain} \thispagestyle{plain} \global\c@page=2
 \gdef\partialcreditList{}\gdef\multiplechoiceList{}%
-\setNameBox[#1]
-\global\@specialpagetrue\gdef\@specialstyle{mine}
+\setNameBox[#1] \global\@specialpagetrue\gdef\@specialstyle{mine}
 \gdef\ps@mine{\let\@mkboth\@gobbletwo
-    %LRT --  \ifx\LRTrunType\runFinal\relax \gdef\@oddhead{\hfil\copy\nameBox}\fi
+     \ifx\LRTrunType\runFinal\relax \gdef\@oddhead{\hfil\copy\nameBox}\fi
 \gdef\@oddfoot{\hfil\vtop{\null\vskip10pt\reset@font\hfil\thepage\hfil}\hfil}%
 \global\let\@evenhead\@oddhead\global\let\@evenfoot\@oddfoot}
 }{%
 \ifnum\problemType=1\relax%
 \xdef\aa{\number\currentProblemNumber}\Rightappenditem{\aa}\to{\pageBreaks}%
 \fi%
-% write to aux the number of pages, the number of partial credit and the number of regular.
+% write to aux the number of pages, the number of partial credit and
+% the number of regular.
 % partial credit means it has an 'answers' section
 {\vfill\eject\addtocounter{problem}{-1}
 \let\protect\noexpand
 \tmpcount=\c@page \advance\tmpcount by -1
-       \immediate\write\@auxout{\string\gdef\string\numberOfPages{\number\tmpcount}}%
+
+\immediate\write\@auxout{\string\gdef\string\numberOfPages{\number\tmpcount}}%
 \gdef\internallist{\string\internallist}
-       \immediate\write\@auxout{\string\gdef\string\partialcreditList{\partialcreditList}}%
-       \immediate\write\@auxout{\string\gdef\string\multiplechoiceList{\multiplechoiceList}}%
-       \immediate\write\@auxout{\string\gdef\string\defaultPerm{\defaultPerm}}%
-       \immediate\write\@auxout{\string\gdef\string\numberOfProblems{\number\value{problem}}}%
-       \immediate\write\@auxout{\string\gdef\string\pageBreaks{\pageBreaks}}%
-       \ignorespaces}
-}
-\global\catcode`\@=12
-\gdef\numberOfPages{0}
+
+\immediate\write\@auxout{\string\gdef\string\partialcreditList{\partialcreditList}}%
+
+\immediate\write\@auxout{\string\gdef\string\multiplechoiceList{\multiplechoiceList}}%
+
+\immediate\write\@auxout{\string\gdef\string\defaultPerm{\defaultPerm}}%
+
+\immediate\write\@auxout{\string\gdef\string\numberOfProblems{\number\value{problem}}}%
+
+\immediate\write\@auxout{\string\gdef\string\pageBreaks{\pageBreaks}}%
+        \ignorespaces}
+} \global\catcode`\@=12 \gdef\numberOfPages{0}
 \gdef\numberOfProblems{0}
 
 
@@ -438,7 +457,8 @@ Instructor: \hbox to 0pt{$\underline{\hskip \LW}$\hss}\ \Instructor%
 \newbox\tmpSolutionBox
 \newenvironment{solution}[1][blank]%
 {\long\gdef\solutionType{#1}%
-\global\setbox\tmpSolutionBox=\vtop\bgroup\noindent{\bf \number\currentProblemNumber.}}
+\global\setbox\tmpSolutionBox=\vtop\bgroup\noindent{\bf
+\number\currentProblemNumber.}}
 {\egroup\global\setbox\solutionBox=\vtop{\unvbox\solutionBox%
 \ifx\solutionType\typeBlank\relax%
 \par\noindent\vrule width\hsize depth0pt height.4pt\fi%
@@ -450,7 +470,8 @@ Instructor: \hbox to 0pt{$\underline{\hskip \LW}$\hss}\ \Instructor%
 
 %:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \gdef\getNextPageBreak#1{\xdef\nextPageBreak{#1}
-\ifx\nextPageBreak\empty\relax\else\expandafter\xcrackPageBreaks#1\ @{#1}\fi}
+\ifx\nextPageBreak\empty\relax\else\expandafter\xcrackPageBreaks#1\
+@{#1}\fi}
 \gdef\xcrackPageBreaks\ #1\ #2@#3{%
 \gdef\nextPageBreak{#1}\gdef#3{\ #2\ }}
 
@@ -461,23 +482,24 @@ Instructor: \hbox to 0pt{$\underline{\hskip \LW}$\hss}\ \Instructor%
 
 %: \setRegularAnswerSheetData
 \gdef\setRegularAnswerSheetData{%
+\vskip20pt
 \setNameBox[Bullwinkle]
+\vskip20pt
 %:                 text box - regular
 \global\setbox\textBox=\vtop{%
 \linewidth=20in%
+\vskip20pt
 \begin{itemize}
-\item The Honor Code is in effect for this examination.
+\item The Honor Code is in effect for this quiz.
 All work is to be your own.
-\item No calculators.
-\item The exam lasts for \lengthOfExam.
-\item Be sure that your name is on every page in case
-pages become detached. 
-\item Be sure that you have all \numberOfPages\ pages of the test.
+\item Please turn off all cellphones and electronic devices.
+\item Calculators are NOT allowed
+\item The quiz lasts for \lengthOfExam.
 \end{itemize}
-\vskip5pt
-\centerline{Good Luck!}
-\vskip8pt
-}
+\vskip20pt
+%% DPN(10/20/04): Commented out per Barth Pollack!
+%% \centerline{Good Luck!}
+\vskip8pt }
 %:                 partial credit box - regular
 \partialcreditBoxSize=2.85in%
 \partialcreditUnderlineSize=1.2in%
@@ -486,20 +508,21 @@ pages become detached.
 \noindent{\bf Please do NOT write in this box.}\vskip8pt%
 \ifx\multiplechoiceList\empty \else%
 \hbox{\noindent%
-\hbox to\partialcreditLabelSize{\hfill Multiple Choice\quad}%
+\hbox to\partialcreditLabelSize{\hfill {\bf Multiple Choice} \quad}%
 $\underline{\hskip\partialcreditUnderlineSize}$
 \qquad}\fi%
 \global\let\interallist=\relax%
 \def\localList{\partialcreditList}
 \Leftremove{\localList}\to{\zz}%
-\loopuntil
-\vskip14pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill
+\loopuntil \vskip14pt\hbox{\noindent\hbox
+to\partialcreditLabelSize{\hfill
 \zz.\quad}$\underline{\hskip\partialcreditUnderlineSize}$
 \qquad}%
 \Leftremove{\localList}\to{\zz}%
 \ifx\zz\empty
 \repeat%
-\vskip18pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill Total\quad}%
+\vskip18pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill
+Total\quad}%
 $\underline{\hskip\partialcreditUnderlineSize}$
 \qquad}%
 \vskip8pt}%
@@ -507,12 +530,11 @@ $\underline{\hskip\partialcreditUnderlineSize}$
 \setbox0=\hbox{\hbox to 20pt{\hfil}\quad\qquad()()()()()\defaultPerm}%
 \multiplechoiceExtraLineSpacing=\wd0 %
 \global\multiplechoiceBoxSize=5in%
-\multiplechoiceLineSize=\multiplechoiceBoxSize% 
+\multiplechoiceLineSize=\multiplechoiceBoxSize%
 \advance\multiplechoiceLineSize by -\multiplechoiceExtraLineSpacing%
 \divide\multiplechoiceLineSize by 4 %
 \global\setbox\multiplechoiceBox=\vtop{\hsize=\multiplechoiceBoxSize%
-\noindent
-PLEASE MARK YOUR ANSWERS WITH AN X, not a circle!\par
+\noindent PLEASE MARK YOUR ANSWERS WITH AN X, not a circle!\par
 \global\let\interallist=\relax%
 \def\localList{\multiplechoiceList}
 \Leftremove{\localList}\to{\zz}%
@@ -535,7 +557,8 @@ PLEASE MARK YOUR ANSWERS WITH AN X, not a circle!\par
 \getNextPageBreak{\nPB}\ifx\nextPageBreak\empty\relax\else%
 \ifnum\whichPagebreakAnswerSheetMacro=0\relax%
 \vskip4pt\else%
-\vtop to 4pt{\hbox to\multiplechoiceBoxSize{\leaderfill}\vss}\nointerlineskip\fi%
+\vtop to 4pt{\hbox
+to\multiplechoiceBoxSize{\leaderfill}\vss}\nointerlineskip\fi%
 \fi%
 \fi}%
 \Leftremove{\localList}\to{\zz}%
@@ -553,7 +576,8 @@ PLEASE MARK YOUR ANSWERS WITH AN X, not a circle!\par
 \setYcoordinate\for{\YtitleBox}\justBelow{nameBox}%%
 \global\advance\YtitleBox by 12pt%
 %
-\global\XtextBox=-60pt\setYcoordinate\for{\YtextBox}\justBelow{titleBox}%%
+\global\XtextBox=
+-60pt\setYcoordinate\for{\YtextBox}\justBelow{titleBox}%%
 %
 \setYcoordinate\for{\YmultiplechoiceBox}\justBelow{textBox}%
 \global\advance\YmultiplechoiceBox by 12pt%
@@ -580,18 +604,16 @@ PLEASE MARK YOUR ANSWERS WITH AN X, not a circle!\par
 \global\setbox\textBox=\vtop{%
 \linewidth=\hsize%
 \begin{itemize}
-\item Be sure that you have all \numberOfPages\ pages of the test. 
-\item Calculators are allowed for this examination.
+\item Be sure that you have all \numberOfPages\ pages of the test.
+\item No calculators are to be used.
 \item The exam lasts for \lengthOfExam.
-%\item {\bf When told to begin, remove this answer sheet and keep it under the rest of your test. When told to stop, hand in just this one page.}
-\item The Honor Code is in effect for this examination, including keeping your answer
-sheet under cover.
-\item {{\bf Sign the pledge.} ``As a member of the Notre Dame Community, I will not participate in or tolerate academic dishonesty'':  \\ \mbox{$\dfrac{}{}$}\hrulefill}
+\item {\bf When told to begin, remove this answer sheet
+and keep it under the rest of your test. When told to stop, hand in
+just this one page.}
+\item The Honor Code is in effect for this examination, including
+keeping your answer sheet under cover.
 \end{itemize}
-\vskip5pt
-\centerline{Good Luck!}
-\vskip8pt
-}
+\vskip5pt \centerline{Good Luck!} \vskip8pt }
 \multiplechoiceBoxSize=\hsize%
 \halfMultiplechoiceBoxSize=\multiplechoiceBoxSize%
 \divide\halfMultiplechoiceBoxSize by 2 %
@@ -602,11 +624,16 @@ sheet under cover.
 \partialcreditLabelSize=1.2in%
 \global\advance\partialcreditUnderlineSize by -\partialcreditLabelSize%
 \global\setbox\partialcreditBox=\vtop{\hsize=\partialcreditBoxSize%
-\vskip14pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill Final Exam\quad}%
+\vskip14pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill
+Final
+Exam\quad}%
 $\underline{\hskip\partialcreditUnderlineSize}$}%
-\vskip14pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill Previous Total\quad}%
+\vskip14pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill
+Previous Total\quad}%
 $\underline{\hskip\partialcreditUnderlineSize}$}%
-\vskip18pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill Course Total\quad}%
+\vskip18pt\hbox{\noindent\hbox to\partialcreditLabelSize{\hfill
+Course
+Total\quad}%
 $\underline{\hskip\partialcreditUnderlineSize}$}%
 \vskip8pt}%
 %:                 multiplechoice box - final
@@ -622,8 +649,7 @@ $\underline{\hskip\partialcreditUnderlineSize}$}%
 \xdef\nPB{\pageBreaks}%
 \getNextPageBreak{\nPB}%
 \dimen0=\halfMultiplechoiceBoxSize%
-\advance\dimen0 by -16pt
-\loopuntil
+\advance\dimen0 by -16pt \loopuntil
 \xdef\localPerm{\defaultPerm}%
 \ifnum\markedAnswers=1\relax%
 \xdef\locallocalPerm{\csname perm\zz\endcsname}%
@@ -647,33 +673,37 @@ $\underline{\hskip\partialcreditUnderlineSize}$}%
 \ifx\zz\BbreakAnswersAt\relax\else%
 \ifnum\whichPagebreakAnswerSheetMacro=0\relax%
 \gdef\pbasm{\vskip4pt}\else%
-\gdef\pbasm{\hskip10pt\vtop to 4pt{\hbox to 0pt{\hbox to\dimen0{\leaderfill}\hss}\vss}\par}\fi\fi\fi}%
+\gdef\pbasm{\hskip10pt\vtop to 4pt{\hbox to 0pt{\hbox
+to\dimen0{\leaderfill}\hss}\vss}\par}\fi\fi\fi}%
 \fi}\fi}%
 \long\xdef\oneLine{%
 \hbox to 0pt{\noindent\hbox to20pt{\hfil\zz.}\quad%
-\AA\hskip\multiplechoiceLineSize
-\BB\hskip\multiplechoiceLineSize
-\CC\hskip\multiplechoiceLineSize
-\DD\hskip\multiplechoiceLineSize
+\AA\hskip\multiplechoiceLineSize \BB\hskip\multiplechoiceLineSize
+\CC\hskip\multiplechoiceLineSize \DD\hskip\multiplechoiceLineSize
 \EE%
 \qquad\hss}\vskip2pt\pbasm%
 }%
 %
 \Rightappenditem{\oneLine}\to{\tmpList}%
-{\ifx\zz\BbreakAnswersAt\relax\global\let\leftList=\tmpList\gdef\tmpList{}\fi}%
+{\ifx\zz\BbreakAnswersAt\relax\global\let\leftList=\tmpList\gdef\tmpList
+{}\fi}%
 \Leftremove{\localList}\to{\zz}%
 \ifx\zz\empty
 \repeat%
 \global\let\rightList=\tmpList%
 \setbox\rightBox=\vtop{\rightList\vskip30pt}%
 \rightHeight=\ht\rightBox\advance\rightHeight by \dp\rightBox%
-\advance\rightHeight by \ht\partialcreditBox\advance\rightHeight by \dp\partialcreditBox%
+\advance\rightHeight by \ht\partialcreditBox\advance\rightHeight by
+\dp\partialcreditBox%
 \setbox\rightBox=\vtop{\leftList\vskip30pt}%
 \leftHeight=\ht\rightBox\advance\leftHeight by \dp\rightBox%
 \ifdim\leftHeight>\rightHeight\relax \rightHeight=\leftHeight\fi%
-\global\setbox\multiplechoiceBox=\vtop to\rightHeight{\hsize=\multiplechoiceBoxSize%
-\centerline{PLEASE MARK YOUR ANSWERS WITH AN X, not a circle!}\par\vskip8pt%
-\hbox{\vtop{\hsize=\halfMultiplechoiceBoxSize\parindent=0pt\leftList\vskip 20pt}%
+\global\setbox\multiplechoiceBox=\vtop
+to\rightHeight{\hsize=\multiplechoiceBoxSize%
+\centerline{PLEASE MARK YOUR ANSWERS WITH AN X, not a
+circle!}\par\vskip8pt%
+\hbox{\vtop{\hsize=\halfMultiplechoiceBoxSize\parindent=0pt\leftList\vsk
+ip 20pt}%
 \vtop{\hsize=\halfMultiplechoiceBoxSize\rightList\vskip 10pt}}%
 \vfil}%
 %:                 titleBox -final
@@ -686,7 +716,8 @@ $\underline{\hskip\partialcreditUnderlineSize}$}%
 \global\YnameBox=-1in \global\XnameBox=0in%
 \global\YtitleBox=-1in \global\XtitleBox=0in%
 %
-\global\XtextBox=-30pt\setYcoordinate\for{\YtextBox}\justBelow{titleBox}%%
+\global\XtextBox=
+-30pt\setYcoordinate\for{\YtextBox}\justBelow{titleBox}%%
 \global\advance\YtextBox by 10pt%
 %
 \setYcoordinate\for{\YmultiplechoiceBox}\justBelow{textBox}%
@@ -708,7 +739,7 @@ $\underline{\hskip\partialcreditUnderlineSize}$}%
 \multiplechoice
 \renewcommand{\problemPoints}{(#1)}
 \null\vskip-11pt
-\vbox{\hbox to 6in{\hfill Multiple Choice\hfill}}%
+\vbox{\hbox to 6in{\hfill {\bf Multiple Choice}\hfill}}%
 }
 
 %: \partialcreditStart
@@ -720,10 +751,9 @@ $\underline{\hskip\partialcreditUnderlineSize}$}%
 \null\vskip10pt
 \vbox{\hbox to 6in{\hfill Partial Credit\hfill}%
 \hbox to 6in{\rm%
-\hfill You must show your work on the partial credit problems 
+\hfill You must show your work on the partial credit problems
 to receive credit!\hfill}%
-\vskip10pt}
-}
+\vskip10pt} }
 
 %: \LoadPDF
 % #1 - path to pdf file
@@ -731,17 +761,17 @@ to receive credit!\hfill}%
 % #3 #4  - size of box pdf is centered in this box. It can overflow box
 \def\LoadPDF#1#2#3#4{
 \pdfximage {#1}
-\setbox0=\hbox{\pdfrefximage\pdflastximage} % get dimensions of the image
-                                            % in order to include the image
-                                            % at a specific resolution 
-\dimen0=#2\wd0         % calculate the image width at 1200 dpi (0.06 = 72/1200)
-\dimen1=#2\ht0
+\setbox0=\hbox{\pdfrefximage\pdflastximage} % get dimensions of the
+image
+                                             % in order to include the
+image
+                                             % at a specific resolution
+\dimen0=#2\wd0         % calculate the image width at 1200 dpi (0.06 =
+72/1200) \dimen1=#2\ht0
 \pdfximage              % include the image at resolution 1200 dpi
-    width \dimen0 {#1}  % by setting image width to the calculated value
-\divide\dimen0 by 2
-\divide\dimen1 by 2
-\dimen2=#3 \divide\dimen2 by 2
-\dimen3=#4 \divide\dimen3 by 2
+     width \dimen0 {#1}  % by setting image width to the calculated value
+\divide\dimen0 by 2 \divide\dimen1 by 2 \dimen2=#3 \divide\dimen2 by
+2 \dimen3=#4 \divide\dimen3 by 2
 \vbox to #4{\vskip\dimen3\hbox to#3{\hskip\dimen2%
 \hbox to0pt{\vtop to0pt{\vskip-\dimen1 %
 \hbox to 0pt{\hskip -\dimen0\pdfrefximage \pdflastximage\hss}\vss}\hss}%
@@ -749,23 +779,19 @@ to receive credit!\hfill}%
 }
 \def\boxLoadPDF#1#2#3#4{
 \pdfximage {#1}
-\setbox0=\hbox{\pdfrefximage\pdflastximage} % get dimensions of the image
-                                            % in order to include the image
-                                            % at a specific resolution 
-\dimen0=#2\wd0         % calculate the image width at 1200 dpi (0.06 = 72/1200)
-\dimen1=#2\ht0
+\setbox0=\hbox{\pdfrefximage\pdflastximage} % get dimensions of the
+image
+                                             % in order to include the
+image
+                                             % at a specific resolution
+\dimen0=#2\wd0         % calculate the image width at 1200 dpi (0.06 =
+72/1200) \dimen1=#2\ht0
 \pdfximage              % include the image at resolution 1200 dpi
-    width \dimen0 {#1}  % by setting image width to the calculated value
-\divide\dimen0 by 2
-\divide\dimen1 by 2
-\dimen2=#3 \divide\dimen2 by 2
-\dimen3=#4 \divide\dimen3 by 2
+     width \dimen0 {#1}  % by setting image width to the calculated value
+\divide\dimen0 by 2 \divide\dimen1 by 2 \dimen2=#3 \divide\dimen2 by
+2 \dimen3=#4 \divide\dimen3 by 2
 \boxit{\vbox to #4{\vskip\dimen3\hbox to#3{\hskip\dimen2%
 \hbox to0pt{\vtop to0pt{\vskip-\dimen1 %
 \hbox to 0pt{\hskip -\dimen0\pdfrefximage \pdflastximage\hss}\vss}}%
 \hss}\vss}}{1pt}{1pt}%
 }
-\def\smfrac#1#2{\frac{\scriptstyle#1}{\scriptstyle#2}}
-
-
-
