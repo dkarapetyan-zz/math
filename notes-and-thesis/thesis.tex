@@ -27,22 +27,25 @@
 \setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
 \setcounter{secnumdepth}{1} %number only sections, not subsections
 \usepackage[T1]{fontenc}
-\usepackage{ae,aecompl} 
 \usepackage{appendix}
 \usepackage{tikz}
-\usepackage{fix-cm} %allow arbitrary size fonts
-\usepackage{type1ec} %ditto
+\usepackage[utf8]{inputenc}
+%\usepackage{showkeys}
+\usepackage[T1]{fontenc} %otherwise have font issues
+\usepackage{lmodern} %this with above font packages give us all possible diacritics
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{appendix}
 \usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{appendix}
 \synctex=1
 \usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
 %\usepackage[initials]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
@@ -130,7 +133,6 @@ EQUATIONS}            % Title of Work
  % \makepublicdomain   % Uncomment this to make your work public domain
 
 \begin{abstract}
-
 It is shown that the solution map for the hyperelastic rod equation is not 
 uniformly continuous on bounded sets of Sobolev spaces with exponent 
 greater than 3/2 in the periodic case and greater than 1 in the 
@@ -186,7 +188,6 @@ well-posedness result. Lastly, we produce numerics for all these equations.
 \mainmatter
  % Place the text body here.
 \include{./hr/hr}
-\include{./hr/hr-appen}
  %\input{./hr-holder/hr_holder_cont.tex}
 \appendix
 \chapter{Calculus on Banach Spaces}
