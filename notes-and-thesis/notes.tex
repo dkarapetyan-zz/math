@@ -28,7 +28,6 @@
 \renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
 %\renewcommand{\subsection}{\textbf} %temporary fix--subsection indents in
 %amsbook, and want to disable it
-
 %
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
@@ -118,11 +117,10 @@ urlcolor=blue,
 %\include{mkdv/mkdv}
 %\include{nls-gevrey/nls-gevrey}
 %\part{Weakly Dispersive Equations}
-\input{hr/hr}
-\input{hr/hr-appen}
+\include{hr/hr}
 \part{Appendix}
 %
-\input{ode-thm/ode-thm}
+\include{ode-thm/ode-thm}
 %
 \backmatter
 \bibliography{/Users/davidkarapetyan/math/bib-files/references}
