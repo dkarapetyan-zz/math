@@ -210,21 +210,13 @@ into the pieces
   %
   \begin{equation*}
   \begin{split}
-    & \Omega_{1} = \left\{ (s, \ r):  \ s < 3/2 \right\}
-    \\
-    & \Omega_{2} = \left\{ (s, \ r):
-     \ s>3/2, \ r < -1  \right\}
-    \\
-    & \Omega_{3} = \left\{ (s, \ r):
-     \ s>3/2, \ r > s  \right\}
-    \\
-    & \Omega_{4} = \left\{ (s, \ r):
+        & \Omega_{1} = \left\{ (s, \ r):
      \ s>3/2, \ -1 \le r \le s-1, \ s + r \ge 2  \right\}
     \\
-    & \Omega_{5} = \left\{ (s, \ r):
+    & \Omega_{2} = \left\{ (s, \ r):
      \ s>3/2, \ -1 \le r < 2-s \right\}
     \\
-    & \Omega_{6} = \left\{ (s, \ r):
+    & \Omega_{3} = \left\{ (s, \ r):
     \  s>3/2, \  s-1 < r < s  \right\}.
     \end{split}
 \end{equation*}
@@ -247,22 +239,16 @@ into the pieces
 \draw [->, dashed] (3/2,-2) -- (3/2, 3);
 \fill[color=green, fill opacity=0.3] (1.5, 0.5) -- (3,2) -- (3,0) -- (3,-1);
 \fill[color=red, fill opacity=0.3] (1.5, 0.5) -- (1.5,1.5) -- (3,3) -- (3,2);
-\fill[color=yellow, fill opacity=0.3] (0, -2) -- (1.5, -2) -- (1.5, 3) -- (0, 3);
 \fill[color=blue, fill opacity=0.3] (1.5, 0.5) -- (1.5, -1) -- (3, -1);
-\fill[color=brown, fill opacity=0.3] (1.5, 1.5) -- (3, 3) -- (1.5, 3);
-\fill[color=cyan, fill opacity=0.3] (1.5, -1) -- (3, -1) -- (3, -2) -- (1.5, -2);
 
 
 \foreach \x/\xtext in {1, 2}
     \draw[shift={(\x,0)}]  node[below] {$\xtext$};
 \foreach \y/\ytext in {-1, 1, 2}
     \draw[shift={(0,\y)}]  node[left] {$\ytext$};
-    \draw (1,0.5) node {$\Omega_{1}$};
-    \draw (2,2.5) node {$\Omega_{3}$};
-    \draw (2,1.5) node {$\Omega_{6}$};
-    \draw (2,-1.5) node {$\Omega_{2}$};
-    \draw (2,0.5) node {$\Omega_{4}$};
-    \draw (2,-0.5) node {$\Omega_{5}$};
+    \draw (2,1.5) node {$\Omega_{3}$};
+    \draw (2,0.5) node {$\Omega_{1}$};
+    \draw (2,-0.5) node {$\Omega_{2}$};
 \end{tikzpicture}
 \end{center}
 %
@@ -288,11 +274,11 @@ where
 \begin{split}
 \alpha = 
 \begin{cases}
-   1, \quad & (s,r) \in \Omega_{4} 
+   1, \quad & (s,r) \in \Omega_{1} 
   \\
-   2(s-1)/(s-r),  \quad & (s, r) \in \Omega_{5}
+   2(s-1)/(s-r),  \quad & (s, r) \in \Omega_{2}
   \\
-   s-r, \quad & (s, r) \in \Omega_{6}.
+   s-r, \quad & (s, r) \in \Omega_{3}.
 \end{cases}
 \end{split}
 \end{equation*}
@@ -319,24 +305,10 @@ We remark that this result improves upon the H\"older continuity result in
 %
 The proof in the periodic case is analogous to that in the non-periodic case.
 Hence, we restrict our attention to the non-periodic case. 
-
+%
 %
 %
 \subsection{Region $\Omega_{1}$} 
-\label{ssec:reg-2}
-This is open. In particular, we do not know whether HR is well posed for $s <
-3/2$ for arbitrary $\gamma \neq
-0,1$.
-\subsection{Region $\Omega_{2}$} 
-\label{ssec:reg-6}
-Open. The lower bound on $r$ comes from Lemma~\ref{cor1}. Perhaps the lemma can
-be strengthened.
-\subsection{Region $\Omega_{3}$} 
-\label{ssec:reg-7}
-It makes little sense to talk about this region, 
-i.e.\ we assume a priori that our initial
-data is in $H^{s}$ (i.e.\ it may not even be in $H^{r}$ if $r > s$). 
-\subsection{Region $\Omega_{4}$} 
 \label{ssec:reg-m-imp}
 %
 %
@@ -579,9 +551,7 @@ for $s > 3/2, \ r \le s, \ \text{and} \ s + r \ge 2$.
 %
 %
 %
-Grouping \eqref{8v}, \eqref{3v}, and \eqref{3'v}, and 
-applying
-the Sobolev Imbedding Theorem, we obtain
+Grouping \eqref{8v}, \eqref{3v}, and \eqref{3'v}, we obtain
 %
 %
 \begin{equation}
@@ -653,9 +623,9 @@ or
 \end{split}
 \end{equation}
 %
-Hence, in region $\Omega_{4}$, the data to solution map is locally Lipschitz from
-$B_{H^{s}(R)}$ (in the $H^{r}$
-topology) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
+Hence, in region $\Omega_{1}$, the data to solution map is locally Lipschitz from
+$B_{H^{s}(R)}$ (measured with the $H^{r}$
+norm) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
 %
 %
 %
@@ -666,7 +636,7 @@ topology) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
 %
 %
 %
-\subsubsection{Region $\Omega_{5}$} 
+\subsubsection{Region $\Omega_{2}$} 
 \label{ssec:case-4}
 %
 We have the estimate
@@ -674,7 +644,7 @@ We have the estimate
   \label{fgh}
 \begin{split}
   \| v(t) \|_{H^{r}}
-  & \le \|v(t) \|_{H^{2-s}}.
+  & < \|v(t) \|_{H^{2-s}}.
     \end{split}
 \end{equation}
 %
@@ -728,13 +698,15 @@ result.
 \end{lemma}
 %
 Applying the lemma with $m_{1} =r$, $m = 2-s$, and $m_{2} = s$ (notice
-$m_{2} > m$ for $s > 1$), we bound \eqref{fgh} by
+$m_{2} > m$ for $s > 1$), we bound 
 %
 %
 \begin{equation*}
 \begin{split}
-  \| v(0) \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \|v(0)
+    \| v(0) \|_{H^{2-s}} 
+    & \le \| v(0) \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \|v(0)
   \|_{H^{s}}^{\frac{2-s-r}{s-r}}
+  \\
   & = \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \|u_{0} - w_{0}
   \|_{H^{s}}^{\frac{2-s-r}{s-r}}
   \\
@@ -754,7 +726,7 @@ We conclude that
 %
 %
 %
-\subsubsection{Region $\Omega_{6}$} 
+\subsubsection{Region $\Omega_{3}$} 
 \label{ssec:case-2}
 %
 %
@@ -931,7 +903,8 @@ Note that since $s > 3/2$, we see that $2(s-1) \neq 1$. However, it is possible 
 \end{split}
 \end{equation*}
 %
-If $r = 1/2$, then for $\eta > 0$ sufficiently small, we have
+If $r = 1/2$, then since $s > 3/2$, we can choose $\eta > 0$ sufficiently small
+such that
 %
 %
 \begin{equation*}
@@ -941,10 +914,9 @@ If $r = 1/2$, then for $\eta > 0$ sufficiently small, we have
   \\
   & = 2(1 -r)
   \\
-  & = 2\delta
+  & = 2\delta.
 \end{split}
 \end{equation*}
-since $s > 3/2$. 
 %
 Hence, for $0 \le \delta \le 1/2 + \ee$, $\ee >
 0$, the integral term of \eqref{int-pre-calc-lem} is bounded by
