@@ -1,11 +1,13 @@
-\documentclass[handout]{beamer}
-\hypersetup{colorlinks=true,
-linkcolor=blue,
-citecolor=red,
-urlcolor=red,
-}
-% \usetheme{default}
- \usetheme{Boadilla}
+\documentclass{beamer}
+%[handout] option gets rid of extra frames
+%\hypersetup{colorlinks=true,
+%linkcolor=blue,
+%citecolor=red,
+%urlcolor=red,
+%}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+\usetheme{Boadilla}
  %\usetheme{Madrid}
 % \usetheme{Montpellier}
 % \usetheme{Warsaw}
@@ -17,17 +19,10 @@ urlcolor=red,
 \setbeamertemplate{footline}[page number]{}
 \usepackage{lmodern}
 \usepackage{tikz}
-\usepackage{cancel}
 \synctex=1
 
-\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+%\setlength{\parindent}{0in} %no indentation of paragraphs after section title
 %
-\newcommand{\bigno}{\bigskip\noindent}
-\newcommand{\ds}{\displaystyle}
-\newcommand{\medno}{\medskip\noindent}
-\newcommand{\smallno}{\smallskip\noindent}
-\newcommand{\nin}{\noindent}
-\newcommand{\ts}{\textstyle}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\p}{\partial}
 \newcommand{\zz}{\mathbb{Z}}
@@ -66,7 +61,6 @@ Weak Topology}
             %\tableofcontents
         %\end{frame}
 
-        \section{Introduction}
         \begin{frame}
             \frametitle{Introduction}
 We consider the hyperelastic rod (HR) Cauchy problem
@@ -80,20 +74,27 @@ We consider the hyperelastic rod (HR) Cauchy problem
  u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
 \label{init-cond}
 \end{gather*}
-
 \begin{itemize}
-    \item Derived by Dai \cite{Dai_1998_Model-equations} as a one-dimensional 
+    \item
+        \pause
+        Derived by Dai \cite{Dai_1998_Model-equations} as a one-dimensional 
         model for finite-length and
         small-amplitude axial deformation waves in thin cylindrical
         rods composed of a compressible Mooney-Rivlin
-        material. The derivation relied upon a reductive perturbation technique 
-    \item Well-posedness in $H^{s}$, $s > 3/2$ shown by Yin
+        material. The derivation relied upon a reductive perturbation technique.
+    \item 
+       \pause 
+        Well-posedness in $H^{s}$, $s > 3/2$ shown by Yin
         \cite{Yin_2003_On-the-Cauchy-p} and Zhou
         \cite{Zhou_2005_Local-well-pose} for line and circle.
-    \item Alternative proof of well-posedness using Galerkin method
+    \item 
+       \pause 
+        Alternative proof of well-posedness using Galerkin method
 outlined in Taylor \cite{Taylor_1991_Pseudodifferent} shown by Karapetyan \cite{Karapetyan:2010fk}. 
-\item Special Feature: Unlike KDV, admits peakon and cusped solutions (for
-    $\gamma =1$).
+\item 
+   \pause 
+    Special Feature: Unlike KDV, admits peakon ($\gamma > 0$) and cusped
+    solutions ($\gamma \neq 0$).
 \end{itemize}
 \end{frame}
 \begin{frame}
@@ -188,7 +189,7 @@ where
 \end{split}
 \end{equation*}
 \end{theorem}
-
+\pause
 \begin{itemize}
     \item
 This result improves upon the H\"older continuity result in
@@ -199,11 +200,9 @@ This result improves upon the H\"older continuity result in
 \end{frame}
 
 \begin{frame}
-\section{Proof of Theorem}
 
 
-\frametitle{Region $\Omega_{1}$} 
-
+\frametitle{Region $\Omega_{1}$ $(-1 \le r \le s-1, \ s + r \ge 2$)} 
 
 Let $u_{0}(x), v_{0}(x)
 \in B_{H^{s}}(R)$, $s > 3/2$ be two initial datum. Then from
@@ -212,7 +211,7 @@ know that there exists unique corresponding solutions $u, v \in C(I,
 B_{H^{s}}(2R))$ to the HR Cauchy problem.
 Set $v=u-w$. Then $v$ solves the Cauchy-problem
 
-
+\pause
 \begin{align*}
 & \p_t v
 =  -\frac{\gamma}{2} \p_x [v(u + w)] 
@@ -281,6 +280,7 @@ dx \right |.
 \end{split}
 \end{equation*}
 
+\pause
 
 Observe that integrating by parts gives
 
@@ -296,12 +296,14 @@ D^r v \ dx \right |
 \end{equation*}
 
 
-To estimate the remaining integral of \eqref{4v}, we shall need the following
-following result taken from \cite{Himonas:2010p1187}:
+
 
 \end{frame}
 
 \begin{frame}
+To estimate the remaining piece, we shall need the following
+following result taken from \cite{Himonas:2010p1187}:
+
     \begin{lemma}[Commutator Estimate]
 \label{cor1}
 If $s > 3/2$ and $-1 \le r  \le s -1$, then
@@ -333,6 +335,8 @@ Cauchy-Schwartz and the Commutator Estimate then yields
 \end{split}
 \end{equation*}
 
+
+\pause
 
 Combining everything and applying the Sobolev Imbedding 
 Theorem, we obtain 
@@ -375,16 +379,20 @@ For $s > 3/2$, $r \le s$, $s + r \ge 2$, we have
 \label{lem:frac-deriv}
 \end{lemma}
 
-\begin{itemize}
-    \item  Improves upon estimate in Himonas and Kenig \cite{Himonas:2009fk}.
-\end{itemize}
+%\begin{itemize}
+    %\item  Improves upon estimate in Himonas and Kenig \cite{Himonas:2009fk}
+        %\begin{equation*}
+            %\| fg \|_{H^{\sigma -1}} \lesssim \| f \|_{H^{\sigma -1}} \| g
+            %\|_{H^{\sigma}}, \quad 1/2 < \sigma < 1
+        %\end{equation*}
+%\end{itemize}
 
 \end{frame}
 
 \begin{frame}
 
 
-Applying Cauchy-Schwartz and Lemma~\ref{lem:frac-deriv}, we obtain
+Applying Cauchy-Schwartz and the Fractional Sobolev Lemma, we obtain
 
 
 
@@ -397,6 +405,7 @@ D^r v \ dx  \right |
 \end{split}
 \end{equation*}
 
+\pause
 
 which implies
 \begin{equation*}
@@ -447,6 +456,8 @@ Grouping estimates for Integrals 1-3, get
 \label{9v}
 \end{split}
 \end{equation*}
+
+\pause
 which by Gronwall gives
 
 \begin{equation*}
@@ -459,6 +470,8 @@ which by Gronwall gives
 \end{split}
 \end{equation*}
 
+\pause
+
 Hence, in region $\Omega_{1}$, the data to solution map is locally Lipschitz from
 $B_{H^{s}(R)}$ (measured with the $H^{r}$
 norm) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
@@ -468,7 +481,7 @@ norm) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
 
 
 \begin{frame}
-\frametitle{Region $\Omega_{2}$} 
+\frametitle{Region $\Omega_{2}$ $(-1 \le r < 2-s)$} 
 
 We have the estimate
 \begin{equation*}
@@ -479,6 +492,8 @@ We have the estimate
     \end{split}
 \end{equation*}
 
+\end{frame}
+\begin{frame}
 We see that Lip inequality is valid for $r = 2-s$, $3/2 < s \le 3$.
 Hence, applying it, we obtain 
 
@@ -519,6 +534,7 @@ result.
 \label{lem:interp}
 \end{lemma}
 
+\pause
 Applying the lemma with $m_{1} =r$, $m = 2-s$, and $m_{2} = s$ (notice
 $m_{2} > m$ for $s > 1$), we bound 
 
@@ -536,6 +552,7 @@ $m_{2} > m$ for $s > 1$), we bound
 \end{split}
 \end{equation*}
 
+\pause
 We conclude that
 
 
@@ -548,7 +565,7 @@ We conclude that
 \end{frame}
 
 \begin{frame}
-\frametitle{Region $\Omega_{3}$} 
+\frametitle{Region $\Omega_{3}$ $(s-1 < r < s)$} 
 
 
 Applying the Interpolation Lemma with $m_{1} = s-1$, $m =r$ and $m_{2} = s$ and
@@ -575,6 +592,8 @@ we obtain
 \end{equation*}
 
 
+\end{frame}
+\begin{frame}
 We see that Lip inequality is valid for  $r = s-1$, $s \ge 3/2$. Hence,
 applying it above we obtain 
 
