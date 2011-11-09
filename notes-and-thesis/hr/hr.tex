@@ -268,9 +268,9 @@ which are key ingredients in our work,
 following an alternative approach used for nonlinear hyperbolic equations
 in Taylor \cite{Taylor_1991_Pseudodifferent}.
 
-The paper is structured as follows. In \cref{sec:2} we prove 
+The document is structured as follows. We first prove 
 \cref{thm:hr-non-unif-dependence} on the line and 
-in  \cref{sec:3}  we prove it on the circle.
+then on the circle.
 As mentioned above, we begin with two sequences of
 appropriate approximate solutions and then 
 we construct  actual solutions
@@ -279,8 +279,11 @@ The key step is to show that  the $H^s$-size of
 the difference between approximate and actual solutions 
 converges to zero (see \cref{applelem:bound_for_difference-of-approx-and-actual-soln}
 and \cref{prop:bound_for_difference-of-approx-actual-soln}). 
-In SOMETHING we prove \cref{thm:HR_existence_continuous_dependence} 
-using a Galerkin-type argument and energy estimates.
+We then prove \cref{thm:HR_existence_continuous_dependence} 
+using a Galerkin-type argument and energy estimates. In the appendix, we develop
+differential calculus in topological vector spaces with topology induced by a
+metric, and use it to prove some classical results on the existence, uniqueness,
+and continuous dependence of solutions for ODEs.
 %
 %
 %
@@ -2653,18 +2656,8 @@ analogous to that on the real line.
 %
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%				BBM
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Case $\gamma = 0$: The BBM Equation} 
-\label{sec:}
-
 \section{Well-Posedness for HR in the Periodic Case}
 %
 %
@@ -2689,16 +2682,16 @@ open ball $I \subset I'$ and a unique differentiable mapping $u:I
 and $u(t_{0}) = x_{0}$.
 \end{theorem}
 %
-To see why we cannot apply the Banach Space ODE Theorem to the HR equation as is,
-we use a counterexample. Let $u=x^{-1/2} \chi_{[0,1]}$ and $s=0$. Then $u \in H^s$ but
-$u\p_x u \notin H^s$. Hence, returning to the general case, we see that the
-HR equation as is can not be thought as an ODE on the space $H^s$.  To
+To see why we cannot apply the Banach Space ODE Theorem to the HR equation as
+is, we use a counterexample. Let $u=x^{-1/2} \chi_{[0,1]}$ and $s=0$. Then $u
+\in H^s$ but $u\p_x u \notin H^s$. Hence, returning to the general case, we see
+that the HR equation as is can not be thought as an ODE on the space $H^s$. To
 deal with this problem we will replace the i.v.p \eqref{hr}--\eqref{hr-data} by  
 \begin{equation}
 \label{hr-moli}
 \p_t  u_\ee =
 -\gamma J_\ee u_\ee \partial_x  J_\ee  u_\ee - \p_x (1-\p_x^2)^{-1} 
-\left [\frac{3-\gamma}{2}u^2 + \frac{\gamma}{2}(\p_x u)^2 \right ],
+\left[\frac{3-\gamma}{2}u^2 + \frac{\gamma}{2}(\p_x u)^2 \right],
 \end{equation} 
 %
 \begin{equation} 
@@ -5956,6 +5949,86 @@ analogous to those in the periodic case. Hence, how we
 construct the mollifier $J_\ee$ plays a critical role in the proofs of
 well-posedness for the HR i.v.p.\ in both the periodic and non-periodic cases. %
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				BBM
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Case $\gamma = 0$: The BBM Equation} 
+\label{sec:}
+Setting $\gamma = 0$ in the HR equation, we obtain the Benjamin, Bona,
+Mahoney (BBM) equation. That is
+%
+%
+\begin{gather*}
+    \p_{t} u = F(u(t))
+    \\
+     u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+\end{gather*}
+where
+%
+%
+\begin{equation*}
+\begin{split}
+    F(u(t)) \doteq -\frac{3}{2} \p_{x}(1 - \p_{x}^{2})^{-1} u^{2}.
+\end{split}
+\end{equation*}
+%
+%
+Notice that
+$F$ maps open sets in $C^{k}$ to $C^{k}$. Therefore, the BBM is an ODE on the
+space of $C^{k}$ functions. By the ODE theory presented in the appendix, for
+$u_{0}(x) \in C^{k}$, the BBM admits a unique solution $u(x,t)$ which is 
+$C^{k}$ in both the space and time variables. 
+We will show that if $u_{0} \in C^{k}, 1 \le k \le \infty$, then the
+data-to-solution map is also $C^{k}$. By the ODE theory and differential
+calculus developed in the appendix, it is enough to show that $F$ is $k$ times
+differentiable. In fact, we will show that $F$ is smooth. To do this, we adopt
+the notation
+\begin{gather*}
+    F(u) = -\frac{3}{2}Lf(u), \ \text{where} \ 
+    \\
+    L \doteq \p_{x}(1 - \p_{x}^{2})^{-1}, \ f(u) = u^{2}.
+\end{gather*}
+Note that $L$ is a linear operator on $C^{k}$, and hence $DL = L$. Applying the chain rule and product rule, we get
+%
+%
+\begin{equation*}
+\begin{split}
+DF(u) & = -\frac{3}{2}DL(f(u))Df(u)
+\\
+& = -\frac{3}{2}Lf(u)2u
+\\
+& = 2u F(u).
+\end{split}
+\end{equation*}
+%
+%
+We now run an induction. Assume $F$ is $k$-times differentiable. Then by the
+Leibniz rule
+%
+%
+\begin{equation*}
+\begin{split}
+    D^{k+1}F(u)
+    & = 2 D^{k}(uF(u))
+    \\
+    & = 2 \sum_{j = 0}^{k} {k \choose j} D^{j}u D^{k - j}F(u)
+    \\
+    & = 2 \left[ u D^{k}F(u) + \sum_{j=1}^{k} {k \choose j} I D^{k-j}F(u)
+        \right].
+\end{split}
+\end{equation*}
+%
+%
+We conclude that $F$ is smooth. Therefore, the data-to-solution map for the BBM
+equation is $C^{k}$. In particular, due to Sobolev Imbedding, this implies that
+the method of proof developed to prove non-uniform dependence for HR does not
+apply to the BBM.
 \subsection*{Acknowledgements.} The author thanks his advisor Alex Himonas for 
 his guidance and many helpful remarks. The author also thanks the Department of 
 Mathematics at the University of Notre Dame and the Arthur J. Schmitt Foundation for 

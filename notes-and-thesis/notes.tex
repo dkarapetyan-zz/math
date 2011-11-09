@@ -17,10 +17,10 @@
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
 %\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-%\setcounter{secnumdepth}{1} %number only sections, not subsections
+\setcounter{secnumdepth}{1} %number only sections, not subsections
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{section}{chapter} 
-\numberwithin{equation}{chapter}  %eliminate need for keeping track of counters
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
 %\numberwithin{figure}{section}
 %\setlength{\parindent}{0in} %no indentation of paragraphs after section title
 %\setlength{\parskip}{0.1in} %ensure that blank source code lines generate space
@@ -97,7 +97,6 @@ urlcolor=blue,
 
 
 \begin{document}
-\frontmatter
 \title{Notes}
 \author{David Karapetyan}
 %\address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
@@ -107,7 +106,6 @@ urlcolor=blue,
 
 \maketitle
 \tableofcontents
-\mainmatter
 %\part{Strongly Dispersive Equations}
 %\include{mnls/mnls}
 %\include{nls-l4/nls-l4}
@@ -118,11 +116,10 @@ urlcolor=blue,
 %\include{nls-gevrey/nls-gevrey}
 %\part{Weakly Dispersive Equations}
 \include{hr/hr}
-\part{Appendix}
+\appendix
 %
 \include{ode-thm/ode-thm}
 %
-\backmatter
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
