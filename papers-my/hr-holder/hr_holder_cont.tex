@@ -138,35 +138,48 @@ fractal-like waves, and plateaus (see Lenells
 \cite{Lenells_2006_Traveling-waves}). 
 \\
 \\
-For the case $\gamma = 0$, we obtain the celebrated 
+For the case $\gamma = 0$, we obtain the 
 BBM equation, first proposed by 
 Benjamin, Bona, and Mahony 
 \cite{Benjamin_1972_Model-equations} as a model for 
 the unidirectional evolution of long waves.
 Solitary-wave solutions to this 
-equation are global and orbitally stable (see Benjamin 
-\cite{Benjamin_1972_The-stability-o}, 
-\cite{Benjamin_1972_Model-equations}, and 
-\cite{Constantin_2000_Stability-of-a-}). For more references on both HR and the BBM, see Karapetyan \cite{Karapetyan:2010fk}.
-%
-\\
-\\
-For the case $\gamma =1$, we obtain the Camassa-Holm equation
+equation are smooth, global, and orbitally stable (see Benjamin 
+\cite{Benjamin_1972_The-stability-o}, Benjamin, Bona, and Mahony
+\cite{Benjamin_1972_Model-equations}, Constantin and Strauss
+\cite{Constantin_2000_Stability-of-a-}, and Lenells
+\cite{Lenells_2006_Traveling-waves}). For the case $\gamma =1$, we obtain the Camassa-Holm equation, a bi-Hamiltonian
+water wave equation first written explicity by Camassa and Holm
+\cite{Camassa-Holm-1993-An-integrable-shallow-water}. There is an extensive
+literature devoted to the Camassa-Holm equation. We refer the reader to the work
+of Himonas, Kenig, and Misiolek \cite{Himonas:2010p1187}, Himonas and Kenig
+\cite{Himonas:2009fk}, Constantin and Lannes
+\cite{Constantin-Lannes-2009-The-hydrodynamical-relevance-of-the-Camassa-Holm},
+Bressan and Constantin \cite{Bressan_2007_Global-conserva}, 
+Molinet \cite{Molinet_2004_On-well-posedne}, Constantin and Strauss
+\cite{Constantin_2000_Stability-of-pe}, and the references therein.
 \\
 \\
 The HR equation is well-posed in the sense of Hadamard (existence, uniqueness,
 and continuous dependence of solutions on initial data) in Sobolev spaces
 $H^{s}$, $s > 3/2$ on both the line and circle, see Yin
-\cite{Yin_2003_On-the-Cauchy-p}, Zhou 
-\cite{Zhou_2005_Local-well-pose}, and Karapetyan \cite{Karapetyan:2010fk}. A
-natural question is whether or not the continuous dependence can be
-strengthened to uniform dependence or better. For the Burgers equation, Kato
-\cite{Kato_1975_Quasi-linear-eq} showed that the data to solution map $u_{0}
-\mapsto u(t)$ is not H\"older continuous from $H^{s}$ measured in the $H^{r}$
-topology, $r < s$, to $H^{r}$. More precisely, for fixed $0 < \gamma <
-1$ and fixed constant $c > 0$, there exist solutions $u, v$ of Burgers with
-bounded initial data in $H^{s}$ (and hence, a common lifespan $T$) and a $0 <
-t_{0} < T$ such that
+\cite{Yin_2003_On-the-Cauchy-p}, Zhou \cite{Zhou_2005_Local-well-pose}, and
+Karapetyan \cite{Karapetyan:2010fk}. A natural question is whether or not the
+continuous dependence can be strengthened to uniform dependence or better. For
+Camassa-Holm, it was shown in \cite{Himonas:2010p1187} and \cite{Himonas:2009fk}
+that dependence is not uniform. The method relied upon the use of energy
+estimates to show that that the difference between actual solutions and appropriately chosen approximate solutions with coinciding initial data is small (see
+also Koch and Tzvetkov \cite{Koch_2005_Nonlinear-wave-}). Mirroring this method,
+non-uniform dependence for HR was shown in \cite{Karapetyan:2010fk}. 
+\\
+\\
+For the Burgers equation, it is also known that for $s > 3/2$, dependence is not
+better than continuous. Furthermore, Kato \cite{Kato_1975_Quasi-linear-eq}
+showed that for $s > 3/2$ the data to solution map $u_{0} \mapsto u(t)$ is not
+H\"older continuous from $H^{s}$ measured in the $H^{r}$ topology, $r < s$, to
+$H^{r}$. More precisely, for fixed $0 < \gamma < 1$ and fixed constant $c > 0$,
+there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}$
+(and hence, a common lifespan $T$) and a $0 < t_{0} < T$ such that
 %
 %
 \begin{equation*}
@@ -175,15 +188,17 @@ t_{0} < T$ such that
   & > c \| u_{0} - v_{0} \|^{\gamma}_{H^{r}}.
 \end{split}
 \end{equation*}
-\\
-\\
-We remark that HR can be viewed as a weakly dispersive perturbation of Burgers.
-This is contrast to KDV, where the dispersive term contributes a strong
-regularizing effect, as seen in the seminal papers of Kenig, Ponce, and Vega
-\cite{Kenig:1996aa} and Bourgain \cite{Bourgain-Fourier-transfo-1}). Hence, it
-is reasonable to ask whether a result similar to Kato's for the Burgers equation
-holds for HR. Using Kato's work as motivation, Chen, Liu, and Zhang
-\cite{Chen:2011fk} examined another perturbation of Burgers, the b-family
+However, for certain general quasi-linear hyperbolic systems, Kato also obtained
+uniform continuity of the data to solution map for initial data in Sobolev
+spaces with integer index, measured in a weaker Sobolev norm. More recently, Tao
+\cite{Tao:2004p1537} obtained Lipschitz continuity of the data to solution map
+for the Benjamin-Ono equation for $H^{1}$ initial data measured in $L^{2}$.
+Herr, Ionescu, Kenig, and Koch \cite{Herr:2010p886} have also obtained Lipschitz
+continuity in a weaker topology for the Benhamin-Ono with generalized
+dispersion. Hence, it is reasonable to ask whether a result similar to these
+holds for HR\@. Our main motivation stems from the work of Chen, Liu, and Zhang
+\cite{Chen:2011fk} on the
+b-family
 %
 %
 \begin{gather}
@@ -198,7 +213,7 @@ holds for HR. Using Kato's work as motivation, Chen, Liu, and Zhang
 \end{gather}
 %
 %
-and showed that its data to solution map was H\"older continuous from a closed ball $B(0, h)$ in $H^{s}$, $s >
+for which they proved H\"older continuity of the data to solution map from a closed ball $B(0, h)$ in $H^{s}$, $s >
 3/2$ (measured in the $H^{r}$ topology, $r <s$) to $C([0, T], H^{r})$, with $T
 = T(h)> 0$ and H\"older index $\alpha = \alpha(b, s, r)$ given by 
 %
@@ -231,15 +246,12 @@ where
     \Omega_{4} & = \left\{ (s,r): \  s > 3/2, s-1 < r < s  \right\}.
 \end{split}
 \end{equation*}
-
-
-In this work we study the continuity properties of the data-to-solution map for
-the HR 
-equation, expanding upon the work in \cite{Karapetyan:2010fk}, in which it was
-shown that the data-to-solution map is not better than continuous in Sobolev
-spaces $H^{s}$ on the line
-and the circle. More precisely, following \cite{Chen:2011fk} we show the
-following result:
+Given this result, and the similarities between the $b$-family and HR (both can
+be thought of as weakly dispersive nonlocal perturbations of Burgers), in this
+work we study the continuity properties of the
+data-to-solution map for the HR equation, expanding upon the work in
+\cite{Karapetyan:2010fk}. More precisely, following \cite{Chen:2011fk} we show
+the following result:
 %
 %
 \begin{theorem}
@@ -1723,9 +1735,135 @@ also thanks the Department of Mathematics at the University of Notre Dame and
 the Arthur J. Schmitt Foundation for supporting his doctoral studies.
 %
 %
+\newcommand{\etalchar}[1]{$^{#1}$}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{CKS{\etalchar{+}}03}
+
+\bibitem[BBM72]{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
+  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+  A \textbf{272} (1972), no.~1220, 47--78.
+
+\bibitem[BC07]{Bressan_2007_Global-conserva}
+A.~Bressan and A.~Constantin, \emph{Global conservative solutions of the
+  camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
+  215--239.
+
+\bibitem[Ben72]{Benjamin_1972_The-stability-o}
+T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+  (London) Ser. A \textbf{328} (1972), 153--183.
+
+\bibitem[BL76]{bergh1976interpolation}
+J.~Bergh and J.~L{\"o}fstr{\"o}m, \emph{Interpolation spaces: an introduction},
+  vol. 223, 1976.
+
+\bibitem[Bou93]{Bourgain-Fourier-transfo-1}
+J.~Bourgain, \emph{Fourier transform restriction phenomena for certain lattice
+  subsets and applications to nonlinear evolution equations. i. schr{\"o}dinger
+  equations}, Geom. Funct. Anal. \textbf{3} (1993), no.~2, 107--156.
+
+\bibitem[BS88]{Bennett:1988ys}
+C.~Bennett and R.~Sharpley, \emph{Interpolation of operators}, vol. 129, 1988.
+
+\bibitem[CH93]{Camassa-Holm-1993-An-integrable-shallow-water}
+R.~Camassa and D.~D. Holm, \emph{An integrable shallow water equation with
+  peaked solitons}, Phys. Rev. Lett. \textbf{71} (1993), no.~11, 1661--1664.
+
+\bibitem[CKS{\etalchar{+}}03]{Colliander:2003kx}
+J.~Colliander, M.~Keel, G.~Staffilani, H.~Takaoka, and T.~Tao, \emph{Sharp
+  global well-posedness for kdv and modified kdv on $\mathbb r$ and $\mathbb t$}, J. Amer. Math. Soc. \textbf{16} (2003), no.~3, 705--749 (electronic).
+
+\bibitem[CL09]{Constantin-Lannes-2009-The-hydrodynamical-relevance-of-the-Camassa-Holm}
+A.~Constantin and D.~Lannes, \emph{The hydrodynamical relevance of the
+  camassa-holm and degasperis-procesi equations}, Arch. Ration. Mech. Anal.
+  \textbf{192} (2009), no.~1, 165--186.
+
+\bibitem[CLZ11]{Chen:2011fk} R.~M. Chen, Y.~Liu, and P.~Zhang, \emph{The
+    h{\"o}lder continuity of the solution map to the {\$}b{\$}-family equation
+in weak topology}, submitted 2011.
+
+\bibitem[CS00a]{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
+  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+  140--148.
+
+\bibitem[CS00b]{Constantin_2000_Stability-of-pe}
+\bysame, \emph{Stability of peakons}, Comm. Pure Appl. Math. \textbf{53}
+  (2000), no.~5, 603--610.
+
+\bibitem[Dai98]{Dai_1998_Model-equations}
+H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
+  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+  193--207.
+
+\bibitem[HIKK10]{Herr:2010p886}
+S.~Herr, A.~D. Ionescu, C.~E. Kenig, and H.~Koch, \emph{A para-differential
+  renormalization technique for nonlinear dispersive equations}, Comm. Partial
+  Differential Equations \textbf{35} (2010), no.~10, 1827--1875.
+
+\bibitem[HK09]{Himonas:2009fk}
+A.~Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
+  the ch equation on the line}, Differential Integral Equations \textbf{22}
+  (2009), no.~3-4, 201--224.
+
+\bibitem[HKM10]{Himonas:2010p1187}
+A.~Himonas, C.~Kenig, and G.~Misiolek, \emph{Non-uniform dependence for
+  the periodic ch equation}, Comm. Partial Differential Equations \textbf{35}
+  (2010), no.~6, 1145--1162.
+
+\bibitem[Kar10]{Karapetyan:2010fk}
+D.~Karapetyan, \emph{Non-uniform dependence and well-posedness for the
+  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826.
+
+\bibitem[Kat75]{Kato_1975_Quasi-linear-eq}
+T.~Kato, \emph{Quasi-linear equations of evolution, with applications to
+  partial differential equations}, 1975, pp.~25--70. Lecture Notes in Math.,
+  Vol. 448.
+
+\bibitem[KPV96]{Kenig:1996aa}
+C.~E. Kenig, G.~Ponce, and L.~Vega, \emph{A bilinear estimate with applications
+  to the kdv equation}, J. Amer. Math. Soc. \textbf{9} (1996), no.~2, 573--603.
+
+\bibitem[KT05]{Koch_2005_Nonlinear-wave-}
+H.~Koch and N.~Tzvetkov, \emph{Nonlinear wave interactions for the benjamin-ono
+  equation}, Int. Math. Res. Not. (2005), no.~30, 1833--1847.
+
+\bibitem[Len06]{Lenells_2006_Traveling-waves}
+J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
+  Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
+
+\bibitem[Mol04]{Molinet_2004_On-well-posedne}
+L.~Molinet, \emph{On well-posedness results for camassa-holm equation on the
+  line: a survey}, J. Nonlinear Math. Phys. \textbf{11} (2004), no.~4,
+  521--533.
+
+\bibitem[Tao04]{Tao:2004p1537}
+T.~Tao, \emph{Global well-posedness of the benjamin-ono equation in $H^1(\bf
+  R)$}, J. Hyperbolic Differ. Equ. \textbf{1} (2004), no.~1, 27--49.
+
+\bibitem[Tay95]{Taylor:1995kx}
+M.~E. Taylor, \emph{Partial differential equations i, basic theory}, vol. 115,
+  1995.
+
+\bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
+Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
+  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
+
+\bibitem[Zho05]{Zhou_2005_Local-well-pose}
+Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
+  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
+
+\end{thebibliography}
 %
 %
-\bibliographystyle{amsalpha-custom}
-\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+%\bibliographystyle{amsalpha-custom}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
 
 \end{document}
