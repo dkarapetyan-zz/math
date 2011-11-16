@@ -84,13 +84,20 @@ urlcolor=blue,
 \begin{document}
 \title[H\"older Continuity of the Data to Solution Map for HR]{H\"older Continuity of the Data to Solution Map for HR in the
 Weak Topology}
-\author{David Karapetyan}
+\author{\textit{David Karapetyan} \\ University of Notre Dame}
 \address{Department of Mathematics  \\
     University  of Notre Dame\\
         Notre Dame, IN 46556 }
         \date{}
         
-        
+\begin{abstract}
+It is shown that the data to solution map for the hyperelastic rod equation is
+H\"older continuous from bounded sets of Sobolev spaces with exponent greater
+than 3/2 measured in a weaker Sobolev norm with index $r < s$ in both the
+periodic and non-periodic cases. The proof is based on energy estimates coupled
+with a delicate commutator estimate and multiplier estimate. 
+\end{abstract}
+       
         
         %
 \keywords{Hyperelastic rod equation, periodic, non-periodic,
@@ -98,7 +105,7 @@ initial value problem, Sobolev spaces, well-posedness,
 continuity of solution map, energy estimates.}
 
 \subjclass[2000]{Primary: 35Q53}
-
+ 
 
         
         \maketitle
@@ -146,10 +153,9 @@ the unidirectional evolution of long waves.
 Solitary-wave solutions to this 
 equation are smooth, global, and orbitally stable (see Benjamin 
 \cite{Benjamin_1972_The-stability-o}, Benjamin, Bona, and Mahony
-\cite{Benjamin_1972_Model-equations}, Constantin and Strauss
-\cite{Constantin_2000_Stability-of-a-}, and Lenells
+\cite{Benjamin_1972_Model-equations}, and Lenells
 \cite{Lenells_2006_Traveling-waves}). For the case $\gamma =1$, we obtain the Camassa-Holm equation, a bi-Hamiltonian
-water wave equation first written explicity by Camassa and Holm
+water wave equation first written explicitly by Camassa and Holm
 \cite{Camassa-Holm-1993-An-integrable-shallow-water}. There is an extensive
 literature devoted to the Camassa-Holm equation. We refer the reader to the work
 of Himonas, Kenig, and Misiolek \cite{Himonas:2010p1187}, Himonas and Kenig
@@ -176,8 +182,10 @@ non-uniform dependence for HR was shown in \cite{Karapetyan:2010fk}.
 For the Burgers equation, it is also known that for $s > 3/2$, dependence is not
 better than continuous. Furthermore, Kato \cite{Kato_1975_Quasi-linear-eq}
 showed that for $s > 3/2$ the data to solution map $u_{0} \mapsto u(t)$ is not
-H\"older continuous from $H^{s}$ measured in the $H^{r}$ topology, $r < s$, to
-$H^{r}$. More precisely, for fixed $0 < \gamma < 1$ and fixed constant $c > 0$,
+H\"older continuous from a closed ball in $H^{s}$ centered at $0$ and measured
+in the $H^{r}$ topology, $r < s$, to $C([0, T], H^{r})$, where $T$ depends upon
+the $H^{s}$ radius of the ball. More precisely, for fixed $0 < \gamma < 1$
+and fixed constant $c > 0$,
 there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}$
 (and hence, a common lifespan $T$) and a $0 < t_{0} < T$ such that
 %
@@ -194,7 +202,7 @@ spaces with integer index, measured in a weaker Sobolev norm. More recently, Tao
 \cite{Tao:2004p1537} obtained Lipschitz continuity of the data to solution map
 for the Benjamin-Ono equation for $H^{1}$ initial data measured in $L^{2}$.
 Herr, Ionescu, Kenig, and Koch \cite{Herr:2010p886} have also obtained Lipschitz
-continuity in a weaker topology for the Benhamin-Ono with generalized
+continuity in a weaker topology for the Benjamin-Ono with generalized
 dispersion. Hence, it is reasonable to ask whether a result similar to these
 holds for HR\@. Our main motivation stems from the work of Chen, Liu, and Zhang
 \cite{Chen:2011fk} on the
@@ -348,18 +356,19 @@ where
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-We remark that this result is sharper improves upon the H\"older continuity result in
-\cite{Chen:2011fk} (there it is for $0 \le r < s$) by a full degree in $r$. 
+We remark that this result is sharper then the analogue obtained in
+\cite{Chen:2011fk} for the $b$-family. We are confident that the techniques
+applied in this paper can be applied to sharpen the results obtained in
+\cite{Chen:2011fk}.
 %
 %
 %
+\section{Proof of H\"older Continuity}
 %
-\section{Proof of Theorem~\ref{thm:main-thm}}
-%
-%
-The proof in the non-periodic case is analogous to that in the periodic case.
-Hence, we restrict our attention to the periodic case. 
-%
+We note that the only significant difference between the proof of H\"older
+continuity in the periodic and non-periodic case is in the proof of Lemma
+\ref{lem:frac-deriv}, which we address in the appendix. Hence, we focus our
+attention on the proof of H\"older continuity in the periodic case. 
 %
 %
 \subsection{Region $\Omega_{1}$} 
@@ -367,7 +376,7 @@ Hence, we restrict our attention to the periodic case.
 %
 %
 Let $u_{0}(x), v_{0}(x)
-\in B_{H^{s}}(R)$, $s > 3/2$ be two initial datum. Then from
+\in B_{H^{s}}(R)$, $s > 3/2$ be two initial data. Then from
 the well-posedness theory for HR \cite{Karapetyan:2010fk}, we
 know that there exists unique corresponding solutions $u, v \in C(I,
 B_{H^{s}}(2R))$ to \eqref{hyperelastic-rod-equation}.
@@ -393,7 +402,7 @@ Set $v=u-w$. Then $v$ solves the Cauchy-problem
 Let
 
 \begin{equation*}
-	D^{m} = (1 - \p_x^2)^{m/2}, \quad m \in \rr.
+	D^{m} \doteq (1 - \p_x^2)^{m/2}, \quad m \in \rr.
 \end{equation*}
 %
 Applying $D^r$ to both sides of \eqref{uniqueness-exp}, then 
@@ -462,7 +471,7 @@ D^r v \ dx \right |
 %
 %
 To estimate the remaining integral of \eqref{4v}, we shall need the following
-following result taken from \cite{Himonas_2009_Non-uniform-dep-per}:
+following result taken from \cite{Himonas:2010p1187}:
 %
 \begin{lemma}
 \label{cor1}
@@ -495,8 +504,8 @@ Cauchy-Schwartz and Lemma~\ref{cor1} then yields
 \end{equation}
 %
 %
-Combining \eqref{4'v} and \eqref{7v} and applying the Sobolev Imbedding 
-Theorem, we obtain the estimate
+Combining \eqref{4'v} and \eqref{7v} and applying the Sobolev embedding 
+theorem, we obtain the estimate
 %
 %
 \begin{equation}
@@ -853,29 +862,29 @@ For the periodic case we have
 \begin{equation*}
 \begin{split}
   \| fg\|_{H^{r-1}}^{2}
-  & = \sum_{n \in \zz} (1 + n^{2})^{r-1}| \sum_{\eta \in \zz}
-  \wh{f}(\eta) \wh{g}( n - \eta)  |^{2} 
+  & = \sum_{n \in \zz} (1 + n^{2})^{r-1}| \sum_{k \in \zz}
+  \wh{f}(k) \wh{g}( n - k)  |^{2} 
   \\
-  & \le \sum_{n \in \zz} (1 + n^{2})^{r-1}\left [ \sum_{\eta \in \zz}
-  | \wh{f}(\eta) |  | \wh{g}(n - \eta) | 
+  & \le \sum_{n \in \zz} (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
+  | \wh{f}(k) |  | \wh{g}(n - k) | 
    \right ]^{2} 
   \\
-  & = \sum_{n \in \zz}  (1 + n^{2})^{r-1}\left [ \sum_{\eta \in \zz}
-  | \wh{f}(\eta) |  | \wh{g}(n - \eta) | (1 +
-  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
+  & = \sum_{n \in \zz}  (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
+  | \wh{f}(k) |  | \wh{g}(n - k) | (1 +
+  k^{2})^{\frac{1-s}{2}} (1 + k^{2})^{\frac{s-1}{2}}
    \right ]^{2}.
   \end{split}
 \end{equation*}
 %
-Applying Cauchy Schwartz in $\eta$, we bound this by
+Applying Cauchy Schwartz in $k$, we bound this by
 %
 %
 %
 \begin{equation}
   \label{np-key-term}
 \begin{split}
-  \| f \|_{H^{s-1}}^{2} \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{\eta \in \zz} \frac{|
-  \wh{g}(n - \eta) |^{2}}{(1 + \eta^{2})^{s-1}}.
+  \| f \|_{H^{s-1}}^{2} \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
+  \wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}.
   \end{split}
 \end{equation}
 %
@@ -884,67 +893,98 @@ But by change of variables and Fubini
 \begin{equation}
     \label{opp}
 \begin{split}
-\sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{\eta \in \zz} \frac{|
-  \wh{g}(n - \eta) |^{2}}{(1 + \eta^{2})^{s-1}}
-  & = \sum_{n \in \zz} \sum_{\eta \in \zz}  
-  \frac{|\wh{g}(-\eta)|^{2}}{[1 + (n + \eta)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
+\sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
+  \wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}
+  & = \sum_{n \in \zz} \sum_{k \in \zz}  
+  \frac{|\wh{g}(-k)|^{2}}{[1 + (n + k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
    \\
   & =
-  \sum_{n \in \zz} \sum_{\eta \in \zz}  
-  \frac{|\wh{g}(\eta)|^{2}}{[1 + (n - \eta)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
+  \sum_{n \in \zz} \sum_{k \in \zz}  
+  \frac{|\wh{g}(k)|^{2}}{[1 + (n - k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
   \\
-& = \sum_{\eta \in \zz} \sum_{n \in \zz}  
-  \frac{|\wh{g}(\eta)|^{2}}{[1 + (n - \eta)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
+& = \sum_{k \in \zz} \sum_{n \in \zz}  
+  \frac{|\wh{g}(k)|^{2}}{[1 + (n - k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
   \\
-  & = \sum_{\eta \in \zz}| \wh{g}(\eta) |^{2} \sum_{n \in \zz}  
-  \frac{1}{[1 + (n - \eta)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
+  & = \sum_{k \in \zz}| \wh{g}(k) |^{2} \sum_{n \in \zz}  
+  \frac{1}{[1 + (n - k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
   \\
-& = \sum_{\eta \in \zz}| \wh{g}(\eta) |^{2} \sum_{n \in \zz}  
-  \frac{1}{(1 + n^{2})^{s-1}[1 + (n - \eta)^{2}]^{1-r}}.  
+& = \sum_{k \in \zz}| \wh{g}(k) |^{2} \sum_{n \in \zz}  
+  \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}.  
   \end{split}
 \end{equation}
 %
-Now 
+Without loss of generality, we assume $k \ge 0$ and write 
 \begin{equation*}
     \begin{split}
-& \sum_{\eta \in \zz}| \wh{g}(\eta) |^{2} \sum_{n \in \zz}  
-  \frac{1}{(1 + n^{2})^{s-1}[1 + (n - \eta)^{2}]^{1-r}}  
+&  \sum_{n \in \zz}  
+  \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}  
   \\
   & = 
-  \sum_{0 \le n \le 2a} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - \eta)^{2}]^{1-r}} 
-  + \sum_{n > 2a} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - \eta)^{2}]^{1-r}}
+  \sum_{0 \le n \le 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
+  + \sum_{n > 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}
   \\
-  & \doteq I + II.
+  & + \sum_{n \ge 0} \frac{1}{(1 + n^{2})^{s-1}[1 + (n + k)^{2}]^{1-r}} 
+  \\
+  & \doteq I + II + III.
  \end{split} 
   \end{equation*}
 %
-We have the estimates
+We have the estimate
+%
+%
+\begin{equation}
+    \label{est-tem}
+\begin{split}
+    II 
+    & \le \sup_{n > 2k} \frac{1}{\left[ 1 + (n-k)^{2} \right]^{1-r}}
+    \sum_{n > 2k} \frac{1}{(1 + n^{2})^{s-1}} 
+    \\
+    & \lesssim (1 + k^{2})^{r-1}, \quad
+    s > 3/2.
+\end{split}
+\end{equation}
+Similarly
 %
 %
 \begin{equation*}
 \begin{split}
-    II 
-    & \le \sup_{n > 2\eta} \frac{1}{\left[ 1 + (n-\eta)^{2} \right]^{1-r}}
-    \sum_{n > 2\eta} \frac{1}{(1 + n^{2})^{s-1}} 
-    \\
-    & \lesssim (1 + \eta^{2})^{r-1}, \quad
-    s > 3/2
+III \lesssim (1 + k^{2})^{r-1}, \quad s > 3/2.
 \end{split}
 \end{equation*}
 %
-and
 %
+%
+To estimate $I$, we assume without loss of generality that $k$ is even and write
 %
 %
 \begin{equation*}
+    \begin{split}
+&  I = \sum_{0 \le n \le k/2} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
+  + \sum_{k/2 < n \le 3k/2} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
+  \\
+  & + \sum_{3k/2 < n \le 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
+  \\
+  & \doteq i + ii + iii.
+ \end{split} 
+  \end{equation*}
+  Hence, estimating as in \eqref{est-tem}, we have
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  i, iii \lesssim (1 + k^{2})^{r-1}, \quad
+  s > 3/2
+  \end{split}
+  \end{equation*}
+  %
+  and
+  %
+  %
+\begin{equation*}
 \begin{split}
-    I & = 2 \sum_{0 \le n \le \eta} \frac{1}{\left( 1 + n^{2} \right)^{1-r} \left[
-        1 + (n + \eta)^{2} \right]^{s-1}}
-        \\
-        & \lesssim \sup_{0 \le n \le \eta} \frac{1}{\left[ 1 + (n + \eta)^{2}
-            \right]^{s-1}} \sum_{0 \le n \le \eta} \frac{1}{(1 + n^{2})^{1-r}}
-            \\
-            & \lesssim \frac{1}{(1 + \eta^{2})^{s-1}}, \quad r \le 1/2.
+    ii & \le \sup_{k/2 \le n \le 3k/2} \frac{1}{\left( 1 + n^{2} \right)^{s-1}}
+    \sum_{k/2 \le n \le 3k/2} \frac{1}{[1 + (n-k)^{2}]^{1-r}} \\
+            & \lesssim \frac{1}{(1 + k^{2})^{s-1}}, \quad r \le 1/2.
 \end{split}
 \end{equation*}
 %
@@ -955,9 +995,9 @@ Therefore,
 %
 \begin{equation*}
 \begin{split}
-    I + II & \lesssim (1 + \eta^{2})^{1-s} + (1 + \eta^{2})^{r-1}, \quad r \le 1/2, \ s > 3/2
+    I + II + III & \lesssim (1 + k^{2})^{1-s} + (1 + k^{2})^{r-1}, \quad r \le 1/2, \ s > 3/2
     \\
-    & \lesssim  (1 + \eta^{2})^{r-1}, \quad r -1 \ge 1-s
+    & \lesssim  (1 + k^{2})^{r-1}, \quad r -1 \ge 1-s.
 \end{split}
 \end{equation*}
 %
@@ -974,45 +1014,7 @@ we obtain
   \quad s > 3/2, \ r \le 1/2, \ s + r \ge 2.
 \end{split}
 \end{equation}
-We will now establish this bound for $r=s$ where $s > 3/2$. We shall need the following. 
-%
-%
-\begin{lemma}[Algebra Property]
-  \label{lem:alg-prop}
-If  $s>1/2$ then there is $c_s>0$ such that 
-%
-%
-%
-\begin{equation} \label{KP-com-est}
-  \| fg\|_{H^{s}} \le c_s \| f \|_{H^{s}} \| g \|_{H^{s}}.
-\end{equation}
-%
-%
-%
-\end{lemma}
-%
-%
-%
-%
-%
-Hence,
-%
-%
-\begin{equation}
-  \label{pre-interp-1}
-\begin{split}
-  \| f g \|_{H^{s-1}}
-  & \lesssim   \|f  \|_{H^{s-1}} \| g \|_{H^{s-1}}, \quad s >3/2.
-\end{split}
-\end{equation}
-%
-%
-%
-%
-%
-%
-%
-We now wish to interpolate to obtain estimates for the whole range $1 \le r \le
+This estimate also holds for $r=s$, since the Sobolev space $H^{t}$ is an algebra for $t > 1/2$. We now wish to interpolate to obtain estimates for the whole range $1 \le r \le
 s$.
 %
 %
@@ -1033,7 +1035,7 @@ m + (1 - \theta) n}$ continuously for all $\theta \in (0,1]$.
 \end{proposition}
 %
 To apply Proposition~\ref{prop:sob-interp}, we note that \eqref{yhh}
-and \eqref{pre-interp-1} imply that for $s > 3/2$
+and the algebra property of the Sobolev space $H^{t}$, $t > 1/2$ imply that for $s > 3/2$
 %
 %
 \begin{equation*}
@@ -1131,7 +1133,7 @@ We now need the following lemma, whose proof is provided in the appendix.
 	\label{lem:calc}
  %
   Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p - \ee_{q}, q - \ee_{p}, p+q-1
- \right\}$, where $\ee_{j} \ge 0$ and $\ee_{j} = 0$ for $j \neq 1$. Adopt the notation
+ \right\}$, where $\ee_{j} \ge 0$ is arbitrarily small and $\ee_{j} = 0$ for $j \neq 1$. Adopt the notation
  $\langle x - \alpha \rangle  \doteq 1 + | x - \alpha |$. Then 
  %
   \begin{equation*}
