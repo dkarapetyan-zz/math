@@ -1080,7 +1080,7 @@ Fr\'echet spaces) by replacing norms with metrics in what follows.
 	\label{def:diff}
 	Let $X,Y$ be Banach spaces over the real numbers, $U \subset X$ open,
   and consider the map $f: U \to Y$.
-	Then $f$ is differentiable at $x_0 \in U$ if there
+  Then $f$ is differentiable at $x_0 \in U$ at $x_{0} \in U$ if there
 	is a continuous linear map $Df(x_0): X \to Y$ such that
 	%
 	%
@@ -1098,9 +1098,9 @@ Fr\'echet spaces) by replacing norms with metrics in what follows.
 	This map, which we call the \emph{total derivative} of $f$ at $t_0$, is 
 	unique. If $Df(x_0)$ exists for all $x_0 \in U$,
 	then we say that $f$ is
-	\emph{differentiable} in $U$. If $f$ is differentiable in $U$, and 
+    \emph{differentiable} in $U$. If $f$ is differentiable in $U$, and 
 	$\|Df(x_0 + h) - Df(x_0) \|_Y \to 0$ as $\|h\|_{X} \to 0$ for all $x_0 \in U$,
-	then we say that $f$ is \emph{continuously differentiable in $U$}. If $X, Y$
+    then we say that $f$ is \emph{continuously differentiable in $U$}, or $C^{1}$ in $U$. If $X, Y$
   are Banach spaces over the complex numbers, we say that $f$ is
   \emph{holomorphic} (or \emph{continuously holomorphic}) in $U$.
 \end{definition}
@@ -1111,13 +1111,13 @@ Fr\'echet spaces) by replacing norms with metrics in what follows.
   %
   %
   \begin{remark}
-    Equivalently, $f$ is differentiable at $x_{0}$ is there exists a continuous
+    Equivalently, $f$ is differentiable at $x_{0}$ if there exists a continuous
     linear map $Df(x_{0}): X \to Y$ such that
     %
     %
     \begin{equation*}
     \begin{split}
-      f(x_{0} + h) = f(x_{0}) + Df(x_{0}) \circ h + o(\| h \|_{X}).
+      f(x_{0} + h) = f(x_{0}) + Df(x_{0}) \circ h + o(h).
     \end{split}
     \end{equation*}
     %
@@ -1219,51 +1219,59 @@ Fr\'echet spaces) by replacing norms with metrics in what follows.
   \end{framed}
   %
   %
-  \begin{framed}
-	\begin{remark}
-		\label{rem:usual-diff}
-		Consider the map $f: \rr \to \rr$. Then \autoref{def:diff} 
-		coincides with the usual definitions of
-		differentiability and continuous differentiability for maps
-		from $\rr $ to $\rr$.
-		To see this, assume $f$ is differentiable at $x_0$.
-        Let us first verify that the map  $D(x_0):\rr~\to~\rr$ defined by
-        $Df(x_0)(x)=xf'(x_0)$ is the total derivative of $f$. Assume without
-        loss of generality that $h \to 0^+$. Then
-		%
-		%
-		\begin{equation}
-			\label{2}
-			\begin{split}
-				 \lim_{h \to 0^+} \frac{| f( x_0 + h) - f(x_0) -
-				Df(x_0)(h) |}{|h|}
-				 & = \lim_{h\to 0^+} \left |\frac{f(x_0+h) -
-				f(x_0)}{h} - \frac{Df(x_0)(h)}{h}  \right |
-				\\
-				 & =\lim_{h \to 0^+} \left |\frac{f(x_0+h) - f(x_0)}{h} -
-				f'(x_0) \right | = 0.
-			\end{split}
-		\end{equation}
-		%
-		%
+%
+\begin{framed}
 %
 %
-For any $a \in \rr$, define the map $T_{a} \in L(\rr , \rr)$ by
-$T_{a}(x) = ax$. Then the map $a \mapsto T_a$ is an isometric
-isomorphism from $\rr$ to $L( \rr, \rr)$. Hence, 
-we may identify $f'(x_0)$ with $T_{f'(x_0)} = Df(x_0)$,
-which by \eqref{2} is the total derivative of $f$.  Using this identification,
-it follows that $f$ is continuously
-differentiable in $\rr$ if and only if $f'$ is a continuous function of
-$x_0$, for all $x_0 \in \rr$. \qed
-%
+\begin{remark}
+    Observe that if $F$ is differentiable at $x_{0}$, then it is continuous at $x_{0}$.
+\label{rem:deriv-imp-cont}
 \end{remark}
+%
+%
 \end{framed}
-%
-%
-In general, for an arbitrary Banach space $X$, open interval $(a,b) \subset
-\rr$, and map $f:(a,b) \to X$, we can identify $Df(x_0)$ with an
-element of $X$ via the following.
+\begin{framed}
+    \begin{exercise}
+        Compute the total
+        derivative of the function $f:L^{\infty} \to L^{\infty}$ at $u_{0}$,
+        where $f(u) = u^{2}$. 
+    \end{exercise}
+    Answer:       %
+    %
+    \begin{equation*}
+    \begin{split}
+    \frac{\| (u_{0} + h)^{2} - u_{0}^{2} - 2u_{0}h \|_{L^{\infty}}}{\| h
+        \|_{L^{\infty}}}
+        &=         \frac{\| h^{2} \|_{L^{\infty}}}{\| h \|_{L^{\infty}}}
+        \\
+        & \le \| h \|_{L^{\infty}} 
+        \\
+        & \to 0.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Therefore, $D_{u}(f(u))(u_{0}) = 2u_{0}I$. 
+\end{framed}
+Recall that if $F$ is continuously differentiable in $U$, then $DF : U \to L(U,
+X)$ is a continuous map. Since $X$ is Banach, it follows that $L(U, X)$ is also
+Banach under the operator norm, hence it makes sense to talk about derivatives
+of $DF$ at a point. More precisely, if $DF$ is differentiable at $x_{0}$, then
+we denote its derivative at $x_{0}$ by $D^{2}F(x_{0})$ and say that 
+is $F$ is $2$-times differentiable at $x_{0}$.
+Observe then that $D^{2}F(x_{0}) \in L(U, L(U,X))$. If $DF$ is continuously
+differentiable in $U$, then we say that $F$ is $C^{2}$ in $U$, and observe that
+$D^{2}F : U \to L(U, L(U, X))$ continuously. In general, we say $F$ $k$-times
+differentiable at $x_{0}$ if $D^{k-1}F$ is differentiable at $x_{0}$, and
+observe that $D^{k}F(x_{0}) \in L(U, L(U, L(U, \dots)))$. If $D^{k-1}F$ is
+continuously differentiable in $U$, then we say $F$ is $C^{k}$ in $U$, and
+observe that $D^{k}F : U \in L(U, L(U, L(U, \dots)))$ continuously.
+
+Notice that our definition of $D^{k}F$ becomes more and more complicated as $k$
+increases. However, there are special cases in which our definition of the
+Banach space derivative becomes easier to deal with. More precisely, for an
+arbitrary Banach space $X$, open interval $(a,b) \subset \rr$, and map $f:(a,b)
+\to X$, we can identify $Df(x_0)$ with an element of $X$ via the following.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1347,24 +1355,26 @@ reformulation of \autoref{def:diff}.
 \end{definition}
 \begin{framed}
 \begin{example}
-Let $f: (a,b) \to \rr^2$ be defined by $f(t) = (1, t^2)$. Then $Df(1)$ maps
-$(a,b)$ to $\rr$ by the relation $Df(1)(t) = (0, 2t) = t[0, 2]$. Hence, $Df(1)$ is the $1
-\times 2$ matrix $[0,2]$, which we may also view as the point $(0,2) \in \rr^2$.
-That is, $f'(1) = (0,2)$. Similarly, $f'(t) = (0,2t)$.
+Let $f: (a,b) \to \rr^2$ be defined by $f(t) = (1, t^2)$. Then $Df$ maps the
+interval $(a,b)$ to $L((a,b), \rr^{2})$ by the relation $Df(t) = (0, 2t)$, and
+$Df(t)(h) = (0,2th)$. Hence, we may view $Df(t)$ as the point $(0,2t) \in
+\rr^2$, and view its action on $(a,b)$ as nothing more than standard scalar
+multiplication in $\rr^{2}$. That is, $f'(t) = (0,2t)$, and $f'(t)(s) = s(0,
+2t)$.
 \end{example}
 \end{framed}
 
 Lastly, we include the following.
 %
 %
-\begin{proposition}
-    (Chain Rule) Let $X,Y,Z$ be Banach spaces, $f: X \to Y$ and $g: Y \to Z$
+\begin{lemma}[Chain Rule]
+    Let $X,Y,Z$ be Banach spaces, $f: X \to Y$ and $g: Y \to Z$
     continuously differentiable maps. Then for all $x_0 \in X$ we have
     %
     \begin{equation*} (g \circ f)' (x_0) = g'(f(x_0)) \circ (f'(x_0)).
 		\end{equation*} 
     %
-	\end{proposition}
+	\end{lemma}
   \begin{proof} Since $f$ and $g$ are continuously differentiable, we can write
 			\begin{equation*}
 				f(x_0 + s) = f(x_0) + f'(x_0)(s) + o_{1}(s)
@@ -1433,7 +1443,74 @@ Lastly, we include the following.
         \end{equation*}
 			 completing the proof. 
    \end{proof}
-
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				product rule
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+   %\begin{lemma}[Product Rule]
+%Let $X$, $Y$, $Z$ be Banach spaces, and $B: X \times Y \to Z$ is a continuous
+%bilinear operator, where $X \times Y$ is Banach under the usual product
+%norm $\| (f,g) \|_{X \times Y} = \| f \|_{X} + \| g \|_{Y}$.  Then $B$ is differentiable in $X \times Y$, with derivative at $(x_{0}, y_{0})$ given
+%by the bilinear map $DB(x_{0}, y_{0}): X \times Y \to Z$ defined by
+%%
+%%
+%\begin{equation}
+    %\label{ansatz}
+%\begin{split}
+    %DB(x_{0},y_{0})(x,y) = B(x, y_{0}) + B(x_{0}, y)
+%\end{split}
+%\end{equation}
+%%
+%%
+%\label{lem:product-rule}
+%\end{lemma}
+%%
+%%
+%%
+%%
+%\begin{proof}
+%%
+%It will be enough to verify that \eqref{ansatz} is the derivative of $B$.
+%Using the bilinearity of $B$, we see that 
+%%
+%\begin{equation*}
+%\begin{split}
+     %\frac{\| B(x_{0} + h, y_{0} + k) - B(x_{0}, y_{0})  - B(h, y_{0}) - B(x_{0}, k)\|_{Z}}{\| (h, k) \|_{X \times Y}}
+    %& = \frac{\| B(h, k)\|_{Z}}{\| (h, k) \|_{X \times Y}}
+    %\\
+    %& \le \frac{\| h \|_{X} \| k \|_{Y} ||| B |||}{\| (h, k) \|_{X \times Y}}
+    %\\
+    %& \simeq \frac{\| h \|_{X} \| k \|_{Y}}{\| (h, k) \|_{X \times Y}}
+%\end{split}
+%\end{equation*}
+%%
+%which goes to $0$ as $\| (h, k) \|_{X \times Y}$ goes to $0$. This concludes the proof.
+%%
+%\end{proof}
+%%
+%%
+%\begin{framed}
+    %\begin{example} Let $u \in L^{\infty}$. Then multiplication is a continuous bilinear mapping taking $L^{\infty} \times L^{\infty}$ to $L^{\infty}$. Hence
+        %%
+        %%
+        %\begin{equation*}
+        %\begin{split}
+            %D(u^{2})(h, k) 
+        %\end{split}
+        %\end{equation*}
+        %%
+        %%
+        %<++>
+    %\end{example}
+%\end{framed}
+%<++>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -1443,7 +1520,339 @@ Lastly, we include the following.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Regularity for Solutions to ODEs} 
+%
+\section{Regularity of the Data-to-Solution Map for ODEs} 
+\label{sec:dep-param-smooth}
+%
+%
+Following Taylor \cite{Taylor:1995kx}, let $X$ be a Banach space, $U \subset X$ an open subset, and $F: U \to X$. Consider the non-autonomous system
+%
+%
+\begin{gather}
+  \label{aa-sm}
+\frac{dy}{dt} = F(y(t), t),
+\\
+y(0)= y_{0} \in X, \quad t \in \rr.
+\label{bb-sm}
+\end{gather}
+%
+Letting $z = (y(t), t)$, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dz}{dt}  
+& = \left (\frac{dy}{dt}, 1 \right )
+\\
+& = \left( F(y(t), t), 1 \right)
+\\
+& = \left( F(z), 1 \right)
+\\
+& \doteq G(z).
+\end{split}
+\end{equation*}
+%
+%
+Hence, without loss of generality, we may restrict our attention to the
+autonomous system
+%
+%
+\begin{gather}
+\frac{dy}{dt} = F\left( y(t) \right)
+\label{ode-eq-sm}
+\\
+y(0) = y_{0}, \quad t \in \rr
+\label{ode-init-data-sm}
+\end{gather}
+%
+%
+%
+for which we shall prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                dep on init cond
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+  Let $U \subset X$ be an open subset, and $F: U  \to X$.
+  If $F$ is Lipschitz, then the flow map $\vp \mapsto u(t, \vp) \doteq
+  S_{t}(\vp)$ is Lipschitz. If $F$ is $k$ times differentiable, where $k \ge 1$
+  is an integer, then the flow map is $k$ times differentiable.
+  \label{prop:reg-result}
+\end{proposition}
+%
+%
+%
+%
+\begin{proof}
+  We divide our work into cases.
+  \subsection*{Case $k = 0$.} The ivp \eqref{ode-eq-sm}-\eqref{ode-init-data-sm} is equivalent to 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  u(t, \vp) = \vp + \int_{0}^{t} F[u(\tau, \vp)] d \tau
+  \end{split}
+  \end{equation*}
+  %
+  and so
+  %
+  %
+  %
+  \begin{equation*}
+    \begin{split}
+  u(t, \vp) - u(t, \psi) = \vp - \psi + \int_{0}^{t} \{F[u(\tau, \vp)] - F[u(\tau, \psi)]\} d \tau.
+  \end{split}
+  \end{equation*}
+  %
+ Recall that Theorem~\ref{ode-thm} tells us that for any $\vp \in B_{r} \subset U$ there exists a unique solution $u(t, \vp)$ for $t \in [-h, h]$, where $h = h(r)$. Therefore, applying the triangle inequality and the Lipschitz condition, we obtain the estimate
+  \begin{equation*}
+  \begin{split}
+  \sup_{t \in [-h, h]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
+  & \le \|\vp -
+  \psi\|_{L^{\infty}} +  h \sup_{t \in [-h, h]} \|F[u(t, \vp)] - F[u(t, \psi)] \|_{L^{\infty}}
+  \\
+  & \le \|\vp - \psi\|_{L^{\infty}} +  ch \sup_{t \in [-h, h]} \|[u(t, \vp)] -
+  [u(t, \psi)] \|_{L^{\infty}}.
+  \end{split}
+  \end{equation*}
+Restricting $h < 1/c$ and rearranging terms, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\sup_{t \in [-h, h]} \| u(t, \vp) - u(t, \psi) \|_{L^{\infty}} \le \frac{1}{1-ch} \| \vp - \psi \|_{L^{\infty}}
+\end{split}
+\end{equation*}
+%
+%
+concluding the proof.
+ \subsection*{Case $k=1$} 
+  \label{ssec:case-k}
+ % 
+ %
+Formally differentiate
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm} with respect to $\vp$ and obtain
+%
+%
+%
+\begin{gather}
+  W' = DF(y(\vp,t)) \circ W
+  \label{ode-lin}
+  \\
+  W(0) = I
+  \label{ode-lin-init-data}
+\end{gather}
+%
+%
+where $W \doteq D_{\vp} y(\vp,t)$ and $y$ is the unique solution to
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}. Let $w(\vp,t) = D_{\vp}y(\vp,t) \circ h$, where $h \in U$ is
+arbitrary. Then
+from \eqref{ode-lin}-\eqref{ode-lin-init-data} we
+obtain
+%
+%
+\begin{gather}
+  w' = DF(y(\vp, t)) \circ w 
+  \label{ode-lin-h}
+  \\
+  w(0) = h.
+  \label{ode-lin-init-data-h}
+\end{gather}
+%
+%
+Since $F$ is $C^{1}$, $DF(y(\vp, t)): U \to X$ continuously. Since $Df(y(\vp,
+t))$ is also linear, it is bounded, and hence Lipschitz on $U$. Therefore, by
+the Banach Space ODE theorem, there exists a unique solution $w = w(\vp,t)$ to
+\eqref{ode-lin-h}-\eqref{ode-lin-init-data-h} for $t$ in some open subset of
+$\rr$. We now show that this solution is in fact $D_{\vp} y(\vp,t)$ as follows.
+Let $z(\vp,t) = y(\vp + h, t) - y(\vp,t)$. Note that
+%
+%
+\begin{equation}
+  \label{uhh}
+\begin{split}
+\frac{dz}{dt} 
+& = F\left[ y(\vp + h, t) \right] - F\left[ y(\vp,t) \right]
+\\
+& = \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
+\\
+& = \int_{0}^{1} \frac{d}{ds} F\left[ sz(\vp,t) + y(\vp,t) \right] ds
+\\
+& = F[y(\vp,t) +z(\vp, t)] - F[y(\vp, t)]
+\end{split}
+\end{equation}
+%
+%
+which by the definition of the Banach space derivative implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dz}{dt} = DF(y) \circ z + R_{1}(y) \circ z, \quad R_{1}(y) \circ z = o(\|
+  z(t) \|_{X})
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d}{dt}(z-w) = DF(y) \circ (z-w) + R_{1}(y) \circ z.
+\end{split}
+\end{equation*}
+%
+%
+Noting that %
+%
+\begin{equation*}
+\begin{split}
+  (z-w)(0) & = 0
+\end{split}
+\end{equation*}
+%
+%
+we now seek to analyze the the inhomogeneous ode
+%
+%
+\begin{gather}
+  \frac{d}{dt}(z-w)  = DF(y) \circ (z-w) + R_{1}(y) \circ z
+\label{inhom-ode}
+  \\
+  (z-w)(0) = 0.
+  \label{inhom-ode-init}
+\end{gather}
+%
+Since $DF(y)$ and $R_{1}(y)$ are Lipschitz on $U$, the Banach Space ODE theorem
+guarantees a unique solution to this equation for $t$ in a sufficiently small
+interval. Taking norms of both sides, and using the fact that $DF(y)$ is
+Lipschitz, we obtain
+%
+%
+%
+%
+\begin{gather}
+    \label{yt}
+    \frac{d}{dt} \| z - w \|_{X} \lesssim  \| z - w \|_{X}  + o(\|z\|_{X}),
+    \\
+    (z-w)(0) = 0.
+    \label{ytt}
+\end{gather}
+%
+We now bound $\| z \|_{X}$. From the
+second line of \eqref{uhh}, we get
+%
+%
+\begin{equation*}
+\begin{split}
+    \frac{d}{dt} \| z(t) \|_{X}
+& \le \| \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
+\|_{X}
+\\
+& \le \| \int_{0}^{1} DF\left[  sy(\vp+h, t) + (1-s)y(\vp,t) \right] \circ z ds
+\|_{X}
+\\
+& \le \| z(t) \|_{X} | | | DF | | |_{L(U, X)}
+\\
+& = M \| z(t) \|_{X}
+\end{split}
+\end{equation*}
+%
+where we emphasize that $M$ does not depend on $h$, $z$, or $w$.
+Hence, setting $\vp(t) =  \| z(t) \|_{X}$, we wish to solve
+%
+%
+\begin{gather*}
+\frac{d \vp}{dt} = M \vp
+\\
+\vp(0) = \| h \|_{X}
+\end{gather*}
+%
+%
+which gives
+%
+%
+\begin{equation*}
+\begin{split}
+  \vp(t) & = \vp(0)e^{Mt}
+  \\
+  & = \| h \|_{X} e^{Mt}
+  \\
+  & \lesssim \| h \|_{X}, \quad 0 \le t < T.
+\end{split}
+\end{equation*}
+%
+%
+Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+  \| z(t) \|_{X}  \lesssim  \| h \|_{X}  \ \text{for all } \ t \in I.
+\end{split}
+\end{equation*}
+Applying this relation to the Cauchy problem \eqref{yt}-\eqref{ytt}, we obtain
+%
+\begin{gather*}
+    \frac{d}{dt} \| z - w \|_{X} \lesssim  \| z - w \|_{X}  + o(\| h \|_{X}),
+    \\
+    (z-w)(0) = 0
+\end{gather*}
+which by Gronwall's inequality gives
+%
+%
+%
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| z(t) - w(t) \|_{X} 
+  = o(\| h \|_{X}),
+\end{split}
+\end{equation*}
+%
+%
+that is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| y(\vp + h, t) - y(\vp,t) - w(\vp,t) \|_{X} = o(\| h \|_{X}).
+\end{split}
+\end{equation*}
+%
+%
+Hence, by the definition of the Banach space derivative, $D_{\vp}y(\vp,t)$
+exists and is equal to $w(\vp,t)$. The proof for the case $k=1$ is complete.
+\subsection*{Case $k >1$} 
+\label{ssec:case-kg1}
+For finite $k$, formally differentiating
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}
+$k$ times with respect to $\vp$, we obtain
+\begin{gather*}
+  W' = DG(y) \circ W
+  \\
+  W(0) = I
+\end{gather*}
+where $G \doteq D^{k-1}F$, $W \doteq D_{\vp}^{k} y$. Hence, the proof of
+$k$-time differentiability in $x$ reduces to the proof in the case $k=1$, which
+completes the proof for finite $k$. If $k = \infty$, we run an induction on $k$ to
+obtain the corresponding result.
+\end{proof}
+%
+%
+%
+\section{Time Regularity for Solutions to ODEs with $C^{k}$ Data} 
 \label{sec:dep-param}
 %
 %
@@ -1704,419 +2113,7 @@ we can find $F$ satisfying \eqref{hjj} and such that
 $G(\cdot) = F(\cdot, 1)$. This concludes the proof.
 %
 \end{proof}
-%
-\section{Smoothness of the Data-to-Solution Map for ODEs} 
-\label{sec:dep-param-smooth}
-%
-%
-Following Taylor \cite{Taylor:1995kx}, let $X$ be a Banach space, $U \subset X$ an open subset, and $F: U \to X$. Consider the non-autonomous system
-%
-%
-\begin{gather}
-  \label{aa-sm}
-\frac{dy}{dt} = F(y(x,t), t),
-\\
-y(0)= y_{0}(x) \in X, \quad x \in \ci^{n} \ \text{or} \ \rr^{n},t \in \rr.
-\label{bb-sm}
-\end{gather}
-%
-Letting $z = (y(x,t), t)$, we get
-%
-%
-\begin{equation*}
-\begin{split}
-\frac{dz}{dt}  
-& = \left (\frac{dy}{dt}, 1 \right )
-\\
-& = \left( F(y(t), t), 1 \right)
-\\
-& = \left( F(z), 1 \right)
-\\
-& \doteq G(z).
-\end{split}
-\end{equation*}
-%
-%
-Hence, without loss of generality, we may restrict our attention to the
-autonomous system
-%
-%
-\begin{gather}
-\frac{dy}{dt} = F\left( y(x,t) \right)
-\label{ode-eq-sm}
-\\
-y(0) = y_{0}(x), \quad x \in \ci^{n} \ \text{or} \ \rr^{n},t \in \rr
-\label{ode-init-data-sm}
-\end{gather}
-%
-%
-%
-for which we shall prove the following.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                dep on init cond
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{proposition}
-  Let $U \subset C^{k}$ be an open subset, $k \ge 0$. Suppose
-  $F: U \to C^{k}$.
-  If $k = 0$ and $F$ is Lipschitz, then the flow map $\vp \mapsto u(t, \vp) \doteq S_{t}(\vp)$ is Lipschitz. If $k > 0$ and $F$ is $k$ times differentiable, then the flow map is 
-  $k$ times differentiable.
-  \label{prop:reg-result}
-\end{proposition}
-%
-%
-%
-%
-\begin{proof}
-  We divide our work into cases.
-  \subsection*{Case $k = 0$.} The ivp \eqref{ode-eq-sm}-\eqref{ode-init-data-sm} is equivalent to 
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  u(t, \vp) = \vp + \int_{0}^{t} F[u(\tau, \vp)] d \tau.
-  \end{split}
-  \end{equation*}
-  %
-  and so
-  %
-  %
-  %
-  \begin{equation*}
-    \begin{split}
-  u(t, \vp) - u(t, \psi) = \vp - \psi + \int_{0}^{t} \{F[u(\tau, \vp)] - F[u(\tau, \psi)]\} d \tau.
-  \end{split}
-  \end{equation*}
-  %
- Recall that Theorem~\ref{ode-thm} tells us that for any $\vp \in B_{r} \subset U$ there exists a unique solution $u(t, \vp)$ for $t \in [-h, h]$, where $h = h(r)$. Therefore, applying the triangle inequality and the Lipschitz condition, we obtain the estimate
-  \begin{equation*}
-  \begin{split}
-  \sup_{t \in [-h, h]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
-  & \le \|\vp -
-  \psi\|_{L^{\infty}} +  h \sup_{t \in [-h, h]} \|F[u(t, \vp)] - F[u(t, \psi)] \|_{L^{\infty}}
-  \\
-  & \le \|\vp - \psi\|_{L^{\infty}} +  ch \sup_{t \in [-h, h]} \|[u(t, \vp)] -
-  [u(t, \psi)] \|_{L^{\infty}}.
-  \end{split}
-  \end{equation*}
-Restricting $h < 1/c$ and rearranging terms, we obtain
-%
-%
-\begin{equation*}
-\begin{split}
-\sup_{t \in [-h, h]} \| u(t, \vp) - u(t, \psi) \|_{L^{\infty}} \le \frac{1}{1-ch} \| \vp - \psi \|_{L^{\infty}}
-\end{split}
-\end{equation*}
-%
-%
-concluding the proof.
- \subsection*{Case $k=1$} 
-  \label{ssec:case-k}
- % 
- %
-Formally differentiate
-\eqref{ode-eq-sm}-\eqref{ode-init-data-sm} with respect to $\vp$ and obtain
-%
-%
-%
-\begin{gather}
-  W' = DF(y) \circ W
-  \label{ode-lin}
-  \\
-  W(0) = I
-  \label{ode-lin-init-data}
-\end{gather}
-%
-%
-where $W \doteq D_{\vp} y(\vp,t)$ and $y$ is the unique solution to
-\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}. Let $w(\vp,t) = D_{\vp}y(\vp,t) \circ h$, where $h \in U$ is
-arbitrary. Then
-from \eqref{ode-lin}-\eqref{ode-lin-init-data} we
-obtain
-%
-%
-\begin{gather}
-  w' = DF(y) \circ w 
-  \label{ode-lin-h}
-  \\
-  w(0) = h
-  \label{ode-lin-init-data-h}
-\end{gather}
-%
-%
-Since $F$ is $C^{1}(U)$, $Df(y): U \to C^{1}$ continuously. Therefore, by the Banach Peano
-existence theorem, there exists a solution $w = w(\vp,t)$ (not necessarily unique) to
-\eqref{ode-lin-h}-\eqref{ode-lin-init-data-h} for $t$ in some open subset of
-$\rr$. We now show that this solution is in fact $D_{\vp} y(\vp,t)$ as follows. Let
-$z(\vp,t) = y(\vp + h, t) - y(\vp,t)$. Note that
-%
-%
-\begin{equation}
-  \label{uhh}
-\begin{split}
-\frac{dz}{dt} 
-& = F\left[ y(\vp + h, t) \right] - F\left[ y(\vp,t) \right]
-\\
-& = \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
-\\
-& = \int_{0}^{1} \frac{d}{ds} F\left[ sz(\vp,t) + y(\vp,t) \right] ds
-\\
-& = F(y+z) - F(y)
-\end{split}
-\end{equation}
-%
-%
-which by the definition of the Banach space derivative implies
-%
-%
-\begin{equation*}
-\begin{split}
-  \frac{dz}{dt} = DF(y) \circ z + R_{1}(y,z), \quad R_{1}(y,z) = R_{1}[z(t)] = o(\|
-  z(t) \|_{C^{1}})
-\end{split}
-\end{equation*}
-%
-%
-and so
-%
-%
-\begin{equation*}
-\begin{split}
-  \frac{d}{dt}(z-w) = DF(y) \circ (z-w) + R_{1}(y,z).
-\end{split}
-\end{equation*}
-%
-%
-Noting that %
-%
-\begin{equation*}
-\begin{split}
-  (z-w)(0) & = 0
-\end{split}
-\end{equation*}
-%
-%
-we seek to solve the inhomogeneous ode
-%
-%
-\begin{gather}
-  \frac{d}{dt}(z-w)  = Df(y) \circ (z-w) + R_{1}(y,z)
-\label{inhom-ode}
-  \\
-  (z-w)(0) = 0.
-  \label{inhom-ode-init}
-\end{gather}
-%
-%
-To do so, we first solve the homogenous ode
-\begin{gather}
-  \frac{d}{dt}(z-w)  = DF(y) \circ (z-w) 
-\label{hom-ode}
-  \\
-  (z-w)(0) = 0.
-  \label{hom-ode-init}
-\end{gather}
-Letting $v(\vp,t) = z(\vp,t) - w(\vp,t)$, this is equivalent to
-%
-%
-%
-\begin{gather*}
-  \frac{dv}{dt}  = DF(y) \circ v
-  \\
-  v(0) = 0
-\end{gather*}
-which admits the unique solution
-%
-%
-\begin{equation*}
-\begin{split}
-  v(\vp,t) 
-  & = e^{\int_{0}^{t} DF\left[ y(\vp,s) \right]ds} \circ 0
-  \\
-  & \doteq S(t)(0)
-  \\
-  & = 0.
-\end{split}
-\end{equation*}
-%
-%
-By Duhamel's principle, the solution to \eqref{inhom-ode}-\eqref{inhom-ode-init}
-is then given by
-%
-%
-\begin{equation*}
-\begin{split}
-  z(t) - w(t) = \int_{0}^{t} S(t-t') R_{1}\left[ y(\vp,t'), z(\vp,t') \right]dt'.
-\end{split}
-\end{equation*}
-%
-%
-But
-%
-%
-\begin{equation}
-  \label{yui}
-\begin{split}
-  \|z(t) - w(t) \|_{C^{1}}
-  & = \| \int_{0}^{t} S(t-t') R_{1}\left[ y(\vp,t'), z(\vp,t')
-  \right]dt' \|_{C^{1}}
-  \\
-  & \le \int_{0}^{t} \| S(t-t') R_{1}\left[ y(\vp,t'), z(\vp,t') \right]
-  \|_{C^{1}} dt'
-  \\
-  & \le \int_{0}^{t}  | | | S(t-t')  | | |_{L(U, C^{1})} \| R_{1}\left[ y(\vp,t'),
-  z(\vp,t')
-  \right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt'
-\end{split}
-\end{equation}
-%
-%
-where $\| \cdot \|_{L(U, C^{1})}$ denotes the operator norm on the space
-$L(U,C^{1})$ of linear continuous functions from $U$ to $C^{1}$. We have the bound
-%
-%
-\begin{equation}
-  \label{op-norm}
-\begin{split}
-  | | | S(t-t') | | |_{L(U, C^{1})} 
-  & = | | | e^{\int_{0}^{t-t'} DF \left[ y(\vp,s)
-  \right] ds} | | |_{L(U, C^{1})}
-  \\\
-  & \le e^{\int_{0}^{t-t'} | | | DF\left[ y(\vp,s) \right]| | |_{L(U, C^{1})}ds} 
-  \\
-  & \le e^{M(t-t')}.
-\end{split}
-\end{equation}
-%
-%
-We now need an estimate in $[0,t]$ for
-$$ \| R_{1}\left[ y(\vp,t'), z(\vp,t')
-\right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt'.$$ Since 
-$$ \| R_{1}\left[ y(\vp,t'), z(\vp,t')
-\right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt' = o\| z(t)
-\|_{C^{1}}$$ for fixed
-$y$, it will be enough to bound $\| z(t') \|_{C^{1}}$ for $0 \le t' \le t$. From the
-second line of \eqref{uhh}, we get
-%
-%
-\begin{equation*}
-\begin{split}
-\frac{d}{dt} \| z(t) \|
-& \le \| \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
-\|_{C^{1}}
-\\
-& \le \| \int_{0}^{1} DF\left[  sy(\vp+h, t) + (1-s)y(\vp,t) \right] \circ z ds
-\|_{C^{1}}
-\\
-& \le \| z(t) \|_{C^{1}} | | | DF | | |_{L(U, C^{1})}
-\\
-& = M \| z(t) \|_{C^{1}}.
-\end{split}
-\end{equation*}
-%
-%
-Hence, setting $\vp(t) =  \| z(t) \|_{C^{1}}$, we wish to solve
-%
-%
-\begin{gather*}
-\frac{d \vp}{dt} = M \vp
-\\
-\vp(0) = \| h \|_{C^{1}}
-\end{gather*}
-%
-%
-which gives
-%
-%
-\begin{equation*}
-\begin{split}
-  \vp(t) & = \vp(0)e^{Mt}
-  \\
-  & = \| h \|_{C^{1}} e^{Mt}.
-  \\
-  & = o(\|h|\|_{C^{1}}).
-\end{split}
-\end{equation*}
-%
-%
-Hence,
-%
-%
-\begin{equation*}
-\begin{split}
-  \| z(t) \|_{C^{1}}  =  o (\| h \|_{C^{1}} ) \ \text{for all } \ t \in I
-\end{split}
-\end{equation*}
-%
-%
-and so
-%
-\begin{equation}
-  \begin{split}
-    \label{ihh}
-    \| R_{1}\left[ y(\vp,t'), z(\vp,t')
-    \right] \|_{L^{\infty}\left( [0,t], C^{1} \right)} dt' 
-    & = o\| z(t) \|_{C^{1}} 
-    \\
-    & = o(\| h \|_{C^{1}}).
-  \end{split}
-\end{equation}
-%
-%
-%
-Combining \eqref{yui}, \eqref{op-norm}, and \eqref{ihh}, we obtain
-%
-%
-\begin{equation*}
-\begin{split}
-  \| z(t) - w(t) \|_{C^{1}} 
-  & \le \int_{0}^{t} t e^{M(t - t')} o(| h
-  |) dt'
-  \\
-  & = te^{Mt} o(| h |) \int_{0}^{t} e^{-Mt'} dt'
-  \\
-  & = o(\| h \|_{C^{1}}),
-\end{split}
-\end{equation*}
-%
-%
-that is
-%
-%
-\begin{equation*}
-\begin{split}
-  \| y(\vp + h, t) - y(\vp,t) - w(\vp,t) \|_{C^{1}} = o(\| h \|_{C^{1}}).
-\end{split}
-\end{equation*}
-%
-%
-Hence, by the definition of the Banach space derivative, $D_{\vp}y(\vp,t)$
-exists and is equal to $w(\vp,t)$. The proof for the case $k=1$ is complete.
-\subsection*{Case $k >1$} 
-\label{ssec:case-kg1}
-For finite $k$, formally differentiating
-\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}
-$k$ times with respect to $\vp$, we obtain
-\begin{gather*}
-  W' = DG(y) \circ W
-  \\
-  W(0) = I
-\end{gather*}
-where $G \doteq D^{k-1}F$, $W \doteq D_{x}^{k} y(x,t)$. Hence, the proof of
-$k$-time differentiability in $x$ reduces to the proof in the case $k=1$, which
-completes the proof for finite $k$. If $k = \infty$, we run an induction on $k$ to
-obtain the corresponding result.
-\end{proof}
-%
-%
-%
+
 %
 %
 %

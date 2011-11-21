@@ -4108,7 +4108,6 @@ Hence,
 |t| \le T.
 \end{equation}
 %
-\subsection{Space of the solution}
 Derivating the left hand side of \eqref{en-est-u} and simplifying, we obtain
 \begin{equation}
 \label{en-est-u-simplified}
@@ -4119,7 +4118,7 @@ is uniformly bounded for $|t| \le T$ by
 \eqref{uniform_bound_for_u}, we conclude from
 \eqref{en-est-u-simplified} that the map $t \mapsto
 \|u(t)\|_{H^s(\ci)}$ is Lipschitz continuous in $t$, for $|t| \le T$.
-Therefore, by \eqref{3ff}, $u \in C(I, H^s(\ci))$. 
+Therefore, by \eqref{3ff}, $u \in C(I, H^s(\ci))$. \qed
 %
 %
 %
@@ -5610,8 +5609,7 @@ Letting $|t| \le T$, we now apply \cref{hr_wp} to
 \end{equation*}
 Therefore, by Reillich's Theorem, the family $\left\{
 \varphi P [(u_\ee(t))^k] \right\}_\ee$ is
-precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. $\quad
-\Box$ 
+precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. \qed
 Hence, compiling our previous results on equicontinuity and precompactness
 and applying Ascoli's Theorem, we
 conclude that we can find $\tilde{u}$ and a subfamily 
@@ -5766,7 +5764,8 @@ C(I, H^{s-\sigma}(\rr)).
 \end{split}
 \end{equation}
 \end{proposition}
-\subsection{Proof.} Note that
+\begin{proof}
+Note that
 \begin{equation}
 \begin{split}
 & \|\vp u - \vp J_{\ee_n} u_{\ee_n}
@@ -5801,7 +5800,9 @@ to \eqref{hh1bb} gives
 \|_{H^{s-\sigma}(\rr)} \right).
 \end{split}
 \end{equation}
-Letting $\ee \to 0$ in \eqref{hh2bb} and applying \cref{hhthm:crit1} completes the proof. $\quad \Box$
+Letting $\ee \to 0$ in \eqref{hh2bb} and applying \cref{hhthm:crit1} completes
+the proof.
+\end{proof}
 %
 %
 \begin{proposition}
@@ -5978,57 +5979,156 @@ where
 \end{split}
 \end{equation*}
 %
+Observe that $F$ maps open sets in $C^{k}$ to $C^{k}$,  $k \in \mathbb N \cup
+\{\infty \}$, and is hence an ODE on the space of $C^{k}$ functions. Following
+\cite{Bona_2009_Sharp-well-pose}, we note that the BBM is also an ODE on
+$H^{s}$, $s \ge 0$ due to the following bilinear estimate.
 %
-Notice that
-$F$ maps open sets in $C^{k}$ to $C^{k}$. Therefore, the BBM is an ODE on the
-space of $C^{k}$ functions. By the ODE theory presented in the appendix, for
-$u_{0}(x) \in C^{k}$, the BBM admits a unique solution $u(x,t)$ which is 
-$C^{k}$ in both the space and time variables. 
-We will show that if $u_{0} \in C^{k}, 1 \le k \le \infty$, then the
-data-to-solution map is also $C^{k}$. By the ODE theory and differential
-calculus developed in the appendix, it is enough to show that $F$ is $k$ times
-differentiable. In fact, we will show that $F$ is smooth. To do this, we adopt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				bbm bilinear estimate
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+For $s \ge 0$
+%
+%
+\begin{equation*}
+\begin{split}
+    \| \p_{x}(1 - \p_{x}^{2})^{-1} (uv) \|_{H^{s}} \lesssim \| u \|_{H^{s}} \| v \|_{H^{s}}.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:bbm-bilin-est}
+\end{lemma}
+%
+%
+%
+\begin{proof}
+    We diverge slightly from the proof in \cite{Bona_2009_Sharp-well-pose}. Observe that
+        \begin{equation*}
+        \begin{split}
+        \| \p_{x}(1 - \p_{x}^{2})^{-1} (uv) \|_{H^{s}}
+        & = \left [ \int_{\rr} \frac{\xi^{2}}{(1 + \xi^{2})^{2}} (1 + |\xi|)^{2s} | \wh{u} * \wh{v}(\xi) |^{2} d \xi \right ]^{1/2}
+        \\
+        & = \left [ \int_{\rr} \frac{\xi^{2}}{(1 + \xi^{2})^{2}} | (1 + |\xi|)^{s}\wh{u} * \wh{v}(\xi) |^{2} d \xi \right ]^{1/2}
+        \\
+        & \le \| \xi^{2}/(1 + \xi^{2})^{2} \|_{L^{2}}^{1/2} \| (1 + |\xi|)^{s} \wh{u} * \wh{v}(\xi) \|_{L^{\infty}}
+        \\
+        & \simeq \| (1 + |\xi|)^{s} \wh{u} * \wh{v}(\xi) \|_{L^{\infty}}.
+            \end{split}
+\end{equation*}
+%
+Applying Peetre's inequality (valid only for $s \ge 0$), followed by Young's inequality and Parseval, we bound this by
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+    \| (1 + |\cdot| )^{s}\wh{u}(\cdot) * (1 + |\cdot| )^{s}\wh{v}(\cdot)(\xi) \|_{L^{\infty}} 
+    & \lesssim \| (1 + |\xi| )^{s}\wh{u}(\xi)\|_{L^{2}} \| (1 + |\xi| )^{s}\wh{v}(\xi) \|_{L^{2}}
+    \\
+    &  = \| u \|_{H^{s}} \| v \|_{H^{s}}
+\end{split}
+\end{equation*}
+%
+%
+which concludes the proof.
+%
+\end{proof}
+%
+%
+%
+%
+%
+%
+By the ODE theory presented in the appendix, for $u_{0}(x) \in C^{k}$, the BBM
+admits a unique solution $u(x,t)$ which is $C^{k}$ in both the space and time
+variables for $0 \le t < T$, where $T$ > $0$ is sufficiently small. Furthermore, by the same
+theory, we see that for $u_{0}(x) \in H^{s}$, $s \ge 0$, the BBM admits a unique
+solution $u(x,t) \in C^{1}([0, T], H^{s})$ for sufficiently small $T > 0$. In
+both cases, we claim that the data to solution map is smooth. To prove this, by
+the ODE theory it will suffice to show that $F$ is smooth. Adopt
 the notation
 \begin{gather*}
     F(u) = -\frac{3}{2}Lf(u), \ \text{where} \ 
     \\
-    L \doteq \p_{x}(1 - \p_{x}^{2})^{-1}, \ f(u) = u^{2}.
+    \Lambda \doteq \p_{x}(1 - \p_{x}^{2})^{-1}, \ f(u) = u^{2}.
 \end{gather*}
-Note that $L$ is a linear operator on $C^{k}$, and hence $DL = L$. Applying the chain rule and product rule, we get
+Note that $L$ is a bounded linear operator on both $C^{k}$ and $H^{s}$, and
+hence $DL(f) = L$ for $f$ in $C^{k}$ or $H^{s}$. Applying the chain rule, we see that for $h \in H^{s}$ or $h \in C^{k}$
+we get
 %
 %
 \begin{equation*}
 \begin{split}
-DF(u) & = -\frac{3}{2}DL(f(u))Df(u)
+DF(u) & = -\frac{3}{2}D \Lambda (f(u))Df(u)\\
+& = -\frac{3}{2} \Lambda (2uI_{1})
 \\
-& = -\frac{3}{2}Lf(u)2u
-\\
-& = 2u F(u).
+& = -3 \Lambda (uI_{1})
 \end{split}
 \end{equation*}
 %
 %
-We now run an induction. Assume $F$ is $k$-times differentiable. Then by the
-Leibniz rule
+where $\Lambda (uI_{1}) \in L(H^{s}, H^{s})$ via the relation
+$\Lambda (uI_{1})(h_{1}) = \Lambda (u h_{1})$ and as a consequence of 
+Lemma~\ref{lem:bbm-bilin-est}. 
+%
+We now compute the second derivative of $F$ at $u_{0}$. Applying the chain rule, we have
 %
 %
 \begin{equation*}
 \begin{split}
-    D^{k+1}F(u)
-    & = 2 D^{k}(uF(u))
+    D^{2}_{u}F(u) 
+    & = D_{u} \left[ \Lambda (u I_{1}) \right](u_{0})
     \\
-    & = 2 \sum_{j = 0}^{k} {k \choose j} D^{j}u D^{k - j}F(u)
+    & = (D \Lambda)(u_{0}) \circ \left[ D_{u}(u I_{1}) \right](u_{0})
     \\
-    & = 2 \left[ u D^{k}F(u) + \sum_{j=1}^{k} {k \choose j} I D^{k-j}F(u)
-        \right].
+    & = \Lambda \circ I_{2}I_{1}
 \end{split}
 \end{equation*}
 %
 %
-We conclude that $F$ is smooth. Therefore, the data-to-solution map for the BBM
-equation is $C^{k}$. In particular, due to Sobolev Imbedding, this implies that
-the method of proof developed to prove non-uniform dependence for HR does not
-apply to the BBM.
+where $\Lambda \circ I_{2} I_{1}: H^{s} \to L(H^{s}, H^{s}))$ via the
+relation
+%
+%
+\begin{equation*}
+\begin{split}
+    \Lambda \circ I_{2} I_{1} (h_{2}) = \Lambda \circ h_{2} I_{1}.
+\end{split}
+\end{equation*}
+%
+%
+For the higher order derivatives, a simple induction completes the proof.
+%We now run an induction. Assume $F$ is $k$-times differentiable. Then by the
+%Leibniz rule
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+    %D^{k+1}F(u)(h_{1}, h_{2}, \dots, h_{k+1})
+    %& = -3 D^{k} L(uI)(h_{1}, h_{2}, h_{3}, \dots, h_{k+1})
+    %\\
+    %& = -3 \sum_{j = 0}^{k} {k \choose j} D^{j}u D^{k - j}F(u)
+    %\\
+    %& = 2 \left[ u D^{k}F(u) + \sum_{j=1}^{k} {k \choose j} I D^{k-j}F(u)
+        %\right].
+%\end{split}
+%\end{equation*}
+%%
+%which closes the inductive loop.
+We conclude that $F$ is smooth. Therefore, the
+data-to-solution map for the BBM equation is smooth for $C^{k}$ and $H^{s}$
+initial data, $s \ge 0$. Hence, the method of proof developed to prove
+non-uniform dependence for HR does not apply to the BBM.
 \subsection*{Acknowledgements.} The author thanks his advisor Alex Himonas for 
 his guidance and many helpful remarks. The author also thanks the Department of 
 Mathematics at the University of Notre Dame and the Arthur J. Schmitt Foundation for 

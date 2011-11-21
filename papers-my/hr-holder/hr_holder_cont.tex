@@ -234,9 +234,9 @@ for which they proved H\"older continuity of the data to solution map from a clo
     \\
     1, \quad & b=3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
     \\
-    2(s-1)/(s-r), \quad  & b\neq 3 \ \ \text{and} \ \ (s, r) \in \Omega_{3}
+    2(s-1)/(s-r), \quad  & b\neq 3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
     \\
-    s-r, \quad & (s, r) \in \Omega_{4}
+    s-r, \quad & (s, r) \in \Omega_{3}
 \end{cases}
 \end{split}
 \end{equation*}
@@ -249,9 +249,7 @@ where
     \\
     \Omega_{2} & = \left\{(s, r): \  3/2 < s < 2, \ 0 < r < 2-s   \right\}
     \\
-    \Omega_{3} & =  \left\{ (s, r): \  3/2 < s < 2, \ 0 < r < 2-s   \right\}
-    \\
-    \Omega_{4} & = \left\{ (s,r): \  s > 3/2, s-1 < r < s  \right\}.
+    \Omega_{3} & = \left\{ (s,r): \  s > 3/2, \ s-1 < r < s  \right\}.
 \end{split}
 \end{equation*}
 Given this result, and the similarities between the $b$-family and HR (both can
@@ -273,10 +271,10 @@ precisely, consider the following sets
   \begin{equation*}
   \begin{split}
       & \Omega_{1} = \left\{ (s, \ r) \in \rr^{2}:
-     \ s>3/2, \ -1 \le r \le s-1, \ s + r \ge 2  \right\}
+     \ s>3/2, \ -1 \le r \le s-1, \  r \ge 2 -s  \right\}
     \\
     & \Omega_{2} = \left\{ (s, \ r) \in \rr^{2}:
-     \ s>3/2, \ -1 \le r < 2-s \right\}
+     \ 3/2 < s < 3, \ -1 \le r < 2-s \right\}
     \\
     & \Omega_{3} = \left\{ (s, \ r) \in \rr^{2}:
     \  s>3/2, \  s-1 < r < s  \right\}.
@@ -489,7 +487,7 @@ If $s > 3/2$ and $-1 \le r  \le s -1$, then
 \end{lemma}
 %
 %
-Set $s > 3/2$ and $-1 \le r \le s -1$. An application of 
+An application of 
 Cauchy-Schwartz and Lemma~\ref{cor1} then yields 
 %
 %
@@ -706,8 +704,8 @@ We have the estimate
 \begin{equation}
   \label{fgh}
 \begin{split}
-  \| v(t) \|_{H^{r}}
-  & < \|v(t) \|_{H^{2-s}}.
+  \| u(t) - w(t) \|_{H^{r}}
+  & < \|u(t) - w(t) \|_{H^{2-s}}.
     \end{split}
 \end{equation}
 %
@@ -719,8 +717,8 @@ Hence, applying \eqref{lip-ineq} to \eqref{fgh}, we obtain
 %
 \begin{equation*}
 \begin{split}
-\| v(t) \|_{H^{r}}
- \lesssim \|v(0) \|_{H^{2-s}}.
+\| u(t) - w(t) \|_{H^{r}}
+\lesssim \|u_{0} - w_{0} \|_{H^{2-s}}.
 \end{split}
 \end{equation*}
 %
@@ -766,14 +764,11 @@ $m_{2} > m$ for $s > 1$), we bound
 %
 \begin{equation*}
 \begin{split}
-    \| v(0) \|_{H^{2-s}} 
-    & \le \| v(0) \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \|v(0)
+    \| u_{0} - w_{0} \|_{H^{2-s}} 
+    & \le \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \| u_{0} - w_{0}
   \|_{H^{s}}^{\frac{2-s-r}{s-r}}
   \\
-  & = \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \|u_{0} - w_{0}
-  \|_{H^{s}}^{\frac{2-s-r}{s-r}}
-  \\
-  & \lesssim \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
+  &  \lesssim \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
 \end{split}
 \end{equation*}
 %
@@ -799,7 +794,7 @@ the estimate
 %
 \begin{equation*}
 \begin{split}
-  \|v\|_{H^{s}} = \|u - w \|_{H^{s}} \le 4R
+  \|u - w \|_{H^{s}} \le 4R
 \end{split}
 \end{equation*}
 %
@@ -810,30 +805,25 @@ we obtain
 \begin{equation}
   \label{pre-lip-ap}
 \begin{split}
-  \| v(t) \|_{H^{r}} & \lesssim \| v(t) \|_{H^{s-1}}^{s-r} \|v(t) \|_{H^{s}}^{1-s+r}
+  \| u(t) - w(t) \|_{H^{r}} & \lesssim \| u(t) - w(t) \|_{H^{s-1}}^{s-r} \|u(t)
+  - w(t)\|_{H^{s}}^{1-s+r}
   \\
-  & \simeq \| v(t) \|_{H^{s-1}}^{s-r}.
+  & \simeq \| u(t) - w(t) \|_{H^{s-1}}^{s-r}.
 \end{split}
 \end{equation}
 %
 %
 We see that \eqref{lip-ineq} is valid for  $r = s-1$, $s \ge 3/2$. Hence,
-applying \eqref{lip-ineq} to \eqref{pre-lip-ap} we obtain 
+applying \eqref{lip-ineq} to \eqref{pre-lip-ap} gives
 %
 %
 \begin{equation*}
-\begin{split}
-  \| v(t) \|_{H^{r}} & \lesssim \|v(0) \|_{H^{s-1}}^{s-r}
-   \\
-   & \le \|v(0) \|_{H^{r}}^{s-r} 
+    \begin{split}
+  \| u(t) - w(t) \|_{H^{r}} & \lesssim  \|u_{0} - w_{0}\|_{H^{s-1}}^{s-r} 
   \\
-  & = \|u_{0} - w_{0}\|_{H^{r}}^{s-r},
+  & \le
+  \|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
 \end{split}
-\end{equation*}
-%
-that is,
-\begin{equation*}
-  \| u(t) - w(t) \|_{H^{r}} \lesssim  \|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
 \end{equation*}
 %
 This completes the proof of Theorem~\ref{thm:main-thm}. \qed
@@ -862,14 +852,7 @@ For the periodic case we have
 \begin{equation*}
 \begin{split}
   \| fg\|_{H^{r-1}}^{2}
-  & = \sum_{n \in \zz} (1 + n^{2})^{r-1}| \sum_{k \in \zz}
-  \wh{f}(k) \wh{g}( n - k)  |^{2} 
-  \\
-  & \le \sum_{n \in \zz} (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
-  | \wh{f}(k) |  | \wh{g}(n - k) | 
-   \right ]^{2} 
-  \\
-  & = \sum_{n \in \zz}  (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
+  & \le  \sum_{n \in \zz}  (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
   | \wh{f}(k) |  | \wh{g}(n - k) | (1 +
   k^{2})^{\frac{1-s}{2}} (1 + k^{2})^{\frac{s-1}{2}}
    \right ]^{2}.
@@ -895,20 +878,7 @@ But by change of variables and Fubini
 \begin{split}
 \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
   \wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}
-  & = \sum_{n \in \zz} \sum_{k \in \zz}  
-  \frac{|\wh{g}(-k)|^{2}}{[1 + (n + k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
-   \\
-  & =
-  \sum_{n \in \zz} \sum_{k \in \zz}  
-  \frac{|\wh{g}(k)|^{2}}{[1 + (n - k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
-  \\
-& = \sum_{k \in \zz} \sum_{n \in \zz}  
-  \frac{|\wh{g}(k)|^{2}}{[1 + (n - k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
-  \\
   & = \sum_{k \in \zz}| \wh{g}(k) |^{2} \sum_{n \in \zz}  
-  \frac{1}{[1 + (n - k)^{2}]^{s-1}(1 + n^{2})^{1-r}}  
-  \\
-& = \sum_{k \in \zz}| \wh{g}(k) |^{2} \sum_{n \in \zz}  
   \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}.  
   \end{split}
 \end{equation}
@@ -1014,8 +984,9 @@ we obtain
   \quad s > 3/2, \ r \le 1/2, \ s + r \ge 2.
 \end{split}
 \end{equation}
-This estimate also holds for $r=s$, since the Sobolev space $H^{t}$ is an algebra for $t > 1/2$. We now wish to interpolate to obtain estimates for the whole range $1 \le r \le
-s$.
+This estimate also holds for $r=s$, since the Sobolev space $H^{t}$ is an
+algebra for $t > 1/2$. We now wish to interpolate to obtain estimates for the
+whole range $1 \le r \le s$. For this, we shall need the following result taken from Taylor \cite{Taylor:1995kx}.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1027,14 +998,14 @@ s$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{proposition}[Sobolev Interpolation]
+\begin{lemma}[Sobolev Interpolation]
   For fixed $j \le k, m \le n$ suppose that \\ $T: H^{j} \to H^{m}$ continuously
 and $T: H^{k} \to H^{n}$. Then\\ $T: H^{\theta j + (1 - \theta)k} \to H^{\theta
 m + (1 - \theta) n}$ continuously for all $\theta \in (0,1]$.
 \label{prop:sob-interp}
-\end{proposition}
+\end{lemma}
 %
-To apply Proposition~\ref{prop:sob-interp}, we note that \eqref{yhh}
+To apply Lemma~\ref{prop:sob-interp}, we note that \eqref{yhh}
 and the algebra property of the Sobolev space $H^{t}$, $t > 1/2$ imply that for $s > 3/2$
 %
 %
@@ -1048,7 +1019,7 @@ and the algebra property of the Sobolev space $H^{t}$, $t > 1/2$ imply that for 
 %
 That is, for fixed $f \in H^{s-1}$ with $\| f \|_{H^{s-1}} =1$, the map $g \mapsto
 Tg = fg$ is linear continuous from $L^{2}$ to $L^{2}$ and from $H^{s-1}$ to
-$H^{s-1}$. Therefore, by Proposition~\ref{prop:sob-interp}, it is continuous from
+$H^{s-1}$. Therefore, by Lemma~\ref{prop:sob-interp}, it is continuous from
 $H^{\theta (s-1) + (1 - \theta)(-1/2) }$ to $H^{\theta (s-1) + (1 - \theta)(-1/2) }$ for all $\theta \in
 [0, 1)$. Setting $\theta = (r-1/2)/(s-1/2)$, $ 1/2 \le r < s$, we obtain that $T$ is
 continuous from $H^{r-1}$ to $H^{r-1}$. Since $T$ is also linear from $H^{r-1}$
@@ -1077,14 +1048,7 @@ case. For the non-periodic case we have
 \begin{equation*}
 \begin{split}
   \| fg\|_{H^{r-1}}^{2}
-  & = \int_{\rr} (1 + \xi^{2})^{r-1}| \int_{\rr}
-  \wh{f}(\eta) \wh{g}( \xi - \eta) d \eta |^{2} d \xi
-  \\
-  & \le \int_{\rr} (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
-  | \wh{f}(\eta) |  | \wh{g}(\xi - \eta) | 
-  d \eta \right ]^{2} d \xi
-  \\
-  & = \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
+  \le \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
   | \wh{f}(\eta) |  | \wh{g}(\xi - \eta) | (1 +
   \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
   d \eta \right ]^{2} d \xi.
@@ -1126,7 +1090,7 @@ which by Fubini is equal to
 \end{equation}
 %
 %
-We now need the following lemma, whose proof is provided in the appendix.
+We now need the following lemma. 
 %
 %
 \begin{lemma}
@@ -1202,13 +1166,7 @@ Hence, for $0 \le \delta \le 1/2 + \ee$, $\ee >
   C_{s,r} \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
   + 2 |\eta| \right]^{2 \delta}} d \xi d \eta 
   & \lesssim
-  \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
-  + |\eta| \right]^{2 \delta}} d \xi d \eta  
-  \\
-  & \le \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
-  + \eta^{2} \right]^{\delta}} d \xi d \eta  
-  \\
-  & \le \| g \|_{H^{-\delta}}^{2}
+  \| g \|_{H^{-\delta}}^{2}
   \\
   & = \| g \|_{H^{r-1}}^{2}.
 \end{split}
@@ -1328,63 +1286,6 @@ The remainder of the proof is analogous to that in the periodic case.
 %%
 %
 %
-\begin{proof}[Proof of Lemma~\ref{lem:interp}]
- We have
- %
- %
- \begin{equation}
-   \label{pre-hold}
- \begin{split}
-   \| f \|_{H^{m}}^{2}
-   & = \sum_{n \in \zz} (1 + n^{2})^{m} | \wh{f}(n) |^{2} 
-   \\
-   & = \sum_{n \in \zz} | \wh{f}(n) | (1 + n^{2})^{m_{1}/p} | \wh{f}(n) |
-   (1 + n^{2})^{m_{2}/q} 
- \end{split}
- \end{equation}
- %
- %
- where
- %
- %
- \begin{equation*}
- \begin{split}
-   m_{1}/p + m_{2}/q =m, \quad 1/p + 1/q =1.
- \end{split}
- \end{equation*}
- %
- %
-This implies 
- %
- %
- \begin{equation*}
- \begin{split}
-   1/p = (m_{2} -m)/(m_{2} -m_{1}), \quad 1/q = (m -m_{1})/(m_{2} -m_{1}). 
- \end{split}
- \end{equation*}
- %
- %
- Applying H\"older to the right hand side of \eqref{pre-hold}, we obtain the
- bound
- %
- %
- \begin{equation*}
- \begin{split}
-   \| f \|_{H^{m}}^{m}
-   & \le  \left[ \sum_{n \in \zz} (1 + n^{2})^{m_{1}} | \wh{f}(n) |^{2} 
-   \right]^{(m_{2} - m)/(m_{2} -m_{1})} \left[ \sum_{n \in \zz} (1 + n^{2})^{m_{1}}
-   | \wh{f}(n) |^{2}  \right]^{(m - m_{1})/(m_{2} -m_{1})}
-   \\
-   & = \| f \|_{H^{m_{1}}}^{2 (m_{2} - m)/(m_{2} -m_{1})}
-   \| f \|_{H^{m_{2}}}^{2 (m - m_{1})/(m_{2} -m_{1})}.
- \end{split}
- \end{equation*}
- %
- %
- Taking square roots of both sides completes the proof in periodic case.
- The proof in the non-periodic case is analogous to the periodic proof (i.e.\
- sums are replaced with integrals in the proof).
-  \end{proof}
 \begin{proof}[Proof of Lemma~\ref{lem:calc}]
 %
 By the change of variable $x \mapsto x/2 + (\alpha + \beta)/2$, we have
@@ -1591,149 +1492,10 @@ $p, q > 0$ such that $p +q >1$, and $r =\min\left\{p -\ee_{q}, q - \ee_{p}, p+q-
 Recalling
 \eqref{rry}, the proof is complete.
 \end{proof}
-
-  \section{Proof of Proposition~\ref{prop:sob-interp}}
-\label{ssec:pf-sob-interp}
-The proof follows immediately from the following two lemmas and the continuous
-embedding $H^{s'} \subset H^{s}$, $s < s'$.
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}
-\label{lem:rest-bound}
-Let $X, Y, U, V$ be Banach spaces with $U \subset X, V \subset Y$ continuously,
-and suppose $T$ is a bounded linear operator from $X$ to $Y$. If $T$ maps $U$
-to $V$, then $T$ is bounded from $U$ to $V$.
-\end{lemma}
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%               Interpolation spaces 
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}
-\label{lem:interp-spaces}
-For fixed $j \le k, \ m \le n$ suppose that $T: H^{j} \to H^{m}$
-continuously and $T: H^{k} \to H^{n}$. Then
-$T: H^{\theta j + (1 - \theta)k} \to H^{\theta m +
-(1 - \theta) n}$ for all $\theta \in [0,1]$.
-%
-%
-%
-\end{lemma}
-%
-%
-%
-Hence, to complete the proof of Proposition~\ref{prop:sob-interp},
-it will be enough to prove these lemmas.
-%
-\begin{proof}[Proof of Lemma~\ref{lem:rest-bound}]
-We first recall the following.
-\begin{definition}
-Let $X$ and $Y$ be Banach spaces, and $T: X \to Y$ be linear. We say that $T$ is
-\emph{closed} if 
-%
-%
-%\begin{equation*}
-%\begin{split}
-  %\Gamma(T) = \left\{ (x, Tx) \in X \times Y \right\}
-%\end{split}
-%\end{equation*}
-%%
-%%
-%is a closed subspace of $X \times Y$ in the product topology. That is,
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\| x -x_{n} \|_{X} + \| Tx - Tx_{n} \|_{Y} \to 0.
-%\end{split}
-%\end{equation*}
-%%
-%%
-%
-$x_{n} \to x$ and $Tx_{n} \to y$ imply $y = Tx$. 
-\end{definition}
-
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                closed graph theorem
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}[Closed Graph Theorem]
-\label{lem:closed-graph}
-If $X$ and $Y$ are Banach, and $T: X \to Y$ is a closed linear map, then $T$ is
-bounded.
-\end{lemma}
-%
-%
-Proceeding with the proof of Lemma~\ref{lem:rest-bound},
-suppose $x_{n} \to x$ in $U$; that is
-%
-%
-\begin{equation}
-  \label{1hh}
-\begin{split}
-  \| x - x_{n} \|_{U} \to 0.
-\end{split}
-\end{equation}
-%
-%
-Since $U \subset X$
-continuously and
-$T: X \to Y$ is bounded, we have
-%
-%
-\begin{equation}
-  \label{2hh}
-\begin{split}
-  \| Tx - Tx_{n} \|_{Y} = \| T(x - x_{n}) \|_{Y} \lesssim \| x -
-  x_{n} \|_{X} \le  \| x - x_{n} \|_{U} \to 0.
-\end{split}
-\end{equation}
-%
-%
-Hence, from \eqref{2hh}, the continuous embedding $V \subset Y$, 
-and the uniqueness of the limit,
-it follows that if $Tx_{n} \to v$ in $V$, then $v = Tx$. 
-Therefore, $T$ is closed from
-$U$ to $V$. Applying the closed graph theorem concludes the proof. 
-\end{proof}
-%
-%
-%
-\begin{proof}[Proof of Lemma~\ref{lem:interp-spaces}]
-  We refer the reader to \cite{Taylor:1995kx}, pp.322-324.
-\end{proof}
-%
-%
-For additional reading on interpolation spaces, please consult
-\cite{Taylor:1995kx}, \cite{bergh1976interpolation}, and \cite{Bennett:1988ys}.
-%
-%
-\subsection*{Acknowledgements} The author thanks his advisor Alex Himonas for
-suggesting the problem and for his many helpful remarks. The author
-also thanks the Department of Mathematics at the University of Notre Dame and
+\subsection*{Acknowledgements} The author
+thanks the Department of Mathematics at the University of Notre Dame and
 the Arthur J. Schmitt Foundation for supporting his doctoral studies.
 %
 %
