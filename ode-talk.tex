@@ -1,0 +1,1238 @@
+%
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\setlength{\parindent}{0in} %no indentation of paragraphs after section title
+\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
+%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+%
+%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+%
+%
+%
+%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem]{Exercise}
+\newtheorem {example}[theorem]{Example}
+%
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%makes proof environment bold instead of italic
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\renewcommand{\cref}{\Cref} %capitalize option for cleveref doesn't work on all
+\synctex=1
+\begin{document}
+\title{Differential Calculus}
+\author{David Karapetyan}
+\address{Department of Mathematics  \
+    University  of Notre Dame\
+        Notre Dame, IN 46556 }
+        \date{\today}
+        %
+        \maketitle
+        %
+        %
+\section{Differentiation in Banach Spaces}
+We remark that the theory presented below can be extended to arbitrary
+topological vector spaces with a topology induced by a metric (in particular,
+Fr\'echet spaces) by replacing norms with metrics in what follows.
+\begin{definition}
+	\label{def:diff}
+	Let $X,Y$ be Banach spaces over the real numbers, $U \subset X$ open,
+  and consider the map $f: U \to Y$.
+  Then $f$ is differentiable at $x_0 \in U$ at $x_{0} \in U$ if there
+	is a continuous linear map $Df(x_0): X \to Y$ such that
+	%
+	%
+	%
+	%
+	\begin{equation}
+		\label{diff-limit}
+		\begin{split}
+			\lim_{h \to 0} \frac{\|f(x_0+ h) - f(x_0) -
+			Df(x_0)(h) \|_Y}{\|h\|_{X}} = 0.
+		\end{split}
+	\end{equation}
+	%
+	%
+    This map, which we call the \emph{total derivative} or \emph{Fr\'echet derivative} of $f$ at $t_0$, is 
+	unique. If $Df(x_0)$ exists for all $x_0 \in U$,
+	then we say that $f$ is
+    \emph{differentiable} in $U$. If $f$ is differentiable in $U$, and 
+	$\|Df(x_0 + h) - Df(x_0) \|_Y \to 0$ as $\|h\|_{X} \to 0$ for all $x_0 \in U$,
+    then we say that $f$ is \emph{continuously differentiable in $U$}, or $C^{1}$ in $U$. If $X, Y$
+  are Banach spaces over the complex numbers, we say that $f$ is
+  \emph{holomorphic} (or \emph{continuously holomorphic}) in $U$.
+\end{definition}
+	%
+  %
+  %
+  \begin{framed}
+  %
+  %
+  \begin{remark}
+    Equivalently, $f$ is differentiable at $x_{0}$ if there exists a continuous
+    linear map $Df(x_{0}): X \to Y$ such that
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      f(x_{0} + h) = f(x_{0}) + Df(x_{0}) \circ h + o(h).
+    \end{split}
+    \end{equation*}
+    %
+    To see this, suppose
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \lim_{h \to \infty} \frac{\| f(x_{0} + h) - f(x_{0}) - Df(x_{0}) \circ h
+      \|_{Y}}{\| h \|_{X}} = 0.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Then we can find $\delta > 0$ such that
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+    \frac{\| f(x_{0} + h) - f(x_{0}) - Df(x_{0}) \circ h
+      \|_{Y}}{\| h \|_{X}}  < \ee
+    \end{split}
+    \end{equation*}
+    %
+    %
+    for all $h \in X$ with $\| h \|_{X} < \delta$. Hence
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \| f(x_{0} + h) - f(x_{0}) - Df(x_{0}) \circ h \|_{Y} < \ee \| h
+      \|_{X}.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    This implies
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      f(x_{0} + h) - f(x_{0}) - Df(x_{0}) \circ h = g, \quad g \in Y, \ \| g
+      \|_{Y} < \ee \| h \|_{X}.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Hence, 
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      f(x_{0} + h) 
+      & = f(x_{0}) + Df(x_{0}) \circ h + g
+      \\
+      & =  f(x_{0}) + Df(x_{0})\circ h + o(\| h \|_{X}).
+    \end{split}
+    \end{equation*}
+    %
+    %
+    For the reverse direction, if
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      f(x_{0} + h) = f(x_{0}) + Df(x_{0}) \circ h + o(\| h \|_{X})
+    \end{split}
+    \end{equation*}
+    %
+    %
+    then
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \| f(x_{0} + h) - f(x_{0}) - Df(x_{0}) \circ h \|_{Y} = o(\| h
+      \|_{X})
+    \end{split}
+    \end{equation*}
+    %
+    %
+    which implies
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+      \lim_{h \to \infty} \frac{\| f(x_{0} + h) - f(x_{0}) - Df(x_{0}) \circ h
+      \|_{Y}}{\| h \|_{X}}  = \lim_{h \to \infty} \frac{o(\| h \|_{X})}{\| h
+      \|_{X}} = 0.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    %
+  \label{rem:equiv-def}
+  \end{remark}
+  %
+  %
+  \end{framed}
+  %
+  %
+%
+\begin{framed}
+%
+%
+\begin{remark}
+    Observe that if $F$ is differentiable at $x_{0}$, then it is continuous at $x_{0}$.
+\label{rem:deriv-imp-cont}
+\end{remark}
+%
+%
+\end{framed}
+\begin{framed}
+    \begin{exercise}
+        Compute the total
+        derivative of the function $f:L^{\infty} \to L^{\infty}$ at $u_{0}$,
+        where $f(u) = u^{2}$. 
+    \end{exercise}
+    Answer:       %
+    %
+    \begin{equation*}
+    \begin{split}
+    \frac{\| (u_{0} + h)^{2} - u_{0}^{2} - 2u_{0}h \|_{L^{\infty}}}{\| h
+        \|_{L^{\infty}}}
+        &=         \frac{\| h^{2} \|_{L^{\infty}}}{\| h \|_{L^{\infty}}}
+        \\
+        & \le \| h \|_{L^{\infty}} 
+        \\
+        & \to 0.
+    \end{split}
+    \end{equation*}
+    %
+    %
+    Therefore, $D_{u}(f(u))(u_{0}) = 2u_{0}I$. 
+\end{framed}
+Recall that if $F$ is continuously differentiable in $U$, then $DF : U \to L(U,
+X)$ is a continuous map. Since $X$ is Banach, it follows that $L(U, X)$ is also
+Banach under the operator norm, hence it makes sense to talk about derivatives
+of $DF$ at a point. More precisely, if $DF$ is differentiable at $x_{0}$, then
+we denote its derivative at $x_{0}$ by $D^{2}F(x_{0})$ and say that 
+is $F$ is $2$-times differentiable at $x_{0}$.
+Observe then that $D^{2}F(x_{0}) \in L(U, L(U,X))$. If $DF$ is continuously
+differentiable in $U$, then we say that $F$ is $C^{2}$ in $U$, and observe that
+$D^{2}F : U \to L(U, L(U, X))$ continuously. In general, we say $F$ $k$-times
+differentiable at $x_{0}$ if $D^{k-1}F$ is differentiable at $x_{0}$, and
+observe that $D^{k}F(x_{0}) \in L^{k}(U, X)$, where $L^{k}(U, X)$ is
+defined recursively via the relations $L^{0}(U, X) \doteq L(U, X)$, $L^{1}(U,
+X)$ = $L(U, L^{0}(U, X))$, \ldots, $L^{k}(U, X)$ = $L(U, L^{k-1}(U, X))$.
+If $D^{k-1}F$ is
+continuously differentiable in $U$, then we say $F$ is $C^{k}$ in $U$. 
+
+Notice that our definition of $D^{k}F$ becomes more and more complicated as $k$
+increases. However, there is a special case in which our definition of the
+Banach space derivative becomes easier to deal with. More precisely, for an
+arbitrary Banach space $X$, open interval $(a,b) \subset \rr$, and map $f:(a,b)
+\to X$, we can identify $Df(x_0)$ with an element of $X$ via the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			Lemma Isometry	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+	\label{lem:isometry} Let $(a,b) \subset \rr$ be an open interval, $X$ a Banach
+	space, with $x \in X$. Define the map $T_x \in L\left ( \rr , X \right )$ by
+	$T_x(t_0) = x t_0$. Then the map $x \mapsto T_x$ is an
+	isometric isomorphism from
+	$X$ to $L(\rr , X)$. 
+\end{lemma}
+%
+%
+\begin{proof} Note that 
+%
+%
+\begin{equation*}
+	\begin{split}
+		| | | T_x | | |
+		& = \sup_{|t_0| = 1} \| T_x (t_0) \|_X
+		= \| x t_0\|_X
+		= \|x\|_X.
+	\end{split}
+\end{equation*}
+%
+%
+Hence, the map $x \mapsto T_x$ is an isometry from $X$ into $L(\rr,
+X)$. It remains to show that it is onto. Let $V \in L( \rr, X)$. Then
+by linearity
+%
+%
+\begin{equation*}
+	\begin{split}
+		V(t_0) = V(1)t_0. 
+	\end{split}
+\end{equation*}
+%
+%
+Hence, $V = T_{V(1)}$, completing the proof. 
+\end{proof}
+%
+%
+Applying the lemma, we see that if $Df(t_0)$ exists for a map $f: (a,b) \to X$,
+then it can be viewed as an
+element of $X$. Similarly, if $Df(t_0)$ exists for all $t_0 \in (a,b)$, then
+we may view the map $t_0 \to Df(t_0)$ as an
+element of $L( \rr, X)$. Hence, for a
+map $f:(a,b) \to X$, we see that the following is an equivalent
+reformulation of \autoref{def:diff}. 
+\begin{definition}
+	\label{def:diff-simp}
+	Let $X$ be Banach space, $(a,b) \subset \rr$ an open interval, and
+	consider the map $f: (a,b) \to X$.
+	Then $f$ is \emph{differentiable at $t_0$} if there exists a map
+	$f': \rr \to X$ such that 
+	%
+	%
+	%
+	%
+	\begin{equation}
+		\label{diff-limit-simp}
+		\begin{split}
+			\lim_{h \to 0} \| \frac{f(t_0+ h) - f(t_0) 
+			 }{h} - f'(t_0) \|_X = 0.
+		\end{split}
+	\end{equation}
+	%
+	%
+	We call $f'(t_0)$ the \emph{derivative of $f$ at $t_0$}.
+	If \eqref{diff-limit-simp}
+	holds for all $t_0 \in (a,b)$, then we say $f$ is \emph{differentiable in
+	$(a,b)$}, and call $f'$ the
+	\emph{derivative of $f$ in $(a,b)$}.  
+\end{definition}
+\begin{framed}
+\begin{example}
+Let $f: (a,b) \to \rr^2$ be defined by $f(t) = (1, t^2)$. Then $Df$ maps the
+interval $(a,b)$ to $L((a,b), \rr^{2})$ by the relation $Df(t) = (0, 2t)$, and
+$Df(t)(h) = (0,2th)$. Hence, we may view $Df(t)$ as the point $(0,2t) \in
+\rr^2$, and view its action on $(a,b)$ as nothing more than standard scalar
+multiplication in $\rr^{2}$. That is, $f'(t) = (0,2t)$, and $f'(t)(s) = s(0,
+2t)$. More generally, composition can be \emph{identified} with the dot product in certain contexts. 
+\end{example}
+\end{framed}
+We also have the following important result, which will make higher order
+Fre\`chet derivatives of functions easier to deal with.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%			isomorphism
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+    Let $U_{1}, U_{2}, \cdots,
+    U_{k}$ open subsets of the Banach spaces $X_{1}, X_{2}, \cdots, X_{k}$
+    respectively. Let $Y$ be Banach. 
+    Then the space of continuous $k$-linear maps $L(X_{1}, X_{2}, \cdots, X_{k};
+    Y)$ is isometrically isomorphic to $L(X_{1}, L(X_{2}, \cdots L(X_{k-1},
+    X_{k}))))$.
+\label{lem:iso}
+\end{lemma}
+%
+%
+%
+\begin{proof}
+We handle the case $k=2$; the proof for arbitrary $k$ is analogous. Proceeding,
+for each $u \in L(X_{1}, X_{2}; Y)$, we constructed the bounded linear map
+$u_{x} \in L(X_{2}, Y)$ where $u_{x_{1}}(x_{2}) = u(x_{1}, x_{2})$. For
+$u_{x}$, we in turn construct the linear bounded map $\tilde{u}: L(X_{1},
+L(X_{2}, Y))$ where $\tilde{u}(x_{1}) = u_{x_{1}}$. We claim the map $f:
+L(X_{1}, X_{2}; Y) \to L(X_{1}, L(X_{2}, Y))$ given by $f(u) = \tilde{u}$ is an
+isometry and onto.
+\begin{enumerate}[i)]
+    \item{}Onto: Let $v \in L(X_{1}, L(X_{2}, X_{3}))$. Then it is enough to
+        show that the map $(x_{1}, x_{2}) \to [v(x_{1})](x_{2}) \doteq
+        u(x_{1}, x_{2})$ is bilinear and continuous. Observe that
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+            u(ax_{1} + b, x_{2} )
+            & = [v(ax_{1} + b)](x_{2})
+            \\
+            & = [av(x_{1}) + v(b)](x_{2})
+            \\
+            & = [av(x_{1})](x_{2}) + [v(b)](x_{2})
+            \\
+            & = a[v(x_{1})](x_{2}) + [v(b)](x_{2})
+            \\
+            & = au(x_{1}, x_{2}) + u(b, x_{2}).
+        \end{split}
+        \end{equation*}
+        %
+        %
+        Similarly, 
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+            u(x_{1}, ax_{2} + b) = au(x_{1}, x_{2}) + u(b, x_{2})
+        \end{split}
+        \end{equation*}
+        %
+        %
+        and so $u$ is bilinear. For the boundedness, we observe that
+        %
+        %
+        \begin{equation*}
+        \begin{split}
+            \| u(x_{1}, x_{2}) \|_{Y} 
+            & = \| [v(x_{1})](x_{2}) \|_{Y}
+            \\
+            & \le \| v(x_{1}) \|_{L(X_{2}, Y)} \| x_{2} \|_{X_{2}}
+            \\
+            & \le \| v \|_{L(X_{1}, L(X_{2}, Y))} \| x_{1} \|_{X_{1}} \| x_{2}
+            \|_{X_{2}}
+            \\
+            & = C\| x_{1} \|_{X_{1}} \| x_{2}
+        \end{split}
+        \end{equation*}
+        %
+        %
+       \item{}Isometry:
+           %
+           %
+           \begin{equation*}
+           \begin{split}
+               \| \tilde{u} \|_{L(X_{1}, L(X_{2}, Y))}
+               & = \sup_{\| x_{1} \|_{X_{1}} = 1} \| \tilde{u} \|_{L(X_{2}, Y)}
+               \\
+               & = \sup_{\| x_{1} \|_{X_{1}} = 1} \| \tilde{u}_{x} \|_{L(X_{2},
+           Y)}
+               \\
+               & = \sup_{\| x_{1} \|_{X_{1}} = 1, \| x_{2} \|_{X_{2}} = 1} \|
+               u(x_{1}, x_{2}) \|_{Y}
+               \\
+               & = \| u \|_{L(X_{1}, X_{2}; Y)}
+           \end{split}
+           \end{equation*}
+           %
+           %
+          which concludes the proof. 
+        
+    \end{enumerate}
+\end{proof}
+%
+%
+\begin{framed}
+    In particular, if $f: U \to X$ is $C^{k}$, where $X$ is Banach and $U
+    \subset X$ is open, \cref{lem:iso} implies
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+        D^{k}f = L^{k}(U, X) \cong L(\underbrace{U, U, \cdots, U}_{k \ \text{copies}}; X).
+    \end{split}
+    \end{equation*}
+    %
+    This will prove useful later on when computing Fr\`echet derivatives.
+    %
+\end{framed}
+%
+Lastly, we include the following.
+%
+%
+\begin{lemma}[Chain Rule]
+    Let $X,Y,Z$ be Banach spaces, $f: X \to Y$ and $g: Y \to Z$
+    continuously differentiable maps. Then for all $x_0 \in X$ we have
+    %
+    \begin{equation*} (g \circ f)' (x_0) = g'(f(x_0)) \circ (f'(x_0)).
+		\end{equation*} 
+    %
+	\end{lemma}
+  \begin{proof} Since $f$ and $g$ are continuously differentiable, we can write
+			\begin{equation*}
+				f(x_0 + s) = f(x_0) + f'(x_0)(s) + o_{1}(s)
+			\end{equation*}
+			and
+      \begin{equation*}
+				g(x_0 + t) = g(x_0) + g'(x_0)(t)+ o_{2}(t).
+			\end{equation*}
+						Hence
+			\begin{equation}
+        \label{pre-order}
+				\begin{split}
+					h(x_0 + s) &= g(f(x_0 +s)
+					\\
+					&= g(f(x_0) + f'(x_0)(s) + o_{1}(s))
+					\\
+					&= g(f(x_0)) + g'(f(x_0)) \circ [f'(x_0)(s) + o_{1}(s)] 
+					+ o_{2}(f'(x_0)(s) + o_{1}(s))
+					\\
+					&= g(f(x_0)) + g'(f(x_0)) \circ f'(x_0)(s) +
+					g'(f(x_0)) \circ o_{1}(s) + o_{2}(f'(x_0)(s) + o_{1}(s)).
+				\end{split}
+			\end{equation}
+      Since $f'(x_0)$
+			and $g'(f(x_0))$ are continuous linear operators, we have
+			\begin{equation*}
+				\begin{split}
+         &  f'(x_0)(s)
+           = o_{3}(s)
+					\\
+					& g'(f(x_0))(t) = o_{4}(t).
+				\end{split}
+			\end{equation*}
+      Therefore,
+      %
+      %
+      \begin{equation*}
+        \begin{split}
+          g'(f(x_0)) \circ o_{1}(s)
+          & = o_{4}(o_{1}(s))
+          \\
+          & = o_{5}(s)
+        \end{split}
+      \end{equation*}
+      %
+      %
+      and
+      %
+      %
+      \begin{equation*}
+      \begin{split}
+      o_{2}(f'(x_0)(s) + o_{1}(s))
+      & = o_{2}(o_{3}(s) + o_{1}(s))
+      \\
+      & =o_{6}(s).
+      \end{split}
+      \end{equation*}
+      %
+      %
+Substituting, we conclude that
+			\begin{equation*}
+				\begin{split}
+				h(x_0 + s) = g(f(x_0)) + g'(f(x_0))(f'(x_0)(s)) +
+				o(s)
+        \end{split}
+        \end{equation*}
+			 completing the proof. 
+   \end{proof}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				product rule
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+   %\begin{lemma}[Product Rule]
+%Let $X$, $Y$, $Z$ be Banach spaces, and $B: X \times Y \to Z$ is a continuous
+%bilinear operator, where $X \times Y$ is Banach under the usual product
+%norm $\| (f,g) \|_{X \times Y} = \| f \|_{X} + \| g \|_{Y}$.  Then $B$ is differentiable in $X \times Y$, with derivative at $(x_{0}, y_{0})$ given
+%by the bilinear map $DB(x_{0}, y_{0}): X \times Y \to Z$ defined by
+%%
+%%
+%\begin{equation}
+    %\label{ansatz}
+%\begin{split}
+    %DB(x_{0},y_{0})(x,y) = B(x, y_{0}) + B(x_{0}, y)
+%\end{split}
+%\end{equation}
+%%
+%%
+%\label{lem:product-rule}
+%\end{lemma}
+%%
+%%
+%%
+%%
+%\begin{proof}
+%%
+%It will be enough to verify that \eqref{ansatz} is the derivative of $B$.
+%Using the bilinearity of $B$, we see that 
+%%
+%\begin{equation*}
+%\begin{split}
+     %\frac{\| B(x_{0} + h, y_{0} + k) - B(x_{0}, y_{0})  - B(h, y_{0}) - B(x_{0}, k)\|_{Z}}{\| (h, k) \|_{X \times Y}}
+    %& = \frac{\| B(h, k)\|_{Z}}{\| (h, k) \|_{X \times Y}}
+    %\\
+    %& \le \frac{\| h \|_{X} \| k \|_{Y} ||| B |||}{\| (h, k) \|_{X \times Y}}
+    %\\
+    %& \simeq \frac{\| h \|_{X} \| k \|_{Y}}{\| (h, k) \|_{X \times Y}}
+%\end{split}
+%\end{equation*}
+%%
+%which goes to $0$ as $\| (h, k) \|_{X \times Y}$ goes to $0$. This concludes the proof.
+%%
+%\end{proof}
+%%
+%%
+%\begin{framed}
+    %\begin{example} Let $u \in L^{\infty}$. Then multiplication is a continuous bilinear mapping taking $L^{\infty} \times L^{\infty}$ to $L^{\infty}$. Hence
+        %%
+        %%
+        %\begin{equation*}
+        %\begin{split}
+            %D(u^{2})(h, k) 
+        %\end{split}
+        %\end{equation*}
+        %%
+        %%
+        %
+    %\end{example}
+%\end{framed}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Dependence on Params
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+\section{Regularity of the Data-to-Solution Map for ODEs} 
+\label{sec:dep-param-smooth}
+%
+%
+Following Taylor \cite{Taylor:1995kx}, let $X$ be a Banach space, $U \subset X$ an open subset, and $F: U \to X$. Consider the non-autonomous system
+%
+%
+\begin{gather}
+  \label{aa-sm}
+\frac{dy}{dt} = F(y(t), t),
+\\
+y(0)= y_{0} \in X, \quad t \in \rr.
+\label{bb-sm}
+\end{gather}
+%
+Letting $z = (y(t), t)$, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dz}{dt}  
+& = \left (\frac{dy}{dt}, 1 \right )
+\\
+& = \left( F(y(t), t), 1 \right)
+\\
+& = \left( F(z), 1 \right)
+\\
+& \doteq G(z).
+\end{split}
+\end{equation*}
+%
+%
+Hence, without loss of generality, we may restrict our attention to the
+autonomous system
+%
+%
+\begin{gather}
+\frac{dy}{dt} = F\left( y(t) \right)
+\label{ode-eq-sm}
+\\
+y(0) = y_{0}, \quad t \in \rr
+\label{ode-init-data-sm}
+\end{gather}
+%
+%
+%
+for which we shall prove the following.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                dep on init cond
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+  Let $U \subset X$ be an open subset, and $F: U  \to X$.
+  If $F$ is Lipschitz, then the flow map $\vp \mapsto u(t, \vp) \doteq
+  S_{t}(\vp)$ is Lipschitz. If $F$ is $k$ times differentiable, where $k \ge 1$
+  is an integer, then the flow map is $k$ times differentiable.
+  \label{prop:reg-result}
+\end{proposition}
+%
+%
+%
+%
+\begin{proof}
+  We divide our work into cases.
+  \subsection*{Case $k = 0$.} The ivp \eqref{ode-eq-sm}-\eqref{ode-init-data-sm} is equivalent to 
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  u(t, \vp) = \vp + \int_{0}^{t} F[u(\tau, \vp)] d \tau
+  \end{split}
+  \end{equation*}
+  %
+  and so
+  %
+  %
+  %
+  \begin{equation*}
+    \begin{split}
+  u(t, \vp) - u(t, \psi) = \vp - \psi + \int_{0}^{t} \{F[u(\tau, \vp)] - F[u(\tau, \psi)]\} d \tau.
+  \end{split}
+  \end{equation*}
+  %
+ Recall that the Metric Space ODE Theorem tells us that for any $\vp \in B_{r} \subset U$ there exists a unique solution $u(t, \vp)$ for $t \in [-h, h]$, where $h = h(r)$. Therefore, applying the triangle inequality and the Lipschitz condition, we obtain the estimate
+  \begin{equation*}
+  \begin{split}
+  \sup_{t \in [-h, h]} \|u(t, \vp) - u(t, \psi)\|_{L^{\infty}}
+  & \le \|\vp -
+  \psi\|_{L^{\infty}} +  h \sup_{t \in [-h, h]} \|F[u(t, \vp)] - F[u(t, \psi)] \|_{L^{\infty}}
+  \\
+  & \le \|\vp - \psi\|_{L^{\infty}} +  ch \sup_{t \in [-h, h]} \|[u(t, \vp)] -
+  [u(t, \psi)] \|_{L^{\infty}}.
+  \end{split}
+  \end{equation*}
+Restricting $h < 1/c$ and rearranging terms, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\sup_{t \in [-h, h]} \| u(t, \vp) - u(t, \psi) \|_{L^{\infty}} \le \frac{1}{1-ch} \| \vp - \psi \|_{L^{\infty}}
+\end{split}
+\end{equation*}
+%
+%
+concluding the proof.
+ \subsection*{Case $k=1$} 
+  \label{ssec:case-k}
+ % 
+ %
+Formally differentiate
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm} with respect to $\vp$ and obtain
+%
+%
+%
+\begin{gather}
+  W' = DF(y(\vp,t)) \circ W
+  \label{ode-lin}
+  \\
+  W(0) = I
+  \label{ode-lin-init-data}
+\end{gather}
+%
+%
+where $W \doteq D_{\vp} y(\vp,t)$ and $y$ is the unique solution to
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}. Let $w(\vp,t) = D_{\vp}y(\vp,t) \circ h$, where $h \in U$ is
+arbitrary. Then
+from \eqref{ode-lin}-\eqref{ode-lin-init-data} we
+obtain
+%
+%
+\begin{gather}
+  w' = DF(y(\vp, t)) \circ w 
+  \label{ode-lin-h}
+  \\
+  w(0) = h.
+  \label{ode-lin-init-data-h}
+\end{gather}
+%
+%
+Since $F$ is $C^{1}$, $DF(y(\vp, t)): U \to X$ continuously. Since $Df(y(\vp,
+t))$ is also linear, it is bounded, and hence Lipschitz on $U$. Therefore, by
+the Metric Space ODE theorem, there exists a unique solution $w = w(\vp,t)$ to
+\eqref{ode-lin-h}-\eqref{ode-lin-init-data-h} for $t$ in some open subset of
+$\rr$. We now show that this solution is in fact $D_{\vp} y(\vp,t)$ as follows.
+Let $z(\vp,t) = y(\vp + h, t) - y(\vp,t)$. Note that
+%
+%
+\begin{equation}
+  \label{uhh}
+\begin{split}
+\frac{dz}{dt} 
+& = F\left[ y(\vp + h, t) \right] - F\left[ y(\vp,t) \right]
+\\
+& = \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
+\\
+& = \int_{0}^{1} \frac{d}{ds} F\left[ sz(\vp,t) + y(\vp,t) \right] ds
+\\
+& = F[y(\vp,t) +z(\vp, t)] - F[y(\vp, t)]
+\end{split}
+\end{equation}
+%
+%
+which by the definition of the Banach space derivative implies
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{dz}{dt} = DF(y) \circ z + R_{1}(y) \circ z, \quad R_{1}(y) \circ z = o(\|
+  z(t) \|_{X})
+\end{split}
+\end{equation*}
+%
+%
+and so
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{d}{dt}(z-w) = DF(y) \circ (z-w) + R_{1}(y) \circ z.
+\end{split}
+\end{equation*}
+%
+%
+Noting that %
+%
+\begin{equation*}
+\begin{split}
+  (z-w)(0) & = 0
+\end{split}
+\end{equation*}
+%
+%
+we now seek to analyze the the inhomogeneous ode
+%
+%
+\begin{gather}
+  \frac{d}{dt}(z-w)  = DF(y) \circ (z-w) + R_{1}(y) \circ z
+\label{inhom-ode}
+  \\
+  (z-w)(0) = 0.
+  \label{inhom-ode-init}
+\end{gather}
+%
+Since $DF(y)$ and $R_{1}(y)$ are Lipschitz on $U$, the Metric Space ODE theorem
+guarantees a unique solution to this equation for $t$ in a sufficiently small
+interval. Taking norms of both sides, and using the fact that $DF(y)$ is
+Lipschitz, we obtain
+%
+%
+%
+%
+\begin{gather}
+    \label{yt}
+    \frac{d}{dt} \| z - w \|_{X} \lesssim  \| z - w \|_{X}  + o(\|z\|_{X}),
+    \\
+    (z-w)(0) = 0.
+    \label{ytt}
+\end{gather}
+%
+We now bound $\| z \|_{X}$. From the
+second line of \eqref{uhh}, we get
+%
+%
+\begin{equation*}
+\begin{split}
+    \frac{d}{dt} \| z(t) \|_{X}
+& \le \| \int_{0}^{1} \frac{d}{ds} F\left[ sy(\vp+h, t) + (1-s)y(\vp,t) \right]ds
+\|_{X}
+\\
+& \le \| \int_{0}^{1} DF\left[  sy(\vp+h, t) + (1-s)y(\vp,t) \right] \circ z ds
+\|_{X}
+\\
+& \le \| z(t) \|_{X} | | | DF | | |_{L(U, X)}
+\\
+& = M \| z(t) \|_{X}
+\end{split}
+\end{equation*}
+%
+where we emphasize that $M$ does not depend on $h$, $z$, or $w$.
+Hence, setting $\vp(t) =  \| z(t) \|_{X}$, we wish to solve
+%
+%
+\begin{gather*}
+\frac{d \vp}{dt} = M \vp
+\\
+\vp(0) = \| h \|_{X}
+\end{gather*}
+%
+%
+which gives
+%
+%
+\begin{equation*}
+\begin{split}
+  \vp(t) & = \vp(0)e^{Mt}
+  \\
+  & = \| h \|_{X} e^{Mt}
+  \\
+  & \lesssim \| h \|_{X}, \quad 0 \le t < T.
+\end{split}
+\end{equation*}
+%
+%
+Hence,
+%
+%
+\begin{equation*}
+\begin{split}
+  \| z(t) \|_{X}  \lesssim  \| h \|_{X}  \ \text{for all } \ t \in I.
+\end{split}
+\end{equation*}
+Applying this relation to the Cauchy problem \eqref{yt}-\eqref{ytt}, we obtain
+%
+\begin{gather*}
+    \frac{d}{dt} \| z - w \|_{X} \lesssim  \| z - w \|_{X}  + o(\| h \|_{X}),
+    \\
+    (z-w)(0) = 0
+\end{gather*}
+which by Gronwall's inequality gives
+%
+%
+%
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| z(t) - w(t) \|_{X} 
+  = o(\| h \|_{X}),
+\end{split}
+\end{equation*}
+%
+%
+that is
+%
+%
+\begin{equation*}
+\begin{split}
+  \| y(\vp + h, t) - y(\vp,t) - w(\vp,t) \|_{X} = o(\| h \|_{X}).
+\end{split}
+\end{equation*}
+%
+%
+Hence, by the definition of the Banach space derivative, $D_{\vp}y(\vp,t)$
+exists and is equal to $w(\vp,t)$. The proof for the case $k=1$ is complete.
+\subsection*{Case $k >1$} 
+\label{ssec:case-kg1}
+For finite $k$, formally differentiating
+\eqref{ode-eq-sm}-\eqref{ode-init-data-sm}
+$k$ times with respect to $\vp$, we obtain
+\begin{gather*}
+  W' = DG(y) \circ W
+  \\
+  W(0) = I
+\end{gather*}
+where $G \doteq D^{k-1}F$, $W \doteq D_{\vp}^{k} y$. Hence, the proof of
+$k$-time differentiability in $x$ reduces to the proof in the case $k=1$, which
+completes the proof for finite $k$. If $k = \infty$, we run an induction on $k$ to
+obtain the corresponding result.
+\end{proof}
+%
+%
+%
+%
+%
+%
+%
+\section{The BBM Equation} 
+\label{sec:}
+Setting $\gamma = 0$ in the HR equation, we obtain the Benjamin, Bona,
+Mahoney (BBM) equation. That is
+%
+%
+\begin{gather*}
+    \p_{t} u = F(u(t))
+    \\
+     u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+\end{gather*}
+where
+%
+%
+\begin{equation*}
+\begin{split}
+    F(u(t)) \doteq -\frac{3}{2} \p_{x}(1 - \p_{x}^{2})^{-1} u^{2}.
+\end{split}
+\end{equation*}
+%
+Observe that $F$ maps open sets in $C^{k}$ to $C^{k}$,  $k \in \mathbb N \cup
+\{\infty \}$, and is hence an ODE on the space of $C^{k}$ functions. Following
+\cite{Bona_2009_Sharp-well-pose}, we note that the BBM is also an ODE on
+$H^{s}$, $s \ge 0$ due to the following bilinear estimate.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				bbm bilinear estimate
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}
+For $s \ge 0$
+%
+%
+\begin{equation*}
+\begin{split}
+    \| \p_{x}(1 - \p_{x}^{2})^{-1} (uv) \|_{H^{s}} \lesssim \| u \|_{H^{s}} \| v \|_{H^{s}}.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:bbm-bilin-est}
+\end{lemma}
+%
+%
+%
+\begin{proof}
+    We diverge slightly from the proof in \cite{Bona_2009_Sharp-well-pose}. Observe that
+        \begin{equation*}
+        \begin{split}
+        \| \p_{x}(1 - \p_{x}^{2})^{-1} (uv) \|_{H^{s}}
+        & = \left [ \int_{\rr} \frac{\xi^{2}}{(1 + \xi^{2})^{2}} (1 + |\xi|)^{2s} | \wh{u} * \wh{v}(\xi) |^{2} d \xi \right ]^{1/2}
+        \\
+        & = \left [ \int_{\rr} \frac{\xi^{2}}{(1 + \xi^{2})^{2}} | (1 + |\xi|)^{s}\wh{u} * \wh{v}(\xi) |^{2} d \xi \right ]^{1/2}
+        \\
+        & \le \| \xi^{2}/(1 + \xi^{2})^{2} \|_{L^{2}}^{1/2} \| (1 + |\xi|)^{s} \wh{u} * \wh{v}(\xi) \|_{L^{\infty}}
+        \\
+        & \simeq \| (1 + |\xi|)^{s} \wh{u} * \wh{v}(\xi) \|_{L^{\infty}}.
+            \end{split}
+\end{equation*}
+%
+Applying Peetre's inequality (valid only for $s \ge 0$), followed by Young's inequality and Parseval, we bound this by
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+    \| (1 + |\cdot| )^{s}\wh{u}(\cdot) * (1 + |\cdot| )^{s}\wh{v}(\cdot)(\xi) \|_{L^{\infty}} 
+    & \lesssim \| (1 + |\xi| )^{s}\wh{u}(\xi)\|_{L^{2}} \| (1 + |\xi| )^{s}\wh{v}(\xi) \|_{L^{2}}
+    \\
+    &  = \| u \|_{H^{s}} \| v \|_{H^{s}}
+\end{split}
+\end{equation*}
+%
+%
+which concludes the proof.
+%
+\end{proof}
+%
+%
+%
+%
+%
+%
+By the ODE theory we have covered, for $u_{0}(x) \in C^{k}$, the BBM admits a
+unique solution $u(x,t)$ which is $C^{k}$ in the space variable for $0\le t <
+T$, where $T > 0$ is sufficiently small. (In fact, classical ODE theory
+guarantees that it is $C^{k}$ in time as well, but this is outside our
+discussion). Furthermore, by the same theory, we see that for $u_{0}(x) \in
+H^{s}$, $s \ge 0$, the BBM admits a unique solution $u(x,t) \in C^{1}([0, T],
+H^{s})$ for sufficiently small $T > 0$. In both cases, we claim that the data to
+solution map is smooth. To prove this, by the ODE theory it will suffice to show
+that $F$ is smooth. Adopt
+the notation
+\begin{gather*}
+    F(u) = -\frac{3}{2}Lf(u), \ \text{where} \ 
+    \\
+    \Lambda \doteq \p_{x}(1 - \p_{x}^{2})^{-1}, \ f(u) = u^{2}.
+\end{gather*}
+Note that $\Lambda$ is a bounded linear operator on both $C^{k}$ and $H^{s}$,
+and hence $D \Lambda(f) = \Lambda$ for $f$ in $C^{k}$ or $H^{s}$. Applying the chain
+rule, we see that for $h \in H^{s}$ or $h \in C^{k}$ we get
+%
+%
+\begin{equation*}
+\begin{split}
+DF(u) & = -\frac{3}{2}D \Lambda (f(u))Df(u)\\
+& = -\frac{3}{2} \Lambda (2uI_{1})
+\\
+& = -3 \Lambda (uI_{1})
+\end{split}
+\end{equation*}
+%
+%
+where $\Lambda (uI_{1}) \in L(H^{s}, H^{s})$ via the relation
+$\Lambda (uI_{1})(h_{1}) = \Lambda (u h_{1})$ and as a consequence of 
+\cref{lem:bbm-bilin-est}. 
+%
+We now compute the second derivative of $F$ at $u_{0}$. Applying the chain rule, we have
+%
+%
+\begin{equation*}
+\begin{split}
+    D^{2}_{u}F(u_{0}) 
+    & = D_{u} \left[ \Lambda (u I_{1}) \right](u_{0})
+    \\
+    & = (D \Lambda)(u_{0}) \circ \left[ D_{u}(u I_{1}) \right](u_{0})
+    \\
+    & = \Lambda \circ I_{2}I_{1}
+\end{split}
+\end{equation*}
+%
+%
+where $\Lambda \circ I_{2} I_{1}: H^{s} \to L(H^{s}, H^{s}))$ via the
+relation
+%
+%
+\begin{equation*}
+\begin{split}
+    \Lambda \circ I_{2} I_{1} (h_{2}) = \Lambda \circ h_{2} I_{1}.
+\end{split}
+\end{equation*}
+%
+Alternatively, due to \cref{lem:iso}, we may view $\Lambda \circ I_{2} I_{1}$ as
+a member of $L(H^{s}, H^{s}; H^{s})$, where $\Lambda \circ I_{2} I_{1}(h_{1},
+h_{2}) = \Lambda (h_{1}h_{2})$. Observe that $D_{u}(I_{2} I_{1})(u_{0}) = 0$, since $I_{2} I_{1}$ does not depend on $u$. Hence, by the
+chain rule
+%
+%
+\begin{equation*}
+\begin{split}
+    D^{k}_{u} F(u) = 0 \quad k \ge 3.
+\end{split}
+\end{equation*}
+%
+%
+%
+%We now run an induction. Assume $F$ is $k$-times differentiable. Then by the
+%Leibniz rule
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+    %D^{k+1}F(u)(h_{1}, h_{2}, \dots, h_{k+1})
+    %& = -3 D^{k} L(uI)(h_{1}, h_{2}, h_{3}, \dots, h_{k+1})
+    %\\
+    %& = -3 \sum_{j = 0}^{k} {k \choose j} D^{j}u D^{k - j}F(u)
+    %\\
+    %& = 2 \left[ u D^{k}F(u) + \sum_{j=1}^{k} {k \choose j} I D^{k-j}F(u)
+        %\right].
+%\end{split}
+%\end{equation*}
+%%
+%which closes the inductive loop.
+We conclude that $F$ is smooth. In fact, it is real analytic, since it has only
+finitely many derivatives that do not vanish. 
+%That is
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+    %F(u + h) & = \sum_{n = 0}^{\infty} \frac{D^{n}F(u)(h^{n})}{n!}
+    %\\
+    %& = 
+%\end{split}
+%\end{equation*}
+%
+%
+\begin{framed}
+    Notice that the map $(u, v) \to \Lambda (uv)$ is bilinear. In general, for
+    any $f \in L(U_{1}, U_{2}, \cdots, U_{k}; Y)$, where $U_{i} \subset X_{1}$
+    open, $X_{i}$ Banach, and $Y$ Banach, we have $D^{n}f = 0$ for $n \ge k+1$.
+    For more details, see \cite{Dieudonne_1969_Foundations-of-}. For an 
+    example in the finite dimensional case, consider the bi-linear map $f: \rr^{2} \to \rr$ given by $f(x, y) = xy$. Then $D^{2}(f)(x,y)$ is equivalent to the Hessian at $(x,y)$, which is given by
+    %
+    %
+    \begin{equation*}
+    \begin{split}
+   H(x,y) = 
+   \begin{bmatrix}
+       f_{xx}(x,y) & f_{(x,y)}(x,y)
+       \\
+       f_{yx}(x,y) & f_{yy}(y,y)
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+     0 & 1 
+       \\
+     1 & 0. 
+   \end{bmatrix}
+   \end{split}
+   \end{equation*}
+    %
+   Since $H$ is a constant matrix (i.e.\ not a function of $(x,y)$), it follows
+   that $D^{3}(f)(x,y) = D(H)(x,y) = 0$. 
+    %
+\end{framed}
+%
+Therefore, the data-to-solution map for the BBM equation is smooth (in fact
+analytic) for $C^{k}$ and $H^{s}$ initial data, $s \ge 0$. Hence, the method of
+proof developed to prove
+non-uniform dependence for HR does not apply to the BBM.
+        %
+        %
+        %
+\nocite{Dieudonne_1969_Foundations-of-}
+\nocite{Jost-1998-Postmodern-analysis}
+\nocite{Yosida:1980fk}
+        %\nocite{*}
+        \bibliography{/Users/davidkarapetyan/math/bib-files/references}
+        \end{document}
