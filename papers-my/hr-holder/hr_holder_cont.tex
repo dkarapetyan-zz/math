@@ -12,7 +12,7 @@
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
 %\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-%\setcounter{secnumdepth}{1} %number only sections, not subsections
+\setcounter{secnumdepth}{1} %number only sections, not subsections
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \numberwithin{figure}{section}
@@ -86,10 +86,10 @@ urlcolor=blue,
 Weak Topology}
 \author{\textit{David Karapetyan} \\ University of Notre Dame}
 \address{Department of Mathematics  \\
-    University  of Notre Dame\\
-        Notre Dame, IN 46556 }
-        \date{}
-        
+University  of Notre Dame\\
+Notre Dame, IN 46556 }
+\date{}
+
 \begin{abstract}
 It is shown that the data to solution map for the hyperelastic rod equation is
 H\"older continuous from bounded sets of Sobolev spaces with exponent greater
@@ -97,38 +97,38 @@ than 3/2 measured in a weaker Sobolev norm with index $r < s$ in both the
 periodic and non-periodic cases. The proof is based on energy estimates coupled
 with a delicate commutator estimate and multiplier estimate. 
 \end{abstract}
-       
-        
-        %
+
+
+%
 \keywords{Hyperelastic rod equation, periodic, non-periodic,
 initial value problem, Sobolev spaces, well-posedness,  
 continuity of solution map, energy estimates.}
 
 \subjclass[2000]{Primary: 35Q53}
- 
 
-        
-        \maketitle
-        %
-        %
-        %
-        %
-        %
-        %        
-        %
-        \section{Introduction}
+
+
+\maketitle
+%
+%
+%
+%
+%
+%        
+%
+\section{Introduction}
 %
 %
 %
 The hyperelastic rod (HR) Cauchy problem
 \begin{gather}
- \p_t u =  -\gamma u \p_x u -
- \p_{x} (1 - \p_{x}^{2})^{-1} \left[ \frac{3-\gamma}{2}u^2 +
+\p_t u =  -\gamma u \p_x u -
+\p_{x} (1 - \p_{x}^{2})^{-1} \left[ \frac{3-\gamma}{2}u^2 +
 \frac{\gamma}{2} \left( \p_x u \right)^2
 \right], \ \gamma \in \rr \slash \{0\}
 \label{hyperelastic-rod-equation}
 \\
- u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
 \label{init-cond}
 \end{gather}
 %
@@ -172,7 +172,7 @@ $H^{s}$, $s > 3/2$ on both the line and circle, see Yin
 \cite{Yin_2003_On-the-Cauchy-p}, Zhou \cite{Zhou_2005_Local-well-pose}, and
 Karapetyan \cite{Karapetyan:2010fk}. A natural question is whether or not the
 continuous dependence can be strengthened to uniform dependence or better. For
-Camassa-Holm, it was shown in \cite{Himonas:2010p1187} and \cite{Himonas:2009fk}
+Camassa-Holm, it was shown in \cite{Himonas:2009fk} and \cite{Himonas:2010p1187} 
 that dependence is not uniform. The method relied upon the use of energy
 estimates to show that that the difference between actual solutions and appropriately chosen approximate solutions with coinciding initial data is small (see
 also Koch and Tzvetkov \cite{Koch_2005_Nonlinear-wave-}). Mirroring this method,
@@ -183,7 +183,7 @@ For the Burgers equation, it is also known that for $s > 3/2$, dependence is not
 better than continuous. Furthermore, Kato \cite{Kato_1975_Quasi-linear-eq}
 showed that for $s > 3/2$ the data to solution map $u_{0} \mapsto u(t)$ is not
 H\"older continuous from a closed ball in $H^{s}$ centered at $0$ and measured
-in the $H^{r}$ topology, $r < s$, to $C([0, T], H^{r})$, where $T$ depends upon
+in the $H^{r}$ norm, $r < s$, to $C([0, T], H^{r})$, where $T$ depends upon
 the $H^{s}$ radius of the ball. More precisely, for fixed $0 < \gamma < 1$
 and fixed constant $c > 0$,
 there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}$
@@ -192,8 +192,8 @@ there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}$
 %
 \begin{equation*}
 \begin{split}
-    \| u(t_{0}) - v(t_{0}) \|_{H^{r}} 
-  & > c \| u_{0} - v_{0} \|^{\gamma}_{H^{r}}.
+\| u(t_{0}) - v(t_{0}) \|_{H^{r}} 
+& > c \| u_{0} - v_{0} \|^{\gamma}_{H^{r}}.
 \end{split}
 \end{equation*}
 However, for certain general quasi-linear hyperbolic systems, Kato also obtained
@@ -210,13 +210,13 @@ b-family
 %
 %
 \begin{gather}
- \p_t u =  -u \p_x u -
- \p_{x} (1 - \p_{x}^{2})^{-1} \left[ \frac{b}{2}u^2 +
+\p_t u =  -u \p_x u -
+\p_{x} (1 - \p_{x}^{2})^{-1} \left[ \frac{b}{2}u^2 +
 \frac{3-b}{2} \left( \p_x u \right)^2
 \right],
 \label{b-family}
 \\
- u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
 \label{init-cond-b-fam}
 \end{gather}
 %
@@ -230,13 +230,13 @@ for which they proved H\"older continuity of the data to solution map from a clo
 \begin{split}
 \alpha = 
 \begin{cases}
-    1, \quad & (s, r) \in \Omega_{1}
-    \\
-    1, \quad & b=3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
-    \\
-    2(s-1)/(s-r), \quad  & b\neq 3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
-    \\
-    s-r, \quad & (s, r) \in \Omega_{3}
+1, \quad & (s, r) \in \Omega_{1}
+\\
+1, \quad & b=3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
+\\
+2(s-1)/(s-r), \quad  & b\neq 3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
+\\
+s-r, \quad & (s, r) \in \Omega_{3}
 \end{cases}
 \end{split}
 \end{equation*}
@@ -245,11 +245,11 @@ for which they proved H\"older continuity of the data to solution map from a clo
 where
 \begin{equation*}
 \begin{split}
-    \Omega_{1} & = \left\{ (s, r): \   s > 3/2, \ 0 \le r \le s-1, \  r \ge 2-s \right\}
-    \\
-    \Omega_{2} & = \left\{(s, r): \  3/2 < s < 2, \ 0 < r < 2-s   \right\}
-    \\
-    \Omega_{3} & = \left\{ (s,r): \  s > 3/2, \ s-1 < r < s  \right\}.
+\Omega_{1} & = \left\{ (s, r): \   s > 3/2, \ 0 \le r \le s-1, \  r \ge 2-s \right\}
+\\
+\Omega_{2} & = \left\{(s, r): \  3/2 < s < 2, \ 0 < r < 2-s   \right\}
+\\
+\Omega_{3} & = \left\{ (s,r): \  s > 3/2, \ s-1 < r < s  \right\}.
 \end{split}
 \end{equation*}
 Given this result, and the similarities between the $b$-family and HR (both can
@@ -267,21 +267,21 @@ the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
 3/2$, $-1 \le r < s$. More
 precisely, consider the following sets 
 %
-  %
-  \begin{equation*}
-  \begin{split}
-      & \Omega_{1} = \left\{ (s, \ r) \in \rr^{2}:
-     \ s>3/2, \ -1 \le r \le s-1, \  r \ge 2 -s  \right\}
-    \\
-    & \Omega_{2} = \left\{ (s, \ r) \in \rr^{2}:
-     \ 3/2 < s < 3, \ -1 \le r < 2-s \right\}
-    \\
-    & \Omega_{3} = \left\{ (s, \ r) \in \rr^{2}:
-    \  s>3/2, \  s-1 < r < s  \right\}.
-    \end{split}
+%
+\begin{equation*}
+\begin{split}
+& \Omega_{1} = \left\{ (s, \ r) \in \rr^{2}:
+\ s>3/2, \ -1 \le r \le s-1, \  r \ge 2 -s  \right\}
+\\
+& \Omega_{2} = \left\{ (s, \ r) \in \rr^{2}:
+\ 3/2 < s < 3, \ -1 \le r < 2-s \right\}
+\\
+& \Omega_{3} = \left\{ (s, \ r) \in \rr^{2}:
+\  s>3/2, \  s-1 < r < s  \right\}.
+\end{split}
 \end{equation*}
-  %
-  %
+%
+%
 \label{thm:main-thm}
 \end{theorem}
 %
@@ -303,12 +303,12 @@ precisely, consider the following sets
 
 
 \foreach \x/\xtext in {1, 2}
-    \draw[shift={(\x,0)}]  node[below] {$\xtext$};
+\draw[shift={(\x,0)}]  node[below] {$\xtext$};
 \foreach \y/\ytext in {-1, 1, 2}
-    \draw[shift={(0,\y)}]  node[left] {$\ytext$};
-    \draw (2,1.5) node {$\Omega_{3}$};
-    \draw (2,0.5) node {$\Omega_{1}$};
-    \draw (2,-0.5) node {$\Omega_{2}$};
+\draw[shift={(0,\y)}]  node[left] {$\ytext$};
+\draw (2,1.5) node {$\Omega_{3}$};
+\draw (2,0.5) node {$\Omega_{1}$};
+\draw (2,-0.5) node {$\Omega_{2}$};
 \end{tikzpicture}
 \end{center}
 %
@@ -320,9 +320,9 @@ HR equation \eqref{hyperelastic-rod-equation} which satisfy
 %
 \begin{equation*}
 \begin{split}
-  \| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}^{\alpha(s, r)},
-  \quad 0
-  \le t \le T
+\| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}^{\alpha(s, r)},
+\quad 0
+\le t \le T
 \end{split}
 \end{equation*}
 %
@@ -334,11 +334,11 @@ where
 \begin{split}
 \alpha = 
 \begin{cases}
-   1, \quad & (s,r) \in \Omega_{1} 
-  \\
-   2(s-1)/(s-r),  \quad & (s, r) \in \Omega_{2}
-  \\
-   s-r, \quad & (s, r) \in \Omega_{3}.
+1, \quad & (s,r) \in \Omega_{1} 
+\\
+2(s-1)/(s-r),  \quad & (s, r) \in \Omega_{2}
+\\
+s-r, \quad & (s, r) \in \Omega_{3}.
 \end{cases}
 \end{split}
 \end{equation*}
@@ -364,8 +364,7 @@ applied in this paper can be applied to sharpen the results obtained in
 \section{Proof of H\"older Continuity}
 %
 We note that the only significant difference between the proof of H\"older
-continuity in the periodic and non-periodic case is in the proof of Lemma
-\ref{lem:frac-deriv}, which we address in the appendix. Hence, we focus our
+continuity in the periodic and non-periodic case is in the proof of Lemma~\ref{lem:frac-deriv}, which we address in the appendix. Hence, we focus our
 attention on the proof of H\"older continuity in the periodic case. 
 %
 %
@@ -382,7 +381,7 @@ Set $v=u-w$. Then $v$ solves the Cauchy-problem
 %
 %
 \begin{align}
-	\label{uniqueness-exp}
+\label{uniqueness-exp}
 & \p_t v
 =  -\frac{\gamma}{2} \p_x [v(u + w)] 
 \\
@@ -398,9 +397,8 @@ Set $v=u-w$. Then $v$ solves the Cauchy-problem
 %
 %
 Let
-
 \begin{equation*}
-	D^{m} \doteq (1 - \p_x^2)^{m/2}, \quad m \in \rr.
+D^{m} \doteq (1 - \p_x^2)^{m/2}, \quad m \in \rr.
 \end{equation*}
 %
 Applying $D^r$ to both sides of \eqref{uniqueness-exp}, then 
@@ -409,8 +407,8 @@ multiplying both sides by $D^r v$ and integrating, we obtain
 %
 \begin{equation}
 \begin{split}
- \frac{1}{2} \frac{d}{dt} \|v\|_{H^r}^2
- = & -\frac{\gamma}{2} \int_{\ci} D^r \p_x [v(u+w)] \cdot
+\frac{1}{2} \frac{d}{dt} \|v\|_{H^r}^2
+= & -\frac{\gamma}{2} \int_{\ci} D^r \p_x [v(u+w)] \cdot
 D^r v \ dx
 \\
 & - \frac{3-\gamma}{2} \int_{\ci}  D^{r -2}
@@ -423,11 +421,10 @@ D^r v \ dx
 \label{2v}
 \end{split}
 \end{equation}
-%
-%
 We now estimate \eqref{2v} in parts.
-
-\subsubsection{Estimate of Integral 1} Note that
+%
+\subsubsection{Estimate of Integral 1} 
+Note that
 %
 %
 \begin{equation}
@@ -493,7 +490,7 @@ Cauchy-Schwartz and Lemma~\ref{cor1} then yields
 %
 \begin{equation}
 \begin{split}
- \left | \int_{\ci} [D^r \p_x, \ u+w] v
+\left | \int_{\ci} [D^r \p_x, \ u+w] v
 \cdot D^r v \ dx \right |
 & \lesssim \|u+w\|_{H^s} 
 \|v\|_{H^r}^2.
@@ -510,7 +507,7 @@ theorem, we obtain the estimate
 \begin{split}
 \left |  -\frac{\gamma}{2} \int_{\ci} D^r \p_x [v(u+w)] \cdot
 D^r v \ dx \right |
- \lesssim \|u+w\|_{H^s} \|v\|_{H^r}^2, \quad s > 3/2, \ -1 \le r \le s-1.
+\lesssim \|u+w\|_{H^s} \|v\|_{H^r}^2, \quad s > 3/2, \ -1 \le r \le s-1.
 \label{8v}
 \end{split}
 \end{equation}
@@ -535,7 +532,7 @@ For $s > 3/2$, $r \le s$, $s + r \ge 2$, we have
 %
 \begin{equation*}
 \begin{split}
-  \| fg \|_{H^{r-1}} \lesssim \| f \|_{H^{r-1}} \| g \|_{H^{s-1}}.
+\| fg \|_{H^{r-1}} \lesssim \| f \|_{H^{r-1}} \| g \|_{H^{s-1}}.
 \end{split}
 \end{equation*}
 %
@@ -557,7 +554,7 @@ Applying Cauchy-Schwartz and Lemma~\ref{lem:frac-deriv}, we obtain
 \left | - \frac{3-\gamma}{2} \int_{\ci}  D^{r -2}
 \p_x[v(u+w)] \cdot
 D^r v \ dx  \right |
- & \lesssim \|u+w\|_{H^{r -1}} \|v\|_{H^r}^2
+& \lesssim \|u+w\|_{H^{r -1}} \|v\|_{H^r}^2
 \end{split}
 \end{equation*}
 %
@@ -568,8 +565,8 @@ which implies
 \left | - \frac{3-\gamma}{2} \int_{\ci}  D^{r -2}
 \p_x[v(u+w)] \cdot
 D^r v \ dx  \right |
- & \lesssim \|u+w\|_{H^{s}} \|v\|_{H^r}^2
- \label{3v}
+& \lesssim \|u+w\|_{H^{s}} \|v\|_{H^r}^2
+\label{3v}
 \end{split}
 \end{equation}
 %
@@ -585,7 +582,7 @@ Cauchy-Schwartz to obtain
 \left | - \frac{\gamma}{2} \int_{\ci} D^{r 
 -2} \p_x [ \p_x v
 \cdot \p_x (u+w)]\cdot D^r v \ dx \right | 
- \lesssim 
+\lesssim 
 \|[\p_x v \cdot \p_x (u+w)] \|_{H^{r -1}}
 \|v\|_{H^r}.
 \end{split}
@@ -600,7 +597,7 @@ Applying Lemma~\ref{lem:frac-deriv} and the inequality $\| f_{x}
 \left | - \frac{\gamma}{2} \int_{\ci} D^{r 
 -2} \p_x [ \p_x v
 \cdot \p_x (u+w)]\cdot D^r v \ dx \right | 
- \lesssim \|u+w \|_{H^{s}}
+\lesssim \|u+w \|_{H^{s}}
 \|v\|_{H^r}^2
 \label{3'v}
 \end{split}
@@ -637,7 +634,7 @@ Letting $y(t) = \| v \|^{2}_{H^{r}}$, we obtain
 %
 \begin{equation*}
 \begin{split}
-  \frac{dy}{dt} \le cy
+\frac{dy}{dt} \le cy
 \end{split}
 \end{equation*}
 %
@@ -646,7 +643,7 @@ where $c = c(s, r, R)$. Hence
 %
 \begin{equation*}
 \begin{split}
-  y(t) \le y(0) e^{ct}, \quad | t | < T
+y(t) \le y(0) e^{ct}, \quad | t | < T
 \end{split}
 \end{equation*}
 %
@@ -656,7 +653,7 @@ which implies
 %
 \begin{equation*}
 \begin{split}
-  y(t) \le y(0) e^{cT}.
+y(t) \le y(0) e^{cT}.
 \end{split}
 \end{equation*}
 %
@@ -666,7 +663,7 @@ Substituting back in for $y$, we see that
 %
 \begin{equation*}
 \begin{split}
-  \| v \|_{H^{r}}^{2} \le \| v(0) \|^{2}_{H^{r}} e^{cT}
+\| v \|_{H^{r}}^{2} \le \| v(0) \|^{2}_{H^{r}} e^{cT}
 \end{split}
 \end{equation*}
 %
@@ -675,17 +672,17 @@ or
 %
 %
 \begin{equation}
-  \label{lip-ineq}
+\label{lip-ineq}
 \begin{split}
-  & \| u(t) - w(t) \|_{H^{r}} \le C \| u_{0} - w_{0} \|_{H^{r}}, 
-  \\
-  & \text{for} \ | t | < T,
-  \ s > 3/2, \ -1 \le r \le s-1, \ s + r \ge 2.
+& \| u(t) - w(t) \|_{H^{r}} \le C \| u_{0} - w_{0} \|_{H^{r}}, 
+\\
+& \text{for} \ | t | < T,
+\ s > 3/2, \ -1 \le r \le s-1, \ s + r \ge 2.
 \end{split}
 \end{equation}
 %
 Hence, in region $\Omega_{1}$, the data to solution map is locally Lipschitz from
-$B_{H^{s}(R)}$ (measured with the $H^{r}$
+$B_{H^{s}}(R)$ (measured with the $H^{r}$
 norm) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
 %
 %
@@ -702,11 +699,11 @@ norm) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
 %
 We have the estimate
 \begin{equation}
-  \label{fgh}
+\label{fgh}
 \begin{split}
-  \| u(t) - w(t) \|_{H^{r}}
-  & < \|u(t) - w(t) \|_{H^{2-s}}.
-    \end{split}
+\| u(t) - w(t) \|_{H^{r}}
+& < \|u(t) - w(t) \|_{H^{2-s}}.
+\end{split}
 \end{equation}
 %
 We see that \eqref{lip-ineq} is valid for $r = 2-s$, $3/2 < s \le 3$.
@@ -740,21 +737,21 @@ result.
 %
 %
 \begin{lemma}
-  For $m_{1} < m < m_{2}$,
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \| f \|_{H^{m}} \le \| f \|_{H^{m_{1}}}^{(m_{2}-m)/(m_{2} - m_{1})} \| f
-    \|_{H^{m_{2}}}^{(m -m_{1})/(m_{2} - m_{1})}.
-  \end{split}
-  \end{equation*}
-  %
-  %
-  %
-  %
-   %
-  %
+For $m_{1} < m < m_{2}$,
+%
+%
+\begin{equation*}
+\begin{split}
+\| f \|_{H^{m}} \le \| f \|_{H^{m_{1}}}^{(m_{2}-m)/(m_{2} - m_{1})} \| f
+\|_{H^{m_{2}}}^{(m -m_{1})/(m_{2} - m_{1})}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+%
 \label{lem:interp}
 \end{lemma}
 %
@@ -764,11 +761,11 @@ $m_{2} > m$ for $s > 1$), we bound
 %
 \begin{equation*}
 \begin{split}
-    \| u_{0} - w_{0} \|_{H^{2-s}} 
-    & \le \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \| u_{0} - w_{0}
-  \|_{H^{s}}^{\frac{2-s-r}{s-r}}
-  \\
-  &  \lesssim \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
+\| u_{0} - w_{0} \|_{H^{2-s}} 
+& \le \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \| u_{0} - w_{0}
+\|_{H^{s}}^{\frac{2-s-r}{s-r}}
+\\
+&  \lesssim \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
 \end{split}
 \end{equation*}
 %
@@ -777,7 +774,7 @@ We conclude that
 %
 \begin{equation*}
 \begin{split}
-  \| u(t) - w(t) \|_{H^{r}} \lesssim \|u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
+\| u(t) - w(t) \|_{H^{r}} \lesssim \|u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
 \end{split}
 \end{equation*}
 %
@@ -794,7 +791,7 @@ the estimate
 %
 \begin{equation*}
 \begin{split}
-  \|u - w \|_{H^{s}} \le 4R
+\|u - w \|_{H^{s}} \le 4R
 \end{split}
 \end{equation*}
 %
@@ -803,12 +800,12 @@ we obtain
 %
 %
 \begin{equation}
-  \label{pre-lip-ap}
+\label{pre-lip-ap}
 \begin{split}
-  \| u(t) - w(t) \|_{H^{r}} & \lesssim \| u(t) - w(t) \|_{H^{s-1}}^{s-r} \|u(t)
-  - w(t)\|_{H^{s}}^{1-s+r}
-  \\
-  & \simeq \| u(t) - w(t) \|_{H^{s-1}}^{s-r}.
+\| u(t) - w(t) \|_{H^{r}} & \lesssim \| u(t) - w(t) \|_{H^{s-1}}^{s-r} \|u(t)
+- w(t)\|_{H^{s}}^{1-s+r}
+\\
+& \simeq \| u(t) - w(t) \|_{H^{s-1}}^{s-r}.
 \end{split}
 \end{equation}
 %
@@ -818,11 +815,11 @@ applying \eqref{lip-ineq} to \eqref{pre-lip-ap} gives
 %
 %
 \begin{equation*}
-    \begin{split}
-  \| u(t) - w(t) \|_{H^{r}} & \lesssim  \|u_{0} - w_{0}\|_{H^{s-1}}^{s-r} 
-  \\
-  & \le
-  \|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
+\begin{split}
+\| u(t) - w(t) \|_{H^{r}} & \lesssim  \|u_{0} - w_{0}\|_{H^{s-1}}^{s-r} 
+\\
+& \le
+\|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
 \end{split}
 \end{equation*}
 %
@@ -851,12 +848,12 @@ For the periodic case we have
 %
 \begin{equation*}
 \begin{split}
-  \| fg\|_{H^{r-1}}^{2}
-  & \le  \sum_{n \in \zz}  (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
-  | \wh{f}(k) |  | \wh{g}(n - k) | (1 +
-  k^{2})^{\frac{1-s}{2}} (1 + k^{2})^{\frac{s-1}{2}}
-   \right ]^{2}.
-  \end{split}
+\| fg\|_{H^{r-1}}^{2}
+& \le  \sum_{n \in \zz}  (1 + n^{2})^{r-1}\left [ \sum_{k \in \zz}
+| \wh{f}(k) |  | \wh{g}(n - k) | (1 +
+k^{2})^{\frac{1-s}{2}} (1 + k^{2})^{\frac{s-1}{2}}
+\right ]^{2}.
+\end{split}
 \end{equation*}
 %
 Applying Cauchy Schwartz in $k$, we bound this by
@@ -864,53 +861,53 @@ Applying Cauchy Schwartz in $k$, we bound this by
 %
 %
 \begin{equation}
-  \label{np-key-term}
+\label{np-key-term}
 \begin{split}
-  \| f \|_{H^{s-1}}^{2} \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
-  \wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}.
-  \end{split}
+\| f \|_{H^{s-1}}^{2} \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
+\wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}.
+\end{split}
 \end{equation}
 %
 But by change of variables and Fubini
 %
 \begin{equation}
-    \label{opp}
+\label{opp}
 \begin{split}
 \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
-  \wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}
-  & = \sum_{k \in \zz}| \wh{g}(k) |^{2} \sum_{n \in \zz}  
-  \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}.  
-  \end{split}
+\wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}
+& = \sum_{k \in \zz}| \wh{g}(k) |^{2} \sum_{n \in \zz}  
+\frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}.  
+\end{split}
 \end{equation}
 %
 Without loss of generality, we assume $k \ge 0$ and write 
 \begin{equation*}
-    \begin{split}
+\begin{split}
 &  \sum_{n \in \zz}  
-  \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}  
-  \\
-  & = 
-  \sum_{0 \le n \le 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
-  + \sum_{n > 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}
-  \\
-  & + \sum_{n \ge 0} \frac{1}{(1 + n^{2})^{s-1}[1 + (n + k)^{2}]^{1-r}} 
-  \\
-  & \doteq I + II + III.
- \end{split} 
-  \end{equation*}
+\frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}  
+\\
+& = 
+\sum_{0 \le n \le 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
++ \sum_{n > 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}}
+\\
+& + \sum_{n \ge 0} \frac{1}{(1 + n^{2})^{s-1}[1 + (n + k)^{2}]^{1-r}} 
+\\
+& \doteq I + II + III.
+\end{split} 
+\end{equation*}
 %
 We have the estimate
 %
 %
 \begin{equation}
-    \label{est-tem}
+\label{est-tem}
 \begin{split}
-    II 
-    & \le \sup_{n > 2k} \frac{1}{\left[ 1 + (n-k)^{2} \right]^{1-r}}
-    \sum_{n > 2k} \frac{1}{(1 + n^{2})^{s-1}} 
-    \\
-    & \lesssim (1 + k^{2})^{r-1}, \quad
-    s > 3/2.
+II 
+& \le \sup_{n > 2k} \frac{1}{\left[ 1 + (n-k)^{2} \right]^{1-r}}
+\sum_{n > 2k} \frac{1}{(1 + n^{2})^{s-1}} 
+\\
+& \lesssim (1 + k^{2})^{r-1}, \quad
+s > 3/2.
 \end{split}
 \end{equation}
 Similarly
@@ -928,33 +925,33 @@ To estimate $I$, we assume without loss of generality that $k$ is even and write
 %
 %
 \begin{equation*}
-    \begin{split}
+\begin{split}
 &  I = \sum_{0 \le n \le k/2} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
-  + \sum_{k/2 < n \le 3k/2} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
-  \\
-  & + \sum_{3k/2 < n \le 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
-  \\
-  & \doteq i + ii + iii.
- \end{split} 
-  \end{equation*}
-  Hence, estimating as in \eqref{est-tem}, we have
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  i, iii \lesssim (1 + k^{2})^{r-1}, \quad
-  s > 3/2
-  \end{split}
-  \end{equation*}
-  %
-  and
-  %
-  %
++ \sum_{k/2 < n \le 3k/2} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
+\\
+& + \sum_{3k/2 < n \le 2k} \frac{1}{(1 + n^{2})^{s-1}[1 + (n - k)^{2}]^{1-r}} 
+\\
+& \doteq i + ii + iii.
+\end{split} 
+\end{equation*}
+Hence, estimating as in \eqref{est-tem}, we have
+%
+%
 \begin{equation*}
 \begin{split}
-    ii & \le \sup_{k/2 \le n \le 3k/2} \frac{1}{\left( 1 + n^{2} \right)^{s-1}}
-    \sum_{k/2 \le n \le 3k/2} \frac{1}{[1 + (n-k)^{2}]^{1-r}} \\
-            & \lesssim \frac{1}{(1 + k^{2})^{s-1}}, \quad r \le 1/2.
+i, iii \lesssim (1 + k^{2})^{r-1}, \quad
+s > 3/2
+\end{split}
+\end{equation*}
+%
+and
+%
+%
+\begin{equation*}
+\begin{split}
+ii & \le \sup_{k/2 \le n \le 3k/2} \frac{1}{\left( 1 + n^{2} \right)^{s-1}}
+\sum_{k/2 \le n \le 3k/2} \frac{1}{[1 + (n-k)^{2}]^{1-r}} \\
+& \lesssim \frac{1}{(1 + k^{2})^{s-1}}, \quad r \le 1/2.
 \end{split}
 \end{equation*}
 %
@@ -965,9 +962,9 @@ Therefore,
 %
 \begin{equation*}
 \begin{split}
-    I + II + III & \lesssim (1 + k^{2})^{1-s} + (1 + k^{2})^{r-1}, \quad r \le 1/2, \ s > 3/2
-    \\
-    & \lesssim  (1 + k^{2})^{r-1}, \quad r -1 \ge 1-s.
+I + II + III & \lesssim (1 + k^{2})^{1-s} + (1 + k^{2})^{r-1}, \quad r \le 1/2, \ s > 3/2
+\\
+& \lesssim  (1 + k^{2})^{r-1}, \quad r -1 \ge 1-s.
 \end{split}
 \end{equation*}
 %
@@ -978,15 +975,15 @@ we obtain
 %
 %
 \begin{equation}
-  \label{yhh}
+\label{yhh}
 \begin{split}
-  \| f g \|_{H^{r-1}} \lesssim \| f \|_{H^{s-1}} \| g \|_{H^{r-1}},
-  \quad s > 3/2, \ r \le 1/2, \ s + r \ge 2.
+\| f g \|_{H^{r-1}} \lesssim \| f \|_{H^{s-1}} \| g \|_{H^{r-1}},
+\quad s > 3/2, \ r \le 1/2, \ s + r \ge 2.
 \end{split}
 \end{equation}
 This estimate also holds for $r=s$, since the Sobolev space $H^{t}$ is an
 algebra for $t > 1/2$. We now wish to interpolate to obtain estimates for the
-whole range $1 \le r \le s$. For this, we shall need the following result taken from Taylor \cite{Taylor:1995kx}.
+whole range $1/2 \le r \le s$. For this, we shall need the following result taken from Taylor \cite{Taylor:1995kx}.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -999,7 +996,7 @@ whole range $1 \le r \le s$. For this, we shall need the following result taken 
 %
 %
 \begin{lemma}[Sobolev Interpolation]
-  For fixed $j \le k, m \le n$ suppose that \\ $T: H^{j} \to H^{m}$ continuously
+For fixed $j \le k, m \le n$ suppose that \\ $T: H^{j} \to H^{m}$ continuously
 and $T: H^{k} \to H^{n}$. Then\\ $T: H^{\theta j + (1 - \theta)k} \to H^{\theta
 m + (1 - \theta) n}$ continuously for all $\theta \in (0,1]$.
 \label{prop:sob-interp}
@@ -1011,14 +1008,14 @@ and the algebra property of the Sobolev space $H^{t}$, $t > 1/2$ imply that for 
 %
 \begin{equation*}
 \begin{split}
-    \| f g \|_{H^{r-1}} \lesssim \| g \|_{H^{r-1}}, \  \text{where} \ 
-  r=1/2 \ \text{or} \  r =s, \ \| f \|_{H^{s-1}} =1.
+\| f g \|_{H^{r-1}} \lesssim \| g \|_{H^{r-1}}, \  \text{where} \ 
+r=1/2 \ \text{or} \  r =s, \ \| f \|_{H^{s-1}} =1.
 \end{split}
 \end{equation*}
 %
 %
 That is, for fixed $f \in H^{s-1}$ with $\| f \|_{H^{s-1}} =1$, the map $g \mapsto
-Tg = fg$ is linear continuous from $L^{2}$ to $L^{2}$ and from $H^{s-1}$ to
+Tg = fg$ is linear continuous from $H^{-1/2}$ to $H^{-1/2}$ and from $H^{s-1}$ to
 $H^{s-1}$. Therefore, by Lemma~\ref{prop:sob-interp}, it is continuous from
 $H^{\theta (s-1) + (1 - \theta)(-1/2) }$ to $H^{\theta (s-1) + (1 - \theta)(-1/2) }$ for all $\theta \in
 [0, 1)$. Setting $\theta = (r-1/2)/(s-1/2)$, $ 1/2 \le r < s$, we obtain that $T$ is
@@ -1028,16 +1025,16 @@ to $H^{r-1}$, we see that
 %
 \begin{equation*}
 \begin{split}
-  \| f g \|_{H^{r-1}} \lesssim \| g \|_{H^{r-1}}, \quad 1/2 \le r \le s, \ s > 3/2, \ \| f \|_{H^{s-1}} =1
+\| f g \|_{H^{r-1}} \lesssim \| g \|_{H^{r-1}}, \quad 1/2 \le r \le s, \ s > 3/2, \ \| f \|_{H^{s-1}} =1
 \end{split}
 \end{equation*}
 and so for general $f \in H^{s-1}$ we have 
 %
 \begin{equation}
-  \label{hhh}
+\label{hhh}
 \begin{split}
-  \| f g \|_{H^{r-1}} \lesssim \|f \|_{H^{s-1}}
-  \| g \|_{H^{r-1}}, \quad 1/2 \le r \le s, \ s > 3/2. 
+\| f g \|_{H^{r-1}} \lesssim \|f \|_{H^{s-1}}
+\| g \|_{H^{r-1}}, \quad 1/2 \le r \le s, \ s > 3/2. 
 \end{split}
 \end{equation}
 %
@@ -1047,12 +1044,12 @@ case. For the non-periodic case we have
 %
 \begin{equation*}
 \begin{split}
-  \| fg\|_{H^{r-1}}^{2}
-  \le \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
-  | \wh{f}(\eta) |  | \wh{g}(\xi - \eta) | (1 +
-  \eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
-  d \eta \right ]^{2} d \xi.
-  \end{split}
+\| fg\|_{H^{r-1}}^{2}
+\le \int_{\rr}  (1 + \xi^{2})^{r-1}\left [ \int_{\rr}
+| \wh{f}(\eta) |  | \wh{g}(\xi - \eta) | (1 +
+\eta^{2})^{\frac{1-s}{2}} (1 + \eta^{2})^{\frac{s-1}{2}}
+d \eta \right ]^{2} d \xi.
+\end{split}
 \end{equation*}
 %
 Applying Cauchy Schwartz in $\eta$, we bound this by
@@ -1061,9 +1058,9 @@ Applying Cauchy Schwartz in $\eta$, we bound this by
 %
 \begin{equation*}
 \begin{split}
-  \| f \|_{H^{s-1}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{|
-  \wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi.
-  \end{split}
+\| f \|_{H^{s-1}}^{2} \int_{\rr}  (1 + \xi^{2})^{r-1}\int_{\rr} \frac{|
+\wh{g}(\xi - \eta) |^{2}}{(1 + \eta^{2})^{s-1}} d \eta d \xi.
+\end{split}
 \end{equation*}
 %
 We now wish to bound the integral term. Applying a change of variable, we see it
@@ -1071,21 +1068,21 @@ is equal to
 %
 \begin{equation*}
 \begin{split}
-  \int_{\rr} (1 + \xi^{2})^{r-1} \int_{\rr}
+\int_{\rr} (1 + \xi^{2})^{r-1} \int_{\rr}
 \frac{| \wh{g}(\eta) |^{2}}{[1 + (\xi - \eta)^{2}]^{s-1}} d \eta d \xi
-  \end{split}
+\end{split}
 \end{equation*}
 which by Fubini is equal to
 %
 %
 \begin{equation}
-  \label{int-pre-calc-lem}
+\label{int-pre-calc-lem}
 \begin{split}
-  & \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[
-  1 + (\xi - \eta)^{2} \right]^{s-1} (1 + \xi^{2})^{1-r}} d \xi d \eta
-  \\
-  & \lesssim \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[
-  1 + |\xi - \eta| \right]^{2(s-1)} (1 + |\xi|)^{2(1-r)}} d \xi d \eta.
+& \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[
+1 + (\xi - \eta)^{2} \right]^{s-1} (1 + \xi^{2})^{1-r}} d \xi d \eta
+\\
+& \lesssim \int_{\rr} | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[
+1 + |\xi - \eta| \right]^{2(s-1)} (1 + |\xi|)^{2(1-r)}} d \xi d \eta.
 \end{split}
 \end{equation}
 %
@@ -1094,19 +1091,20 @@ We now need the following lemma.
 %
 %
 \begin{lemma}
-	\label{lem:calc}
- %
-  Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p - \ee_{q}, q - \ee_{p}, p+q-1
- \right\}$, where $\ee_{j} \ge 0$ is arbitrarily small and $\ee_{j} = 0$ for $j \neq 1$. Adopt the notation
- $\langle x - \alpha \rangle  \doteq 1 + | x - \alpha |$. Then 
- %
-  \begin{equation*}
+\label{lem:calc}
+%
+Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p - \ee_{q}, q -
+\ee_{p}, p+q-1 \right\}$, where $\ee_{j} > 0$ is arbitrarily small for $j = 1$
+and $\ee_{j} = 0$ for $j \neq 1$. Adopt the notation
+$\langle x - \alpha \rangle  \doteq 1 + | x - \alpha |$. Then 
+%
+\begin{equation*}
 \begin{split}
-  & \int_{\rr} \frac{1}{\langle x - \alpha \rangle ^{p} \langle x -
-  \beta \rangle
-  ^{q}} d x
-  \le \frac{c_{p,q, \ee}}{\langle \alpha - \beta \rangle ^{r}}. 
-  \end{split}
+& \int_{\rr} \frac{1}{\langle x - \alpha \rangle ^{p} \langle x -
+\beta \rangle
+^{q}} d x
+\le \frac{c_{p,q, \ee}}{\langle \alpha - \beta \rangle ^{r}}. 
+\end{split}
 \end{equation*}
 \end{lemma}
 To be able to apply the lemma to the integral term in \eqref{int-pre-calc-lem}, 
@@ -1135,12 +1133,12 @@ Note that since $s > 3/2$, we see that $2(s-1) \neq 1$. However, it is possible 
 %
 \begin{equation*}
 \begin{split}
-  \min\left\{ 2(s-1), 2(1-r), 2(s-1) + 2(1-r) -1 \right\}
-  & = \min\left\{ 1 + 2 \ee, 2 \delta, 2\ee + 2 \delta \right\}
-  \\
-  & = \min\left\{ 1 + 2 \ee, 2 \delta\right\}
-  \\
-  & = 2 \delta, \quad \delta \le 1/2 + \ee.
+\min\left\{ 2(s-1), 2(1-r), 2(s-1) + 2(1-r) -1 \right\}
+& = \min\left\{ 1 + 2 \ee, 2 \delta, 2\ee + 2 \delta \right\}
+\\
+& = \min\left\{ 1 + 2 \ee, 2 \delta\right\}
+\\
+& = 2 \delta, \quad \delta \le 1/2 + \ee.
 \end{split}
 \end{equation*}
 %
@@ -1150,25 +1148,25 @@ such that
 %
 \begin{equation*}
 \begin{split}
-  \min\left\{ 2(s-1) -\eta , 2(1-r), 2(1-r) + 2(s-1) - 1  \right\}
-  & = 1 
-  \\
-  & = 2(1 -r)
-  \\
-  & = 2\delta.
+\min\left\{ 2(s-1) -\eta , 2(1-r), 2(1-r) + 2(s-1) - 1  \right\}
+& = 1 
+\\
+& = 2(1 -r)
+\\
+& = 2\delta.
 \end{split}
 \end{equation*}
 %
 Hence, for $0 \le \delta \le 1/2 + \ee$, $\ee >
-0$, the integral term of \eqref{int-pre-calc-lem} is bounded by
+0$, \eqref{int-pre-calc-lem} is bounded by
 \begin{equation*}
 \begin{split}
-  C_{s,r} \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left[ 1
-  + 2 |\eta| \right]^{2 \delta}} d \xi d \eta 
-  & \lesssim
-  \| g \|_{H^{-\delta}}^{2}
-  \\
-  & = \| g \|_{H^{r-1}}^{2}.
+C_{s,r} \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left( 1
++ |\eta| \right )^{2 \delta}} d \xi d \eta 
+& \le
+\| g \|_{H^{-\delta}}^{2}
+\\
+& = \| g \|_{H^{r-1}}^{2}.
 \end{split}
 \end{equation*}
 %
@@ -1181,8 +1179,8 @@ $$s + r \ge 2,  \quad  r \le 1, \ s > 3/2.$$ Therefore,
 %
 \begin{equation*}
 \begin{split}
-  \| f g \|_{H^{r-1}} \lesssim \| f \|_{H^{s-1}} \| g \|_{H^{r-1}},
-  \quad s + r \ge 2, \ s > 3/2, \ r \le 1.
+\| f g \|_{H^{r-1}} \lesssim \| f \|_{H^{s-1}} \| g \|_{H^{r-1}},
+\quad s + r \ge 2, \ s > 3/2, \ r \le 1.
 \end{split}
 \end{equation*}
 %
@@ -1193,22 +1191,22 @@ The remainder of the proof is analogous to that in the periodic case.
 %
 %Following Klainerman \cite{Klainerman:fk}, we introduce the following.  
 %\begin{definition}
-  %Let $T_{z}$ be a family of linear operators indexed by $z \in D$. We say the
-  %$T_{z}$ are an analytic family of operators if
-  %\begin{enumerate}
-    %\item{$T_{z}$ maps simple functions into measurable functions}
-    %\item{ The map $z \mapsto T_{z}$ is analytic in the interior of the strip
-      %%
-      %%
-      %\begin{equation*}
-      %\begin{split}
-        %0 \le \text{Re}\, z \le 1
-      %\end{split}
-      %\end{equation*}
-      %%
-      %%
-      %and bounded and continuous on the boundary.}
-  %\end{enumerate}
+%Let $T_{z}$ be a family of linear operators indexed by $z \in D$. We say the
+%$T_{z}$ are an analytic family of operators if
+%\begin{enumerate}
+%\item{$T_{z}$ maps simple functions into measurable functions}
+%\item{ The map $z \mapsto T_{z}$ is analytic in the interior of the strip
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+%0 \le \text{Re}\, z \le 1
+%\end{split}
+%\end{equation*}
+%%
+%%
+%and bounded and continuous on the boundary.}
+%\end{enumerate}
 %\end{definition}
 %%
 %%
@@ -1222,40 +1220,40 @@ The remainder of the proof is analogous to that in the periodic case.
 %%
 %%
 %\begin{lemma}[Stein Complex Interpolation]
-  %Let $T_{z}$ be an analytic family of operators and assume there are positive
-  %constants $M_{0}, M_{1}$ such that, for every $b \in \rr$
-  %%
-  %%
-  %\begin{equation*}
-  %\begin{split}
-    %\| T_{ib} \|_{L^{q_{0}}} \le M_{0} \| f \|_{L^{p_{0}}}, \quad \|
-    %T_{1 + ib} f \|_{L^{q_{1}}} \le M \| f \|_{L^{p_{1}}}
-  %\end{split}
-  %\end{equation*}
-  %%
-  %%
-  %with $1 \le q_{0}, p_{0}, q_{1}, p_{1} \le \infty$. Then, for $z = a + ib \in
-  %D$, $T_{z}$ extends to a bounded operator from $L^{p}$ to $L^{q}$ and
-  %%
-  %%
-  %\begin{equation*}
-  %\begin{split}
-    %\| T_{z} f \|_{L^{q}} \le M_{0}^{1-a} M_{1}^{a} \| f \|_{L^{p}}
-  %\end{split}
-  %\end{equation*}
-  %%
-  %%
-  %where
-  %%
-  %%
-  %\begin{equation*}
-  %\begin{split}
-    %\frac{1}{p} = \frac{1-a}{p_{0}} + \frac{a}{p_{1}}, \quad \frac{1}{q} =
-    %\frac{1-a}{q_{0}} + \frac{a}{q_{1}}.
-  %\end{split}
-  %\end{equation*}
-  %%
-  %%
+%Let $T_{z}$ be an analytic family of operators and assume there are positive
+%constants $M_{0}, M_{1}$ such that, for every $b \in \rr$
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+%\| T_{ib} \|_{L^{q_{0}}} \le M_{0} \| f \|_{L^{p_{0}}}, \quad \|
+%T_{1 + ib} f \|_{L^{q_{1}}} \le M \| f \|_{L^{p_{1}}}
+%\end{split}
+%\end{equation*}
+%%
+%%
+%with $1 \le q_{0}, p_{0}, q_{1}, p_{1} \le \infty$. Then, for $z = a + ib \in
+%D$, $T_{z}$ extends to a bounded operator from $L^{p}$ to $L^{q}$ and
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+%\| T_{z} f \|_{L^{q}} \le M_{0}^{1-a} M_{1}^{a} \| f \|_{L^{p}}
+%\end{split}
+%\end{equation*}
+%%
+%%
+%where
+%%
+%%
+%\begin{equation*}
+%\begin{split}
+%\frac{1}{p} = \frac{1-a}{p_{0}} + \frac{a}{p_{1}}, \quad \frac{1}{q} =
+%\frac{1-a}{q_{0}} + \frac{a}{q_{1}}.
+%\end{split}
+%\end{equation*}
+%%
+%%
 %\label{lem:stein}
 %\end{lemma}
 %%
@@ -1267,13 +1265,13 @@ The remainder of the proof is analogous to that in the periodic case.
 %%
 %\begin{equation*}
 %\begin{split}
-  %(1 - \p_x^{2})^{r}h(x) 
-  %\overset{\text{it.}}{=} & \int_{\rr} e^{ix
-  %\xi}(1 + \xi^{2})^{r} \wh{h}(\xi) d \xi
-  %\\
-   %\overset{\text{abs. conv.}}{=}  & \lim_{j \to \infty} \frac{1}{2 \pi} \int_{\rr}
-  %\int_{\rr} e^{i(x-y)}
-  %\chi( \xi/j) (1 + \xi^{2})^{r}dy d \xi
+%(1 - \p_x^{2})^{r}h(x) 
+%\overset{\text{it.}}{=} & \int_{\rr} e^{ix
+%\xi}(1 + \xi^{2})^{r} \wh{h}(\xi) d \xi
+%\\
+%\overset{\text{abs. conv.}}{=}  & \lim_{j \to \infty} \frac{1}{2 \pi} \int_{\rr}
+%\int_{\rr} e^{i(x-y)}
+%\chi( \xi/j) (1 + \xi^{2})^{r}dy d \xi
 %\end{split}
 %\end{equation*}
 %%
@@ -1292,19 +1290,19 @@ By the change of variable $x \mapsto x/2 + (\alpha + \beta)/2$, we have
 %
 %
 \begin{equation}
-  \label{rry}
-	\begin{split}
-    \int_{\rr} \frac{1}{\langle x - \alpha \rangle^{p} \langle  x -
-    \beta
-    \rangle^{q}}d x
-    & \simeq \int_{\rr} \frac{1}{\langle x/2 - (\alpha - \beta)/2  \rangle^{p}
-    \langle  x/2 + (\alpha - \beta)/2 \rangle^{q}} d x
-    \\
-    & \lesssim \int_{\rr} \frac{1}{\langle x - (\alpha - \beta)  \rangle^{p}
-    \langle  x + (\alpha - \beta) \rangle^{q}} d x
-  \\
-  & = \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
-  ^{q}} d x, \quad a = \alpha - \beta
+\label{rry}
+\begin{split}
+\int_{\rr} \frac{1}{\langle x - \alpha \rangle^{p} \langle  x -
+\beta
+\rangle^{q}}d x
+& \simeq \int_{\rr} \frac{1}{\langle x/2 - (\alpha - \beta)/2  \rangle^{p}
+\langle  x/2 + (\alpha - \beta)/2 \rangle^{q}} d x
+\\
+& \lesssim \int_{\rr} \frac{1}{\langle x - (\alpha - \beta)  \rangle^{p}
+\langle  x + (\alpha - \beta) \rangle^{q}} d x
+\\
+& = \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
+^{q}} d x, \quad a = \alpha - \beta
 \end{split}
 \end{equation}
 %
@@ -1313,10 +1311,10 @@ which for $a =0$ reduces to
 %
 \begin{equation*}
 \begin{split}
-  \int_{\rr} \frac{1}{\langle x \rangle ^{p+q}} d x 
-  & = 2 \int_{0}^{\infty} \frac{1}{(1 + x)^{p+q}} d x
-  \\
-  & = \frac{2}{p+q -1}.
+\int_{\rr} \frac{1}{\langle x \rangle ^{p+q}} d x 
+& = 2 \int_{0}^{\infty} \frac{1}{(1 + x)^{p+q}} d x
+\\
+& = \frac{2}{p+q -1}.
 \end{split}
 \end{equation*}
 %
@@ -1329,16 +1327,16 @@ generality. Split
 \begin{equation*}
 \begin{split}
 \int_{\rr} \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x
-  & = \int_{-2a}^{2a}
-  \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x
-  \\
-  & + \int_{| x | \ge 2a} 
+^{q}} d x
+& = \int_{-2a}^{2a}
 \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x
-  \\
-  & = I + II.
+^{q}} d x
+\\
+& + \int_{| x | \ge 2a} 
+\frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
+^{q}} d x
+\\
+& = I + II.
 \end{split}
 \end{equation*}
 %
@@ -1346,34 +1344,34 @@ generality. Split
 Then
 \begin{equation*}
 \begin{split}
-  I 
-  & = \int_{0}^{2a}
-  \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x + \int_{-2a}^{0}
-  \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x.
+I 
+& = \int_{0}^{2a}
+\frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
+^{q}} d x + \int_{-2a}^{0}
+\frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
+^{q}} d x.
 \end{split}
 \end{equation*}
 We bound the first term by
 \begin{equation*}
-  \begin{split}
-  \sup_{0 \le x \le 2a} \frac{1}{\langle a + x \rangle
-  ^{p}} \int_{0}^{2a} \frac{1}{\langle a - x \rangle ^{q}} d x
-  & = \frac{1}{\langle a \rangle ^{p}} \int_{0}^{2a} \frac{1}{(1 + | a -
-  x
-  |)^{q}} d x + 
-  \\
-  & = \frac{2}{\langle a \rangle ^{p}} \int_{0}^{a} \frac{1}{(1 + a -
-  x)^{q}} d x
-  \\
-  & \lesssim
-  \begin{cases}
-    1/{\langle a \rangle ^{p}} \left| 1 - 1/{(1 +
-    a)^{q -1}} \right|, \quad & q \neq 1
-    \\
-    \log(1+a)/{\langle a \rangle^{p} }, \quad & q =1.
-  \end{cases}
-  \end{split}
+\begin{split}
+\sup_{0 \le x \le 2a} \frac{1}{\langle a + x \rangle
+^{p}} \int_{0}^{2a} \frac{1}{\langle a - x \rangle ^{q}} d x
+& = \frac{1}{\langle a \rangle ^{p}} \int_{0}^{2a} \frac{1}{(1 + | a -
+x
+|)^{q}} d x  
+\\
+& = \frac{2}{\langle a \rangle ^{p}} \int_{0}^{a} \frac{1}{(1 + a -
+x)^{q}} d x
+\\
+& \lesssim
+\begin{cases}
+1/{\langle a \rangle ^{p}} \left| 1 - 1/{(1 +
+a)^{q -1}} \right|, \quad & q \neq 1
+\\
+\log(1+a)/{\langle a \rangle^{p} }, \quad & q =1.
+\end{cases}
+\end{split}
 \end{equation*}
 %
 But
@@ -1382,13 +1380,13 @@ But
 \begin{equation*}
 \begin{split}
 \frac{1}{\langle a \rangle ^{p}}\left| 1 - \frac{1}{(1 +
-    a)^{q -1}} \right|
-    & \lesssim
-    \begin{cases}
-      1/{\langle a \rangle^{p} }, \quad & q > 1
-      \\
-      1/{\langle a \rangle ^{p + q -1}}, \quad & q < 1
-    \end{cases}
+a)^{q -1}} \right|
+& \lesssim
+\begin{cases}
+1/{\langle a \rangle^{p} }, \quad & q > 1
+\\
+1/{\langle a \rangle ^{p + q -1}}, \quad & q < 1
+\end{cases}
 \end{split}
 \end{equation*}
 %
@@ -1398,35 +1396,35 @@ and
 %
 \begin{equation*}
 \begin{split}
-  \frac{\log(1 + a)}{\langle a \rangle^{p} } \le  \frac{c_{\ee}}{\langle a
-    \rangle ^{p - \ee}} \ \text{for any} \ \ee > 0.
+\frac{\log(1 + a)}{\langle a \rangle^{p} } \le  \frac{c_{\ee}}{\langle a
+\rangle ^{p - \ee}} \ \text{for any} \ \ee > 0.
 \end{split}
 \end{equation*}
 
 %
-For the second term, we have the bound
+For the second term, we bound by
 %
 %
 \begin{equation*}
 \begin{split}
-  & \sup_{-2a \le x \le 0} \frac{1}{\langle a - x \rangle
-  ^{q}} \int_{-2a}^{0} \frac{1}{\langle a + x \rangle ^{p}} d x
-  \\
-  & = \frac{1}{\langle a \rangle ^{q}} \int_{-2a}^{0} \frac{1}{(1 + | a +
-  x
-  |)^{p}} d x 
-  \\
-  & = \frac{2}{\langle a \rangle ^{q}} \int_{-a}^{0} \frac{1}{(1 + a +
-  x)^{p}} d x
-  \\
-  & \lesssim
-  \begin{cases}
-    1/{\langle a \rangle ^{q}} \left| 1 - 1/{(1 +
-    a)^{p -1}} \right|, \quad & p \neq 1
-    \\
-    \log(1+a)/{\langle a \rangle^{q} }, \quad & p =1
-  \end{cases}
-  \end{split}
+& \sup_{-2a \le x \le 0} \frac{1}{\langle a - x \rangle
+^{q}} \int_{-2a}^{0} \frac{1}{\langle a + x \rangle ^{p}} d x
+\\
+& = \frac{1}{\langle a \rangle ^{q}} \int_{-2a}^{0} \frac{1}{(1 + | a +
+x
+|)^{p}} d x 
+\\
+& = \frac{2}{\langle a \rangle ^{q}} \int_{-a}^{0} \frac{1}{(1 + a +
+x)^{p}} d x
+\\
+& \lesssim
+\begin{cases}
+1/{\langle a \rangle ^{q}} \left| 1 - 1/{(1 +
+a)^{p -1}} \right|, \quad & p \neq 1
+\\
+\log(1+a)/{\langle a \rangle^{q} }, \quad & p =1.
+\end{cases}
+\end{split}
 \end{equation*}
 %
 But
@@ -1435,13 +1433,13 @@ But
 \begin{equation*}
 \begin{split}
 \frac{1}{\langle a \rangle ^{q}}\left| 1 - \frac{1}{(1 +
-    a)^{p -1}} \right|
-    & \lesssim
-    \begin{cases}
-      1/{\langle a \rangle ^{q}}, \quad & p > 1
-      \\
-      1/{\langle a \rangle ^{p + q -1}}, \quad & p < 1
-    \end{cases}
+a)^{p -1}} \right|
+& \lesssim
+\begin{cases}
+1/{\langle a \rangle ^{q}}, \quad & p > 1
+\\
+1/{\langle a \rangle ^{p + q -1}}, \quad & p < 1
+\end{cases}
 \end{split}
 \end{equation*}
 %
@@ -1451,8 +1449,8 @@ and
 %
 \begin{equation*}
 \begin{split}
-  \frac{\log(1 + a)}{\langle a \rangle^{q} } \le  \frac{c_{\ee}}{\langle a
-    \rangle ^{q - \ee}} \ \text{for any} \ \ee > 0.
+\frac{\log(1 + a)}{\langle a \rangle^{q} } \le  \frac{c_{\ee}}{\langle a
+\rangle ^{q - \ee}} \ \text{for any} \ \ee > 0.
 \end{split}
 \end{equation*}
 %
@@ -1460,7 +1458,7 @@ and
 %
 Therefore,
 \begin{equation*}
-  I \le  \frac{c_{p,q, \ee}}{\langle a \rangle ^{\min\left\{ p-\ee_{q}, q -\ee_{p}, p + q-1 \right\}}}.
+I \le  \frac{c_{p,q, \ee}}{\langle a \rangle ^{\min\left\{ p-\ee_{q}, q -\ee_{p}, p + q-1 \right\}}}.
 \end{equation*}
 %
 %
@@ -1469,25 +1467,25 @@ Also
 %
 \begin{equation*}
 \begin{split}
-  II 
-    & = \int_{x \ge 2a} \frac{1}{(1 + x - a)^{p} (1 + x +
-  a)^{q}} d x
-  \\
-  & \le \int_{x \ge 2a} \frac{1}{(1 + x -a)^{p+q}} d x
-  \\
-  & \simeq \frac{1}{\langle a \rangle^{p+q -1}}, \qquad p + q > 1.
+II 
+& = \int_{x \ge 2a} \frac{1}{(1 + x - a)^{p} (1 + x +
+a)^{q}} d x
+\\
+& \le \int_{x \ge 2a} \frac{1}{(1 + x -a)^{p+q}} d x
+\\
+& \simeq \frac{1}{\langle a \rangle^{p+q -1}}, \qquad p + q > 1.
 \end{split}
 \end{equation*}
 %
 %
 Collecting our estimates for $I$ and $II$ we see that for 
 $p, q > 0$ such that $p +q >1$, and $r =\min\left\{p -\ee_{q}, q - \ee_{p}, p+q-1
- \right\}$, we have
+\right\}$, we have
 \begin{align*}
-  \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
-  ^{q}} d x
-  \le \frac{c_{p,q, \ee}}{\langle a \rangle ^{r}}.
-    \label{est-2}
+\int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
+^{q}} d x
+\le \frac{c_{p,q, \ee}}{\langle a \rangle ^{r}}.
+\label{est-2}
 \end{align*}
 Recalling
 \eqref{rry}, the proof is complete.
@@ -1504,125 +1502,125 @@ the Arthur J. Schmitt Foundation for supporting his doctoral studies.
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
 \providecommand{\MRhref}[2]{%
-  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+\href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{CKS{\etalchar{+}}03}
 
 \bibitem[BBM72]{Benjamin_1972_Model-equations}
 T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
-  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
-  A \textbf{272} (1972), no.~1220, 47--78.
+waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+A \textbf{272} (1972), no.~1220, 47--78.
 
 \bibitem[BC07]{Bressan_2007_Global-conserva}
 A.~Bressan and A.~Constantin, \emph{Global conservative solutions of the
-  camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
-  215--239.
+camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
+215--239.
 
 \bibitem[Ben72]{Benjamin_1972_The-stability-o}
 T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
-  (London) Ser. A \textbf{328} (1972), 153--183.
+(London) Ser. A \textbf{328} (1972), 153--183.
 
 \bibitem[BL76]{bergh1976interpolation}
 J.~Bergh and J.~L{\"o}fstr{\"o}m, \emph{Interpolation spaces: an introduction},
-  vol. 223, 1976.
+vol. 223, 1976.
 
 \bibitem[Bou93]{Bourgain-Fourier-transfo-1}
 J.~Bourgain, \emph{Fourier transform restriction phenomena for certain lattice
-  subsets and applications to nonlinear evolution equations. i. schr{\"o}dinger
-  equations}, Geom. Funct. Anal. \textbf{3} (1993), no.~2, 107--156.
+subsets and applications to nonlinear evolution equations.\ i.\ schr{\"o}dinger
+equations}, Geom. Funct. Anal. \textbf{3} (1993), no.~2, 107--156.
 
 \bibitem[BS88]{Bennett:1988ys}
 C.~Bennett and R.~Sharpley, \emph{Interpolation of operators}, vol. 129, 1988.
 
 \bibitem[CH93]{Camassa-Holm-1993-An-integrable-shallow-water}
 R.~Camassa and D.~D. Holm, \emph{An integrable shallow water equation with
-  peaked solitons}, Phys. Rev. Lett. \textbf{71} (1993), no.~11, 1661--1664.
+peaked solitons}, Phys. Rev. Lett. \textbf{71} (1993), no.~11, 1661--1664.
 
 \bibitem[CKS{\etalchar{+}}03]{Colliander:2003kx}
 J.~Colliander, M.~Keel, G.~Staffilani, H.~Takaoka, and T.~Tao, \emph{Sharp
-  global well-posedness for kdv and modified kdv on $\mathbb r$ and $\mathbb t$}, J. Amer. Math. Soc. \textbf{16} (2003), no.~3, 705--749 (electronic).
+global well-posedness for kdv and modified kdv on $\mathbb r$ and $\mathbb t$}, J. Amer. Math. Soc. \textbf{16} (2003), no.~3, 705--749 (electronic).
 
 \bibitem[CL09]{Constantin-Lannes-2009-The-hydrodynamical-relevance-of-the-Camassa-Holm}
 A.~Constantin and D.~Lannes, \emph{The hydrodynamical relevance of the
-  camassa-holm and degasperis-procesi equations}, Arch. Ration. Mech. Anal.
-  \textbf{192} (2009), no.~1, 165--186.
+camassa-holm and degasperis-procesi equations}, Arch. Ration. Mech. Anal.
+\textbf{192} (2009), no.~1, 165--186.
 
 \bibitem[CLZ11]{Chen:2011fk} R.~M. Chen, Y.~Liu, and P.~Zhang, \emph{The
-    h{\"o}lder continuity of the solution map to the {\$}b{\$}-family equation
+h{\"o}lder continuity of the solution map to the {\$}b{\$}-family equation
 in weak topology}, submitted 2011.
 
 \bibitem[CS00a]{Constantin_2000_Stability-of-a-}
 A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
-  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
-  140--148.
+in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+140--148.
 
 \bibitem[CS00b]{Constantin_2000_Stability-of-pe}
 \bysame, \emph{Stability of peakons}, Comm. Pure Appl. Math. \textbf{53}
-  (2000), no.~5, 603--610.
+(2000), no.~5, 603--610.
 
 \bibitem[Dai98]{Dai_1998_Model-equations}
 H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
-  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
-  193--207.
+compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+193--207.
 
 \bibitem[HIKK10]{Herr:2010p886}
 S.~Herr, A.~D. Ionescu, C.~E. Kenig, and H.~Koch, \emph{A para-differential
-  renormalization technique for nonlinear dispersive equations}, Comm. Partial
-  Differential Equations \textbf{35} (2010), no.~10, 1827--1875.
+renormalization technique for nonlinear dispersive equations}, Comm. Partial
+Differential Equations \textbf{35} (2010), no.~10, 1827--1875.
 
 \bibitem[HK09]{Himonas:2009fk}
 A.~Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
-  the ch equation on the line}, Differential Integral Equations \textbf{22}
-  (2009), no.~3-4, 201--224.
+the ch equation on the line}, Differential Integral Equations \textbf{22}
+(2009), no.~3-4, 201--224.
 
 \bibitem[HKM10]{Himonas:2010p1187}
 A.~Himonas, C.~Kenig, and G.~Misiolek, \emph{Non-uniform dependence for
-  the periodic ch equation}, Comm. Partial Differential Equations \textbf{35}
-  (2010), no.~6, 1145--1162.
+the periodic ch equation}, Comm. Partial Differential Equations \textbf{35}
+(2010), no.~6, 1145--1162.
 
 \bibitem[Kar10]{Karapetyan:2010fk}
 D.~Karapetyan, \emph{Non-uniform dependence and well-posedness for the
-  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
-  no.~4, 796--826.
+hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+no.~4, 796--826.
 
 \bibitem[Kat75]{Kato_1975_Quasi-linear-eq}
 T.~Kato, \emph{Quasi-linear equations of evolution, with applications to
-  partial differential equations}, 1975, pp.~25--70. Lecture Notes in Math.,
-  Vol. 448.
+partial differential equations}, 1975, pp.~25--70. Lecture Notes in Math.,
+Vol. 448.
 
 \bibitem[KPV96]{Kenig:1996aa}
 C.~E. Kenig, G.~Ponce, and L.~Vega, \emph{A bilinear estimate with applications
-  to the kdv equation}, J. Amer. Math. Soc. \textbf{9} (1996), no.~2, 573--603.
+to the kdv equation}, J. Amer. Math. Soc. \textbf{9} (1996), no.~2, 573--603.
 
 \bibitem[KT05]{Koch_2005_Nonlinear-wave-}
 H.~Koch and N.~Tzvetkov, \emph{Nonlinear wave interactions for the benjamin-ono
-  equation}, Int. Math. Res. Not. (2005), no.~30, 1833--1847.
+equation}, Int. Math. Res. Not. (2005), no.~30, 1833--1847.
 
 \bibitem[Len06]{Lenells_2006_Traveling-waves}
 J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
-  Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
+Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
 
 \bibitem[Mol04]{Molinet_2004_On-well-posedne}
 L.~Molinet, \emph{On well-posedness results for camassa-holm equation on the
-  line: a survey}, J. Nonlinear Math. Phys. \textbf{11} (2004), no.~4,
-  521--533.
+line: a survey}, J. Nonlinear Math. Phys. \textbf{11} (2004), no.~4,
+521--533.
 
 \bibitem[Tao04]{Tao:2004p1537}
 T.~Tao, \emph{Global well-posedness of the benjamin-ono equation in $H^1(\bf
-  R)$}, J. Hyperbolic Differ. Equ. \textbf{1} (2004), no.~1, 27--49.
+R)$}, J. Hyperbolic Differ. Equ. \textbf{1} (2004), no.~1, 27--49.
 
 \bibitem[Tay95]{Taylor:1995kx}
 M.~E. Taylor, \emph{Partial differential equations i, basic theory}, vol. 115,
-  1995.
+1995.
 
 \bibitem[Yin03]{Yin_2003_On-the-Cauchy-p}
 Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
-  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
+equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
 
 \bibitem[Zho05]{Zhou_2005_Local-well-pose}
 Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
-  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
+equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
 
 \end{thebibliography}
 %
