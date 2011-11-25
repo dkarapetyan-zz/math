@@ -588,6 +588,108 @@ line $\text{Re}\, z=0$, and $| F(z) | \le M_1$ on the line $\text{Re}\, z=1$, th
 %
 %
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Stein
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Stein Interpolation} 
+\label{sec:stein-interp}
+Following Klainerman \cite{Klainerman:fk}, we introduce the following.  
+\begin{definition}
+Let $T_{z}$ be a family of linear operators indexed by $z \in D$. We say the
+$T_{z}$ are an analytic family of operators if
+\begin{enumerate}
+\item{$T_{z}$ maps simple functions into measurable functions}
+\item{The map $z \mapsto T_{z}$ is analytic in the interior of the strip
+%
+%
+\begin{equation*}
+\begin{split}
+0 \le \text{Re}\, z \le 1
+\end{split}
+\end{equation*}
+%
+%
+and bounded and continuous on the boundary.}
+\end{enumerate}
+\end{definition}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                stein-interp
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Stein Complex Interpolation]
+Let $T_{z}$ be an analytic family of operators and assume there are positive
+constants $M_{0}, M_{1}$ such that, for every $b \in \rr$
+%
+%
+\begin{equation*}
+\begin{split}
+\| T_{ib} \|_{L^{q_{0}}} \le M_{0} \| f \|_{L^{p_{0}}}, \quad \|
+T_{1 + ib} f \|_{L^{q_{1}}} \le M \| f \|_{L^{p_{1}}}
+\end{split}
+\end{equation*}
+%
+%
+with $1 \le q_{0}, p_{0}, q_{1}, p_{1} \le \infty$. Then, for $z = a + ib \in
+D$, $T_{z}$ extends to a bounded operator from $L^{p}$ to $L^{q}$ and
+%
+%
+\begin{equation*}
+\begin{split}
+\| T_{z} f \|_{L^{q}} \le M_{0}^{1-a} M_{1}^{a} \| f \|_{L^{p}}
+\end{split}
+\end{equation*}
+%
+%
+where
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{1}{p} = \frac{1-a}{p_{0}} + \frac{a}{p_{1}}, \quad \frac{1}{q} =
+\frac{1-a}{q_{0}} + \frac{a}{q_{1}}.
+\end{split}
+\end{equation*}
+%
+%
+\label{lem:stein}
+\end{lemma}
+%
+%
+%
+To apply the lemma, we need some preliminaries. First, recall that for $r \in
+\rr$
+%
+%
+\begin{equation*}
+\begin{split}
+(1 - \p_x^{2})^{r}h(x) 
+\overset{\text{it.}}{=} & \int_{\rr} e^{ix
+\xi}(1 + \xi^{2})^{r} \wh{h}(\xi) d \xi
+\\
+\overset{\text{abs.\ conv.}}{=}  & \lim_{j \to \infty} \frac{1}{2 \pi} \int_{\rr}
+\int_{\rr} e^{i(x-y)}
+\chi( \xi/j) (1 + \xi^{2})^{r}dy d \xi
+\end{split}
+\end{equation*}
+%
+%
+where $\chi(\xi)$ is a cutoff function symmetric about the origin.\ 
+we fix $g \in H^{s}$ with $\| g\|_{H^{s}} = 1$
+%
+%
 \appendix
 \section{}
 {\bf Proof of \autoref{lem:simp-riesz-thorin}.} 
@@ -665,7 +767,7 @@ Compute
 		(0,1)
 		\\
 		& \le \left( \int_{\rr} | f |^{\lambda q} dx \right)
-		\| f \|_{\infty}^{(1 - \lambda)q} .
+		\| f \|_{\infty}^{(1 - \lambda)q}.
 	\end{split}
 \end{equation}
 Defining $\lambda$ by the relation
@@ -813,6 +915,6 @@ limit on the left hand side of \eqref{pre-limit-estimate} completes the proof.
 
 
 %\nocite{*}
-%\bibliography{/Users/davidkarapetyan/Documents/math/}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 
 \end{document}
