@@ -1,0 +1,75 @@
+\documentclass[12pt]{amsart}
+\usepackage{latest}
+  \usepackage{graphicx}
+\usepackage{epsf}
+\synctex=1
+%\usepackage{pdfsync}
+\begin{document}
+
+%:%% prelim, final, webpage
+\runType[final]
+
+%: \begin{answersheetmatter}
+\begin{answersheetmatter}
+\whichCourse[Math 10550] \whichExam[Quiz I]
+\dateOfExam[11/29/2011]
+\lengthOfTimeForExam[5  min]
+
+%\begin{multiplechoiceStyle}% [dotted] or [blank] missing=blank
+\begin{multiplechoiceStyle}[dotted]
+%: permutations
+% DPN: generated 10/15/04
+\ll  1 15342  \ll 2 35142 
+\end{multiplechoiceStyle}
+\end{answersheetmatter}
+
+
+\makeanswersheet[]
+%: begin{exam}
+
+\begin{exam}
+\multiplechoiceStart[2 pts.]
+
+\gdef\dxd{\displaystyle}
+
+
+\begin{problem}
+    Which of the following integrals is the volume of the solid obtained by
+    rotating the region bounded by $x=0$, $y = \cos x$, and $x = \pi/2$ about
+    the $x$-axis?
+    %
+    %
+    %
+    %
+\begin{answers}{1}
+ $\pi \int_{0}^{\pi/2 } (\cos x)^{2} dx$ \\
+ $2 \pi \int_{0}^{\pi/2 } (\cos x)^{2} dx$ \\
+$2 \pi \int_{0}^{\pi/2 } (\sin x)^{2} dx$ \\
+$2 \pi \int_{-\pi/2}^{\pi/2 } (\sin x)^{2} dx$ \\
+$\pi \int_{-\pi/2}^{\pi/2 } (\cos x)^{2} dx$ \\
+\end{answers}
+\end{problem}
+
+\begin{problem}
+  Calculate the area bounded by the curves $y = x^{2}$ and $y = 3x - 2$.
+    %
+    %
+    %
+\begin{answers}{1}
+$1/6$\\
+$1$ \\
+$2/3$ \\
+$1/3$\\
+$1/2$\\
+\end{answers}
+\end{problem}
+
+
+
+\end{exam}
+
+\makemarkedanswersheet
+
+\showSolutions
+
+\end{document}
