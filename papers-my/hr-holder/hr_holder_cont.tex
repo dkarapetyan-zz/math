@@ -112,10 +112,10 @@ The hyperelastic rod (HR) equation
 \p_t u =  -\gamma u \p_x u -
 \p_{x} (1 - \p_{x}^{2})^{-1} \left[ \frac{3-\gamma}{2}u^2 +
 \frac{\gamma}{2} \left( \p_x u \right)^2
-\right], \ \gamma \in \rr \slash \{0\}
+\right]
 \label{hyperelastic-rod-equation}
 \\
-u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+u(x,0) = u_0(x), \ x \in \ci \ \text{or} \ \rr, \ t \in \rr
 \label{init-cond}
 \end{gather}
 %
@@ -169,25 +169,25 @@ non-uniform dependence for HR was shown in \cite{Karapetyan:2010fk}.
 For the Burgers equation, it is also known that for $s > 3/2$, dependence is not
 better than continuous. Furthermore, Kato \cite{Kato_1975_Quasi-linear-eq}
 showed that for $s > 3/2$ the data to solution map $u_{0} \mapsto u(t)$ is not
-H\"older continuous from a closed ball in $H^{s}$ centered at $0$ and measured
-in the $H^{r}$ norm, $r < s$, to $C([0, T], H^{r})$, where $T$ depends upon
-the $H^{s}$ radius of the ball. More precisely, for fixed $0 < \gamma < 1$
+H\"older continuous from a closed ball in $H^{s}(\rr)$ centered at $0$ and measured
+in the $H^{r}(\rr)$ norm, $r < s$, to $C([0, T], H^{r}(\rr))$, where $T$ depends upon
+the $H^{s}(\rr)$ radius of the ball. More precisely, for fixed $0 < \gamma < 1$
 and fixed constant $c > 0$,
-there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}$
+there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}(\rr)$
 (and hence, a common lifespan $T$) and $0 < t_{0} < T$ such that
 %
 %
 \begin{equation*}
 \begin{split}
-\| u(t_{0}) - v(t_{0}) \|_{H^{r}} 
-& > c \| u_{0} - v_{0} \|^{\gamma}_{H^{r}}.
+\| u(t_{0}) - v(t_{0}) \|_{H^{r}(\rr)} 
+& > c \| u_{0} - v_{0} \|^{\gamma}_{H^{r}(\rr)}.
 \end{split}
 \end{equation*}
 However, for certain general quasi-linear hyperbolic systems, Kato also obtained
 uniform continuity of the data to solution map for initial data in Sobolev
 spaces with integer index, measured in a weaker Sobolev norm. More recently, Tao
 \cite{Tao:2004p1537} obtained Lipschitz continuity of the data to solution map
-for the Benjamin-Ono equation for $H^{1}$ initial data measured in $L^{2}$.
+for the Benjamin-Ono equation for $H^{1}(\rr)$ initial data measured in $L^{2}(\rr)$.
 Herr, Ionescu, Kenig, and Koch \cite{Herr:2010p886} have also obtained Lipschitz
 continuity in a weaker topology for the Benjamin-Ono with generalized
 dispersion. Hence, it is reasonable to ask whether a result similar to these
@@ -203,13 +203,13 @@ b-family
 \right],
 \label{b-family}
 \\
-u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+u(x,0) = u_0(x), \ x \in \ci \ \text{or} \ \rr, \ t \in \rr
 \label{init-cond-b-fam}
 \end{gather}
 %
 %
-for which they proved H\"older continuity of the data to solution map from a closed ball $B(0, h)$ in $H^{s}$, $s >
-3/2$ (measured in the $H^{r}$ topology, $r <s$) to $C([0, T], H^{r})$, with $T
+for which they proved H\"older continuity of the data to solution map from a closed ball $B(0, h)$ in $H^{s}(\rr)$, $s >
+3/2$ (measured in the $H^{r}(\rr)$ topology, $r <s$) to $C([0, T], H^{r}(\rr))$, with $T
 = T(h)> 0$ and H\"older index $\alpha = \alpha(b, s, r)$ given by 
 %
 %
@@ -249,7 +249,7 @@ the following result:
 %
 \begin{theorem}
 For $\gamma \neq 0$, the
-data to solution map for HR is H\"older continuous from $B_{H^{s}}(R)$ (in
+data to solution map for HR is H\"older continuous on both the line and circle from $B_{H^{s}}(R)$ (in
 the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
 3/2$, $-1 \le r < s$. More
 precisely, consider the following sets 
@@ -1082,7 +1082,7 @@ $\langle x - \alpha \rangle  \doteq 1 + | x - \alpha |$. Then
 & \int_{\rr} \frac{1}{\langle x - \alpha \rangle ^{p} \langle x -
 \beta \rangle
 ^{q}} d x
-\le \frac{c_{p,q, \ee}}{\langle \alpha - \beta \rangle ^{r}}. 
+\le \frac{c_{r}}{\langle \alpha - \beta \rangle ^{r}}. 
 \end{split}
 \end{equation*}
 \end{lemma}
@@ -1142,7 +1142,7 @@ Hence, for $0 \le \delta \le 1/2 + \ee$, $\ee >
 \begin{split}
 C_{s,r} \int_{\rr}  | \wh{g}(\eta) |^{2} \int_{\rr} \frac{1}{\left( 1
 + |\eta| \right )^{2 \delta}} d \xi d \eta 
-& \le
+& \lesssim
 \| g \|_{H^{-\delta}}^{2}
 \\
 & = \| g \|_{H^{r-1}}^{2}.
@@ -1368,7 +1368,7 @@ $p, q > 0$ such that $p +q >1$, and $r =\min\left\{p -\ee_{q}, q - \ee_{p}, p+q-
 \begin{align*}
 \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
 ^{q}} d x
-\le \frac{c_{p,q, \ee}}{\langle a \rangle ^{r}}.
+\le \frac{c_{r}}{\langle a \rangle ^{r}}.
 \label{est-2}
 \end{align*}
 Recalling \eqref{rur}, the proof is complete.
