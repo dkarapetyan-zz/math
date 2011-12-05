@@ -2,7 +2,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amssymb}
 \usepackage{appendix}
-%\usepackage[notref, notcite]{showkeys}
+\usepackage[notref, notcite]{showkeys}
 \usepackage{tikz}
 \usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
@@ -174,8 +174,7 @@ them, we obtain
     \\
     t(s) = s + c_{2}.
 \end{gather}
-We remark that by the inverse function theorem, \eqref{0j} admits a solution
-$u(x(s), t(s))$ for $s$ in some bounded interval in $\rr$.  By construction, this $u$ will be constant along the characteristic curve $(x(s), t(s))$. Hence, we obtain
+and since $u$ is constant along the characteristic curve $(x(s), t(s))$, this reduces to
 %
 %
 \begin{gather}
@@ -186,19 +185,29 @@ $u(x(s), t(s))$ for $s$ in some bounded interval in $\rr$.  By construction, thi
     t(s) = s + c_{2}.
 \end{gather}
 %
+Again, using the fact that $u$ is constant along $(x(s), t(s))$, we see that
 %
-Setting $s = -c_{2}$, it follows that 
 %
 %
 %
 \begin{equation*}
 \begin{split}
-u(x(-c_{2}), t(-c_{2})) = u(c_{1} - c_{2}u, 0 ) = u_{0}(c_{1} - c_{2} u).
+u(x(s),t(s)) = u(x(-c_{2}), t(-c_{2})) = u(c_{1} - c_{2}u, 0 ) = u_{0}(c_{1} - c_{2} u)
+\end{split}
+\end{equation*}
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+  u(x(0), t(0)) = u(c_{1}, c_{2}) = u_{0}(c_{1} - c_{2}u). 
 \end{split}
 \end{equation*}
 %
 %
-and so
+%
+Since $c_{1}, c_{2}$ are arbitrary constants, a relabeling allows us to conclude that
 %
 %
 %
@@ -210,7 +219,7 @@ u(x,t) = u_{0}(x - tu).
 \end{equation*}
 %
 %
-We shall prove the following.
+We now need the following.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -564,14 +573,7 @@ y + ty_{+}^{\alpha + 1} = x - t \lambda.
 %
 %
 Without loss of generality, assume $t \ge 0$, $\lambda \ge 0$. 
-Restricting our attention to the case $\alpha =2$, we obtain
-\begin{equation}
-    \label{y-equation}
-\begin{split}
-y + ty_{+}^{3} = x - t \lambda.
-\end{split}
-\end{equation}
-which is equivalent to the system
+Then this is equivalent to the system
 %
 %
 \begin{gather}
@@ -579,7 +581,7 @@ which is equivalent to the system
     y= x - t \lambda, \quad x \le t \lambda
     \\
     \label{y-rest}
-    y + ty^{3} = x - t \lambda, \quad x \ge t \lambda
+    y + ty^{\alpha + 1} = x - t \lambda, \quad x \ge t \lambda
 \end{gather}
 for $x \ge t \lambda$. We shall first solve \eqref{y-rest} without any
 restrictions on $x$, that is, we are looking for a
@@ -589,7 +591,7 @@ solution to
 \begin{equation}
     \label{f-eq}
 \begin{split}
-f + tf^{3} = x - t \lambda
+f + tf^{\alpha + 1} = x - t \lambda
 \end{split}
 \end{equation}
 %
@@ -612,7 +614,7 @@ Then
 \begin{equation}
     \label{g-eq}
 \begin{split}
-[1 + t g^{2}]g = x
+g + t g^{\alpha + 1} = x
 \end{split}
 \end{equation}
 %
@@ -627,12 +629,13 @@ g(0, t) = 0.
 \end{equation*}
 %
 %
+For the sake of clarity, we handle the case $\alpha =2$ first.
 Differentiating both sides of \eqref{g-eq} with respect to $x$ once, twice, and
 three times, respectively, we obtain
 %
 %
 \begin{gather*}
-    g_{x}\left \{ 2t g^{\alpha - 1} + 1 \right \} = 1,
+    g_{x}\left \{ 2t g + 1 \right \} = 1,
     \\
     g_{xx}(3tg^{2} + 1) + 6tgg_{x}^{2} = 0,
     \\
@@ -672,27 +675,37 @@ g(x,t) & = x - tx^{3} + ct^{2}x^{4} + \ldots
 \end{split}
 \end{equation*}
 %
+For general integer valued $\alpha \ge 0$, a similar argument gives
 %
+\begin{equation}
+  \label{eq-gen}
+\begin{split}
+g(x,t) & = x - tx^{\alpha + 1} + ct^{2}x^{\alpha + 2} + \ldots
+\\
+& = x - t[x^{\alpha + 1}(1 + c_{1}tx + c_{2}t^{2}x^{2} + \ldots)].
+\end{split}
+\end{equation}
+
 Therefore
 %
 %
 \begin{equation*}
 \begin{split}
 f(x,t) 
-& = x - \lambda t - t \left \{ (x - \lambda t)^{3}[1 + c_{1}t(x - \lambda t) + c_{2}t^{2}(x - \lambda t)^{2} + \ldots] \right \}
+& = x - \lambda t - t \left \{ (x - \lambda t)^{\alpha + 1}[1 + c_{1}t(x - \lambda t) + c_{2}t^{2}(x - \lambda t)^{2} + \ldots] \right \}
 \\
-& = x - t \left \{ \lambda  + (x - \lambda t)^{3} [1 + c_{1}t(x - \lambda t) + c_{2}t^{2}(x - \lambda t)^{2} + \ldots] \right \}
+& = x - t \left \{ \lambda  + (x - \lambda t)^{\alpha + 1} [1 + c_{1}t(x - \lambda t) + c_{2}t^{2}(x - \lambda t)^{2} + \ldots] \right \}
 \end{split}
 \end{equation*}
 %
-solves \eqref{f-eq}. By observation, we see that
+solves \eqref{f-eq} for $x \ge \lambda t$. By observation, we see that
 %
 %
 \begin{equation*}
 \begin{split}
 y(x,t) 
 & = x - t \left \{ \lambda  + (x - \lambda
-    t)_{+}^{3} [1 + c_{1}t(x - \lambda t)_{+} +
+    t)_{+}^{\alpha + 1} [1 + c_{1}t(x - \lambda t)_{+} +
     c_{2}t^{2}(x - \lambda t)_{+}^{2} + \ldots] \right \}
 \end{split}
 \end{equation*}
@@ -716,15 +729,7 @@ we conclude that
 %
 %
 %
-\begin{equation*}
-\begin{split}
-u^{\lambda}(x,t) = \lambda + (x - \lambda
-t)_{+}^{2 + 1}[1 + c_{1}t(x - \lambda t)_{+} +
-c_{2}t^{2}(x - \lambda t)_{+}^{2} + \ldots].
-\end{split}
-\end{equation*}
 %
-For general $\alpha \ge 0$, a similar argument (using Laurent expansions) gives
 \begin{equation}
     \label{ode-sol}
 \begin{split}
@@ -733,8 +738,177 @@ t)_{+}^{\alpha + 1}[1 + c_{1}t(x - \lambda t)_{+} +
 c_{2}t^{2}(x - \lambda t)_{+}^{2} + \ldots]
 \end{split}
 \end{equation}
-where $c_{k} = c_{k}(\alpha)$. This completes the proof.
+where $c_{k} = c_{k}(\alpha)$. 
 %
+To extend this result for arbitrary $\alpha \ge 0$, it will be enough to solve \eqref{g-eq} for arbitrary $\alpha \ge 0$.
+%
+%
+%
+%
+However, notice that solutions to this equation will \emph{not} be analytic at $x = 0$. (For example, $(g^{1/2})' \to \infty$ as $x \to 0$, since $g(0, t) = 0$). However, for integer $k \ge 0$, we have already shown that there exists $g = g(x,t)$ analytic in $x$ and $t$ in a neighborhood of the origin (that is, $|x| \le 1$ and $|t| \le T$) and satisfying
+%
+%
+\begin{equation}
+  \label{yit}
+\begin{split}
+  g + tg^{k} = x
+\end{split}
+\end{equation}
+%
+which has form \eqref{eq-gen}. Substituting this relation, we obtain
+\begin{equation}
+  \label{yit2}
+\begin{split}
+  g^{k} = x^{k}p(xt)
+\end{split}
+\end{equation}
+where $p(xt)$ is analytic for $xt$ in a neighborhood of $0$, and $p(0) = 1$. From \eqref{yit} and \eqref{yit2}, we see that 
+%
+%
+%
+%
+%
+\begin{equation}
+  \label{uit}
+\begin{split}
+  (g-x)x^{r-k}= -t x^{r}p(xt).
+\end{split}
+\end{equation}
+%
+%
+Let 
+%
+%
+\begin{equation*}
+\begin{split}
+  h \doteq x + c(g -x)x^{r-k}
+\end{split}
+\end{equation*}
+%
+where $c = c(xt)$ is to be determined later.
+Then \eqref{yit2} implies
+%
+%
+\begin{equation}
+  \label{yit3}
+\begin{split}
+  h -x = -\frac{t x^{r} p(xt)}{c}.
+\end{split}
+\end{equation}
+%
+%
+But 
+%
+%
+\begin{equation*}
+\begin{split}
+  h = x + c(g -x)x^{r-k} = x[1 + c(g-x)x^{r-k-1}]
+\end{split}
+\end{equation*}
+%
+and so
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  h^{r} = x^{r}\left[ 1 + c(g-x)x^{r-k-1} \right]^{r}.
+\end{split}
+\end{equation*}
+%
+%
+Assume for the time being that we can choose $c = c(xt)$ such that
+%
+%
+\begin{equation}
+  \label{yit4}
+\begin{split}
+\frac{p(xt)}{c} = \left[ 1 + c(g-x)x^{r-k-1} \right]^{r}.
+\end{split}
+\end{equation}
+%
+%
+Then
+%
+%
+\begin{equation*}
+\begin{split}
+  h^{r} = \frac{x^{r}p(xt)}{c}
+\end{split}
+\end{equation*}
+%
+%
+which we combine with \eqref{yit3} to obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  h + th^{r} = x.
+\end{split}
+\end{equation*}
+%
+%
+Next, we show that there exists a unique $c = c(x,t) $ such that \eqref{yit4} holds. Proceeding, we rewrite \eqref{yit4} via \eqref{uit} to obtain
+%
+%
+\begin{equation}
+  \label{pii}
+\begin{split}
+  0 = p(xt) - c \left[ 1 - ctx^{r-1}p(xt) \right]^{r} \doteq P(x,t,c).
+\end{split}
+\end{equation}
+%
+%
+which is continuous in $(x, t)$ and analytic in $(x,t)$, where $0 < |x| \le 1$, $0 < |t| < T$. Furthermore, $D_{(x,t)}P$ exists and is invertible for $(x,t)$ where $0 < |x| \le 1$, $0 < |t| < T$. Hence, by the implicit function theorem,
+there exists a unique $c = c(xt)$ analytic for $|xt| > 0$ sufficiently small and satisfying \eqref{pii} in this region. 
+\\
+\\
+We now extend $c(xt)$ to an analytic function at $0$ as follows. Define
+%
+%
+\begin{equation*}
+\begin{split}
+  c^{*}(xt) = 
+  \begin{cases} 
+    c(xt), \quad & x > 0, \ t > 0 
+    \\
+    \lim_{y \to 0} c(y,t), \quad & x = 0, \ t > 0
+    \\
+    \lim_{s \to 0} c(x,s), \quad & x > 0, \ t = 0.
+  \end{cases}
+\end{split}
+\end{equation*}
+%
+%
+Since $0 = P(0, t, c) = P(x, 0, c) = 1 - c$, it follows that
+%
+%
+\begin{equation*}
+\begin{split}
+  c^{*}(xt) = 
+  \begin{cases} 
+    c(xt), \quad & x > 0, \ t > 0 
+    \\
+    1, \quad & x = 0, t > 0
+    \\
+    1, \quad & x > 0, t = 0
+  \end{cases}
+\end{split}
+\end{equation*}
+%
+which is analytic for sufficiently small $|xt|\ge 0$. Hence, the same holds true for
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  p^{*}(xt) \doteq \frac{p(xt)}{c^{*}(xt)}.
+\end{split}
+\end{equation*}
+%
+%
+In particular, $p^{*}(0) =1$. Putting all our work together, we see that we have found a solution to \eqref{g-eq} for arbitrary $\alpha > 0$ the This completes the proof.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -774,7 +948,7 @@ $\widehat{e^{-| \cdot |}}(\xi) = 2/(1 + \xi^{2})$. Hence,
 %
 \begin{equation*}
 \begin{split}
-\frac{1}{2} e^{-| x |} * f = (1 - \p_{x}^2)f
+\frac{1}{2} e^{-| x |} * f = (1 - \p_{x}^2)f.
 \end{split}
 \end{equation*}
 %
@@ -1903,6 +2077,27 @@ Applying this relation to \eqref{hg}, we see that
 \int_{\rr} \int_{\rr} \frac{| u(z_{1}) - u(z_{2}) |^{2}}{| z_{1} - z_{2} |^{1 + 2 \sigma}} d z_{1} dz_{2}.
 \end{split}
 \end{equation*}
+%
+Now
+\begin{gather*}
+  [u(y(\xi))]' = u'(y(\xi))y'
+  \\
+  [u(y(\xi))]'' = u'(y(\xi))y'' + u''(y(\xi))(y')^{2}
+  \\
+[u(y(\xi))]''' = u'(y(\xi))y''' + 3 y' y'' u''(y(\xi)) + u'''(y(\xi))y'y'y'.
+\end{gather*}
+In general,
+%
+%
+\begin{equation*}
+\begin{split}
+  [u(y(\xi))]^{m}
+  & = u^{(1)}(y(\xi))y^{(m)} + c_{1} u^{(2)}(y(\xi)) y^{(m-1)}y^{(1)} + c_{2} u^{(3)}(y(\xi)) y^{(m-2)}y^{(2)} 
+  \\
+  & +\cdots+ c_{m} u^{(m)}(y(\xi)) \underbrace{y^{(1)}\ldots y^{(1)}}_{\text{m copies}}.
+\end{split}
+\end{equation*}
+%
 %
 %
 \end{proof}

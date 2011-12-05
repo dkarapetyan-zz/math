@@ -1,0 +1,97 @@
+% LaTeX version for Business Letter on Notre Dame Stationary using
+% "Letter"-Style.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%\newfont{\eufb}{eufb10 scaled 1200}
+%%%%\newfont{\eufbbig}{eufb10 scaled 1800}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\typeout{Letter Style with University of Notre Dame Mathematics
+  Department Letter Head, (Jan, 1993)}
+\def\sender{Juan Migliore}
+\def\titleofsender{\\  Professor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\address#1{}
+\def\@date{\today\hspace*{1in}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\signature#1{\renewcommand{\sender}{#1}
+    \renewcommand{\titleofsender}{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\LoadPDF#1#2{
+\pdfximage {#1}
+\setbox0=\hbox{\pdfrefximage\pdflastximage} % get dimensions of the image
+                                            % in order to include the image
+                                            % at a specific resolution 
+\pdfximage              
+    width #2\wd0 {#1}  % by setting image width to the calculated value
+\vbox to #2\ht0{\hsize=#2\wd0\pdfrefximage \pdflastximage}%
+}
+
+\def\thispagestyle#1{}
+\pagestyle{headings}
+\def\pagestyle#1{}
+\headheight 35mm
+\def\neg{\hspace*{-1pt}}
+\def\notredame{\parbox{\textwidth}{%
+\parbox[t]{.30\textwidth}
+{\hskip-15pt\hbox to 1in{\LoadPDF{seal.jpg}{0.5}\hss}\hss}
+\hfill
+\parbox[b]{.35\textwidth}{ \footnotesize
+\begin{tabular}{l}
+{\normalsize\bf Mathematics Department}\\
+255 Hurley Hall\\
+Notre Dame, Indiana 46556-4618\\
+\\
+\end{tabular}\\
+\begin{tabular}{ll}\footnotesize
+Phone:& 574-631-7245\\
+FAX: & 574-631-6579
+\end{tabular} }
+\\ 
+\null\hspace{-.01\textwidth}\hbox to 0pt{\rule[1.5ex]{1.02\textwidth}{2pt}\hss} }}
+
+\def\@oddhead{\notredame}
+\def\@evenhead{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\footheight 5mm
+\def\pagenumber{\ifnum\thepage >1 \thepage\else\mbox{ }\fi}
+\def\mathematics{\parbox{\textwidth}{\centering \pagenumber\\
+\mbox{}\\
+\mbox{\footnotesize\sl Department of Mathematics,
+University of Notre Dame, 255 Hurley Hall, Notre Dame, IN 46556}\\
+{\footnotesize\sl Phone:  574-631-7245 \qquad FAX: 574-631-6579}}}
+%%\def\@oddfoot{\mathematics}
+%%\def\@evenfoot{\mathematics}
+\def\@oddfoot{\parbox{\textwidth}{\centering \pagenumber}}
+\def\@evenfoot{\parbox{\textwidth}{\centering \pagenumber}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textwidth 6.6in  %%%%\textheight 9.5in
+\textheight 8.0in
+\parindent 0pt
+\parskip 0.8em
+%\topmargin -1.1in
+\topmargin -0.5in
+\oddsidemargin -0.1in
+\evensidemargin -0.1in %%%% \thispagestyle{empty}
+%\baselineskip 4mm \parskip 0mm \parindent 4mm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\noheadings{\par\def\@oddhead{}\def\@evenhead{}
+   \renewcommand{\mathematics}{\parbox{\textwidth}{\centering\pagenumber}}}
+\def\headings{\par\def\@oddhead{\notredame}\def\@evenhead{\notredame}
+   \def\@oddfoot{\mathematics}\def\@evenfoot{\mathematics}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\mailto#1{\par
+%\vspace*{1in}\par
+\vspace*{-.5in}\par
+%\vfill
+\hspace{0.67\textwidth}\today\par
+\vspace*{5mm}  #1 \par\vspace*{5mm}\par}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\closing#1{\par
+\vspace*{10mm}
+\par\noindent\hspace*{0.55\textwidth}#1 \vspace*{15mm}\\
+\hspace*{0.55\textwidth}\parbox{0.45\textwidth}{\sender \titleofsender}
+%\vfill
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+

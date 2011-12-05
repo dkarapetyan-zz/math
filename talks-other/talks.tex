@@ -56,7 +56,6 @@ urlcolor=blue,
 \newtheorem{examp}{Example}[section]
 \newtheorem {exercise}[theorem] {Exercise}
 %
-\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
 %makes proof environment bold instead of italic
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
@@ -89,10 +88,10 @@ urlcolor=blue,
         %
 \section{Antononopoulos Mitsotakis Boussinesq Approximations}
         \begin{enumerate}
-          \item Numerical solution of the 'classical' Boussinesq system,
+          \item Numerical solution of the ``classical'' Boussinesq system,
             preprint 2009
           \item D.C. Antonopoulos and V.D. Notes on error estimates for Galerkin
-            approximations of the 'classical' Boussinesq system and related
+            approximations of the ``classical'' Boussinesq system and related
             hyperbolic problems, preprint 2010 arxiv
           \item D.C. Antonopoulos, D.E. Mitsotakis and V.D. Galerkin, approximations of
             periodic solutions of Boussinesq systems, preprint 2010
@@ -101,7 +100,7 @@ urlcolor=blue,
         Weinstein's argument (Stability of KDV solitons). Doesn't work for KP
         equation. Merle and Vega prove stability of KDV solitons in
         $L^{2}$ using the Miura transform and the Galilei invariance. Tzvetkov
-        applied Merle-Vega's method to KP-II. Got stability of $\vp_{c}(x - 2ct)$
+        applied Merle-Vega's method to KP-II\@. Got stability of $\vp_{c}(x - 2ct)$
         soliton.
         %
         %
@@ -319,7 +318,7 @@ J =
 %
 %
 As a geodesic equation, CH comes from $L = \frac{1}{2}\|u \|_{H^{1}}^{2}$. If you
-switch to the Hamiltonian version, then $m = \frac{\delta L}{ \delta u} = u -
+switch to the Hamiltonian version, then $m = \frac{\delta L}{\delta u} = u -
 u_{xx}$ (Legendre Transform).
 \begin{enumerate}
   \item CH has the Hamiltonian form
@@ -327,7 +326,7 @@ u_{xx}$ (Legendre Transform).
     %
     \begin{equation*}
     \begin{split}
-      \frac{\p m}{ \p t} = B_{0} \frac{\p H}{ \p m}
+      \frac{\p m}{\p t} = B_{0} \frac{\p H}{\p m}
     \end{split}
     \end{equation*}
     %
@@ -362,13 +361,13 @@ u_{xx}$ (Legendre Transform).
     %
     %
     In this case, $H = \frac{1}{2} \langle m, g*m \rangle $ and this implies
-    $\frac{\delta H}{ \delta m} = g*m =u$.
+    $\frac{\delta H}{\delta m} = g*m =u$.
   \item But also:
     %
     %
     \begin{equation*}
     \begin{split}
-      \frac{\p m}{ \p t} = B_{1} \frac{\delta \tilde{H}}{ \delta m}
+      \frac{\p m}{\p t} = B_{1} \frac{\delta \tilde{H}}{\delta m}
     \end{split}
     \end{equation*}
     %
@@ -403,7 +402,7 @@ u_{xx}$ (Legendre Transform).
     \begin{equation*}
     \begin{split}
       m = M[u] \implies \frac{\delta \tilde{H}}{\delta u} = M'[u] + \frac{\delta
-      \tilde{H}}{ \delta m}. 
+      \tilde{H}}{\delta m}. 
     \end{split}
     \end{equation*}
     %
@@ -421,7 +420,7 @@ operator
 \begin{split}
  &  R = B_{1} B_{0}^{-1}
  \\
- & \frac{\p m}{ \p t_{n}} = R^{n} \frac{\p m}{ \p t}
+ & \frac{\p m}{\p t_{n}} = R^{n} \frac{\p m}{\p t}
 \end{split}
 \end{equation*}
 %
@@ -430,7 +429,7 @@ where %
 %
 \begin{equation*}
 \begin{split}
-  \frac{\p}{ \p t_{n}} \ \text{commutes with} \ \frac{\p}{ \p t} \ \forall n
+  \frac{\p}{\p t_{n}} \ \text{commutes with} \ \frac{\p}{\p t} \ \forall n
 \end{split}
 \end{equation*}
 %
@@ -449,12 +448,12 @@ where %
   & B_{0} \frac{\delta H_{-1}}{\delta m} = B_{1} \frac{\delta H_{-3}}{\delta m} =
   -m_{x}
   \\
-  & B_{0} \frac{\delta C}{ \delta m} = B_{1} \frac{\delta H_{1}}{\delta m} =0
+  & B_{0} \frac{\delta C}{\delta m} = B_{1} \frac{\delta H_{1}}{\delta m} =0
   \\
-  & = B_{0} \frac{ \delta H_{3}}{\delta m} = B_{1} \frac{ \delta C}{ \delta m} =
+  & = B_{0} \frac{\delta H_{3}}{\delta m} = B_{1} \frac{\delta C}{\delta m} =
   -\frac{1}{2} (D_{x} - D_{x}^{3})m^{-1/2} \ \text{Harvy Dym}
   \\
-  & B_{1} \frac{ \delta H_{3}}{ \delta m} = \cdots \text{5th order flow}
+  & B_{1} \frac{\delta H_{3}}{\delta m} = \cdots \text{5th order flow}
 \end{split}
 \end{equation*}
 %
@@ -513,12 +512,12 @@ $0$. $u$ has weight $-2$, since $u = (1 - D_{x}^{2})^{-1}m$.
         \label{ssec:lax-pair}
 \label{ssec:peak-type}
 \begin{enumerate}
- \item{ Degasperis-Procesi}
+ \item{Degasperis-Procesi}
    $m_{t} + u m_{x} + 3 u_{x} m = 0$, \quad $m = u - u_{xx}, u = g*m, g =
    \frac{1}{2}e^{-| x |}$.
-   \item{ Novikov}
+   \item{Novikov}
      $m_{t} + u^{2} m_{x} + 3 u u_{x} m =0$
-     \item{ Qiao[Fokas]}
+     \item{Qiao[Fokas]}
        $m_{t} + (m(u^{2}- u_{x}^{2})) =0$.
 \end{enumerate}
 \subsection{b-family of equations} 
@@ -563,7 +562,7 @@ written in the following way.%
 %
 \begin{equation*}
 \begin{split}
-\frac{\p m}{\p t = } B \frac{\delta H}{ \delta m}
+\frac{\p m}{\p t = } B \frac{\delta H}{\delta m}
 \end{split}
 \end{equation*}
 %
@@ -867,7 +866,7 @@ $P = \psi \tilde{\psi}$. $\implies P_{xxx} + 4(m \lambda -
 B_{0})P = 0$. Taking $\lambda \to \infty$, and doing asymptotic expansion, we
 get $P \sim P_{o} +
 \lambda^{-1} + \lambda^{-2}P_{2} +\cdots$, where $P_{0} \alpha m^{-1/2} \alpha
-\frac{\delta c}{ \delta m}, P_{1} \alpha \frac{\delta H_{3}}{ \delta m}$.
+\frac{\delta c}{\delta m}, P_{1} \alpha \frac{\delta H_{3}}{\delta m}$.
 Another way to get bi-hamiltonian structure is to take $\rho = (\log
 \psi)_{x}$ and $\rho_{t} = \left[ (\log \psi)_{t} \right]_{x}$, i.e.
 $\rho_{t} = F$. 
@@ -994,7 +993,7 @@ The general model is as before,
 %
 \begin{equation*}
 \begin{split}
-  \frac{\p \lambda}{ \p t} = \lambda (P - \bar{P}) 
+  \frac{\p \lambda}{\p t} = \lambda (P - \bar{P}) 
 \end{split}
 \end{equation*}
 %
@@ -1257,7 +1256,7 @@ Basically Riemann surface with $k$ punctures. Deligne-Mumford compactification $
 Line bundle $T_{x_{2}}^{*}C \subset E_{2}$.
 \begin{gather*}
   \langle \tau_{n_{1}}, \cdots, \tau_{n_{k}} \rangle_{g} \doteq
-  \int_{\bar{M_{g,k}}} c_{1}(E_{1})^{n_{1}} \times \ldots \times
+  \int_{\bar{M_{g,k}}} c_{1}(E_{1})^{n_{1}} \times \cdots \times
   c_{1}(E_{k})^{n_{k}}
 \end{gather*}
 \begin{gather*}
@@ -1337,7 +1336,7 @@ If equation (b-family)
 \end{equation*}
 %
 %
-possesses an ``infinite hierarchy of (quasi) local higher symmetries'', i.e.
+possesses an ``infinite hierarchy of (quasi) local higher symmetries'', i.e.\
 integrability, then
 $b =2$ (CH) or $b =3$ (DP)
 \label{thm:main-theorem2}
@@ -1372,17 +1371,17 @@ The equation
 %
 with at least one of the following conditions not satisfied.
 \begin{enumerate}
-  \item{ $c_{2} = 0$}
+  \item{$c_{2} = 0$}
   \item{$c_{6} = 0$ }
-  \item{ $c_{1} + c_{4} = 0$}
+  \item{$c_{1} + c_{4} = 0$}
 \end{enumerate}
 is integrable then it is one in the following list of $10$ equations.
 \begin{enumerate}
  \item{CH }
- \item{ DP}
- \item{ $(1 - \ee^{2} \p_x^{2}) \p_{t} u = \p_{x} [(4 - \ee^{2}
+ \item{DP}
+ \item{$(1 - \ee^{2} \p_x^{2}) \p_{t} u = \p_{x} [(4 - \ee^{2}
    \p_{x}^{2})u]^{2}$}
-   \item{ And so on}
+   \item{And so on}
 \end{enumerate}
 %
 \label{thm:integ}
@@ -1430,11 +1429,11 @@ equation.
 %
 It has 
 \begin{enumerate}
- \item{ Infinitely many symmetries}
- \item{ (Hone et al) Lax pair}
- \item{ Infinitely many conserved quantitites}
- \item{ Bihamiltonian structure}
- \item{ ?? Can be solved using the inverse scattering method ?? }
+ \item{Infinitely many symmetries}
+ \item{(Hone et al) Lax pair}
+ \item{Infinitely many conserved quantitites}
+ \item{Bihamiltonian structure}
+ \item{??Can be solved using the inverse scattering method??}
 \end{enumerate}
 %
 \end{theorem}
@@ -1463,9 +1462,9 @@ It has
 %
 is integrable implies
 \begin{enumerate}
- \item{ CH, or}
- \item{ DP, or}
- \item{ KDV}
+ \item{CH, or}
+ \item{DP, or}
+ \item{KDV}
 \end{enumerate}
 \end{theorem}
 %
@@ -1484,9 +1483,9 @@ is integrable implies
 \begin{theorem}[Khesim-Misiolek]
 \ldots geodesic equation on some object is intregrable implies
 \begin{enumerate}
- \item{ KDV, or}
- \item{ CH, or}
- \item{ Hunter-Saxton}
+ \item{KDV, or}
+ \item{CH, or}
+ \item{Hunter-Saxton}
 \end{enumerate}
 %
 \end{theorem}
@@ -1506,8 +1505,8 @@ is integrable implies
 \begin{theorem}[Fokas-Fuchsteiner]
 \ldots a family is integrable implies
 \begin{enumerate}
-\item{ KDV, or}
-\item{ CH}
+\item{KDV, or}
+\item{CH}
   \end{enumerate}
 \end{theorem}
 %
@@ -1613,5 +1612,29 @@ The dependence is not better than continuous.
   \begin{enumerate}
     \item{} Noether's Theorem--big deal relating conserved quantitites to integrability. See Tao's book as well.
     \item{} KDV-Jams ``Sharp Global\ldots'' one of best articles for learning I-method. For more info, check his website (sent it to you via email).
+    \end{enumerate}
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    %
+    %				Numerics
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    %
+    \section{Numerics} 
+    \label{sec:numerics}
+    \subsection{Xu} 
+    \begin{enumerate}
+    \item{}
+    Cockburn and Shu--TUB Runge Kutta, 1989
+    \item{}
+    Waburton, Haggstrom
+    \item{}
+      Liu, Shu, Tadmor, $L^{p}$ Stability analysis, 2009.
+      \item{}
+      Z.L Xu, Shu, Xu--Hierarchical reconstruction with up to, 2009
     \end{enumerate}
         \end{document}
