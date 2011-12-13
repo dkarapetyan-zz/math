@@ -3,6 +3,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage[notref, notcite]{showkeys}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
@@ -85,679 +86,17 @@ urlcolor=blue,
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
 \begin{document}
-\title{A Modified Boussinesq equation}
+\title{Ill-Posedness for the Boussinesq Equation}
 \author{Dan-Andrei Geba, Alexandrou Himonas, and David Karapetyan}
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{04/17/2011}
+\date{\today}
 %
 %
-\subjclass[2000]{35B30, 35Q55, 35Q72}
-\keywords{local well-posedness; ill-posedness.}
 \maketitle
-\tableofcontents
 %
 %
-\section{Introduction}
-%
-%
-%
-We consider the initial value problem (ivp) for the fourth order modified Boussinesq
-($B_4$) equation 
-\begin{align}
-  & u_{tt} + u_{xxxx} + (u^2)_{xx} = 0, \quad x \in \rr \ \text{or} \
-  \ci, \ t \in \rr
-  \label{eqn:mb-2}
-  \\
-  & u(x,0) = u_{0}(x) \in H^{s}, \quad \p_t u(x, 0) = u_1(x) \in H^{s-2}.
-  \label{eqn:mb-init-data-2}
-  \end{align}
-%
-%
-We shall work in the periodic case first, and later generalize our results to
-the non-periodic case. Following Bourgain \cite{Bourgain-Fourier-transfo}, we
-write the $B_4$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} in integral form
-%
-%
-%
-\begin{equation}
-  \begin{split}
-    u(x,t)
-    & = \frac{1}{2\pi}\sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
-    \\
-    & + \frac{1}{2 \pi}\sum_{n \in \zz} e^{inx}
-    \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
-    \\
-    & + \frac{1}{4 i \pi}\sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}[e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}]
-    \wh{u^{2}}(n, t') dt'.
-  \end{split}
-  \label{eqn:integral-form}
-\end{equation}
-%
-where
-%
-%
-\begin{equation*}
-\begin{split}
-  \frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} \vert_{n=0} \doteq t 
-\end{split}
-\end{equation*}
-%
-%
-We now localize in time. Let $\psi(t)$ be a cutoff function symmetric about the 
-origin such that $\psi(t) = 1$ for $|t| \le 1$ and $\text{supp} \, \psi 
-= [-2, 2 ]$.
-Define $\psi_{\delta}(t) = \psi(t/\delta)$.  Multiplying both sides of expression
-$\eqref{eqn:integral-form}$ by $\psi_{\delta}(t)$, we obtain
-%
-%
-\begin{align}
-  & \psi_{\delta}u(x,t) 
-  \label{1hh}
-    \\
-    & = \frac{1}{2 \pi}\psi_{\delta}(t)
-    \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
-    \\
-    \label{2hh}
-    & + \frac{1}{2 \pi}\psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
-    \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
-    \\
-    \label{3hh}
-    & + \frac{1}{4 i \pi}\psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}e^{in^{2}(t-t')}
-    \wh{w}(n, t') dt'
-    \\
-    \label{4hh}
-    & - \frac{1}{4 i \pi}\psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}e^{-in^{2}(t-t')}
-    \wh{w}(n, t') dt'
-  \end{align}
-where $$w(x,t) = \frac{1}{2\pi} \sum_{n \in \zz}
-e^{inx} \wh{u^{2}}(n,t).$$  Next, note that for $0 < \delta \le 1$, any $u$
-solving
-\begin{align}
-  & u(x,t) 
-    \\
-    & = \frac{1}{2 \pi}\psi(t)
-    \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
-    \\
-    & + \frac{1}{2 \pi}\psi(t) \sum_{n \in \zz} e^{inx}
-    \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
-    \\
-    \label{term-3}
-    & + \frac{1}{4 i \pi} \psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}e^{in^{2}(t-t')}
-    \wh{w}(n, t') dt'
-    \\
-    \label{term-4}
-    & - \frac{1}{4 i \pi} \psi_{\delta} (t) \sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}e^{-in^{2}(t-t')}
-    \wh{w}(n, t') dt'
-  \end{align}
-  solves \eqref{1hh}-\eqref{4hh} for $| t | \le \delta$. Furthermore, replacing
-  $w$ with $w_{\delta} \doteq \psi_{2 \delta} w$ yields expressions equivalent
-  to \eqref{term-3} and \eqref{term-4}, respectively. 
-  Following the decomposition method of Bourgain, and neglecting $\pi$ related
-  constants, the localized integral equation above is equivalent to 
-%
-%
-\begin{align}
-  & u(x,t)
-  \label{main1-rel-term-0}
-  \\
-  \label{main1-rel-term-1}
-  & = \psi(t) \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
-  \\
-  \label{main1-rel-term-2}
-  & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{u_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
-  \\
-  \label{main1-rel-term-3}
-  & +  \psi_{\delta}(t)\sum_{\alpha =  \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
-  e^{it \tau} \frac{1 - \psi(\tau -  \alpha n^{2}) 
-}{\tau -  \alpha n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
-  \\
-  \label{main1-rel-term-4}
-  & + \psi_{\delta}(t) \sum_{\alpha =  \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
-  t \alpha n^{2})}
-  \frac{1- \psi(\tau -  \alpha n^{2})}{\tau -  \alpha n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
-  \\
-  \label{main1-rel-term-4.5}
-  & +  \psi_{\delta}(t) \sum_{\alpha =  \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
-  \sum_{n \in \zz} \int_\rr e^{i(xn + t \alpha n^{2} )}
-  \psi(\tau -  \alpha n^{2}) (\tau -  \alpha n^{2})^{k-1} \wh{w_{\delta}}(n, \tau)
-  \\
-  \label{main1-rel-term-5}
-  & \doteq Tu, \quad T=T_{u_0, u_1, \psi, \delta}.
-\end{align}
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-We now introduce the following spaces. 
-%
-%
-\begin{definition}
-  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
-  \begin{enumerate}[(I)]
-   \item{$F: \ci \times \rr \to \cc$}.
-   \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
-   \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
-  \end{enumerate}
-  For $s, b \in \rr$, $X_{s,b}$ denotes the completion of $\mathcal{Y}$ with
-  respect to the norm
-  %
-  %
-  \begin{equation}
-  \begin{split}
-    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
-    (1 + | | \tau | - n^{2} |)^{2b} |\wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
-  \end{split}
-  \label{eqn:bous-norm}
-  \end{equation}
-  %
-  \begin{framed}
-    %
-    %
-    \begin{remark}
-    Note that the norm here is different than the one used to for the KdV. In
-    the KdV case, $b$ has to be equal to $1/2$. Furthermore, to get the embedding
-    of the lemma below, one has to add an extra term, thus producing the
-    $Y^{s}$ norm of CKSTT\@.
-    \label{rem:alternate-space}
-    \end{remark}
-    %
-  \end{framed}
-    %
-  %
-  %
-\end{definition}
-%
-The $X_{s,b}$ spaces have the following important embedding, whose proof is
-provided in the appendix.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%               Embedding 
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}[Lemma 2.3 in~\cite{Farah:2009uq}]
-  Let $b > 1/2$. Then $X_{s, b} \subset C(\rr, H^s)$ continuously. That is,
-  there exists $c>0$ depending only on $b$ such that
-%
-%
-\begin{equation*}
-\begin{split}
-  \| u \|_{C(\rr, H^s)} \doteq \sup_{t \in \rr} \| u(t) \|_{H^s} 
-  \le c \| u \|_{X_{s,b}}.
-\end{split}
-\end{equation*}
-%
-\label{lem:embedding}
-\end{lemma}
-%
-\begin{definition}
-  \label{wp-def}
-  Equip $H^{s} \times H^{s-2}$ with the 
-  topology defined by the norm $\|(u_{0}, u_{1})\|_{H^{s} \times H^{s-2}}
-  = \|u_{0}\|_{H^{s}} + \|u_{1}\|_{H^{s-2}}$.
-   We say that the $B_{4}$ ivp
-  \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} is
-	\emph{locally well posed} in
-  $H^s \times H^{s-2}$ if 
-	\begin{enumerate}
-    \item Given $(u_{0}, u_{1}) \in H^{s} \times H^{s-2}$
-      there exists $\delta>0$ depending on $(u_{0}, u_{1})$
-      such that the Cauchy problem
-      $\psi_{\delta} u = Tu$ has a solution $u \in C([-\delta,
-      \delta], H^s) \cap X_{s,b}$ for $ |t| \le \delta$.
-    \item The solution is unique in $C([-\delta, \delta], H^{s}) \cap
-      X_{s,b}$.
-    \item
-      The data to solution map $(u_0, u_{1}) \mapsto u(x,t)$ is continuous. That
-      is, given a sequence $\{(u_{0,n}, u_{1,n} ) \} \in H^{s} \times H^{s-2}$
-      such that $$\|(u_{0}, u_{1})
-      - (u_{0,n}, v_{1,n}) \|_{H^{s} \times
-      H^{s-2}} \to 0,$$ with corresponding solutions $u_{n} \in
-      C([-\delta_{n},
-      \delta_{n}])$ and $u \in C([-\delta_{\infty}, \delta_{\infty}])$
-      then there exists $0 < \delta \le \inf\left\{
-      \delta_{n}, \delta_{\infty} \right\}$ such that $\psi_{\delta}u_{n} =
-      Tu_{n}, \psi_{\delta}u = Tu$ and 
-      $$\sup_{t \in [-\delta, \delta]}
-      \|u(\cdot, t) - u_{n}(\cdot, t) \|_{H^s} \to 0.$$
-  \end{enumerate}
-	Otherwise, we say that the $B_{4}$ ivp is \emph{ill-posed}.
-\end{definition}
-%
-
-%
-We are now prepared to state the main result.
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%	Main Result				
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{theorem}
-\label{thm:main}
-The initial value problem 
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} is locally well-posed in $H^s$ for
-$s >
--1/4$. Furthermore, it is ill-posed for $s < -1/2$ in both the periodic and non-periodic cases if we can improve the well-posedness index to $s \ge -1/2$. 
-%
-%
-\end{theorem} 
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Proof of Thm
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
-%
-%
-\section{Well-Posedness for $s > -1/4$ in the Periodic Case}
-%
-%
-%
-%
-\subsection{Proof of Existence and Uniqueness}
-\label{sec:proof-b4-per-case}
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%% Contraction Proposition
-%				 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-The following bilinear
-estimate is crucial to the proof.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				Proposition
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{proposition}[Theorem 1.1 in~\cite{Farah:2009uq}]
-\label{prop:bilinear-est}
-	%
-	%
-	If $a > 1/4$, $b > 1/2$, and $s \ge -a/2$, 
-  then 
-	\begin{equation}
-    \| w_{fg} \|_{X_{s,-a}}
-		    \le c_{a} \|f\|_{X_{s,b}} \|g\|_{X_{s,b}}
-	\end{equation}
-  where $w_{fg}(x,t)$ = $fg (x,t)$.
-%
-%
-%
-%
-\end{proposition}
-%
-Estimating the $X_{s,b}$ norms of the linear terms of the $B_{4}$ localized
-integral ivp, and applying~\ref{prop:bilinear-est} when estimating the
-$X_{s,b}$ norm of the non-linearity,
-one can show the following.
-%
-\begin{proposition}
-\label{prop:contraction}
-%
-For $1/2 < b \le 1$, $s \ge -1/4 + 2(b -1/2)$, $0 < \delta \le 1$, we have
-%
-%%
-\begin{equation*}
-	\begin{split}
-    \|Tu\|_{X_{s,b}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
-    + \delta^{b-1/2} \|u\|_{X_{s,b}}^2 
-		\right)
-	\end{split}
-\end{equation*}
-%
-where $c = c_{\psi, b} > 1$.  
-%%
-\end{proposition}
-%%
-%
-We will now use Proposition~\ref{prop:contraction} and the bilinear estimate
-to prove local well-posedness for the 
-$B_4$ ivp. Suppose
-%
-%%
-\begin{equation*}
-	\begin{split}
-    \|(u_0, u_{1})\|_{H^s(\ci) \times H^{s-2}(\ci)} \le r.
-  \end{split}
-\end{equation*}
-%
-%%
-Then $$\|u\|_{X_{s,b}} \le 2rc$$ implies
-%
-%%
-\begin{equation*}
-	\begin{split}
-		\|Tu \|_{X_{s,b}} 
-    & \le c \left[ r + \delta^{b - 1/2} \left( 
-		2rc \right)^2 \right].
-	\end{split}
-\end{equation*}
-%
-Choosing 
-%
-%
-\begin{equation}
-  \label{delta-suf-small}
-\begin{split}
-  \delta \le \left (\frac{1}{8rc^{2}} \right )^{\frac{1}{b - 1/2}}
-\end{split}
-\end{equation}
-%
-%
-we obtain 
-%%
-%
-%
-%
-\begin{equation*}
-\begin{split}
-\|Tu \|_{X_{s,b}} 
-    & \le \frac{3}{2}rc.
-  \end{split}
-\end{equation*}
-%
-%
-Hence, $T=T_{u_0, u_1, \psi, \delta}$ maps the ball $B_{X_{s,b}}(2rc)$ into
-itself. Next, note that 
-%
-%%
-\begin{equation*}
-	\begin{split}
-    Tu - Tv = \eqref{main1-rel-term-3} + \eqref{main1-rel-term-4} +
-    \eqref{main1-rel-term-5} 
-  \end{split}
-  \label{eqn:integral-form-dif}
-\end{equation*}
-%
-%%
-where now $w_{\delta}(x,t) =\psi_{2 \delta}(u^{2} - v^{2})$. Rewriting
-%
-%%
-\begin{equation*}
-	\begin{split}
-	u^2 - v^2
-		& = (u-v)(u+v)
-		\end{split}
-\end{equation*}
-%
-%%
-and repeating earlier arguments, we obtain
-%
-%%
-%%
-\begin{equation}
-	\label{20a}
-	\begin{split}
-		\|Tu - Tv \|_{X_{s,b}}  
-    & \le c \delta^{b - 1/2}\|u -v\|_{X_{s,b}} \|u + v \|_{X_{s,b}}
-		\\
-    & \le c \delta^{b -1/2} \|u -v\|_{X_{s,b}} (\|u\|_{X_{s,b}}+ \|v \|_{X_{s,b}}).
-	\end{split}
-\end{equation}
-%
-%%
-If $$ u, v \in B_{X_{s,b}} \left (2rc \right )$$ then choosing $\delta$ as in
-\eqref{delta-suf-small}, we obtain
-%
-%%
-\begin{equation}
-	\label{21a}
-	\begin{split}
-		\|Tu - Tv \|_{X_{s,b}}
-    & \le c \delta^{b-1/2} \|u -v \|_{X_{s,b}} \left( 2rc + 
-		2rc \right)
-		\\
-		& = \frac{1}{2} \|u -v \|_{X_{s,b}}. 
-	\end{split}
-\end{equation}
-%
-%%
-We conclude that $T$ is a contraction on the ball $B_{X_{s,b}}(2rc)$.
-A Picard iteration then yields a unique 
-$u \in X_{s,b}$ satisfying $u = Tu$. Applying
-Lemma~\ref{lem:embedding}, it follows that $u(x,t) \subset C( [-\delta, \delta], H^s)
-\cap X_{s,b}$ is a unique
-solution of the $B_{4}$ ivp \eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2} for $t
-\in [-\delta, \delta]$.
-%
-%
-%
-%
-%
-%
-\subsection{Proof of Lipschitz Continuity} 
-\label{sec:lip-continuity}
-%
-%
-%
-%
-Let $$(u_0, u_1), (v_0, v_1)  \subset
-B_{H^{s} \times H^{s-2}} \left (r \right ).$$ Then for $\delta$ sufficiently
-small (i.e.\ satisfying \eqref{delta-suf-small}), there exist $u, v \in
-X_{s,b}$ such that $u =
-T_{u_0, u_1}u$, $v = T_{v_0, v_1} v$, and so
-%
-%
-\begin{align}
-  \notag
-    & T_{u_0, u_1}(u) - T_{v_0, v_1}(v)
-		\\
-    & = \psi(t) \sum_{n \in \zz} e^{inx} \wh{u_{0} - v_{0}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
-\label{main1-rel-term-1g}
-  \\
-  & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{u_{1} - v_{1}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
-\label{main1-rel-term-2g}
-  \\
-  & + \psi_{\delta}(t) \sum_{\alpha =  \pm 1} \sum_{n\in \zz} \int_\rr e^{ixn}  
-  e^{it \tau} \frac{1 - \psi(\tau -  \alpha n^{2}) 
-}{\tau -  \alpha n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
-\label{main1-rel-term-3g}
-  \\
-  & + \psi_{\delta}(t) \sum_{\alpha =  \pm 1} \sum_{n\in \zz} \int_\rr e^{i(xn + 
-  t \alpha n^{2})}
-  \frac{1- \psi(\tau -  \alpha n^{2})}{\tau -  \alpha n^{2}} \wh{w_{\delta}}(n, \tau) \ d \tau
-\label{main1-rel-term-4g}
-  \\
-  & + \psi_{\delta}(t) \sum_{\alpha =  \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
-  \sum_{n \in \zz} \int_\rr e^{i(xn + t \alpha n^{2} )}
-  \psi(\tau -  \alpha n^{2}) (\tau -  \alpha n^{2})^{k-1} \wh{w_{\delta}}(n, \tau)
-  \label{main1-rel-term-5g}
-\end{align}
-%
-where now $w_{\delta} = \psi_{2 \delta}(u^{2} - v^{2})$. One can show 
-%
-\begin{equation}
-	\label{gen-2a}
-	\begin{split}
-    & \| \eqref{main1-rel-term-1g}\|_{X_{s,b}}
-		\le c \|u_0 -v_0\|_{H^s},
-    \\
-    & \| \eqref{main1-rel-term-2g}\|_{X_{s,b}}
-    \le c \|u_1 -v_1\|_{H^{s-2}}.
-	\end{split}
-\end{equation}
-%
-%
-%
-%
-Therefore, from \eqref{21a} and \eqref{gen-2a}, we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-    \|u -v \|_{X_{s,b}}
-    & = \|T_{u_0, v_0}(u) - T_{u_1, v_1}(v) \|_{X_{s,b}}
-    \\
-    & \le
-    c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
-        \|_{H^{s-2}\left( \ci \right)} \right )
-        + \frac{1}{2} \|u -v \|_{X_{s,b}}
-  \end{split}
-\end{equation*}
-%
-%
-which implies
-%
-%
-\begin{equation*}
-	\begin{split}
-		\frac{1}{2} \|u-v\|_{X_{s,b}} \le
-    c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
-        \|_{H^{s-2}\left( \ci \right)} \right )
-      \end{split}
-\end{equation*}
-%
-%
-or
-%
-%
-\begin{equation}
-	\begin{split}
-		\|u -v \|_{X_{s,b}} \le 2 c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
-        \|_{H^{s-2}\left( \ci \right)} \right ).
-	\end{split}
-  \label{pre-lem-estimate}
-\end{equation}
-%
-%
-Applying Lemma~\ref{lem:embedding} to \eqref{pre-lem-estimate}, it follows that
-for $(u_0, u_1), (v_0, v_1)  \subset
-B_{H^{s} \times H^{s-2}} \left (r \right )$, the
-associated solutions $u, v \in C([-\delta, \delta], H^{s}(\ci))$ satisfy the estimate%
-%
-%
-	 %
-	 %
-	 \begin{equation*}
-		 \begin{split}
-       \sup_{t \in [-\delta, \delta]} \|u(\cdot, t) -v(\cdot, t) \|_{H^s(\ci)} \le
-      2 c \left( \|u_0 -v_0 \|_{H^s\left( \ci \right)} +\|u_1 -v_1
-        \|_{H^{s-2}\left( \ci \right)} \right ).
-		 \end{split}
-	 \end{equation*}
-	 %
-	 %
-Hence, the data to solution map is Lipschitz continuous from $B_{H^{s}
-\times H^{s-2}} \left (r \right )$ to $C([-\delta, \delta],
-H^{s}(\ci))$, where $\delta = \delta(r)$. This
-concludes the proof of well-posedness for the $B_4$ ivp
-\eqref{eqn:mb-2}-\eqref{eqn:mb-init-data-2}. \qed %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Proof of Bilinear Estimate B4 Per
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%\section{Well-Posedness for $s > -1/4$ in the Non-Periodic Case} 
-%\label{sec:non-periodic-case}
-%%
-%%
-%\begin{definition}
-  %Let $S(\rr^{2})$ denote the space of Schwartz functions on
-  %$\rr^{2}$.  For $s, b \in \rr$, $\mathcal{X}_{s,b}$
-  %denotes the completion of $S(\rr^{2})$ with
-  %respect to the norm
-  %%
-  %%
-  %\begin{equation}
-  %\begin{split}
-    %\|F\|_{\mathcal{X}_{s,b}} = \left( \int_{\rr} \int_{\rr} (1 + \xi^{2})^{s}
-    %(1 + | | \tau | - \xi^{2} |) \wh{F}(n, \tau) d \tau d \xi \right)^{1/2}.
-  %\end{split}
-  %\label{eqn:bous-norm-real}
-  %\end{equation}
-  %%
-  %%
-  %%
-  %%
-%\end{definition}
-%%
-%These spaces have the following important embedding.
-%\begin{lemma}
-  %Let $b > 1/2$. Then $\mathcal{X}_{s, b} \subset C(\rr, H^s)$ continuously. That is,
-  %there exists $c>0$ depending only on $b$ such that
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\| u \|_{C(\rr, H^s)} \doteq \sup_{t \in \rr} \| u(t) \|_{H^s} 
-  %\le c \| u \|_{\mathcal{X}_{s,b}}.
-%\end{split}
-%\end{equation*}
-%%
-%\label{lem:real-embedding}
-%\end{lemma}
-
-%%
-%Hence, to complete the proof of well-posedness in the non-periodic case, we need
-%only establish the following bilinear estimate. All other arguments are
-%analogous to those in the periodic case.
-%%
-%\begin{proposition}[Theorem 1.1 in Farah nonperiodic]
-%\label{prop:bilin-est-real}
-%If $b > 1/2$, $a > 1/2$, and $s \ge -a/2$, 
-  %then there exists $c > 0$ depending only on $a$, $b$, and $s$ such that
-  %%
-  %%
-  %\begin{equation*}
-  %\begin{split}
-    %\| uv \|_{\mathcal{X}_{s,-a}} \le c \| u \|_{\mathcal{X}_{s,b}} \| v \|_{\mathcal{X}_{s,b}}.
-  %\end{split}
-  %\end{equation*}
-  %%
-  %%
-%\end{proposition}
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -771,8 +110,7 @@ concludes the proof of well-posedness for the $B_4$ ivp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\newpage
-\section{Ill-Posedness for $s < -1/2$ in the Periodic Case}
+\section{Introduction}
 Our motivation will be the work of Bejanaru and Tao
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 %
@@ -784,9 +122,9 @@ Our motivation will be the work of Bejanaru and Tao
 \begin{split}
   L(f)
   \doteq \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f_{1}}(n) \frac{e^{in^{2}t} + e^{-in^{2}t}}{2} 
+  \wh{f_{1}}(n) \frac{e^{i\lambda(n)t} + e^{-i\lambda(n)t}}{2} 
   & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f_{2}}(n)\frac{e^{in^{2}t} - e^{-in^{2}t}}{2 i n^{2}} 
+  \wh{f_{2}}(n)\frac{e^{i\lambda(n)t} - e^{-i\lambda(n)t}}{2 i \lambda(n)} 
 \end{split}
 \end{equation*}
 %
@@ -797,8 +135,8 @@ and
 \begin{equation*}
 \begin{split}
 N(u, v)
-& \doteq \frac{1}{4 \pi i} \psi_{\delta}(t) \sum_{n \in \zz} e^{inx}
-    \int_{0}^{t}[e^{in^{2}(t-t')}-e^{-in^{2}(t-t')}]
+& \doteq \frac{1}{4 \pi i} \psi_{\delta}(t) \sum_{n \in \zz} e^{inx} \frac{n^{2}}{\lambda(n)}
+    \int_{0}^{t}[e^{i\lambda(n)(t-t')}-e^{-i\lambda(n)(t-t')}]
     \wh{uv}(n, t') dt'.
 \end{split}
 \end{equation*}
@@ -836,33 +174,15 @@ For example,
 %
 %
 and so on. The key tool in our proof of ill-posedness is the assumption of
-well-posedness for $B_{4}$ for $s \ge -1/2$, where our notion of well-posedness
-is given by Definition~\ref{wp-def}.
-\begin{framed}
-\begin{remark}
-  The technical reason is
-that the computation of the second iterate yields a factor
-of $N^{-1}$
-which can be nullified if the amplitude of the initial data is $N^{1/2}$. See
-\eqref{ill-pos-ce}. This is why well-posdness for $s > -1/4$ does not suffice to
-prove ill-posedness beneath $s < -1/2$; that is, an amplitude of $N^{1/4}$ for
-the initial data will not be
-sufficient to eliminate the decay given by the factor of $N^{-1}$ coming out of
-the computations in \eqref{ill-pos-ce}). This results in the norm of the second
-iterate to decay to $0$ as $N \to \infty$. In order to have ill-posedness, we
-want the norm of the second iterate to \emph{not} converge to $0$.
-\end{remark}
-\end{framed}
-If well-posedness holds for $s \ge -1/2$, then for
-initial data in $H^{s} \times H^{s-2}$, $s \ge -1/2$, the corresponding solution
-to the $B_{4}$ ivp can be asymptotically expanded as the sum of the iterates defined
+qualitative well-posedness for Boussinesq for $s \ge -1$, that is, well-posedness given by a picard iteration in a Banach space which is continuously embedded in $C([0, T], H^{s})$, where $T > 0$ depends on the $H^{s}$ size of the initial data. If qualitative well-posedness holds for $s \ge -1$, then for
+initial data in $H^{s} \times H^{s-2}$, $s \ge -1$, the corresponding solution
+to the Boussinesq ivp can be asymptotically expanded as the sum of the iterates defined
 above. More precisely, we have the following.
 %%
 \begin{lemma}
   \label{lem:qwp-awp}
-  Suppose the $B_{4}$ ivp is well-posed for $s \ge -1/2$, where our notion of
-  well-posedness is given by Definition~\ref{wp-def}. Then for
-  $f \in B_{H^{s} \times H^{s-2}}(r)$, $s \ge -1/2$,  and $\delta=\delta(r)$
+  Suppose the Boussinesq ivp is qualitatively well-posed for $s \ge -1$. Then for
+  $f \in B_{H^{s} \times H^{s-2}}(r)$, $s \ge -1$,  and $\delta=\delta(r)$
 sufficiently small, we have the absolutely convergent
 (in $C([-\delta, \delta], H^{s})$) power series expansion
 %
@@ -879,8 +199,21 @@ sufficiently small, we have the absolutely convergent
 \end{lemma}
 %
 %
-From this, it follows that we have failure of continuity at $\vec{0} =
-(0, 0)$, due to the
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				Proof of Ill-Posedness
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Ill-Posedness for $s < -1$ on the Circle (Failure of Continuity)} 
+\label{sec:pf-ill-pos}
+Given the machinery established in the introduction, we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
+(0, 0)$, it will be enough to show the
 following.
 %
 %
@@ -898,20 +231,20 @@ following.
 %
 \begin{theorem}
   Let $N$ be a positive integer. Consider initial data $$f_{N}(x) =
-  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N^{-\beta}}{2 \pi}\left[ e^{iNx} + e^{i(1-N)x} \right], 0
-  \right ), \quad \beta = 1/4 + 2 \ee.$$ Then 
+  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N}{2 \pi}\left[ e^{ix} + e^{i(N-1)x} \right], 0
+  \right ).$$ Then 
   %
   %
     \begin{enumerate}[(I)]
-      \item{$ f_{N} \in B_{H^{-1/4 + \ee} \times H^{-5/2 + \ee}}(r) \ \text{with associated
+      \item{$ f_{N} \in B_{H^{-1} \times H^{-3}}(r) \ \text{with associated
     solutions}
     \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
-    H^{-1/2})$}
-      \text{but} 
+    H^{-1})$}.
     \\
   \item
-    $ \|A_{2}[f_{N}]\|_{C\left( [-\delta, \delta, H^{s}] \right)}/ \| f_{N}
-    \|_{H^{s}} \not \to 0$. 
+    $\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -1$ but 
+    $ \displaystyle \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N}
+    \|_{H^{\beta}}}$ diverges.
 \end{enumerate}
   %
   %
@@ -930,18 +263,18 @@ following.
 %
 \begin{proof}
   We first bound $A_{2}(f_{N})$ from below.
-  First, note that $f_{N} \in C^{\infty}$. In particular
+  Observe that $f_{N} \in C^{\infty}$. In particular
 %
 %
 \begin{equation}
   \label{ill-pos-ce}
 \begin{split}
   \wh{f_{N,1}}(n)
-  & = r N^{-\beta}\int_{\ci} [e^{-ix(n - N)} + e^{-ix(n - (1-N))}]  dx  
+  & = r N\int_{\ci} [e^{-ix(n - N)} + e^{-ix(n - (N-1))}]  dx  
   \\ 
   & = 
   \begin{cases}
-    2 \pi r N^{-\beta},  \quad  & n = N \ \text{or} \ n = 1-N
+    2 \pi r N,  \quad  & n = N \ \text{or} \ n = N-1
     \\
      0, \quad  & \text{otherwise}.
   \end{cases}
@@ -954,11 +287,11 @@ Hence
 \begin{equation}
   \label{ill-pos-ced}
 \begin{split}
-  \| f_{N,1} \|_{H^{s}}
-  & = \frac{2 \pi r N^{-\beta}}{2 \pi} \left( \sum_{n \in \zz} (1 + | n |)^{2s} |
+  \| f_{N,1} \|_{H^{\beta}}
+  & = \frac{2 \pi r N}{2 \pi} \left( \sum_{n \in \zz} (1 + | n |)^{2 \beta} |
   \wh{f_{N,1}}(n) |^{2} \right)^{1/2}
   \\
-  & \le r N^{s-\beta}.
+  & \sim rN^{\beta +1}.
 \end{split}
 \end{equation}
 %
@@ -966,11 +299,13 @@ Hence
 Therefore, from \eqref{ill-pos-ced} we see that 
 \begin{equation*}
   \begin{split}
-    & (f_{N,1}, 0) \in B_{H^{-1/4 + \ee} \times H^{-5/2 + \ee}}(r)
+    & (f_{N,1}, 0) \in B_{H^{-1} \times H^{-3}}(r)
+    \\
+    & \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < -1.
     \end{split}
 \end{equation*}
-Note that since we have assumed well-posedness for the $B_{4}$ equation for $s
-\ge -1/2$, and since $f_{N} \in B_{H^{s} \times H^{s-2}}(r)$, the associated
+Note that since we have assumed well-posedness for the Boussinesq equation for $s
+\ge -1$, and since $f_{N} \in B_{H^{-1} \times H^{-3}}(cr)$, the associated
 solutions $u[f_{N}]$ have common lifespan $\delta$ \emph{which does not depend
 on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
 Observe that
@@ -978,128 +313,189 @@ Observe that
 %
 \begin{equation*}
 \begin{split}
-  & \| A_{2}(f_{N}) \|_{C([-1, 1], H^{s})} 
+  & \| A_{2}(f_{N}) \|_{C([-1, 1], H^{\beta})} 
   \\
-& \ge \| A_{2}(f_{N}) \|_{C([1/2, 1], H^{s})} 
+& \ge \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
 \\
-  & =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([1/2, 1],
-  H^{s})} 
+  &  =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, 1],
+  H^{\beta})} 
   \\
-  & = \sup_{1/2 \le t \le 1} \| \psi_{1}(t) (1 + | n |)^{s}
-  \frac{1}{4 i \pi}
-  \int_{1/2}^{t} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
+  & = \sup_{0 \le t \le 1} \| \psi_{1}(t) (1 + | n |)^{\beta}
+  \frac{1}{4 i \pi} \frac{n^{2}}{\lambda(n)}
+  \int_{0}^{t} \left( e^{i\lambda(n)(t-t')} - e^{-i\lambda(n)(t-t')} \right)
   \wh{[L(f_{N})]^{2}}(n, t') dt' \|_{\ell^{2}_{n}}
   \\
-  & = \sup_{1/2 \le t \le 1} \| (1 + | n |)^{s} \frac{1}{4 i \pi} 
-  \int_{1/2}^{t} \sum_{n_{1}}
+  & \gtrsim \sup_{0 \le t \le 1} \| (1 + | n |)^{\beta}
+  \int_{0}^{t} \sum_{n_{1}} \left( e^{i\lambda(n)(t-t')} - e^{-i\lambda(n)(t-t')} \right)
   \\
-  & \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
-  \wh{L(f_{N})}(n - n_{1}, t')\wh{L(f_{N})}(n_{1}, t') dt'
-  \|_{\ell^{2}_{n}}
-  \\
-  &= \sup_{1/2 \le t \le 1} \frac{1}{16 i \pi^{2}}\| (1 + | n |)^{s}
-  \int_{1/2}^{t} \sum_{n_{1}} \left( e^{in^{2}(t-t')} - e^{-in^{2}(t-t')} \right)
-  \\
-  & \times \left[ \frac{\wh{f_{N}}(n - n_{1})\left( e^{i(n - n_{1})^{2}t'} +
-  e^{-i(n - n_{1})^{2}t'} \right)}{2} \right ]
-  \\
-  & \times \left[ \frac{\wh{f_{N}}(n_{1})\left( e^{in_{1}^{2}t'} +
-  e^{-in_{1}^{2}t'} \right)}{2}  \right]
+  & \times \wh{f_{N}}(n - n_{1})\left( e^{i\lambda(n - n_{1})t'} +
+  e^{-i\lambda(n - n_{1})t'} \right)
+  \wh{f_{N}}(n_{1})\left( e^{i \lambda(n_{1})t'} +
+  e^{-i \lambda(n_{1})t'} \right) 
   dt' \|_{\ell^{2}_{n}}
-\end{split}
+  \\
+  & \gtrsim | \sup_{0 \le t \le 1} 
+  N^{\beta + 2} 
+\int_{0}^{t} \left( e^{i\lambda(N)(t-t')} - e^{-i\lambda(N)(t-t')} \right)
+  \\
+  & \times \left( e^{i\lambda(N - 1)t'} +
+  e^{-i\lambda(N - 1)t'} \right)
+  \left( e^{i \lambda(1)t'} +
+  e^{-i \lambda(1)t'} \right) 
+  dt' | 
+ \end{split}
 \end{equation*}
 %
-which is equal to
+%
+where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge | a_{N} |$, the symmetry of the convolution, and the definition of $f_{N}$. Distributing terms, and setting $t=1$, we bound below by 
+%
+%
 \begin{equation}
-  \label{pre-loc}
+  \label{pre-int-decay}
 \begin{split}
-& \sup_{1/2 \le t \le 1} \frac{1}{8 \pi^{2}}\| (1 + | n |)^{s}
-\int_{1/2}^{t} \sum_{n_{1}} \sin[n^{2}(t-t')] \cos[(n - n_{1})^{2}t']
-\cos(n_{1}^{2}t') \wh{f_{N}}(n - n_{1})\wh{f_{N}}(n_{1}) dt'
-\|_{\ell_{2}}.
+  & N^{\beta+2} | \int_{0}^{1} e^{i \lambda(N)}
+  \\
+  & \times \left( e^{it'[\lambda(N-1) - \lambda(N) + \lambda(1)]}
+ + e^{it'[\lambda(N-1) - \lambda(N) - \lambda(1)]} 
+ + e^{it'[\lambda(1) - \lambda(N-1) + \lambda(N)]}
+ + e^{it'[-\lambda(N-1) - \lambda(N) - \lambda(1)]}
+  \right)
+ \\ 
+ & - e^{-i \lambda(N)}
+  \\
+  & \times \left( e^{it'[\lambda(N-1) + \lambda(N) + \lambda(1)]}
+ + e^{it'[\lambda(N-1) + \lambda(N) - \lambda(1)]} 
+ + e^{it'[\lambda(1) - \lambda(N-1) + \lambda(N)]}
+ + e^{it'[-\lambda(N-1) + \lambda(N) - \lambda(1)]}
+  \right) |
 \end{split}
 \end{equation}
-Using the inequality $\| a_{n} \|_{\ell^{2}} \ge
-|a_{1}|$ we bound \eqref{pre-loc} below by
+%
+Now
 %
 %
-\begin{equation}
-  \label{yut}
+\begin{equation*}
 \begin{split}
-  & \frac{2^{s}}{8\pi^{2}} \sup_{1/2 \le t \le 1} 
-  | \int_{1/2}^{t} \sum_{n_{1}} \sin(t-t') \cos[(1 -n_{1})^{2}t']
-\cos(n_{1}^{2}t') \wh{f_{N}}(1 - n_{1})\wh{f_{N}}(n_{1}) dt' |.
-\end{split}
-\end{equation}
-%
-%
-%
-%
-%
-%
-%
-%
-Substituting
-\eqref{ill-pos-ce} into \eqref{yut}, we obtain
-%
-%
-\begin{equation}
-  \label{rxx}
-\begin{split}
-  & \frac{2^{s}}{4\pi^{2}}  N^{-2 \beta} \sup_{1/2 \le t \le 1} 
- | \int_{1/2}^{t} \sin(t-t') [\cos(N^{2}t')] [\cos( (1 - N)^{2}t')] dt' |
+\lambda(N) - \lambda(N-1)
+ & = \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
  \\
- & \gtrsim N^{-2 \beta} | \int_{1/2}^{1} \sin(1-t') [\cos(N^{2}t')] [\cos( (1 -
- N)^{2}t')] dt' |.
+ & = O(N)
+\end{split}
+\end{equation*}
+%
+%
+while
+%
+%
+\begin{equation*}
+\begin{split}
+  \lambda(N) + \lambda(N-1) = O(N^{2}).
+\end{split}
+\end{equation*}
+%
+%
+Hence, evaluating the integrand of \eqref{pre-int-decay} from $0$ to $1$, we obtain $O(N^{-1})$ and $O(N^{-2})$ terms. Discarding all $O(N^{-2})$ terms, we get
+%
+%
+\begin{equation*}
+\begin{split}
+  & | e^{i \lambda(N)}\left( \frac{e^{i}[\lambda(N-1) - \lambda(N) + \lambda(1)] - 1}{i[\lambda(N-1) - \lambda(N) + \lambda(1)]} + 
+  \frac{e^{i}[\lambda(N-1) - \lambda(N) - \lambda(1)] - 1}{i[\lambda(N-1) - \lambda(N) - \lambda(1)]} \right)
+  \\
+  & + e^{-i \lambda(N)}\left( \frac{e^{-i}[\lambda(N-1) - \lambda(N) - \lambda(1)] - 1}{i[\lambda(N-1) - \lambda(N) - \lambda(1)]} + 
+  \frac{e^{-i}[\lambda(N-1) - \lambda(N) + \lambda(1)] - 1}{i[\lambda(N-1) - \lambda(N) + \lambda(1)]} \right)
+  \\
+  & \simeq \frac{\cos[\lambda(N-1) + \lambda(1)] - \cos \lambda(N)}{\lambda(N) - \lambda(N-1) - \lambda(1)} + \frac{\cos[\lambda(N-1) - \lambda(1)] - \cos \lambda(N)}{\lambda(N) - \lambda(N-1) + \lambda(1)} |. 
+\end{split}
+\end{equation*}
+%
+%
+Let $N = N_{k}$ be a sequence increasing to $\infty$ such that $\cos \lambda(N_{k}) = 0$ for all $k \ge 0$. Then the above reduces to 
+%
+%
+%
+%
+\begin{equation}
+  \label{puy}
+\begin{split}
+  & | \frac{\cos[\lambda(N-1) + \sqrt{2}] }{\lambda(N) - \lambda(N-1) - \lambda(\sqrt{2})} + \frac{\cos[\lambda(N-1) - \lambda(\sqrt{2})] }{\lambda(N) - \lambda(N-1) + \lambda(\sqrt{2})} |
+  \\
+  & = | \frac{\left \{ \lambda(N) - \lambda(N-1) \right \}\left \{ \cos[\lambda(N-1) + \sqrt{2}] + \cos\left[ \lambda(N-1) - \sqrt{2} \right] \right \}}{[\lambda(N) - \lambda(N-1) - \sqrt{2}][\lambda(N) - \lambda(N-1) + \sqrt{2}]} |
+  \\
+  & = | \frac{2 \left \{ \lambda(N) - \lambda(N-1) \right \}\left \{ \cos\lambda(N-1) \cos \sqrt{2} - \sin\lambda(N-1) \sin \sqrt{2} \right \}}{[\lambda(N) - \lambda(N-1) - \sqrt{2}][\lambda(N) - \lambda(N-1) + \sqrt{2}]} |
+  \\
+  & = O(N^{-1})a_{n}
 \end{split}
 \end{equation}
 %
-Let $N = \sqrt{2 \pi k}, k \in \mathbb{N}$. Noting that 
+%
+where
 %
 %
 \begin{equation*}
 \begin{split}
-  (1 - N)^{2} = \left( \frac{N-1}{N} \right)^{2} N^{2}
+  a_{n} \doteq | \cos\lambda(N-1) \cos \sqrt{2} - \sin\lambda(N-1) \sin \sqrt{2} |.
 \end{split}
 \end{equation*}
 %
 %
-and choosing $k$ sufficiently large such that $\left ( \frac{N-1}{N} \right
-)^{2} > 0.99$, we bound \eqref{rxx} below by
-%
+Notice that $a_{n}$ is divergent. Substituting \eqref{puy} into \eqref{pre-int-decay}, we see that 
 %
 %
 \begin{equation*}
 \begin{split}
-\frac{1}{4}
-& N^{-2 \beta} | \int_{1/2}^{1} \sin(1-t') dt' |
-\\ & \simeq N^{-2 \beta}.
+\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}
+   \gtrsim O(N^{\beta+1}) a_{n}.
 \end{split}
 \end{equation*}
 %
-%
-Hence
+Therefore, recalling \eqref{ill-pos-ced}, we see that
 %
 %
 \begin{equation*}
 \begin{split}
-  \frac{\|A_{2}[f_{N}]\|_{C\left( [-\delta, \delta, H^{s}] \right)}}{\| f_{N}
-  \|_{H^{s}}} 
-  & \gtrsim \frac{N^{-2 \beta}}{N^{s-\beta}}
-  \\
-  & = N^{-s - \beta}
-  \\
-  & = N^{-s - 1/4 + \ee}
-  \\
-  & \ge 1, \quad s \le -1/4 - \ee
+\frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N}
+\|_{H^{\beta}}} \ge c a_{n}, \qquad c > 0 
 \end{split}
 \end{equation*}
+%
+%
+which diverges. This concludes the proof.
+%
+%
 %
 %
 %
 \end{proof}
 %
 %
+\begin{framed}
+\begin{remark}
+ Since $\{a_{n}\}_{n}$ is divergent, and $a_{n} \ge 0$, it follows that for each $\ee > 0$ there exists an $N' = N'(\ee)$ such that for all $N > N'$, we have
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    a_{N} > \ee/c
+  \end{split}
+  \end{equation*}
+  %
+  %
+  and so
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+  \|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}
+  > \ee {\| f_{N} \|_{H^{\beta}}}
+  \end{split}
+  \end{equation*}
+  %
+  %
+  for all $N > N'$. Letting $N \to \infty$ then establishes the failure of continuity of the data to solution map at $0$.  
+\label{rem:calc}
+\end{remark}
+\end{framed}
 %
 %
 %
@@ -1163,7 +559,7 @@ solves the equation \eqref{nls-quad} in the classical sense.
 \end{theorem}
 %
 %
-Furthermore, as in the case of $B_{4}$, solutions to the qNLS have an asymptotic
+Furthermore, as in the case of Boussinesq, solutions to the qNLS have an asymptotic
 expansion in terms of iterates of the non-linearity. More precisely, they show
 the following. 
 %
