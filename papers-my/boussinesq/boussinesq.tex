@@ -305,7 +305,7 @@ Therefore, from \eqref{ill-pos-ced} we see that
     \end{split}
 \end{equation*}
 Note that since we have assumed well-posedness for the Boussinesq equation for $s
-\ge -1$, and since $f_{N} \in B_{H^{-1} \times H^{-3}}(cr)$, the associated
+\ge -1$, and since $f_{N} \in B_{H^{-1} \times H^{-3}}(r)$, the associated
 solutions $u[f_{N}]$ have common lifespan $\delta$ \emph{which does not depend
 on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
 Observe that
@@ -496,6 +496,59 @@ which diverges. This concludes the proof.
 \label{rem:calc}
 \end{remark}
 \end{framed}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\section{Ill-Posedness for $s < -1/2$ on the Line (Failure of Continuity)} 
+Given the machinery established in the introduction, we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
+(0, 0)$, it will be enough to show the
+following.
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Failure of Continuity at 0
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+  Let $N$ be a positive integer. Consider initial data $$f_{N}(x) =
+  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N^{1/2}}{2 \pi}\left[ \chi_{[0,1] \cup [N-1, N]} \right], 0 \right ).$$ Then 
+  %
+  %
+    \begin{enumerate}[(I)]
+      \item{$ f_{N} \in B_{H^{-1/2} \times H^{-5/2}}(r) \ \text{with associated
+    solutions}
+    \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
+    H^{-1/2})$}.
+    \\
+  \item
+    $\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -1/2$ but for fixed $\ee > 0$ there exists $N'$ such that for all $N > N'$ 
+    $$  \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N}
+    \|_{H^{\beta}}} > \ee.$$
+\end{enumerate}
+  %
+  %
+\end{theorem}
+%
+%
+%
+\begin{proof}
+
+\end{proof}
+%
+%
+<++>
+%
 %
 %
 %
