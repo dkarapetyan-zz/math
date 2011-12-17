@@ -1,48 +1,15 @@
-%
-%
-\documentclass[12pt,reqno]{amsart}
-\usepackage{amsmath}
+
+\documentclass{amsart}
+%\usepackage{showkeys}
+\usepackage{framed}
+\usepackage{enumerate}
 \usepackage{amssymb}
-\usepackage[notref, notcite]{showkeys}
-\usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage{framed}  %for framing remarks, theorems, etc.
-\usepackage{enumerate} %to change enumerate symbols
-\usepackage[margin=2.5cm]{geometry}  %page layout
-\numberwithin{equation}{section}  %eliminate need for keeping track of counters
-\setlength{\parindent}{0in} %no indentation of paragraphs after section title
-\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
-%
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
 linkcolor=blue,
 citecolor=blue,
 urlcolor=blue,
 }
-\synctex=1
-%\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography;
-%%uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly
-%%(conflicts with cref in particular)
-%
-%
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\noindent}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\nn}{\mathbb{N}}
-\newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
-\newcommand{\ci}{\mathbb{T}}
-\newcommand{\zzdot}{\dot{\zz}}
-\newcommand{\wh}{\widehat}
-\newcommand{\p}{\partial}
-\newcommand{\ee}{\varepsilon}
-\newcommand{\vp}{\varphi}
-\newcommand{\wt}{\widetilde}
-%
-%
-%
-%
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -53,23 +20,27 @@ urlcolor=blue,
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{examp}{Example}[section]
-\newtheorem{exercise}[theorem]{Exercise}
-%
-%makes proof environment bold instead of italic
-%\makeatletter
-%\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-%{-3.25ex\@plus -1ex \@minus -.2ex}%
-%{1.5ex \@plus .2ex}%
-%{\normalfont\normalsize \bfseries}}
-%\makeatother
-%makes subsubsubsection bold instead of italic
-%
-\def\sgn{\operatorname{sgn}}
+\newtheorem {exercise}[theorem] {Exercise}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\RR}{\mathcal{R}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\p}{\partial}
 \newcommand{\al}{\alpha}
 \newcommand{\ve}{q}
 \newcommand{\tg}{{tan}}
@@ -78,139 +49,385 @@ urlcolor=blue,
 \newcommand{\ta}{{\tilde{a}}}
 \newcommand{\tb}{{\tilde{b}}}
 \newcommand{\tc}{{\tilde{c}}}
-\newcommand{\tS}{{\tilde{S}}}
-\newcommand{\tP}{{\tilde{P}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
 \newcommand{\tu}{{\tilde{u}}}
 \newcommand{\tw}{{\tilde{w}}}
 \newcommand{\tA}{{\tilde{A}}}
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
 \begin{document}
-\title{Ill-Posedness for the Boussinesq Equation}
+\title{Ill-posedness issues for the Boussinesq equation}
+
 \author{Dan-Andrei Geba, Alexandrou Himonas, and David Karapetyan}
+
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{\today}
-%
-%
+\date{}
+
+%\begin{abstract}
+%\end{abstract}
+
+\subjclass[2000]{35B30, 35Q55, 35Q72}
+\keywords{Ill-posedness; Picard iteration method; $X^{s,b}$ spaces.}
+
 \maketitle
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%Ill-Posedness
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
+
 \section{Introduction}
-Our motivation will be the work of Bejanaru and Tao
-\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
-%
-\begin{definition}
-  For $f =f(x)= (f_{1}(x), f_{2}(x)), u = u(x,t), v = v(x,t)$ formally define 
-%
-%
-\begin{equation*}
-\begin{split}
-  L(f)
-  \doteq \frac{1}{2 \pi} \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f_{1}}(n) \frac{e^{i\lambda(n)t} + e^{-i\lambda(n)t}}{2} 
-  & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{f_{2}}(n)\frac{e^{i\lambda(n)t} - e^{-i\lambda(n)t}}{2 i \lambda(n)} 
-\end{split}
-\end{equation*}
-%
-%
-and
-%
-%
-\begin{equation*}
-\begin{split}
-N(u, v)
-& \doteq \frac{1}{4 \pi i} \psi_{\delta}(t) \sum_{n \in \zz} e^{inx} \frac{n^{2}}{\lambda(n)}
-    \int_{0}^{t}[e^{i\lambda(n)(t-t')}-e^{-i\lambda(n)(t-t')}]
-    \wh{uv}(n, t') dt'.
-\end{split}
-\end{equation*}
-%
-%
-Then we let $A_{n}: H^{s} \times H^{s-2} \to C([-\delta, \delta], H^{s}), \ n = 1, 2, \dots$ be the
-recursively defined maps
-%
-%
-\begin{equation*}
-\begin{split}
-  & A_{1}(f) \doteq L(f),
-  \\
-  & A_{n}(f) \doteq \sum_{j, k \in \mathbb{N}: j + k = n} N\left[
-  A_{j}(f), A_{k}(f) \right], \quad n > 1.
-\end{split}
-\end{equation*}
-\end{definition}
-%
-%
-%
-For example, 
-%
-%
-\begin{equation*}
-\begin{split}
-  & A_{2}(f_{N}) = N(A_{1}(f_{N}), A_{1}(f_{N}))
-  \\
-  & A_{3}(f_{N}) = N(A_{1}(f_{N}), A_{2}(f_{N})) + N(A_{2}(f_{N}), A_{2}(f_{N}))
-  \\
-  & A_{4}(f_{N})= N(A_{1}(f_{N}), A_{3}(f_{N})) + N(A_{2}(f_{N}), A_{2}(f_{N}))
-  + N(A_{3}(f_{N}), A_{1}(f_{N}))
-\end{split}
-\end{equation*}
-%
-%
-and so on. The key tool in our proof of ill-posedness is the assumption of
-qualitative well-posedness for Boussinesq for $s \ge -1$, that is, well-posedness given by a picard iteration in a Banach space which is continuously embedded in $C([0, T], H^{s})$, where $T > 0$ depends on the $H^{s}$ size of the initial data. If qualitative well-posedness holds for $s \ge -1$, then for
-initial data in $H^{s} \times H^{s-2}$, $s \ge -1$, the corresponding solution
-to the Boussinesq ivp can be asymptotically expanded as the sum of the iterates defined
-above. More precisely, we have the following.
-%%
-\begin{lemma}
-  \label{lem:qwp-awp}
-  Suppose the Boussinesq ivp is qualitatively well-posed for $s \ge -1$. Then for
-  $f \in B_{H^{s} \times H^{s-2}}(r)$, $s \ge -1$,  and $\delta=\delta(r)$
-sufficiently small, we have the absolutely convergent
-(in $C([-\delta, \delta], H^{s})$) power series expansion
-%
-%
+
+\subsection{Formulation}  object of investigation is the Cauchy problem for
+the periodic/non-periodic ``good" Boussinesq equation, i.e.,
 \begin{equation}
-  \label{power-series-soln}
-\begin{split}
-  u[f] = \sum_{n=1}^{\infty} A_{n}(f).
-\end{split}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}+(u^2)_{xx}\,=\,0, \quad x\in \mathbb{T}\ \text{or} \ \mathbb{R}, \quad t>0,\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x).\\
+\end{array}\right.
+\label{main}
 \end{equation}
 %
 %
-\label{lem:analytic-wp}
-\end{lemma}
+An alternative way to write \eqref{main} (\cite{Linares:1993ly},
+\cite{Fang:1996zr}) is in the form of the following Hamiltonian system
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{t}\,=\,v_{x},\\
+\\
+v_t\,=\, \left(u-u_{xx}-(u^2)_x\right)_x,\\
+\end{array}\right.
+\label{sys}
+\end{equation}
+for which one obtains the conservation of energy, momentum, and mass, i.e.,
+\[
+\aligned
+&E(u,v)\,=\,\int \frac{u^2+u_x^2+v^2}{2} - \frac{u^3}{3}\,dx,\\
+M(u,v)\,=&\,\int uv \,dx, \quad N(u)\,=\,\int u \,dx,\quad P(v)\,=\,\int v \,dx.
+\endaligned
+\]
+
+In order to understand what is the Sobolev theory associated with \eqref{main}, we could do first a formal analysis for \eqref{sys} by assigning $H^{s_1}$ regularity to $u$ and $H^{s_2}$ regularity to $v$. Then, from the first equation of \eqref{sys} we obtain that $u_t$ has $H^{s_2-1}$ regularity, while the main equation \eqref{main} implies that $u_{tt}$ is $H^{s_1-4}$ regular. Hence, by working under the natural assumption that the regularity for $u_t$ should be the average of the ones for $u$, respectively $u_{tt}$, we deduce that
+\[
+s_2=s_1-1.
+\] 
+This is the motivation behind the initial data notation used by certain authors (e.g., \cite{Farah:2009uq}, \cite{Farah:2010ys}):
+\begin{equation}
+u_0=\phi\in H^s(\mathbb{T}\ \text{or} \ \mathbb{R}), \qquad u_1=\psi_x \in H^{s-2}(\mathbb{T}\ \text{or} \ \mathbb{R}).
+\label{not}
+\end{equation}
+
+A more intuitive explanation for the Sobolev regularity in \eqref{not} is given by the fact that the leading terms in the linear operator associated to \eqref{main} are $u_{tt}$ and $u_{xxxx}$, and so, morally speaking, one derivative in time behaves like two derivatives in the spatial variable. 
+
+\subsection{Scaling and well-posedness theory} We notice immediately that \eqref{main} doesn't have a scaling invariance. However, if one ignores the lower order term $u_{xx}$, the new equation 
+\begin{equation}
+u_{tt}+u_{xxxx}+(u^2)_{xx}\,=\,0\label{new}
+\end{equation}
+is invariant under the transformation
+\[
+u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
+\]
+which leads to $s_c=-\frac 32$.
+
+The current state of the art of the LWP theory for \eqref{main}, with Sobolev regularity prescribed by \eqref{not}, is as follows:
+\begin{itemize}
+\item the non-periodic problem is LWP for $s>-1/2$ (\cite{Kishimoto:2010ly}), which is obtained as a corollary for an improved theory for quadratic NLS\@. Previously obtained results include $s>-1/4$ (\cite{Farah:2009uq}) and $s\geq 0$ (\cite{Linares:1993ly}).
+
+\item the periodic problem is LWP for $s>-1/4$ (\cite{Farah:2010ys}), with a Picard iteration done in
+the norm
+\[
+\|F\|_{X^{s,b}}\,=\,\|<|\tau|-\sqrt{n^2+n^4}>^b\,<n>^s \tilde{F}(\tau,n)\|_{L^2_{\tau}l^2_n}.
+\]
+The previous best result was $s\geq 0$ (cite{Fang:1996zr}).
+\end{itemize}
+
+\begin{remark}
+This picture is in line with the ones for $1D$ quadratic NLS, KdV, and $mKdV$, for which there is a $1/4$ gap in regularity between the non-periodic and the periodic initial value problems. 
+\end{remark}
+
+In what concerns IP, the main results for the non-periodic problem (obtained in \cite{Farah:2009uq}) state that:
+\begin{itemize}
+\item the bilinear estimate in $X^{s,b}$ spaces, used in proving LWP, fails for $s\leq -1/4$;
+
+\item the solution map 
+\[
+S: H^s\times H^{s-2} \to C([0,T]; H^s), \quad
+S(u_0,u_1)\,=\,u,
+\]
+is not $C^2$ at zero for $s<-2$.
+\end{itemize}
+
+For the periodic problem, only the failure of the corresponding bilinear estimate when $s\leq -1/4$ was shown in \cite{Farah:2010ys}.
+
+\subsection{Main goals} Our main objective is to obtain an IP result describing Sobolev exponents for which the solution map is not continuous. Our preliminary computations, which are based on a quite general technique pioneered by Bejenaru and Tao (\cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}), can be summarized in the following
+
+\begin{theorem}
+The solution map 
+\[
+S: H^s\times H^{s-2} \to C([0,T]; H^s), \quad
+S(u_0,u_1)\,=\,u,
+\]
+associated to 
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}+(u^2)_{xx}\,=\,0,\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x).\\
+\end{array}\right.
+\label{chs}
+\end{equation}
+is not continuous for $s<-7/2$ in the non-periodic case and for $s<-15/4$ in the periodic case.
+\label{mth}
+\end{theorem}
+
+\section{Description of the Bejenaru-Tao technique}
+\subsection{Abstract well-posedness setting} The Boussinesq equation falls under the general category of abstract semilinear evolution equations with a bilinear nonlinearity, which can be written as (\textbf{description at page 234 in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}})
+\begin{equation}
+u\,=\,L(f)\,+\,N(u,u),
+\label{LN}
+\end{equation}
+where
+\begin{itemize}
+
+\item $f$ is the initial data lying in a data space $D$ (e.g. $H^s \times H^{s-2}$);
+
+\item the solution $u$ takes values in a solution space $S$ (e.g. $C^0H^s \cap X^{s,b}$);
+
+\item $L: D \to S$ is a linear operator  and $N:S\times S \to S$ is a bilinear form.  
+
+\end{itemize} 
+
+For $(D,\|\, \|_D)$ and $(S,\|\, \|_S)$ Banach spaces with 
+\begin{equation}
+\|L(f)\|_S \leq C \|f\|_D,\qquad \|N(u,v)\|_S \leq C \|u\|_S \|v\|_S,
+\label{estim}
+\end{equation}
+where $C>0$ is an absolute constant, we can prove, by using a standard contraction argument, that, for all  $\|f\|_D<\frac{1}{16C^2}$, there exists a unique solution $u$ for $\eqref{LN}$ satisfying $\|u\|_D<\frac{1}{4C}$.  Moreover, the solution is the sum of an absolutely convergent series in S, i.e.,
+\begin{equation}
+u\,=\,\sum_{n=1}^{\infty} A_n(f), \qquad (\forall) \|f\|_D<\frac{1}{16C^2},
+\label{series}
+\end{equation}
+where the nonlinear maps $A_n: D\to S$, $n\geq 1$, are defined recursively by
+\begin{equation}
+A_1(f)\,=\,L(f), \qquad A_n(f)\,=\,\sum_{k=1}^{n-1} N(A_k(f),A_{n-k}(f)), (\forall)n\geq 2.
+\label{An}
+\end{equation}
+This is the result contained in \textbf{Theorem 3 (page 235) in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}}.
+
+\subsection{Sufficient conditions for ill-posedness} However, in proving IP, the key fact that we will be using is \textbf{Proposition 1, page 238 in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}}. It basically says that if the solution series \eqref{series} is continuous, as a function of $f$, in  weaker topologies than the ones given by $\| \|_D$ and $\| \|_S$, then each of the $A_n$'s is also continuous in this setup.
+
+Precisely, let $(D,S)$ be a pair of Banach spaces satisfying \eqref{estim} (the term used in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness} is \textit{quantitatively well-posed}), for which one has, as described above, a continuous solution map associated to \eqref{LN},
+\begin{equation}
+f\in (B_1,\|\, \|_D)\,\longrightarrow\,u\in (B_2,\|\, \|_S),
+\end{equation} 
+where $B_1\subset D$ and $B_2 \subset S$ are two balls centered at the origin. If one endows these balls with coarser norms denoted $\|\, \|_{D'}$, respectively $\| \,\|_{S'}$, and 
+\begin{equation}
+f\in (B_1,\|\, \|_{D'})\,\longrightarrow\,u\in (B_2,\|\, \|_{S'})
+\end{equation} 
+is still continuous, then
+\begin{equation}
+A_n: (B_1,\|\, \|_{D'})\,\longrightarrow\,(B_2,\| \,\|_S)
+\end{equation} 
+is continuous for all $n\geq 1$.
+
+Therefore, if we want to use the above result in order to prove IP, a strategy would look like this:
+\begin{itemize}
+\item start with a \textit{well-posedness} pair $(D,S)$, i.e., $D$ is an initial data space for which
+there is a solution lying in $S$. In principle, $D$ is an $H^s$ space, with $s$ large enough to ensure LWP, while $S$ is a subset of $C([0,T]; H^s)$. An important comment about the time of existence $T$ will be made below.
+
+\item choose two weaker norms, $\| \,\|_{D'}$ and $\| \,\|_{S'}$, related to the regularity for which you try to prove IP\@. The obvious choice, which maybe one can refine afterwards, is
+\[
+\| \,\|_{D'}\,=\,\| \,\|_{H^{s'}}, \qquad \| \,\|_{S'}\,=\,\| \,\|_{C([0,T], H^{s'})},\] 
+with $s'<s$.
+
+\item find $n\geq 1$ and a sequence $(f_N)_N\subset D$ such that
+\begin{equation}
+\lim_{N\to \infty} \|f_N\|_D\,=\,0, \qquad \quad \sup_N \frac{\|A_n(f_N)\|_{S'}}{\|f_N\|_{D'}}\,=\,\infty.
+\label{ip}
+\end{equation}
+\end{itemize} 
+
+\begin{remark}
+i) Obviously, the second condition in \eqref{ip} is sufficient to infer that $A_n$ is discontinuous;
+
+ii) \textbf{However, equally important in \eqref{ip} is the first limit, which makes this strategy go through. This happens because the LWP has to happen in the strongest sense, i.e., the time of existence $T=T(\|f\|_D)$, and so $\lim_{N\to \infty} \|f_N\|_D=0$ assures that all the corresponding solutions (or alternatively, for $N$ sufficiently large) $u_N$'s exist for the same amount of time.} This is not precisely stated in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}, being quite formally addressed. 
+\label{remip}
+\end{remark}
 %
 %
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Precise computations for the Boussinesq equation}
+
+\subsection{The non-periodic case} The first step is to write formulas for $L$ and $N$. We start with the homogeneous problem
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}\,=\,0, \quad x\in\mathbb{R}, \quad t>0,\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
+\end{array}\right.
+\label{hom}
+\end{equation}
+which, using the Fourier transform in the spatial variable, leads to
+\begin{equation}
+\hat{u}(t,\xi)\,=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)\,+\,\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),
+\label{homf}\end{equation}
+where $\lambda(\xi)=\sqrt{\xi^2+\xi^4}$.
+
+The inhomogeneous problem 
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}\,=\,F, \quad x\in\mathbb{R}, \quad t>0,\\
+\\
+u(0,x)\,=\,0,\qquad u_t(0,x)\,=\,0,\\
+\end{array}\right.
+\label{ih}
+\end{equation}
+can then be solved using \eqref{homf} and the Duhamel's principle, which gives us
+\begin{equation}
+\hat{u}(t,\xi)\,=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\hat{F}(s,\xi)\,ds.
+\label{ihf}
+\end{equation}
+
+Putting together \eqref{homf} and \eqref{ihf}, we obtain that \eqref{main} can be rewritten as
+\begin{equation}
+\aligned
+\hat{u}(t,\xi)\,&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)-\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\widehat{(u^2)_{xx}}(s,\xi)\,ds\\
+&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)+\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u^2}(s,\xi)\,ds\endaligned
+\label{mainf}
+\end{equation}
+which is nothing but the Fourier version of \eqref{LN}, with
+\begin{equation}
+\aligned
+\widehat{Lf}(t,\xi)\,=\,\cos(t \lambda(\xi))& \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),\quad f=(u_0,u_1),\\
+\widehat{N(u,v)}(t,\xi)&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u\cdot v}(s,\xi)\,ds.\endaligned
+\label{lnf}
+\end{equation}
+
+\textbf{Our IP result will be proved by showing that $A_2$ is not continuous (as in pages 241-242 in \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness})}. Based on \eqref{An} and \eqref{lnf}, it follows that:
+\begin{equation}
+\aligned
+A_2(f)(t,x)\,&=\,N(A_1(f),A_1(f))(t,x)\,=\,N(L(f),L(f))(t,x),\\
+\widehat{A_2(f)}(t,\xi)\,&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{(Lf)^2}(s,\xi)\,ds\\
+&=\,\int_0^t \int_{\mathbb{R}}\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{Lf}(s,\xi-\eta)\,\widehat{Lf}(s,\eta)\,d\eta\,ds.\endaligned
+\label{A2f}
+\end{equation}
+
+We will choose the sequence of initial data $(f_N)_{N\geq 10}$ that satisfies \eqref{ip} as
+\begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{1}{N^\alpha}\,\left\{
+\begin{array}{l}
+1,\quad \text{for} \quad N-1\leq |\xi| \leq N+1,\\
+\\
+0,\quad \text{otherwise},\\
+\end{array}\right.
+\label{fn}
+\end{equation}
+$\alpha$ being a real parameter to be chosen later. A simple computation yields
+\begin{equation}
+\|f_N\|_{H^\beta\times H^{\beta-2}}\,=\,\|g_N\|_{H^\beta}\,\simeq\,N^{\beta-\alpha}
+\label{hsfn}
+\end{equation}
+Therefore, in order to have 
+\[
+\lim_{N\to \infty} \|f_N\|_{H^\beta \times H^{\beta -2}}\,=\,0
+\]
+we need to impose $\beta<\alpha$. This $\beta$ has to be in the well-posedness range obtained in \cite{Kishimoto:2010ly}, i.e., $\beta>-1/2$; hence, it would suffice to take $\alpha >-1/2$. This choice assures, as mentioned in Remark~\ref{remip}, that all the solutions corresponding to sequence of initial data $(f_N)_N$ exist for at least an identical amount of time, which can be normalized to be equal to $1$. 
+
+Plugging \eqref{fn} into \eqref{A2f} and using \eqref{lnf}, we obtain
+\begin{equation}
+\aligned
+&\widehat{A_2(f_N)}(t,\xi)\\
+&=\int_0^t \int_{\mathbb{R}} \frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \xi^2 \cos(s \lambda(\xi-\eta))\cos(s\lambda(\eta))\widehat{g_N}(\xi-\eta)\widehat{g_N}(\eta)d\eta\,ds\\
+&=\frac{\xi^2}{N^{2\alpha}}\int_0^t \int_{N-1\leq |\xi-\eta|, |\eta| \leq N+1}\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\cos(s \lambda(\xi-\eta))\cos(s\lambda(\eta))d\eta\,ds.\endaligned
+\label{A2fn}
+\end{equation}
+On another hand
+\begin{equation}
+\aligned
+\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))} &\geq \|A_2(f_N)(t_N)\|_{H^{s'}(1/4\leq |\xi| \leq 1/2)}\\ &\gtrsim \|A_2(f_N)(t_N)\|_{L^2(1/4\leq |\xi| \leq 1/2)},\label{hsA2}
+\endaligned
+\end{equation}
+with $t_N=\frac{1}{100 N^2}$ and $s'$ is an arbitrary real number.
+
+Thus, we will be working in the regime given by
+\[
+0\leq s\leq t_N=\frac{1}{100 N^2}, \quad |\xi|\sim 1, \quad |\eta|\sim N,\]
+which implies
+\[
+0 \leq (t_N-s) \lambda(\xi),\,s \lambda(\xi-\eta),\, s\lambda(\eta) \ll 1. \]
+This allows us to infer
+\[
+0 \leq \sin ((t_N-s) \lambda(\xi)),
+\]
+\[
+1/2 < \min\{\cos(s \lambda(\xi-\eta)), \cos(s\lambda(\eta))\},
+\]
+for $N$ sufficiently large. 
+
+We can then estimate $\widehat{A_2(f_N)}(t_N,\xi)$ (for $1/4\leq |\xi| \leq 1/2$) as follows
+\[
+\widehat{A_2(f_N)}(t_N,\xi)\,\gtrsim\,\frac{1}{N^{2\alpha}}\,\int_0^{t_N}\, \sin((t_N-s) \lambda(\xi))\,ds\,=\,\frac{1-\cos(t_N \lambda(\xi))}{\lambda(\xi)\,N^{2\alpha}}\,\gtrsim \frac{1}{N^{2\alpha+4}},\]
+which, based on \eqref{hsA2}, yields
+\begin{equation}
+\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}\,\gtrsim \frac{1}{N^{2\alpha+4}}.
+\end{equation}
+
+Combining this with \eqref{hsfn}, we deduce 
+\begin{equation}
+\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}}
+\end{equation}
+for $N$ sufficiently large, $(f_N)_{N\geq 10}$ given by \eqref{fn}, and $\alpha>-1/2$. Therefore, for $s<-\alpha-4$ and $s'$ a real arbitrary number, the conclusion is that
+\begin{equation}
+\lim_{N\to\infty}\,\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,=\,0,
+\end{equation}
+which proves Theorem~\ref{mth} in the non-periodic case, based on the Bejenaru-Tao technique.
+
+\subsection{The periodic case} Here, the computations are almost identical, the only difference being that, instead of integrals in $\xi$ or $\eta$, we have to sum up series over integers in $n$ or $m$. Also, as mentioned in the introduction, the best LWP for the periodic problem is for $s>-1/4$ (\cite{Farah:2010ys}), thus forcing $\alpha>-1/4$. 
+
+We start by writing \eqref{mainf} and \eqref{lnf} in the periodic case, simply by replacing $\xi$ with $n\in\mathbb{Z}$, i.e.,
+\begin{equation}
+\aligned
+\hat{u}(t,n)\,=\,\cos(t \lambda(n))& \hat{u}_0(n)+\frac{\sin(t \lambda(n))}{\lambda(n)} \hat{u}_1(n)+\int_0^t\,\frac{\sin((t-s) \lambda(n))}{\lambda(n)}\, n^2\, \widehat{u^2}(s,n)\,ds\\
+\widehat{Lf}(t,n)\,&=\,\cos(t \lambda(n)) \hat{u}_0(n)+\frac{\sin(t \lambda(n))}{\lambda(n)} \hat{u}_1(n),\quad f=(u_0,u_1),\\
+\widehat{N(u,v)}&(t,n)=\,\int_0^t\,\frac{\sin((t-s) \lambda(n))}{\lambda(n)}\, n^2\, \widehat{u\cdot v}(s,n)\,ds.\endaligned
+\end{equation}
+
+The sequence of initial data $(f_N)_{N\geq 10}$ modifies accordingly, 
+\begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(n)\,=\,\frac{1}{N^\alpha}\,\left\{
+\begin{array}{l}
+1,\quad \text{for} \quad N-1\leq |n| \leq N+1,\\
+\\
+0,\quad \text{otherwise},\\
+\end{array}\right.
+\end{equation}
+with $\alpha>-1/4$, as discussed above.
+
+Hence, \eqref{A2fn} becomes
+\begin{equation}
+\aligned
+&\widehat{A_2(f_N)}(t,n)\\
+&=\frac{n^2}{N^{2\alpha}} \sum_{N-1\leq |n-m|, |m| \leq N+1} \int_0^t \frac{\sin((t-s) \lambda(n))}{\lambda(n)}\cos(s \lambda(n-m))\cos(s\lambda(m))\,ds,
+\endaligned
+\end{equation}
+which, as in the periodic case, leads to 
+\[
+\widehat{A_2(f_N)}\left(\frac{1}{100N^2},1\right)\,\gtrsim\,\frac{1}{N^{2\alpha+4}},\]
+for $N$ sufficiently large. Thus, one obtains
+\begin{equation}
+\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))}}{\|f_N\|_{H^s \times H^{s -2}}}\,\gtrsim\, \frac{1}{N^{s+\alpha+4}},
+\end{equation}
+which finishes the proof.
 %
 %
-%				Proof of Ill-Posedness
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Ill-Posedness on the Circle (Failure of Continuity)} 
+
+\section{Ill-Posedness on the Circle (Failure of Continuity)--David's Work} 
 \label{sec:pf-ill-pos}
 Given the machinery established in Dan's notes (following Bejenaru and Tao), we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
 (0, 0)$, it will be enough to show the
@@ -232,7 +449,7 @@ following.
 \begin{theorem}
   Let $N$ be a positive integer. Consider initial data $$f_{N}(x) =
   (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N^{-s}}{2 \pi}\left[ e^{iNx} + e^{i(1-N)x} \right], 0
-  \right ).$$  Fix $ s > -1/4$ (the qualitative well-posedness index to date). Then for $\beta < -s -2$
+  \right ).$$  Fix $ s > -1/4$ (the qualitative well-posedness index to date). Then
   %
   %
     \begin{enumerate}[(I)]
@@ -243,7 +460,7 @@ following.
     \\
   \item
     $\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -s$ but 
-    $ \displaystyle \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N} \|_{H^{\beta} \times H^{\beta -2}}}$ diverges.
+    $ \displaystyle \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N} \|_{H^{\beta} \times H^{\beta -2}}}$ diverges for \\ $\beta < -s -2$.
 \end{enumerate}
   %
   %
@@ -253,14 +470,14 @@ following.
 %
 \begin{framed}
   \begin{remark}
-    Fix $s = -1/4 + \ee/2$, $\ee > 0$. Taking $-s = 1/4 - \ee$, we see that the theorem implies failure of continuity of the data to solution map at $0$ in $H^{\beta} \times H^{\beta -2}$, where $\beta + 2 < 1/4 - \ee$, or $\beta < -7/4 - \ee$. Since $\ee > 0$ can be chosen arbitrarily small, we obtain ill-posedness for $\beta < -7/4$. 
+    Fix $s = -1/4 + \ee/2$, $\ee > 0$. Taking $-s = 1/4 - \ee$, we see that the theorem implies failure of continuity of the data to solution map at $0$ in $H^{\beta} \times H^{\beta -2}$, where $\beta < 1/4 - \ee -2$, or $\beta < -7/4 - \ee$. Since $\ee > 0$ can be chosen arbitrarily small, we obtain ill-posedness for $\beta < -7/4$. 
   \end{remark}
 \end{framed}
 %
 %
 \begin{framed}
   \begin{remark}
-    In particular, if were able to obtain qualitative well-posedness for $s >-1$, then we obtain ill-posedness for $\beta + 2 < 1 - \ee$, or $ \beta < -1 - \ee$, where $\ee > 0$ can be taken arbitrarily small. 
+    In particular, if were able to obtain qualitative well-posedness for $s > -1$, then we obtain ill-posedness for $\beta < 1 - \ee -2$, or $ \beta < -1 - \ee$, where $\ee > 0$ can be taken arbitrarily small. 
   \end{remark}
 \end{framed}
 
@@ -390,7 +607,9 @@ Now, an algebraic computation shows that
 \end{equation*}
 %
 \begin{framed}
+  \begin{remark}
   This little computation is the beef of the argument, and will give us $O(N^{-2})$ less decay of \eqref{pre-int-decay} than what we had in previous versions of our work. See below for more details. 
+\end{remark}
 \end{framed}
 %
 while
@@ -489,7 +708,193 @@ which diverges for $\beta < -s -2$. This concludes the proof.
 %
 %
 \end{proof}
+\section{Checking that the Key Estimate \eqref{estim} to the Tao-Bejanaru Method holds for Boussinesq (DAVID's WORK)}
+\subsection{The Circle} 
 %
+%
+\begin{definition}
+  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
+  \begin{enumerate}[(I)]
+   \item{$F: \ci \times \rr \to \cc$}.
+   \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
+   \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
+  \end{enumerate}
+  For $s, b \in \rr$, $X_{s,b}$ denotes the completion of $\mathcal{Y}$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
+    (1 + | | \tau | - n^{2} |)^{2b} |\wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm}
+  \end{equation}
+  %
+    %
+  %
+  %
+\end{definition}
+%
+We have the following key estimates.
+\begin{enumerate}
+  \item{$\|L(f)\|_{X_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{X_{s,b}} \le C  \| u \|_{X_{s,b}} \| v \|_{X_{s,b}}, \quad s > -1/4$} 
+\end{enumerate}
+for some constant $C > 0$.
+%%
+%
+Furthermore, $X_{s,b} \subset C(\rr, H^{s})$
+continuously. Therefore, by \eqref{estim} and the bulleted comments preceding
+\eqref{ip}, the Tao-Bejanaru machinery applies.
+%
+%
+%
+%
+%
+\subsection{The Line} 
+\begin{definition}
+  Let $S(\rr^{2})$ denote the space of Schwartz functions on
+  $\rr^{2}$.  For $s, b \in \rr$, $\mathcal{X}_{s,b}$
+  denotes the completion of $S(\rr^{2})$ with
+  respect to the norm
+  %
+  %
+  \begin{equation}
+  \begin{split}
+    \|F\|_{\mathcal{X}_{s,b}} = \left( \int_{\rr} \int_{\rr} (1 + \xi^{2})^{s}
+    (1 + | | \tau | - \xi^{2} |) \wh{F}(n, \tau) d \tau d \xi \right)^{1/2}.
+  \end{split}
+  \label{eqn:bous-norm-real}
+  \end{equation}
+  %
+  \end{definition}
+  %
+We have the following key estimates.
+%
+\begin{enumerate}
+  \item{$\|L(f)\|_{\mathcal{X}_{s,b}} \le C \| f \|_{H^s \times H^{s-2}}$}
+  \item{$\| N(u, v) \|_{\mathcal{X}_{s,b}} \le C  \| u \|_{\mathcal{X}_{s,b}} \| v \|_{\mathcal{X}_{s,b}}, \quad s > -1/4$} 
+\end{enumerate}
+for some constant $C > 0$. Furthermore, $X_{s,b} \subset C(\rr, H^{s})$
+continuously. Therefore, by \eqref{estim} and the bulleted comments preceding
+\eqref{ip}, the Tao-Bejanaru machinery applies.
+
+\section{Why We Must Redo the Bilinear Estimates in the
+    Kishimoto Paper for Boussinesq (DAVID's WORK)}
+\subsection{Introduction} 
+
+Recall the Boussinesq ivp \eqref{main}. Factoring, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  (i \p_{t} - \p_{x}^{2})(-i \p_{t} - \p_{x}^{2})u - \p_{x}^{2} u +
+  \p_{x}^{2}(u^{2}) = 0
+\end{split}
+\end{equation*}
+%
+%
+which is equivalent to
+%
+%
+\begin{equation*}
+\begin{split}
+  (i \p_{t} - \p_{x}^{2} + 1)(-i \p_{t} - \p_{x}^{2} +1)u = (1 -
+  \p_{x}^{2})u - \p_{x}^{2}(u^{2})
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{(i \p_{t} - \p_{x}^{2} + 1)(-i \p_{t} - \p_{x}^{2} +1)u}{(1 -
+  \p_{x}^{2})} = u - \frac{\p_{x}^{2}}{1 - \p_{x}^{2}}(u^{2}). 
+\end{split}
+\end{equation*}
+%
+%
+Set
+%
+%
+\begin{equation*}
+\begin{split}
+  v & = \left( \frac{-i \p_{t} + 1 -\p_{x}^{2}}{1 - \p_{x}^{2}} \right)u
+  = u - i(1 - \p_{x}^{2})^{-1} \p_{t}u
+\end{split}
+\end{equation*}
+and
+\begin{equation*}
+  \begin{split}
+    \bar{w} & = \left( \frac{i \p_{t} + 1 -\p_{x}^{2}}{1 - \p_{x}^{2}} \right)u
+  = u + i(1 - \p_{x}^{2})^{-1} \p_{t}u.
+\end{split}
+\end{equation*}
+%
+Then we obtain the equations
+\begin{gather*}
+  (i \p_{t} + 1 - \p_{x}^{2})v = \frac{1}{2}(v + \bar{w}) -
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}
+  \\
+  (-i \p_{t} + 1 - \p_{x}^{2})\bar{w}= \frac{1}{2}(v + \bar{w}) -
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{w})^{2}}{4}.
+\end{gather*}
+%
+Since solutions for the Boussinesq are real-valued, we obtain that $v=w$. Hence,
+the above system reduces to 
+\begin{gather}
+  \label{simp-sys}
+  (i \p_{t} - \p_{x}^{2})v = \frac{1}{2}(\bar{v} -v) -
+  \frac{\p_{x}^{2}}{1 - \p_{x}^{2}} \frac{(v + \bar{v})^{2}}{4}
+  \\
+  v(x,0) = v_{0}(x) = u_{0} - i(1 - \p_{x}^{2})^{-1}u_{1}.
+  \label{simp-sys-init}
+\end{gather}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                init-data-lip
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\subsection{NLS-type WP implies Boussinesq WP} 
+\label{ssec:wp-imp-wp}
+We will need the following lemmas.
+%
+%
+\begin{lemma}
+  The map $$(u_{0}, u_{1}) \mapsto 
+  u_{0} - i(1 - \p_{x}^{2})^{-1}u_{1}$$ is Lipschitz from $H^{s} \times
+  H^{s-2}$ to $H^{s}$.
+\label{lem:lip-init-data}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+%
+%
+\begin{equation*}
+\begin{split}
+  \| u_{0} - i(1 - \p_{x}^{2})^{-1} u_{1} \|_{H^{s}} 
+  & \le \| u_{0} \|_{H^{s}} + \| (1 - \p_{x}^{2})^{-1} u_{1} \|_{H^{s}}
+  \\
+  & = \| (u_{0}, u_{1}) \|_{H^{s} \times H^{s-2}}.
+\end{split}
+\end{equation*}
+%
+%
+\end{proof}
 %
 %
 %
@@ -497,392 +902,302 @@ which diverges for $\beta < -s -2$. This concludes the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%\section{Ill-Posedness for $s < -1/2$ on the Line (Failure of Continuity)} 
-%Given the machinery established in the introduction, we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
-%(0, 0)$, it will be enough to show the
-%following.
-%%
-%%
-%%
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%
-%%                Failure of Continuity at 0
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%
-%\begin{theorem}
-  %Let $N$ be a positive integer. Consider initial data $f_{N}(x)$ given by
-  %$$f_{N}(x) \doteq (f_{N,1}(x), f_{N,2}(x)) 
-  %= (r N^{1/2} \frac{e^{ix(N+1)} - e^{ix N} + e^{-ix(N+1)} - e^{-iNx}}{ix} , 0).$$
-%%
-%%
-%%
-%Then 
-  %%
-  %%
-    %\begin{enumerate}[(I)]
-      %\item{$ f_{N} \in B_{H^{-1/2} \times H^{-3}}(r) \ \text{with associated
-    %solutions}
-    %\ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
-    %H^{-1/2})$}.
-    %\\
-  %\item
-    %$\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -1/2$ but for fixed $\ee > 0$ there exists $N'$ such that for all $N > N'$ 
-    %$$  \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N}
-    %\|_{H^{\beta}}} > \ee.$$
-%\end{enumerate}
-  %%
-  %%
-%\end{theorem}
-%%
-%%
-%%
-%\begin{proof}
-%%
-%Observe that
-%%
-%%
-%\begin{equation}
-%\begin{split}
-  %\wh{f_{N,1}}(\xi) \doteq r N^{1/2} \chi_{\{N \le |\xi| \le N + 1\}\}}
-%\end{split}
-%\end{equation}
-%%
-%and so
-%%
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\| f_{N,1} \|_{H^{-1/2}}
-  %& \simeq rN^{1/2} \left( \int_{N}^{N+1} (1 + \xi)^{-1} d \xi
-  %\right)^{1/2}
-  %\\
-  %& = rN^{1/2} \left| \ln (1 + 1/N) \right|^{1/2},
-  %\\
-  %& \le 2r, \qquad N >>1 \ (\text{by l'Hospital})
-%\end{split}
-%\end{equation*}
-%%
-%%
-%and 
-%%
-%\begin{equation*}
-%\begin{split}
-  %\| f_{N,1} \|_{H^{\beta}}
-  %& = rN^{1/2} \left( \int_{N-1}^{N+1} (1 + \xi)^{2\beta} d \xi
-  %\right)^{1/2}
-  %\\
-  %& = rN^{1/2} \left| \frac{1}{2\beta+1}( (N+2)^{2\beta+1} - N^{2\beta+1} ) \right|^{1/2}, \quad \beta < -1/2
-  %\\
-  %& = r N^{1/2 + \beta} \left| {\frac{1}{2\beta+1}}\left [ (N+2) \left( \frac{N+2}{N}
-  %\right)^{2\beta} -N \right ] \right|^{1/2}  \\
-  %& \le c_{\beta} r N^{1/2 + \beta}.
-%\end{split}
-%\end{equation*}
-%%
-%Therefore, we see that 
-%\begin{equation*}
-  %\begin{split}
-    %& (f_{N,1}, 0) \in B_{H^{-1} \times H^{-3}}(2r)
-    %\\
-    %& \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < -1/2.
-    %\end{split}
-%\end{equation*}
-%Note that due to the work of Kishimoto and Tsugawa \cite{Kishimoto:2010ly}, we know that that Boussinesq equation is well-posed (in the sense of Hadamard) for $s
-%\ge -1/2$. However, this of course does not imply qualitative well-posedness for $s \ge -1/2$ in some Banach space continuosly embedded in $C([0, T], H^{s})$, where $T$ depends on the $H^{s}$ norm of the initial data. Assuming qualitative well-posedness, we see that since $f_{N} \in B_{H^{-1/2} \times H^{-3}}(2r)$, the associated
-%solutions $u[f_{N}]$ have common lifespan $\delta$ in $H^{-1/2}$ and weaker Sobolev topologies \emph{which does not depend
-%on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
-%Observe that
-%%
-%%
-%\begin{equation}
-  %\label{pol}
-%\begin{split}
-  %& \| A_{2}(f_{N}) \|_{C([-1, 1], H^{\beta})} 
-  %\\
-%& \ge \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
-%\\
-  %&  =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, 1],
-  %H^{\beta})} 
-  %\\
-  %& = \sup_{0 \le t \le 1} \| \psi_{1}(t) (1 + | \xi |)^{\beta}
-  %\frac{1}{4 i \pi} \frac{\xi^{2}}{\lambda(\xi)}
-  %\int_{0}^{t} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
-  %\wh{[L(f_{N})]^{2}}(\xi, t') dt' \|_{L^{2}_{\xi}}
-  %\\
-  %& \gtrsim \sup_{0 \le t \le 1} \| (1 + | \xi |)^{\beta}
-  %\int_{0}^{t} \int_{\xi_{1}} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
-  %\\
-  %& \times \wh{f_{N}}(\xi - \xi_{1})\left( e^{i\lambda(\xi - \xi_{1})t'} +
-  %e^{-i\lambda(\xi - \xi_{1})t'} \right)
-  %\wh{f_{N}}(\xi_{1})\left( e^{i \lambda(\xi_{1})t'} +
-  %e^{-i \lambda(\xi_{1})t'} \right) 
-  %d \xi_{1} dt' \|_{L^{2}_{\xi}}
-  %\\
-  %& \ge N \sup_{0 \le t \le 1} 
-  %\int_{0}^{t} \int_{N-1 \le \xi_{1} \le N+1} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
-  %\\
-  %& \times \left( e^{i\lambda(\xi - \xi_{1})t'} +
-  %e^{-i\lambda(\xi - \xi_{1})t'} \right)
-  %\left( e^{i \lambda(\xi_{1})t'} +
-  %e^{-i \lambda(\xi_{1})t'} \right) 
-  %d \xi_{1} dt' \|_{L^{2}_{0 \le \xi \le 1}}
-   %\end{split}
-%\end{equation}
-%%
-%%
-%where the last step follows from the inequality $\| \cdot \|_{L^{2}_{\xi}} \ge \| \cdot \|_{L^{2}_{0 \le \xi \le 1}}$, the definition of $f_{N}$, and the fact that 
-%the conditions
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %& N \le | \xi - \xi_{1} | \le N+1,
-  %\\
-%& 0 \le \xi \le 1
-%\end{split}
-%\end{equation*}
-%%
-%%
-%imply $\xi_{1}$ is restricted to the set $S = \left\{ \xi_{1}: -1 - N + \xi \le  \xi_{1} \le -N \ \text{or} \ N + \xi \le \xi_{1} \le N+1 \right\}$.
-%Distributing terms, setting $t=1$, and applying Fubini, we obtain the equivalent expression
-
-%%
-%%
-%\begin{equation}
-  %\label{pu}
-%\begin{split}
-  %& N \| \int_{S}\int_{0}^{1} e^{i \lambda(\xi)}
-  %\\
-  %& \times \left( e^{it'[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]}
- %+ e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} 
- %+ e^{it'[\lambda(\xi - \xi_{1}) - \lambda(\xi) - \lambda(\xi_{1})]}
- %+ e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]}
-  %\right)
- %\\ 
- %& - e^{-i \lambda(\xi)}
-  %\\
-  %& \times \left( e^{it'[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) + \lambda(\xi)]}
- %+ e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)]} 
- %+ e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]}
- %+ e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]}
- %\right) \|_{L^{2}_{0 \le \xi \le 1}}.
-%\end{split}
-%\end{equation}
-%%
-%Now, for $0 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-%\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})
- %& = \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
- %\\
- %& = O(N)
-%\end{split}
-%\end{equation*}
-%%
-%%
-%while
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\lambda(\xi_{1}) + \lambda(\xi - \xi_{1}) = O(N^{2}).
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Hence, evaluating the integrand of \eqref{pu} from $0$ to $1$, we obtain $O(N^{-1})$ and $O(N^{-2})$ terms. Discarding all $O(N^{-2})$ terms, we get
-%%
-%%
-%\begin{equation}
-%\begin{split}
-  %& \left | e^{i \lambda(\xi)}\left( \frac{e^{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} + 
-  %\frac{e^{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} \right) \right .
-  %\\
-  %& + \left . e^{-i \lambda(\xi)}\left( \frac{e^{-i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} + 
-  %\frac{e^{-i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]} \right)  \right |
-  %\\
-  %& \simeq \left | \frac{\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)} + \frac{\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)} \right | 
-  %\\
-  %& \simeq a_{N} \left | \frac{\left[ \lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) \right]}{[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)][\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)]} \right |
-  %\\
-  %& \ge a_{N} O(N^{-1}), \quad 0 \le \xi \le 1, \quad N-1 \le \xi_{1} \le N+1
-%\end{split}
-%\end{equation}
-%%
-%%
-%where
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %a_{N} =  | \cos[\lambda(\xi-\xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi) |.
-%\end{split}
-%\end{equation*}
-
-%Distributing terms, setting $t=1$, and applying Fubini, we bound below by 
-%%
-%%
-%\begin{equation}
-%\begin{split}
-  %&  N^{\beta + 1} 
-  %\| \int_{0}^{1} \sin[\lambda(\xi)(1 - t')]\int_{N-1 \le \xi_{1} \le N+1} \left\{ \cos\left[ \lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) \right] + \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] \right\} d \xi_{1} dt' \|_{L^{2}_{2N \le \xi \le 2N +1}} 
-%\end{split}
-%\end{equation}
-
-%In fact, we have the lower bound
-%%
-%%
-%%
-%%
-%
-%%
-%where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge | a_{N} |$, the symmetry of the convolution, and the definition of $f_{N}$. Distributing terms, and setting $t=1$, we bound below by 
-
-%\end{proof}
+%                lip-sol
 %
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%Quadratic NLS
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Quadratic NLS: An Equation for which the BT method Works}
-%
-  We consider the quadratic non-linear Schr\"odinger equation (qNLS)
-\begin{equation}\label{nls-quad}
-\begin{split}
-& i u_t + u_{xx} = u^2\\
-& u(x, 0) = f \in H^s(\R) \\
-\end{split}
-\end{equation}
-which has the localized integral formulation 
-\begin{equation}\label{uln-2}
- u = L(f) + N(u,u)
- \end{equation}
-where $L$ is the linear operator
-\begin{equation}\label{Ldef}
-  L(f)(t) := \eta(t) e^{it\partial_{xx}} f
-\end{equation}
-and $N$ is the bilinear operator
-\begin{equation}\label{Ndef}
-\begin{split}
-N(u,v)(t) &:=
-\eta(t) e^{it\partial_{xx}} \int_\R a(s) e^{-is\partial_{xx}}(u(s)v(s))\ ds\\
-&+ \int_\R a(t-s) e^{i(t-s)\partial_{xx}}(u(s) v(s))\ ds
-\end{split}
-\end{equation}
-%
-where $\eta: \R \to \R$ is a smooth bump function such that $\eta(t) = 1$ for
-$|t| \leq 1$ and $\eta(t) = 0$ for $|t| > 2$, and $a(t) := \frac{1}{2}
-\sgn(t)\eta(t/5)$.  
-%
-Bejanaru and Tao proved the following well-posedness result.
-\begin{theorem}[Local well-posedness in $H^{-1}(\R)$]\label{lwp}
- %
- %
- %
-Let $r > 0$ be any radius, and let $B_r$ be the ball
-$$ B_r := B_{H^{-1}(\R)}(0,r) := \{ u_0 \in H^{-1}(\R): \| u_0 \|_{H^{-1}(\R)} < r \}.$$
-Then there exists a time $T > 0$ (in fact we obtain $T = \max(1, c r^{-1/2} )$ for some absolute constant $c>0$)
-and a map $f \mapsto u[f]$ which is continuous from $B_r$ to $C([0,T],
-H^{-1}(\rr))$, such that the
-restriction of this map to $B_r \cap H^s(\R)$ (with the $H^s(\R)$ topology) maps continuously 
-to $C([0,T], H^s(\rr))$ for any $s \geq -1$.  Furthermore, if $f$ lies in
-a smooth space, say $B_r \cap H^3(\R)$, then $u[f]$ lies in $C([0, T], H^3) \cap
-C^1([0,T], H^1(\rr))$ and
-solves the equation \eqref{nls-quad} in the classical sense.   
-\end{theorem}
-%
-%
-Furthermore, as in the case of Boussinesq, solutions to the qNLS have an asymptotic
-expansion in terms of iterates of the non-linearity. More precisely, they show
-the following. 
 %
 \begin{lemma}
-  \label{lem:qnls-asymp}
-  For $f \in B_{H^{s}}(r)$, $s \ge -1$ and $\delta=\delta(r)$
-sufficiently small, we have the absolutely convergent
-(in $C([-\delta, \delta], H^{s})$) power series expansion
+  Let $v_{0,n} \subset B_{H^{s}}(R)$ be a sequence of initial data for the ivp
+  \eqref{simp-sys}-\eqref{simp-sys-init}. Then the map $$v \mapsto
+  \frac{1}{2}(v + \bar{v})$$ is Lipschitz from $C([0, T], H^{s})$ to itself, where $T = T(R)$.  
+\label{lem:lip-sol}
+\end{lemma}
+%
+%
+%
+%
+\begin{proof}
+%
+%
+\begin{equation*}
+\begin{split}
+  \sup_{0 \le t \le T} \| u(t) \|_{H^{s}}
+  & = \sup_{0 \le t \le T} \frac{1}{2} \| v + \bar v \|_{H^{s}}
+  \\
+  & \le \sup_{0 \le t \le T} \| v \|_{H^{s}}.
+\end{split}
+\end{equation*}
+%
+%
+\end{proof}
+
+From Lemma~\ref{lem:lip-init-data}, Lemma~\ref{lem:lip-sol}, and the fact that
+the map
 %
 %
 \begin{equation}
-  \label{qnlspower-series-soln}
+  \label{solution-prop}
 \begin{split}
-  u[f] = \sum_{n=1}^{\infty} A_{n}(f)
+  v \mapsto \frac{1}{2} (v + \bar{v}) 
 \end{split}
 \end{equation}
 %
 %
-\end{lemma}
-They then invoke this well-posedness result to prove ill-posedness for $s <
--1$ as follows.
+takes solutions of \eqref{simp-sys} to solutions of the Boussinesq, it follows
+that well-posedness (in the sense of Hadamard) in $H^{s}$ for the NLS-type ivp
+\eqref{simp-sys}-\eqref{simp-sys-init} 
+implies well-posedness in $H^{s}$ for the Boussinesq ivp \eqref{main}.
+%
+%
+\begin{framed}
+%
+%
+\begin{remark}
+More precisely, if we assume continuity of the data-to-solution map in $H^{s}$ for the NLS-type equation, then Lemma~\ref{lem:lip-init-data}
+and Lemma~\ref{lem:lip-sol} imply the same for Boussinesq. Similarly, if we assume existence and uniqueness for the NLS-type equation in $H^{s}$, then 
+\eqref{solution-prop} implies existence and uniqueness in
+$H^{s}$ for Boussinesq.
+\label{rem:wp-imp-wp}
+\end{remark}
+%
+%
+\end{framed}
+%
+\subsection{Failure of continuity for NLS-type equation does not imply same for Boussinesq} 
+\label{ssec:ip-no-ip}
+%
+Suppose the data-to-solution map for the NLS-type equation is not continuous at
+$0$ in $H^{s}$, for some $s \in \rr$. This is equivalent to saying that 
+there exists a sequence $v_{0,n} \to 0$ in $H^{s}$ such that for fixed $\ee, \delta > 0$ there exists an $N = N(\ee, \delta)$ such that
+%
+%
+\begin{equation*}
+\begin{split}
+\| v_{0,N} \|_{H^{s}} < \ee, \ \text{but} \ \| v_{N} \|_{C([0,T], H^{s})} >
+\delta.
+\end{split}
+\end{equation*}
+%
+%
+Set
+%
+%
+\begin{equation*}
+\begin{split}
+u_{0,n} = v_{0,n}.
+\end{split}
+\end{equation*}
+%
+%
+We would like to show that
+%
+%
+\begin{equation*}
+\begin{split}
+\| (u_{0,N}, 0) \|_{H^{s} \times H^{s-2}} < \ee \ \text{but} \ \| u_{N} \|_{C([0,T], H^{s})} > \delta
+\end{split}
+\end{equation*}
 %
 %
 %
 %
-\subsection{Proof of Ill-Posedness for $s < -1$} 
 %
 %
+or, equivalently, 
 %
-Fix $s < -1$; we may rescale the lifespan $\delta$ to equal $1$.  Suppose for contradiction
-that the solution map $f \mapsto u[f]$ is continuous on $B_r$ (with the
-$H^{-1}_x(\R)$ topology) to $C([0, 1], H^{-1}(\rr))$ 
-(with the $C([0,1], H^{s}(\rr)$ topology). From 
-Lemma~\ref{lem:qnls-asymp}, we conclude that the quadratic operator
-$$ A_2: f \mapsto N_2(Lf, Lf)$$ 
-restricted to $[0,1] \times \R$, is continuous from $B_r$ (with the $H^{-1}_x(\R)$ topology) 
-to $C([0,1], H^{s}(\rr))$.  In particular, this implies that
-$$ \sup_{0 \leq t\leq 1}\| A_2(f_N)(y) \|_{H^{s}(\R)} \to 0$$
-whenever $f_N$ is a sequence of functions in $B_r$ which goes to zero in $H^{-1}_x(\R)$ norm.
-The left-hand side can be expanded by \eqref{Ldef}, \eqref{Ndef} as
-$$ \sup_{0 \leq t \leq 1} 
-\| \int_0^t \exp(i(t-t')\partial_{xx})((\exp(it' \partial_{xx}) f_N)^2)\ dt' \|_{H^{s}(\R)}$$
-which after taking Fourier transforms becomes
-$$\sup_{0 \leq t \leq 1} 
-\| \langle \xi \rangle^{s}
-\int_0^t \int_\R \exp(-i(t-t')\xi^2) \exp(it' (\xi_1^2 + (\xi-\xi_1)^2) \hat f_N(\xi_1) \hat f_N(\xi-\xi_1)\ d\xi_1 dt'
-\|_{L^2_\xi(\R)}.$$
-Now let $N > 100$ be a large parameter, and set 
-$$ \hat f_N := r N 1_{[-10,10]}(|\xi|-N) / 1000.$$
-Then $f_N \in B_r$, and $\|f_N\|_{H^{-1}_x(\R)} \to 0$ as $N \to \infty$.  Thus,
-from the well-posedness result Theorem~\ref{lwp} and the fact that
-Lemma~\ref{lem:qnls-asymp}
-holds for
-the qNLS, we see that for continuity of the data to solution map to hold for $s < -1$ we must have
-\begin{equation}\label{sin}
-\sup_{0 \leq t \leq 1} \| \langle \xi \rangle^{s}
-\int_0^t \int_\R \exp(-i(t-t')\xi^2) \exp(it' (\xi_1^2 + (\xi-\xi_1)^2) \hat f_N(\xi_1) \hat f_N(\xi-\xi_1)\ d\xi_1 dt'
-\|_{L^2_\xi(\R)} \to 0
+%
+\begin{equation*}
+\begin{split}
+\| u_{0,N} \|_{H^{s}} < \ee \ \text{but} \ \| u_{N} \|_{C([0, T], H^{s})} >
+\delta
+\end{split}
+\end{equation*}
+%
+for some $N$. It would be possible to do so if, for example, the maps in Lemma~\ref{lem:lip-init-data} and~\ref{lem:lip-sol} were bi-Lipschitz. I don't see a
+clear cut way to prove this.
+%
+%
+\section{The Kishimoto Well-Posedness Spaces for Boussinesq on the Line (DAVID's WORK)}
+It is enough to consider the integral equation
+%
+%
+\begin{equation}
+  \label{nls-type-int}
+\begin{split}
+  u(t) = U(t) u_{0} -i \int_{0}^{t} U(t -t')N(u(t')) dt'
+\end{split}
 \end{equation}
-as $N \to \infty$.
-Now set $t := 1/100N^2$ and localize to the region where $-1 \leq \xi \leq 1$.  One can verify that
-$$ \Re( \exp(-i(t-t')\xi^2) \exp(it' (\xi_1^2 + (\xi-\xi_1)^2) )) > 1/2$$
-whenever $0 \leq t' \leq t$ and $\xi_1$ lives in the support of $f_{N}$, hence we obtain
-$$ 
-\| \langle \xi \rangle^{s}
-\int_0^t \int_\R \exp(-i(t-t')\xi^2) \exp(it' (\xi_1^2 + (\xi-\xi_1)^2)) \hat f_N(\xi_1) \hat f_N(\xi-\xi_1)\ d\xi_1 dt'
-\|_{L^2_\xi(\R)} \geq c r^2$$
-for some $c > 0$.  But this contradicts \eqref{sin}. \qed
+%
+%
+where 
+%
+%
+\begin{equation*}
+\begin{split}
+  & U(t) = e^{-it \p_x^{2}},
+  \\
+  & N(u) = -u + (u + \bar{u})/2 + \omega^{2}(u + \bar{u})^{2}/4.
+\end{split}
+\end{equation*}
+%
+%
+Partition $\rr^{2}$ as follows.
+%
+%
+\begin{equation*}
+\begin{split}
+  & P_{1} = \left\{ (\tau, \xi) \in \rr^{2}: | \tau - \xi^{2} | \le \frac{| \xi
+  |}{4} \ \text{and} \ | \xi | \ge 1 \right\},
+  \\
+  & P_{2} = \left\{ (\tau, \xi) \in \rr^{2}: | \tau - \xi^{2} | \ge \frac{| \xi
+  |}{4} \ \text{and} \ | \xi | < 1 \right\}.
+\end{split}
+\end{equation*}
+%
+%
+Set
+%
+%
+\begin{equation*}
+\begin{split}
+  w_{s} = 
+  \begin{cases}
+    \langle \xi \rangle ^{s} \langle \tau - \xi^{2} \rangle , \quad & (\tau,
+    \xi) \in P_{1},
+    \\
+    \langle \xi \rangle ^{1/2} \langle \tau - \xi^{2} \rangle^{1/2}, \quad
+    & (\tau, \xi) \in P_{2}
+  \end{cases}
+\end{split}
+\end{equation*}
+%
+%
+and let $Z^{s}, Y^{s}$ be the completion of the space of schwartz functions
+$S(\rr^{2})$ under the norms
+%
+%
+\begin{equation*}
+\begin{split}
+  & \| u \|_{Z^{s}} = \| w_{s} \wh{u} \|_{L^{2}_{\tau, \xi}},
+  \\
+  & \| u \|_{Y^{s}} = \| \int_{\rr} \langle \xi \rangle^{s} | \wh{u} | d \tau
+  \|_{L^{2}_{\xi}}.
+\end{split}
+\end{equation*}
+%
+%
+Our candidate for the well-posedness space (in the Picard iterative sense) is
+$Z^{s} \cap L^{\infty}\left( [0, T], H^{s} \right)$. Indeed, we have the
+following.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               init data bound
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Prop 2.6 in Kishimoto]
+  For $u \in Z^{s} \cap L^{\infty}\left( [0,T], H^{s} \right)$
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| u \|_{Z^{s}} + \| u \|_{L^{\infty}\left( [0,T], H^{s} \right)} \lesssim
+    \| u_{0} \|_{H^{s}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+\label{lem:init-data-b}
+\end{lemma}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Prop 2.7 in Kishimoto]
+  Let $\vp(t)$ be a smooth cutoff
+  function symmetric about the origin, equal to the identity in $[-1, 1]$, and
+  supported in $[-2,2]$. Denote $U(t) = e^{it \p_{x}^{2}}$, and let 
+  $u = \vp(t) \int_{0}^{t} U(t - t') F(t') dt'$. Then
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| u \|_{Z^{s}} + \| u \|_{L^{\infty}\left( [0,T], H^{s} \right)} \lesssim
+    \| \mathcal{F}^{-1} \langle \tau - \xi^{2} \rangle ^{-1} \wh{F}
+    \|_{Z^{s}} + \| F^{-1}\langle \tau - \xi^{2} \rangle^{-1} \wh{F}
+    \|_{Y^{s}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  \label{lem:non-lin-to-bilin}
+\end{lemma}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                bilinear estimates
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{lemma}[Bilinear Estimates, Prop 4.4 in Kishimoto]
+For $u = u(x,t)$, $v = v(x,t)$, we have
+%
+%
+\begin{equation*}
+\begin{split}
+  & \|\mathcal{F}^{-1} \langle \tau - \xi^{2} \rangle \wh{\omega^{2} uv}
+  \|_{Z^{s}} \lesssim \| u \|_{Z^{s}} \|v \|_{Z^{s}}
+  \\
+  & \| \mathcal{F}^{-1} \langle \tau - \xi^{2} \rangle ^{-1} \wh{\omega^{2} uv}
+  \|_{Y^{s}} \lesssim \| u \|_{Z^{s}} \| v \|_{Z^{s}}
+\end{split}
+\end{equation*}
+%
+where $\omega$ is the pseudo-differential operator defined by
+%
+%
+\begin{equation*}
+\begin{split}
+  \wh{\omega}(\xi) = \frac{\xi}{\sqrt{1 + \xi^{2}}}.
+\end{split}
+\end{equation*}
+%
+%
+These estimates also hold with $uv$ replaced by $u \bar v$ or $\bar u \bar v$.
+%
+\label{lem:bilinear-estimates}
+\end{lemma}
+%
+%
+We conclude from the lemmas above that the Schr\"odinger type equation \eqref{nls-type-int} is
+qualitatively well-posed. Hence, the Tao-Bejenaru machinery applies for the
+Schr\"odinger type equation, but NOT necessarily for Boussinesq. That is, to
+my knowledge, no one has proved the analogous bilinear estimates for Boussinesq
+in the Kishimoto spaces. 
 %
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
@@ -891,15 +1206,43 @@ for some $c > 0$.  But this contradicts \eqref{sin}. \qed
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{BT06}
+\begin{thebibliography}{Far09}
 
 \bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
 I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
   for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
   \textbf{233} (2006), no.~1, 228--259.
 
+\bibitem[Far09]{Farah:2009uq}
+L.~G. Farah, \emph{Local solutions in sobolev spaces with negative indices for
+  the ``good'' boussinesq equation}, Comm. Partial Differential Equations
+  \textbf{34} (2009), no.~1-3, 52--73.
+
+\bibitem[FG96]{Fang:1996zr}
+Y.-F. Fang and M.~G. Grillakis, \emph{Existence and uniqueness for {B}oussinesq
+  type equations on a circle}, Comm. Partial Differential Equations \textbf{21}
+  (1996), no.~7-8, 1253--1277. 
+
+\bibitem[FS10]{Farah:2010ys}
+L.~G. Farah and M.~Scialom, \emph{On the periodic ``good'' {B}oussinesq
+  equation}, Proc. Amer. Math. Soc. \textbf{138} (2010), no.~3, 953--964.
+  
+
+\bibitem[KT10]{Kishimoto:2010ly}
+N.~Kishimoto and K.~Tsugawa, \emph{Local well-posedness for quadratic nonlinear
+  {S}chr{\"o}dinger equations and the ``good'' {B}oussinesq equation},
+  Differential Integral Equations \textbf{23} (2010), no.~5-6, 463--493.
+  
+
+\bibitem[Lin93]{Linares:1993ly}
+F.~Linares, \emph{Global existence of small solutions for a generalized
+  {B}oussinesq equation}, J. Differential Equations \textbf{106} (1993), no.~2,
+  257--293. 
+
 \end{thebibliography}
 %
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
 %\bibliographystyle{amsalpha-custom}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+
 \end{document}
+
