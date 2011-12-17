@@ -210,17 +210,8 @@ sufficiently small, we have the absolutely convergent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Ill-Posedness for $s < -1$ on the Circle (Failure of Continuity)} 
+\section{Ill-Posedness on the Circle (Failure of Continuity)} 
 \label{sec:pf-ill-pos}
-Assume qualitative well-posedness for the Boussinesq equation for $s
-\ge -1$. 
-\begin{framed}
-  For a weaker qualitative well-posedness result (say, $s > -1/4$, thanks to Farah), the
-  method below should still go through, via the work in Dan's notes, i.e.\ by
-  comparing the ratio of the size of the solutions $u(f_{N})$ to the size of their
-  initial data $f_{N}$. However, in this case, we will get a weaker ill-posedness
-  result than $s < -1$ ( in fact, we get $s < -7/4$). The major difference between this document and our preceding work is the initial data--the associated solutions decay at a slower rate than what we had previously. 
-\end{framed}
 Given the machinery established in Dan's notes (following Bejenaru and Tao), we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
 (0, 0)$, it will be enough to show the
 following.
@@ -240,19 +231,19 @@ following.
 %
 \begin{theorem}
   Let $N$ be a positive integer. Consider initial data $$f_{N}(x) =
-  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N}{2 \pi}\left[ e^{iNx} + e^{i(1-N)x} \right], 0
-  \right ).$$ Then 
+  (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N^{-s}}{2 \pi}\left[ e^{iNx} + e^{i(1-N)x} \right], 0
+  \right ).$$  Fix $ s > -1/4$ (the qualitative well-posedness index to date). Then for $\beta < -s -2$
   %
   %
     \begin{enumerate}[(I)]
-      \item{$ f_{N} \in B_{H^{-1} \times H^{-3}}(r) \ \text{with associated
+      \item{$ f_{N} \in B_{H^{s} \times H^{s}}(r) \ \text{with associated
     solutions}
     \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
-    H^{-1})$}.
+    H^{s})$}.
     \\
   \item
-    $\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -1$ but 
-    $ \displaystyle \|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}$ diverges.
+    $\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -s$ but 
+    $ \displaystyle \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N} \|_{H^{\beta} \times H^{\beta -2}}}$ diverges.
 \end{enumerate}
   %
   %
@@ -260,8 +251,19 @@ following.
 \end{theorem}
 %
 %
+\begin{framed}
+  \begin{remark}
+    Fix $s = -1/4 + \ee/2$, $\ee > 0$. Taking $-s = 1/4 - \ee$, we see that the theorem implies failure of continuity of the data to solution map at $0$ in $H^{\beta} \times H^{\beta -2}$, where $\beta + 2 < 1/4 - \ee$, or $\beta < -7/4 - \ee$. Since $\ee > 0$ can be chosen arbitrarily small, we obtain ill-posedness for $\beta < -7/4$. 
+  \end{remark}
+\end{framed}
 %
 %
+\begin{framed}
+  \begin{remark}
+    In particular, if were able to obtain qualitative well-posedness for $s >-1$, then we obtain ill-posedness for $\beta + 2 < 1 - \ee$, or $ \beta < -1 - \ee$, where $\ee > 0$ can be taken arbitrarily small. 
+  \end{remark}
+\end{framed}
+
 %
 %
 %
@@ -278,11 +280,11 @@ following.
   \label{ill-pos-ce}
 \begin{split}
   \wh{f_{N,1}}(n)
-  & = r N\int_{\ci} [e^{-ix(n - N)} + e^{-ix(n - (1-N))}]  dx  
+  & = r N^{-s}\int_{\ci} [e^{-ix(n - N)} + e^{-ix(n - (1-N))}]  dx  
   \\ 
   & = 
   \begin{cases}
-    r N,  \quad  & n = N \ \text{or} \ n = 1-N
+    r N^{-s},  \quad  & n = N \ \text{or} \ n = 1-N
     \\
      0, \quad  & \text{otherwise}.
   \end{cases}
@@ -296,10 +298,10 @@ Hence
   \label{ill-pos-ced}
 \begin{split}
   \| f_{N,1} \|_{H^{\beta}}
-  & = \frac{rN}{2 \pi} \left( \sum_{n \in \zz} (1 + | n |)^{2 \beta} |
+  & = \frac{rN^{-s}}{2 \pi} \left( \sum_{n \in \zz} (1 + | n |)^{2 \beta} |
   \wh{f_{N,1}}(n) |^{2} \right)^{1/2}
   \\
-  & \sim rN^{\beta +1}.
+  & \sim rN^{-s + \beta}.
 \end{split}
 \end{equation}
 %
@@ -307,23 +309,20 @@ Hence
 Therefore, from \eqref{ill-pos-ced} we see that 
 \begin{equation*}
   \begin{split}
-    & (f_{N,1}, 0) \in B_{H^{-1} \times H^{-3}}(cr)
+    & (f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(cr)  
     \\
-    & \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < -1.
+    & \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < s.
     \end{split}
 \end{equation*}
-Note that since we have assumed qualitative well-posedness for the Boussinesq equation for $s
-\ge -1$, and since $f_{N} \in B_{H^{-1} \times H^{-3}}(cr)$, the associated
-solutions $u[f_{N}]$ have common lifespan $\delta$ in $H^{-1}$ and weaker Sobolev topologies \emph{which does not depend
+However, recall that the Boussinesq equation is known to be qualitatively well-posed for $s > -1/4$. Hence, restricting $s > -1/4$, we see that since $f_{N} \in B_{H^{s} \times H^{s-2}}(cr)$, there exist unique associated 
+solutions $u[f_{N}]$ which have common lifespan $\delta$ in $H^{s}$ and weaker Sobolev topologies \emph{which does not depend
 on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
 Observe that
 %
 %
 \begin{equation*}
 \begin{split}
-  & \| A_{2}(f_{N}) \|_{C([-1, 1], H^{\beta})} 
-  \\
-& \ge \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
+& \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
 \\
   &  =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, 1],
   H^{\beta})} 
@@ -342,7 +341,7 @@ Observe that
   e^{-i \lambda(n_{1})t'} \right) 
   dt' \|_{\ell^{2}_{n}}
   \\
-  & \gtrsim | \sup_{0 \le t \le 1} N^{2}
+  & \gtrsim | \sup_{0 \le t \le 1} N^{-2s}
 \int_{0}^{t} \left( e^{i\lambda(1)(t-t')} - e^{-i\lambda(1)(t-t')} \right)
   \\
   & \times \left( e^{i\lambda(1 - N)t'} +
@@ -360,7 +359,7 @@ where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge | a_
 \begin{equation}
   \label{pre-int-decay}
 \begin{split}
-  & N^{2} | \int_{0}^{1} \big \{ e^{i \lambda(1)}
+  & N^{-2s} | \int_{0}^{1} \big \{ e^{i \lambda(1)}
   \\
   & \times \left( e^{it'[\lambda(1-N) + \lambda(N) - \lambda(1)]}
  + e^{it'[\lambda(1-N) - \lambda(N) - \lambda(1)]} 
@@ -391,7 +390,7 @@ Now, an algebraic computation shows that
 \end{equation*}
 %
 \begin{framed}
-  This little computation is the beef of the argument, and the motivation for our initial data. That is, instead of getting stuck with $O(N^{-2})$ decay of our integral, we end up with $O(N^{-1})$ decay, see below. 
+  This little computation is the beef of the argument, and will give us $O(N^{-2})$ less decay of \eqref{pre-int-decay} than what we had in previous versions of our work. See below for more details. 
 \end{framed}
 %
 while
@@ -404,23 +403,32 @@ while
 \end{equation*}
 %
 %
-Hence, evaluating the integrand of \eqref{pre-int-decay} from $0$ to $1$, we obtain $O(N^{-1})$ and $O(N^{-2})$ terms. Discarding all $O(N^{-2})$ terms, we get
+Hence, evaluating the integrand of \eqref{pre-int-decay} from $0$ to $1$, we obtain 
 %
 %
 \begin{equation}
   \label{puy}
 \begin{split}
-  & \left | e^{i \lambda(1)}\left( \frac{e^{i[\lambda(1-N) - \lambda(N) - \lambda(1)]} - 1}{i[\lambda(1-N) - \lambda(N) - \lambda(1)]} + 
-  \frac{e^{i[\lambda(N) - \lambda(1-N) - \lambda(1)]} - 1}{i[\lambda(N) - \lambda(1-N) - \lambda(1)]} \right) \right .
+  & \Big | e^{i \lambda(1)}\bigg ( \frac{e^{i[\lambda(1-N) + \lambda(N) - \lambda(1)]} - 1}{i[\lambda(1-N) + \lambda(N) - \lambda(1)]} + 
+  \frac{e^{i[\lambda(1-N) - \lambda(N) - \lambda(1)]} - 1}{i[\lambda(1-N) - \lambda(N) + \lambda(1)]}  
   \\
-  & + \left . e^{-i \lambda(1)}\left( \frac{e^{-i[\lambda(1-N) - \lambda(N) - \lambda(1)]} - 1}{i[\lambda(1-N) - \lambda(N) - \lambda(1)]} + 
-  \frac{e^{-i[\lambda(N) - \lambda(1-N) - \lambda(1)]} - 1}{i[\lambda(N) - \lambda(1-N) - \lambda(1)]} \right)  \right |
+  & +  \frac{e^{i[\lambda(N) - \lambda(1-N) - \lambda(1)]} - 1}{i[\lambda(N) - \lambda(1-N) - \lambda(1)]} + \frac{e^{i[-\lambda(1-N) - \lambda(N) - \lambda(1)]} - 1}{i[-\lambda(1-N) - \lambda(N) - \lambda(1)]} \bigg ) 
   \\
-  & \simeq \left | \frac{\cos[\lambda(1-N) - \lambda(N)] - \cos \lambda(1)}{\lambda(1-N) - \lambda(N) - \lambda(1)} + \frac{\cos[\lambda(N) - \lambda(1-N)] - \cos \lambda(1)}{\lambda(N) - \lambda(1-N) - \lambda(1)} \right | 
+  & + e^{-i \lambda(1)}\bigg ( \frac{e^{-i[-\lambda(1-N) - \lambda(N) - \lambda(1)]} - 1}{i[-\lambda(1-N) - \lambda(N) - \lambda(1)]} + 
+  \frac{e^{-i[\lambda(N) - \lambda(1-N) - \lambda(1)]} - 1}{i[\lambda(N) - \lambda(1-N) - \lambda(1)]} 
   \\
-  & \simeq a_{N}\left | \frac{1}{\lambda(1-N) - \lambda(N) - \lambda(1)} + \frac{1}{\lambda(N) - \lambda(1-N) - \lambda(1)} \right | 
+  & +  \frac{e^{-i[\lambda(1-N) - \lambda(N) - \lambda(1)]} - 1}{i[\lambda(1-N) - \lambda(N) - \lambda(1)]} + \frac{e^{-i[\lambda(1-N) + \lambda(N) - \lambda(1)]} - 1}{i[\lambda(1-N) + \lambda(N) - \lambda(1)]} \bigg ) 
+  \bigg )  \bigg |
   \\
-  & = a_{N} O(N^{-2})
+  & \simeq \bigg | \frac{\cos[\lambda(1-N) - \lambda(N)] - \cos \lambda(1)}{\lambda(1-N) - \lambda(N) - \lambda(1)} + \frac{\cos[\lambda(N) - \lambda(1-N)] - \cos \lambda(1)}{\lambda(N) - \lambda(1-N) - \lambda(1)} 
+  \\
+  & + \frac{\cos[\lambda(1-N) + \lambda(N)] - \cos \lambda(1)}{\lambda(1-N) + \lambda(N) - \lambda(1)} + \frac{\cos[-\lambda(1-N) - \lambda(N)] - \cos \lambda(1)}{-\lambda(1-N) - \lambda(N) - \lambda(1)}
+  \bigg | 
+  \\
+  & \simeq \bigg | a_{N} \bigg ( \frac{1}{\lambda(1-N) - \lambda(N) - \lambda(1)} + \frac{1}{\lambda(N) - \lambda(1-N) - \lambda(1)} \bigg )
+  \\
+  & + b_{N} \bigg ( \frac{1}{\lambda(1-N) + \lambda(N) - \lambda(1)} + \frac{1}{-\lambda(N) - \lambda(1-N) - \lambda(1)} 
+  \bigg ) \bigg | 
 \end{split}
 \end{equation}
 %
@@ -430,26 +438,51 @@ where
 %
 \begin{equation*}
 \begin{split}
-  a_{N} =  | \cos[\lambda(1-N) - \lambda(N)] - \cos \lambda(1) |.
+  & a_{N} =   \cos[\lambda(1-N) - \lambda(N)] - \cos \lambda(1),
+  \\
+  & b_{N} =  \cos[\lambda(1-N) + \lambda(N)] - \cos \lambda(1).
 \end{split}
 \end{equation*}
 %
+Simplifying \eqref{puy} further, we obtain
 %
 %
+\begin{equation*}
+\begin{split}
+  & 2 \lambda(1) \bigg |  \frac{a_{N}}{[\lambda(1-N) - \lambda(N) - \lambda(1)][\lambda(N) - \lambda(1-N) - \lambda(1)]} 
+  \\
+  & +  \frac{b_{N}}{[\lambda(1-N) + \lambda(N) - \lambda(1)][-\lambda(N) - \lambda(1-N) - \lambda(1)]} 
+   \bigg |
+   \\
+   & \simeq | a_{N} O(N^{-2}) + b_{N} O(N^{-4}) | 
+   \\
+   & \sim | a_{n} O(N^{-2})|, \quad N > >1
+\end{split}
+\end{equation*}
 %
-Notice that $\{a_{N}\}$ is divergent, with $a_{N} \ge 0$ for all $N$. Substituting \eqref{puy} into \eqref{pre-int-decay}, we see that 
+since $\{|b_{N}|\}$ is uniformly bounded. Notice also that $\{|a_{N}|\}$ is divergent. Substituting \eqref{puy} into \eqref{pre-int-decay}, we see that for $N > > 1$,  
 %
 %
 \begin{equation*}
 \begin{split}
 \|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}
-   \gtrsim a_{N}
+\gtrsim N^{-2 s -2}|a_{N}| 
 \end{split}
 \end{equation*}
 %
 %
+and so recalling \eqref{ill-pos-ced}, we get
 %
-which concludes the proof.
+%
+\begin{equation*}
+\begin{split}
+\frac{\|A_{2}[f_{N}]\|_{C([-\delta, \delta], H^{\beta})}}{\| f_{N}
+\|_{H^{\beta}}} \gtrsim N^{-s -2 - \beta} | a_{N} |
+\end{split}
+\end{equation*}
+%
+%
+which diverges for $\beta < -s -2$. This concludes the proof.
 %
 %
 %
@@ -710,7 +743,7 @@ which concludes the proof.
 %%
 %%
 %%
-%<++>
+%
 %%
 %where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge | a_{N} |$, the symmetry of the convolution, and the definition of $f_{N}$. Distributing terms, and setting $t=1$, we bound below by 
 
