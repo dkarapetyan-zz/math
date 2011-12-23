@@ -28,6 +28,7 @@
 *.doc
 *.toc
 *.ttt 
+*.latexmain
 .bash_history
 .viminfo
 tags
