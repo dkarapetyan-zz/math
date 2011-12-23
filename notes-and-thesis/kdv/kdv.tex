@@ -103,8 +103,8 @@ and $n$. Multiplying \eqref{2four-trans-pde} by the integrating factor $e^{itn^3
 %%
 \begin{equation*}
 	\begin{split}
-		\left[ e^{ it n^3} \widehat{u}(n) \right]_t = i
-		 e^{ it n^3} \widehat{w} (n, t).	
+		\left[e^{it n^3} \widehat{u}(n) \right]_t = i
+		 e^{it n^3} \widehat{w} (n, t).	
 	\end{split}
 \end{equation*}
 %
@@ -115,7 +115,7 @@ Integrating from $0$ to $t$, we obtain
 \begin{equation*}
 	\begin{split}
 		\wh{u}(n, t) = \wh{\vp}(n) e^{- it n^3} + i  
-		\int_0^t e^{ i(t' - t) n^3} \wh{w}(n, t') \ 
+		\int_0^t e^{i(t' - t) n^3} \wh{w}(n, t') \ 
 		dt'.
 	\end{split}
 \end{equation*}
@@ -239,7 +239,7 @@ rearranging terms, we have
 		})} \widehat{\vp}(n) 
 		\\
 		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int_\rr e^{ixn}  
-		e^{it \tau} \frac{ 1 - \psi(\tau - n^3) 
+		e^{it \tau} \frac{1 - \psi(\tau - n^3) 
 		}{\tau - n^3} \wh{w}(n, \tau) \ d \tau
 		\\
 		& - \frac{1}{4 \pi^2} \psi(t) \sum_{n \in \zz} \int _\rr e^{i(xn + 
@@ -268,7 +268,7 @@ to
 		\\
 		\label{2main-int-expression-2}
 		& + \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zz} \int_\rr e^{ixn}  
-		e^{it \tau} \frac{ 1 - \psi(\tau -  n^3) 
+		e^{it \tau} \frac{1 - \psi(\tau -  n^3) 
 		}{\tau -  n^3} \wh{w}(n, \tau) \ d \tau
 		\\
 		\label{2main-int-expression-3}
@@ -294,7 +294,7 @@ where $T = T_{\vp}$. We now introduce the following spaces.
 \begin{equation}
 	\label{2Y-s-norm}
 	\begin{split}
-		\|u\|_{\dot{Y}^s} = \|u\|_{\dot{X}^s} + \|n^s \wh{ u}\|_{ \dot{\ell}^2_n L^1_\tau }
+		\|u\|_{\dot{Y}^s} = \|u\|_{\dot{X}^s} + \|n^s \wh{u}\|_{\dot{\ell}^2_n L^1_\tau }
 	\end{split}
 \end{equation}
 %
@@ -304,7 +304,7 @@ where $T = T_{\vp}$. We now introduce the following spaces.
 where
 %
 \begin{equation}
-	\label{2X^s-norm}
+	\label{2Xs-norm}
 	\begin{split}
 		& \|u\|_{\dot{X}^s}
 		= \left ( \sum_{n\in \zz} |n|^{2s} \int_\rr \left ( 1 + | 
@@ -317,7 +317,7 @@ and
 %
 \begin{equation}
 	\label{2E-norm}
-	\|n^s \wh{u}\|_{ \dot{\ell}^2_n L^1_\tau } = \left[ \sum_{n \in \zzdot}| n |^{2s} \left(
+	\|n^s \wh{u}\|_{\dot{\ell}^2_n L^1_\tau } = \left[ \sum_{n \in \zzdot}| n |^{2s} \left(
 	\int_{\rr}| \wh{u}(n, \tau) |d \tau \right)^{2} \right]^{1/2}.
 \end{equation}
 %
@@ -455,7 +455,7 @@ Hence,
 		\|\eqref{2main-int-expression-2}\|_{\dot{X}^s} 
 		& \lesssim 
 		\left( \| \sum_{n \in \zz} e^{ixn} \int_\rr 
-		e^{it \tau} \frac{ 1 - \psi (\tau - n^{3} ) 
+		e^{it \tau} \frac{1 - \psi (\tau - n^{3} ) 
 		}{\tau - n^{3}} \wh{w}(n, \tau) \ 
 		d \tau\|_{\dot{X}^s} \right)^{1/2}
 		\\
@@ -528,7 +528,7 @@ Furthermore,
 	\begin{split}
 		\|\wh{\eqref{2main-int-expression-2}} \|_{\dot{\ell}^2_n L^1_\tau}
 		& \lesssim \left( \| \sum_{n \in \zz} e^{ixn} \int_\rr 
-		e^{it \tau} \frac{ 1 - \psi (\tau - n^{3} ) 
+		e^{it \tau} \frac{1 - \psi (\tau - n^{3} ) 
 		}{\tau - n^{3}} \wh{w}(n, \tau) \ 
 		d \tau\|_{\dot{\ell}^2_n L^1_\tau} \right)^{1/2}
 		\\
@@ -1056,7 +1056,7 @@ T_\ell(u, v)$, where
 \begin{align}
 	\label{2main-int-exp-mod1}
 	& \frac{1}{4 \pi^2} \psi(t) \sum_{n\in \zzdot} \int_\rr e^{ixn}  
-		e^{it \tau} \frac{ 1 - \psi(\tau - n^{3}) 
+		e^{it \tau} \frac{1 - \psi(\tau - n^{3}) 
 		}{\tau - n^{3}} \wh{w_\ell}(n, \tau) \ d \tau
 		\\
 		\label{2main-int-exp-mod2}
@@ -1423,7 +1423,7 @@ where
 	\begin{split}
 		C_h(x,t) =
 		\left[ \frac{c_h(n, \tau)}{\left( 1 + | \tau - n^3 | 
-		\right)^{1/2}}\right]^\vee .	
+		\right)^{1/2}}\right]^\vee.	
 	\end{split}
 \end{equation*}
 
@@ -1448,21 +1448,17 @@ H\"{o}lder, we obtain
 	\end{split}
 \end{equation}
 %
-We now need the following Fourier multiplier estimate, whose proof can be found
-in~\cite{Himonas-Misiolek-2001-A-priori-estimates-for-Schrodinger}.
-%
+We now need the following Fourier multiplier estimate. 
 \begin{lemma}
 	\label{2lem:four-mult-est-L4}
-	Let $(x, t) \in \ci \times \rr $ and $(n, \tau) \in \zz \times \rr$ be 
-	the dual variables. Let $v$ be a positive even integer. Then there is a 
-	constant $c_v > 0$ such that
-%
-%
+	Let $(x, t) \in \ci \times \rr $ and $(k, \tau) \in \zz \times \rr$ be
+	the dual variables. Let $v$ be a positive even integer, and fix $\ee >
+	0$. Then for $b$ satisfying the relations $b \ge (\ee v + 1/2)/v$ and $b \ge (v+1)/(4v)$, we have
 \begin{equation}
 	\label{2four-mult-est-L4}
 	\begin{split}
-		\|f\|_{L^4(\ci \times \rr)} \le c_v \|\left( 1 + | \tau - n^v | 
-		\right)^\frac{v+1}{4v} \wh{f} \|_{L^2( \zz \times \rr)}
+		\|f\|_{L^4(\ci \times \rr)} \le c_\ee \|\left( 1 + | \tau - n^v | 
+		\right)^b \wh{f} \|_{L^2( \zz \times \rr)}
 	\end{split}
 \end{equation}
 for every test function $f(x, t)$. 
@@ -1471,6 +1467,15 @@ for every test function $f(x, t)$.
 %
 %
 \end{lemma}
+\begin{framed}
+%
+%
+\begin{remark}
+  See \cite{Himonas_2007_Non-uniform-con} for a similar theorem. The above theorem is a slight improvement. 
+\end{remark}
+%
+%
+\end{framed}
 From the lemma, we see that
 %
 %
@@ -1561,7 +1566,7 @@ precisely, we have the following.
 %
 %
 \begin{equation}
-	\label{2four-mult-est-L4*}
+	\label{2four-mult-est-L4st}
 	\begin{split}
 		\| \left( 1 + | \tau - n^v | 
 		\right)^{-\frac{v+1}{4v}}
@@ -1768,7 +1773,7 @@ Applying Cauchy-Schwartz again, \eqref{210g} is bounded by
 		\notag
 		& \times  \|a_{n}
 		\left( \sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2
-		=n}}\int_{\tau_1 + \tau_2 = \tau} \frac{1}{ (1 + | \tau - n^{3} |)(1 + |
+		=n}}\int_{\tau_1 + \tau_2 = \tau} \frac{1}{(1 + | \tau - n^{3} |)(1 + |
 		\tau_{1}-n_{1}^{3} |)(1 + | \tau_2 -n_{2}^{3} |)} d \tau_1 d \tau_2
 		\right)^{1/2} \|_{L^2(\zz \times \rr)}
 		\\
@@ -1779,7 +1784,7 @@ Applying Cauchy-Schwartz again, \eqref{210g} is bounded by
 		& \times 
 		\|a_{n}
 		\left( \sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2
-		=n}}\int_{\tau_1 + \tau_2 = \tau} \frac{1}{ (1 + | \tau - n^{3} |)(1 + |
+		=n}}\int_{\tau_1 + \tau_2 = \tau} \frac{1}{(1 + | \tau - n^{3} |)(1 + |
 		\tau_{1}-n_{1}^{3} |)(1 + | \tau_2 -n_{2}^{3} |)} d \tau_1 d \tau_2
 		\right)^{1/2} \|_{L^2(\zz \times \rr)}.
 \end{align}
@@ -1794,7 +1799,7 @@ Applying H{\"o}lder then gives
 		\\
 		& \times \left( \sup_{n \neq 0} \int_{\rr}
 		\sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2 =n}} \int_{\tau_1 + \tau_2
-		= \tau} \frac{1}{ (1 + | \tau - n^{3} |)(1 + |
+		= \tau} \frac{1}{(1 + | \tau - n^{3} |)(1 + |
 		\tau_{1}-n_{1}^{3} |)(1 + | \tau_2 -n_{2}^{3} |)} d \tau_1 d \tau_2 d \tau
 		\right)^{1/2}.
 	\end{split}
@@ -1811,7 +1816,7 @@ to show that
 	\begin{split}
 		 \sup_{n \neq 0} \int_{\rr}
 		\sum_{\substack{n_1 \neq 0, n_2 \neq 0 \\n_1 +n_2 =n}} \int_{\tau_1 + \tau_2
-		= \tau} \frac{1}{ (1 + | \tau - n^{3} |)(1 + |
+		= \tau} \frac{1}{(1 + | \tau - n^{3} |)(1 + |
 		\tau_{1}-n_{1}^{3} |)(1 + | \tau_2 -n_{2}^{3} |)} d \tau_1 d \tau_2 d \tau <\infty
 	\end{split}
 \end{equation*}
@@ -2040,7 +2045,7 @@ completing the proof. \qquad \qedsymbol
 %
 %
 \section{Proofs of Lemmas and Estimates}
-\begin{proof}[Proof of \cref{1lem:cutoff-loc-soln}]
+\begin{proof}[Proof of Cutoff Lemma]
 %
 %
 \begin{equation*}
@@ -2050,7 +2055,7 @@ completing the proof. \qquad \qedsymbol
 		t_{n})\|_{\dot{H}^s(\ci)} 
 		\\
 		& = \lim_{t_n \to t} \left[ \sum_{n \in \zzdot}| n |
-		^{2s} | \psi(t)  \wh{u}(n, t) - \psi(t_n) \wh{ u}(n, t_n) |^2 \right]^{1/2}
+		^{2s} | \psi(t)  \wh{u}(n, t) - \psi(t_n) \wh{u}(n, t_n) |^2 \right]^{1/2}
 		\\
 		& = \lim_{t_n \to t} \left[ \sum_{n \in \zzdot} | n |^{2s} | \int_{\rr} (e^{it \tau} - e^{it_{n} \tau}) \wh{\psi u}(n,
 		\tau) d \tau |^2 \right]^{1/2}.
@@ -2082,6 +2087,274 @@ and
 which is bounded by assumption.
 Applying dominated convergence completes the proof. 
 \end{proof}
+%
+%
+%
+\begin{proof}[Proof of General Multiplier Estimate]
+  We handle the case $v = 2$ for clarity by following a proof of Tzvetkov, as outlined by Tao \cite{Tao-2006-Nonlinear-dispersive-equations}. We will then abstract the argument to general $v$. Observe that
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| u \|_{L^{4}_{x}L^{4}_{t}}^{2} 
+    &= \| u^{2} \|_{L^{2}_{x}, L^{2}_{t}}
+    \\
+    & = \| (\sum_{M}u_{M})^{2} \|_{L^{2}_{x}L^{2}_{t}}
+  \end{split}
+  \end{equation*}
+  %
+  %
+  where $M$ is a dyadic integer, and $u_{M}$ is the portion of $u$ localized to the spacetime frequency region $M \le \langle \tau - k^{2} \rangle \le 2M$. Observe that
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    | \left( \sum_{M} u_{M} \right)^{2} |
+    & = | \sum_{M} u_{M} \sum_{M'}u_{M'} |
+    \\
+    & = \sum_{M, M'} u_{M} u_{M'}
+    \\
+    & \simeq \sum_{m \ge 0} \sum_{M} u_{M}u_{2^{m}M}.
+  \end{split}
+  \end{equation*}
+  %
+  \begin{framed}
+For fixed $M$, we have
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sum_{M'} u_{M} u_{M'} = \sum_{m \in \zz} u_{M} u_{2^{m}M}
+  \end{split}
+  \end{equation*}
+  %
+  %
+  and so
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \sum_{M, M'} u_{M}u_{M'}
+    & = \sum_{m \in \zz} \sum_{M} u_{M} u_{2^{m}M}
+    \\
+    & = 2 \sum_{m \ge 0} \sum_{M} u_{M}u_{2^{m}M}.
+  \end{split}
+  \end{equation*}
+  %
+\end{framed}
+  %
+  %
+  Also,
+  %
+  %
+  \begin{equation*}
+  \begin{split}
+    \| u \|^{2}_{X^{0, 3/8}} \sim \sum_{M} M^{3/4} \| u_{M} \|^{2}_{L^{2}_{x}L^{2}_{t}}.
+  \end{split}
+  \end{equation*}
+  %
+  %
+  So, it suffices to show
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \sum_{m \ge 0} \sum_{M} u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
+  \lesssim M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
+\end{split}
+\end{equation*}
+%
+%
+or, by the triangle inequality, that
+%
+%
+\begin{equation*}
+\begin{split}
+  \sum_{M} \| u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
+\lesssim 2^{-\ee m} \sum_{M} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
+\end{split}
+\end{equation*}
+where $\ee > 0$ is some fixed constant.
+But by Cauchy-Schwartz,
+%
+%
+\begin{equation*}
+\begin{split}
+  \sum_{M} M^{3/8} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}} (2^{m}M)^{3/8} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}} 
+  & \le (\sum_{M} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2})^{1/2}
+  (\sum_{M} (2^{m}M)^{3/4} \| u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}^{2})^{1/2}
+  \\
+  & = \sum_{M} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
+\end{split}
+\end{equation*}
+%
+%
+and so it will suffice to show
+\begin{equation*}
+\begin{split}
+\| u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
+& \lesssim 2^{-\ee m} M^{3/8} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}
+(2^{m} M)^{3/8} \| u_{2^{m} M} \|_{L^{2}_{x}L^{2}_{t}}
+\\
+& = 2^{m(3/8 - \ee)} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}
+\| u_{2^{m} M} \|_{L^{2}_{x}L^{2}_{t}}.
+\end{split}
+\end{equation*}
+%
+Now by Parseval, Cauchy-Schwartz, and H\"older
+%
+%
+\begin{equation*}
+\begin{split}
+\| u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
+& \simeq \| \int_{\rr} \sum_{k_{1}} \wh{u_{M}}(\tau - \tau_{1}, k - k_{1}) \wh{u_{2^{m}M}}(\tau_{1}, k_{1}) \|_{L^{2}_{\tau} \ell^{2}_{k}}
+\\
+& \le \| \left( \int_{\rr} \sum_{k_{1}} | \wh{u_{M}}(\tau - \tau_{1}, k - k_{1}) |^{2} | \wh{u_{2^{m}M}}(\tau_{1}, k_{1}) |^{2} d \tau_{1} \right)^{1/2} 
+\\
+& \times \left ( \int_{\rr} \sum_{k_{1}} \chi_{M}(\tau - \tau_{1}, k - k_{1}) \chi_{2^{m}M}(\tau_{1}, k_{1}) d \tau_{1} \right ) ^{1/2} \|_{\ell^{2}_{k} L^{2}_{\tau}}
+\\
+& \le \left ( \sup_{\tau \in \rr, k \in \zz} \int_{\rr} \sum_{k_{1}}
+\chi_{M}(\tau - \tau_{1}, k - k_{1}) \chi_{2^{m}M}(\tau_{1}, k_{1}) d \tau_{1} \right )^{1/2}  
+\\
+& \times \| \left( \int_{\rr} \sum_{k_{1}} | \wh{u_{M}}(\tau - \tau_{1}, k - k_{1}) |^{2} | \wh{u_{2^{m}M}}(\tau_{1}, k_{1}) |^{2} d \tau_{1} \right)^{1/2} \|_{\ell^{2}_{k} L^{2}_{\tau}}. 
+\end{split}
+\end{equation*}
+%
+%
+where $\chi_{N}(\lambda, n)$ is an indicator function with support on the set of pairs $(\lambda, n)$ satisfying $N \le \langle \lambda - n^{2} \rangle  \le 2N$.   But
+%
+%
+\begin{equation*}
+\begin{split}
+  \| \left( \int_{\rr} \sum_{k_{1}} | \wh{u_{M}}(\tau - \tau_{1}, k - k_{1}) |^{2} | \wh{u_{2^{m}M}}(\tau_{1}, k_{1}) |^{2} d \tau_{1} \right)^{1/2} \|_{\ell^{2}_{k}L^{2}_{\tau}} 
+  & = \| u_{M} \|_{\ell^{2}_{k}L^{2}_{\tau}} \| u_{2^{m} M} \|_{\ell^{2}_{k}L^{2}_{\tau}} 
+\end{split}
+\end{equation*}
+%
+%
+and so we have reduced to proving that for fixed $k \in \zz, \tau \in \rr$
+%
+%
+\begin{equation*}
+\begin{split}
+\int_{\rr} \sum_{k_{1}}
+\chi_{M}(\tau - \tau_{1}, k - k_{1}) \chi_{2^{m}M}(\tau_{1}, k_{1}) d \tau_{1}  \lesssim 2^{m(3/4 - 2 \ee)} M^{3/2}
+\end{split}
+\end{equation*}
+%
+%
+where the bound does not depend upon $k$ or $\tau$. Now for fixed $k, \tau$, we invoke Fubini, the symmetry of the convolution, and the support of $\chi_{N}$ to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\int_{\rr} \sum_{k_{1}}
+\chi_{M}(\tau - \tau_{1}, k - k_{1}) \chi_{2^{m}M}(\tau_{1}, k_{1}) d \tau_{1}  
+& = 
+\sum_{k_{1}}\int_{\rr} 
+\chi_{M}(\tau_{1}, k_{1}) \chi_{2^{m}M}(\tau - \tau_{1}, k - k_{1}) d \tau_{1} 
+\\
+& = \sum_{k_{1 \in S}} \int_{k_{1}^{2} + M}^{k_{1}^{2} + 2M} d \tau_{1}
+\\
+& = M | S |
+\end{split}
+\end{equation*}
+%
+%
+where
+%
+%
+\begin{equation*}
+\begin{split}
+  S =  \{ & k_{1} \in \zz: \text{for fixed} \ \tau_{1} \in \rr \ \text{satisfying} \ 
+  k_{1}^{2} + M \le \tau_{1} \le k_{1}^{2} + 2M, \ \text{we have}
+  \\
+  & 2^{m} M \le \langle \tau - \tau_{1} - (k - k_{1})^{2} \rangle  \le 2^{m+1}M \}.
+\end{split}
+\end{equation*}
+%
+Therefore, to complete the proof, it will be enough to show that
+%
+%
+\begin{equation*}
+\begin{split}
+  | S | \lesssim 2^{m(3/4 - 2 \ee)}M^{1/2}.
+\end{split}
+\end{equation*}
+%
+Proceeding, we observe that we reduce to counting the number of $k_{1}$ such that
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  M \le | \tau - k_{1}^{2} - cM  - (k - k_{1})^{2}| \le 2M
+\end{split}
+\end{equation*}
+%
+for all $c \in [1,2]$.
+To do so, we simplify our counting procedure by considering larger sets than $S$ wth simpler conditions. More precisely, we can restrict our attention to counting the number of $k_{1}$ satisfying
+%
+%
+\begin{equation*}
+\begin{split}
+  2^{m}M + M \le | \tau - 2k_{1}^{2} - k^{2} + 2kk_{1} | \le 2^{m}M + 2M
+\end{split}
+\end{equation*}
+%
+%
+or, after completing the square and some rearrangement
+%
+%
+\begin{equation}
+\begin{split}
+  2^{m}M + | 5/4 k^{2} - \tau/2 | \le | k_{1} - k/2 |^{2} \le 2^{m+1}M + | 5/4 k^{2} - \tau/2 |.
+\end{split}
+\end{equation}
+%
+%
+For this relation to be satisfied, $| k_{1} - k/2 |^{2}$ must live in an interval of length $2^{m}M$. It follows that $| k_{1} - k/2 |$ must live in an interval of length $2^{m/2} M^{1/2}$, and so $|k_{1}|$ lives in an interval  of length $2^{m/2} M^{1/2}$. There are at most $4 \times [2^{m/2} M^{1/2}]$ choices of $k_{1}$ living in this interval, where we use $[\cdot]$ to denote the nearest integer. Hence, taking $\ee = 1/8$ completes the proof for the case $v=2$. For general $v$, going through an analogous argument to the case $v=2$, we reduce to showing that
+\begin{equation*}
+\begin{split}
+  | S | \lesssim 2^{m(2b - 2 \ee)}M^{4b -1}.
+\end{split}
+\end{equation*}
+where
+\begin{equation*}
+\begin{split}
+  S =  \{ & k_{1} \in \zz: \text{for fixed} \ \tau_{1} \in \rr \ \text{satisfying} \ 
+  k_{1}^{v} + M \le \tau_{1} \le k_{1}^{v} + 2M, \ \text{we have}
+  \\
+  & 2^{m} M \le \langle \tau - \tau_{1} - (k - k_{1})^{v} \rangle  \le 2^{m+1}M \}.
+\end{split}
+\end{equation*}
+%
+It is enough to count the number of $k_{1}$ satisfying
+%
+%
+\begin{equation*}
+\begin{split}
+  2^{m}M + | 5/4 k^{v} - \tau/2 | \le | k_{1} - k/2 |^{v} \le 2^{m+1}M + | 5/4 k^{v} - \tau/2 |.
+\end{split}
+\end{equation*}
+%
+%
+Arguing as in the case $v=2$, we see that there are at most $4 \times [2^{m/v} M^{1/v}]$ choices of $k_{1}$ satisfying this relation. Restricting $1/v \le 4b-1$ and $1/v \le 2b - 2 \ee$,
+or
+%
+%
+\begin{gather*}
+\frac{v+1}{4v} \le b
+\\
+\frac{\ee v + 1/2}{v} \le b
+\end{gather*}
+%
+%
+completes the proof.
+%
+%
+\end{proof}
+%
 %
 %
 \begin{proof}[Proof of \cref{2lem:schwartz-mult}]
@@ -2209,7 +2482,7 @@ concluding the proof.
 \end{proof}
 
 %
-\begin{proof}[Proof of \cref{1lem:number-theory}]
+\begin{proof}[Proof of Number Theory Lemma]
 First note that
 %
 \begin{equation*}
