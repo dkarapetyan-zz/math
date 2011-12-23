@@ -136,26 +136,28 @@ It is shown that the solution map for the hyperelastic rod equation is not
 uniformly continuous on bounded sets of Sobolev spaces with exponent greater
 than 3/2 in the periodic case and non-periodic cases. The proof is based on the
 method of approximate solutions and well-posedness estimates for the solution
-and its lifespan.  Building upon this work, we also prove that the data to
+and its lifespan. Building upon this work, we also prove that the data to
 solution map for the hyperelastic rod equation is H\"older continuous from
 bounded sets of Sobolev spaces with exponent $s > 3/2$ measured in a weaker
 Sobolev norm with exponent $r < s$ in both the periodic and non-periodic cases.
 The proof is based on energy estimates coupled with a delicate commutator
-estimate and multiplier estimate. 
+estimate and multiplier estimate.
 \end{abstract}
  %                         % Either place the text between begin/end, or
  % \include{abstract}  % put it in a file to be included
 
 % \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
                                            % something else
- %\begin{dedication}
-   %To my mama. You have been patient. Be patient a little longer -- this is only the
-   %beginning.
-   %\\
-%To Cynthia -- loyal, and fierce, and loving until the end. To zemer Amelda, whose kindnesses
-%give me the strength to never bend, never break.
-  %\end{dedication}
- %%                       % Use one of the two choices to add dedication text
+ \begin{dedication}
+   \emph{To my mama. You have been patient. Be patient a little longer -- this is only the
+   beginning.
+   \\
+To Cynthia -- loyal, and fierce, and loving until the end. 
+\\
+To zemer Amelda, whose kindnesses
+give me the strength to never bend, never break.}
+  \end{dedication}
+ %                       % Use one of the two choices to add dedication text
   %\include{dedication}
 
 \tableofcontents
@@ -178,17 +180,34 @@ estimate and multiplier estimate.
 
  %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
                                        % add something else, and uncomment
- % \begin{acknowledge}
- % \end{acknowledge}
+  \begin{acknowledge}
+    I would like to thank my advisor Professor Alex Himonas for his support,
+    guidance, and food. I am grateful for his help in procuring the Schmitt
+    Presidential Fellowship, which was a great aid in completing my
+    disseration. Thanks also to Gerard Misiolek, who was always ready to answer
+    the random analysis question or talk about the arts. To Professor Gerson
+    Petronilho, for the many talks he gave,  his patience in collaborating
+    with a junior mathematician and pointing out . I am indebted to my friend Professor Dan Geba,
+    who is one of the finest human beings I have ever known, and a mathematical
+    beast. He's also not too shabby at tennis. 
+
+    Many thanks to my officemates Yen Huang and Yenrui Hao, who were always willing to discuss mathematics with me when we weren't horsing around. I must also thank Katie Grayshan, whose curiosity and willingness to ask questions helped me identify and shore up my weaknesses. 
+
+    Thanks to Beth VerVelde, who understood me better than most, (who dispensed both stationary and wisdom in equatl measure). and is too wise for her own good. To my friends back home, thanks goes to Cynthia Ramirez, who always felt guilty whenever I was sent to voicemail, and called me back as soon as possible. Your patience and loyalty helped me perservere, and will not be forgotten. To Amelda zemer, your kindnesses and enormous heart have given me the strength to never break, no matter the adversity or general nonsense I may encounter.
+
+To my mom, Satenik Antonian, 
+
+    The author thanks the Department of Mathematics at the University of Notre Dame and the Arthur J. Schmitt Foundation for supporting his doctoral studies.
+  \end{acknowledge}
  %                       % Use one of the two choices to add acknowledge text
  % \include{acknowledgement}
 
 \mainmatter
  % Place the text body here.
 \include{./hr/hr}
+\include{./hr/hr_holder_cont}
  %\input{./hr-holder/hr_holder_cont.tex}
 \appendix
-\chapter{Calculus on Banach Spaces}
 \include{./ode-thm/ode-thm}
  % If you have appendices, add them here.
  % Begin each one with \chapter{title} as before- the \appendix command takes
@@ -198,8 +217,8 @@ estimate and multiplier estimate.
 
 \backmatter              % Place for bibliography and index
 \bibliographystyle{nddiss2e}
-%\bibliographystyle{amsalpha-custom} 
-\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+\bibliographystyle{amsalpha-custom} 
+\bibliography{/Users/davidkarapetyan/math/bib-files/references-papers}
 
 \end{document}
 
