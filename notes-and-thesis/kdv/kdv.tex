@@ -2091,7 +2091,7 @@ Applying dominated convergence completes the proof.
 %
 %
 \begin{proof}[Proof of General Multiplier Estimate]
-  We handle the case $v = 2$ for clarity by following a proof of Tzvetkov, as outlined by Tao \cite{Tao-2006-Nonlinear-dispersive-equations}. We will then abstract the argument to general $v$. Observe that
+  We are motivated by a proof of the case $v=2$ by Tzvetkov, as outlined by Tao \cite{Tao-2006-Nonlinear-dispersive-equations}. Observe that
   %
   %
   \begin{equation*}
@@ -2104,7 +2104,7 @@ Applying dominated convergence completes the proof.
   \end{equation*}
   %
   %
-  where $M$ is a dyadic integer, and $u_{M}$ is the portion of $u$ localized to the spacetime frequency region $M \le \langle \tau - k^{2} \rangle \le 2M$. Observe that
+  where $M$ is a dyadic integer, and $u_{M}$ is the portion of $u$ localized to the spacetime frequency region $M \le \langle \tau - k^{2} \rangle \le 2M$. Now 
   %
   %
   \begin{equation*}
@@ -2149,7 +2149,7 @@ For fixed $M$, we have
   %
   \begin{equation*}
   \begin{split}
-    \| u \|^{2}_{X^{0, 3/8}} \sim \sum_{M} M^{3/4} \| u_{M} \|^{2}_{L^{2}_{x}L^{2}_{t}}.
+    \| u \|^{2}_{X^{0, b}} \sim \sum_{M} M^{2b} \| u_{M} \|^{2}_{L^{2}_{x}L^{2}_{t}}.
   \end{split}
   \end{equation*}
   %
@@ -2160,7 +2160,7 @@ For fixed $M$, we have
 \begin{equation*}
 \begin{split}
   \| \sum_{m \ge 0} \sum_{M} u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
-  \lesssim M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
+  \lesssim M^{2b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
 \end{split}
 \end{equation*}
 %
@@ -2171,7 +2171,7 @@ or, by the triangle inequality, that
 \begin{equation*}
 \begin{split}
   \sum_{M} \| u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
-\lesssim 2^{-\ee m} \sum_{M} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
+\lesssim 2^{-\ee m} \sum_{M} M^{2b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
 \end{split}
 \end{equation*}
 where $\ee > 0$ is some fixed constant.
@@ -2180,11 +2180,11 @@ But by Cauchy-Schwartz,
 %
 \begin{equation*}
 \begin{split}
-  \sum_{M} M^{3/8} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}} (2^{m}M)^{3/8} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}} 
-  & \le (\sum_{M} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2})^{1/2}
-  (\sum_{M} (2^{m}M)^{3/4} \| u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}^{2})^{1/2}
+  \sum_{M} M^{b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}} (2^{m}M)^{b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}} 
+  & \le (\sum_{M} M^{2b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2})^{1/2}
+  (\sum_{M} (2^{m}M)^{2b} \| u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}^{2})^{1/2}
   \\
-  & = \sum_{M} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
+  & = \sum_{M} M^{2b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}^{2}
 \end{split}
 \end{equation*}
 %
@@ -2193,10 +2193,10 @@ and so it will suffice to show
 \begin{equation*}
 \begin{split}
 \| u_{M} u_{2^{m}M} \|_{L^{2}_{x}L^{2}_{t}}
-& \lesssim 2^{-\ee m} M^{3/8} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}
-(2^{m} M)^{3/8} \| u_{2^{m} M} \|_{L^{2}_{x}L^{2}_{t}}
+& \lesssim 2^{-\ee m} M^{b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}
+(2^{m} M)^{b} \| u_{2^{m} M} \|_{L^{2}_{x}L^{2}_{t}}
 \\
-& = 2^{m(3/8 - \ee)} M^{3/4} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}
+& = 2^{m(b - \ee)} M^{2b} \| u_{M} \|_{L^{2}_{x}L^{2}_{t}}
 \| u_{2^{m} M} \|_{L^{2}_{x}L^{2}_{t}}.
 \end{split}
 \end{equation*}
@@ -2221,7 +2221,7 @@ Now by Parseval, Cauchy-Schwartz, and H\"older
 \end{equation*}
 %
 %
-where $\chi_{N}(\lambda, n)$ is an indicator function with support on the set of pairs $(\lambda, n)$ satisfying $N \le \langle \lambda - n^{2} \rangle  \le 2N$.   But
+where $\chi_{N}(\lambda, n)$ is an indicator function with support on the set of pairs $(\lambda, n)$ satisfying $N \le \langle \lambda - n^{v} \rangle  \le 2N$.  But
 %
 %
 \begin{equation*}
@@ -2238,7 +2238,7 @@ and so we have reduced to proving that for fixed $k \in \zz, \tau \in \rr$
 \begin{equation*}
 \begin{split}
 \int_{\rr} \sum_{k_{1}}
-\chi_{M}(\tau - \tau_{1}, k - k_{1}) \chi_{2^{m}M}(\tau_{1}, k_{1}) d \tau_{1}  \lesssim 2^{m(3/4 - 2 \ee)} M^{3/2}
+\chi_{M}(\tau - \tau_{1}, k - k_{1}) \chi_{2^{m}M}(\tau_{1}, k_{1}) d \tau_{1}  \lesssim 2^{m(2b - 2 \ee)} M^{4b}
 \end{split}
 \end{equation*}
 %
@@ -2254,7 +2254,7 @@ where the bound does not depend upon $k$ or $\tau$. Now for fixed $k, \tau$, we 
 \sum_{k_{1}}\int_{\rr} 
 \chi_{M}(\tau_{1}, k_{1}) \chi_{2^{m}M}(\tau - \tau_{1}, k - k_{1}) d \tau_{1} 
 \\
-& = \sum_{k_{1 \in S}} \int_{k_{1}^{2} + M}^{k_{1}^{2} + 2M} d \tau_{1}
+& = \sum_{k_{1 \in S}} \int_{k_{1}^{v} + M}^{k_{1}^{v} + 2M} d \tau_{1}
 \\
 & = M | S |
 \end{split}
@@ -2266,10 +2266,10 @@ where
 %
 \begin{equation*}
 \begin{split}
-  S =  \{ & k_{1} \in \zz: \text{for fixed} \ \tau_{1} \in \rr \ \text{satisfying} \ 
-  k_{1}^{2} + M \le \tau_{1} \le k_{1}^{2} + 2M, \ \text{we have}
+  S =  \{ & k_{1} \in \zz: \text{for every} \ \tau_{1} \in \rr \ \text{satisfying} \ 
+  k_{1}^{v} + M \le \tau_{1} \le k_{1}^{v} + 2M, \ \text{we have}
   \\
-  & 2^{m} M \le \langle \tau - \tau_{1} - (k - k_{1})^{2} \rangle  \le 2^{m+1}M \}.
+  & 2^{m} M \le \langle \tau - \tau_{1} - (k - k_{1})^{v} \rangle  \le 2^{m+1}M \}.
 \end{split}
 \end{equation*}
 %
@@ -2278,7 +2278,7 @@ Therefore, to complete the proof, it will be enough to show that
 %
 \begin{equation*}
 \begin{split}
-  | S | \lesssim 2^{m(3/4 - 2 \ee)}M^{1/2}.
+  | S | \lesssim 2^{m(2b - 2 \ee)}M^{4b-1}.
 \end{split}
 \end{equation*}
 %
@@ -2288,72 +2288,44 @@ Proceeding, we observe that we reduce to counting the number of $k_{1}$ such tha
 %
 \begin{equation*}
 \begin{split}
-  M \le | \tau - k_{1}^{2} - cM  - (k - k_{1})^{2}| \le 2M
+  2^{m} M \le | \tau - k_{1}^{v} - cM  - (k - k_{1})^{v}| \le 2^{m+1}M
 \end{split}
 \end{equation*}
 %
 for all $c \in [1,2]$.
-To do so, we simplify our counting procedure by considering larger sets than $S$ wth simpler conditions. More precisely, we can restrict our attention to counting the number of $k_{1}$ satisfying
+This is equivalent to counting the number of $k_{1}$ satisfying one of two equations 
+%
 %
 %
 \begin{equation*}
 \begin{split}
-  2^{m}M + M \le | \tau - 2k_{1}^{2} - k^{2} + 2kk_{1} | \le 2^{m}M + 2M
+  & 2^{m}M + cM - \tau \le k_{1}^{v} + (k - k_{1})^{v} \le 2^{m+1}M + cM - \tau,
+  \\
+  & 
+  - 2^{m}M - cM  + \tau \ge   k_{1}^{v} + (k - k_{1})^{v}  \ge -2^{m+1}M - cM + \tau
 \end{split}
 \end{equation*}
 %
 %
-or, after completing the square and some rearrangement
 %
 %
+If $v$ is even, then $k_{1}^{v}$ and $(k - k_{1})^{v}$ are positive, so we can restrict our attention to counting the number of $k_{1}$ satisfying one of two equations
 \begin{equation}
+  \label{ijj}
 \begin{split}
-  2^{m}M + | 5/4 k^{2} - \tau/2 | \le | k_{1} - k/2 |^{2} \le 2^{m+1}M + | 5/4 k^{2} - \tau/2 |.
+  & 2^{m}M + cM - \tau \le k_{1}^{v}  \le 2^{m+1}M + cM - \tau,
+  \\
+  & 
+  - 2^{m}M - cM  + \tau \ge   k_{1}^{v}  \ge -2^{m+1}M - cM + \tau
 \end{split}
 \end{equation}
-%
-%
-For this relation to be satisfied, $| k_{1} - k/2 |^{2}$ must live in an interval of length $2^{m}M$. It follows that $| k_{1} - k/2 |$ must live in an interval of length $2^{m/2} M^{1/2}$, and so $|k_{1}|$ lives in an interval  of length $2^{m/2} M^{1/2}$. There are at most $4 \times [2^{m/2} M^{1/2}]$ choices of $k_{1}$ living in this interval, where we use $[\cdot]$ to denote the nearest integer. Hence, taking $\ee = 1/8$ completes the proof for the case $v=2$. For general $v$, going through an analogous argument to the case $v=2$, we reduce to showing that
-\begin{equation*}
-\begin{split}
-  | S | \lesssim 2^{m(2b - 2 \ee)}M^{4b -1}.
-\end{split}
-\end{equation*}
-where
-\begin{equation*}
-\begin{split}
-  S =  \{ & k_{1} \in \zz: \text{for fixed} \ \tau_{1} \in \rr \ \text{satisfying} \ 
-  k_{1}^{v} + M \le \tau_{1} \le k_{1}^{v} + 2M, \ \text{we have}
-  \\
-  & 2^{m} M \le \langle \tau - \tau_{1} - (k - k_{1})^{v} \rangle  \le 2^{m+1}M \}.
-\end{split}
-\end{equation*}
-%
-It is enough to count the number of $k_{1}$ satisfying
-%
-%
-\begin{equation*}
-\begin{split}
-  2^{m}M + | 5/4 k^{v} - \tau/2 | \le | k_{1} - k/2 |^{v} \le 2^{m+1}M + | 5/4 k^{v} - \tau/2 |.
-\end{split}
-\end{equation*}
-%
-%
-Arguing as in the case $v=2$, we see that there are at most $4 \times [2^{m/v} M^{1/v}]$ choices of $k_{1}$ satisfying this relation. Restricting $1/v \le 4b-1$ and $1/v \le 2b - 2 \ee$,
-or
-%
-%
-\begin{gather*}
-\frac{v+1}{4v} \le b
-\\
-\frac{\ee v + 1/2}{v} \le b
-\end{gather*}
-%
-%
-completes the proof.
-%
-%
+For this relation to be satisfied, $k_{1}^{v}$ must live in an interval of length $2^{m}M$. Observe that there is an upper bound of  $4 \times \lfloor 2^{m/v} M^{1/v} \rfloor$ on the number of choices of $k_{1}$ in this case, where $\lfloor \cdot \rfloor$ denotes the nearest integer. Restricting $v$ such that $1/v \le (2b - 2 \ee)$ and $1/v \le 4b-1$ completes the proof.
 \end{proof}
+%
+\begin{framed} The case of odd $v$ results in infinitely many $k_{1}$ when $k=0$. Hence, the proof falls apart in this case.
+\end{framed}
+%
+%
 %
 %
 %
