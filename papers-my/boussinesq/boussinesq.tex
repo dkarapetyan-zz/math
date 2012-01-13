@@ -497,257 +497,325 @@ which diverges for $\beta < -s -2$. This concludes the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-%\section{Ill-Posedness for $s < -1/2$ on the Line (Failure of Continuity)} 
-%Given the machinery established in the introduction, we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
-%(0, 0)$, it will be enough to show the
-%following.
-%%
-%%
-%%
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%
-%%                Failure of Continuity at 0
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%%
-%\begin{theorem}
-  %Let $N$ be a positive integer. Consider initial data $f_{N}(x)$ given by
-  %$$f_{N}(x) \doteq (f_{N,1}(x), f_{N,2}(x)) 
-  %= (r N^{1/2} \frac{e^{ix(N+1)} - e^{ix N} + e^{-ix(N+1)} - e^{-iNx}}{ix} , 0).$$
-%%
-%%
-%%
-%Then 
-  %%
-  %%
-    %\begin{enumerate}[(I)]
-      %\item{$ f_{N} \in B_{H^{-1/2} \times H^{-3}}(r) \ \text{with associated
-    %solutions}
-    %\ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
-    %H^{-1/2})$}.
-    %\\
-  %\item
-    %$\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -1/2$ but for fixed $\ee > 0$ there exists $N'$ such that for all $N > N'$ 
-    %$$  \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N}
-    %\|_{H^{\beta}}} > \ee.$$
-%\end{enumerate}
-  %%
-  %%
-%\end{theorem}
-%%
-%%
-%%
-%\begin{proof}
-%%
-%Observe that
-%%
-%%
-%\begin{equation}
-%\begin{split}
-  %\wh{f_{N,1}}(\xi) \doteq r N^{1/2} \chi_{\{N \le |\xi| \le N + 1\}\}}
-%\end{split}
-%\end{equation}
-%%
-%and so
-%%
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\| f_{N,1} \|_{H^{-1/2}}
-  %& \simeq rN^{1/2} \left( \int_{N}^{N+1} (1 + \xi)^{-1} d \xi
-  %\right)^{1/2}
-  %\\
-  %& = rN^{1/2} \left| \ln (1 + 1/N) \right|^{1/2},
-  %\\
-  %& \le 2r, \qquad N >>1 \ (\text{by l'Hospital})
-%\end{split}
-%\end{equation*}
-%%
-%%
-%and 
-%%
-%\begin{equation*}
-%\begin{split}
-  %\| f_{N,1} \|_{H^{\beta}}
-  %& = rN^{1/2} \left( \int_{N-1}^{N+1} (1 + \xi)^{2\beta} d \xi
-  %\right)^{1/2}
-  %\\
-  %& = rN^{1/2} \left| \frac{1}{2\beta+1}( (N+2)^{2\beta+1} - N^{2\beta+1} ) \right|^{1/2}, \quad \beta < -1/2
-  %\\
-  %& = r N^{1/2 + \beta} \left| {\frac{1}{2\beta+1}}\left [ (N+2) \left( \frac{N+2}{N}
-  %\right)^{2\beta} -N \right ] \right|^{1/2}  \\
-  %& \le c_{\beta} r N^{1/2 + \beta}.
-%\end{split}
-%\end{equation*}
-%%
-%Therefore, we see that 
-%\begin{equation*}
-  %\begin{split}
-    %& (f_{N,1}, 0) \in B_{H^{-1} \times H^{-3}}(2r)
-    %\\
-    %& \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < -1/2.
-    %\end{split}
-%\end{equation*}
-%Note that due to the work of Kishimoto and Tsugawa \cite{Kishimoto:2010ly}, we know that that Boussinesq equation is well-posed (in the sense of Hadamard) for $s
-%\ge -1/2$. However, this of course does not imply qualitative well-posedness for $s \ge -1/2$ in some Banach space continuosly embedded in $C([0, T], H^{s})$, where $T$ depends on the $H^{s}$ norm of the initial data. Assuming qualitative well-posedness, we see that since $f_{N} \in B_{H^{-1/2} \times H^{-3}}(2r)$, the associated
-%solutions $u[f_{N}]$ have common lifespan $\delta$ in $H^{-1/2}$ and weaker Sobolev topologies \emph{which does not depend
-%on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
-%Observe that
-%%
-%%
-%\begin{equation}
-  %\label{pol}
-%\begin{split}
-  %& \| A_{2}(f_{N}) \|_{C([-1, 1], H^{\beta})} 
-  %\\
-%& \ge \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
-%\\
-  %&  =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, 1],
-  %H^{\beta})} 
-  %\\
-  %& = \sup_{0 \le t \le 1} \| \psi_{1}(t) (1 + | \xi |)^{\beta}
-  %\frac{1}{4 i \pi} \frac{\xi^{2}}{\lambda(\xi)}
-  %\int_{0}^{t} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
-  %\wh{[L(f_{N})]^{2}}(\xi, t') dt' \|_{L^{2}_{\xi}}
-  %\\
-  %& \gtrsim \sup_{0 \le t \le 1} \| (1 + | \xi |)^{\beta}
-  %\int_{0}^{t} \int_{\xi_{1}} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
-  %\\
-  %& \times \wh{f_{N}}(\xi - \xi_{1})\left( e^{i\lambda(\xi - \xi_{1})t'} +
-  %e^{-i\lambda(\xi - \xi_{1})t'} \right)
-  %\wh{f_{N}}(\xi_{1})\left( e^{i \lambda(\xi_{1})t'} +
-  %e^{-i \lambda(\xi_{1})t'} \right) 
-  %d \xi_{1} dt' \|_{L^{2}_{\xi}}
-  %\\
-  %& \ge N \sup_{0 \le t \le 1} 
-  %\int_{0}^{t} \int_{N-1 \le \xi_{1} \le N+1} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
-  %\\
-  %& \times \left( e^{i\lambda(\xi - \xi_{1})t'} +
-  %e^{-i\lambda(\xi - \xi_{1})t'} \right)
-  %\left( e^{i \lambda(\xi_{1})t'} +
-  %e^{-i \lambda(\xi_{1})t'} \right) 
-  %d \xi_{1} dt' \|_{L^{2}_{0 \le \xi \le 1}}
-   %\end{split}
-%\end{equation}
-%%
-%%
-%where the last step follows from the inequality $\| \cdot \|_{L^{2}_{\xi}} \ge \| \cdot \|_{L^{2}_{0 \le \xi \le 1}}$, the definition of $f_{N}$, and the fact that 
-%the conditions
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %& N \le | \xi - \xi_{1} | \le N+1,
-  %\\
-%& 0 \le \xi \le 1
-%\end{split}
-%\end{equation*}
-%%
-%%
-%imply $\xi_{1}$ is restricted to the set $S = \left\{ \xi_{1}: -1 - N + \xi \le  \xi_{1} \le -N \ \text{or} \ N + \xi \le \xi_{1} \le N+1 \right\}$.
-%Distributing terms, setting $t=1$, and applying Fubini, we obtain the equivalent expression
-
-%%
-%%
-%\begin{equation}
-  %\label{pu}
-%\begin{split}
-  %& N \| \int_{S}\int_{0}^{1} e^{i \lambda(\xi)}
-  %\\
-  %& \times \left( e^{it'[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]}
- %+ e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} 
- %+ e^{it'[\lambda(\xi - \xi_{1}) - \lambda(\xi) - \lambda(\xi_{1})]}
- %+ e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]}
-  %\right)
- %\\ 
- %& - e^{-i \lambda(\xi)}
-  %\\
-  %& \times \left( e^{it'[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) + \lambda(\xi)]}
- %+ e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)]} 
- %+ e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]}
- %+ e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]}
- %\right) \|_{L^{2}_{0 \le \xi \le 1}}.
-%\end{split}
-%\end{equation}
-%%
-%Now, for $0 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-%\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})
- %& = \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
- %\\
- %& = O(N)
-%\end{split}
-%\end{equation*}
-%%
-%%
-%while
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %\lambda(\xi_{1}) + \lambda(\xi - \xi_{1}) = O(N^{2}).
-%\end{split}
-%\end{equation*}
-%%
-%%
-%Hence, evaluating the integrand of \eqref{pu} from $0$ to $1$, we obtain $O(N^{-1})$ and $O(N^{-2})$ terms. Discarding all $O(N^{-2})$ terms, we get
-%%
-%%
-%\begin{equation}
-%\begin{split}
-  %& \left | e^{i \lambda(\xi)}\left( \frac{e^{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} + 
-  %\frac{e^{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} \right) \right .
-  %\\
-  %& + \left . e^{-i \lambda(\xi)}\left( \frac{e^{-i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} + 
-  %\frac{e^{-i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]} \right)  \right |
-  %\\
-  %& \simeq \left | \frac{\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)} + \frac{\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)} \right | 
-  %\\
-  %& \simeq a_{N} \left | \frac{\left[ \lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) \right]}{[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)][\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)]} \right |
-  %\\
-  %& \ge a_{N} O(N^{-1}), \quad 0 \le \xi \le 1, \quad N-1 \le \xi_{1} \le N+1
-%\end{split}
-%\end{equation}
-%%
-%%
-%where
-%%
-%%
-%\begin{equation*}
-%\begin{split}
-  %a_{N} =  | \cos[\lambda(\xi-\xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi) |.
-%\end{split}
-%\end{equation*}
-
-%Distributing terms, setting $t=1$, and applying Fubini, we bound below by 
-%%
-%%
-%\begin{equation}
-%\begin{split}
-  %&  N^{\beta + 1} 
-  %\| \int_{0}^{1} \sin[\lambda(\xi)(1 - t')]\int_{N-1 \le \xi_{1} \le N+1} \left\{ \cos\left[ \lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) \right] + \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] \right\} d \xi_{1} dt' \|_{L^{2}_{2N \le \xi \le 2N +1}} 
-%\end{split}
-%\end{equation}
-
-%In fact, we have the lower bound
-%%
-%%
-%%
-%%
+\section{Ill-Posedness for $s < -1$ on the Line (Failure of Continuity)} 
+Given the machinery established in the introduction, we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
+(0, 0)$, it will be enough to show the
+following.
 %
-%%
-%where the last step follows from the inequality $\| a_{n} \|_{\ell^{2}} \ge | a_{N} |$, the symmetry of the convolution, and the definition of $f_{N}$. Distributing terms, and setting $t=1$, we bound below by 
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Failure of Continuity at 0
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\begin{proof}
+%
+Observe that
+%
+%
+\begin{equation}
+\begin{split}
+  \wh{f_{N,1}}(\xi) \doteq r N^{1/2} \chi_{\{N \le |\xi| \le N + 1\}\}}
+\end{split}
+\end{equation}
+%
+and so
+%
+%
+%
+\begin{equation*}
+\begin{split}
+  \| f_{N,1} \|_{H^{-1/2}}
+  & \simeq rN^{-s} \left( \int_{N}^{N+1} (1 + \xi)^{-1} d \xi
+  \right)^{1/2}
+  \\
+  & = rN^{-s} \left| \ln (1 + 1/N) \right|^{1/2},
+  \\
+  & \le 2r, \qquad s \ge -1/2, \ N >>1 \ (\text{by l'Hospital})
+\end{split}
+\end{equation*}
+%
+%
+and 
+%
+\begin{equation*}
+\begin{split}
+  \| f_{N,1} \|_{H^{\beta}}
+  & \sim rN^{-s} \left( \int_{N}^{N+1} (1 + \xi)^{2\beta} d \xi
+  \right)^{1/2}
+  \\
+  & = rN^{-s} \left| \frac{1}{2\beta+1}( (N+2)^{2\beta+1} - (N+1)^{2\beta+1} ) \right|^{1/2}, \quad \beta \neq -1/2
+  \\
+  & \sim r N^{-s + \beta} \left| {\frac{1}{2\beta+1}}\left [ (N+1) \left( \frac{N+2}{N+1}
+  \right)^{2\beta} -N \right ] \right|^{1/2}  \\
+  & \lesssim_{\beta} r N^{-s + \beta}.
+\end{split}
+\end{equation*}
+%
+Therefore, we see that 
+\begin{equation*}
+  \begin{split}
+     & (f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(cr) \ \text{for} \ s = -1/2  
+\\
+    & \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < s.
+    \end{split}
+\end{equation*}
+However, recall that the non-periodic Boussinesq equation is known to be qualitatively well-posed for $s > -1/4$. Hence, restricting $s > -1/4$, we see that since $f_{N} \in B_{H^{s} \times H^{s-2}}(cr)$, there exist unique associated 
+solutions $u[f_{N}]$ which have common lifespan $\delta$ in $H^{s}$ and weaker Sobolev topologies \emph{which does not depend
+on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
+Observe that
+%
+%
+\begin{equation}
+  \label{pol}
+\begin{split}
+  & \| A_{2}(f_{N}) \|_{C([-1, 1], H^{\beta})} 
+  \\
+& \ge \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
+\\
+  &  =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, 1],
+  H^{\beta})} 
+  \\
+  & = \sup_{0 \le t \le 1} \| \psi_{1}(t) (1 + | \xi |)^{\beta}
+  \frac{1}{4 i \pi} \frac{\xi^{2}}{\lambda(\xi)}
+  \int_{0}^{t} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
+  \wh{[L(f_{N})]^{2}}(\xi, t') dt' \|_{L^{2}_{\xi}}
+  \\
+  & \gtrsim \sup_{0 \le t \le 1} \| (1 + | \xi |)^{\beta}
+  \int_{0}^{t} \int_{\xi_{1}} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
+  \\
+  & \times \wh{f_{N}}(\xi - \xi_{1})\left( e^{i\lambda(\xi - \xi_{1})t'} +
+  e^{-i\lambda(\xi - \xi_{1})t'} \right)
+  \wh{f_{N}}(\xi_{1})\left( e^{i \lambda(\xi_{1})t'} +
+  e^{-i \lambda(\xi_{1})t'} \right) 
+  d \xi_{1} dt' \|_{L^{2}_{\xi}}
+  \\
+  & \ge N^{-2s} \sup_{0 \le t \le 1} 
+  \int_{0}^{t} \int_{S} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
+  \\
+  & \times \left( e^{i\lambda(\xi - \xi_{1})t'} +
+  e^{-i\lambda(\xi - \xi_{1})t'} \right)
+  \left( e^{i \lambda(\xi_{1})t'} +
+  e^{-i \lambda(\xi_{1})t'} \right) 
+  d \xi_{1} dt' \|_{L^{2}_{0 \le \xi \le 1}}
+   \end{split}
+\end{equation}
+%
+%
+where the last step follows from the inequality $\| \cdot \|_{L^{2}_{\xi}} \ge \| \cdot \|_{L^{2}_{0 \le \xi \le 1}}$, the definition of $f_{N}$, and the fact that 
+the conditions
+%
+%
+\begin{equation*}
+\begin{split}
+  & N \le | \xi - \xi_{1} | \le N+1,
+  \\
+& 0 \le \xi \le 1
+\end{split}
+\end{equation*}
+%
+%
+imply $\xi_{1}$ is restricted to the set $S = \left\{ \xi_{1} \in \rr: -1 - N + \xi \le  \xi_{1} \le -N \ \text{or} \ N + \xi \le \xi_{1} \le N+1 \right\}$.
+Distributing terms, setting $t=1$, and applying Fubini, we obtain the equivalent expression
 
-%\end{proof}
+%
+%
+\begin{equation}
+  \label{pu}
+\begin{split}
+  & N^{-2s} \| \int_{S}\int_{0}^{1} e^{i \lambda(\xi)}
+  \\
+  & \times \left( e^{it'[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]}
+ + e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} 
+ + e^{it'[\lambda(\xi - \xi_{1}) - \lambda(\xi) - \lambda(\xi_{1})]}
+ + e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]}
+  \right)
+ \\ 
+ & - e^{-i \lambda(\xi)}
+  \\
+  & \times \left( e^{it'[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) + \lambda(\xi)]}
+ + e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)]} 
+ + e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]}
+ + e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]}
+ \right) \|_{L^{2}_{0 \le \xi \le 1}}.
+\end{split}
+\end{equation}
+%
+Now, for $0 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
+%
+%
+\begin{equation*}
+\begin{split}
+\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})
+ & \sim \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
+ \\
+ & = O(N)
+\end{split}
+\end{equation*}
+%
+%
+while
+%
+%
+\begin{equation*}
+\begin{split}
+  \lambda(\xi_{1}) + \lambda(\xi - \xi_{1}) = O(N^{2}).
+\end{split}
+\end{equation*}
+%
+%
+Evaluating the integrand of \eqref{pu} from $0$ to $1$, we obtain 
+%
+%
+\begin{equation}
+  \label{puy-real}
+\begin{split}
+  & e^{i \lambda(\xi)}\bigg ( \frac{e^{i[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]} + 
+  \frac{e^{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]}  
+  \\
+  & +  \frac{e^{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} + \frac{e^{i[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} \bigg ) 
+  \\
+  & + e^{-i \lambda(\xi)}\bigg ( \frac{e^{-i[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} + 
+  \frac{e^{-i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} 
+  \\
+  & +  \frac{e^{-i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)]} + \frac{e^{-i[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]} - 1}{i[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)]} \bigg ) 
+  \bigg )  
+  \\
+  & \simeq \frac{\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)} + \frac{\cos[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)} 
+  \\
+  & + \frac{\cos[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1})] - \cos \lambda(\xi)}{\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)} + \frac{\cos[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)}{-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)}
+  \\
+  & \simeq a_{N} \bigg ( \frac{1}{\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)} + \frac{1}{\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)} \bigg )
+  \\
+  & + b_{N} \bigg ( \frac{1}{\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)} + \frac{1}{-\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)} 
+  \bigg ) 
+\end{split}
+\end{equation}
+where
+%
+%
+\begin{equation*}
+\begin{split}
+  & a_{N} =   \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi),
+  \\
+  & b_{N} =  \cos[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1})] - \cos \lambda(\xi).
+\end{split}
+\end{equation*}
+Now, for $0 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
+%
+%
+\begin{equation*}
+\begin{split}
+\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})
+ & \sim \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
+ \\
+ & = O(N)
+\end{split}
+\end{equation*}
+%
+%
+while
+%
+%
+\begin{equation*}
+\begin{split}
+  \lambda(\xi_{1}) + \lambda(\xi - \xi_{1}) = O(N^{2}).
+\end{split}
+\end{equation*}
+Hence, we can simplify \eqref{puy-real} further to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+  & -2 \lambda(\xi) \bigg (  \frac{a_{N}}{[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) - \lambda(\xi)][\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} 
+  \\
+  & +  \frac{b_{N}}{[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1}) - \lambda(\xi)][-\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]} 
+   \bigg )
+   \\
+   & = -2 \lambda(\xi) \left [ a_{N} O(N^{-2}) + b_{N} O(N^{-4})  \right ]
+   \\
+   & \sim  -2 \lambda(\xi) a_{N} O(N^{-2}), \quad N > >1
+\end{split}
+\end{equation*}
+%
+since $\{|b_{N}|\}$ is uniformly bounded. Substituting \eqref{puy} into \eqref{pu}, we see that for $N > > 1$,  
+%
+%
+\begin{equation*}
+\begin{split}
+\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}
+\gtrsim N^{-2 s -2} \|  \lambda(\xi) \int_{S}a_{N} d \xi_{1} \|_{L^{2}_{0 \le \xi \le 1}}.
+\end{split}
+\end{equation*}
+%
+%
+To estimate the integral from below, first observe that for $0 \le \xi \le 1$ and $\xi_{1} \in S$
+\begin{equation*}
+\begin{split}
+  & \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] 
+  \\
+  & = \cos\left[ \sqrt{(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}} - \sqrt{\xi_{1}^{2} + \xi_{1}^{4}} \right] 
+  \\
+  & = \p_{x} \{ \cos\left[ \sqrt{(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}} - \sqrt{\xi_{1}^{2} + \xi_{1}^{4}} \right] \} 
+  \\
+  & \times \left\{ [(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}]^{-1/2}[\xi_{1} - \xi + 2(\xi_{1} - \xi)^{3}] - (\xi_{1}^{2} + \xi_{1}^{4})^{-1/2} (\xi_{1} + 2 \xi_{1}^{3}) \right\}^{-1}
+\end{split}
+\end{equation*}
+%
+%
+Furthermore, since $\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]$ is continuous with respect to $\xi_{1}$, it follows that we can partition the set $[N-1, N+1]$ into countably many disjoint sets $S_{j}$ with $\cup_{j} S_{j} = [N-1, N+1]$ and such that for fixed $j$ the quantity $\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]$ is either positive or negative for all $\xi_{1} \in S_{j}$. Therefore, applying the fundamental theorem of calculus and the fact that
+%
+%
+\begin{equation*}
+\begin{split}
+  \left | [(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}]^{-1/2}[\xi_{1} - \xi + 2(\xi_{1} - \xi)^{3}] - (\xi_{1}^{2} + \xi_{1}^{4})^{-1/2} (\xi_{1} + 2 \xi_{1}^{3}) \right | ^{-1} \lesssim O(N^{-2}) 
+\end{split}
+\end{equation*}
+%
+%
+we obtain the bound
+%
+%
+\begin{equation*}
+\begin{split}
+  | \int_{S} \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] d \xi_{1} |
+   & \lesssim O(N^{-2}) \sum_{j} \left | \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) d \xi_{1}] \} \right | \bigg |_{dS_{j}}
+  \\
+  & \le O(N^{-2}) \sum_{j} | S_{j} |
+  \\
+  & \simeq O(N^{-2}).
+\end{split}
+\end{equation*}
+%
+%
+Hence, recalling that $a_{N} =   \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] - \cos \lambda(\xi)$, we see that for $N >>1$
+%
+%
+\begin{equation*}
+\begin{split}
+\| | \int_{S}a_{N} d \xi_{1} \|_{L^{2}_{0 \le \xi \le 1}}
+& \gtrsim N^{-2s -2}\| \lambda(\xi) \int_{S} -\cos \lambda(\xi) d \xi_{1} \|_{L^{2}_{0 \le \xi \le 1}}
+\\
+& = N^{-2s-2} \| \lambda(\xi) (1-\xi) \cos \lambda(\xi) \|_{L^{2}_{0 \le \xi \le 1}}
+\\
+& \gtrsim N^{-2s-2}
+\\
+& \to \infty, \quad s < -1
+\end{split}
+\end{equation*}
+%
+%
+which concludes the proof.
+\end{proof}
 %
 %
 %
@@ -884,22 +952,7 @@ $$
 \|_{L^2_\xi(\R)} \geq c r^2$$
 for some $c > 0$.  But this contradicts \eqref{sin}. \qed
 %
-\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
-\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
-% \MRhref is called by the amsart/book/proc definition of \MR.
-\providecommand{\MRhref}[2]{%
-  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
-}
-\providecommand{\href}[2]{#2}
-\begin{thebibliography}{BT06}
-
-\bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
-I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
-  for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
-  \textbf{233} (2006), no.~1, 228--259.
-
-\end{thebibliography}
 %
-%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
-%\bibliographystyle{amsalpha-custom}
+\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+\bibliographystyle{amsalpha-custom}
 \end{document}
