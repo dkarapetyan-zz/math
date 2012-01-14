@@ -3,7 +3,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[notref, notcite]{showkeys}
+%\usepackage[notref, notcite]{showkeys}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
@@ -115,7 +115,7 @@ Our motivation will be the work of Bejanaru and Tao
 \cite{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}. 
 %
 \begin{definition}
-  For $f =f(x)= (f_{1}(x), f_{2}(x)), u = u(x,t), v = v(x,t)$ formally define 
+  For $f =f(x)= (f_{1}(x), f_{2}(x)), u = u(x,t), v = v(x,t)$, smooth cutoff $\psi(t)$ equal to the identity on $[0, 1]$, and $\psi_{\delta}(t) = \psi(t/\delta)$, formally define 
 %
 %
 \begin{equation*}
@@ -142,7 +142,7 @@ N(u, v)
 \end{equation*}
 %
 %
-Then we let $A_{n}: H^{s} \times H^{s-2} \to C([-\delta, \delta], H^{s}), \ n = 1, 2, \dots$ be the
+Then we let $A_{n}: H^{s} \times H^{s-2} \to C([0, \delta], H^{s}), \ n = 1, 2, \dots$ be the
 recursively defined maps
 %
 %
@@ -173,18 +173,13 @@ For example,
 \end{equation*}
 %
 %
-and so on. The key tool in our proof of ill-posedness is the assumption of
-qualitative well-posedness for Boussinesq for $s \ge -1$, that is, well-posedness given by a picard iteration in a Banach space which is continuously embedded in $C([0, T], H^{s})$, where $T > 0$ depends on the $H^{s}$ size of the initial data. If qualitative well-posedness holds for $s \ge -1$, then for
-initial data in $H^{s} \times H^{s-2}$, $s \ge -1$, the corresponding solution
-to the Boussinesq ivp can be asymptotically expanded as the sum of the iterates defined
-above. More precisely, we have the following.
+and so on. We have the following.
 %%
 \begin{lemma}
   \label{lem:qwp-awp}
-  Suppose the Boussinesq ivp is qualitatively well-posed for $s \ge -1$. Then for
-  $f \in B_{H^{s} \times H^{s-2}}(r)$, $s \ge -1$,  and $\delta=\delta(r)$
+  For $\delta > 0$, $f \in B_{H^{s} \times H^{s-2}}(r)$, $s > -1/4$,  and $r = r(\delta)$
 sufficiently small, we have the absolutely convergent
-(in $C([-\delta, \delta], H^{s})$) power series expansion
+(in $C([0,\delta], H^{s})$) power series expansion
 %
 %
 \begin{equation}
@@ -232,13 +227,13 @@ following.
 \begin{theorem}
   Let $N$ be a positive integer. Consider initial data $$f_{N}(x) =
   (f_{N,1}(x), f_{N,2}(x)) = \left ( \frac{r N^{-s}}{2 \pi}\left[ e^{iNx} + e^{i(1-N)x} \right], 0
-  \right ).$$  Fix $ s > -1/4$ (the qualitative well-posedness index to date). Then for $\beta < -s -2$
+  \right ).$$  Fix $ s > -1/4$ (the qualitative well-posedness index to date, see Farah and Scialom \cite{Farah:2010ys}). Then for $\beta < -s -2$
   %
   %
     \begin{enumerate}[(I)]
-      \item{$ f_{N} \in B_{H^{s} \times H^{s}}(r) \ \text{with associated
+      \item{$ f_{N} \in B_{H^{s} \times H^{s}}(cr) \ \text{with associated
     solutions}
-    \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([-\delta, \delta],
+    \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([0, \delta],
     H^{s})$}.
     \\
   \item
@@ -315,7 +310,7 @@ Therefore, from \eqref{ill-pos-ced} we see that
     \end{split}
 \end{equation*}
 However, recall that the Boussinesq equation is known to be qualitatively well-posed for $s > -1/4$. Hence, restricting $s > -1/4$, we see that since $f_{N} \in B_{H^{s} \times H^{s-2}}(cr)$, there exist unique associated 
-solutions $u[f_{N}]$ which have common lifespan $\delta$ in $H^{s}$ and weaker Sobolev topologies \emph{which does not depend
+solutions $u[f_{N}]$ which have common lifespan $\delta > 0$ in $H^{s}$ and weaker Sobolev topologies \emph{which does not depend
 on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
 Observe that
 %
@@ -497,7 +492,7 @@ which diverges for $\beta < -s -2$. This concludes the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Ill-Posedness for $s < -1$ on the Line (Failure of Continuity)} 
+\section{Ill-Posedness on the Line (Failure of Continuity)} 
 Given the machinery established in the introduction, we see that to prove failure of continuity of the Boussinesq data to solution map at $\vec{0} =
 (0, 0)$, it will be enough to show the
 following.
@@ -514,6 +509,29 @@ following.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+  \begin{theorem}
+  Let $N$ be a positive integer. Consider initial data $$f_{N}(x) \doteq (f_{N,1}(x), f_{N,2}(x)) 
+  = (r N^{-s} \frac{e^{ix(N+1)} - e^{ix N} + e^{-ix(N+1)} - e^{-iNx}}{ix} , 0).$$
+  Fix $ s > -1/4$ (the qualitative well-posedness index to date, see \cite{Farah:2009uq}). Then for $\beta < -s -2$
+  %
+  %
+    \begin{enumerate}[(I)]
+      \item{$ f_{N} \in B_{H^{s} \times H^{s}}(cr) \ \text{with associated
+    solutions}
+    \ u[f_{N}] = \sum_{n=1}^{\infty} A_{n}(f_{N}) \in C([0, \delta],
+    H^{s})$}.
+    \\
+  \item
+    $\|f_{N}\|_{H^{\beta} \times H^{\beta-2}} \to 0$ for $\beta < -s$ but 
+    $ \displaystyle \frac{\|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}}{\| f_{N} \|_{H^{\beta} \times H^{\beta -2}}}$ diverges.
+\end{enumerate}
+  %
+  %
+\label{thm:ill-pos-real}
+\end{theorem}
+  %
+  %
+
 %
 %
 %
@@ -524,7 +542,7 @@ Observe that
 %
 \begin{equation}
 \begin{split}
-  \wh{f_{N,1}}(\xi) \doteq r N^{1/2} \chi_{\{N \le |\xi| \le N + 1\}\}}
+  \wh{f_{N,1}}(\xi) \doteq r N^{-s} \chi_{\{N \le |\xi| \le N + 1\}\}}
 \end{split}
 \end{equation}
 %
@@ -540,14 +558,15 @@ and so
   \\
   & = rN^{-s} \left| \ln (1 + 1/N) \right|^{1/2},
   \\
-  & \le 2r, \qquad s \ge -1/2, \ N >>1 \ (\text{by l'Hospital})
+  & \sim r N^{-s - 1/2}, \ N >>1 \ (\text{by l'Hospital})
 \end{split}
 \end{equation*}
 %
 %
 and 
 %
-\begin{equation*}
+\begin{equation}
+  \label{llh}
 \begin{split}
   \| f_{N,1} \|_{H^{\beta}}
   & \sim rN^{-s} \left( \int_{N}^{N+1} (1 + \xi)^{2\beta} d \xi
@@ -555,22 +574,22 @@ and
   \\
   & = rN^{-s} \left| \frac{1}{2\beta+1}( (N+2)^{2\beta+1} - (N+1)^{2\beta+1} ) \right|^{1/2}, \quad \beta \neq -1/2
   \\
-  & \sim r N^{-s + \beta} \left| {\frac{1}{2\beta+1}}\left [ (N+1) \left( \frac{N+2}{N+1}
-  \right)^{2\beta} -N \right ] \right|^{1/2}  \\
-  & \lesssim_{\beta} r N^{-s + \beta}.
+  & = r N^{-s} \left| {\frac{1}{2\beta+1}} (N+1)^{2 \beta + 1} \left [ \left( \frac{N+2}{N+1}
+    \right)^{2\beta + 1} - 1 \right ] \right|^{1/2}  \\
+  & \sim r N^{-s + \beta}, \ N >>1 \ (\text{by l'Hospital}).
 \end{split}
-\end{equation*}
+\end{equation}
 %
 Therefore, we see that 
 \begin{equation*}
   \begin{split}
-     & (f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(cr) \ \text{for} \ s = -1/2  
+     & (f_{N,1}, 0) \in B_{H^{s} \times H^{s-2}}(cr) 
 \\
     & \|(f_{N,1}, 0)\|_{H^{\beta} \times H^{\beta -2}} \to 0 \ \text{for} \ \beta < s.
     \end{split}
 \end{equation*}
 However, recall that the non-periodic Boussinesq equation is known to be qualitatively well-posed for $s > -1/4$. Hence, restricting $s > -1/4$, we see that since $f_{N} \in B_{H^{s} \times H^{s-2}}(cr)$, there exist unique associated 
-solutions $u[f_{N}]$ which have common lifespan $\delta$ in $H^{s}$ and weaker Sobolev topologies \emph{which does not depend
+solutions $u[f_{N}]$ which have common lifespan $\delta > 0$ in $H^{s}$ and weaker Sobolev topologies \emph{which does not depend
 on $N$}. Choose $r$ sufficiently small such that $\delta =1$.  
 Observe that
 %
@@ -578,19 +597,17 @@ Observe that
 \begin{equation}
   \label{pol}
 \begin{split}
-  & \| A_{2}(f_{N}) \|_{C([-1, 1], H^{\beta})} 
+  & \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
   \\
-& \ge \| A_{2}(f_{N}) \|_{C([0, 1], H^{\beta})} 
-\\
   &  =  \| N[A_{1}(f_{N}), A_{1}(f_{N})] \|_{C([0, 1],
   H^{\beta})} 
   \\
-  & = \sup_{0 \le t \le 1} \| \psi_{1}(t) (1 + | \xi |)^{\beta}
+  & = \sup_{0 \le t \le 1} \| (1 + | \xi |)^{\beta}
   \frac{1}{4 i \pi} \frac{\xi^{2}}{\lambda(\xi)}
   \int_{0}^{t} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
   \wh{[L(f_{N})]^{2}}(\xi, t') dt' \|_{L^{2}_{\xi}}
   \\
-  & \gtrsim \sup_{0 \le t \le 1} \| (1 + | \xi |)^{\beta}
+  & \gtrsim \sup_{0 \le t \le 1} \| 
   \int_{0}^{t} \int_{\xi_{1}} \left( e^{i\lambda(\xi)(t-t')} - e^{-i\lambda(\xi)(t-t')} \right)
   \\
   & \times \wh{f_{N}}(\xi - \xi_{1})\left( e^{i\lambda(\xi - \xi_{1})t'} +
@@ -606,27 +623,15 @@ Observe that
   e^{-i\lambda(\xi - \xi_{1})t'} \right)
   \left( e^{i \lambda(\xi_{1})t'} +
   e^{-i \lambda(\xi_{1})t'} \right) 
-  d \xi_{1} dt' \|_{L^{2}_{0 \le \xi \le 1}}
+  d \xi_{1} dt' \|_{L^{2}_{1/2 \le \xi \le 1}}
    \end{split}
 \end{equation}
 %
 %
-where the last step follows from the inequality $\| \cdot \|_{L^{2}_{\xi}} \ge \| \cdot \|_{L^{2}_{0 \le \xi \le 1}}$, the definition of $f_{N}$, and the fact that 
-the conditions
-%
-%
-\begin{equation*}
-\begin{split}
-  & N \le | \xi - \xi_{1} | \le N+1,
-  \\
-& 0 \le \xi \le 1
-\end{split}
-\end{equation*}
-%
-%
-imply $\xi_{1}$ is restricted to the set $S = \left\{ \xi_{1} \in \rr: -1 - N + \xi \le  \xi_{1} \le -N \ \text{or} \ N + \xi \le \xi_{1} \le N+1 \right\}$.
+where the last step follows from the inequality $\| \cdot \|_{L^{2}_{\xi}} \ge \| \cdot \|_{L^{2}_{1/2 \le \xi \le 1}}$, the definition of $f_{N}$, and the fact that 
+the condition $N \le | \xi - \xi_{1} | \le N+1$ 
+implies $\xi_{1}$ is restricted to the set $S = \left\{ \xi_{1} \in \rr: -1 - N + \xi \le  \xi_{1} \le -N + \xi \ \text{or} \ N + \xi \le \xi_{1} \le N+1 + \xi \right\}$.
 Distributing terms, setting $t=1$, and applying Fubini, we obtain the equivalent expression
-
 %
 %
 \begin{equation}
@@ -646,31 +651,9 @@ Distributing terms, setting $t=1$, and applying Fubini, we obtain the equivalent
  + e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) + \lambda(\xi)]} 
  + e^{it'[\lambda(\xi_{1}) - \lambda(\xi - \xi_{1}) - \lambda(\xi)]}
  + e^{it'[-\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) + \lambda(\xi)]}
- \right) \|_{L^{2}_{0 \le \xi \le 1}}.
+ \right) \|_{L^{2}_{1/2 \le \xi \le 1}}.
 \end{split}
 \end{equation}
-%
-Now, for $0 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
-%
-%
-\begin{equation*}
-\begin{split}
-\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})
- & \sim \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
- \\
- & = O(N)
-\end{split}
-\end{equation*}
-%
-%
-while
-%
-%
-\begin{equation*}
-\begin{split}
-  \lambda(\xi_{1}) + \lambda(\xi - \xi_{1}) = O(N^{2}).
-\end{split}
-\end{equation*}
 %
 %
 Evaluating the integrand of \eqref{pu} from $0$ to $1$, we obtain 
@@ -710,12 +693,12 @@ where
   & b_{N} =  \cos[\lambda(\xi - \xi_{1}) + \lambda(\xi_{1})] - \cos \lambda(\xi).
 \end{split}
 \end{equation*}
-Now, for $0 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
+Now, for $1/2 \le \xi \le 1$ and $\xi_{1} \in S$, a calculus computation shows that
 %
 %
 \begin{equation*}
 \begin{split}
-\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})
+|\lambda(\xi_{1}) - \lambda(\xi - \xi_{1})|
  & \sim \sqrt{N^{2} + N^{4}} - \sqrt{(N-1)^{2} + (N-1)^{4}} 
  \\
  & = O(N)
@@ -728,7 +711,7 @@ while
 %
 \begin{equation*}
 \begin{split}
-  \lambda(\xi_{1}) + \lambda(\xi - \xi_{1}) = O(N^{2}).
+  |\lambda(\xi_{1}) + \lambda(\xi - \xi_{1})| \sim O(N^{2}).
 \end{split}
 \end{equation*}
 Hence, we can simplify \eqref{puy-real} further to obtain
@@ -747,18 +730,18 @@ Hence, we can simplify \eqref{puy-real} further to obtain
 \end{split}
 \end{equation*}
 %
-since $\{|b_{N}|\}$ is uniformly bounded. Substituting \eqref{puy} into \eqref{pu}, we see that for $N > > 1$,  
+since $\{|b_{N}|\}$ is uniformly bounded. Substituting into \eqref{pu}, we see that for $N > > 1$,  
 %
 %
 \begin{equation*}
 \begin{split}
 \|A_{2}[f_{N}]\|_{C( [-\delta, \delta], H^{\beta})}
-\gtrsim N^{-2 s -2} \|  \lambda(\xi) \int_{S}a_{N} d \xi_{1} \|_{L^{2}_{0 \le \xi \le 1}}.
+\gtrsim N^{-2 s -2} \|  \lambda(\xi) \int_{S}a_{N} d \xi_{1} \|_{L^{2}_{1/2 \le \xi \le 1}}.
 \end{split}
 \end{equation*}
 %
 %
-To estimate the integral from below, first observe that for $0 \le \xi \le 1$ and $\xi_{1} \in S$
+To estimate the integral from below, first observe that 
 \begin{equation*}
 \begin{split}
   & \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] 
@@ -767,17 +750,17 @@ To estimate the integral from below, first observe that for $0 \le \xi \le 1$ an
   \\
   & = \p_{x} \{ \cos\left[ \sqrt{(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}} - \sqrt{\xi_{1}^{2} + \xi_{1}^{4}} \right] \} 
   \\
-  & \times \left\{ [(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}]^{-1/2}[\xi_{1} - \xi + 2(\xi_{1} - \xi)^{3}] - (\xi_{1}^{2} + \xi_{1}^{4})^{-1/2} (\xi_{1} + 2 \xi_{1}^{3}) \right\}^{-1}
+  & \times \left\{ [(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}]^{-1/2}[\xi_{1} - \xi + 2(\xi_{1} - \xi)^{3}] - (\xi_{1}^{2} + \xi_{1}^{4})^{-1/2} (\xi_{1} + 2 \xi_{1}^{3}) \right\}^{-1}.
 \end{split}
 \end{equation*}
 %
 %
-Furthermore, since $\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]$ is continuous with respect to $\xi_{1}$, it follows that we can partition the set $[N-1, N+1]$ into countably many disjoint sets $S_{j}$ with $\cup_{j} S_{j} = [N-1, N+1]$ and such that for fixed $j$ the quantity $\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]$ is either positive or negative for all $\xi_{1} \in S_{j}$. Therefore, applying the fundamental theorem of calculus and the fact that
+Furthermore, since $\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]$ is continuous with respect to $\xi_{1}$ and the interval $[N, N+1]$ is compact, it follows that we can partition $[N, N+1]$ into finitely many disjoint sets $S_{j}$ with $\cup_{j} S_{j} = [N, N+1]$ and such that for fixed $j$ the quantity $\cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]$ is either positive or negative for all $\xi_{1} \in S_{j}$. Therefore, applying the fundamental theorem of calculus, the triangle inequality, and the fact that, for $1/2 \le \xi \le 1$ and $\xi_{1} \in S$
 %
 %
 \begin{equation*}
 \begin{split}
-  \left | [(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}]^{-1/2}[\xi_{1} - \xi + 2(\xi_{1} - \xi)^{3}] - (\xi_{1}^{2} + \xi_{1}^{4})^{-1/2} (\xi_{1} + 2 \xi_{1}^{3}) \right | ^{-1} \lesssim O(N^{-2}) 
+  \left | [(\xi - \xi_{1})^{2} + (\xi - \xi_{1})^{4}]^{-1/2}[\xi_{1} - \xi + 2(\xi_{1} - \xi)^{3}] - (\xi_{1}^{2} + \xi_{1}^{4})^{-1/2} (\xi_{1} + 2 \xi_{1}^{3}) \right | ^{-1} \le O(N^{-1}) 
 \end{split}
 \end{equation*}
 %
@@ -788,11 +771,11 @@ we obtain the bound
 \begin{equation*}
 \begin{split}
   | \int_{S} \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})] d \xi_{1} |
-   & \lesssim O(N^{-2}) \sum_{j} \left | \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) d \xi_{1}] \} \right | \bigg |_{dS_{j}}
+   & \lesssim O(N^{-1}) \sum_{j} \left | \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1}) ] \} \right | \bigg |_{dS_{j}}
   \\
-  & \le O(N^{-2}) \sum_{j} | S_{j} |
+  & \le O(N^{-1}) \sum_{j} | S_{j} |
   \\
-  & \simeq O(N^{-2}).
+  & = O(N^{-1}).
 \end{split}
 \end{equation*}
 %
@@ -802,19 +785,29 @@ Hence, recalling that $a_{N} =   \cos[\lambda(\xi - \xi_{1}) - \lambda(\xi_{1})]
 %
 \begin{equation*}
 \begin{split}
-\| | \int_{S}a_{N} d \xi_{1} \|_{L^{2}_{0 \le \xi \le 1}}
-& \gtrsim N^{-2s -2}\| \lambda(\xi) \int_{S} -\cos \lambda(\xi) d \xi_{1} \|_{L^{2}_{0 \le \xi \le 1}}
+\| | \int_{S}a_{N} d \xi_{1} \|_{L^{2}_{1/2 \le \xi \le 1}}
+& \gtrsim N^{-2s -2}\| \lambda(\xi) \left [ O(N^{-1}) +  \int_{S} -\cos \lambda(\xi) d \xi_{1} \right ] \|_{L^{2}_{1/2 \le \xi \le 1}}
 \\
-& = N^{-2s-2} \| \lambda(\xi) (1-\xi) \cos \lambda(\xi) \|_{L^{2}_{0 \le \xi \le 1}}
+& = N^{-2s-2} \| \lambda(\xi)\left [ O(N^{-1}) - \cos \lambda(\xi) \right ] \|_{L^{2}_{1/2 \le \xi \le 1}}
 \\
 & \gtrsim N^{-2s-2}
-\\
-& \to \infty, \quad s < -1
+\end{split}
+\end{equation*}
+%
+and so recalling \eqref{llh}, we get
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{\|A_{2}[f_{N}]\|_{C([-\delta, \delta], H^{\beta})}}{\| f_{N}
+\|_{H^{\beta}}} \gtrsim N^{-s -2 - \beta} 
 \end{split}
 \end{equation*}
 %
 %
-which concludes the proof.
+which for $\beta < -s-2$ blows up as $N \to \infty$. This concludes the proof.
+%
+%
 \end{proof}
 %
 %
@@ -834,7 +827,7 @@ which concludes the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Quadratic NLS: An Equation for which the BT method Works}
+\section{Quadratic NLS}
 %
   We consider the quadratic non-linear Schr\"odinger equation (qNLS)
 \begin{equation}\label{nls-quad}
@@ -952,7 +945,31 @@ $$
 \|_{L^2_\xi(\R)} \geq c r^2$$
 for some $c > 0$.  But this contradicts \eqref{sin}. \qed
 %
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{Far09}
+
+\bibitem[BT06]{Bejenaru-Tao-2006-Sharp-well-posedness-and-ill-posedness}
+I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
+  for a quadratic non-linear schr{\"o}dinger equation}, J. Funct. Anal.
+  \textbf{233} (2006), no.~1, 228--259.
+
+\bibitem[Far09]{Farah:2009uq}
+L.~G. Farah, \emph{Local solutions in sobolev spaces with negative indices for
+  the ``good'' boussinesq equation}, Comm. Partial Differential Equations
+  \textbf{34} (2009), no.~1-3, 52--73.
+
+\bibitem[FS10]{Farah:2010ys}
+L.~G. Farah and M.~Scialom, \emph{On the periodic ``good'' boussinesq
+  equation}, Proc. Amer. Math. Soc. \textbf{138} (2010), no.~3, 953--964.
+
+\end{thebibliography}
 %
-\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
-\bibliographystyle{amsalpha-custom}
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
+%\bibliographystyle{amsalpha-custom}
 \end{document}
