@@ -88,7 +88,7 @@ Holden, and Karlsen \cite{Coclite_2005_Global-weak-sol}
 established existence of a strongly continuous semigroup of global 
 weak solutions of HR on the line for initial data in $H^1$.
 Bendahmane, Coclite, and Karlsen 
-\cite{Bendahmane_2006_Hsp-1-perturbat} extended this result to traveling 
+\cite{Bendahmane:2006p1301} extended this result to traveling 
 wave solutions that are supersonic solitary shockwaves.
 For more information on the existence of global solutions to the HR
 equation, see Holden and Raynaud \cite{Holden_2007_Global-conserva}
@@ -121,7 +121,7 @@ using the method of approximate solutions and well-posedness estimates. The
 case $s=1$ for both the line and the circle
 was proved earlier by Himonas, Misiolek, and Ponce in 
 \cite{Himonas_2007_Non-uniform-con}.
-Recently  in \cite{Himonas_2009_Non-uniform-dep-per} non-uniform 
+Recently  in \cite{Himonas:2010p1187} non-uniform 
 continuity of the solution map for the CH equation
 on the circle has been proved
 for the whole range of Sobolev exponents for which local well-posedness of 
@@ -176,7 +176,7 @@ and that its data-to-solution map is smooth.
 %
 Our approach  for proving \cref{thm:hr-non-unif-dependence}  
 mirrors  that in Himonas and Kenig \cite{Himonas:2009fk} and 
-Himonas, Kenig, and Misiolek \cite{Himonas_2009_Non-uniform-dep-per}.
+Himonas, Kenig, and Misiolek \cite{Himonas:2010p1187}.
 That is, we will choose 
 approximate solutions to the HR equation such that the size of the difference between approximate and actual solutions with 
 identical initial data is negligible. Hence, to understand the degree of 
@@ -1632,7 +1632,7 @@ on the circle}
 \label{sec:3}
 
 %
-Here we follow the proof in \cite{Himonas_2009_Non-uniform-dep-per}. 
+Here we follow the proof in \cite{Himonas:2010p1187}. 
 Consider the periodic Cauchy problem for the HR equation
 %
 \begin{align}
@@ -1683,7 +1683,7 @@ from the inequality
 %
 Note that for $\gamma=1$ 
 one gets the  approximate solutions
-used for the CH equation in \cite{Himonas_2009_Non-uniform-dep-per}.
+used for the CH equation in \cite{Himonas:2010p1187}.
 %
 %
 Substituting the approximate solutions into 
@@ -1918,7 +1918,7 @@ D^\sigma v \ dx \right |
 %
 %
 We now need the following result
-taken from \cite{Himonas_2009_Non-uniform-dep-per}:
+taken from \cite{Himonas:2010p1187}:
 %
 \begin{lemma}
 \label{cor1}
@@ -2466,7 +2466,7 @@ Recalling
 \end{proof}
 %
 %
-Noting that \cref{11} implies
+Noting that \eqref{11} implies
 %
 %
 %
@@ -2474,7 +2474,7 @@ Noting that \cref{11} implies
 \label{impo}
 \begin{split}
 \|fg\|_{H^{\sigma - 1}} \le C \|f\|_{H^{\sigma}}
-\|g\|_{H^{\sigma -1}}, \quad \sigma > 1/2.
+\|g\|_{H^{\sigma -1}}, \quad \sigma > 1/2
 \end{split}
 \end{equation}
 %
@@ -2709,7 +2709,7 @@ J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
 \end{equation}
 %
 %
-Notice that the right hand side of \eqref{hr-moli} is a map from $H^s(\ci)$
+Notice that the map $f \mapsto J_{\ee} f$ is a map from $H^s(\ci)$
 to $H^s(\ci)$.  In order to apply the ODE Theorem, we will also need to
 show that it is a continuously differentiable map:
 %
@@ -3364,7 +3364,7 @@ obtain \eqref{dt-u-e-Hs-bound}.
 \subsection{Choosing  a convergent subsequence.}
 %
 Next we shall show that  the family $\{ u_\ee\}$ has a convergent subsequence
-whose limit $u$ solves the Hyperelastic i.v.p. 
+whose limit $u$ solves the hyperelastic rod i.v.p. 
 Let
 $$
 I= [-T, T].
@@ -5604,7 +5604,9 @@ Letting $|t| \le T$, we now apply \cref{hr_wp} to
 \end{equation*}
 Therefore, by Reillich's Theorem, the family $\left\{
 \varphi P [(u_\ee(t))^k] \right\}_\ee$ is
-precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. \qed
+precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. 
+\\
+\\
 Hence, compiling our previous results on equicontinuity and precompactness
 and applying Ascoli's Theorem, we
 conclude that we can find $\tilde{u}$ and a subfamily 
@@ -5936,7 +5938,7 @@ u \p_x u - \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
 \end{split}
 \end{equation}
 Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
-to the HR i.v.p. 
+to the HR i.v.p. In fact, $u \in C(I, H^s(\rr))$; the proof is analogous to that in the periodic case.
 \subsection{Uniqueness.} The proof is analogous to that in the periodic case.
 \subsection{Continuous Dependence.} The proof is analogous to the proof in
 the periodic case, with one important caveat. Recall the introduction to \cref{sec:defs} in the appendix; specifically, how we defined the operator
