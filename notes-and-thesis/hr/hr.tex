@@ -262,6 +262,182 @@ including  estimates \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs},
 which are key ingredients in our work, 
 following an alternative approach used for nonlinear hyperbolic equations
 in Taylor \cite{Taylor_1991_Pseudodifferent}.
+\\
+\\
+For the Burgers equation, it is also known that for $s > 3/2$, dependence is not
+better than continuous. Furthermore, Kato \cite{Kato_1975_Quasi-linear-eq}
+showed that for $s > 3/2$ the data to solution map $u_{0} \mapsto u(t)$ is not
+H\"older continuous from a closed ball in $H^{s}(\rr)$ centered at $0$ and measured
+in the $H^{r}(\rr)$ norm, $r < s$, to $C([0, T], H^{r}(\rr))$, where $T$ depends upon
+the $H^{s}(\rr)$ radius of the ball. More precisely, for fixed $0 < \gamma < 1$
+and fixed constant $c > 0$,
+there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}(\rr)$
+(and hence, a common lifespan $T$) and $0 < t_{0} < T$ such that
+%
+%
+\begin{equation*}
+\begin{split}
+\| u(t_{0}) - v(t_{0}) \|_{H^{r}(\rr)} 
+& > c \| u_{0} - v_{0} \|^{\gamma}_{H^{r}(\rr)}.
+\end{split}
+\end{equation*}
+However, for certain general quasi-linear hyperbolic systems, Kato also obtained
+uniform continuity of the data to solution map for initial data in Sobolev
+spaces with integer index, measured in a weaker Sobolev norm. More recently, Tao
+\cite{Tao:2004ck} obtained Lipschitz continuity of the data to solution map
+for the Benjamin-Ono equation for $H^{1}(\rr)$ initial data measured in $L^{2}(\rr)$.
+Herr, Ionescu, Kenig, and Koch \cite{Herr:2010p886} have also obtained Lipschitz
+continuity in a weaker topology for the Benjamin-Ono with generalized
+dispersion. Hence, it is reasonable to ask whether a result similar to these
+holds for HR\@. Our main motivation stems from the work of Chen, Liu, and Zhang
+\cite{Chen:2011fk} on the
+b-family
+%
+%
+\begin{gather}
+\p_t u =  -u \p_x u -
+\p_{x} (1 - \p_{x}^{2})^{-1} \left[ \frac{b}{2}u^2 +
+\frac{3-b}{2} \left( \p_x u \right)^2
+\right],
+\label{b-family}
+\\
+u(x,0) = u_0(x), \ x \in \ci \ \text{or} \ \rr, \ t \in \rr
+\label{init-cond-iu-b-fam}
+\end{gather}
+%
+%
+for which they proved H\"older continuity of the data to solution map from a closed ball $B(0, h)$ in $H^{s}(\rr)$, $s >
+3/2$ (measured in the $H^{r}(\rr)$ topology, $r <s$) to $C([0, T], H^{r}(\rr))$, with $T
+= T(h)> 0$ and H\"older index $\alpha = \alpha(b, s, r)$ given by 
+%
+%
+\begin{equation*}
+\begin{split}
+\alpha = 
+\begin{cases}
+1, \quad & (s, r) \in \Omega_{1}
+\\
+1, \quad & b=3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
+\\
+2(s-1)/(s-r), \quad  & b\neq 3 \ \ \text{and} \ \ (s, r) \in \Omega_{2}
+\\
+s-r, \quad & (s, r) \in \Omega_{3}
+\end{cases}
+\end{split}
+\end{equation*}
+%
+%
+where
+\begin{equation*}
+\begin{split}
+\Omega_{1} & = \left\{ (s, r): \   s > 3/2, \ 0 \le r \le s-1, \  r \ge 2-s \right\}
+\\
+\Omega_{2} & = \left\{(s, r): \  3/2 < s < 2, \ 0 < r < 2-s   \right\}
+\\
+\Omega_{3} & = \left\{ (s,r): \  s > 3/2, \ s-1 < r < s  \right\}.
+\end{split}
+\end{equation*}
+Given this result, and the similarities between the $b$-family and HR (both can
+be thought of as weakly dispersive nonlocal perturbations of Burgers), in this
+work we study the continuity properties of the
+data-to-solution map for the HR equation, expanding upon \cref{thm:hr-non-unif-dependence}. More precisely, following \cite{Chen:2011fk} we show
+the following result:
+%
+%
+\begin{theorem}
+For $\gamma \neq 0$, the
+data to solution map for HR is H\"older continuous on both the line and circle from $B_{H^{s}}(R)$ (in
+the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
+3/2$, $-1 \le r < s$. More
+precisely, consider the following sets 
+%
+%
+\begin{equation*}
+\begin{split}
+& \Omega_{1} = \left\{ (s, \ r) \in \rr^{2}:
+\ s>3/2, \ -1 \le r \le s-1, \  r \ge 2 -s  \right\}
+\\
+& \Omega_{2} = \left\{ (s, \ r) \in \rr^{2}:
+\ 3/2 < s < 3, \ -1 \le r < 2-s \right\}
+\\
+& \Omega_{3} = \left\{ (s, \ r) \in \rr^{2}:
+\  s>3/2, \  s-1 < r < s  \right\}.
+\end{split}
+\end{equation*}
+%
+%
+\label{thm:main-thm}
+\end{theorem}
+%
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+% Draw thin grid lines with color 40% gray + 60% white
+% Draw x and y axis lines
+\draw [->] (0,0) -- (3,0) node [below] {$s$};
+\draw [->] (0,-1) -- (0,3) node [left] {$r$};
+\draw [->, dashed] (0,0) -- (3,3);
+\draw [->, dashed] (0,-1) -- (3,2);
+\draw [->, dashed] (0,2) -- (3,-1);
+\draw [->, dashed] (0,-1) -- (3,-1);
+\draw [->, dashed] (3/2,-1) -- (3/2, 3);
+\fill[color=green, fill opacity=0.3] (1.5, 0.5) -- (3,2) -- (3,0) -- (3,-1);
+\fill[color=red, fill opacity=0.3] (1.5, 0.5) -- (1.5,1.5) -- (3,3) -- (3,2);
+\fill[color=blue, fill opacity=0.3] (1.5, 0.5) -- (1.5, -1) -- (3, -1);
+\foreach \x/\xtext in {1, 2}
+\draw[shift={(\x,0)}]  node[below] {$\xtext$};
+\foreach \y/\ytext in {-1, 1, 2}
+\draw[shift={(0,\y)}]  node[left] {$\ytext$};
+\draw (2,1.5) node {$\Omega_{3}$};
+\draw (2,0.5) node {$\Omega_{1}$};
+\draw (2,-0.5) node {$\Omega_{2}$};
+\end{tikzpicture}
+\end{center}
+%
+%
+Then for two initial data $u_{0}, v_{0} \in B_{H^{s}}(R)$, there exist unique
+corresponding solutions \\ $u(x,t), v(x,t)$ for $0 \le t \le T= T(R)$ to the
+HR equation \eqref{hyperelastic-rod-equation} which satisfy 
+%
+%
+\begin{equation*}
+\begin{split}
+\| u(t) - v(t) \|_{H^{r}} \le C \| u_{0} - v_{0} \|_{H^{r}}^{\alpha(s, r)},
+\quad 0
+\le t \le T
+\end{split}
+\end{equation*}
+%
+%
+where 
+%
+%
+\begin{equation*}
+\begin{split}
+\alpha = 
+\begin{cases}
+1, \quad & (s,r) \in \Omega_{1} 
+\\
+2(s-1)/(s-r),  \quad & (s, r) \in \Omega_{2}
+\\
+s-r, \quad & (s, r) \in \Omega_{3}.
+\end{cases}
+\end{split}
+\end{equation*}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                Main theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+We remark that this result is sharper then the analogue obtained in
+\cite{Chen:2011fk} for the $b$-family. We are confident that the techniques
+applied in this paper can be applied to sharpen the results obtained in
+\cite{Chen:2011fk}.
 
 The document is structured as follows. We first prove 
 \cref{thm:hr-non-unif-dependence} on the line and 
@@ -275,11 +451,7 @@ the difference between approximate and actual solutions
 converges to zero (see \cref{applelem:bound_for_difference-of-approx-and-actual-soln}
 and \cref{prop:bound_for_difference-of-approx-actual-soln}). 
 We then prove \cref{thm:HR_existence_continuous_dependence} 
-using a Galerkin-type argument and energy estimates. In the appendix, we develop
-differential calculus in topological vector spaces with topology induced by a
-metric, and use it to prove some classical results on the existence, uniqueness,
-and continuous dependence of solutions for ODEs.
-%
+using a Galerkin-type argument and energy estimates. Using the tools (energy estimates, commutator estimate, and multiplier estimate) used to prove \cref{thm:HR_existence_continuous_dependence}, we will then prove \cref{thm:main-thm}. 
 %
 %
 %	
@@ -367,7 +539,7 @@ Then, we will construct two sequences of actual solutions
 coinciding with the approximate solutions at time zero.
 The key point of this method is that 
 the difference between solutions and approximate solutions
-must decay.
+decays rapidly.
 
 %
 %
@@ -630,7 +802,7 @@ Applying the inequality
 %
 \begin{equation*}
 \label{applec}
-\|fg\|_{H^1(\rr)} \le \sqrt{2} \|f\|_{C^1(\rr)} \|g\|_{H^1(\rr)}
+\|fg\|_{H^1(\rr)} \lesssim \|f\|_{C^1(\rr)} \|g\|_{H^1(\rr)}
 \end{equation*}
 %
 %
@@ -765,7 +937,7 @@ An analogous result can be found in \cite{Himonas:2009fk}.
 %
 %
 %
-Applying the inequality %
+Applying the inequality 
 %
 \begin{equation*}
 \begin{split}
@@ -775,8 +947,7 @@ Applying the inequality %
 \end{equation*}
 %
 %
-the algebra property of Sobolev spaces, and
-the Sobolev Imbedding Theorem, we obtain
+and the algebra property of Sobolev spaces, we obtain
 %
 %
 \begin{equation*}
@@ -810,11 +981,23 @@ of
 \begin{split}
 \|u_\ell(x,t) - u_\ell(x,0)\|_{H^1(\rr)} \lesssim \lambda^{-2 + \delta}, 
 \quad |t| \le T.
-\label{apple105}
+\label{apple1055}
 \end{split}
 \end{equation}
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_2}$.} Applying  \cref{applec}, we have
+Substituting \eqref{apple1055} and \eqref{apple15} into \eqref{apple14}, we obtain
+%
+%
+\begin{equation}
+  \label{apple105}
+\begin{split}
+  \| E_{1} \|_{H^{1}} \lesssim \lambda^{\delta/2 -s}.
+\end{split}
+\end{equation}
+%
+%
+
+{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_2}$.} Applying  \eqref{applec}, we have
 \begin{equation}
 	\begin{split}
 		\|E_2\|_{H^1(\rr)} 
@@ -822,11 +1005,11 @@ of
 		\phi'\left( \frac{x}{\lambda^\delta} \right) \cos (\lambda x - \gamma \omega t)
 		\|_{H^1(\rr)}
 		\\
-		& \le c_s \gamma \lambda^{\frac{-3 \delta}{2} -s } \|u_\ell(x,t) \|_{H^1(\rr)}
+		& \lesssim_{s} \gamma \lambda^{\frac{-3 \delta}{2} -s } \|u_\ell(x,t) \|_{H^1(\rr)}
 		\|\phi'\left( \frac{x}{\lambda^\delta} \right )
 		\cos(\lambda x - \gamma \omega t 
 		\|_{C^1(\rr)}.
-		\label{apple18}
+		\label{apple18} 
 	\end{split}
 \end{equation}
 We note that
@@ -861,10 +1044,10 @@ Applying estimates \eqref{apple19} and \eqref{apple10'} to \eqref{apple18}, we o
 %
 %
 {\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_3}$.} 
-By  \cref{applec}, we deduce
+By  \eqref{applec}, we deduce
 \begin{equation}
 	\begin{split}
-		\|\gamma u^h \p_x u_\ell \| \le \sqrt{2} |\gamma| \cdot \|u^h\|_{C^1(\rr)}
+		\|\gamma u^h \p_x u_\ell \| \lesssim \|u^h\|_{C^1(\rr)}
 		\|u_\ell\|_{H^1(\rr)}.
 		\label{apple21}
 	\end{split}
@@ -920,7 +1103,7 @@ Substituting estimates \eqref{apple24} and  \eqref{apple10'} into \eqref{apple21
 		\label{apple25}
 	\end{split}
 \end{equation}
-Substituting in \eqref{apple24}, and recalling that $\|u^h\|_{H^1(\rr)} \approx 1$ by 
+Substituting in \eqref{apple24}, and observing that $\|u^h\|_{H^1(\rr)} \le 1$ for $\lambda >>1$, $ \ge 1$ by 
 \cref{applea}, we obtain
 \begin{equation}
 	\begin{split}
@@ -961,7 +1144,7 @@ Substituting \eqref{apple6} and \eqref{apple22} into \eqref{apple28}, we conclud
 		\|E_6\|_{H^1(\rr)} 
 		& = \|\Lambda^{-1} \left[ (3 -\gamma) u_\ell u^h \right]\|_{H^1(\rr)}
 		\\
-		& \lesssim \|u_\ell\|_{L^2(\rr)} \|u^h\|_{L^\infty(\rr)}.
+		& \lesssim \|u_\ell\|_{L^2(\rr)} \|u^h\|_{L^\infty(\rr)}
 		\label{apple30}
 	\end{split}
 \end{equation}
@@ -1139,9 +1322,9 @@ integrating gives
 \begin{split}
 &\frac{1}{2} \frac{d}{dt} \|v\|_{H^1(\rr)}^2  
 \\
-& =  \int_{\rr} \left[ v(1-\p_x^2)E \right]dx
+& =  \int_{\rr} v(1-\p_x^2)E dx
 \\
-& - \gamma \int_{\rr} \left[ v(1-\p_x^2)(v\p_x u^{\omega,\lambda} + u^{\omega,\lambda} \p_x v) \right]dx
+& - \gamma \int_{\rr}  v(1-\p_x^2)(v\p_x u^{\omega,\lambda} + u^{\omega,\lambda} \p_x v) dx
 \\
 &- \int_{\rr}\left[ \left( 3-\gamma \right)v \p_x\left( u^{\omega,\lambda}v \right) + \gamma v
 \p_x \left( \p_x u^{\omega,\lambda} \p_x v \right)\right]dx
@@ -1169,10 +1352,10 @@ we can simplify \eqref{appleenergy-estu} to obtain
 \begin{split}
 \frac{1}{2} \frac{d}{dt} \|v\|_{H^1(\rr)}^2  
 & = 
-\int_{\rr} \left[ v(1-\p_x^2)E \right]dx\\
+\int_{\rr}  v(1-\p_x^2)E dx\\
 &-
-\gamma \int_{\rr} \left[ v(1-\p_x^2)(v\p_x u^{\omega,\lambda} + 
-u^{\omega,\lambda} \p_x v) \right]dx
+\gamma \int_{\rr} v(1-\p_x^2)(v\p_x u^{\omega,\lambda} + 
+u^{\omega,\lambda} \p_x v) dx
 \\
 &- \int_{\rr}\left[ \left( 3-\gamma \right)v \p_x\left( u^{\omega,\lambda}v 
 \right) + \gamma v
@@ -1195,7 +1378,7 @@ we obtain
 \|v\|_{H^1(\rr)} \|E\|_{H^1(\rr)}
 \end{split}
 \end{equation}
-for the first integral,
+for the first integral. Applying Parseval and H\"older gives
 %
 %
 \begin{equation}
@@ -1213,7 +1396,7 @@ u^{\omega,\lambda}
 \big )\|v\|_{H^1(\rr)}^2
 \end{split}
 \end{equation}
-for the second integral, and
+for the second integral, and applying H\"older gives 
 \begin{equation}
 \begin{split}
 \label{applelast_piece_final}
@@ -1341,7 +1524,7 @@ Using \eqref{u_x-Linfty-Hs}, we have
 \begin{equation*}
 \begin{split}
 \|u_{\pm 1,\lambda} (t) \|_{H^{2s-1}(\rr)}
-& \le 2 \|u^{\pm 1,\lambda}(0) \|_{H^{2s-1}(\rr)}, \quad
+& \lesssim  \|u^{\pm 1,\lambda}(0) \|_{H^{2s-1}(\rr)}, \quad
 |t| \le T.
 \label{apple60}
 \end{split}
@@ -1484,32 +1667,8 @@ u_{-1,\lambda}(t)
 %
 %
 Using estimate \eqref{apple65} for the last two terms of 
-the right-hand side of \eqref{appleHR-slns-differ-t-pos} we obtain
-%
-%
-%
-%
-%
-\begin{equation} \label{appleHR-slns-differ-t-pos-est}
-\|
-u_{1,\lambda}(t)
--
-u_{- 1,\lambda}(t)
-\|_{H^s(\rr)}
-\ge
-\|
-u^{1,\lambda}(t)
--
-u^{- 1,\lambda}(t)
-\|_{H^s(\rr)}
--
-c \lambda^{\frac{\delta - 2}{4}}
-\end{equation}
-%
-%
-where c is a positive, non-zero constant. Letting $\lambda$ go to $\infty$ 
-in
-\eqref{appleHR-slns-differ-t-pos-est}
+the right-hand side of \eqref{appleHR-slns-differ-t-pos} 
+and letting $\lambda$ go to $\infty$ 
 yields
 %
 %
@@ -1557,16 +1716,6 @@ u_{\ell,1,\lambda}(t) - u_{\ell,-1,\lambda}(t) +
 \end{equation}
 %
 %
-Now, by  \cref{appleb} we have
-%
-%
-\begin{equation*}
-\begin{split}
-\|u_{\ell,1,\lambda}(t) - u_{\ell,-1,\lambda}(t)\|_{H^s(\rr)} \lesssim
-\lambda^{-1 + \frac{\delta}{2}}.
-\end{split}
-\end{equation*}
-%
 %
 Hence, applying the reverse triangle inequality to \eqref{apple80}, we 
 obtain
@@ -1583,19 +1732,14 @@ u^{- 1,\lambda}(t)
 & \ge 2 \lambda^{-\frac{\delta}{2}-s} \|\phi\left(
 \frac{x}{\lambda^\delta} \right) \sin(\lambda x) \|_{H^s(\rr)} |\sin \gamma 
 t|
-- \|u_{\ell,-1,\lambda}(t) - u_{\ell,1,\lambda}(t)\|_{H^s(\rr)} \\
-& \gtrsim \lambda^{-\frac{\delta}{2}-s} \|\phi\left(
-\frac{x}{\lambda^\delta} \right ) \sin(\lambda x) \|_{H^s(\rr)} |\sin 
-\gamma t| -
-\lambda^{-1 + \frac{\delta}{2}}.
+- \|u_{\ell,-1,\lambda}(t) - u_{\ell,1,\lambda}(t)\|_{H^s(\rr)}.
 \end{split}
 \end{equation}
 %
 %
 %
 %
-Letting $\lambda$ go to $\infty$,  \cref{applea}
-with \eqref{apple90}  gives
+Letting $\lambda$ go to $\infty$, we see that \cref{applea}, \cref{appleb}, and \eqref{apple90} give
 %
 %
 %
@@ -1760,7 +1904,7 @@ Then for the error $E$ we have
 %
 %
 %
-\begin{proof} It follows from \eqref{1m} and the inequality
+\begin{proof} It follows from the inequality
 %
 %
 %
@@ -1768,9 +1912,10 @@ Then for the error $E$ we have
 \begin{equation*}
 \begin{split}
 \|\Lambda^{-1}f \|_{H^{k}(\ci)} \le
-\|f\|_{H^{k-1}(\ci)}.
+\|f\|_{H^{k-1}(\ci)}
 \end{split}
 \end{equation*}
+and \eqref{1m}.
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1832,7 +1977,7 @@ $$ \widehat{D^\sigma f}(\xi) \doteq (1 + \xi^2)^{\sigma/2} \widehat{f}(\xi), $$
 %
 where $ \widehat{f}$ is the Fourier transform
 %
-$$ \widehat{f}(\xi) =  \frac{1}{2\pi}\int_{\ci} e^{-i \xi x} f(x) \ dx.  $$
+$$ \widehat{f}(\xi) =  \int_{\ci} e^{-i \xi x} f(x) \ dx.  $$
 %
 %
 Applying $D^\sigma$ to both sides of \eqref{1.7}, multiplying by
@@ -2168,7 +2313,7 @@ $$s + r \ge 2,  \quad  r \le 1, \ s > 3/2.$$ Therefore,
 \end{split}
 \end{equation}
 We will now establish this bound for $r=s$ where $s > 3/2$, and then interpolate to obtain
-bounds for the whole range $1 \le r \le s$, where again $s > 3/2$. Appying the
+bounds for the whole range $1 \le r \le s$, where again $s > 3/2$. Applying the
 algebra property of Sobolev spaces, it follows that
 %
 %
@@ -2186,8 +2331,9 @@ algebra property of Sobolev spaces, it follows that
 %
 %
 %
-We now wish to interpolate to obtain estimates for the whole range $1 \le r \le s$.
-We need the following.
+We now wish to interpolate to obtain estimates for the whole range $1 \le r \le
+s$. We need the following result taken from Taylor \cite{Taylor:1995kx}.
+
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2665,21 +2811,21 @@ provide the necessary details to extend the argument to the non-periodic case.
 Here we will prove the existence of a solution to the HR i.v.p.\
 and inequalities
 \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs}.  We begin by mollifying the HR equation, so that we may apply the following ODE
-theorem: 
+theorem, taken from Dieudonn\`e \cite{Dieudonne_1969_Foundations-of-}: 
 %
 \begin{theorem}
 \label{ode_theorem}
 Let  $Y$  be a Banach space, $X\subset Y$ be an open subset,
-$I' \subset \rr$, and $f: I' \times X\to Y$ a continuously differentiable
-map.  Then for any $t_{0} \in I'$ and $x_{0} \in X$ there exists an
-open ball $I \subset I'$ and a unique differentiable mapping $u:I
+$J \subset \rr$, and $f: J \times X\to Y$ a continuously differentiable
+map.  Then for any $t_{0} \in J$ and $x_{0} \in X$ there exists an
+open ball $I \subset J$ and a unique differentiable mapping $u:I
 \to Y$ such that for all $t \in I$,  $u'(t) = f(t, u)$
 and $u(t_{0}) = x_{0}$.
 \end{theorem}
 %
 To see why we cannot apply the Banach Space ODE Theorem to the HR equation as
-is, we use a counterexample. Let $u=x^{-1/2} \chi_{[0,1]}$ and $s=0$. Then $u
-\in H^s$ but $u\p_x u \notin H^s$. Hence, returning to the general case, we see
+is, let $u=x^{-1/2} \chi_{[0,1]}$. Then $u
+\in L^{2}$ but $u\p_x u \notin L^{2}$. Hence, returning to the general case, we see
 that the HR equation as is can not be thought as an ODE on the space $H^s$. To
 deal with this problem we will replace the i.v.p \eqref{hr}--\eqref{hr-data} by  
 \begin{equation}
@@ -2709,7 +2855,7 @@ J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
 \end{equation}
 %
 %
-Notice that the map $f \mapsto J_{\ee} f$ is a map from $H^s(\ci)$
+Notice that the map $f \mapsto J_{\ee} f$ is a bounded map from $H^s(\ci)$
 to $H^s(\ci)$.  In order to apply the ODE Theorem, we will also need to
 show that it is a continuously differentiable map:
 %
@@ -2800,7 +2946,7 @@ $$ \widehat{D^s f}(\xi) \doteq (1 + \xi^2)^{s/2} \widehat{f}(\xi), $$
 %
 where $ \widehat{f}$ is the Fourier transform
 %
-$$ \widehat{f}(\xi) =  \frac{1}{2\pi}\int_{\ci} e^{-i \xi x} f(x) \ dx.  $$
+$$ \widehat{f}(\xi) =  \int_{\ci} e^{-i \xi x} f(x) \ dx.  $$
 %
 Applying the operator $D^s$ to  both sides of  \eqref{hr-moli},
 then  multiplying the resulting equation by $D^s J_\ee u_\ee$
@@ -2893,7 +3039,7 @@ D^s v   \, dx
 \Big|
 \\
 & \lesssim
-|\gamma| \cdot \|
+\cdot \|
 D^s(v\p_x v)  -  v D^s (\p_xv)
 \|_{L^2(\ci)}
 \|
@@ -3026,8 +3172,8 @@ Next we estimate
 \begin{equation}
 \begin{split}
 \left | - \frac{3 -\gamma}{2} \int_\ci D^{s-2} \p_x u_\ee^2 \cdot
-D^s J_\ee u_\ee \; dx \right |
-& \le  \int_\ci \left |
+D^s J_\ee u_\ee \; \right | dx 
+& \lesssim  \int_\ci \left |
 D^{s-2} \p_x u_\ee^2 \cdot D^s J_\ee u_\ee \; dx \right | 
 \\
 & \le 
@@ -3412,8 +3558,8 @@ Therefore the bounded family $\{u_\ee\}$ is compact
 in the weak$^*$ topology of \\
 $L^\infty(I, H^s(\ci))$. More precisely,
 there is a sequence  $\{ u_{\ee_n} \}$ converging
-weakly to a $ u\in L^{\infty}(I, H^s(\ci))$;
-that is 
+weakly to a $ u\in L^{\infty}(I, H^s(\ci))$.
+That is,
 %
 \begin{equation}
 \label{weak-conv}
@@ -3501,7 +3647,7 @@ $C(I,H^{s-\sigma}(\ci))$.} Applying  \cref{interpolation-lem} gives
 \begin{equation}
 \label{equic-1}
 \sup_{t \neq t'} \frac {\|u_\ee(t) - u_\ee(t') \|_{H^{s -
-\sigma}(\ci)}}{|t - t'|^\sigma} < c<\infty
+\sigma}(\ci)}}{|t - t'|^\sigma} < \infty
 \end{equation}
 %
 or
@@ -3698,16 +3844,16 @@ T_{u_{\ee_n}}(\phi)  \longrightarrow  T_u(\phi) \;
 \ \text{for all} \  \;  \phi \in L^1(I, H^{s}(\ci))
 \end{equation}
 %
-can be restated as 
+implies
 %
 \begin{equation}
 u_{\ee_n}  \longrightarrow  u
 \quad
 \ \text{in} \   \,\,
-\mathcal{D}'(I\times \ci).
+\mathcal{D}'(I\times \ci)
 \end{equation}
 %
-This implies 
+and so
 %
 \begin{equation}
 \label{distib-conv-2}
@@ -3738,28 +3884,27 @@ we must have
 %
 Thus we have constructed a solution $u \in L^\infty(I, H^s(\ci))$
 to the HR i.v.p. In fact, $u \in L^{\infty}(I, H^{s}(\ci)) \cap \text{Lip}(I,
-H^{s-1})$. To see this, we observe that $u_{\ee_{n}(t)} \to u(t)$ strongly in $H^{s}$, and so
+H^{s-1})$. To see this, we observe that $u_{\ee_{n}}(t) \to u(t)$ strongly in $H^{s}$, and so
 %
 %
 \begin{gather*}
-    u(t_{1})  - u_{\ee_{n}}(t_{1}) \to 0  \ \text{in} \ H^{s-1}
+    u_{\ee_{n}}(t_{1}) \to u(t_{1})    \ \text{in} \ H^{s-1}
     \\
-    u(t_{2}) - u_{\ee_{n}}(t_{2})  \to 0  \ \text{in} \ H^{s-1}.
+    u_{\ee_{n}}(t_{2})  \to u(t_{2})  \ \text{in} \ H^{s-1}.
 \end{gather*}
 %
 %
-Subtracting the two and using the fact that $u_{\ee_{n}} \in C^{1}(I,
-H^{s-1})$, we obtain
+Applying this in conjunction with the triangle inequality  we obtain
 %
 %
 \begin{equation*}
 \begin{split}
-    \| u(t_{1}) - u(t_{2}) \|_{H^{s-1}} = \lim_{n \to \infty} \| u_{\ee_{n}}(t_{1}) - u_{\ee_{n}}(t_{2}) \|_{H^{s-1}} \le C | t_{1} - t_{2} |.
+    \| u(t_{1}) - u(t_{2}) \|_{H^{s-1}} \le \lim_{n \to \infty} \| u_{\ee_{n}}(t_{1}) - u_{\ee_{n}}(t_{2}) \|_{H^{s-1}} \le C | t_{1} - t_{2} |.
 \end{split}
 \end{equation*}
 %
 %
-
+where the last step follows from \eqref{dt-u-e-Hs-bound} and the mean value theorem.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4001,18 +4146,18 @@ Next, we apply Cauchy-Schwartz and the Sobolev Imbedding Theorem to deduce
 \begin{split}
 \Big|
 \int_\ci
-\left [u D^s (\p_x u)
-\cdot  D^s u \right ] dx
+u D^s (\p_x u)
+\cdot  D^s u  dx
 \Big|
 & \simeq 
  \Big|
 \int_\ci
-\left [u \p_x\left(D^s u\right)^2 \right ] \ dx
+u \p_x\left(D^s u\right)^2  \ dx
 \Big|
 \\
 & \le
  \int_\ci \Big |
-\left [\p_x u \, (D^s u)^2  \right ] 
+\p_x u \, (D^s u)^2  
 \Big| \ dx
 \\
 & \le
@@ -4336,7 +4481,7 @@ J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
 Here
 \begin{equation}
 \begin{split}
-j_\ee (x) = \sum_{\xi \in \zz}
+j_\ee (x) = \frac{1}{2 \pi}\sum_{\xi \in \zz}
 \widehat{j}(\ee \xi) e^{i \xi x}, \quad \ee > 0
 \label{parseval-def}
 \end{split}
@@ -4531,14 +4676,14 @@ Imbedding Theorem, we obtain
 \end{equation}
 %
 %
-For the remaining integral of \eqref{1wap'}, Cauchy-Schwartz and the Sobolev 
+For the remaining integral of \eqref{1wap'}, Cauchy-Schwartz, H\"older, and the Sobolev 
 Imbedding Theorem give
 %
 %
 %
 \begin{equation}
 \begin{split}
-| - \gamma \int_\ci u^\ee D^s \p_x v \cdot D^s v \ dx |
+  | - \gamma \int_\ci v D^s \p_x u^{\ee} \cdot D^s v \ dx |
 \lesssim \|u^\ee \|_{H^{s+1}(\ci)} \|v\|_{H^{s-1}(\ci)}
 \|v\|_{H^s(\ci)}.
 \label{3wap}
@@ -4717,13 +4862,19 @@ For $r \ge s > 3/2$ and $0 < \ee <1$,
 %
 %
 \begin{equation}
-\label{schwartz}
-\begin{split}
+   \label{schwartz}
 	|\widehat{J_\ee u_0}(\xi)| = |\widehat{j_\ee}(\xi) \widehat{u_0}(\xi)|
-	= |\widehat{j }(\ee \xi) \widehat{u_0}(\xi)| \le c_r |\ee \xi 
-	|^{s-r} \widehat{u_0}(\xi), \ \ r \ge s, \ \ \xi \neq 0.
-\end{split}
+	= |\widehat{j }(\ee \xi) \widehat{u_0}(\xi)| 
+\le 
+  \begin{cases}
+    | \wh{u_{0}}(\xi) |, \quad & | \xi | \le 1/\ee
+\\
+| \ee \xi |^{s-r} | \wh{u_{0}}(\xi) |, \quad  & | \xi | \ge 1/\ee.
+\end{cases}
 \end{equation}
+%
+%
+%
 %
 %
 Applying \eqref{u_x-Linfty-Hs} and \eqref{schwartz}, the result follows.
@@ -4918,7 +5069,7 @@ Applying \eqref{2r} to \eqref{1r} we obtain
 \label{2pr}
 \begin{split}
 \|u - J_\ee u\|_{H^r(\ci)}
-\lesssim \ee^{(s-r)}
+\lesssim \ee^{s-r}
 \end{split}
 \end{equation*}
 %
@@ -5219,7 +5370,7 @@ yields
 \end{equation*}
 %
 %
-Since $\{u_{0,n}\}$ belongs to a bounded subset of $H^s(\ci)$, it follows that %
+Since $u_{0,n} \to u_{0}$ in $H^s(\ci)$, it follows that 
 %
 \begin{equation}
 \begin{split}
@@ -5231,8 +5382,7 @@ C \|v\|_{H^{\sigma}(\ci)}^2.
 \end{equation}
 %
 %
-where $C = C(\|u_0\|_{H^s(\ci)}, \ \limsup_{n \to \infty} 
-\|u_{0,n}\|_{H^s(\ci)})$. 
+where $C = C(\|u_0\|_{H^s(\ci)})$. 
 Applying Gronwall's inequality to \eqref{12qx}, we obtain
 %
 %
@@ -5281,10 +5431,7 @@ That is
 %
 \begin{equation*}
 \begin{split}
-	\|v\|_{H^s(\ci)} \le 2 \left[ \|u_0 \|_{H^s(\ci)} + \limsup_{n \to 
-	\infty} 
-	\|u_{0,n}\|_{H^s(\ci)} 
-\right], \quad |t| \le T.
+	\|v\|_{H^s(\ci)} \lesssim \|u_0 \|_{H^s(\ci)}, \quad |t| \le T.
 \label{growth_v}
 \end{split}
 \end{equation*}
@@ -5376,7 +5523,7 @@ Secondly, in the proof of existence, we will have difficulties in arranging
 that the solutions $\{u_\ee\}$ to the mollified HR i.v.p.\ converge in $C(I,
 H^{s- \sigma}(\rr))$, $0 < \sigma < 1$ to a candidate solution $u$ of the HR
 i.v.p. We will get around this by considering the family $\left\{ \varphi
-u_\ee \right\}$ instead.
+u_\ee \right\}$ instead, where $\vp \in S(\rr)$.
 %
 %
 %
@@ -5467,7 +5614,7 @@ will show that the family
 \end{split}
 \end{equation*}
 is equicontinuous in $C(I, H^{s-\sigma}(\rr))$ 
-for $0 < \sigma < 1$ and $\varphi = \varphi(x) \in \mathcal{S}(\rr)$.
+for $0 < \sigma < 1$ and $\varphi \in \mathcal{S}(\rr)$.
 We will follow this by proving that
 there exists a sub-family $\{\varphi P[(u_{\ee_n}(t))^k]\}_n$
 that is precompact in $H^{s-\sigma}(\rr)$ for $\sigma > 0$. 
@@ -5497,7 +5644,7 @@ follow that
 %%%%%%%%%%%%%%%%%%%%%%
 %
 \subsection{Equicontinuity of $\{ \varphi P [(u_\ee)^k]\}_\ee$  in $C(I,
-H^{s-\sigma}(\rr)$}).
+H^{s-\sigma}(\rr))$}
 %
 %
 Since $\varphi \in \mathcal{S}(\rr)$, the map $u \mapsto \vp u$
@@ -5941,7 +6088,7 @@ Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
 to the HR i.v.p. In fact, $u \in C(I, H^s(\rr))$; the proof is analogous to that in the periodic case.
 \subsection{Uniqueness.} The proof is analogous to that in the periodic case.
 \subsection{Continuous Dependence.} The proof is analogous to the proof in
-the periodic case, with one important caveat. Recall the introduction to \cref{sec:defs} in the appendix; specifically, how we defined the operator
+the periodic case, with one important caveat. Recall how we defined the operator
 $J_\ee$. By construction, the proofs of \cref{lem5r} and \cref{lem4r} for the non-periodic case will be
 analogous to those in the periodic case. Hence, how we
 construct the mollifier $J_\ee$ plays a critical role in the proofs of
