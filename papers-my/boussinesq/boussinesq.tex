@@ -2,6 +2,7 @@
 %\usepackage{showkeys}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{framed}
 \usepackage{amsfonts}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -35,6 +36,7 @@
 \newcommand{\tA}{{\tilde{A}}}
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
+\synctex=1
 \begin{document}
 \title{On the ill-posedness of the Boussinesq equation}
 
@@ -86,7 +88,7 @@ u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\la
 \]
 which points to the critical Sobolev index $s_c=-3/2$.
 
-Recently, the local well-posedness of \eqref{main} has received considerable interest, with the current state of the art being $s>-1/2$ for the non-periodic case, obtained by Kishimoto and Tsugawa \cite{KT10}, and $s>-3/8$ for the periodic case, due to Oh and Stefanov \cite{OS12}. These were improvements from $s>-1/4$ in both settings, results proved by  Farah \cite{F09} (non-periodic), respectively Farah and Scialom \cite{FS10} (periodic). For a more complete list of previous results, we refer the reader to \cite{OS12}.
+Recently, the local well-posedness of \eqref{main} has received considerable interest, with the current state of the art being $s>-1/2$ for the non-periodic case, obtained by Kishimoto and Tsugawa \cite{KT10}, and $s>-3/8$ for the periodic case, due to Oh and Stefanov \cite{OS12}. These were improvements from $s>-1/4$ in both settings, results proved by  Farah \cite{F09} (non-periodic) and Farah and Scialom \cite{FS10} (periodic). For a more complete list of previous results, we refer the reader to \cite{OS12}.
 
 The main goal of this paper is to address the ill-posedness theory for \eqref{main}, which is far less understood. To our knowledge, the only results in this direction are:
 
@@ -102,14 +104,18 @@ S(u_0,u_1)\,=\,u,
 is not $C^2$ at zero for $s<-2$ (\cite{F09}).
 \end{itemize}
 
-Our results, on the other hand, are concerned with the failure of continuity for the above solution map, and rely on a rather general technique introduced by Bejenaru and Tao (\cite{BT06}), in the context of a quadratic nonlinear Schrodinger equation. This technique has been used also for other dispersive equations: KdV-Burgers (Molinet-Vento \cite{MV09}, \cite{MV10}), Benjamin-Bona-Mahony (Panthee \cite{P11}), Benjamin-Bona-Mahony-Burgers (Banquet \cite{B11}), the symmetric regularized long wave equation (Banquet \cite{B12}). 
+Our results, on the other hand, are concerned with the failure of continuity for the above solution map, and rely on a rather general technique introduced by Bejenaru and Tao (\cite{BT06}), in the context of a quadratic nonlinear Schrodinger equation. This technique has been used also for other dispersive equations: KdV-Burgers (Molinet-Vento \cite{MV10}, \cite{MV09}), Benjamin-Bona-Mahony (Panthee \cite{P11}), Benjamin-Bona-Mahony-Burgers (Banquet \cite{B11}), the symmetric regularized long wave equation (Banquet \cite{B12}). 
 
+\begin{framed}
+  Perhaps a new section here, called ``Framework'', to cut the length of the introduction. However, in that case, the introduction may be too short. I am fine with the introduction staying as it is.
+\end{framed}
+%
 Let us now describe the framework in \cite{BT06}, directly formulated for \eqref{main}. The nonlinear ``good" Boussinesq equation can be seen as an abstract semilinear evolution equation, with a bilinear nonlinearity, which can be written in the form 
 \begin{equation}
 u\,=\,L(f)\,+\,N(u,u),
 \label{LN}
 \end{equation}
-where $f=(u_0, u_1)$ is an initial data lying in a data space $D$ (e.g., $H^s \times H^{s-2}$), the solution $u$ takes values in a solution space $S \subseteq	 C^0H^s$, $L: D \to S$ is a linear operator, and $N:S\times S \to S$ is a bilinear form, both of which are densely defined.  
+where $f=(u_0, u_1)$ is an initial data lying in a data space $D$ (e.g., $H^s \times H^{s-2}$), the solution $u$ takes values in a solution space $S \subseteq	 C([0, T]; H^s)$, $L: D \to S$ is a linear operator, and $N:S\times S \to S$ is a bilinear form, both of which are densely defined.  
 
 If  $(D,\|\cdot \|_D)$ and $(S,\|\cdot \|_S)$ are a pair of Banach spaces satisfying 
 \begin{equation}
@@ -138,7 +144,7 @@ with the usual norms, where $s>-1/4$ and $b>1/2$. Similar spaces are available f
 
 
 \begin{remark}
-The local well-posedness results of Kishimoto-Tsugawa \cite{KT10} and Oh-Stefanov \cite{OS12} are obtained by rewriting the Boussinesq equation in the form of a Schrodinger, respectively Schrodinger-like equation, using \textbf{nonlinear} transformations. For example, \cite{KT10} relies on
+The local well-posedness results of Kishimoto-Tsugawa \cite{KT10} and Oh-Stefanov \cite{OS12} are obtained by rewriting the Boussinesq equation in the form of a Schrodinger and Schrodinger-like equation, respectively, using \textbf{nonlinear} transformations. For example, \cite{KT10} relies on
 \[
 v\,=\,u - i(1 - \partial_{xx})^{-1} u_t\]
 to transform \eqref{main} into
@@ -158,7 +164,7 @@ Moreover, Bejenaru-Tao's argument (precisely Proposition 1 in \cite{BT06}) tells
 \begin{remark}
 A strategy in proving an ill-posedness result based on the previous idea can be formulated as follows:
 \begin{itemize}
-\item start with a \textbf{quantitatively well-posedness} pair $(D,S)$ for which one has, as described above, a continuous solution map associated to \eqref{LN},
+\item start with a \textbf{quantitative well-posedness} pair $(D,S)$ for which one has, as described above, a continuous solution map associated to \eqref{LN},
 \begin{equation}
 f\in (B_1,\|\cdot \|_D)\,\longrightarrow\,u\in (B_2,\|\cdot \|_S),
 \end{equation} 
@@ -196,14 +202,14 @@ is not continuous at the origin for any $s'< \min\{-2-s, s\}$.
 \label{mainth}
 \end{theorem}
 
-Based on Remark \ref{qw}, we obtain immediately the following improvement of the $s'<-2$ ill-posedness result mentioned above:
+Based on Remark~\ref{qw}, we obtain immediately the following improvement of the $s'<-2$ ill-posedness result mentioned above:
 
 \begin{corollary}
 The solution map \eqref{solmap} is not continuous at the origin for all $s'<-7/4$, in both the periodic and the non-periodic cases.
 \end{corollary}
 
 \begin{remark}
-Theorem \ref{mainth} suggests that $s=-1$ is potentially the threshold between well-posedness and ill-posedness for \eqref{main}.  In the non-periodic case, this can be corroborated also with the intimate relation between the Boussinesq equation and the quadratic nonlinear Schrodinger equation (as described in Remark \ref{sw}) , and the fact that for 
+Theorem~\ref{mainth} suggests that $s=-1$ is potentially the threshold between well-posedness and ill-posedness for \eqref{main}.  In the non-periodic case, this can be corroborated also with the intimate relation between the Boussinesq equation and the quadratic nonlinear Schrodinger equation (as described in Remark~\ref{sw}) , and the fact that for 
 \[
 iv_t\,+\,v_{xx}\,=\,v^2,
 \]
@@ -211,14 +217,14 @@ $s=-1$ is indeed that threshold, the main result of Bejenaru-Tao \cite{BT06}.
 \end{remark}
 
 
-\section{Proof of Theorem \ref{mainth}}
-We will use the strategy outlined in Remark \ref{ipr} and show that, for a \textbf{quantitatively well-posedness}  index $s$, we can construct a sequence $(f_N)_N$ satisfying
+\section{Proof of Theorem~\ref{mainth}}
+We will use the strategy outlined in Remark~\ref{ipr} and show that, for a \textbf{quantitative well-posedness}  index $s$, we can construct a sequence $(f_N)_N$ satisfying
 \[
 \limsup_{N\to \infty} \|f_N\|_{H^s \times H^{s-2}}\,\ll\,1, \qquad \quad \sup_N \frac{\|A_2(f_N)\|_{C([0,T],H^{s'})}}{\|f_N\|_{H^{s'} \times H^{s'-2}}}\,=\,\infty,\]
 for any $s'< \min\{-2-s, s\}$. We start by computing
 
 
-\subsection{Formulas for $A_2$} In the non-periodic case, using the Fourier transform in the spatial variable and the Duhamel's principle, one can derive that the solution of the linear problem
+\subsection{Formulas for $A_2$} In the non-periodic case, using the Fourier transform in the spatial variable and Duhamel's principle, one can derive that the solution of the linear problem
 \begin{equation}
 \left\{
 \begin{array}{l}
@@ -269,12 +275,16 @@ with
 \widehat{Lf}(t,m)\,=\,\cos(t \lambda(m)) \hat{u}_0(m)+\frac{\sin(t \lambda(m))}{\lambda(m)} \hat{u}_1(m),\quad f=(u_0,u_1).\]
 
 
-\subsection{Proof of the non-periodic case} Our choice for the sequence of initial data $(f_N)_{N\geq 10}$ is given by
+\subsection{Proof of the non-periodic case} Our choice for the sequence of initial data $(f_N)_{N\geq 10}$ 
+\begin{framed}
+  Unless I am missing something, we could have $N \ge c$, for any $c>0$. The fact that $c=10$ in our work is arbitrary; all that matters is that, eventually, we will restrict $N >>1$ (which is indeed stated earlier in the document). We might want to emphasize this point again, as the computation we do is delicate, and the reader may think that setting $c=10$ actually plays some important role in the computations. 
+\end{framed}
+is given by
 \begin{equation}
 f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{r}{N^s} \chi_{\{N \leq |\xi| \leq N + 1\}\}},
 \label{fn}
 \end{equation}
-where $r>0$ is a positive constant and $s$ is a \textbf{quantitatively well-posedness} index. A simple computation yields
+where $r>0$ is a positive constant and $s$ is a \textbf{quantitative well-posedness} index. A simple computation yields
 \begin{equation}
 \|f_N\|_{H^{s'}\times H^{s'-2}}\,=\,\|g_N\|_{H^s}\,\simeq\,r\,N^{s'-s},
 \label{hsfn}
@@ -287,14 +297,16 @@ and, in order to have
 \[
 \limsup_{N\to \infty} \|f_N\|_{H^s \times H^{s -2}}\,\ll\,1,
 \]
-one needs to take $r$ sufficiently small. This allows us to normalize the time of existence for all the solutions of size at most $r$, which is set to be equal to $1$.
-
-If we plug in the profile \eqref{fn} into \eqref{A2f} and take into account \eqref{lnf}, we obtain
+one needs to take $r$ sufficiently small. 
+\begin{framed}
+This allows us to normalize the time of existence $T = T(r)$ for all the solutions of size at most $r$. Hence, choosing $r$ sufficiently small such that $T=1$, plugging 
+the profile \eqref{fn} into \eqref{A2f} and taking into account \eqref{lnf}, we obtain
+\end{framed}
 \begin{equation}
 \aligned
 &\widehat{A_2(f_N)}(t,\xi)\\
 &=\int_0^t \int_{\mathbb{R}} \frac{\sin((t-t') \lambda(\xi))}{\lambda(\xi)} \xi^2 \cos(t' \lambda(\xi-\eta))\cos(t'\lambda(\eta))\widehat{g_N}(\xi-\eta)\widehat{g_N}(\eta)d\eta\,dt'\\
-&=\frac{r^2 \xi^2}{N^{2s}\lambda(\xi)}\int_0^t \int_{N \leq |\xi-\eta|, |\eta| \leq N+1}\sin((t-t') \lambda(\xi))\cos(t' \lambda(\xi-\eta))\cos(t'\lambda(\eta))d\eta\,dt'.\endaligned
+&=\frac{r^2 \xi^2}{N^{2s}\lambda(\xi)}\int_0^t \int_{N \leq \{|\xi-\eta|, |\eta| \}\leq N+1}\sin((t-t') \lambda(\xi))\cos(t' \lambda(\xi-\eta))\cos(t'\lambda(\eta))d\eta\,dt'.\endaligned
 \label{A2fn}
 \end{equation}
 On the other hand,
@@ -363,11 +375,10 @@ and
 
 Next, we deduce
 \[
-\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))} \gtrsim \left|\widehat{A_2(f_N)}(t,1)\right|,
 \]
 which will be coupled with
 \[
-\widehat{A_2(f_N)}(t,1)\,\sim\,a(t,N)\cdot O(N^{-2s-4})\,+\,b(t,N)\cdot N^{-2s-2},
+\widehat{A_2(f_N)}(t,1)\,\sim\,a(t,N)\cdot O(N^{-2s-4})\,+\,b(t,N)\cdot O(N^{-2s-2}),
 \]
 where
 \[\aligned
@@ -375,7 +386,7 @@ a(t,N)&= \cos (t\lambda(1))-\cos[t(\lambda(N-1) + \lambda(N))],\\ b(t,N)&= \cos 
 \endaligned
 \]
 
-In comparison with the non-periodic case, we have a little bit more flexibility herein our choice for $t=t_N$. We can take as in the previous subsection $t_N \sim \frac{1}{N}$, but we can also set $t_N=1$, as the divergence of the sequence $(\cos n)_n$ allows one to identify a subsequence $(N_k)_k\to\infty$ such that 
+In comparison with the non-periodic case, we have a little bit more flexibility in our choice of $t=t_N$. We can take as in the previous subsection $t_N \sim \frac{1}{N}$, but we can also set $t_N=1$, as the divergence of the sequence $(\cos n)_n$ allows one to identify a subsequence $(N_k)_k\to\infty$ such that 
 \[
 \liminf_k \left|b(1, N_k)\right|\,>\,0.
 \]
