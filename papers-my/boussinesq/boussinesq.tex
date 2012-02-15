@@ -2879,9 +2879,28 @@ d \tau_1
 	\end{split}
 \end{equation}
 %
+
+We now observe that
 %
-For the region $ A_{4}$, we apply \cref{lem:calc} 
-to obtain
+%
+\begin{equation*}
+\begin{split}
+  | \tau_{1} - n_{1}^{2} + \tau - \tau_{1} - (n - n_{1})^{2} - (\tau - n^{2}) | = 2| n_{1} || n - n_{1} |
+\end{split}
+\end{equation*}
+%
+%
+and so by the pigeonholde principle we may partition
+$ A_{4}$ into three (not necessarily disjoint) parts
+\begin{align*}
+  A_{4,1}&=\{(n, n_1, \tau, \tau_1)\in A_4: |\tau-n^{2}|\ge \frac{2}{3} |n_{1}|| n - n_{1} |\},\\
+  A_{4,2}&=\{(n, n_1, \tau, \tau_1)\in A_4: |\tau_{1}-n_{1}^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}\\
+  A_{4,3}&=\{(n, n_1, \tau, \tau_1)\in A_4: |\tau - \tau_{1}-(n - n_{1})^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}.
+\end{align*} 
+%
+%
+Then
+%
 %
 %
 %
@@ -2903,33 +2922,11 @@ to obtain
   n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{4}}}{\langle
   \tau - n^{2} \rangle^{2}  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{2}} d \tau 
   \\
-&  \lesssim \sum_{n} \frac{\langle n - n_{1} \rangle ^{-2s} \langle n_{1} \rangle ^{-2s}}{\langle
-    n\rangle ^{-2s}}  \times \frac{\chi_{A_{4,2}}}{\langle
-  \tau_{1} - 2nn_{1} + n_{1}^{2} \rangle^{2}} 
+&  \lesssim \sum_{n} \frac{\langle n - n_{1} \rangle ^{-2s-2} \langle n_{1} \rangle ^{-2s-2}}{\langle
+    n\rangle ^{-2s}}  
   \end{split}
 \end{equation}
 %
-Furthermore, observe that
-%
-%
-%
-%
-\begin{equation*}
-\begin{split}
-  & \sup_{n_{1}, \tau_{1}}
-\sum_{n} \frac{\langle n - n_{1} \rangle ^{-2s} \langle n_{1} \rangle ^{-2s}}{\langle
-    n\rangle ^{-2s}}  \times \frac{\chi_{A_{4,2}}}{\langle
-  \tau_{1} - 2nn_{1} + n_{1}^{2} \rangle^{2}} 
-  \\
-  & = \sup_{c, n_{1}}\sum_{n} \frac{\langle n - n_{1} \rangle ^{-2s} \langle n_{1} \rangle ^{-2s}}{\langle
-    n\rangle ^{-2s}}  \times \frac{\chi_{A_{4,2}}}{\langle
-      cn_{1}^{2} - 2nn_{1}  \rangle^{2}} 
-      \\
-      & \sim \sup_{c, n_{1}} \sum_{n} \frac{\langle n - n_{1} \rangle ^{-2s} \langle n_{1} \rangle ^{-2s -2}}{\langle
-    n\rangle ^{-2s}}  \times \frac{\chi_{A_{4,2}}}{\langle
-      cn_{1} - 2n \rangle^{2}} 
-\end{split}
-\end{equation*}
 %
 Applying the estimate
   %
@@ -2957,7 +2954,7 @@ Applying the estimate
   %
   \begin{equation*}
   \begin{split}
-    \sup_{c, n_{1}} \sum_{n} \frac{\langle n_{1}\rangle ^{\gamma(s)-2}}{\langle cn_{1} - 2n \rangle^{2}} < \infty, \quad s \ge -1/2
+    \sup_{c, n_{1}} \sum_{n} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n_\rangle^{2}} < \infty, \quad s \ge -1
   \end{split}
   \end{equation*}
   %
