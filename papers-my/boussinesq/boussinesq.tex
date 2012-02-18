@@ -225,7 +225,7 @@ We now introduce the following spaces.
   \begin{equation}
   \begin{split}
     \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
-    (1 + ||\tau| - \gamma(n) |)^{2b} \wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
+    (1 + ||\tau| - \gamma(n) |)^{2b} \wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}
   \end{split}
   \label{eqn:bous-norm}
   \end{equation}
@@ -937,7 +937,7 @@ and applying the bilinear estimate, we conclude that
   \label{main-int3-est}
 	\begin{split}
     \|\cref{main1-rel-term-3}\|_{X_{s}} \le c_{\psi} 
-     \|u\|^{2}_{X_{s}}, \quad  b > 1/2,  \ s > -1/4.
+     \|u\|^{2}_{X_{s}}, \quad   s > -3/4.
 	\end{split}
 \end{equation}
 
@@ -1265,7 +1265,7 @@ From our work above, it follows that
 		 & \langle n \rangle^s  | \wh{uv}\left( 
 		n, \tau \right) |
 		\\
-		& \le \langle |\tau| - n^{2} 
+		& \le  
 		\sum_{n_{1}} \int_{\tau_{1}} \frac{\langle n \rangle^{s}}{\langle n_1 \rangle^s
     \langle n - n_1 \rangle^s} 
 		\times \frac{c_f(n_1, \tau_1)}{\langle |\tau_1| - n_1^{2} \rangle}
@@ -1370,14 +1370,14 @@ Applying H{\"o}lder, we bound this by
   \label{integral-bound-1st-form-per}
 	\begin{split}
     & \|u\|_{X_{s}} \|v\|_{X_{s}} \| \phi \|_{L^{2}_{n, \tau}}
-    \|\left(  \langle n
-    \rangle ^{2s} \right. 
+    \|\bigg (  \langle n
+    \rangle ^{2s} 
     \\
     & \times \left. 
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle
 n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2} \langle  |\tau -
     \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^\infty_{n, \tau}}
+    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^\infty_{n \neq 0, \tau}}
 	\end{split}
 \end{equation}
 %
@@ -1392,9 +1392,8 @@ We seek to bound
 		c_g(n - n_1, \tau - \tau_1 )
 		\\
     & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau| - n^{2} \rangle
-    \langle |\tau_{1}|-n_{1}^{2} \rangle\langle | \tau|-n_{2}^{2}
-    \rangle} d \tau_1 d \tau 
+    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}| - n_{1}^{2} \rangle
+    \langle |\tau - \tau_{1}|-(n - n_{1})^{2} \rangle } d \tau_1 d \tau 
    \end{split}
 \end{equation*}
 in a different manner than before. First, we apply 
@@ -1497,7 +1496,7 @@ or
 \begin{split}
   & \| \frac{1}{\langle n_{1} \rangle ^{2s}
   } \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle
-  n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau | - n^{2}
+    n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau_{1} | - n_{1}^{2}
   \rangle^{2}  \langle | \tau -
   \tau_{1} | - (n - n_{1}^{2}) \rangle^{2}} d \tau 
   \|_{L^{\infty}_{n_{1}, \tau_{1}}}
@@ -1544,7 +1543,7 @@ or
   & \| \frac{1}{\langle n_{1} \rangle ^{2s}
   } \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle
   n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle
-  \sigma \rangle^{2}  \langle \sigma_{2} \rangle^{2}} d \tau 
+    \sigma_{1} \rangle^{2}  \langle \sigma_{2} \rangle^{2}} d \tau 
   \|_{L^{\infty}_{n_{1}, \tau_{1}}} < \infty
 \end{split}
 \end{equation}
@@ -1563,7 +1562,7 @@ where we consider cases
 \label{it-4}
     \item $\sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$,
 \label{it-5}
-    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$.
+    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$
 \label{it-6}
 \end{enumerate}
 %
@@ -1714,7 +1713,7 @@ and so by the pigeonhole principle we have $\cup_{1 \le j \le 3} A_{3,j} = A_{3}
 \end{align*} 
 %
 %
-Then
+Hence, applying \cref{lem:calc}, we obtain
 %
 %
 %
@@ -1730,15 +1729,14 @@ Then
 %
 %
 \begin{equation}
-  \label{region-4-1}
+  mc\label{region-4-1}
 \begin{split}
-  &  \frac{1}{\langle n_{1} \rangle ^{2s}
-  } \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle
-    n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle
-  \tau - n^{2} \rangle^{2}  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{2}} d \tau 
+  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle
+      \tau_{1} - n_{1}^{2} \rangle^{2}  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{2}} d \tau_{1}
   \\
-&  \lesssim \sum_{n \in \zzdot} \frac{\langle n - n_{1} \rangle ^{-2s-2} \langle n_{1} \rangle ^{-2s-2}}{\langle
-    n\rangle ^{-2s}}.  
+  &  \lesssim \sum_{n_{1} \in \zz} \frac{\langle n - n_{1} \rangle ^{-2s} \langle n_{1} \rangle ^{-2s}}{\langle
+    n\rangle ^{-2s}} 
+    \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} - (n - n_{1})^{2} \rangle ^{3}}
   \end{split}
 \end{equation}
 %
