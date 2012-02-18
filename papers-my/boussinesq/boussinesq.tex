@@ -1204,7 +1204,7 @@ By duality and the equivalence of the norms $\| \cdot \|_{X_{s}}$ and $\| \cdot 
 	\label{duality-est}
 	\begin{split}
 	|	\sum_{n \in \zzdot}  (1 + |n|)^{s}
-		\int_{\rr} \phi(n, \tau) \wh{uv}(n, \tau) d \tau | \lesssim \|u\|_{\mathcal{X}_{s}}
+	\int_{\rr} \langle | \tau | - n^{2}  \rangle ^{-1/2}\phi(n, \tau) \wh{uv}(n, \tau) d \tau | \lesssim \|u\|_{\mathcal{X}_{s}}
     \|v\|_{\mathcal{X}_{s}}
     \|\phi \|_{L^{2}(\zzdot \times \rr)}.
 	\end{split}
@@ -1251,7 +1251,7 @@ and
 \begin{equation*}
 	\begin{split}
 		c_h(n, \tau) =
-			\langle n \rangle ^s \langle |\tau| - n^{2} \rangle | \wh{h}\left( n, \tau \right) |.
+		\langle n \rangle ^s \langle |\tau| - n^{2} \rangle^{-1/2} | \wh{h}\left( n, \tau \right) |.
 	\end{split}
 \end{equation*}
 %
@@ -1262,17 +1262,17 @@ From our work above, it follows that
 \begin{equation}
 	\label{convo-est-starting-pnt}
 	\begin{split}
-		 & \langle n \rangle^s  | \wh{uv}\left( 
+		 &  | \wh{uv}\left( 
 		n, \tau \right) |
 		\\
 		& \le  
 		\sum_{n_{1}} \int_{\tau_{1}} \frac{\langle n \rangle^{s}}{\langle n_1 \rangle^s
     \langle n - n_1 \rangle^s} 
-		\times \frac{c_f(n_1, \tau_1)}{\langle |\tau_1| - n_1^{2} \rangle}
+    \times \frac{c_f(n_1, \tau_1)}{\langle |\tau_1| - n_1^{2} \rangle^{1/2}}
 		\\
 		& \times
-		\frac{c_g(n - n_1, \tau - \tau_1 )}{\langle |\tau - \tau_1| - (n - n_1)^{2}
-    \rangle}\ d \tau_1.
+		\frac{c_g(n - n_1, \tau - \tau_1 )}{\langle |\tau - \tau_1| - (n - n_1)
+		\rangle^{1/2}}\ d \tau_1.
 	\end{split}
 \end{equation}
 %
@@ -1284,119 +1284,35 @@ Hence,
   \label{pre-fubini-int-form}
 	\begin{split}
     |\text{lhs of} \ \cref{duality-est}|
-	& \lesssim \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau) \langle n \rangle^s 
+    & \lesssim \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau)\langle | \tau | - n^{2} \rangle^{-1/2}  \langle n \rangle^s 
   \sum_{n_{1}}
   \int_{\tau_{1}} c_f(n_1, \tau_1)
 		c_g(n - n_1, \tau - \tau_1 )
 		\\
     & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}|-n_{1}^{2} \rangle\langle | \tau -
+    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}|-n_{1}^{2} \rangle^{1/2}\langle | \tau -
     \tau_{1}|-(n - n_{1})^{2}
-    \rangle} d \tau_1 d \tau.
+    \rangle^{1/2}} d \tau_1 d \tau.
 	\end{split}
 \end{equation}
 %
 Let $A \subset \rr^{2} \times \zzdot \times \zz$, and $\chi_{A}(\tau, \tau_{1}, n, n_{1})$
 be its
-characteristic function. Then by Cauchy-Schwartz in
-$\tau_{1}, \xi_{1}$
-\begin{equation*}
-	\begin{split}
-    & \sum_{n \in \zzdot} \int_{\tau}   \sum_{n_{1}}
-    \int_{\tau_{1}} \chi_{A}
-    \phi(n, \tau) \langle n \rangle^s \langle \tau - n^{2} 
-  c_f(n_1, \tau_1)
-		c_g(n - n_1, \tau - \tau_1 )
-		\\
-    & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}|-n_{1}^{2} \rangle\langle | \tau -
-    \tau_{1}|-(n - n_{1})^{2}
-    \rangle} d \tau_1 d \tau.
-	\end{split}
-\end{equation*}
-%
-is bounded by 
-%
-%
-\begin{equation}
-	\label{10g}
-	\begin{split}
-    & \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau) \langle n \rangle ^{s}
-    \\
-    & \times \left( \sum_{n_{1}} \int_{\tau_{1}}
-    \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle |
-    \tau_{1} | - n_{1}^{2}\rangle^{2}  \langle | \tau - \tau_{1} | -
-    (n - n_{1})^{2} \rangle^{2}} d \tau_{1} \right)^{1/2}
-    \\
-    & \times \left( \sum_{n_{1}} \int_{\tau_{1}} c_{u}^{2}(n, \tau_{1})
-    c_{v}^{2}(n - n_{1}, \tau - \tau_{1}) d \tau_{1} \right)^{1/2} d \tau
-  \end{split}
-\end{equation}
-%
-%
-Applying Cauchy-Schwartz again, \cref{10g} is bounded by
-%
-%
-\begin{equation*}
-  \begin{split}
-    & \|\left( \sum_{n_{1}}\int_{\tau_{1}} c_{u}^{2}(n_1, \tau_1)
-  c_{v}^{2} (n - n_1, \tau - \tau_{1} ) d \tau_1  \right)^{1/2} \|_{L^{2}(\zzdot \times
-		\rr)}
-		\\
-    & \times  \|\phi(n, \tau)  \langle n
-    \rangle ^{s}
-		\\
-    & \times \left( \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1}
-    \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2}
-    \rangle^{2} \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^2(\zzdot \times \rr)}
-		\\
-    & = \|u\|_{X_{s}} \|v\|_{X_{s}} \label{holder-term}
-     \|\phi(n, \tau) \times \left(  \langle n
-    \rangle ^{2s} \right .
-    \\
-    & \times \left . \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle
-n-n_{1} \rangle ^{2s}  \langle | \tau_{1}|-n_{1}^{2} \rangle^{2} \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^2(\zzdot \times \rr)}.
-  \end{split}
-\end{equation*}
-%
-Applying H{\"o}lder, we bound this by 
-%
-%
-\begin{equation}
-  \label{integral-bound-1st-form-per}
-	\begin{split}
-    & \|u\|_{X_{s}} \|v\|_{X_{s}} \| \phi \|_{L^{2}_{n, \tau}}
-    \|\bigg (  \langle n
-    \rangle ^{2s} 
-    \\
-    & \times \left. 
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle
-n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2} \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^\infty_{n \neq 0, \tau}}
-	\end{split}
-\end{equation}
-%
-%
-We return to the right hand side of \cref{pre-fubini-int-form}.
+characteristic function. 
 We seek to bound
 \begin{equation*}
 \begin{split}
   & \sum_{n \in \zzdot} \int_{\tau}  \sum_{n_{1}}
-  \int_{\tau_{1}} \chi_{A} \phi(n, \tau)
+  \int_{\tau_{1}} \chi_{A} \langle | \tau | - n^{2} \rangle ^{-1/2} \phi(n, \tau)
     c_f(n_1, \tau_1)
 		c_g(n - n_1, \tau - \tau_1 )
 		\\
     & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
     n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}| - n_{1}^{2} \rangle
-    \langle |\tau - \tau_{1}|-(n - n_{1})^{2} \rangle } d \tau_1 d \tau 
+    \langle |\tau - \tau_{1}|-(n - n_{1})^{2} \rangle } d \tau_1 d \tau. 
    \end{split}
 \end{equation*}
-in a different manner than before. First, we apply 
+First, we apply 
 Fubini, then Cauchy-Schwartz in $n_{1}, \tau_{1}$ to obtain the bound
 %
 %
@@ -1407,7 +1323,7 @@ Fubini, then Cauchy-Schwartz in $n_{1}, \tau_{1}$ to obtain the bound
   \\
   & \times \left \{\sum_{n_{1}} \int_{\tau_{1}}   
  \left[
- \sum_{n \in \zzdot} \int_{\tau}
+ \sum_{n \in \zzdot} \int_{\tau} \langle | \tau | - n^{2} \rangle ^{-1/2}
    \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
    n - n_{1}\rangle ^{s}} \times \frac{\chi_{A} |\phi(n, \tau)| c_{g}(n -
    n_{1}, \tau - \tau_{1})
@@ -1419,10 +1335,10 @@ Fubini, then Cauchy-Schwartz in $n_{1}, \tau_{1}$ to obtain the bound
   \\
   & \times \left \{\sum_{n_{1}} \int_{\tau_{1}}   
  \left[
- \sum_{n \in \zzdot} \int_{\tau}
+ \sum_{n \in \zzdot} \int_{\tau} \langle | \tau | - n^{2} \rangle ^{-1/2}
    \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
    n - n_{1}\rangle ^{s}} \times \frac{\chi_{A}|\phi(n, \tau)| c_{g}(n -
-   n_{1}, \tau - \tau_{1})
+   n_{1}, \tau - \tau_{1}) 
 }{\langle | \tau_{1} | - n_{1}^{2} \rangle \langle | \tau -
   \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
   \right]^{2} d \tau_{1}  \right \}^{1/2}
@@ -1439,11 +1355,13 @@ Applying Cauchy-Schwartz in $\tau, n$, we bound the last line by
   | \phi(n, \tau)|^{2} c_{g}^{2}(n - n_{1}, \tau - \tau_{1}) d \tau  
     \right ] \right . 
    \\
-   & \left. \times \left [ \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle
+   & \left. \times \left [ \sum_{n \in \zzdot} \int_{\tau} 
+\langle | \tau | - n^{2} \rangle ^{-1}
+     \frac{\langle n \rangle
    ^{2s}}{\langle n_{1} \rangle ^{2s} \langle n - n_{1}\rangle ^{2s}}
    \times \frac{\chi_{A}}{\langle | \tau_{1} |
-   - n_{1}^{2} \rangle^{2}  \langle | \tau - \tau_{1} | - (n - n_{1}^{2})
-   \rangle^{2}} d \tau  \right ] \right \}^{1/2}d \tau_{1} 
+   - n_{1}^{2} \rangle  \langle | \tau - \tau_{1} | - (n - n_{1}^{2})
+   \rangle} d \tau  \right ] \right \}^{1/2}d \tau_{1} 
 \end{split}
 \end{equation*}
 %
@@ -1455,9 +1373,11 @@ which by Holder is bounded by
 \begin{equation}
   \label{integral-bound-2nd-form-per}
 \begin{split}
-  & \| \sum_{n \in \zzdot} \int_{\rr} \frac{\langle n \rangle ^{2s}}{\langle n_{1} \rangle ^{2s} \langle
-  n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A}}{\langle | \tau_{1} | - n_{1}^{2} \rangle^{2}  \langle | \tau -
-  \tau_{1} | - (n - n_{1}^{2}) \rangle^{2}} d \tau 
+  & \| \sum_{n \in \zzdot} \int_{\rr} 
+\langle | \tau | - n^{2} \rangle ^{-1}
+  \frac{\langle n \rangle ^{2s}}{\langle n_{1} \rangle ^{2s} \langle
+  n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A}}{\langle | \tau_{1} | - n_{1}^{2} \rangle  \langle | \tau -
+  \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
   \|_{L^{\infty}_{n_{1}, \tau_{1}}}^{1/2}
   \\
   & \times \|\phi\|_{L^{2}} \| g \|_{X_{s}}.
@@ -1468,34 +1388,17 @@ which by Holder is bounded by
 Now consider the family $\{A_{j}\}_{1}^{k}, A_{j} \subset \rr^{2} \times
 \zzdot \times \zz$ with
 $$\bigcup_{1}^{k} A_{j}= \rr^{2} \times
-\zzdot \times \zz.$$ From \cref{integral-bound-1st-form-per},
-\cref{integral-bound-2nd-form-per}, and our preceding argumentation,
+\zzdot \times \zz.$$ From 
+\cref{integral-bound-2nd-form-per} and our preceding argumentation,
 we see that the proof of the bilinear estimate reduces to showing that
-either 
-%
-%
-%
-%
-\begin{equation}
-  \label{key-sup-estimate-per-1}
-  \begin{split}
-     \|  \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}}
-    \int_{\tau_{1}} \frac{\chi_{A_{j}}}{\langle n_{1} \rangle ^{2s} \langle
-    n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2}  \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1  \|_{L^\infty_{n \neq 0, \tau}} < \infty.
-  \end{split}
-\end{equation}
-%
-or
 %%
 \begin{equation}
   \label{key-sup-estimate-per-2}
 \begin{split}
   & \| \frac{1}{\langle n_{1} \rangle ^{2s}
-  } \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle
+  } \sum_{n \in \zzdot} \int_{\tau} 
+\langle | \tau | - n^{2} \rangle ^{-1}
+  \frac{\langle n \rangle ^{2s}}{\langle
     n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau_{1} | - n_{1}^{2}
   \rangle^{2}  \langle | \tau -
   \tau_{1} | - (n - n_{1}^{2}) \rangle^{2}} d \tau 
@@ -1521,29 +1424,14 @@ By the triangle inequality and the fact that
 %
 %
 it follows that the proof of \cref{prop:bilinear-est} reduces to showing that
-for any $j$, either 
-%
-%
-\begin{equation}
-  \label{sup-est-gen-per-1}
-  \begin{split}
-    \| \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{j}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \sigma_{1} \rangle^{2} \langle  \sigma_{2} \rangle^{2}}
-    d \tau_1  \|_{L^{\infty}_{n \neq 0, \tau}} < \infty
-  \end{split}
-\end{equation}
-%
-%
-or 
+for any $j$
 \begin{equation}
   \label{sup-est-gen-per-2}
 \begin{split}
   & \| \frac{1}{\langle n_{1} \rangle ^{2s}
   } \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle
-  n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle
-    \sigma_{1} \rangle^{2}  \langle \sigma_{2} \rangle^{2}} d \tau 
+  n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle \sigma \rangle   \langle
+    \sigma_{1} \rangle  \langle \sigma_{2} \rangle} d \tau 
   \|_{L^{\infty}_{n_{1}, \tau_{1}}} < \infty
 \end{split}
 \end{equation}
@@ -1562,11 +1450,10 @@ where we consider cases
 \label{it-4}
     \item $\sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$,
 \label{it-5}
-    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$
+    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$.
 \label{it-6}
 \end{enumerate}
 %
-for \cref{sup-est-gen-per-1} and \cref{sup-est-gen-per-2}. 
 %
 %
 \begin{framed}
@@ -1593,8 +1480,8 @@ Let
 %
 %
 \begin{align*}
-A_1&=\{(n, n_1, \tau, \tau_1)\in A: n_1 = n,  n \neq 0 \},\\
-A_2&=\{(n, n_1, \tau, \tau_1)\in A: n_1=0, n \neq 0 \},\\
+  A_1&=\{(n, n_1, \tau, \tau_1)\in A: n = n_{1},  n_{1} \neq 0 \},\\
+  A_2&=\{(n, n_1, \tau, \tau_1)\in A: n_1=0, n \neq n_{1} \},\\
 A_3&=\{(n, n_1, \tau, \tau_1)\in A: n \neq 0, n_1 \neq 0 \ \text{and} \ n_1 \neq n \}.
 \end{align*} 
 %
@@ -1651,25 +1538,25 @@ For $\alpha=\beta \ \text{or} \ p \neq 1 \ \text{or} \ q \neq 1$
 Applying \cref{lem:calc}, we now bound 
 \begin{equation*}
   \begin{split}
-    & \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{1}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau_{1} - n_{1}^{2} \rangle^{2} \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle^{2}}
-    d \tau_1 
+    & 
+    \sum_{n \in \zzdot} \int_{\tau} \frac{\chi_{A_{1}}\langle n \rangle ^{2s} }{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle \tau - n^{2} \rangle 
+    \langle \tau_{1} - n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
+    (n - n_{1})^{2} \rangle}
+    d \tau 
     \\
-    & = 
-    \int_{\tau_{1}} \frac{1}{\langle \tau_{1} -
-  n^{2} \rangle^{2} \langle
-  \tau - \tau_{1}\rangle^{2}}d \tau_{1}
+    & \le 
+    \int_{\tau} \frac{1}{\langle \tau -
+      n_{1}^{2} \rangle \langle
+  \tau - \tau_{1}\rangle}d \tau
   \\
   & \lesssim 
-  \langle \tau - n^{2} \rangle ^{-1} 
+  \langle \tau_{1} - n_{1}^{2} \rangle ^{-1} 
   \\
-  & < \infty.
+  & < \infty
 \end{split}
 \end{equation*}
 %
+uniformly in $\tau_{1}, n_{1}$. 
 %
 Similarly, we bound
 %
@@ -1678,14 +1565,16 @@ Similarly, we bound
 \begin{split}
   & \langle n
     \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau_{1} - n_{1}^{2} \rangle^{2} \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle^{2}}
+    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{2}}}{\langle n_{1} \rangle ^{2s}
+    \langle n-n_{1} \rangle ^{2s} 
+\langle \tau - n^{2} \rangle 
+    \langle \tau_{1} - n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
+    (n - n_{1})^{2} \rangle}
     d \tau_1 
     \\
-  & = 
-  \int_{\tau_{1}} \frac{1}{\langle \tau_{1} \rangle^{2}  \langle \tau -
-  \tau_{1} - n^{2} \rangle^{2}}
+  & \le 
+  \int_{\tau_{1}} \frac{1}{\langle \tau_{1} \rangle  \langle \tau -
+  \tau_{1} - n^{2} \rangle}
 d \tau_1 
 \\
   & \lesssim   \langle \tau - n^{2} \rangle ^{-1} 
@@ -1732,7 +1621,7 @@ Hence, applying \cref{lem:calc}, we obtain
   mc\label{region-4-1}
 \begin{split}
   &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle
-      \tau_{1} - n_{1}^{2} \rangle^{2}  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{2}} d \tau_{1}
+      \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau_{1}
   \\
   &  \lesssim \sum_{n_{1} \in \zz} \frac{\langle n - n_{1} \rangle ^{-2s} \langle n_{1} \rangle ^{-2s}}{\langle
     n\rangle ^{-2s}} 
@@ -1767,7 +1656,7 @@ uniformly in $\tau_{1}$. Applying the estimate
   %
   \begin{equation*}
   \begin{split}
-    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle^{2}} < \infty, \quad s \ge -1
+    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle} < \infty, \quad s \ge -1
   \end{split}
   \end{equation*}
   %
@@ -1781,13 +1670,13 @@ uniformly in $\tau_{1}$. Applying the estimate
     & \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{3,2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau_{1} - n_{1}^{2} \rangle^{2} \langle  \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{2}}
+    \langle \tau_{1} - n_{1}^{2} \rangle \langle  \tau - \tau_{1} - (n - n_{1})^{2} \rangle}
     d \tau_1 
     \\
     & \lesssim \sum_{n_{1}} \frac{\langle n - n_{1} \rangle ^{-2s-2} \langle n_{1} \rangle ^{-2s-2}}{\langle
     n\rangle ^{-2s}}  
     \\
-    & \lesssim \sum_{n_{1}} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle^{2}} < \infty, \quad s > -3/4
+    & \lesssim \sum_{n_{1}} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle} < \infty, \quad s > -3/4
   \end{split}
 \end{equation}
   %
@@ -1815,14 +1704,14 @@ For region $B_{1}$, we apply \cref{lem:calc} to obtain
     & \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{1}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau_{1} + n_{1}^{2} \rangle^{2} \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle^{2}}
+    \langle \tau_{1} + n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
+    (n - n_{1})^{2} \rangle}
     d \tau_1 
     \\
     & = 
    \int_{\tau_{1}} \frac{1}{\langle \tau_{1} +
-  n^{2} \rangle^{2} \langle
-  \tau - \tau_{1}\rangle^{2}}d \tau_{1}
+  n^{2} \rangle \langle
+  \tau - \tau_{1}\rangle}d \tau_{1}
   \\
   & \lesssim 
   \langle \tau - n^{2} \rangle ^{-2} 
@@ -1836,14 +1725,14 @@ We also apply \cref{lem:calc} in $B_{2}$ to obtain
     & \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau_{1} + n_{1}^{2} \rangle^{2} \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle^{2}}
+    \langle \tau_{1} + n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
+    (n - n_{1})^{2} \rangle}
     d \tau_1 
     \\
     & = 
    \int_{\tau_{1}} \frac{1}{\langle \tau_{1} 
-  \rangle^{2} \langle
-  \tau - \tau_{1} - n^{2}\rangle^{2}}d \tau_{1}
+  \rangle \langle
+  \tau - \tau_{1} - n^{2}\rangle}d \tau_{1}
   \\
   & \lesssim 
   \langle \tau - n^{2} \rangle ^{-2} 
@@ -1873,21 +1762,21 @@ apply a change of variable to obtain
 &  \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{3,2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-\langle \tau_{1} + n_{1}^{2}  \rangle^{2} \langle  \tau - \tau_{1} - (n -
-n_{1})^{2}  \rangle^{2}}
+\langle \tau_{1} + n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
 d \tau_1 
 \\
 &  = \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{3,2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-\langle \tau_{1} - n_{1}^{2}  \rangle^{2} \langle  \tau + \tau_{1} - (n -
-n_{1})^{2}  \rangle^{2}}
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau + \tau_{1} - (n -
+n_{1})^{2}  \rangle}
 d \tau_1 
 \\
 & \lesssim \sum_{n_{1}} \frac{\langle n - n_{1} \rangle ^{-2s-2} \langle n_{1} \rangle ^{-2s-2}}{\langle
     n\rangle ^{-2s}}  
     \\
-    & \lesssim \sum_{n_{1}} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle^{2}} < \infty, \quad s > -3/4
+    & \lesssim \sum_{n_{1}} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle} < \infty, \quad s > -3/4
 \end{split}
 \end{equation}
 %
@@ -1900,21 +1789,21 @@ while for the region $B_{3,3}$, we have
 &  \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{3,2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-\langle \tau_{1} + n_{1}^{2}  \rangle^{2} \langle  \tau - \tau_{1} - (n -
-n_{1})^{2}  \rangle^{2}}
+\langle \tau_{1} + n_{1}^{2}  \rangle \langle  \tau - \tau_{1} - (n -
+n_{1})^{2}  \rangle}
 d \tau_1 
 \\
 &  = \langle n
     \rangle ^{2s}
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{3,2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-\langle \tau_{1} - n_{1}^{2}  \rangle^{2} \langle  \tau + \tau_{1} - (n -
-n_{1})^{2}  \rangle^{2}}
+\langle \tau_{1} - n_{1}^{2}  \rangle \langle  \tau + \tau_{1} - (n -
+n_{1})^{2}  \rangle}
 d \tau_1 
 \\
 & \lesssim \sum_{n_{1}} \frac{\langle n - n_{1} \rangle ^{-2s-2} \langle n_{1} \rangle ^{-2s-2}}{\langle
     n\rangle ^{-2s}}  
     \\
-    & \lesssim \sum_{n_{1}} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle^{2}} < \infty, \quad s > -3/4.
+    & \lesssim \sum_{n_{1}} \frac{\langle n_{1}\rangle ^{\gamma(s)-4}}{\langle n \rangle} < \infty, \quad s > -3/4.
 \end{split}
 \end{equation}
 %
