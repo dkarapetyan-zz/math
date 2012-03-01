@@ -1,7 +1,7 @@
 \documentclass[12pt,reqno]{amsbook}
 %
 %
-\usepackage[notcite, notref]{showkeys}
+%\usepackage[notcite, notref]{showkeys}
 \usepackage[T1]{fontenc} %otherwise have font issues
 \usepackage[utf8x]{inputenc}
 \usepackage{lmodern} %this with above font packages give us all possible diacritics
@@ -106,20 +106,20 @@ urlcolor=blue,
 
 \maketitle
 \tableofcontents
-%\part{Strongly Dispersive Equations}
-%\include{mnls/mnls}
-%\include{nls-l4/nls-l4}
-%\include{dnls/dnls}
-%\include{kdv/kdv}
-%\include{knls/knls}
-%\include{mkdv/mkdv}
-%\include{nls-gevrey/nls-gevrey}
-%\part{Weakly Dispersive Equations}
+\part{Strongly Dispersive Equations}
+\include{mnls/mnls}
+\include{nls-l4/nls-l4}
+\include{dnls/dnls}
+\include{kdv/kdv}
+\include{knls/knls}
+\include{mkdv/mkdv}
+\include{nls-gevrey/nls-gevrey}
+\part{Weakly Dispersive Equations}
 \include{./hr/hr}
 \include{./hr/hr_holder_cont}
-%\appendix
-%
-%\include{ode-thm/ode-thm}
+\appendix
+
+\include{ode-thm/ode-thm}
 %
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
