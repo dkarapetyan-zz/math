@@ -1,0 +1,400 @@
+%\ProvidesFile{template.tex}
+\documentclass[final,noinfo]{nddiss2e}
+                     % Available options are
+                     % (a) draft + 10pt/11pt/12pt + twoadvisors + textrefs
+                     % (b) review + noinfo + twoadvisors + textrefs
+                     % (c) final + noinfo + twoadvisors + textrefs
+%\let\bibsection\relax 
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\centering}
+{\chaptertitlename\ \thechapter}{20pt}{\uppercase} %capitalize
+%chapters--required by thesis format
+\usepackage{titletoc}  %capitalize chapters in toc--required by thesis
+\titlecontents{chapter}
+[0pt]
+{\addvspace{1pc}%
+\normalfont}%
+{\contentsmargin{0pt}%
+\normalfont
+\makebox[0pt][r]{\huge\thecontentslabel\enspace}%
+\uppercase}
+{\contentsmargin{0pt}%
+\uppercase}
+{\titlerule*[1pc]{.}\contentspage}
+[\addvspace{0.1pc}]
+
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+\usepackage[T1]{fontenc}
+\usepackage{appendix}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+%\usepackage{showkeys}
+\usepackage{lmodern} %this with above font packages give us all possible diacritics
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{amssymb}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{appendix}
+\synctex=1
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[initials]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage{cleveref} %must be last loaded package to work properly
+\renewcommand{\cref}{\Cref}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+\renewcommand{\qed}{\qquad \qedsymbol}
+\renewcommand{\chaptername}{CHAPTER}
+\begin{document}
+
+\frontmatter         % All the items before Chapter 1 go in ``frontmatter''
+
+\title{ON THE WELL-POSEDNESS OF THE HYPERELASTIC ROD EQUATION}            % Title of Work
+\author{David Karapetyan, B.S., M.S.}           % Author's name
+\work{Dissertation}             % ``Dissertation'' or ``Thesis''
+\degprior{}         % All prior degrees
+\degaward{Ph.D}         % Degree you're aiming for
+\advisor{Alex Himonas}          % Advisor's name
+ % \secondadvisor{ } % Second advisor, if used option ``twoadvisors''
+\department{Department of Mathematics, University of Notre Dame}       % Name of the department
+
+\maketitle           % The title page is created now
+
+ % \copyrightholder{ } % If you're not the copyright holder
+ \copyrightyear{2011}   % If the copyright is not for the current year
+\makecopyright      % If not making your work public domain
+                       % uncomment out \makecopyright
+ % \makepublicdomain   % Uncomment this to make your work public domain
+
+\begin{abstract}
+It is shown that the solution map for the hyperelastic rod equation is not
+uniformly continuous on bounded sets of Sobolev spaces with exponent greater
+than 3/2 in the periodic case and non-periodic cases. The proof is based on the
+method of approximate solutions and well-posedness estimates for the solution
+and its lifespan. Building upon this work, we also prove that the data to
+solution map for the hyperelastic rod equation is H\"older continuous from
+bounded sets of Sobolev spaces with exponent $s > 3/2$ measured in a weaker
+Sobolev norm with exponent $r < s$ in both the periodic and non-periodic cases.
+The proof is based on energy estimates coupled with a delicate commutator
+estimate and multiplier estimate.
+\end{abstract}
+ %                         % Either place the text between begin/end, or
+ % \include{abstract}  % put it in a file to be included
+
+% \renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
+                                           % something else
+ \begin{dedication}
+   \emph{To my mama. You have been patient. Be patient a little longer -- this is only the
+   beginning.
+   \\
+To zemer Amelda, whose kindnesses
+give me the strength to never bend, never break.
+\\
+To Cynthia -- loyal and fierce and loving until the end. 
+}
+  \end{dedication}
+ %                       % Use one of the two choices to add dedication text
+  %\include{dedication}
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+ %% \renewcommand{\symbolsname}{newsymname} % Replace ``newsymname'' with
+                                           % the name you want, and uncomment
+ % \begin{symbols}
+ % \end{symbols}
+ %                       % Use one of the two choices to add symbols text
+ % \include{symbols}
+
+ %% \renewcommand{\prefacename}{ } % If you want another Preface name, add
+                                   % something else, and uncomment
+ % \begin{preface}
+ % \end{preface}
+ %                       % Use one of the two choices to add preface text
+ % \include{preface}
+
+ %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
+                                       % add something else, and uncomment
+  \begin{acknowledge} I would like to thank my advisor, Professor Alex Himonas,
+    for his support and guidance. I am also grateful to the math department and the  Arthur J. Schmitt
+    Foundation for supporting my graduate studies. 
+
+    Thanks also to Gerard Misio{\l}ek, who was always ready to answer the random
+    analysis question or talk about the arts. To Professor Gerson Petronilho,
+    for the many talks he has given, and his patience in collaborating with a
+    junior mathematician. I am also indebted to my friend and collaborator
+    Professor Dan Geba, who is one of the finest human beings I have ever
+    known. He's also not too shabby at tennis. 
+
+    Many thanks to my officemates Yen Huang and Wenrui Hao, who were always
+    willing to discuss mathematics with me when we weren't horsing around. I
+    must also thank Katie Grayshan for her friendship and many useful
+    discussions, which helped me identify and shore up my weaknesses. 
+
+    Thanks to Beth VerVelde, who understood me better than most, and is too
+    wise for her own good. To my friends back home, thanks goes to Cynthia
+    Ramirez, who always felt guilty whenever I was sent to voicemail, and
+    called me back as soon as possible. Your patience and loyalty helped me
+    persevere, and will not be forgotten. To Amelda zemer, your kindnesses and
+    enormous heart have given me the strength to never break, no matter the
+    adversity or general nonsense I may encounter.
+    
+    Lastly, thanks to my mom, Satenik Antonian, who has always had my best
+    interests at heart, and has never wavered in her support and love. You have
+    suffered more than most, yet take it stoically, with great grace, honor,
+    and strength.    
+
+    %The author thanks the Department of Mathematics at the University of Notre
+    %Dame and the Arthur J. Schmitt Foundation for supporting his doctoral
+    %studies.
+  \end{acknowledge}
+ %                       % Use one of the two choices to add acknowledge text
+ % \include{acknowledgement}
+
+\mainmatter
+ % Place the text body here.
+\include{./hr/hr}
+\include{./hr/hr_holder_cont}
+ %\input{./hr-holder/hr_holder_cont.tex}
+%\appendix
+%\include{./ode-thm/ode-thm}
+ % If you have appendices, add them here.
+ % Begin each one with \chapter{title} as before- the \appendix command takes
+ % care of renaming chapter headings and creates a new page in the Table of
+ % Contents for them.
+ % \include{appendix-one}
+
+\backmatter              % Place for bibliography and index
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bendahmane et~al.(2006)Bendahmane, Coclite, and
+  Karlsen]{Bendahmane:2006p1301}
+M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen.
+\newblock \emph{Mediterr. J. Math.}, 3\penalty0 (3-4):\penalty0 419--432, 2006.
+
+\bibitem[Benjamin(1972)]{Benjamin_1972_The-stability-o}
+T.~B. Benjamin.
+\newblock \emph{Proc. Roy. Soc. (London) Ser. A}, 328:\penalty0 153--183, 1972.
+
+\bibitem[Benjamin et~al.(1972)Benjamin, Bona, and
+  Mahony]{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
+\newblock \emph{Philos. Trans. Roy. Soc. London Ser. A}, 272\penalty0
+  (1220):\penalty0 47--78, 1972.
+
+\bibitem[Bona and Tzvetkov(2009)]{Bona_2009_Sharp-well-pose}
+J.~L. Bona and N.~Tzvetkov.
+\newblock \emph{Discrete Contin. Dyn. Syst.}, 23\penalty0 (4):\penalty0
+  1241--1252, 2009.
+
+\bibitem[Bressan and Constantin(2007)]{Bressan_2007_Global-conserva}
+A.~Bressan and A.~Constantin.
+\newblock \emph{Arch. Ration. Mech. Anal.}, 183\penalty0 (2):\penalty0
+  215--239, 2007.
+
+\bibitem[Chen et~al.(2011)Chen, Liu, and Zhang]{Chen:2011fk}
+R.~M. Chen, Y.~Liu, and P.~Zhang.
+\newblock The H\"{o}lder Continuity of the Solution Map to the \$b\$-family
+  Equation in weak topology.
+\newblock Submitted, 2011.
+
+\bibitem[Christ et~al.(2003)Christ, Colliander, and
+  Tao]{Christ_2003_Asymptotics-fre}
+M.~Christ, J.~Colliander, and T.~Tao.
+\newblock \emph{Amer. J. Math.}, 125\penalty0 (6):\penalty0 1235--1293, 2003.
+
+\bibitem[Coclite et~al.(2005)Coclite, Holden, and
+  Karlsen]{Coclite_2005_Global-weak-sol}
+G.~M. Coclite, H.~Holden, and K.~H. Karlsen.
+\newblock \emph{SIAM J. Math. Anal.}, 37\penalty0 (4):\penalty0 1044--1069
+  (electronic), 2005.
+
+\bibitem[Constantin and Strauss(2000)]{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss.
+\newblock \emph{Phys. Lett. A}, 270\penalty0 (3-4):\penalty0 140--148, 2000.
+
+\bibitem[Dai(1998)]{Dai_1998_Model-equations}
+H.-H. Dai.
+\newblock \emph{Acta Mech.}, 127\penalty0 (1-4):\penalty0 193--207, 1998.
+
+\bibitem[Dai and Huo(2000)]{Dai_2000_Solitary-shock-}
+H.-H. Dai and Y.~Huo.
+\newblock \emph{R. Soc. Lond. Proc. Ser. A Math. Phys. Eng. Sci.}, 456\penalty0
+  (1994):\penalty0 331--363, 2000.
+
+\bibitem[Dai et~al.(2000)Dai, Dai, and Huo]{Dai_2000_Head-on-collisi}
+H.-H. Dai, S.~Dai, and Y.~Huo.
+\newblock \emph{Wave Motion}, 32\penalty0 (2):\penalty0 93--111, 2000.
+
+\bibitem[Dieudonn{{\'e}}(1969)]{Dieudonne:1969}
+J.~Dieudonn{{\'e}}.
+\newblock \emph{Foundations of modern analysis}.
+\newblock Academic Press, New York, 1969.
+\newblock Enlarged and corrected printing, Pure and Applied Mathematics, Vol.
+  10-I.
+
+\bibitem[Herr et~al.(2010)Herr, Ionescu, Kenig, and Koch]{Herr:2010p886}
+S.~Herr, A.~D. Ionescu, C.~E. Kenig, and H.~Koch.
+\newblock \emph{Comm. Partial Differential Equations}, 35\penalty0
+  (10):\penalty0 1827--1875, 2010.
+
+\bibitem[Himonas and Kenig(2009)]{Himonas:2009fk}
+A.~A. Himonas and C.~E. Kenig.
+\newblock \emph{Differential Integral Equations}, 22\penalty0 (3-4):\penalty0
+  201--224, 2009.
+
+\bibitem[Himonas and Misio{\l}ek(2005)]{Himonas:2005}
+A.~A. Himonas and G.~Misio{\l}ek.
+\newblock \emph{Int. Math. Res. Not.}, \penalty0 (51):\penalty0 3135--3151,
+  2005.
+
+\bibitem[Himonas and Misio{\l}ek(2010)]{Himonas:2010a}
+A.~A. Himonas and G.~Misio{\l}ek.
+\newblock \emph{Comm. Math. Phys.}, 296\penalty0 (1):\penalty0 285--301, 2010.
+
+\bibitem[Himonas and Misio{\l}ek(2001)]{Himonas_2001_The-Cauchy-prob}
+A.~A. Himonas and G.~Misio{\l}ek.
+\newblock \emph{Differential Integral Equations}, 14\penalty0 (7):\penalty0
+  821--831, 2001.
+
+\bibitem[Himonas et~al.(2007)Himonas, Misio{\l}ek, and
+  Ponce]{Himonas_2007_Non-uniform-con}
+A.~A. Himonas, G.~Misio{\l}ek, and G.~Ponce.
+\newblock \emph{Asian J. Math.}, 11\penalty0 (1):\penalty0 141--150, 2007.
+
+\bibitem[Himonas et~al.(2010)Himonas, Kenig, and Misio{\l}ek]{Himonas:2010}
+A.~A. Himonas, C.~E. Kenig, and G.~Misio{\l}ek.
+\newblock \emph{Comm. Partial Differential Equations}, 35\penalty0
+  (6):\penalty0 1145--1162, 2010.
+
+\bibitem[Holden and Raynaud(2007)]{Holden_2007_Global-conserva}
+H.~Holden and X.~Raynaud.
+\newblock \emph{J. Differential Equations}, 233\penalty0 (2):\penalty0
+  448--484, 2007.
+
+\bibitem[Karapetyan(2010)]{Karapetyan:2010fk}
+D.~Karapetyan.
+\newblock \emph{J. Differential Equations}, 249\penalty0 (4):\penalty0
+  796--826, 2010.
+
+\bibitem[Kato(1975)]{Kato:1975}
+T.~Kato.
+\newblock Quasi-linear equations of evolution, with applications to partial
+  differential equations.
+\newblock In \emph{Spectral theory and differential equations ({P}roc.
+  {S}ympos., {D}undee, 1974; dedicated to {K}onrad {J}{\"o}rgens)}, pages
+  25--70. Lecture Notes in Math., Vol. 448. Springer, Berlin, 1975.
+
+\bibitem[Kenig et~al.(2001)Kenig, Ponce, and Vega]{Kenig_2001_On-the-ill-pose}
+C.~E. Kenig, G.~Ponce, and L.~Vega.
+\newblock \emph{Duke Math. J.}, 106\penalty0 (3):\penalty0 617--633, 2001.
+
+\bibitem[Koch and Tzvetkov(2005)]{Koch:2005}
+H.~Koch and N.~Tzvetkov.
+\newblock \emph{Int. Math. Res. Not.}, \penalty0 (30):\penalty0 1833--1847,
+  2005.
+
+\bibitem[Lenells(2006)]{Lenells_2006_Traveling-waves}
+J.~Lenells.
+\newblock \emph{Discrete Contin. Dyn. Syst. Ser. B}, 6\penalty0 (1):\penalty0
+  151--167 (electronic), 2006.
+
+\bibitem[Li and Olver(2000)]{Li_2000_Well-posedness-}
+Y.~A. Li and P.~J. Olver.
+\newblock \emph{J. Differential Equations}, 162\penalty0 (1):\penalty0 27--63,
+  2000.
+
+\bibitem[Mustafa(2007)]{Mustafa:2007}
+O.~G. Mustafa.
+\newblock \emph{Int. Math. Res. Not. IMRN}, \penalty0 (13):\penalty0 Art. ID
+  rnm040, 26, 2007.
+
+\bibitem[Olson(2006)]{Olson_2006_Non-uniform-dep}
+E.~Olson.
+\newblock \emph{Differential Integral Equations}, 19\penalty0 (10):\penalty0
+  1081--1102, 2006.
+
+\bibitem[Rodr\'iguez-Blanco(2001)]{Rodriguez-Blanco_2001_On-the-Cauchy-p}
+G.~Rodr\'iguez-Blanco.
+\newblock \emph{Nonlinear Anal.}, 46\penalty0 (3, Ser. A: Theory
+  Methods):\penalty0 309--327, 2001.
+
+\bibitem[Tao(2004)]{Tao:2004}
+T.~Tao.
+\newblock \emph{J. Hyperbolic Differ. Equ.}, 1\penalty0 (1):\penalty0 27--49,
+  2004.
+
+\bibitem[Taylor(1991)]{Taylor:1991}
+M.~E. Taylor.
+\newblock \emph{Pseudodifferential operators and nonlinear {PDE}}, volume 100
+  of \emph{Progress in Mathematics}.
+\newblock Birkh{\"a}user Boston Inc., Boston, MA, 1991.
+
+\bibitem[Taylor(2011)]{Taylor:2011}
+M.~E. Taylor.
+\newblock \emph{Partial differential equations {I}. {B}asic theory}, volume 115
+  of \emph{Applied Mathematical Sciences}.
+\newblock Springer, New York, second edition, 2011.
+
+\bibitem[Yin(2003)]{Yin_2003_On-the-Cauchy-p}
+Z.~Yin.
+\newblock \emph{J. Nonlinear Math. Phys.}, 10\penalty0 (1):\penalty0 10--15,
+  2003.
+
+\bibitem[Zhou(2005)]{Zhou_2005_Local-well-pose}
+Y.~Zhou.
+\newblock \emph{Math. Nachr.}, 278\penalty0 (14):\penalty0 1726--1739, 2005.
+
+\end{thebibliography}
+%\bibliographystyle{nddiss2e}
+%%\bibliographystyle{amsalpha-custom} 
+%\bibliography{/Users/davidkarapetyan/math/bib-files/references}
+
+\end{document}
+
+%%
+\endinput
+%%

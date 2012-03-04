@@ -1,0 +1,419 @@
+%
+%
+\chapter{H\"older Continuity for HR in the Weak Topology}
+%
+%
+
+%
+%
+%
+%
+\section{Proof of H\"older Continuity}
+%
+%
+We note that the only significant difference between the proof of H\"older
+continuity in the periodic and non-periodic cases is in the proof of Lemma~\ref{lem:frac-deriv}, which we have already addressed. Hence, we focus our
+attention on the proof of H\"older continuity in the periodic case. 
+%
+%
+\subsection{Region $\Omega_{1}$} 
+\label{ssec:reg-m-imp}
+%
+%
+Let $u_{0}(x), v_{0}(x)
+\in B_{H^{s}}(R)$, $s > 3/2$ be two initial data. Then from
+the well-posedness theory for HR \cite{Karapetyan:2010fk}, we
+know that there exists unique corresponding solutions $u, v \in C(I,
+B_{H^{s}}(2R))$ to HR\@.
+Set $v=u-w$. Then $v$ solves the Cauchy-problem
+%
+%
+\begin{align}
+\label{uniqueness-exp}
+& \p_t v
+=  -\frac{\gamma}{2} \p_x [v(u + w)] 
+\\
+\notag
+& \phantom{\p_t v = }-\p_x (1 - \p_{x}^{2})^{-1} \left\{
+\frac{3-\gamma}{2}[v(u+w)] + \frac{\gamma}{2}[\p_x v \cdot \p_x (u+w)]
+\right\},
+\\
+& v(x,0) = u_{0}(x) - v_{0}(x).
+\label{uniqueness-init-data}
+\end{align}
+%
+%
+%
+Let
+\begin{equation*}
+D^{m} \doteq (1 - \p_x^2)^{m/2}, \quad m \in \rr.
+\end{equation*}
+%
+Applying $D^r$ to both sides of \eqref{uniqueness-exp}, then 
+multiplying both sides by $D^r v$ and integrating, we obtain
+%
+%
+\begin{equation}
+\begin{split}
+\frac{1}{2} \frac{d}{dt} \|v\|_{H^r}^2
+= & -\frac{\gamma}{2} \int_{\ci} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx
+\\
+& - \frac{3-\gamma}{2} \int_{\ci}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  
+\\
+& - \frac{\gamma}{2} \int_{\ci} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx.
+\label{2v-iu}
+\end{split}
+\end{equation}
+We now estimate \eqref{2v-iu} in parts.
+%
+\subsubsection{Estimate of Integral 1} 
+Note that
+%
+%
+\begin{equation}
+\begin{split}
+& \left |  -\frac{\gamma}{2} \int_{\ci} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx \right |
+\\
+& =
+\left |
+-\frac{\gamma}{2} \int_{\ci} \left[ D^r \p_x, \ u+w \right]v \cdot
+D^r v \ dx - \frac{\gamma}{2} \int_{\ci} (u+w) D^r
+\p_x v \cdot D^r v\ dx
+\right | \\
+& \lesssim \left |
+\int_{\ci} \left[ D^r \p_x, \ u+w \right]v \cdot
+D^r v \ dx \right |
++ \left | \int_{\ci} (u+w) D^r \p_x v
+\cdot D^r v\
+dx \right |.
+\label{4v-iu}
+\end{split}
+\end{equation}
+%
+%
+Observe that integrating by parts gives
+%
+%
+\begin{equation}
+\begin{split}
+\left | \int_{\ci} (u+w) D^r \p_x v \cdot
+D^r v \ dx \right |
+\le \|\p_x (u+w)\|_{L^\infty}
+\|v\|_{H^r}^2.
+\label{4'v-iu}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+
+An application of 
+Cauchy-Schwartz and Lemma~\ref{cor1} then yields 
+%
+%
+\begin{equation}
+\begin{split}
+\left | \int_{\ci} [D^r \p_x, \ u+w] v
+\cdot D^r v \ dx \right |
+& \lesssim \|u+w\|_{H^s} 
+\|v\|_{H^r}^2.
+\label{120v}
+\end{split}
+\end{equation}
+%
+%
+Combining \eqref{4'v-iu} and \eqref{120v} and applying the Sobolev embedding 
+theorem, we obtain the estimate
+%
+%
+\begin{equation}
+\begin{split}
+\left |  -\frac{\gamma}{2} \int_{\ci} D^r \p_x [v(u+w)] \cdot
+D^r v \ dx \right |
+\lesssim \|u+w\|_{H^s} \|v\|_{H^r}^2, \quad s > 3/2, \ -1 \le r \le s-1.
+\label{20v}
+\end{split}
+\end{equation}
+%
+%
+%
+%
+Applying Cauchy-Schwartz and Lemma~\ref{lem:frac-deriv}, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\ci}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+& \lesssim \|u+w\|_{H^{r -1}} \|v\|_{H^r}^2
+\end{split}
+\end{equation*}
+%
+%
+which implies
+\begin{equation}
+\begin{split}
+\left | - \frac{3-\gamma}{2} \int_{\ci}  D^{r -2}
+\p_x[v(u+w)] \cdot
+D^r v \ dx  \right |
+& \lesssim \|u+w\|_{H^{s}} \|v\|_{H^r}^2
+\label{3v-iu}
+\end{split}
+\end{equation}
+%
+for $s > 3/2, \ r \le s, \ \text{and} \ s + r \ge 2$.
+%
+%
+\subsubsection{Estimate of Integral 3} We first apply
+Cauchy-Schwartz to obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\left | - \frac{\gamma}{2} \int_{\ci} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx \right | 
+\lesssim 
+\|[\p_x v \cdot \p_x (u+w)] \|_{H^{r -1}}
+\|v\|_{H^r}.
+\end{split}
+\end{equation*}
+%
+%
+Applying Lemma~\ref{lem:frac-deriv} and the inequality $\| f_{x}
+\|_{H^{m-1}} \le \| f \|_{H^{m}}$,  we conclude that
+%
+\begin{equation}
+\begin{split}
+\left | - \frac{\gamma}{2} \int_{\ci} D^{r 
+-2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^r v \ dx \right | 
+\lesssim \|u+w \|_{H^{s}}
+\|v\|_{H^r}^2
+\label{3'v-iu}
+\end{split}
+\end{equation}
+%
+%
+for $s > 3/2, \ r \le s, \ \text{and} \ s + r \ge 2$.
+%
+%
+%
+%
+Grouping \eqref{20v}, \eqref{3v-iu}, and \eqref{3'v-iu}, we obtain
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{1}{2} \frac{d}{dt}
+\|v\|_{H^r}^2
+& \lesssim \|u+w\|_{H^s}
+\|v\|_{H^r}^2, \quad | t | < T
+\\
+& \le 4R \| v \|_{H^{r}}^{2}.
+\label{9v-iu}
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+Letting $y(t) = \| v \|^{2}_{H^{r}}$, we obtain
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\frac{dy}{dt} \le cy
+\end{split}
+\end{equation*}
+%
+where $c = c(s, r, R) > 0$. Hence
+%
+%
+\begin{equation*}
+\begin{split}
+y(t) \le y(0) e^{ct}, \quad | t | < T
+\end{split}
+\end{equation*}
+%
+%
+which implies
+%
+%
+\begin{equation*}
+\begin{split}
+y(t) \le y(0) e^{cT}.
+\end{split}
+\end{equation*}
+%
+%
+Substituting back in for $y$, we see that
+%
+%
+\begin{equation*}
+\begin{split}
+\| v \|_{H^{r}}^{2} \le \| v(0) \|^{2}_{H^{r}} e^{cT}
+\end{split}
+\end{equation*}
+%
+%
+or
+%
+%
+\begin{equation}
+\label{lip-ineq}
+\begin{split}
+& \| u(t) - w(t) \|_{H^{r}} \le C \| u_{0} - w_{0} \|_{H^{r}}, 
+\\
+& \text{for} \ | t | < T,
+\ s > 3/2, \ -1 \le r \le s-1, \ s + r \ge 2.
+\end{split}
+\end{equation}
+%
+Hence, in region $\Omega_{1}$, the data to solution map is locally Lipschitz from
+$B_{H^{s}}(R)$ (measured with the $H^{r}$
+norm) to $C([-T, T], H^{r})$, with Lipschitz constant $C = C(s, r, R)$.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\subsection{Region $\Omega_{2}$} 
+\label{ssec:case-4}
+%
+We have the estimate
+\begin{equation}
+\label{fgh}
+\begin{split}
+\| u(t) - w(t) \|_{H^{r}}
+& < \|u(t) - w(t) \|_{H^{2-s}}.
+\end{split}
+\end{equation}
+%
+We see that \eqref{lip-ineq} is valid for $r = 2-s$, $3/2 < s \le 3$.
+Hence, applying \eqref{lip-ineq} to \eqref{fgh}, we obtain 
+%
+%
+%
+%
+\begin{equation*}
+\begin{split}
+\| u(t) - w(t) \|_{H^{r}}
+\lesssim \|u_{0} - w_{0} \|_{H^{2-s}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+%
+Applying the interpolation estimate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%                interp
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+\begin{equation}
+  \label{interp}
+\begin{split}
+\| f \|_{H^{m}} \le \| f \|_{H^{m_{1}}}^{(m_{2}-m)/(m_{2} - m_{1})} \| f
+\|_{H^{m_{2}}}^{(m -m_{1})/(m_{2} - m_{1})}, \quad m_{1} < m < m_{2}
+\end{split}
+\end{equation}
+with $m_{1} =r$, $m = 2-s$, and $m_{2} = s$ (notice
+$m_{2} > m$ for $s > 1$), we bound 
+%
+%
+\begin{equation*}
+\begin{split}
+\| u_{0} - w_{0} \|_{H^{2-s}} 
+& \le \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}} \| u_{0} - w_{0}
+\|_{H^{s}}^{\frac{2-s-r}{s-r}}
+\\
+&  \lesssim \| u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
+\end{split}
+\end{equation*}
+%
+We conclude that
+%
+%
+\begin{equation*}
+\begin{split}
+\| u(t) - w(t) \|_{H^{r}} \lesssim \|u_{0} - w_{0} \|_{H^{r}}^{\frac{2(s-1)}{s-r}}.
+\end{split}
+\end{equation*}
+%
+%
+%
+%
+\subsection{Region $\Omega_{3}$} 
+\label{ssec:case-2}
+%
+%
+Applying \eqref{interp} with $m_{1} = s-1$, $m =r$ and $m_{2} = s$, and 
+using the estimate
+%
+%
+\begin{equation*}
+\begin{split}
+\|u - w \|_{H^{s}} \le 4R
+\end{split}
+\end{equation*}
+%
+%
+we obtain
+%
+%
+\begin{equation}
+\label{pre-lip-ap}
+\begin{split}
+\| u(t) - w(t) \|_{H^{r}} & \lesssim \| u(t) - w(t) \|_{H^{s-1}}^{s-r} \|u(t)
+- w(t)\|_{H^{s}}^{1-s+r}
+\\
+& \simeq \| u(t) - w(t) \|_{H^{s-1}}^{s-r}.
+\end{split}
+\end{equation}
+%
+%
+We see that \eqref{lip-ineq} is valid for  $r = s-1$, $s \ge 3/2$. Hence,
+applying \eqref{lip-ineq} to \eqref{pre-lip-ap} gives
+%
+%
+\begin{equation*}
+\begin{split}
+\| u(t) - w(t) \|_{H^{r}} & \lesssim  \|u_{0} - w_{0}\|_{H^{s-1}}^{s-r} 
+\\
+& \le
+\|u_{0} - w_{0}\|_{H^{r}}^{s-r}.
+\end{split}
+\end{equation*}
+%
+This completes the proof of Theorem~\ref{thm:main-thm}. \qed
+%
+%
+%
+%
+%
+%

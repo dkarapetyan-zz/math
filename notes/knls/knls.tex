@@ -1,0 +1,776 @@
+\chapter{Well Posedness for the KNLS}
+%
+%
+\section{Introduction}
+We consider the mixed nonlinear Schr{\"o}dinger and Korteweg-de Vries (KNLS) initial value problem (ivp)
+%
+%
+\begin{gather}
+	\label{lKNLS-eq}
+	i\p_t u + \p_x^{m} u + \lambda u \p_x u = 0,
+	\\
+	\label{lKNLS-init-data}
+	u(x,0) = u_0(x), \quad x \in \ci, \ t \in \rr
+\end{gather}
+%
+%
+where $m \ge 4$ is an even integer and $\lambda \in \{-1, 1\}$.
+%
+%
+%
+%
+We have the following.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Well Posedness Theorem
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{theorem}
+	\label{lthm:main}
+	The KNLS is well-posed in $\dot{H}^s(\ci)$ for $s \ge (2-m)/4$.  
+\end{theorem}
+%
+%
+\begin{proof}
+  The proof follows from the bilinear estimates below.
+\end{proof}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%				 Bilinear Estimates
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{proposition}
+	\label{lprop:prim-bilin-est}
+	For any $b \ge 1/2$, $s \ge \frac{b(3-m)}{2}$ we have
+	\begin{equation}
+		\left( \sum_{n \in \dot{\zz}} |n|^{2s} \int_\rr
+		\frac{|\wh{w_{fg}}(n, \tau) |^2}{\left (1+ |\tau - 
+		n^{m}| \right )^{2b}} 
+		 \ d \tau 
+		\right)^{1/2}
+		\lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}
+	\end{equation}
+	where $w_{fg}(x,t)$ = $\p_x(fg)(x,t)$.
+\end{proposition}
+%
+%
+\begin{proposition}
+\label{lprop:bilinear-estimate2}
+For any $s \ge \frac{3-m}{4}$ we have
+%
+%
+\begin{equation}
+	\label{ltrilinear-estimate2}
+	\begin{split}
+		\left( \sum_{n \in \zzdot} |n|^{2s}  \left ( \int_\rr 
+		\frac{|\wh{w_{fg}}(n, \tau) |}{1 + | \tau - n^{m } |}
+		 \ d\tau \right)^2  \right)^{1/2} \lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
+	\end{split}
+\end{equation}
+\end{proposition}
+%
+%
+%
+%
+%
+\section{Proof of Bilinear Estimate}
+Note first that $|\wh{w_{fg}}(n, \tau) |  = | n\wh{f} *  \wh{g} 
+(n, \tau)|$. It follows that
+%
+%
+\begin{equation}
+	\label{lnon-lin-rep}
+	\begin{split}
+		| \wh{w_{fg}}(n, \tau)|
+		& = | \sum_{n_1, n_2,}  \int n\wh{f}\left( n_1,  \tau_1 
+\right) \wh{g}\left( n_2, \tau_2  
+\right) d \tau_1 d \tau_2 |
+\\
+& = | \sum_{n_1 \neq 0, n_2 \neq 0}  \int n\wh{f}\left( n_1,  \tau_1 
+\right) \wh{g}\left( n_2, \tau_2  
+\right) d \tau_1 d \tau_2 | \qquad \text{(due to conservation of mass)}
+\\
+& \le \sum_{n_1 \neq 0, n_2 \neq 0}   \int | n | \times | \wh{f}\left( n_1, \tau_1 
+\right) | \times  | \wh{g}\left( n_2, \tau_2 
+\right) | \times  d \tau_1 d \tau_2  
+\\
+& = \sum_{n_1 \neq 0, n_2 \neq 0} \int | n | \times \frac{c_f\left( n_1, \tau_1 
+\right)}{|n_1|^s \left( 1 + | \tau_1 - n_1^{m} | \right)^{b}}
+\\
+& \times \frac{c_{g}\left( n_2, \tau_2 \right)}{|n_2|^s\left( 1 + | \tau_2 -  n_2^{m }| 
+\right)^{b}}
+  \ d \tau_1 d \tau_2 
+\end{split}
+\end{equation}
+%
+%
+where $n = n_1 + n_2$, $\tau = \tau_1 + \tau_2$, and 
+%
+%
+\begin{equation*}
+	\begin{split}
+		c_\sigma(n, \tau) =
+		\begin{cases}
+			|n|^s \left( 1 + | \tau - n^{m } |  
+		\right)^{b} | \wh{\sigma}\left( n, \tau \right) |, \qquad & n \neq 0
+		\\
+		0, \qquad & n = 0.
+	\end{cases}
+	\end{split}
+\end{equation*}
+%
+%
+For clarity of notation, let  $\sum_{n_1, n_2}$ denote $\sum_{n_1 \neq 0, n_2
+\neq 0}$. From our work above, it follows that 
+%
+%
+\begin{equation}
+	\label{lconvo-est-starting-pnt}
+	\begin{split}
+		 & |n|^s \left( 1 + | \tau - n^{m } | \right)^{-b} | \wh{w_{fg}}\left( 
+		n, \tau \right) |
+		\\
+		& \le \left( 1 + | \tau - n^{m } | \right)^{-b}
+		\sum_{n_1, n_2} \int \frac{|n|^{s+1}}{|n_1|^s | n_2|^s} 
+		\times \frac{c_f(n_1, \tau_1)}{\left( 1 + | \tau_1 - n_1^{m } | 
+		\right)^{b}}
+		\\
+		& \times
+		\frac{c_g(n_2, \tau_2)}{\left( 1 + | \tau_2 - n_2^{m } | 
+		\right)^{b}}\ d \tau_1 d \tau_2.
+	\end{split}
+\end{equation}
+%
+%
+Unlike the mNLS, we must use the smoothing properties of the
+principal symbol $\tau - n^m$ regardless of the choice of $s$, since the quantity
+%
+%
+\begin{equation}
+	\label{lconvo-multiplier}
+	\begin{split}
+		\frac{|n|^{s+1}}{|n_1|^s |n_2|^s }
+	\end{split}
+\end{equation}
+%
+%
+blows up in general, due to the presence of the extra power of $|n|$ coming from the derivative on
+the nonlinearity. To utilize the smoothing effects of the principal symbol, we
+will need the following two lemmas, whose
+proofs are provided in the appendix.
+%
+%
+%
+\begin{lemma}
+	\label{llem:number-theory1}
+	Let $n=n_1 + n_2$ and suppose that $n, n_1, n_2\neq
+	0$. Then for any integer $c \ge 0$
+%
+%
+\begin{equation}
+	\begin{split}
+		\label{lnumber-theory1}
+		| - n^{3} + n_1^3 + n_2^3| \ge 2^{-c/2} | n |^{\frac{2+c}{2}} | n_{1}
+		|^{\frac{2-c}{2}}| n_2 |^{\frac{2-c}{2}}.
+	\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+%
+\begin{remark}
+	In~\cite{Bourgain-Fourier-transfo}, Bourgain obtains the lower bound $n^2$ for
+	the left hand side of \eqref{lnumber-theory}. This is too coarse an estimate,
+	as we shall see.
+\end{remark}
+%
+%
+%
+%
+\begin{lemma}
+	\label{llem:number-theory}
+	Let $n=n_1 + n_2$ and suppose that $n, n_1, n_2\neq
+	0$. Then for any integer  $m \ge 3$
+%
+%
+\begin{equation}
+	\begin{split}
+		\label{lnumber-theory}
+		| - n^{m} + n_1^{m} + n_2^{m }| \ge b_{m, c } 
+		|n|^{c/2} |n_1|^{\frac{m-1-c}{2}} | n_2 |^{\frac{m-1-c}{2}}
+		\end{split}
+\end{equation}
+%
+%
+where the constant $b_{m,c}$ depends only on $m$ and $c$. 
+\end{lemma}
+%
+%
+%
+%\begin{remark}
+%	The case $-1/2 \le s \le 0$ is delicate, and must be treated differently from
+%	the case $s < -1/2$ in order to obtain the optimal well-posedness results.
+%	This is the motivation for having two instead of one number theory lemma.
+%\end{remark}
+%
+%
+%
+Since $$| \tau - n^{m} - \left( \tau_1 - n_1^{m} 
++ \tau_2 - n_2^{m }  \right ) | = | - n^{m} + n_1^{m} +
+n_2^{m }|,$$ by \cref{llem:number-theory} and
+the pigeonhole principle we must have one of the 
+following.
+%
+%
+\begin{align}
+	\label{lpigeon-case-1}
+	& |\tau - n^{m }| \ge \frac{c_m}{3} |n|^2 | n_1 |^{m-3} 		\\
+		\label{lpigeon-case-2}
+	    & | \tau_1 - n_1^{m } | \ge \frac{c_m}{3} |n|^2 | n_1 |^{m-3} ,  
+		\\
+		\label{lpigeon-case-3}
+		& | \tau_2 - n_2^{m } | \ge
+		\frac{c_m}{3} |n|^2 | n_1 |^{m-3}.  
+\end{align}
+%
+%
+By the symmetry of the convolution, it will be enough to consider only
+\eqref{lpigeon-case-1} and \eqref{lpigeon-case-2}.
+%
+%
+%
+\subsection{Subcase \eqref{lpigeon-case-1}.} 
+We shall need the following, whose proof is provided in the appendix.
+%
+%
+\begin{lemma}
+\label{llem:splitting}
+	For $k \ge 0$ and $a, b \in {\zz}$, we have
+%
+%
+\begin{equation}
+	\label{lsplitting}
+	\begin{split}
+		\left ( 1 + |a +b | \right)^k \le 2^k \left(1 + | a | \right)^k \left(
+		1 + | b | \right)^k.
+	\end{split}
+\end{equation}
+%
+%
+\end{lemma}
+%
+Applying the lemma, we obtain
+%
+%
+%
+%%
+\begin{equation*}
+	\begin{split}
+		\frac{|n|^{s+1}}{|n_1|^s | n_2|^s } 
+		& =\frac{|n_1|^{-s} |n_2|^{-s}
+		}{|n|^{-s}}
+		\\
+		& = \frac{| n_1|^{-s} | n - n_1 |^{-s} }{ | n|^{-s-1}} 
+		\\
+		& \lesssim \frac{|n_1|^{-s} \cancel{|n|^{-s} }|n_1 |
+		^{-s}}{ |n|
+		^{\cancel{-s}-1}}
+		\\
+		& = |n| | n_1 |^{-2s}
+	\end{split}
+\end{equation*}
+%
+%%
+which in conjunction with \eqref{lpigeon-case-1} implies
+%
+%%
+\begin{equation}
+	\label{lconvo-deriv-bound}
+	\begin{split}
+		\frac{|n|^s}{|n_1|^s 
+		| n_2|^s}
+		\times
+		\frac{1}{1 + | \tau -n^{m} |^{b}}
+		& \lesssim  |n| |n_{1} |^{-2s} \times |n|^{-2b} |n_{1}|^{-b(m-3)} 
+		\\
+		& \lesssim 1, \qquad b\ge 1/2, \ s \ge \frac{b(3-m)}{2}.
+	\end{split}  
+\end{equation}
+%
+%
+\begin{remark}
+	Note that when $m=2$, we have $|-n^{m} + n_{1}^{m} + n_{2}^{m}| = 2| n_1 |
+	|n_2|$. Applying the pigeonhole principle as before, we seek to bound 
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			\frac{| n |^{s+1}}{| n_1 |^s |n_2|^s} \times \frac{1}{(| n_1 | |n_2
+			|)^{1/2}} = \frac{| n |^{s+1}}{|n_{1}|^{s + 1/2}| n_2 |^{s+1/2}}.
+		\end{split}
+	\end{equation*}
+	%
+	%
+	However, this quantity blows up (simply take $n=1$ and $n_2 \to \infty$).
+	Hence, the KDV dispersive techniques fail for the case $m=2$. 
+\end{remark}
+%
+Hence, recalling \eqref{lconvo-est-starting-pnt} and applying estimates 
+\eqref{lpigeon-case-1} and \eqref{lconvo-deriv-bound}, we obtain
+%
+%
+\begin{equation}
+	\label{lnon-lin-rep-with-bound}
+	\begin{split}
+		& |n|^s \left( 1 + | \tau - n^{m } | \right)^{b} | 
+		\wh{w_{fg}}(n, \tau) | 
+		\\
+		& \lesssim \sum_{n_1,n_2} \int \frac{c_f(n_1, \tau_1)}{\left( 1 + | 
+		\tau_1 -  n_1^{m }| \right)^{b}}
+		\times \frac{c_g\left( n_2, \tau_2\right)}{\left( 1 + | \tau_2 -n_2^{m }|
+		\right)^{b}}
+		\\
+		& = \wh{C_f C_g}(n, \tau)
+	\end{split}
+\end{equation}
+%
+%
+where
+\begin{equation*}
+	\begin{split}
+		C_\sigma(x,t) =
+		\left[ \frac{c_\sigma(n, \tau)}{\left( 1 + | \tau - n^{m } | 
+		\right)^{b}}\right]^\vee .	
+	\end{split}
+\end{equation*}
+
+%
+%
+Therefore, from \eqref{lnon-lin-rep-with-bound}, Plancherel, and generalized 
+H\"{o}lder, we obtain
+%
+%
+\begin{equation}
+	\label{lgen-holder-bound}
+	\begin{split}
+		& \| |n|^s \left( 1 + | \tau - n^{m } | \right ) ^{b} \wh{w_{fg}}\left( 
+		n, \tau \right) \|_{L^2(\ci \times \rr)}
+		\\
+		& \lesssim \|\wh{C_f C_g }\left( n, \tau \right) 
+		\|_{L^2\left( \zzdot \times \rr \right)}
+		\\
+		& \simeq \|C_f C_g \|_{L^2\left( \ci \times \rr \right)}
+		\\
+		& \le \|C_f \|_{L^4(\ci \times \rr)} \|C_g \|_{L^4(\ci \times \rr)}.
+	\end{split}
+\end{equation}
+%
+Applying \cref{nlem:four-mult-est-L4}, we see that
+%
+%
+\begin{equation}
+	\label{lfour-mult-conseq}
+	\begin{split}
+		\|C_\sigma\|_{L^4(\ci \times \rr)} 
+		& \lesssim \|(1 + | \tau - n^m |)^{\frac{m+1}{4m}} \wh{C_\sigma}
+		\|_{L^2(\zz \times \rr)}
+		\\
+		& = \|c_{\sigma} \|_{L^2(\zz \times \rr)} \qquad (\text{Since} \ \frac{m+1}{4m} \le 1/2 )
+		\\
+		& = \|\sigma \|_{\dot{X}^s}. 
+	\end{split}
+\end{equation}
+%
+%
+Applying this to \eqref{lgen-holder-bound} we
+conclude that
+\begin{equation*}
+	\begin{split}
+		\| |n|^s \left( 1 + | \tau - n^{m } | \right ) ^{-b} \wh{w_{fg}}\left( 
+		n, \tau \right) \|_{L^2(\zzdot \times \rr)}
+		& \lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}.
+	\end{split}
+\end{equation*}
+%
+%
+%
+\subsection{Subcase \eqref{lpigeon-case-2}.}
+Using a similar argument to that in Subcase \eqref{lpigeon-case-1}, we obtain
+%
+%
+\begin{equation}
+	\label{l1f}
+	\begin{split}
+		 & |n|^s \left( 1 + | \tau - n^{m } | \right)^{b} | \wh{w_{fg}}\left( 
+		n, \tau \right) |
+		\\
+		& \lesssim \left( 1 + | \tau - n^{m } | \right)^{b}
+		\sum_{n_1, n_2} \int
+		c_f(n_1, \tau_1)
+		\times
+		\frac{c_g(n_2, \tau_2)}{\left( 1 + | \tau_2 - n_2^{m } | 
+		\right)^{b}} 
+		\\
+		& = \left( 1 + | \tau - n^{m } | \right)^{b} \wh{\overset{\sim}{C_f} C_g}.
+	\end{split}
+\end{equation}
+%
+%%
+where
+%
+%
+\begin{equation*}
+	\begin{split}
+		\overset{\sim}{C_\sigma}(x,t) = \left[ c_\sigma(n, \tau) \right]^\vee.
+	\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%%
+\begin{equation}
+	\label{l3f}
+	\begin{split}
+		& \| |n|^s \left( 1 + | \tau - n^{m } | \right)^{b} \wh{w_{fg}}(n, \tau) 
+		\|_{L^2(\zzdot \times \rr)}
+		\\
+		& \lesssim \|\left( 1 + | \tau - n^{m} | \right)^{b} 
+		\wh{\overset{\sim}{C_f} C_g } \|_{L^2(\zzdot \times \rr)}
+		\\
+		& =  \|\left( 1 + | \tau - n^{m} | \right)^{b} 
+		\wh{\overset{\sim}{C_f} C_g } \|_{L^2(\zz \times \rr)}
+		\\
+		& \lesssim  \|\overset{\sim}{C_f} C_g  \|_{L^{4/3}(\ci \times \rr)}
+	\end{split}
+\end{equation}
+%
+%%
+where the last step follows from \cref{ncor:trilinear-estimate2}. Applying
+H\"{o}lder's inequality to the right hand side of \eqref{l3f}, we obtain the
+bound
+%
+%%
+\begin{equation}
+	\label{l4f}
+	\begin{split}
+		\|\overset{\sim}{C_f} \|_{L^2(\ci \times \rr)} \|C_g \|_{L^4\left( \ci 
+		\times \rr 
+		\right)}. 
+	\end{split}
+\end{equation}
+%
+%%
+By Plancherel we have
+%
+%%
+%
+%%
+\begin{equation}
+	\label{l5f}
+	\begin{split}
+		\|\overset{\sim}{C_f} \|_{L^2(\ci \times \rr)}
+		& \simeq \|c_f\|_{L^2(\zz \times \rr)}
+		\\
+		& = \|f \|_{\dot{X}^s}
+	\end{split}
+\end{equation}
+%
+%%
+while \eqref{lfour-mult-conseq} gives
+%
+%
+\begin{equation}
+	\label{l6f}
+	\begin{split}
+		\|C_g \|_{L^4(\ci \times \rr)} \lesssim \|g\|_{\dot{X}^s}.
+	\end{split}
+\end{equation}
+%
+%
+We conclude from \eqref{l3f}-\eqref{l6f} that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\| |n|^s \left( 1 + | \tau - n^{m } | \right)^{-b} \wh{w_{fg}}(n, \tau) 
+		 \|_{L^2(\zzdot \times \rr)}
+		 \lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}
+	\end{split}
+\end{equation*}
+%
+%
+which completes the proof.  \qquad \qedsymbol
+%
+%
+
+\section{Proof of Second Bilinear Estimate}
+Recall that for the mNLS, one obtains one trilinear estimate as a corollary of
+another. Using this as motivation, let us see if we can obtain
+\cref{lprop:bilinear-estimate2} as a corollary of
+\cref{lprop:prim-bilin-est}. By
+duality, it suffices to show that
+%
+%%
+\begin{equation}
+	\label{lduality-est}
+	\begin{split}
+		\sum_{n \in \zzdot}  |n|^{s}
+		a_n \int_{\rr} \frac{|\wh{w_{fg}}(n, \tau)|}{1 
+		+ | \tau - n^{m } |} \ d \tau \lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}
+		\|a_n \|_{\ell^2}, \qquad s \ge (3-m)/4 
+	\end{split}
+\end{equation}
+%
+%%
+By the triangle inequality 
+and Cauchy-Schwartz,
+%
+%%
+\begin{equation}
+	\label{l1m}
+	\begin{split}
+		& | \sum_{n \in \zzdot} |n|^{s} a_n
+		\int_{\rr}\frac{| \wh{w_{fg}}(n, \tau) |}{(1 + | \tau - n^{m } |)} \ d \tau |
+		\\
+		& \le \sum_{n \in \zzdot} \int_{\rr} \frac{| a_n |}{\left( 1 + 
+		| \tau - n^{m } |
+		\right)^{1/2 + \eta}} \times \frac{| n|^s  |
+		\wh{w_{fg}}(n, \tau) |}{\left( 
+		1 + | \tau - n^{m } | \right)^{1/2 - \eta}} \ d \tau
+		\\
+		& \le \left( \sum_{n \in \zzdot} | a_{n} |^2\int_{\rr} \frac{1}{\left( 1 + |
+		\tau - n^{m } | \right)^{1 + 2 \eta}} \ d \tau  
+		\right)^{1/2} 
+		\left ( \sum_{n \in \zzdot}\int_{\rr} \frac{|n|^{2s} | \wh{w_{fg}}(n, \tau) 
+		|^2}{\left( 1 + | \tau - n^{m } | \right)^{1 -2 \eta}}\ d \tau 
+		\right)^{1/2}.
+	\end{split}
+\end{equation}
+%
+%%
+Applying the change of variable $\tau - n^{m }
+\mapsto \tau'$ we obtain  
+%%
+
+\begin{equation*}
+	\begin{split}
+		& \left( \sum_{n \in \zzdot} | a_{n} |^2\int_{\rr} \frac{1}{\left( 1 + | \tau -
+		n^{m } | \right)^{1 + 2 \eta}} \ d \tau  
+		\right)^{1/2} 
+		\\
+		& = \left ( \sum_{n \in \zzdot}
+		| a_n |^2 
+		\int_{\rr} \frac{1}{\left( 1 + | \tau' | \right)^{1 + 2 \eta}} \ d 
+		\tau \right)^{1/2}
+		\\
+		& \simeq \|a_n\|_{\ell^2}, \qquad \eta >0.
+		\end{split}
+\end{equation*}
+However, if we assume $\eta >0$, then
+we cannot use \cref{lprop:prim-bilin-est} to bound
+\begin{equation*}
+	\begin{split}
+		\left ( \sum_{n \in \zzdot}\int_{\rr} \frac{|n|^{2s} | \wh{w_{fg}}(n, \tau) 
+		|^2}{\left( 1 + | \tau - n^{m } | \right)^{1 - 2\eta}}\ d \tau
+		\right)^{1/2}. 
+	\end{split}
+\end{equation*}
+%%
+%%
+\begin{remark}
+Hence, unlike the mNLS, we have not been able to obtain a second bilinear
+estimate as a corollary from the first. Heuristically, this is due to the
+derivative in nonlinearity, which is not present in the mNLS nonlinearity,
+affording us the ``wiggle room''  of a 1/4 derivative for the mNLS (i.e. in the case
+of the mNLS, its analogue of \cref{lprop:prim-bilin-est} holds for $b \ge
+3/8$.)
+\end{remark}
+%
+%
+Let us proceed in a different fashion. By duality, it suffices to show
+\eqref{lduality-est}. By the symmetry of the convolution, we consider only cases
+\eqref{lpigeon-case-1} and \eqref{lpigeon-case-2}.
+%
+%
+\subsection{Case \eqref{lpigeon-case-1}.} In Progress
+%
+%
+%Recalling \eqref{lnon-lin-rep-with-bound}, we have
+%\begin{equation}
+%	\begin{split}
+%		 \int_{\rr} a_n |n|^s \left( 1 + | \tau - n^{m } | \right)^{b} | 
+%		\wh{w_{fg}}(n, \tau) | d \tau
+%	 & \lesssim \int_{\rr} a_n \wh{C_f C_g}(n, \tau) d \tau
+%		\\
+%		& \le \|a_n\|_{\ell^2} \|\wh{C_f C_g}(n, \tau)\|_{L^2(\zz \times \rr)}
+%		\\
+%		& \simeq \|a_n\|_{\ell^2} \|C_f C_g\|_{L^2(\ci \times \rr)}
+%		\\
+%		& \le \|a_n\|_{\ell^2} \|C_f\|_{L^4(\ci \times \rr)} \|C_g\|_{L^4(\ci \times \rr)}
+%	\end{split}
+%\end{equation}
+%%
+%%
+%where the last three steps follow from H{\"o}lder's inequality and
+%Plancherel. Applying \eqref{lfour-mult-conseq} then completes the proof for this
+%case.
+%
+%
+\subsection{Case \eqref{lpigeon-case-2}.} Recalling \eqref{l3f}, we have
+%
+\begin{equation}
+	\begin{split}
+		& \sum_{n \neq 0} \int_{\rr} a_n |n|^s \left( 1 + | \tau - n^{m } | \right)^{-1} | 
+		\wh{w_{fg}}(n, \tau) | d \tau
+		\\
+		& \le \sum_{n \neq 0}  \int_{\rr} a_{n} (1+ | \tau - n^{m} |)^{-1} \wh{\overset{\sim}{C_f} C_g} d
+		\tau
+	\\	
+	& = \sum_{n \neq 0} \int_{\rr} a_{n} (1+ | \tau - n^{m} |)^{-5/8} (1 + | \tau - n^{m}
+	|)^{-3/8} \wh{\overset{\sim}{C_f} C_g} d
+		\tau
+		\\
+		& \le \|a_{n} (1 + | \tau - n^{m} |)^{-5/8}\|_{L^2(\zz \times \rr)}  \| (1 +
+		| \tau - n^{m} |)^{-3/8} \wh{\overset{\sim}{C_f} C_g}  \|_{L^2(\zz \times
+		\rr)}
+		%\\
+		%&\wh{\overset{\sim}{C_f} C_g}(n, \tau) d \tau
+		%\\
+		%& \le \|a_n\|_{\ell^2} \|\wh{\overset{\sim}{C_f} C_g}(n, \tau)\|_{L^2(\zz \times \rr)}
+		%\\
+		%& \simeq \|a_n\|_{\ell^2} \|\overset{\sim}{C_f} C_g\|_{L^2(\ci \times \rr)}
+		%\\
+		%& \le \|a_n\|_{\ell^2} \|\overset{\sim}{C_f}\|_{L^4(\ci \times \rr)} \|C_g\|_{L^4(\ci \times \rr)}
+	\end{split}
+\end{equation}
+%
+%
+where the last step follows from Cauchy-Schwartz. A change of variable shows
+that
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|a_{n} (1 + | \tau - n^{m} |)^{-5/8}\|_{L^2(\zz \times \rr)} \lesssim
+		\|a_{n}\|_{\ell^2}
+	\end{split}
+\end{equation*}
+%
+%
+while \eqref{l3f}-\eqref{l6f} yields the bound
+%
+%
+\begin{equation*}
+	\begin{split}
+	\| (1 + | \tau - n^{m} |)^{-3/8} \wh{\overset{\sim}{C_f} C_g}  \|_{L^2(\zz
+	\times \rr)} \lesssim \|f\|_{\dot{X}^s} \|g\|_{\dot{X}^s}
+	\end{split}
+\end{equation*}
+%
+%
+completing the proof. \qquad \qedsymbol
+
+%
+%\begin{equation*}
+%	\begin{split}
+%				\\
+%		& \le \|C_f\|_{L^4(\ci \times \rr)} \|C_g\|_{L^4(\ci \times \rr)}.
+%	\end{split}
+%\end{equation*}
+%
+%
+%
+%
+\section{Proofs of Lemmas and Estimates}
+\begin{proof}[Proof of \cref{llem:number-theory}] Define
+%
+\begin{equation*}
+	\begin{split}
+		| - n^{m} + n_1^{m} + n_2^{m }|
+		& = | n_{1}^{m} - n^{m} + (n-n_{1})^{m}| 
+		\\
+		& \doteq f(n).
+	\end{split}
+\end{equation*}
+%
+%
+Then the absolute minima
+of $f(n)$ occur only on the line $n = 1+n_{1}$ of lattice points 
+(the line $n = n_1$ is not available by assumption). Next, note that
+%
+%
+\begin{equation*}
+	\begin{split}
+		f(1+ n_{1}) = | n_{1}^{m} - (1 + n_{1})^m + 1 |
+		& = | (1 + n_{1} )^{m} - n_{1}^{m} -1 |
+		\\
+		& = | \sum_{1 \le k \le m-1} c_{k} n_1^{k}|, \qquad \{c_k\} \in \mathbb{N}
+		\setminus 0.
+	\end{split}
+\end{equation*}
+If $n_1 = -1$, then clearly $| (1 + n_{1})^m - n_1^m -1 | = 2 \ge 0 = |n|^2
+|n_1|^{m-3}$. Hence, by symmetry, and the fact that $n_1 \neq 0$ by assumption,
+we may further assume
+$n_1 >0$ without loss of generality.
+Then 
+%
+%
+\begin{equation*}
+	\begin{split}
+	  | \sum_{1 \le k \le m-1} c_{k} n_1^{k}|
+	 & = \sum_{1 \le k \le m-1} |c_{k}| |n_1|^{k}
+	 \\
+	 & = |n_1| \sum_{0 \le \ell \le m-2} |c_{\ell}| |n_1|^{k}, \qquad \{c_\ell\}
+	 \subset \mathbb{N} \setminus 0
+	 \\
+	 & \ge c_{m-2}|n_1| | n_1|^{m-2}
+	 \\
+	 & = c_{m-2}| n_1 |^2 | n_1 |^{m-3}
+	 \\
+	 & \ge \frac{c_{m-2}}{4} (1 + | n_1 |)^2 | n_1|^{m-3}
+	 \\
+	 & \simeq n^2 | n_1 |^{m-3}
+	\end{split}
+\end{equation*}
+%
+%
+completing the proof. 
+\end{proof}
+%
+%
+%
+\begin{proof}[Proof of \cref{llem:splitting}] We have
+%
+%
+\begin{equation}
+	\label{l6a}
+	\begin{split}
+		1 + | a + b | 
+		& \le 1 + | a | + | b | 
+		\\
+		& \le 1 + | a | + 1 + | b | 
+		\\
+		& \le 2\left( \max\{1+| a |, 1+| b | \}\right)
+		\\
+		& \le 2 \left( 1 + | a | \right)\left( 1 + | b | \right), \qquad a, b \in {\zz}.
+	\end{split}
+\end{equation}
+%
+%
+Raising both sides of expression $\eqref{l6a}$ to the $k$ power completes 
+the proof. 
+\end{proof}
