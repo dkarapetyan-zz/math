@@ -4,48 +4,25 @@
                      % (b) review + noinfo + twoadvisors + textrefs
                      % (c) final + noinfo + twoadvisors + textrefs
 %\let\bibsection\relax 
-\newenvironment{copyrightpage}{\typeout{Copyleft page}
-  \pagestyle{empty}
-  \null\vfil
-  \begin{center}\normalspacing%
-   \end{center}\vfil\null \clearpage
-    %\begin{copyrightpage}
-    %\normalfont\normalsize
-    %\copyright Copyright by \\
-    %David Karapetyan \\
-    %\year\\
-    %All Rights Reserved \\[10mm]
-\end{copyrightpage}}
 
-\newcommand{\makepublicdomain}{%
-    \begin{copyrightpage}
-       This document is in the public domain.
-    \end{copyrightpage}
-}
 \usepackage{setspace}
 \doublespace
 \setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
 \setcounter{secnumdepth}{1} %number only sections, not subsections
 \numberwithin{equation}{section}
-%\usepackage{titlesec}
-%\titleformat{\chapter}[display]{\centering}
-%{\chaptertitlename\ \thechapter}{20pt}{\uppercase} %capitalize
-%%chapters--required by thesis format
-%\usepackage{titletoc}  %capitalize chapters in toc--required by thesis
-%\titlecontents{chapter}
-%[0pt]
-%{\addvspace{1pc}%
-%\normalfont}%
-%{\contentsmargin{0pt}%
-%\normalfont
-%\makebox[0pt][r]{\huge\thecontentslabel\enspace}%
-%\uppercase}
-%{\contentsmargin{0pt}%
-%\uppercase}
-%{\titlerule*[1pc]{.}\contentspage}
-%[\addvspace{0.1pc}]
-%\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-%\setcounter{secnumdepth}{1} %number only sections, not subsections
+\numberwithin{section}{chapter}
+%\renewenvironment{abstract}{\chapter*{ABSTRACT}\thispagestyle{empty}}
+
+
+\newcommand{\copypage}[1][\number\year]{\thispagestyle{empty}
+        \begin{center}
+          \copyright~Copyright by \\
+          David Karapetyan \\
+          #1 \\
+          All Rights Reserved
+	  \newpage
+        \end{center}
+        }
 \usepackage{tikz}
 \usepackage[bottom=1.0in]{geometry}
 %\usepackage[utf8]{inputenc}
@@ -95,20 +72,22 @@ urlcolor=blue,
 \begin{document}
 
 \frontmatter         % All the items before Chapter 1 go in ``frontmatter''
-\title{\vspace{0.3in}ON THE WELL-POSEDNESS OF THE HYPERELASTIC ROD EQUATION}            % Title of Work
+\title{ON THE WELL-POSEDNESS OF THE HYPERELASTIC ROD EQUATION}
 \author{David Karapetyan}
+\maketitle
+\copypage
 %\work{Dissertation}          
 %\degaward{Doctor of Philosophy}
 %\advisor{\vspace{0.7in}Alex Himonas}        
 %\department{Mathematics}       
-
  % \copyrightholder{ } % If you're not the copyright holder
  %\copyrightyear{2011}   % If the copyright is not for the current year
 %\makecopyright      % If not making your work public domain
                        % uncomment out \makecopyright
 %\makepublicdomain   % Uncomment this to make your work public domain
-
-\begin{abstract}
+\cleardoublepage
+\thispagestyle{empty}
+\chapter*{ABSTRACT}
 It is shown that the solution map for the hyperelastic rod equation is not
 uniformly continuous on bounded sets of Sobolev spaces with exponent greater
 than 3/2 in the periodic case and non-periodic cases. The proof is based on the
@@ -119,13 +98,11 @@ bounded sets of Sobolev spaces with exponent $s > 3/2$ measured in a weaker
 Sobolev norm with exponent $r < s$ in both the periodic and non-periodic cases.
 The proof is based on energy estimates coupled with a delicate commutator
 estimate and multiplier estimate.
-\end{abstract}
  %                         % Either place the text between begin/end, or
  % \include{abstract}  % put it in a file to be included
 
 %\renewcommand{\dedicationname}{\mbox{}} % Replace \mbox{} if you want
                                            %% something else
-\maketitle  
 
 \cleardoublepage
 \thispagestyle{empty}
@@ -149,7 +126,8 @@ To Cynthia -- loyal and fierce and loving until the end.
 
 \tableofcontents
 \pagestyle{empty}
-\dedicatory{I would like to thank my advisor, Professor Alex Himonas,
+\dedicatory{\chapter*{ACKNOWLEDGEMENTS}
+  I would like to thank my advisor, Professor Alex Himonas,
     for his support and guidance. I am also grateful to the math department and the  Arthur J. Schmitt
     Foundation for supporting my graduate studies. 
 
@@ -177,7 +155,7 @@ To Cynthia -- loyal and fierce and loving until the end.
     interests at heart, and has never wavered in her support and love. You have
     suffered more than most, yet take it stoically, with great grace, honor,
   and strength.}    
-  \makepublicdomain
+  %\makepublicdomain
 
 %\listoffigures
 %\listoftables
