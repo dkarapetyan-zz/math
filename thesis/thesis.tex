@@ -1,30 +1,13 @@
-\documentclass[final]{thesis}
+\documentclass[final,noinfo]{thesis}
+\usepackage{amsmath}
                      % Available options are
                      % (a) draft + 10pt/11pt/12pt + twoadvisors + textrefs
                      % (b) review + noinfo + twoadvisors + textrefs
                      % (c) final + noinfo + twoadvisors + textrefs
-%\let\bibsection\relax 
 
-%\usepackage{titlesec}
-%\titleformat{\chapter}[display]{\centering}
-%{\chaptertitlename\ \thechapter}{20pt}{\uppercase} %capitalize
-%%chapters--required by thesis format
-%\usepackage{titletoc}  %capitalize chapters in toc--required by thesis
-%\titlecontents{chapter}
-%[0pt]
-%{\addvspace{1pc}%
-%\normalfont}%
-%{\contentsmargin{0pt}%
-%\normalfont
-%\makebox[0pt][r]{\huge\thecontentslabel\enspace}%
-%\uppercase}
-%{\contentsmargin{0pt}%
-%\uppercase}
-%{\titlerule*[1pc]{.}\contentspage}
-%[\addvspace{0.1pc}]
-
-\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-\setcounter{secnumdepth}{1} %number only sections, not subsections
+\setcounter{tocdepth}{2} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{2} %number only sections, not subsections
+\numberwithin{equation}{section}
 \usepackage{tikz}
 \usepackage[bottom=1.0in]{geometry}
 %\usepackage[utf8]{inputenc}
@@ -73,7 +56,6 @@ urlcolor=blue,
 \newcommand{\vp}{\varphi}
 \newcommand{\wt}{\widetilde}
 \renewcommand{\qed}{\qquad \qedsymbol}
-%\renewcommand{\chaptername}{CHAPTER}
 \begin{document}
 
 \frontmatter         % All the items before Chapter 1 go in ``frontmatter''
@@ -87,7 +69,7 @@ urlcolor=blue,
 \maketitle           
 
  % \copyrightholder{ } % If you're not the copyright holder
- \copyrightyear{2011}   % If the copyright is not for the current year
+ \copyrightyear{2012}   % If the copyright is not for the current year
 \makecopyright      % If not making your work public domain
                        % uncomment out \makecopyright
 %\makepublicdomain   % Uncomment this to make your work public domain
@@ -143,7 +125,7 @@ To Cynthia -- loyal and fierce and loving until the end.
 
  %% \renewcommand{\acknowledgename}{ } % If you want another Acknowledgement name
                                        % add something else, and uncomment
-  \begin{acknowledge} I would like to thank my advisor, Professor Alex Himonas,
+\begin{acknowledge}I would like to thank my advisor, Professor Alex Himonas,
     for his support and guidance. I am also grateful to the math department and the  Arthur J. Schmitt
     Foundation for supporting my graduate studies. 
 
@@ -193,191 +175,182 @@ To Cynthia -- loyal and fierce and loving until the end.
  % \include{appendix-one}
 
 \backmatter              % Place for bibliography and index
-\begin{thebibliography}{35}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-  \singlespace
-\bibitem[Bendahmane et~al.(2006)Bendahmane, Coclite, and
-  Karlsen]{Bendahmane:2006p1301}
-M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen.
-\newblock \emph{Mediterr. J. Math.}, 3\penalty0 (3-4):\penalty0 419--432, 2006.
+\begin{thebibliography}{100}
+    \setlength{\itemsep}{0.2in}
+    \normalsize
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+    \singlespace
+\bibitem{Benjamin_1972_Model-equations}
+T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony, \emph{Model equations for long
+  waves in nonlinear dispersive systems}, Philos. Trans. Roy. Soc. London Ser.
+  A \textbf{272} (1972), no.~1220, 47--78.
 
-\bibitem[Benjamin(1972)]{Benjamin_1972_The-stability-o}
-T.~B. Benjamin.
-\newblock \emph{Proc. Roy. Soc. (London) Ser. A}, 328:\penalty0 153--183, 1972.
+  \bibitem{Bressan_2007_Global-conserva}
+A.~Bressan and A.~Constantin, \emph{Global conservative solutions of the
+  camassa-holm equation}, Arch. Ration. Mech. Anal. \textbf{183} (2007), no.~2,
+  215--239.
 
-\bibitem[Benjamin et~al.(1972)Benjamin, Bona, and
-  Mahony]{Benjamin_1972_Model-equations}
-T.~B. Benjamin, J.~L. Bona, and J.~J. Mahony.
-\newblock \emph{Philos. Trans. Roy. Soc. London Ser. A}, 272\penalty0
-  (1220):\penalty0 47--78, 1972.
+\bibitem{Bendahmane:2006p1301}
+M.~Bendahmane, G.~M. Coclite, and K.~H. Karlsen,
+  \emph{$H^1$-perturbations of smooth solutions for a weakly dissipative
+  hyperelastic-rod wave equation}, Mediterr. J. Math. \textbf{3} (2006),
+  no.~3-4, 419--432.
 
-\bibitem[Bona and Tzvetkov(2009)]{Bona_2009_Sharp-well-pose}
-J.~L. Bona and N.~Tzvetkov.
-\newblock \emph{Discrete Contin. Dyn. Syst.}, 23\penalty0 (4):\penalty0
-  1241--1252, 2009.
+\bibitem{Benjamin_1972_The-stability-o}
+T.~B. Benjamin, \emph{The stability of solitary waves}, Proc. Roy. Soc.
+  (London) Ser. A \textbf{328} (1972), 153--183.
 
-\bibitem[Bressan and Constantin(2007)]{Bressan_2007_Global-conserva}
-A.~Bressan and A.~Constantin.
-\newblock \emph{Arch. Ration. Mech. Anal.}, 183\penalty0 (2):\penalty0
-  215--239, 2007.
+\bibitem{Bona_2009_Sharp-well-pose}
+J.~L. Bona and N.~Tzvetkov, \emph{Sharp well-posedness results for the bbm
+  equation}, Discrete Contin. Dyn. Syst. \textbf{23} (2009), no.~4, 1241--1252.
 
-\bibitem[Chen et~al.(2011)Chen, Liu, and Zhang]{Chen:2011fk}
-R.~M. Chen, Y.~Liu, and P.~Zhang.
-\newblock The H\"{o}lder Continuity of the Solution Map to the $b$-family
-  Equation in weak topology.
-\newblock Submitted, 2011.
+\bibitem{Christ_2003_Asymptotics-fre}
+M.~Christ, J.~Colliander, and T.~Tao, \emph{Asymptotics, frequency modulation,
+  and low regularity ill-posedness for canonical defocusing equations}, Amer.
+  J. Math. \textbf{125} (2003), no.~6, 1235--1293.
 
-\bibitem[Christ et~al.(2003)Christ, Colliander, and
-  Tao]{Christ_2003_Asymptotics-fre}
-M.~Christ, J.~Colliander, and T.~Tao.
-\newblock \emph{Amer. J. Math.}, 125\penalty0 (6):\penalty0 1235--1293, 2003.
+\bibitem{Coclite_2005_Global-weak-sol}
+G.~M. Coclite, H.~Holden, and K.~H. Karlsen, \emph{Global weak solutions to a
+  generalized hyperelastic-rod wave equation}, SIAM J. Math. Anal. \textbf{37}
+  (2005), no.~4, 1044--1069 (electronic).
 
-\bibitem[Coclite et~al.(2005)Coclite, Holden, and
-  Karlsen]{Coclite_2005_Global-weak-sol}
-G.~M. Coclite, H.~Holden, and K.~H. Karlsen.
-\newblock \emph{SIAM J. Math. Anal.}, 37\penalty0 (4):\penalty0 1044--1069
-  (electronic), 2005.
+\bibitem{Chen:2011fk}
+R.~M. Chen, Y.~Liu, and P.~Zhang, \emph{The h\"{o}lder continuity of the
+  solution map to the $b$-family equation in weak topology}, Submitted, 2011.
 
-\bibitem[Constantin and Strauss(2000)]{Constantin_2000_Stability-of-a-}
-A.~Constantin and W.~A. Strauss.
-\newblock \emph{Phys. Lett. A}, 270\penalty0 (3-4):\penalty0 140--148, 2000.
+\bibitem{Constantin_2000_Stability-of-a-}
+A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
+  in compressible elastic rods}, Phys. Lett. A \textbf{270} (2000), no.~3-4,
+  140--148.
 
-\bibitem[Dai(1998)]{Dai_1998_Model-equations}
-H.-H. Dai.
-\newblock \emph{Acta Mech.}, 127\penalty0 (1-4):\penalty0 193--207, 1998.
+\bibitem{Dai_1998_Model-equations}
+H.-H. Dai, \emph{Model equations for nonlinear dispersive waves in a
+  compressible mooney-rivlin rod}, Acta Mech. \textbf{127} (1998), no.~1-4,
+  193--207.
 
-\bibitem[Dai and Huo(2000)]{Dai_2000_Solitary-shock-}
-H.-H. Dai and Y.~Huo.
-\newblock \emph{R. Soc. Lond. Proc. Ser. A Math. Phys. Eng. Sci.}, 456\penalty0
-  (1994):\penalty0 331--363, 2000.
+\bibitem{Dai_2000_Head-on-collisi}
+H.-H. Dai, S.~Dai, and Y.~Huo, \emph{Head-on collision between two solitary
+  waves in a compressible mooney-rivlin elastic rod}, Wave Motion \textbf{32}
+  (2000), no.~2, 93--111.
 
-\bibitem[Dai et~al.(2000)Dai, Dai, and Huo]{Dai_2000_Head-on-collisi}
-H.-H. Dai, S.~Dai, and Y.~Huo.
-\newblock \emph{Wave Motion}, 32\penalty0 (2):\penalty0 93--111, 2000.
+\bibitem{Dai_2000_Solitary-shock-}
+H.-H. Dai and Y.~Huo, \emph{Solitary shock waves and other travelling waves in
+  a general compressible hyperelastic rod}, R. Soc. Lond. Proc. Ser. A Math.
+  Phys. Eng. Sci. \textbf{456} (2000), no.~1994, 331--363.
 
-\bibitem[Dieudonn{{\'e}}(1969)]{Dieudonne:1969}
-J.~Dieudonn{{\'e}}.
-\newblock \emph{Foundations of modern analysis}.
-\newblock Academic Press, New York, 1969.
-\newblock Enlarged and corrected printing, Pure and Applied Mathematics, Vol.
-  10-I.
+\bibitem{Dieudonne:1969}
+J.~Dieudonn{{\'e}}, \emph{Foundations of modern analysis}, Academic Press, New
+  York, 1969, Enlarged and corrected printing, Pure and Applied Mathematics,
+  Vol. 10-I. 
 
-\bibitem[Herr et~al.(2010)Herr, Ionescu, Kenig, and Koch]{Herr:2010p886}
-S.~Herr, A.~D. Ionescu, C.~E. Kenig, and H.~Koch.
-\newblock \emph{Comm. Partial Differential Equations}, 35\penalty0
-  (10):\penalty0 1827--1875, 2010.
+\bibitem{Herr:2010p886}
+S.~Herr, A.~D. Ionescu, C.~E. Kenig, and H.~Koch, \emph{A para-differential
+  renormalization technique for nonlinear dispersive equations}, Comm. Partial
+  Differential Equations \textbf{35} (2010), no.~10, 1827--1875.
 
-\bibitem[Himonas and Kenig(2009)]{Himonas:2009fk}
-A.~A. Himonas and C.~E. Kenig.
-\newblock \emph{Differential Integral Equations}, 22\penalty0 (3-4):\penalty0
-  201--224, 2009.
+\bibitem{Himonas:2009fk}
+A.~A. Himonas and C.~E. Kenig, \emph{Non-uniform dependence on initial data for
+  the ch equation on the line}, Differential Integral Equations \textbf{22}
+  (2009), no.~3-4, 201--224.
 
-\bibitem[Himonas and Misio{\l}ek(2005)]{Himonas:2005}
-A.~A. Himonas and G.~Misio{\l}ek.
-\newblock \emph{Int. Math. Res. Not.}, \penalty0 (51):\penalty0 3135--3151,
-  2005.
+\bibitem{Himonas:2010}
+A.~A. Himonas, C.~E. Kenig, and G.~Misio{\l}ek, \emph{Non-uniform dependence
+  for the periodic {CH} equation}, Comm. Partial Differential Equations
+  \textbf{35} (2010), no.~6, 1145--1162. 
 
-\bibitem[Himonas and Misio{\l}ek(2010)]{Himonas:2010a}
-A.~A. Himonas and G.~Misio{\l}ek.
-\newblock \emph{Comm. Math. Phys.}, 296\penalty0 (1):\penalty0 285--301, 2010.
+\bibitem{Himonas_2001_The-Cauchy-prob}
+A.~A. Himonas and G.~Misio{\l}ek, \emph{The cauchy problem for an integrable
+  shallow-water equation}, Differential Integral Equations \textbf{14} (2001),
+  no.~7, 821--831.
 
-\bibitem[Himonas and Misio{\l}ek(2001)]{Himonas_2001_The-Cauchy-prob}
-A.~A. Himonas and G.~Misio{\l}ek.
-\newblock \emph{Differential Integral Equations}, 14\penalty0 (7):\penalty0
-  821--831, 2001.
+\bibitem{Himonas:2005}
+\bysame, \emph{High-frequency smooth solutions and
+  well-posedness of the {C}amassa-{H}olm equation}, Int. Math. Res. Not.
+  (2005), no.~51, 3135--3151. 
 
-\bibitem[Himonas et~al.(2007)Himonas, Misio{\l}ek, and
-  Ponce]{Himonas_2007_Non-uniform-con}
-A.~A. Himonas, G.~Misio{\l}ek, and G.~Ponce.
-\newblock \emph{Asian J. Math.}, 11\penalty0 (1):\penalty0 141--150, 2007.
+\bibitem{Himonas:2010a}
+\bysame, \emph{Non-uniform dependence on initial data
+  of solutions to the {E}uler equations of hydrodynamics}, Comm. Math. Phys.
+  \textbf{296} (2010), no.~1, 285--301. 
 
-\bibitem[Himonas et~al.(2010)Himonas, Kenig, and Misio{\l}ek]{Himonas:2010}
-A.~A. Himonas, C.~E. Kenig, and G.~Misio{\l}ek.
-\newblock \emph{Comm. Partial Differential Equations}, 35\penalty0
-  (6):\penalty0 1145--1162, 2010.
+\bibitem{Himonas_2007_Non-uniform-con}
+A.~A. Himonas, G.~Misio{\l}ek, and G.~Ponce, \emph{Non-uniform continuity in
+  $H^ 1$ of the solution map of the ch equation}, Asian J. Math.
+  \textbf{11} (2007), no.~1, 141--150.
 
-\bibitem[Holden and Raynaud(2007)]{Holden_2007_Global-conserva}
-H.~Holden and X.~Raynaud.
-\newblock \emph{J. Differential Equations}, 233\penalty0 (2):\penalty0
-  448--484, 2007.
+\bibitem{Holden_2007_Global-conserva}
+H.~Holden and X.~Raynaud, \emph{Global conservative solutions of the
+  generalized hyperelastic-rod wave equation}, J. Differential Equations
+  \textbf{233} (2007), no.~2, 448--484.
 
-\bibitem[Karapetyan(2010)]{Karapetyan:2010fk}
-D.~Karapetyan.
-\newblock \emph{J. Differential Equations}, 249\penalty0 (4):\penalty0
-  796--826, 2010.
+\bibitem{Karapetyan:2010fk}
+D.~Karapetyan, \emph{Non-uniform dependence and well-posedness for the
+  hyperelastic rod equation}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826.
 
-\bibitem[Kato(1975)]{Kato:1975}
-T.~Kato.
-\newblock Quasi-linear equations of evolution, with applications to partial
-  differential equations.
-\newblock In \emph{Spectral theory and differential equations ({P}roc.
-  {S}ympos., {D}undee, 1974; dedicated to {K}onrad {J}{\"o}rgens)}, pages
-  25--70. Lecture Notes in Math., Vol. 448. Springer, Berlin, 1975.
+\bibitem{Kato:1975}
+T.~Kato, \emph{Quasi-linear equations of evolution, with applications to
+  partial differential equations}, Spectral theory and differential equations
+  ({P}roc. {S}ympos., {D}undee, 1974; dedicated to {K}onrad {J}{\"o}rgens),
+  Springer, Berlin, 1975, pp.~25--70. Lecture Notes in Math., Vol. 448.
+  
 
-\bibitem[Kenig et~al.(2001)Kenig, Ponce, and Vega]{Kenig_2001_On-the-ill-pose}
-C.~E. Kenig, G.~Ponce, and L.~Vega.
-\newblock \emph{Duke Math. J.}, 106\penalty0 (3):\penalty0 617--633, 2001.
+\bibitem{Kenig_2001_On-the-ill-pose}
+C.~E. Kenig, G.~Ponce, and L.~Vega, \emph{On the ill-posedness of some
+  canonical dispersive equations}, Duke Math. J. \textbf{106} (2001), no.~3,
+  617--633.
 
-\bibitem[Koch and Tzvetkov(2005)]{Koch:2005}
-H.~Koch and N.~Tzvetkov.
-\newblock \emph{Int. Math. Res. Not.}, \penalty0 (30):\penalty0 1833--1847,
-  2005.
+\bibitem{Koch:2005}
+H.~Koch and N.~Tzvetkov, \emph{Nonlinear wave interactions for the
+  {B}enjamin-{O}no equation}, Int. Math. Res. Not. (2005), no.~30, 1833--1847.
+  
 
-\bibitem[Lenells(2006)]{Lenells_2006_Traveling-waves}
-J.~Lenells.
-\newblock \emph{Discrete Contin. Dyn. Syst. Ser. B}, 6\penalty0 (1):\penalty0
-  151--167 (electronic), 2006.
+\bibitem{Lenells_2006_Traveling-waves}
+J.~Lenells, \emph{Traveling waves in compressible elastic rods}, Discrete
+  Contin. Dyn. Syst. Ser. B \textbf{6} (2006), no.~1, 151--167 (electronic).
 
-\bibitem[Li and Olver(2000)]{Li_2000_Well-posedness-}
-Y.~A. Li and P.~J. Olver.
-\newblock \emph{J. Differential Equations}, 162\penalty0 (1):\penalty0 27--63,
-  2000.
+\bibitem{Li_2000_Well-posedness-}
+Y.~A. Li and P.~J. Olver, \emph{Well-posedness and blow-up solutions for an
+  integrable nonlinearly dispersive model wave equation}, J. Differential
+  Equations \textbf{162} (2000), no.~1, 27--63.
 
-\bibitem[Mustafa(2007)]{Mustafa:2007}
-O.~G. Mustafa.
-\newblock \emph{Int. Math. Res. Not. IMRN}, \penalty0 (13):\penalty0 Art. ID
-  rnm040, 26, 2007.
+\bibitem{Mustafa:2007}
+O.~G. Mustafa, \emph{Global conservative solutions of the hyperelastic rod
+  equation}, Int. Math. Res. Not. IMRN (2007), no.~13, Art. ID rnm040, 26.
+  
 
-\bibitem[Olson(2006)]{Olson_2006_Non-uniform-dep}
-E.~Olson.
-\newblock \emph{Differential Integral Equations}, 19\penalty0 (10):\penalty0
-  1081--1102, 2006.
+\bibitem{Olson_2006_Non-uniform-dep}
+E.~Olson, \emph{Non-uniform dependence on initial data for a family of
+  non-linear evolution equations}, Differential Integral Equations \textbf{19}
+  (2006), no.~10, 1081--1102.
 
-\bibitem[Rodr\'iguez-Blanco(2001)]{Rodriguez-Blanco_2001_On-the-Cauchy-p}
-G.~Rodr\'iguez-Blanco.
-\newblock \emph{Nonlinear Anal.}, 46\penalty0 (3, Ser. A: Theory
-  Methods):\penalty0 309--327, 2001.
+\bibitem{Rodriguez-Blanco_2001_On-the-Cauchy-p}
+G.~Rodr\'iguez-Blanco, \emph{On the cauchy problem for the camassa-holm
+  equation}, Nonlinear Anal. \textbf{46} (2001), no.~3, Ser. A: Theory Methods,
+  309--327.
 
-\bibitem[Tao(2004)]{Tao:2004}
-T.~Tao.
-\newblock \emph{J. Hyperbolic Differ. Equ.}, 1\penalty0 (1):\penalty0 27--49,
-  2004.
+\bibitem{Tao:2004}
+T.~Tao, \emph{Global well-posedness of the benjamin-ono equation in $H^1(\bf
+  R)$}, J. Hyperbolic Differ. Equ. \textbf{1} (2004), no.~1, 27--49.
 
-\bibitem[Taylor(1991)]{Taylor:1991}
-M.~E. Taylor.
-\newblock \emph{Pseudodifferential operators and nonlinear {PDE}}, volume 100
-  of \emph{Progress in Mathematics}.
-\newblock Birkh{\"a}user Boston Inc., Boston, MA, 1991.
+\bibitem{Taylor:1991}
+M.~E. Taylor, \emph{Pseudodifferential operators and nonlinear {PDE}}, Progress
+  in Mathematics, vol. 100, Birkh{\"a}user Boston Inc., Boston, MA, 1991.
+  
 
-\bibitem[Taylor(2011)]{Taylor:2011}
-M.~E. Taylor.
-\newblock \emph{Partial differential equations {I}. {B}asic theory}, volume 115
-  of \emph{Applied Mathematical Sciences}.
-\newblock Springer, New York, second edition, 2011.
+\bibitem{Taylor:2011}
+\bysame, \emph{Partial differential equations {I}. {B}asic theory}, second ed.,
+  Applied Mathematical Sciences, vol. 115, Springer, New York, 2011.
+  
 
-\bibitem[Yin(2003)]{Yin_2003_On-the-Cauchy-p}
-Z.~Yin.
-\newblock \emph{J. Nonlinear Math. Phys.}, 10\penalty0 (1):\penalty0 10--15,
-  2003.
+\bibitem{Yin_2003_On-the-Cauchy-p}
+Z.~Yin, \emph{On the cauchy problem for a nonlinearly dispersive wave
+  equation}, J. Nonlinear Math. Phys. \textbf{10} (2003), no.~1, 10--15.
 
-\bibitem[Zhou(2005)]{Zhou_2005_Local-well-pose}
-Y.~Zhou.
-\newblock \emph{Math. Nachr.}, 278\penalty0 (14):\penalty0 1726--1739, 2005.
+\bibitem{Zhou_2005_Local-well-pose}
+Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
+  equation}, Math. Nachr. \textbf{278} (2005), no.~14, 1726--1739.
 
 \end{thebibliography}
 %\bibliographystyle{nddiss2e}
