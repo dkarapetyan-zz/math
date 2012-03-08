@@ -1,24 +1,15 @@
 \documentclass[final,noinfo]{thesis}
-\usepackage{amsmath}
-                     % Available options are
-                     % (a) draft + 10pt/11pt/12pt + twoadvisors + textrefs
-                     % (b) review + noinfo + twoadvisors + textrefs
-                     % (c) final + noinfo + twoadvisors + textrefs
-
-\setcounter{tocdepth}{2} %must come before secnumdepth--else, pain
-\setcounter{secnumdepth}{2} %number only sections, not subsections
-\numberwithin{equation}{section}
+\setcounter{tocdepth}{3} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{3} %number only sections, not subsections
 \usepackage{tikz}
-\usepackage[bottom=1.0in]{geometry}
-%\usepackage[utf8]{inputenc}
-%\usepackage{showkeys}
+\usepackage[bottom=1.0in,left=1.5in,right=1.0in]{geometry}
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern} %this with above font packages give us all possible diacritics
+\renewcommand{\theequation}{\arabic{equation}} %to disable amsmath default of numbering equations within sections
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
-%\usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-%\usepackage{framed}  %for framing remarks, theorems, etc.
+%\usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \synctex=1
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage{hyperref}
@@ -27,39 +18,22 @@ linkcolor=blue,
 citecolor=blue,
 urlcolor=blue,
 }
-\usepackage{cleveref} %must be last loaded package to work properly
-\renewcommand{\cref}{\Cref}
-\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{prop}[theorem]{Proposition}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{no}[theorem]{Notation}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}{Example}[section]
-\newtheorem {exercise}[theorem] {Exercise}
 
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\noindent}
 \newcommand{\rr}{\mathbb{R}}
-\newcommand{\nn}{\mathbb{N}}
 \newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
 \newcommand{\ci}{\mathbb{T}}
-\newcommand{\zzdot}{\dot{\zz}}
 \newcommand{\wh}{\widehat}
 \newcommand{\p}{\partial}
 \newcommand{\ee}{\varepsilon}
 \newcommand{\vp}{\varphi}
 \newcommand{\wt}{\widetilde}
-\renewcommand{\qed}{\qquad \qedsymbol}
 \begin{document}
 
 \frontmatter         % All the items before Chapter 1 go in ``frontmatter''
-\title{\vspace{0.3in}ON THE WELL-POSEDNESS OF THE HYPERELASTIC ROD EQUATION}            % Title of Work
+\title{\vspace{0.3in}ON THE WELL-POSEDNESS OF THE HYPERELASTIC ROD EQUATION}
 \author{David Karapetyan}
 \work{Dissertation}          
 \degprior{}
@@ -68,19 +42,18 @@ urlcolor=blue,
 \department{Mathematics}       
 \maketitle           
 
- % \copyrightholder{ } % If you're not the copyright holder
- \copyrightyear{2012}   % If the copyright is not for the current year
+\copyrightyear{2012}   % If the copyright is not for the current year
 \makecopyright      % If not making your work public domain
                        % uncomment out \makecopyright
 %\makepublicdomain   % Uncomment this to make your work public domain
 
 \begin{abstract}
-It is shown that the solution map for the hyperelastic rod equation is not
+It is shown that the data-to-solution map
+for the hyperelastic rod equation is not
 uniformly continuous on bounded sets of Sobolev spaces with exponent greater
 than 3/2 in the periodic case and non-periodic cases. The proof is based on the
 method of approximate solutions and well-posedness estimates for the solution
-and its lifespan. Building upon this work, we also prove that the data to
-solution map for the hyperelastic rod equation is H\"older continuous from
+and its lifespan. Building upon this work, we also prove that the data-to-solution map for the hyperelastic rod equation is H\"older continuous from
 bounded sets of Sobolev spaces with exponent $s > 3/2$ measured in a weaker
 Sobolev norm with exponent $r < s$ in both the periodic and non-periodic cases.
 The proof is based on energy estimates coupled with a delicate commutator
@@ -153,13 +126,7 @@ To Cynthia -- loyal and fierce and loving until the end.
     interests at heart, and has never wavered in her support and love. You have
     suffered more than most, yet take it stoically, with great grace, honor,
     and strength.    
-
-    %The author thanks the Department of Mathematics at the University of Notre
-    %Dame and the Arthur J. Schmitt Foundation for supporting his doctoral
-    %studies.
   \end{acknowledge}
- %                       % Use one of the two choices to add acknowledge text
- % \include{acknowledgement}
 
 \mainmatter
  % Place the text body here.
@@ -173,9 +140,8 @@ To Cynthia -- loyal and fierce and loving until the end.
  % care of renaming chapter headings and creates a new page in the Table of
  % Contents for them.
  % \include{appendix-one}
-
+\renewcommand{\bibname}{REFERENCES}
 \backmatter              % Place for bibliography and index
-
 \begin{thebibliography}{100}
     \setlength{\itemsep}{0.2in}
     \normalsize
@@ -217,7 +183,7 @@ G.~M. Coclite, H.~Holden, and K.~H. Karlsen, \emph{Global weak solutions to a
 
 \bibitem{Chen:2011fk}
 R.~M. Chen, Y.~Liu, and P.~Zhang, \emph{The h\"{o}lder continuity of the
-  solution map to the $b$-family equation in weak topology}, Submitted, 2011.
+  solution map to the $b$-family equation in weak topology}, submitted, 2011.
 
 \bibitem{Constantin_2000_Stability-of-a-}
 A.~Constantin and W.~A. Strauss, \emph{Stability of a class of solitary waves
@@ -356,9 +322,9 @@ Y.~Zhou, \emph{Local well-posedness and blow-up criteria of solutions for a rod
 %\bibliographystyle{nddiss2e}
 %%\bibliographystyle{amsalpha-custom} 
 %\bibliography{/Users/davidkarapetyan/math/bib-files/references}
-
+%
 \end{document}
-
+%
 %%
 \endinput
 %%

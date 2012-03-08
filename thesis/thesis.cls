@@ -1,10 +1,10 @@
 %%
-%% This is file `nddiss2e.cls',
+%% This is file `thesis.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% nddiss2e.dtx  (with options: `class')
+%% thesis.dtx  (with options: `class')
 %% 
 %% This is a generated file.
 %% 
@@ -27,13 +27,13 @@
 %%     Shari Hill, Graduate Reviewer.
 %%     shill2@nd.edu
 %% 
-%% For documentation on how to use nddiss2e class, process the
-%% file nddiss2e.dtx through LaTeX.
+%% For documentation on how to use thesis class, process the
+%% file thesis.dtx through LaTeX.
 %% 
 %% ==============================================================
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{nddiss2e}
+\ProvidesClass{thesis}
     [2005/07/27 v3.0 ^^J%
      Notre Dame Dissertation document class by Sameer Vijay^^J]
 \providecommand{\dissfileversion}{3.0}
@@ -75,7 +75,7 @@
   \PassOptionsToClass{10pt}{book}%
  \else%
   \OptionNotUsed%
-  \ClassWarningNoLine{nddiss2e}%
+  \ClassWarningNoLine{thesis}%
     {Font size 10pt not allowed; using 12pt}%
  \fi%
 }
@@ -84,7 +84,7 @@
   \PassOptionsToClass{11pt}{book}%
  \else%
   \OptionNotUsed%
-  \ClassWarningNoLine{nddiss2e}%
+  \ClassWarningNoLine{thesis}%
     {Font size 11pt not allowed; using 12pt}%
  \fi
 }
@@ -94,7 +94,7 @@
 \DeclareOption{noinfo}{\info@pagefalse}
 \DeclareOption{twoside}{\typeout{TWO SIDED DOCUMENT}%
   \PassOptionsToClass{twoside}{book} }%
-\DeclareOption*{\ClassWarning{nddiss2e}%
+\DeclareOption*{\ClassWarning{thesis}%
     {UnknownOption `\CurrentOption'} }%
 \ProcessOptions\relax
 \LoadClass{book}
@@ -232,7 +232,7 @@
   \noindent\itshape This page can be disabled by
   specifying the ``{\upshape\ttfamily noinfo}'' option to the class invocation.
   \upshape
-(i.e.,{\ttfamily{\textbackslash}documentclass[\ldots,noinfo]\{nddiss2e\}}
+(i.e.,{\ttfamily{\textbackslash}documentclass[\ldots,noinfo]\{thesis\}}
 )
   \begin{center}
     {\bfseries\large\singlespacing This page is \slshape NOT
@@ -253,25 +253,25 @@
   \clearemptydoublepage
   \normalfont\normalsize\normalspacing
   \begin{titlepage}%
-\ifthenelse{\equal{\@work}{}}{\ClassError{nddiss2e}%
+\ifthenelse{\equal{\@work}{}}{\ClassError{thesis}%
   {The \protect\work\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
   {Specify \protect\work\space as Dissertation or Thesis}}{\relax}
-\ifthenelse{\equal{\@degaward}{}}{\ClassError{nddiss2e}%
+\ifthenelse{\equal{\@degaward}{}}{\ClassError{thesis}%
   {The \protect\degaward\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
   {Specify \protect\degaward\space. It defines the awarded degree%
          (Ph.D., M.S., etc.)}}{\relax}
-\ifthenelse{\equal{\@advisor}{}}{\ClassError{nddiss2e}%
+\ifthenelse{\equal{\@advisor}{}}{\ClassError{thesis}%
   {The \protect\advisor\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
   {Spepcify \protect\advisor\space It is who signs your walking papers!}}{\relax}
-\ifthenelse{\equal{\@department}{}}{\ClassError{nddiss2e}%
+\ifthenelse{\equal{\@department}{}}{\ClassError{thesis}%
   {The \protect\department\space macro is undefined.\MessageBreak
         The title page may be incorrectly formatted.}%
   {Specify which \protect\department\space is awarding your degree?}}{\relax}
 \ifadvisors@two
-  \ifthenelse{\equal{\@secondadvisor}{}}{\ClassError{nddiss2e}%
+  \ifthenelse{\equal{\@secondadvisor}{}}{\ClassError{thesis}%
   {The \protect\secondadvisor\space macro is undefined.\MessageBreak
             The title page may be incorrectly formatted.}%
   {Use \protect\secondadvisor\space for your second advisor}}{\relax}
@@ -670,4 +670,4 @@
 %%
 \endinput
 %%
-%% End of file `nddiss2e.cls'.
+%% End of file `thesis.cls'.
