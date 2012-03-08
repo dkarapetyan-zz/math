@@ -1,15 +1,20 @@
-\documentclass[10pt,oneside]{amsart}
+\documentclass[11pt,oneside]{amsart}
 %
 % This is a helpful package that puts math inside length specifications
+\usepackage{fontspec}
+\usepackage{xunicode}
+%both are for xetex
+%% color for the links 
+\usepackage[xetex,colorlinks=false]{hyperref}
+%xetex, for coloring links
 \usepackage{calc}
 \usepackage{multicol}
 %% This gives us compact enumeration environments.
 \usepackage{paralist}
-\usepackage{hyperref}
-\hypersetup{colorlinks=false}
 \synctex=1
 \pagestyle{empty} %no page numbers
-\usepackage[margin=1in,includemp,reversemarginpar]{geometry}
+%\usepackage[margin=1in,includemp,reversemarginpar]{geometry}
+\usepackage[margin=0.5in,includemp,reversemarginpar]{geometry}
 
 %% More layout: Get rid of indenting throughout entire document
 \setlength{\parindent}{0in}
@@ -29,6 +34,7 @@
 %
 %
 \begin{document}
+\thispagestyle{empty}
 \makeheading{David Karapetyan}
 
 \section{Contact \\ Information}
@@ -102,13 +108,19 @@ types_regents.htm}{Regents Scholarship}, 2000-2004
 %
 \vspace{-0.4cm}
 \begin{compactenum}[1)]
-\item \textit{Non-uniform dependence and well-posedness for the hyperelastic rod equation},\\ J. Differential Equations \textbf{249} (2010),
-796-826.
+\item \href{http://davidkarapetyan.com/pdfs/hr-nud-2010.pdf}{\emph{Non-uniform dependence and well-posedness for the
+hyperelastic rod equation}}, J. Differential Equations \textbf{249} (2010),
+  no.~4, 796--826.
 \\
-\item \textit{H\"older continuity of HR on the line and the circle}, preprint.
+\item \href{http://arxiv.org/abs/1111.5879}{\emph{H{\"o}lder continuity of the data to solution map for hr in the
+weak topology}}, preprint, arXiv:1111.5879 (2012).
 \\
-\item \textit{Thesis: The initial value problem for the hyperelastic rod equation}, in preparation.           
+\item \href{http://arxiv.org/abs/1202.6671}{\emph{An
+ill-posedness result for the boussinesq equation}} (with D. Geba and A. A. Himonas), preprint, arXiv:1202.6671
+  (2012).
 \\
+\item \href{http://davidkarapetyan.com/pdfs/thesis.pdf}{\emph{On the well-posedness of the hyperelastic rod equation}}, Ph.D.
+thesis, University of Notre Dame, preprint (2012).
 \end{compactenum}
 
 %
@@ -117,6 +129,15 @@ types_regents.htm}{Regents Scholarship}, 2000-2004
 Notre Dame, Indiana
 \\
 \\
+Teaching Assistant \hfill \textbf{January 2012-Present}
+\\
+\textit{Introduction to Linear Algebra \\ and Differential Equations} 
+\\
+\begin{compactitem}
+\item Write and administer quizzes
+\item Assist with instructor office hours 
+\end{compactitem}
+\vspace{0.4cm}
 Instructor \hfill \textbf{January 2010-May 2010}\\ \textit{Elements of
 Calculus II for Business} \hfill \textbf{January 2011-May 2011}
 %
@@ -139,7 +160,7 @@ for Business}
 and course materials
 \item Improved course webpage layout and online quiz infrastructure
 \item Substituted for course lectures when needed
-\item Assisted with lecturer office hours when needed
+\item Assist with instructor office hours 
 \end{compactitem}
 
 \section{Invited Talks}
@@ -197,7 +218,6 @@ May 26-29, 2009, Purdue University\\
 June 15-August 3, 2009, University of 
 Notre Dame \\
 
-\newpage
 \item \textit{Notre Dame Graduate Student Seminar} \\
 ``On the Uniqueness of Solutions to the Burgers Equation in Sobolev Spaces'' \\
 November 23, 2009, University of Notre Dame\\
@@ -207,6 +227,10 @@ January 13-16, 2010, San Francisco, California \\
 
 \item \textit{Mathematical Problems in Hydrodynamics} \\
 June 14-25, 2010, Universit\'e de Cergy-Pontoise, France \\
+
+\item \textit{AMS Joint Mathematics Meetings} \\
+January 04-07, 2012, Boston, Massachusetts \\
+
 \end{compactenum}
 \section{Professional Memberships}
 American Mathematical Society  
@@ -227,7 +251,7 @@ JavaScript, MATLAB, Ruby, \TeX{}, \LaTeX{}, B\textsc{ib}\TeX{}, Vim \\
 \section{References}
 \vspace{-0.85cm}
 \begin{multicols}{2}
-{Professor Alex Himonas (\textit{advisor}) \\
+Professor Alex Himonas (\textit{advisor}) \\
 Department of Mathematics \\
 University of Notre Dame  \\	
 274 Hurley Hall \\
@@ -243,17 +267,6 @@ Rochester, NY 14627 \\
 585-273-5629 \\
 dangeba@math.rochester.edu \\
 \\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
 Professor Gerard Misiolek \\
 Department of Mathematics \\
 University of Notre Dame \\
@@ -262,6 +275,7 @@ Notre Dame, IN 46556-4618 \\
 574-631-4179 \\
 gerard.misiolek.1@nd.edu \\
 \\
+\\
 Professor Juan Migliore \\
 Department of Mathematics \\
 University of Notre Dame \\
@@ -269,8 +283,7 @@ University of Notre Dame \\
 Notre Dame, IN 46556-4618 \\
 574-631-7345\\
 migliore.1@nd.edu\\
-}
-
+\\
 Professor Yongtao Zhang \\
 Department of Applied \\ 
 and Computational \\ 
@@ -280,6 +293,12 @@ University of Notre Dame \\
 Notre Dame, IN 46556-4618 \\
 574-631-6079 \\
 zhang.103@nd.edu \\
+\\
+\\
+\\
+\\
+\\
+\\
 \\
 \end{multicols}
 
