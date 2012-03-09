@@ -3027,7 +3027,7 @@ Here
 \begin{equation}
 \begin{split}
 j_\ee (x) = \frac{1}{2 \pi}\sum_{\xi \in \zz}
-\widehat{j}(\ee \xi) e^{i \xi x}, \quad \ee > 0.
+\widehat{j}(\ee \xi) e^{i \xi x}, \quad \ee > 0
 \label{parseval-def}
 \end{split}
 \end{equation}
@@ -3707,11 +3707,11 @@ and bounded. Since $I$ is compact, we have
 H^{s-1}(\ci)).
 \end{equation}
 %
-Now, by the Riesz Lemma, we can identify $H^s(\rr)$ with
-$(H^s(\rr))^{\star}$, where for $w, \psi \in H^s(\rr)$ the duality is
+Now, by the Riesz Lemma, we can identify $H^s(\ci)$ with
+$(H^s(\ci))^{\star}$, where for $w, \psi \in H^s(\ci)$ the duality is
 defined by 
 \begin{equation*}
-T_w(\psi) = <w, \psi>_{H^s(\rr)}.
+T_w(\psi) = <w, \psi>_{H^s(\ci)}.
 \end{equation*}
 Hence, by the Riesz Representation Theorem it follows that we can
 identify \\ $L^\infty(I, H^s(\ci)) $ with the dual space of $L^1(I,
@@ -3720,9 +3720,8 @@ L^1(I, H^{s}(\ci))$ the duality is defined by
 %
 \begin{equation}
 T_v(\phi) = \int_I <v (t), \phi (t)>_{H^s(\rr)} dt  = \int_I
-\int_{\rr}
-\widehat{v}(\xi, t) \overline{\widehat{\phi}}(\xi, t) \cdot (1
-+ \xi^2)^s \ d \xi dt.
+\sum_{\xi \in \zz} \widehat{v}(\xi, t) \overline{\widehat{\phi}}(\xi, t) \cdot (1
++ \xi^2)^s  dt.
 \end{equation}
 %
 Next, we recall Aloaglu's Theorem:
@@ -5724,7 +5723,7 @@ u_\ee(x, 0) = u_0 (x) \quad x \in \ci, \quad t \in \rr.
 Using an analogous argument to that in the periodic case, one can check that the map $f \mapsto J_{\ee} f$ is continuously differentiable from $H^s(\ci)$
 to $H^s(\ci)$.  Hence, by Theorem~\ref{ode_theorem}, for each $\ee > 0$ there exists a
 unique solution $u_\ee \in C(I, H^s(\rr))$ satisfying the Cauchy-problem
-\eqref{hr-moli-r}-\eqref{hr-moli-data-r}. 
+\eqref{hr-moli-r}-\eqref{hr-moli-data-r}. In fact, Lemma~\ref{hr_wp} (uniform regularity) holds for the non-periodic case. The proof is analogous to that in the periodic case, and so we omit it.
 %
 \subsubsection{Choosing a Convergent Subsequence}
 Mirroring the argument in the periodic case, we see that the bounded
