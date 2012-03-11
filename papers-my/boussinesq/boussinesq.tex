@@ -1,82 +1,25 @@
-\documentclass[12pt,reqno]{amsart}
-\usepackage{amsmath}
-\usepackage{fix-cm} %fix font errors
+\documentclass{amsart}
+%\usepackage{showkeys}
 \usepackage{amssymb}
-%\usepackage[notcite]{showkeys}
-\usepackage{appendix}
-\usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage{framed}  %for framing remarks, theorems, etc.
-\usepackage{enumerate} %to change enumerate symbols
-\usepackage[margin=2.5cm]{geometry}  %page layout
-\setcounter{tocdepth}{2} %must come before secnumdepth--else, pain
-\setcounter{secnumdepth}{2} %number only sections, not subsections
-%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
-\numberwithin{equation}{section}  %eliminate need for keeping track of counters
-%\numberwithin{figure}{section}
-\setlength{\parindent}{0in} %no indentation of paragraphs after section title
-\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
-%
-\usepackage{hyperref}
-\hypersetup{colorlinks=true,
-linkcolor=blue,
-citecolor=blue,
-urlcolor=blue,
-}
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
-\usepackage{cleveref} %must be last loaded package to work properly
-\renewcommand{\cref}{\Cref}
-%\Crefname{enumi}{}{} %don't write item iv, just iv
-%\Crefname{equation}{}{} %don't write Equation (2.1), just (2.1)
-\crefformat{equation}{(#2#1#3)} %don't write Equation (2.1), just (2.1)
-\Crefformat{equation}{(#2#1#3)} %don't write Equation (2.1), just (2.1)
-%
-%
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\noindent}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\nn}{\mathbb{N}}
-\newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
-\newcommand{\ci}{\mathbb{T}}
-\newcommand{\zzdot}{\dot{\zz}}
-\newcommand{\wh}{\widehat}
-\newcommand{\p}{\partial}
-\newcommand{\ee}{\varepsilon}
-\newcommand{\vp}{\varphi}
-\newcommand{\wt}{\widetilde}
-%
-%
-%
-%
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{prop}[theorem]{Proposition}
-\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{no}[theorem]{Notation}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{examp}{Example}[section]
-\newtheorem{exercise}[theorem]{Exercise}
-%
-%makes proof environment bold instead of italic
-%\makeatletter
-%\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-%{-3.25ex\@plus -1ex \@minus -.2ex}%
-%{1.5ex \@plus .2ex}%
-%{\normalfont\normalsize \bfseries}}
-%\makeatother
-%makes subsubsubsection bold instead of italic
-%
+\newtheorem {exercise}[theorem] {Exercise}
+
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
 \renewcommand{\l}{\lambda}
-%\renewcommand{\qed}{\qquad \qedsymbol}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\RR}{\mathcal{R}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\p}{\partial}
 \newcommand{\al}{\alpha}
 \newcommand{\ve}{q}
 \newcommand{\tg}{{tan}}
@@ -85,2360 +28,364 @@ urlcolor=blue,
 \newcommand{\ta}{{\tilde{a}}}
 \newcommand{\tb}{{\tilde{b}}}
 \newcommand{\tc}{{\tilde{c}}}
-\newcommand{\tS}{{\tilde{S}}}
-\newcommand{\tP}{{\tilde{P}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
 \newcommand{\tu}{{\tilde{u}}}
 \newcommand{\tw}{{\tilde{w}}}
 \newcommand{\tA}{{\tilde{A}}}
 \newcommand{\tX}{{\tilde{X}}}
 \newcommand{\tphi}{{\tilde{\phi}}}
-\synctex=1
-\frenchspacing %no extra space after periods
 \begin{document}
-\title{Well-Posedness for the Boussinesq equation}
-\author{Dan-Andrei Geba, Alexandrou Himonas, and David Karapetyan}
+\title{An ill-posedness result for the Boussinesq equation}
+
+\author{Dan-Andrei Geba, A. Alexandrou Himonas, and David Karapetyan}
+
 \address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
 \address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
-\date{\today}
-%
-%
-\subjclass[2000]{35B30, 35Q55, 35Q72}
-\keywords{local well-posedness; ill-posedness.}
+\date{}
+
+\begin{abstract}
+The aim of this paper is to present new ill-posedness results for the nonlinear ``good" Boussinesq equation, which improve upon the ones previously obtained in the literature. In particular, it is proved that the solution map is not continuous in Sobolev spaces $H^s$, for all $s<-7/4$.
+
+\end{abstract}
+
+\subjclass[2000]{35B30, 35Q55}
+\keywords{Boussinesq equation, well-posedness, ill-posedness.}
+
 \maketitle
-\tableofcontents
-%
-%
+
 \section{Introduction}
-%
-We consider the initial value problem (ivp) for the ``good'' Boussinesq
-equation 
-\begin{gather}
-  u_{tt} + u_{xxxx} + (u^2)_{xx} = 0, \quad x \in \rr \ \text{or} \
-  \ci, \ t \in \rr
-  \label{eqn:mb-2}
-  \\
-  u(x,0) = u_{0}(x), \quad \p_t u(x, 0) = u_1(x), 
-  \label{eqn:mb-init-data-2}
-  \\
-  \notag
-  (u_0, u_1) \in
-  H^{s}\times
-  H^{s-2}
-\end{gather}
-%
-%
-We shall work in the periodic case first, and later generalize our results to
-the non-periodic case. Writing the Boussinesq in equivalent integral form, we obtain 
-%
-\begin{equation}
-  \begin{split}
-    u(x,t)
-    & = \frac{1}{2\pi}\sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{i\gamma(n)t} + e^{-i\gamma(n)t}}{2} 
-    \\
-    & + \frac{1}{2 \pi}\sum_{n \in \zz} e^{inx}
-    \wh{u_{1}}(n)\frac{e^{i\gamma(n)t} - e^{-i\gamma(n)t}}{2 i \gamma(n)} 
-    \\
-    & + \frac{1}{4 i \pi}\sum_{n \in \zz} \frac{n^{2}}{\gamma(n)} e^{inx}
-    \int_{0}^{t}[e^{i\gamma(n)(t-t')}-e^{-i\gamma(n)(t-t')}]
-    \wh{u^{2}}(n, t') dt'
-  \end{split}
-  \label{eqn:integral-form}
-\end{equation}
-%
-%
-where $\gamma(n) \doteq \sqrt{n^{2} + n^{4}}$ and
-%
-%
-\begin{equation*}
-\begin{split}
-  \frac{e^{i\gamma(n)t} - e^{-i\gamma(n)t}}{2 i \gamma(n)} \vert_{n=0} \doteq t.
-\end{split}
-\end{equation*}
-%
-%
-Let $\psi(t)$ be a cutoff function symmetric about the 
-origin such that $\psi(t) = 1$ for $|t| \le 1$ and $\text{supp} \, \psi 
-= [-2, 2 ]$.
-Multiplying both sides of expression
-$\cref{eqn:integral-form}$ by $\psi(t)$, rearranging terms as in the work of Bourgain \cite{Bourgain-Fourier-transfo}, and neglecting constants, we obtain
-%
-%
-%
-%
-%
-\begin{align}
-  & u(x,t)
-  \label{main1-rel-term-0}
-  \\
-  \label{main1-rel-term-1}
-  & = \psi(t) \sum_{n \in \zz} e^{inx} \wh{u_{0}}(n) \frac{e^{i\gamma(n)t} + e^{-i\gamma(n)t}}{2} 
-  \\
-  \label{main1-rel-term-2}
-  & + \psi(t) \sum_{n \in \zz} e^{inx}
-  \wh{u_{1}}(n)\frac{e^{i\gamma(n)t} - e^{-i\gamma(n)t}}{2 i \gamma(n)} 
-  \\
-  \label{main1-rel-term-3}
-  & +  \psi(t)\sum_{a = \pm 1} \sum_{n\in \zz} \frac{n^{2}}{\gamma(n)}\int_\rr e^{ixn}  
-  e^{it \tau} \frac{1 - \psi(\tau -  a\gamma(n)) 
-}{\tau -  a\gamma(n)} \wh{w}(n, \tau) \ d \tau
-  \\
-  \label{main1-rel-term-4}
-  & + \psi(t) \sum_{a = \pm 1} \sum_{n\in \zz} \frac{n^{2}}{\gamma(n)}\int_\rr e^{i(xn + 
-  t a\gamma(n))}
-  \frac{1- \psi(\tau -  a\gamma(n))}{\tau -  a\gamma(n)} \wh{w}(n, \tau) \ d \tau
-  \\
-  \label{main1-rel-term-4.5}
-  & +  \psi(t) \sum_{a = \pm 1}  \sum_{k \ge 1} \frac{i^k t^k}{k!}
-  \sum_{n \in \zz} \frac{n^{2}}{\gamma(n)}\int_\rr e^{i(xn + t a\gamma(n) )}
-  \psi(\tau -  a\gamma(n)) (\tau -  a\gamma(n))^{k-1} \wh{w}(n, \tau)
-  \\
-  \label{main1-rel-term-5}
-  & \doteq Tu, \quad T=T_{u_0, u_1, \psi}.
-\end{align}
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-We now introduce the following spaces. 
-%
-%
-\begin{definition}
-  Let $\mathcal{Y}$ be the space of functions $F(\cdot)$ such that
-  \begin{enumerate}[(I)]
-   \item{$F: \ci \times \rr \to \cc$}.
-   \item{$F(x, \cdot) \in \mathcal{S}(\rr)$ for each $x \in \ci$}.
-   \item{$F(\cdot, t) \in C^{\infty}(\ci)$for each $t \in \rr$}.
-  \end{enumerate}
-  For $s, b \in \rr$, $X_{s,b}$ and $\dot{X}_{s,b}$ denote the completion of $\mathcal{Y}$ with
-  respect to the norms
-  %
-  %
-  \begin{equation}
-  \begin{split}
-    \|F\|_{X_{s,b}} = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
-    (1 + ||\tau| - \gamma(n) |)^{2b} \wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}
-  \end{split}
-  \label{eqn:bous-norm}
-  \end{equation}
-  %
-    %
-  and 
-  \begin{equation*}
-  \begin{split}
-    \|F\|_{\dot{X}_{s,b}} = \left( \sum_{n \in \zzdot} (1 + |n|)^{2s} \int_{\rr}
-    (1 + ||\tau| - \gamma(n) |)^{2b} \wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
-  \end{split}
-  \end{equation*}
-\end{definition}
-%
-\begin{remark}
-  Observe that $X_{s,b} \subset C(\rr, H^{s})$ continuously for $b>1/2$. Furthermore, the norm $\| \cdot \|_{X_{s,b}}$ is equivalent to
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \| F \|_{\mathcal{X}_{s,b}}
-    = \left( \sum_{n \in \zz} (1 + |n|)^{2s} \int_{\rr}
-    (1 + ||\tau| - n^{2} |)^{2b} \wh{F}(n, \tau)|^{2} d \tau\right)^{1/2}.
-  \end{split}
-  \end{equation*}
-  %
-  %
-  We shall use the norms $\| \cdot \|_{X_{s,b}}$ and $\| \cdot \|_{\mathcal{X}_{s,b}}$ interchangeably. More precisely, we shall use $\| \cdot \|_{X_{s,b}}$ to reduce the problem of well-posedness to proving a crucial bilinear estimate. The proof of the bilinear estimate will utilize the norm $\mathcal{X}_{s,b}$, which is easier to work with (i.e. $ | | \tau | - n^{2} |$ does not have any square roots in it, which will allow us to obtain some nice cancellations in the proof of the bilinear estimate.)   
-\end{remark}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%               Embedding 
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-\begin{definition}
-  Equip $H^{s} \times H^{s-2}$ with the 
-  topology defined by the norm $\|(f_0, f_1)\|_{H^{s} \times H^{s-2}}
-  = \|f_0\|_{H^{s}} + \|f_1\|_{H^{s-2}}$.
-   We say that the Boussinesq ivp
-  \cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} is
-	\emph{locally well posed} for small data in
-  $H^s \times H^{s-2}$ if 
-	\begin{enumerate}
-    \item Given $(u_{0}, u_{1}) \in H^{s} \times H^{s-2}$
-      sufficiently small, the Cauchy problem
-      $\psi u = Tu$ has a solution $u \in C([-1,
-      1], H^s) \cap X_{s}$, where $X_{s} \doteq X_{s,1/2}$. 
-    \item The solution is unique in $C([-1, 1], H^{s}) \cap
-      X_{s}$.
-    \item
-      The data to solution map $(u_0, u_{1}) \mapsto u(x,t)$ is continuous. That
-      is, given a sequence $\{(u_{0,n}, u_{1,n} ) \} \in H^{s} \times H^{s-2}$
-      such that $$\|(u_{0}, u_{1})
-      - (u_{0,n}, v_{1,n}) \|_{H^{s} \times
-      H^{s-2}} \to 0,$$ with corresponding solutions $u_{n} \in
-      C([-\delta_{n},
-      \delta_{n}])$ and $u \in C([-\delta_{\infty}, \delta_{\infty}])$
-      then there exists $0 < \delta \le \inf\left\{
-      \delta_{n}, \delta_{\infty} \right\}$ such that $\psi u_{n} =
-      Tu_{n}, \psi u = Tu$ and 
-      $$\sup_{t \in [-\delta, \delta]}
-      \|u(\cdot, t) - u_{n}(\cdot, t) \|_{H^s} \to 0.$$
-  \end{enumerate}
-\end{definition}
-%
 
-%
-We are now prepared to state the main result of this paper.
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%	Main Result				
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{theorem}
-\label{thm:main}
-The initial value problem 
-\cref{eqn:mb-2}-\cref{eqn:mb-init-data-2} is locally well-posed for small data in $H^s$ for
-$s >
--3/4$ in the periodic case.
-%
-%
-\end{theorem} 
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Proof of Thm
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{The Periodic Case} 
-\label{sec:periodic}
-%
-What we are interested in is estimating the $X_{s}$ norm of
-\cref{main1-rel-term-1}-\cref{main1-rel-term-5} and reducing the construction of a Picard iteration to proving a bilinear estimate. Obtaining well-posedness from the Picard iteration is standard, and so we shall omit it.
-%
-%
-%
-%
-%
-%
-%
-%
-%
-\subsubsection{Estimate for \cref{main1-rel-term-1}}
-\label{ssec:est-init-term-1}
-We have
-%
-%
-\begin{equation*}
-  \begin{split}
-    \wh{\cref{main1-rel-term-1}}
-    = \frac{\wh{\psi}(\tau -
-    n^{2})\wh{u_{0}}(n)}{2} + \frac{\wh{\psi}(\tau +
-    n^{2})\wh{u_{0}}(n)}{2}.
-  \end{split}
-\end{equation*}
-%
-%
-Hence, substituting and applying the inequality 
-%
-%
+In this article, we consider the Cauchy problem associated with the  nonlinear ``good" Boussinesq equation, i.e.,
 \begin{equation}
-  \label{square-ineq}
-\begin{split}
-(a + b)^{2} \le 4(a^{2} +
-b^{2}),\ a, b \in \rr
-\end{split}
-\end{equation}
-%
-%
-gives
-%
-%
-\begin{align}
-  & \| \cref{main1-rel-term-1} \|_{X_{s}}^{2} 
-    \notag
-    \\
-    & = \sum_{n \in \zz}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right) | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{0}(n)}}{2} +
-    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{0}}(n)}{2} |^{2} d \tau
-    \notag
-    \\
-    & \le \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
-    \label{u-0-norm-comp-1}
-    \\
-    & + \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau.
-    \label{u-0-norm-comp-3}
-\end{align}
-%
-%
-Since 
-\begin{equation}
-  \begin{split}
-    | | \tau | - n^{2} | \le \min\left\{| \tau - n^{2} |, | \tau + n^{2} |
-    \right\},
-  \end{split}
-  \label{eqn:norm-key-ineq}
-\end{equation}
-%
-we bound \cref{u-0-norm-comp-1} by
-%
-%
-\begin{equation}
-  \label{uuy}
-  \begin{split}
-    & \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
-    \\
-    & = \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
-    \right) d \tau
-    \\
-    & =c_{\psi} \| u_{0} \|^{2}.
-\end{split}
-\end{equation}
-%
-%
-%
-%
-%
-%
-%
-%
-The
-term \cref{u-0-norm-comp-3} is bounded in similar fashion. Therefore, 
-$\|\cref{main1-rel-term-1}\|_{X_{s}}^{2} \le c_{\psi} 
-\|u_{0}\|_{H^s}^2$. Taking square roots of both sides gives
-%
-%
-\begin{equation}
-  \begin{split}
-    \|\cref{main1-rel-term-1}\|_{X_{s}} \le c_{\psi} 
-    \|u_{0}\|_{H^s}.
-  \end{split}
-  \label{eqn:u-0-fin-est}
-\end{equation}
-%
-%
-%
-\subsubsection{Estimate for \cref{main1-rel-term-2}}
-\label{ssec:est-init-term-2}
-We have
-%
-%
-\begin{equation*}
-  \begin{split}
-    \wh{\psi(t)S_{t}u_{1}}^{x}(n, t)
-    & = \psi(t) \wh{u_{1}}(n) \frac{e^{in^2 t} - e^{-in^{2}t}}{2i n^{2}}
-    \\
-    & = \frac{\psi(t) \wh{u_{1}}(n)e^{in^{2}t}}{2i n^{2}} - \frac{\psi(t)
-    \wh{u_{1}}(n)e^{-in^{2}t}}{2i n^{2}}  
-  \end{split}
-\end{equation*}
-%
-%
-and
-%
-%
-\begin{equation*}
-  \begin{split}
-    \wh{\psi(t) S_{t}u_{1}}(n, \tau) = \frac{\wh{\psi}(\tau -
-    n^{2})\wh{u_{1}}(n)}{2i n^{2}} - \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i
-    n^{2}}.
-  \end{split}
-\end{equation*}
-%
-Note that 
-%
-\begin{equation*}
-  \begin{split}
-    \wh{\psi(t)S_{t}u_{1}}^{x}(0, t)
-    & = \psi(t) \wh{u_{1}}(0) t
-      \end{split}
-\end{equation*}
-and so 
-%
-%
-\begin{equation*}
-  \begin{split}
-    \wh{\psi(t) S_{t}u_{1}}(0, \tau) = i \frac{d}{d \tau} \wh{\psi}(\tau)
-    \wh{u_{1}}(0).
-  \end{split}
-\end{equation*}
-%
-Hence, substituting and applying \cref{square-ineq}, we have
-%
-%
-\begin{equation}
-  \begin{split}
-    \| \cref{main1-rel-term-2} \|_{X_{s}}^{2} 
-    & = \sum_{n \in \zz}(1 + |n|)^{2s} \int_{\rr}\left( 1 + | | \tau
-    |-n^{2} | \right) | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
-    n^{2}} -
-    \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
-    \\
-    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) | i \frac{d}{d \tau}
-    \wh{\psi}(\tau)|^{2} d \tau
-    \\
-    & \le \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
-    \\
-    & + \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
-    \\
-    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d}{d \tau}
-    \wh{\psi}(\tau)|^2 d \tau.
-\end{split}
-\label{u-1-norm-comp-pre}
-\end{equation}
-%
-%
-Applying the inequality
-%
-%
-\begin{equation*}
-\begin{split}
-  \frac{(1 + |n|)^{2s}}{n^{4}} \le \frac{(1 + |n|)^{2s}}{\frac{1}{16}(1 +
-  |n|)^{4}} = 16 (1 + | n |)^{2(s-2)},  \quad s \in \rr, \quad n \ge 1
-\end{split}
-\end{equation*}
-%
-to \cref{u-1-norm-comp-pre} gives
-%
-\begin{equation}
-  \begin{split}
-    \|  \cref{main1-rel-term-2}\|_{X_{s}}^{2} 
-    & \lesssim \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
-    \\
-    & + \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 + | | \tau | -
-    n^{2} | \right) d \tau
-    \\
-    & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |)^{2} |\frac{d}{d \tau}
-    \wh{\psi}(\tau)|^2 d \tau.
-\end{split}
-\label{u-1-norm-comp}
-\end{equation}
-%
-%
-Applying \cref{eqn:norm-key-ineq},
-we bound the first term of
-\cref{u-1-norm-comp} by
-%
-%
-%
-\begin{equation*}
-  \begin{split}
-    & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 +  | \tau  -
-    n^{2} | \right) d \tau
-    \\
-    & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
-    \right) d \tau
-    \\
-    & \le c_{\psi}  \| u_{1} \|_{H^{s-2}}^{2}. 
-  \end{split}
-\end{equation*}
-%
-%
-Applying
-\cref{eqn:norm-key-ineq} again, the
-second term of \cref{u-1-norm-comp} is bounded by
-\begin{equation*}
-  \begin{split}
-    & \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau + n^{2}) |^{2}\left( 1 +  | \tau  +
-    n^{2} | \right) d \tau
-    \\
-    & = \sum_{n \in \dot{\zz}} \left( 1 + |n| \right)^{2(s-2)} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr} | \wh{\psi}(\tau') |^{2}\left( 1 +  | \tau'|
-    \right) d \tau
-    \\
-    & \le c_{\psi} \| u_{1} \|_{H^{s-2}}^{2}
-  \end{split}
-\end{equation*}
-while the third term is bounded by  
-%
-%
-\begin{equation*}
-\begin{split}
-  c_{\psi}  \| u_{1} \|_{H^{s-2}}^{2}.
-\end{split}
-\end{equation*}
-%
-%
-Therefore, 
-$\|\cref{main1-rel-term-2}|_{X_{s}}^{2} \le c_{\psi} 
-\|u_{1}\|_{H^{s-2}}^2$ and
-taking square roots of both sides gives
-%
-%
-\begin{equation}
-  \label{u-1-est}
-  \begin{split}
-    \|\cref{main1-rel-term-2}|_{X_{s}} \le c_{\psi} 
-    \|u_{1}\|_{H^{s-2}}.
-  \end{split}
-\end{equation}
-%
-%
-%
-%
-\subsubsection{Estimate for \cref{main1-rel-term-3}.}
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%			Schwartz Multiplier	
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-We now need the following.
-%
-\begin{lemma}
-\label{lem:schwartz-mult}
-For $s\in \rr$, we have
-%
-%
-\begin{equation}
-	\label{schwartz-mult}
-	\begin{split}
-    \|\psi f \|_{X_{s}} \le c_{\psi}  \|f \|_{X_{s}}.
-	\end{split}
-\end{equation}
-%
-%
-\end{lemma}
-%
-Hence
-%
-%
-\begin{equation}
-  \label{yu}
-	\begin{split}
-		\|\cref{main1-rel-term-3}\|_{X_{s}} 
-    & \le c_{\psi} 
-    \sum_{a = \pm 1} \| \sum_{n \in \zz}  e^{ixn} \frac{n^{2}}{\gamma(n)}\int_\rr 
-		e^{it \tau} \frac{1 - a\psi (\tau - a\gamma(n) ) 
-}{\tau - a\gamma(n)} \wh{w}(n, \tau) \ 
-		d \tau\|_{X_{s}}.
-			\end{split}
-\end{equation}
-%
-Applying the fact that 
-%
-%
-\begin{equation*}
-\begin{split}
-\frac{n^{2}}{\gamma(n)} \sim 
-\begin{cases}
-  & 0, \quad n=0, \\
-  & 1, \quad n \neq 0
-\end{cases}
-\end{split}
-\end{equation*}
-%
-%
-we see that
-%
-%
-\begin{equation}
-\label{main-int2-est-X-s-part}
-\begin{split}
-  & \| \sum_{n \in \zz} e^{ixn} \frac{n^{2}}{\gamma(n)}\int_\rr 
-		e^{it \tau} \frac{1 - a\psi (\tau - a\gamma(n) ) 
-  }{\tau - a\gamma(n)} \wh{w}(n, \tau) \ 
-		d \tau\|_{X_{s}}
-		\\
-    & \sim \sum_{a = \pm 1}\left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} \int_\rr
-    (1 + |  |\tau| - \gamma(n)|) \left | \frac{1 - a\psi(\tau - an^{2 
-})}{\tau - a\gamma(n)} 
-     \wh{w}(n, \tau) \right |^2 \ d 
-		\tau \right)^{1/2}
-		\\
-    & \le \sum_{a = \pm 1}
-    \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} \int_{| \tau - a\gamma(n)| \ge 1}
-    (1 + | |\tau| - \gamma(n)|) \frac{|  \wh{w}(n, \tau)|^2}{|\tau - a\gamma(n)|^2} 
-		\ d 
-		\tau \right)^{1/2}
-  \end{split}
-\end{equation}
-Applying the inequality
-\begin{equation}
-	\label{one-plus-ineq}
-	\begin{split}
-		& \frac{1}{|j|} \le \frac{2}{1 + |j|} , 
-		\qquad |j| \ge 1
-   	\end{split}
-\end{equation}
-and \cref{eqn:norm-key-ineq} we bound this by
-\begin{equation}
-  \label{pre-bi-est}
-  \begin{split}
-		& 4 \left( \sum_{n \in 
-		\zzdot} \left (1 + |n| \right )^{2s} \int_\rr (1 +  || \tau | - n^{2}|)^{-1} | \wh{w}(n, \tau) |^2 
-		 \ d \tau 
-		\right)^{1/2}.
-\end{split}
-\end{equation}
-%
-%
-%
-We now need the following bilinear
-estimate, whose proof we leave for later.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				Proposition
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{proposition}[Theorem 1.1 in~\cite{Farah:2009uq}]
-\label{prop:bilinear-est}
-	%
-	%
-	If $s > -a$ for fixed $a \ge 0$, then 
-	\begin{equation}
-	  \| w_{fg} \|_{\dot{X}_{s,-a}}
-		    \le c_{a} \|f\|_{X_{s}} \|g\|_{X_{s}}
-	\end{equation}
-  where $w_{fg}(x,t)$ = $fg (x,t)$.
-%
-%
-%
-%
-\end{proposition}
-%
-Applying \cref{prop:bilinear-est} to \eqref{pre-bi-est},  we obtain the bound 
-%
-%
-%
-%
-\begin{equation*}
-\begin{split}
-c_{\psi} 
-    \|u\|^{2}_{X_{s}}
-\end{split}
-\end{equation*}
-%
-%
-which we apply to \cref{yu} to obtain the estimate
-%
-\begin{equation}
-	\begin{split}
-    \|\cref{main1-rel-term-3}\|_{X_{s}} \le c_{\psi} 
-    \|u\|^{2}_{X_{s}}.
-	\end{split}
-\end{equation}
-%
-%
-%
-%
-%
-\subsubsection{Estimate for \cref{main1-rel-term-4}.}
-Letting $$f(x,t) = \sum_{a = \pm 1} \psi(t) \sum_{n \in \zz} e^{i\left( xn +
-at\gamma(n) \right)} \frac{n^{2}}{\gamma(n)} 
-\int_\rr \frac{1 - \psi\left( \lambda - a\gamma(n) \right)}{\lambda - a\gamma(n)} 
-\wh{w} \left( n, \lambda \right) \ d \lambda,$$ we have
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \wh{f^x}(n, t) = 
-		\frac{n^{2}}{\gamma(n)}
-		\psi(t) e^{ait\gamma(n)} \int_\rr
-		\frac{1 - \psi\left( \lambda - a\gamma(n) \right)}{\lambda - a\gamma(n)} 
-		\wh{w}(n, \lambda) \ d \lambda
-	\end{split}
-\end{equation*}
-and
-\begin{equation*}
-	\begin{split}
-		 \wh{f}\left( n, \tau \right)
-		 & = \frac{n^{2}}{\gamma(n)}\int_\rr e^{-it\left( \tau - a\gamma(n) 
-		\right)} \psi(t) \int_\rr \frac{1 - a\psi\left( 
-		\lambda - a\gamma(n) 
-		\right)}{\lambda - a\gamma(n)} \wh{w}(n, \lambda) \ d \lambda d \tau
-		\\
-    & = \frac{n^{2}}{\gamma(n)}\wh{\psi}\left( \tau - a\gamma(n) \right) \int_\rr 
-		\frac{1 - a\psi\left( 
-		\lambda - a\gamma(n) 
-		\right)}{\lambda - a\gamma(n)} \wh{w}(n, \lambda) \ d \lambda.
-	\end{split}
-\end{equation*}
-Therefore,
-%
-%
-\begin{equation}
-  \label{iu}
-	\begin{split}
-		& \| \cref{main1-rel-term-4} \|_{X_{s}} 
-		\\
-    & \lesssim 
-    \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right)^{2s}
-    \int_\rr \left( 1 + | |\tau| - \gamma(n) \right ) | | \wh{\psi}\left(
-    \tau - a\gamma(n) \right) |^2 \ d \tau \right.
-		\\
-		& \times \left . |
-		\int_\rr \frac{1 - \psi\left( \lambda - a\gamma(n) \right)}{\lambda -
-		a\gamma(n)} \wh{w}(n, \lambda) \ d \lambda |^2  \right)^{1/2}.
-  \end{split}
-\end{equation}
-Applying \cref{eqn:norm-key-ineq}, we have the bound
-%
-%
-\begin{equation*}
-\begin{split}
-& \sum_{a = \pm 1} 
-\int_\rr \left( 1 + | |\tau| - \gamma(n) \right ) | | \wh{\psi}\left(
-    \tau - a\gamma(n) \right) |^2 \ d \tau 
-    \\
-    & \le  \sum_{a = \pm 1} 
-    \int_\rr \left( 1 + |\tau - a\gamma(n) | \right ) | | \wh{\psi}\left(
-    \tau - a\gamma(n) \right) |^2 \ d \tau 
-    \\
-    & = c_{\psi}.
-\end{split}
-\end{equation*}
-%
-Hence, the right hand side of \cref{iu} is bounded by
-%
-\begin{equation}
-  \begin{split}
-    & c_{\psi}  \sum_{a = \pm 1}\left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | \int_\rr
-		\frac{1 - \psi\left( \lambda - a\gamma(n) \right)}{\lambda - a\gamma(n)}
-		\wh{w}(n, \lambda) \ d\lambda |^2 \right)^{1/2}
-		\\
-    & \simeq  \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
-		\frac{1 - \psi\left( \lambda - a\gamma(n) \right)}{|\lambda - a\gamma(n)|}
-		|\wh{w}(n, \lambda) | \ d\lambda \right )^2 \right)^{1/2}
-		\\
-    & \le \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_{| \lambda - 
-		a\gamma(n) | \ge 1}
-		\frac{|\wh{w}(n, \lambda) |}{|\lambda - a\gamma(n)|}
-		\ d\lambda \right )^2 \right)^{1/2}.
-  \end{split}
-\end{equation}
-Applying \cref{one-plus-ineq} then \cref{eqn:norm-key-ineq} we bound this by
-\begin{equation}
-  \label{fh}
-\begin{split}
-  4  \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
-    \frac{|\wh{w}(n, \lambda)|}{1 + | |\lambda| - \gamma(n)|}
-    \ d\lambda \right )^2 \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-By duality, the term in parenthesis is equal to
-%
-%%
-\begin{equation*}
-	\begin{split}
-	  \sup_{\|a_{n}\|_{\dot{\ell}^{2}}=1}| \sum_{n \in \zzdot} \left (1 + |n| \right )^{s}
-		a_n \int_{\rr} \frac{|\wh{w}(n, \lambda)|}{1 
-		+ | |\lambda| - \gamma(n) |} \ d \lambda |
-	\end{split}
-\end{equation*}
-%
-%%
-which by Cauchy-Schwartz is bounded by
-%
-%%
-\begin{equation}
-	\label{n1m}
-	\begin{split}
-	  &  \sup_{\|a_{n}\|_{\dot{\ell}^{2}}=1}| \sum_{n \in \zzdot} \left (1 + |n| \right )^{s} a_n
-		\int_{\rr}\frac{| \wh{w}(n, \lambda) |}{1 + | |\lambda| - \gamma(n) |} \ d \lambda |
-		\\
-		& \le \sup_{\|a_{n}\|_{\dot{\ell}^{2}}=1} \left( \sum_{n \in \zzdot} | a_{n} |^2\int_{\rr} \frac{1}{\left( 1 + | |\lambda| - \gamma(n) | \right)^{1 + \eta}} \ d \lambda  
-		\right)^{1/2} 
-		\left ( \sum_{n \in \zzdot}\int_{\rr} \left (1 + |n| \right )^{2s} (1 + | | \tau | - n^{2} |)^{\eta -1} \wh{w}(n, \lambda) 
-		|^2\ d \lambda 
-		\right)^{1/2}
-		\\
-  & \lesssim \|  w \|_{\dot{X}_{s, -(1- \eta)}}, \quad \eta > 0.
-\end{split}
-\end{equation}
-%
-%
-Hence, taking $\eta > 0$ arbitrarily small
-and applying the bilinear estimate, we conclude that 
-%
-%
-\begin{equation}
-  \label{main-int3-est}
-	\begin{split}
-    \|\cref{main1-rel-term-3}\|_{X_{s}} \le c_{\psi} 
-     \|u\|^{2}_{X_{s}}, \quad   s > -1/2.
-	\end{split}
-\end{equation}
-
-%
-%
-%
-\subsubsection{Estimate for \cref{main1-rel-term-5}.}
-Note that
-%
-%
-\begin{equation}
-	\label{1n}
-	\begin{split}
-    \cref{main1-rel-term-5} \simeq \sum_{a = \pm 1}\sum_{k \ge 1}
-		\frac{i^k}{k!}g_k(x,t)
-	\end{split}
-\end{equation}
-%
-%
-where 
-%
-%
-\begin{equation*}
-	\begin{split}
-	  & g_k(x,t) = t^k \psi(t) \sum_{n \in \zz} \frac{n^{2}}{\gamma(n)} e^{i\left( xn + ta \gamma(n)
-		\right)} h_k(n),
-		\\
-		& h_k(n) = \int_\rr \psi \left( \tau - a\gamma(n) \right) \cdot \left(
-		\tau - a\gamma(n) \right)^{k -1} \wh{w}(n, \tau) \ d \tau.
-	\end{split}
-\end{equation*}
-%
-%
-Hence
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{g_k^x}(n, t) = t^{k} \psi(t) e^{i t a\gamma(n)} \frac{n^{2}}{\gamma(n)}h_k(n)
-	\end{split}
-\end{equation*}
-%
-%
-which gives
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{g_k}(n, \tau)
-		& = \frac{n^{2}}{\gamma(n)}h_k(n) \int_\rr e^{-it\left( \tau - a\gamma(n) \right)}
-		t^{k}\psi(t) \ dt
-		\\
-		& = h_k(n) \wh{t^{k}\psi(t)} \left( \tau - a\gamma(n) \right).
-	\end{split}
-\end{equation*}
-%
-%
-Applying this to \cref{1n} and using Minkowski's inequality, we obtain
-%
-%
-\begin{equation}
-	\label{2n}
-	\begin{split}
-		& \|\cref{main1-rel-term-5}\|_{X_{s}} 
-    \\
-    & \lesssim \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}
-    \int_\rr \left( 1 + | |\tau| - a\gamma(n) | \right)^{2}
-    | \wh{\sum_{k \ge 1} \frac{i^k}{k!}g_k(x,t)} |^2 \ d \tau
-		\right)^{1/2}
-		\\
-		& \le \sum_{a = \pm 1}\sum_{k \ge 1} \frac{1}{k!}\left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}
-    \int_\rr \left( 1 + | |\tau| - a\gamma(n) | \right)^{2} | \wh{g_k}(n, \tau) |^2 \
-		d \tau \right)^{1/2}
-		\\
-		& = \sum_{a = \pm 1}\sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}
-    \int_\rr \left( 1 + | |\tau| - a\gamma(n) | \right)^{2} | h_k(n) \wh{t^k
-		\psi(t)} \left( \tau - a\gamma(n) \right) |^2 \ d \tau \right)^{1/2}
-		\\
-		& = \sum_{a = \pm 1}\sum_{k \ge 1} \frac{1}{k!} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} |
-    h_k(n) |^2 \int_\rr \left( 1 + | |\tau| - a\gamma(n) | \right)^{2} | \wh{t^k
-		\psi(t)} \left( \tau - a\gamma(n) \right) |^2 \ d \tau \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-%
-Applying \cref{eqn:norm-key-ineq} and the change
-of variable $\tau - a\gamma(n) = \tau'$
-gives
-%
-%
-\begin{equation}
-	\label{3n}
-	\begin{split}
-		& \int_\rr \left( 1 + | |\tau| - a\gamma(n) | \right)^{2} | \wh{t^{k}
-		\psi(t)}\left( \tau - a\gamma(n) \right) |^2 \ d \tau
-    \\
-    & = 2 
-    \int_\rr \left( 1 + |\tau'| \right)^{2} | \wh{t^k \psi(t)}(\tau') |^2 \
-		d \tau'
-		\\
-    & \lesssim
-    \int_\rr \left( 1 + |\tau'| \right)^{2} | \wh{t^k \psi(t)}(\tau')
-		|^2 \ d \tau'
-		\\
-    & \le \| t^{k} \psi \|_{H^{[b] +
-  1}}^{2}
-\end{split}
-\end{equation}
-%
-%
-where $[b]$ denotes the least integer of $b$. Note that
-%
-%
-\begin{equation}
-	\label{4n}
-	\begin{split}
-    & \|t^k \psi \|_{H^{[b] +1}(\rr)}
-		\\
-    & = \|t^k \psi\|_{L^2(\rr)} + \|\p_t (t^k \psi )
-    \|_{L^2(\rr)} 
-    \\
-    & + \| \p_{t}^{2} (t^{k} \psi) \|_{L^{2}(\rr)} + \cdots + \|
-    \p_{t}^{[b] + 1} (t^{k} \psi)\|_{L^{2}}
-    \\
-    & \le c_{\psi} + k c'_{\psi} + k (k -1) c_{\psi}'' + \cdots +
-    k(k-1) \cdots (k - [b]) c_{\psi}^{[b] + 1}
-    \\
-    & \lesssim c_{\psi} k(k-1) \cdots (k - [b]).
-	\end{split}
-\end{equation}
-%
-%
-Hence, applying \cref{3n} and \cref{4n} to \cref{2n}, we obtain
-%
-%%
-\begin{equation}
-	\label{5n}
-	\begin{split}
-		\|\cref{main1-rel-term-5} \|_{X_{s}}
-		& \lesssim c_{\psi} \sum_{a = \pm 1}
-    \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | h_k(n) |^2 
-		\right)^{1/2}
-		\\
-    & \le c_{\psi} \sum_{a = \pm 1} \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
-    \times \sup_{k \ge [b] + 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | 
-		h_k(n) |^2 \right)^{1/2}
-		\\
-    & = c_{\psi}  \sum_{a = \pm 1}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
-    \\
-    & \times \sup_{k \ge [b] + 1} 
-		\left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} |\int_\rr 
-		\psi\left( \tau - a\gamma(n) \right) \cdot \left( \tau - a\gamma(n) 
-    \right)^{k -1} \wh{w}(n, \tau) \ d \tau|^{2} \right)^{1/2}.
-    \end{split}
-\end{equation}
-%
-%%
-Recall that $0 \le \psi \le 1, \text{supp} \, \psi \subset [-2,2 ]$. 
-This implies $$| \psi\left( \tau - a\gamma(n) \right) \cdot \left( \tau - a\gamma(n)
-\right)^{k -1} | \le 2^{k-1} \chi_{| \tau - a\gamma(n) | \le 1}, \qquad k \ge 1.$$ Hence,
-we bound the right hand side of \cref{5n} by
-%
-%%
-\begin{equation*}
-	\begin{split}
-    & c_{\psi} \sum_{a = \pm 1}
-    \sum_{k \ge [b] +1} \frac{2^{k-1}}{(k-[b] - 1)!}
-    \times \left( \sum_{n \in \zzdot} (1 + | n |)^{2s}| 
-		\int_{| \tau - a\gamma(n)  |\le 1}  \wh{w}(n, \tau) \ d \tau |^2 
-		\right)^{1/2}
-    \\
-    & = \frac{e^{2}}{2^{[b]}} c_{\psi} \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} (1 + | n |)^{2s}| 
-		\int_{| \tau - a\gamma(n)  |\le 1}  \wh{w}(n, \tau) \ d \tau |^2 
-		\right)^{1/2}
-    \\
-    & \lesssim \sum_{a = \pm 1}
-\left[ \sum_{n \in \zzdot} (1 + | n |)^{2s}\left (  
-		\int_{| \tau - a\gamma(n)  |\le 1} | \wh{w}(n, \tau) | \ d \tau \right ) ^2 
-		\right]^{1/2}
-	\end{split}
-\end{equation*}
-%
-%%
-which by the inequality
-%
-%%
-\begin{equation*}
-	\begin{split}
-		1 \le 
-		\frac{2}{1 + | j |}, \qquad | j | \le 1
-	\end{split}
-\end{equation*}
-%
-%%
-and \cref{eqn:norm-key-ineq}
-is bounded by 
-%
-%%
-\begin{equation}
-\label{main-int4-est-X-s-part}
-	\begin{split}
-    & \left[ \sum_{n \in \zzdot} (1 + | n |)^{2s}\left( \int_\rr
-		\frac{|\wh{w}(n, \tau)|}{1 + | |\tau| - \gamma(n) |} \ d \tau \right ) ^2 
-		\right]^{1/2}.
-  \end{split}
-\end{equation}
-%
-%%
-Recalling the computations from \cref{fh} to \cref{main-int3-est}, we conclude
-that 
-%
-%
-\begin{equation}
-\label{main-int4-est}
-	\begin{split}
-    \|\cref{main1-rel-term-5}\|_{X_{s}} \le c_{\psi} 
-    \|u\|_{X_{s}}^{3}.
-	\end{split}
-\end{equation}
-%
-%
-Collecting estimates  
-\cref{main-int3-est}, and \cref{main-int4-est}, and recalling 
-\cref{main1-rel-term-2}-\cref{main1-rel-term-5}, we obtain
-the following.
-%
-%
-\begin{proposition}
-\label{prop:contraction}
-%
-For $s > -1/2$, we have
-%
-%%
-\begin{equation*}
-	\begin{split}
-    \|Tu\|_{X_{s}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
-    + \|u\|_{X_{s}}^2 
-		\right).
-	\end{split}
-\end{equation*}
-%
-%%
-\end{proposition}
-%
-%
-From here, setting up the contraction is standard. Hence, we have reduced the proof of well-posedness to the proof of the bilinear estimate.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Proof of Bilinear Estimate B4 Per
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Proof of \hyperref[prop:bilinear-est]{Periodic Bilinear Estimate}} 
-\label{sec:proof-bilin-est}
-By duality and the equivalence of the norms $\| \cdot \|_{X_{s}}$ and $\| \cdot \|_{\mathcal{X}_{s}}$, it suffices to show that for $s > -a$, 
-%
-%%
-\begin{equation}
-	\label{duality-est}
-	\begin{split}
-	|	\sum_{n \in \zzdot}  (1 + |n|)^{s}
-	\int_{\rr} \langle | \tau | - n^{2}  \rangle ^{-a}\phi(n, \tau) \wh{uv}(n, \tau) d \tau | \lesssim \|u\|_{\mathcal{X}_{s}}
-    \|v\|_{\mathcal{X}_{s}}
-    \|\phi \|_{L^{2}(\zzdot \times \rr)}.
-	\end{split}
-\end{equation}
-Note first that $|\wh{uv}(n, \tau) |  = | \wh{u} *  \wh{v} 
-(n, \tau)|$. From this it follows that
-%
-%
-\begin{equation}
-	\label{non-lin-rep}
-	\begin{split}
-		| \wh{uv}(n, \tau)|
-    & = | \sum_{n_{1}}  \int_{\tau_{1}}
-    \wh{u}\left( n_1,  \tau_1 \right) \wh{v}\left( n - n_1 , \tau - \tau_1   
-\right) d \tau_1 |
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}+(u^2)_{xx}\,=\,0, \qquad u=u(t,x): \mathbb{R}_+\times M \to \mathbb{C},\\
 \\
-& \le  \sum_{n_{1}}  \int_{\tau_{1}}
-    |\wh{u}\left( n_1,  \tau_1 \right)| |\wh{v}\left( n - n_1 , \tau - \tau_1   
-\right)| d \tau_1 
-\\
-& = \sum_{n_{1}} \int_{\tau_{1}} \frac{c_u\left( n_1, \tau_1 
-\right)}{\langle n_1 \rangle ^s \langle |\tau_1| - n_1^{2} | \rangle }
-\\
-& \times \frac{c_{v}\left( n - n_1, \tau - \tau_1 \right)}{\langle n -
-n_1 \rangle ^s\ \langle |\tau - \tau_1 | -  (n - n_1)^{2} \rangle}
-  \ d \tau_1 
-\end{split}
-\end{equation}
-%
-%
-where for clarity of notation we have introduced 
-%
-%
-%
-\begin{equation*}
-\begin{split}
-\langle k \rangle \doteq 1 + |k|
-\end{split}
-\end{equation*}
-%
-%
-and
-%
-\begin{equation*}
-	\begin{split}
-		c_h(n, \tau) =
-		\langle n \rangle ^s \langle |\tau| - n^{2} \rangle^{-a} | \wh{h}\left( n, \tau \right) |.
-	\end{split}
-\end{equation*}
-%
-%
-From our work above, it follows that 
-%
-%
-\begin{equation}
-	\label{convo-est-starting-pnt}
-	\begin{split}
-		 &  | \wh{uv}\left( 
-		n, \tau \right) |
-		\\
-		& \le  
-		\sum_{n_{1}} \int_{\tau_{1}} \frac{\langle n \rangle^{s}}{\langle n_1 \rangle^s
-    \langle n - n_1 \rangle^s} 
-    \times \frac{c_f(n_1, \tau_1)}{\langle |\tau_1| - n_1^{2} \rangle^{1/2}}
-		\\
-		& \times
-		\frac{c_g(n - n_1, \tau - \tau_1 )}{\langle |\tau - \tau_1| - (n - n_1)
-		\rangle^{1/2}}\ d \tau_1.
-	\end{split}
-\end{equation}
-%
-%
-Hence, 
-%
-%
-\begin{equation}
-  \label{pre-fubini-int-form}
-	\begin{split}
-    |\text{lhs of} \ \cref{duality-est}|
-    & \lesssim \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau)\langle | \tau | - n^{2} \rangle^{-a}  \langle n \rangle^s 
-  \sum_{n_{1}}
-  \int_{\tau_{1}} c_f(n_1, \tau_1)
-		c_g(n - n_1, \tau - \tau_1 )
-		\\
-    & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}|-n_{1}^{2} \rangle^{1/2}\langle | \tau -
-    \tau_{1}|-(n - n_{1})^{2}
-    \rangle^{1/2}} d \tau_1 d \tau.
-	\end{split}
-\end{equation}
-%
-%
-%
-Let $A \subset \rr^{2} \times \zzdot \times \zz$, and $\chi_{A}(\tau, \tau_{1}, n, n_{1})$
-be its
-characteristic function. Then by Cauchy-Schwartz in
-$\tau_{1}, \xi_{1}$
-\begin{equation*}
-	\begin{split}
-    & \sum_{n \in \zzdot} \int_{\tau}   \sum_{n_{1}}
-    \int_{\tau_{1}} \chi_{A}
-    \phi(n, \tau) \langle n \rangle^s \langle \tau - n^{2} \rangle^{-a}
-  c_f(n_1, \tau_1)
-		c_g(n - n_1, \tau - \tau_1 )
-		\\
-    & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}|-n_{1}^{2} \rangle\langle | \tau -
-    \tau_{1}|-(n - n_{1})^{2}
-    \rangle} d \tau_1 d \tau.
-	\end{split}
-\end{equation*}
-%
-is bounded by 
-%
-%
-\begin{equation}
-	\label{10g}
-	\begin{split}
-    & \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau) \langle n \rangle ^{s}
-    \langle | \tau | - n^{2} \rangle ^{-a}
-    \\
-    & \times \left( \sum_{n_{1}} \int_{\tau_{1}}
-    \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle |
-    \tau_{1} | - n_{1}^{2}\rangle^{2}  \langle | \tau - \tau_{1} | -
-    (n - n_{1})^{2} \rangle^{2}} d \tau_{1} \right)^{1/2}
-    \\
-    & \times \left( \sum_{n_{1}} \int_{\tau_{1}} c_{u}^{2}(n, \tau_{1})
-    c_{v}^{2}(n - n_{1}, \tau - \tau_{1}) d \tau_{1} \right)^{1/2} d \tau
-  \end{split}
-\end{equation}
-%
-%
-Applying Cauchy-Schwartz again, \cref{10g} is bounded by
-%
-%
-\begin{equation*}
-  \begin{split}
-    & \|\left( \sum_{n_{1}}\int_{\tau_{1}} c_{u}^{2}(n_1, \tau_1)
-  c_{v}^{2} (n - n_1, \tau - \tau_{1} ) d \tau_1  \right)^{1/2} \|_{L^{2}(\zzdot \times
-		\rr)}
-		\\
-    & \times  \|\phi(n, \tau)  \langle n
-    \rangle ^{s} \langle \tau - n^{2} \rangle ^{-a}
-		\\
-    & \times \left( \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1}
-    \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2}
-    \rangle^{2} \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^2(\zzdot \times \rr)}
-		\\
-    & = \|u\|_{X_{s}} \|v\|_{X_{s}} \label{holder-term}
-     \|\phi(n, \tau) \times \left(  \langle n
-     \rangle ^{2s} \langle |\tau| - n^{2} \rangle^{-2a}  \right .
-    \\
-    & \times \left . \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle
-n-n_{1} \rangle ^{2s}  \langle | \tau_{1}|-n_{1}^{2} \rangle^{2} \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^2(\zzdot \times \rr)}.
-  \end{split}
-\end{equation*}
-%
-Applying H{\"o}lder, we bound this by 
-%
-%
-\begin{equation}
-  \label{integral-bound-1st-form-per}
-	\begin{split}
-    & \|u\|_{X_{s}} \|v\|_{X_{s}} \| \phi \|_{L^{2}_{n, \tau}}
-    \|\bigg (  \langle n
-    \rangle ^{2s} \langle | \tau | - n^{2} \rangle ^{-2a}
-    \\
-    & \times \left. 
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle
-n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle^{2} \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle^{2}} d \tau_1 \right)^{1/2} \|_{L^\infty_{n \neq 0, \tau}}
-	\end{split}
-\end{equation}
-%
-%
-We return to the right hand side of \cref{pre-fubini-int-form}.
-We seek to bound
-\begin{equation*}
-\begin{split}
-  & \sum_{n \in \zzdot} \int_{\tau}  \sum_{n_{1}}
-  \int_{\tau_{1}} \chi_{A} \phi(n, \tau)
-    c_f(n_1, \tau_1)
-    c_g(n - n_1, \tau - \tau_1 ) \langle | \tau | - n^{2} \rangle ^{-a}
-		\\
-    & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-    n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}| - n_{1}^{2} \rangle
-    \langle |\tau - \tau_{1}|-(n - n_{1})^{2} \rangle } d \tau_1 d \tau 
-   \end{split}
-\end{equation*}
-in a different manner than before. First, we apply 
-Fubini, then Cauchy-Schwartz in $n_{1}, \tau_{1}$ to obtain the bound
-%
-%
-\begin{equation*}
-\begin{split}
-  & \left[ \sum_{n_{1}} \int_{\tau_{1}} c_{f}^{2}(n_{1}, \tau_{1}) d \tau_{1}
-  \right]^{1/2}
-  \\
-  & \times \left \{\sum_{n_{1}} \int_{\tau_{1}}   
- \left[
- \sum_{n \in \zzdot} \int_{\tau} \langle | \tau | - n^{2} \rangle ^{-a}
-   \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-   n - n_{1}\rangle ^{s}} \times \frac{\chi_{A} |\phi(n, \tau)| c_{g}(n -
-   n_{1}, \tau - \tau_{1})
-}{\langle | \tau_{1} | - n_{1}^{2} \rangle \langle | \tau -
-  \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
-  \right]^{2} d \tau_{1} \right \}^{1/2}
-  \\
-  & = \| f \|_{X_{s}}
-  \\
-  & \times \left \{\sum_{n_{1}} \int_{\tau_{1}}   
- \left[
- \sum_{n \in \zzdot} \int_{\tau} \langle | \tau | - n^{2} \rangle ^{-a}
-   \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
-   n - n_{1}\rangle ^{s}} \times \frac{\chi_{A}|\phi(n, \tau)| c_{g}(n -
-   n_{1}, \tau - \tau_{1}) 
-}{\langle | \tau_{1} | - n_{1}^{2} \rangle \langle | \tau -
-  \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
-  \right]^{2} d \tau_{1}  \right \}^{1/2}
-\end{split}
-\end{equation*}
-%
-Applying Cauchy-Schwartz in $\tau, n$, we bound the last line by 
-%
-%
-\begin{equation*}
-\begin{split}
-  & \left \{\sum_{n_{1}} \int_{\tau_{1}}   
-  \left [ \sum_{n \in \zzdot} \int_{\tau}
-  | \phi(n, \tau)|^{2} c_{g}^{2}(n - n_{1}, \tau - \tau_{1}) d \tau  
-    \right ] \right . 
-   \\
-   & \left. \times \left [ \sum_{n \in \zzdot} \int_{\tau} 
-\langle | \tau | - n^{2} \rangle ^{-2a}
-     \frac{\langle n \rangle
-   ^{2s}}{\langle n_{1} \rangle ^{2s} \langle n - n_{1}\rangle ^{2s}}
-   \times \frac{\chi_{A}}{\langle | \tau_{1} |
-   - n_{1}^{2} \rangle  \langle | \tau - \tau_{1} | - (n - n_{1}^{2})
-   \rangle} d \tau  \right ] \right \}^{1/2}d \tau_{1} 
-\end{split}
-\end{equation*}
-%
-%
-which by Holder is bounded by 
-%
-%
-%
-\begin{equation}
-  \label{integral-bound-2nd-form-per}
-\begin{split}
-  & \| \sum_{n \in \zzdot} \int_{\rr} 
-\langle | \tau | - n^{2} \rangle ^{-2a}
-  \frac{\langle n \rangle ^{2s}}{\langle n_{1} \rangle ^{2s} \langle
-  n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A}}{\langle | \tau_{1} | - n_{1}^{2} \rangle  \langle | \tau -
-  \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
-  \|_{L^{\infty}_{n_{1}, \tau_{1}}}^{1/2}
-  \\
-  & \times \|\phi\|_{L^{2}} \| g \|_{X_{s}}.
-\end{split}
-\end{equation}
-%
-%
-Now consider the family $\{A_{j}\}_{1}^{k}, A_{j} \subset \rr^{2} \times
-\zzdot \times \zz$ with
-$$\bigcup_{1}^{k} A_{j}= \rr^{2} \times
-\zzdot \times \zz.$$ From 
-\cref{integral-bound-2nd-form-per} and our preceding argumentation,
-we see that the proof of the bilinear estimate reduces to showing that
-either
-%%
-\begin{equation}
-  \label{key-sup-estimate-per-2}
-\begin{split}
-  & \| \frac{1}{\langle n_{1} \rangle ^{2s}
-  } \sum_{n \in \zzdot} \int_{\tau} 
-\langle | \tau | - n^{2} \rangle ^{-2a}
-  \frac{\langle n \rangle ^{2s}}{\langle
-    n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau_{1} | - n_{1}^{2}
-  \rangle  \langle | \tau -
-  \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
-  \|_{L^{\infty}_{n_{1}, \tau_{1}}}
-\end{split}
-\end{equation}
-%
-or
-%
-%
-%
-%
-\begin{equation}
-  \label{key-sup-estimate-per-1}
-  \begin{split}
-     \|  \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}}
-    \int_{\tau_{1}}\langle | \tau | - n^{2} \rangle ^{-2a} \frac{\chi_{A_{j}}}{\langle n_{1} \rangle ^{2s} \langle
-    n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle  \langle  |\tau -
-    \tau_{1} | -(n - n_{1})^{2}
-    \rangle} d \tau_1  \|_{L^\infty_{n \neq 0, \tau}} < \infty.
-  \end{split}
-\end{equation}
-%
-%
-%
-for each $j \in \left\{1,\dots,k \right\}$. 
-By the triangle inequality and the fact that 
-%
-%
-\begin{equation*}
-\begin{split}
-& | \tau | =
-\begin{cases}
-  - \tau, \quad & \tau < 0, 
-\\
-\tau, \quad & \tau > 0
-\end{cases}
-\end{split}
-\end{equation*}
-%
-%
-it follows that the proof of \cref{prop:bilinear-est} reduces to showing that
-for any $j$, either 
-%
-%
-\begin{equation}
-  \label{sup-est-gen-per-1}
-  \begin{split}
-    \| \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{j}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \sigma \rangle^{2a}   \langle \sigma_{1} \rangle \langle  \sigma_{2}
-  \rangle}
-    d \tau_1  \|_{L^{\infty}_{n \neq 0, \tau}} < \infty
-  \end{split}
-\end{equation}
-%
-%
-or 
-\begin{equation}
-  \label{sup-est-gen-per-2}
-\begin{split}
-  & \| \frac{1}{\langle n_{1} \rangle ^{2s}
-  } \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle
-    n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle \sigma \rangle^{2a}  \langle
-    \sigma_{1} \rangle  \langle \sigma_{2} \rangle} d \tau 
-  \|_{L^{\infty}_{n_{1}, \tau_{1}}} < \infty
-\end{split}
-\end{equation}
-
-%
-%
-%
-where we consider cases
-\begin{enumerate}[(I)]
-    \item $ \sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau -
-      \tau_1+(n - n_1)^2$,
-\label{it-1}
-    \item $ \sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1+(n - n_1)^2$,
-\label{it-2}
-    \item  $\sigma=\tau+n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1+(n - n_1)^2$,
-      \label{it-3}
-    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$,
-\label{it-4}
-    \item $\sigma=\tau+n^2,\quad \sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$,
-\label{it-5}
-    \item $\sigma=\tau-n^2,\quad \sigma_1=\tau_1-n_1^2,\quad \sigma_2=\tau - \tau_1-(n - n_1)^2$.
-\label{it-6}
-\end{enumerate}
-%
-%
-%
-\begin{framed}
-\begin{remark}
-Note that the cases $\sigma=\tau+n^2,\quad \sigma_1=\tau_1-n_1^2,\quad
-\sigma_2=\tau - \tau_1-(n - n_1)^2$ and $\sigma=\tau-n^2,\quad
-\sigma_1=\tau_1+n_1^2,\quad \sigma_2=\tau - \tau_1+(n - n_1)^2$ cannot occur, since
-$\tau_1< 0, \tau-\tau_1< 0$ implies $\tau<0$ and $\tau_1\geq 0, \tau-\tau_1\geq
-0$ implies $\tau\geq 0$. 
-\end{remark}
-\end{framed}
-%
-Observe that the transformation $(n, \tau, n_{1}, \tau_{1}) \mapsto -(n, \tau,
-n_{1}, \tau_{1})$ reduces \cref{it-3} to \cref{it-4}, \cref{it-2} to
-\cref{it-5}, and \cref{it-1} to \cref{it-6}. Furthermore, the change of
-variables $\tau_{2} = \tau - \tau_{1}, n_{2} = n - n_{1}$, and the
-transformation $(n, \tau, n_{2}, \tau_{2}) \mapsto - (n, \tau, n_{2},
-\tau_{2})$ reduces \cref{it-5} to \cref{it-4}. Since $L^{2}$ is invariant
-under change of variables and reflections, we may without loss of generality
-restrict our attention to cases \cref{it-4} and \cref{it-6}.
- \subsubsection{Case \cref{it-6}} 
-\label{ssec:case-it-6}
-Let 
-%
-%
-\begin{align*}
-  A_1&=\{(n, n_1, \tau, \tau_1)\in A: n = n_{1},  n_{1} \neq 0 \},\\
-  A_2&=\{(n, n_1, \tau, \tau_1)\in A: n_1=0, n \neq n_{1} \},\\
-A_3&=\{(n, n_1, \tau, \tau_1)\in A: n \neq 0, n_1 \neq 0 \ \text{and} \ n_1 \neq n \}.
-\end{align*} 
-%
-%
-%
-Following Ginibre, Tsutsumi, Velo~\cite{Ginibre:1997fk}, Kenig, Ponce, Vega~\cite{Kenig:1996aa}, and others,
-we now need the following Calculus lemma, whose proof is provided in the
-appendix.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				 Calculus Lemma
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}
-	\label{lem:calc}
- %
- Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p, q, p+q-1
- \right\}$. Then 
- %
- \begin{enumerate}[(I)]
-   \item
-For $\alpha=\beta \ \text{or} \ p \neq 1 \ \text{or} \ q \neq 1$
- \begin{equation*}
-\begin{split}
-  & \int_{\rr} \frac{1}{\langle x - \alpha \rangle ^{p} \langle x -
-  \beta \rangle
-  ^{q}} d x
-  \le \frac{c_{p,q}}{\langle \alpha - \beta \rangle ^{r}}, 
-  \end{split}
-\end{equation*}
-  \item
-    \begin{equation*}
-  \int_{\rr} \frac{1}{\langle x - \alpha \rangle  \langle x - \beta
-  \rangle} d x
-  \le  \frac{4 \log \langle \alpha - \beta \rangle}{\langle \alpha - \beta
-  \rangle}, \quad \alpha \neq \beta.
-\end{equation*}
-\end{enumerate}
-\end{lemma}
-  %
-  %
-  %
-%
-%
-%
-%
-%
-%
-Applying \cref{lem:calc}, we now bound 
-\begin{equation*}
-  \begin{split}
-    & 
-    \sum_{n \in \zzdot} \int_{\tau} \frac{\chi_{A_{1}}\langle n \rangle ^{2s} }{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle \tau - n^{2} \rangle^{2a} 
-    \langle \tau_{1} - n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle}
-    d \tau 
-    \\
-    & \le 
-    \int_{\tau} \frac{1}{\langle \tau -
-      n_{1}^{2} \rangle \langle
-  \tau - \tau_{1}\rangle}d \tau
-  \\
-  & \lesssim 
-  \langle \tau_{1} - n_{1}^{2} \rangle ^{-1} 
-  \\
-  & < \infty
-\end{split}
-\end{equation*}
-%
-uniformly in $\tau_{1}, n_{1}$. 
-%
-Similarly, we bound
-%
-%
-\begin{equation}
-\begin{split}
-  & \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A_{2}}}{\langle n_{1} \rangle ^{2s}
-    \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau - n^{2} \rangle^{2a} 
-    \langle \tau_{1} - n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle}
-    d \tau_1 
-    \\
-  & \le 
-  \int_{\tau_{1}} \frac{1}{\langle \tau_{1} \rangle  \langle \tau -
-  \tau_{1} - n^{2} \rangle}
-d \tau_1 
-\\
-  & \lesssim   \langle \tau - n^{2} \rangle ^{-1} 
-  \\
-  & < \infty.
-	\end{split}
-\end{equation}
-%
-
-We now observe that
-%
-%
-\begin{equation*}
-\begin{split}
-  | \tau_{1} - n_{1}^{2} + \tau - \tau_{1} - (n - n_{1})^{2} - (\tau - n^{2}) | = 2| n_{1} || n - n_{1} |
-\end{split}
-\end{equation*}
-%
-%
-and so by the pigeonhole principle we have $\cup_{1 \le j \le 3} A_{3,j} = A_{3}$, where 
-\begin{align*}
-  A_{3,1}&=\{(n, n_1, \tau, \tau_1)\in A_3: |\tau-n^{2}|\ge \frac{2}{3} |n_{1}|| n - n_{1} |\},\\
-  A_{3,2}&=\{(n, n_1, \tau, \tau_1)\in A_3: |\tau_{1}-n_{1}^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}\\
-  A_{3,3}&=\{(n, n_1, \tau, \tau_1)\in A_3: |\tau - \tau_{1}-(n - n_{1})^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}.
-\end{align*} 
-%
-%
-Hence, we obtain
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-\begin{equation}
-  \label{region-4-1}
-\begin{split}
-  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle^{2a} \langle
-      \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-  \\
-  & = 
-  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle^{2a \pm \ee} \langle
-      \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-\\
-&  \lesssim_{\ee} \sum_{n \in \zzdot} \frac{\langle n - n_{1} \rangle ^{-2s-2a + \ee} \langle n_{1} \rangle ^{-2s-2a + \ee}}{\langle
-    n\rangle ^{-2s}}
-      \end{split}
-\end{equation}
-%
-uniformly in $\tau$. We now need the following.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				key trick
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\begin{lemma}
-  For integers $n, n_{1} \neq 0$ and $0 < \ee < 1$.
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    | n - n_{1} | \lesssim | n |^{1 + \ee} | n_{1} |^{1-\ee}
-  \end{split}
-  \end{equation*}
-  %
-  %
-  \label{lem:key-trick}
-\end{lemma}
-%
-%
-%
-%
-%
-%
-%
-Adopting the notation
-  \begin{equation*}
-  \begin{split}
-  \gamma(s) = 
-  \begin{cases} 0, \quad & s \ge 0
-    \\
-    4|s|, \quad & s < 0
-  \end{cases}
-\end{split}
-  \end{equation*}
-  %
-  and applying \cref{lem:calc} and \cref{lem:key-trick},
-  we see that for $s \ge -a + \ee$, we can bound \eqref{region-4-1} by
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-2 -\ee}}{\langle n \rangle^{1 + \ee}} < \infty, \quad s \ge -a + \ee
-  \end{split}
-  \end{equation*}
-  %
-  for $0 < 1 < \ee$, uniformly in $n_{1}$.
-  %
-  For region $A_{3,2}$, we apply \cref{lem:calc} and \cref{lem:key-trick} to obtain
-  \begin{equation}
-\begin{split}
-  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle^{2a} \langle
-      \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-      \\
-  &  \lesssim \sum_{n \in \zzdot} \frac{\langle n - n_{1} \rangle ^{-2s-1} \langle n_{1} \rangle ^{-2s-1}}{\langle
-    n\rangle ^{-2s}}
-      \end{split}
-\end{equation}
-%
-uniformly in $n_{1}$, $\tau_{1}$. The remainder of the argument is analogous to that of region $A_{3,1}$. The analysis of region $A_{3,3}$ is subsumed by that of $A_{3,2}$, thanks to the symmetry of the convolution.
-  %
-  %
-  %
-  %
-%
-\subsubsection{Case \cref{it-4}} 
-\label{ssec:case-it-4}
-Let 
-%
-%
-\begin{align*}
-B_{1} &= \{(n, n_1, \tau, \tau_1)\in B: n_{1}=n, n \neq 0\},\\
-B_2&=\{(n, n_1, \tau, \tau_1)\in B: n_1 = 0, n \neq 0 \},\\
-B_3&=\{(n, n_1, \tau, \tau_1)\in B: n \neq 0, n_1 \neq 0 \}.
-\end{align*} 
-%
-%
-For region $B_{1}$, we apply \cref{lem:calc} to obtain 
-\begin{equation*}
-  \begin{split}
-    & \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{1}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle \tau - n^{2} \rangle^{2a} 
-    \langle \tau_{1} + n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle}
-    d \tau_1 
-    \\
-    & \le
-   \int_{\tau_{1}} \frac{1}{\langle \tau_{1} +
-  n^{2} \rangle \langle
-  \tau - \tau_{1}\rangle}d \tau_{1}
-  \\
-  & \lesssim 
-  \langle \tau - n^{2} \rangle ^{-2} 
-  \\
-  & < \infty.
-\end{split}
-\end{equation*}
-We also apply \cref{lem:calc} in $B_{2}$ to obtain
-\begin{equation*}
-  \begin{split}
-    & \langle n
-    \rangle ^{2s}
-    \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{B_{2}}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} 
-    \langle \tau - n^{2} \rangle^{2a}   \langle \tau_{1} + n_{1}^{2} \rangle \langle  \tau - \tau_{1} -
-    (n - n_{1})^{2} \rangle}
-    d \tau_1 
-    \\
-    & = 
-   \int_{\tau_{1}} \frac{1}{\langle \tau_{1} 
-  \rangle \langle
-  \tau - \tau_{1} - n^{2}\rangle}d \tau_{1}
-  \\
-  & \lesssim 
-  \langle \tau - n^{2} \rangle ^{-2} 
-  \\
-  & < \infty.
-\end{split}
-\end{equation*}
-%
-By the pigeonhole principle, we have $\cup_{1 \le j \le 3} B_{3,j} = B_{3}$, where 
-\begin{align*}
-  B_{3,1}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau-n^{2}|\ge \frac{2}{3} |n_{1}|| n - n_{1} |\},\\
-  B_{3,2}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau_{1}-n_{1}^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}\\
-  B_{3,3}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau - \tau_{1}-(n - n_{1})^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}.
-\end{align*} 
-%
-%
-The analysis for region $B_{3,1}$ is analogous to that for region $A_{3,1}$. 
-For region $B_{3,2}$, we apply a change of variable, \cref{lem:calc} and \cref{lem:key-trick} to obtain
-  \begin{equation}
-\begin{split}
-  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau - n^{2} \rangle^{2a} \langle
-      \tau_{1} + n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-      \\
-      & = 
-      \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau - n^{2} \rangle^{2a} \langle
-      \tau_{1} - n_{1}^{2} \rangle^{1 \pm \ee}  \langle \tau + \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-\\
-&  \lesssim_{\ee} \sum_{n \in \zzdot} \frac{\langle n - n_{1} \rangle ^{-2s-1-\ee} \langle n_{1} \rangle ^{-2s-1 + \ee}}{\langle
-    n\rangle ^{-2s}}
-      \end{split}
-\end{equation}
-%
-and the rest of the argument is identical to that of region $A_{3,1}$
-%
-Similarly, for region $B_{3,3}$ we have
-%
-\begin{equation}
-\begin{split}
-  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle \langle
-      \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-  \\
-  & = 
-  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle \langle
-  \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{1 \pm \ee}} d \tau
-\\
-&  \lesssim_{\ee} \sum_{n \in \zzdot} \frac{\langle n - n_{1} \rangle ^{-2s-1 + \ee} \langle n_{1} \rangle ^{-2s-1 + \ee}}{\langle
-    n\rangle ^{-2s}}
-      \end{split}
-\end{equation}
-%
-and the rest of the argument is identical to that of $A_{3,1}$. 
-This completes the proof of
-\cref{prop:bilinear-est}. \qquad \qedsymbol
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Proof of miscellaneous lemmas
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-\appendix
-%
-\section{Proofs of Lemmas and Estimates} 
-\label{sec:pfs-lems-est}
-%
-%
-%
-\begin{proof}[Proof of \cref{lem:calc}]
-%
-By the change of variable $x \mapsto x + (\alpha + \beta)/2$, we have
-%
-%
-\begin{equation*}
-	\begin{split}
-    \int_{\rr} \frac{1}{\langle x - \alpha \rangle^{p} \langle  x -
-    \beta
-    \rangle^{q}}d x.
-    & = \int_{\rr} \frac{1}{\langle x - (\alpha - \beta)/2  \rangle^{p}
-    \langle  x + (\alpha - \beta)/2 \rangle^{q}} d x.
-	\end{split}
-\end{equation*}
-%
-%
-Hence, we seek to bound
-%
-%
-%
-\begin{equation*}
-\begin{split}
-  \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
-  ^{q}} d x
-\end{split}
-\end{equation*}
-%
-which for $a =0$ reduces to 
-%
-%
-\begin{equation*}
-\begin{split}
-  \int_{\rr} \frac{1}{\langle x \rangle ^{p+q}} d x 
-  & = 2 \int_{0}^{\infty} \frac{1}{(1 + x)^{p+q}} d x
-  \\
-  & = \frac{2}{p+q -1}
-  \\
-  & = \frac{2}{(p+q -1)\langle a \rangle}.
-\end{split}
-\end{equation*}
-%
-%
-By symmetry, we now assume without loss of generality that $a > 0$ and split 
-%
-%
-\begin{equation*}
-\begin{split}
-\int_{\rr} \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x
-  & = \int_{-2a}^{2a}
-  \frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x
-  \\
-  & + \int_{| x | \ge 2a} 
-\frac{1}{\langle a + x \rangle ^{p} \langle a - x \rangle
-  ^{q}} d x
-  \\
-  & = I + II.
-\end{split}
-\end{equation*}
-%
-%
-If $p=1$ and $q=1$, then 
-%
-%
-\begin{equation*}
-\begin{split}
-  I
-  & \le \sup_{-2a \le x \le 2a} \frac{1}{\langle a - x \rangle
-} \int_{-2a}^{2a} \frac{1}{\langle a + x \rangle} d x
-  \\
-  & = \frac{1}{\langle a \rangle} \int_{-2a}^{2a} \frac{1}{(1 + | a -
-  x
-  |)} d x
-  \\
-  & = \frac{4}{\langle a \rangle} \int_{0}^{a} \frac{1}{(1 + a -
-  x)} d x.
-\end{split}
-\end{equation*}
-%
-%
-Integrating, we obtain
-%
-%
-\begin{equation*}
- I
- \le 
- \frac{4 \log \langle a \rangle}{\langle a \rangle}, \qquad p =1, \ q =1.
-\end{equation*}
-Otherwise, assume that $q \neq 1$. Then
-\begin{equation*}
-\begin{split}
-  I
-  & \le \sup_{-2a \le x \le 2a} \frac{1}{\langle a + x \rangle
-  ^{p}} \int_{-2a}^{2a} \frac{1}{\langle a - x \rangle ^{q}} d x
-  \\
-  & = \frac{1}{\langle a \rangle ^{p}} \int_{-2a}^{2a} \frac{1}{(1 + | a -
-  x
-  |)^{q}} d x
-  \\
-  & = \frac{4}{\langle a \rangle ^{p}} \int_{0}^{a} \frac{1}{(1 + a -
-  x)^{q}} d x.
-\end{split}
-\end{equation*}
-Evaluating the integral, we obtain
-\begin{equation*}
-  I \le \frac{4}{|q-1| \langle a \rangle ^{p +q -1}}, \qquad q \neq 1.
-\end{equation*}
-%
-%
-A similar computation yields
-\begin{equation*}
-  I \le \frac{4}{|q-1| \langle a \rangle ^{p +q -1}}, \qquad p \neq 1.
-\end{equation*}
-%
-%
-Also
-%
-%
-\begin{equation*}
-\begin{split}
-  II 
-  & \simeq \int_{x \ge 2a} \frac{1}{\langle a - x \rangle ^{p} \langle a
-  + x \rangle ^{q} d x}
-  \\ 
-  & = \int_{x \ge 2a} \frac{1}{(1 + x - a)^{p} (1 + x +
-  a)^{q}} d x
-  \\
-  & \le \int_{x \ge 2a} \frac{1}{(1 + x -a)^{p+q}} d x
-  \\
-  & = \frac{1}{[(p + q)-1] \langle a \rangle ^{p+q -1}}, \qquad p + q > 1.
-\end{split}
-\end{equation*}
-%
-%
-Collecting our estimates for $I$ and $II$ we see that for 
-$p, q > 0$ such that $p +q >1$, and $r =\min\left\{p, q, p+q-1
- \right\}$, we have 
-%
-\begin{align*}
-  & \int_{\rr} \frac{1}{\langle a - x \rangle ^{p} \langle a + x \rangle
-  ^{q}} d x
-  \le \frac{c_{p,q}}{\langle a \rangle ^{r}}, \qquad a = 0 \ \text{or} \
-  p \neq 1 \ \text{or} \ q \neq 1
-  \\
-  & \int_{\rr} \frac{1}{\langle a - x \rangle  \langle a + x \rangle
-} d x
-  \le  \frac{4 \log \langle a \rangle}{\langle a \rangle}, \qquad a > 0.
-  \label{est-2}
-\end{align*}
-By symmetry, the second inequality also holds for $a < 0$. Substituting $(\alpha -
-\beta)$ for $a$ completes the proof.
-\end{proof}
-%
-%
-\begin{proof}[Proof of \cref{lem:key-trick}]
-  Notice that we can assume without loss of generality that $n_{1} \ge n$.
-  The case $n = n_{1}$ is trivial. Hence, it will be enough to show
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    | 1 - n_{1}/n | \lesssim | n |^{\ee} | n_{1} |^{1-\ee}
-  \end{split}
-  \end{equation*}
-  %
-  %
-  for $n_{1} \ge n+1$, or
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    | c/n | \lesssim | n |^{\ee} | n+c |^{1-\ee} \ \text{for all} \ c \ge 1,  n>0, c \neq n.
-  \end{split}
-  \end{equation*}
-  %
-  %
-  When $c < n$, this is clearly true, so assume $c > n$. Then it will be enough to show
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    c/n & \lesssim n^{\ee} n^{1-\ee} ( c/n -1 )
-    \\
-    & = n(c/n -1)
-  \end{split}
-  \end{equation*}
-  %
-  %
-  or
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  \frac{c}{c -n} \lesssim n
-  \end{split}
-  \end{equation*}
-  %
-  %
-  or
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-    \frac{n+k}{k} \lesssim n \ \text{for any fixed integers} \ n > 0, k \ge 1.
-  \end{split}
-  \end{equation*}
-  %
-  %
-  But it is easy to check
-  %
-  %
-  \begin{equation*}
-  \begin{split}
-  \frac{n+k}{k} \le 2n \ \text{for any fixed integers} \ n > 0, k \ge 1
-  \end{split}
-  \end{equation*}
-  %
-  %
-  concluding the proof.
-
-\end{proof}
-
-%
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%                Scaling
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-\section{Scaling} 
-\label{sec:scaling}
-Our object of investigation is the initial value problem for the
-periodic/non-periodic $1$-D ``good'' Boussinesq equation, i.e.,
-\begin{equation}
-  \aligned
-  & u_{tt}-u_{xx}+u_{xxxx}+ (u^2)_{xx}\,=\,0, \quad x\in \mathbb{T}\ \text{or} \ \mathbb{R}, \quad t>0,\\
-&u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x).\endaligned
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
+\end{array}\right.
 \label{main}
 \end{equation}
-Due to the fact that the leading terms in the linear operator above are $u_{tt}$ and $u_{xxxx}$, morally speaking, one derivative in time is like two derivatives in space. This is why the Sobolev regularity scale for the initial data should be as follows:
-\[
-u_0\in H^s(\mathbb{T}\ \text{or} \ \mathbb{R}), \qquad u_1\in H^{s-2}(\mathbb{T}\ \text{or} \ \mathbb{R})
-\]
-Results for these problems are usually formulated with $u_0=\phi \in H^s$ and $u_1=\psi_x$, $\psi\in H^{s-1}$.
-Current state of the art in terms of local well-posedness/ill-posedness for the two problems is:
-\begin{itemize}
-  \item LWP for both problems when $s>-\frac 14$ (Farah '09, Farah-Scialom '10), with iteration done in
-    the norm
-    \[
-    \|F\|_{X^{s}}\,=\,\|<|\tau|-\sqrt{\xi^2+\xi^4}>^b\,<\xi>^s \tilde{F}\|_{L^2_{\tau,\xi}};
-    \]
-  \item main IP result is for the non-periodic problem when $s<-2$, as the solution map 
-    \[
-    S: H^s\times H^{s-1} \to C([0,\delta]; H^s), \quad
-    S(\phi,\psi)\,=\,u
-    \]
-    is not $C^2$ at zero (Farah '09);
-  \item also, for the non-periodic problem, one can not find a space in which to run a contraction argument based on treating the nonlinearity as bilinear for $s<-2$ (see Theorem 1.4 in Farah '09);
-  \item finally, and really puzzling\footnote{for other dispersive equations (e.g., KdV, Schrodinger), there is usually a gap of $\frac 14$ between regularities for the two problems}, the crucial bilinear estimate (equation (5) in both papers) fails basically at the same threshold for both problems: $s\leq -\frac 14$ (non-periodic), $s<-\frac{1}{4}$ (periodic).
-\end{itemize}
-The equation does not have an associated scaling, however one can do a formal scaling analysis by ignoring one of the two linear terms containing spatial derivatives:
-\begin{itemize}
-  \item for 
-    \[
-    u_{tt}+u_{xxxx}+(u^2)_{xx}\,=\,0,
-    \]
-    one has 
-    \[
-    u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
-    \]
-    which leads to $s_c=-\frac 32$.
-\end{itemize}
-\begin{proof}
-Let $u(x, t)$ be a solution to the Boussinesq equation, that is
-%
-$$
-B_3(u)=
- \partial_t^2u + \partial^4_x u + \partial_x^2(u^2)  = 0
-$$
-%
-We would like to find the constants
-$a, b, c$ such that
-\[
-u_\lambda (x, t) = \lambda^a u(\lambda^b x, \lambda^c t)
-\]
-is also a solution to Boussinesq.  Since 
-$$
-B_3(u_\lambda)=
-\lambda^{a+2c} \partial_t^2u 
-+
- \lambda^{a+4b} \partial^4_x u 
- +
-  \lambda^{2a+2b}
-  \partial_x^2(u^2),  
-$$
-we see that $u_\lambda$ is a Boussinesq solution only if
-$$
-a+2c=a+4b=2a+2b,
-$$
-or
-$
-c= 2b =a.
-$
-  Thus
-\[
-u_\lambda (x, t) = \lambda^{2b} u(\lambda^{b}x,  \lambda^{2b} t).
-\]
-%
-%
-Therefore, replacing  $\lambda^b$ with  $ \lambda$ gives the following scaling:
-%
+where either $M=\mathbb{R}$ (the non-periodic case) or $M=\mathbb{T}$ (the periodic case). This equation, with $u_{xxxx}$ replaced by $-u_{xxxx}$, was originally introduced by Boussinesq \cite{B72} in connection with propagation of dispersive waves. 
+
+For dispersive equations, one of the most interesting topics to study is their local well-posedness\footnote{As explained in \cite{L93}, the appelative ``good" associated to \eqref{main} has to do, in part, with the fact that, for Boussinesq's original equation, only soliton-type solutions are known, and so one can not study well-posedness except only in very special circumstances.} theory in Sobolev spaces. To gain intuition on this problem for  \eqref{main}, we notice first that the leading terms of the linear operator, $u_{tt}$ and $u_{xxxx}$, tell us that, in principle, one derivative in time ``scales" like two derivatives in the spatial variable. Hence, a correct assumption on the Sobolev regularity of the 
+initial data should be in the form of  
 \begin{equation}
-\label{DP-scal}
-\boxed{u(x, t) \ \text{solution to} \  B_3
- \Longrightarrow 
-u_\lambda (x, t) = \lambda^2 u(\lambda x, \lambda^2 t)  \ \text{is also a
-solution to} \  B_3.}
+u_0 \in H^s(\mathbb{M}), \qquad u_1 \in H^{s-2}(\mathbb{M}).
+\label{not}
 \end{equation}
-\label{rem:scaling}
-To find the critical Sobolev index, we compute
-%
-%
+In certain papers (e.g., \cite{F09} or \cite{FS10}), the more restrictive profile $u_1=\psi_x \in H^{s-2}$, with $\psi \in H^{s-1}$, is considered.
+
+Secondly, the nonlinear Boussinesq equation lacks scaling. However, if one ignores the linear lower order term $u_{xx}$, the resulting equation 
 \begin{equation}
-\begin{split}
-  \| u_{\lambda} \|_{\dot{H}^s(\ci)} 
-  & = \lambda^{2} \| u(\lambda x, \lambda^2 t) \|_{\dot{H}^{s}(\ci)}
-  \\
-  & = \lambda^{2} \left( \int_{\rr} | \xi |^{2s} | \wh{u (\lambda x,
-  \lambda^{2} t)}^x (\xi, t)| \right)^{1/2}.
-\end{split}
-\label{crit-ind-comp}
+u_{tt}+u_{xxxx}+(u^2)_{xx}\,=\,0\label{new}
 \end{equation}
-%
-But
-%
-%
-\begin{equation*}
-\begin{split}
-  \wh{u(\lambda x, \lambda^{2}t)^x}(\xi, t)
-  & = \int_{\rr}e^{-i\xi x}u(\lambda x, \lambda^2 t) dx
-  \\
-  & = \frac{1}{\lambda} \int_{\rr}e^{-i \frac{n}{\lambda} x'}u(x',
-  \lambda^{2} t) dx'
-  \\
-  & = \frac{1}{\lambda} \wh{u(\cdot, \lambda^{2}t)}(\frac{\xi}{\lambda})
-\end{split}
-\end{equation*}
-%
-%
-Substituting back into \cref{crit-ind-comp}, we obtain
-%
-%
-\begin{equation*}
-\begin{split}
-  \| u_{\lambda} \|_{\dot{H}^s(\rr)} 
-  & = \lambda^{2} \left( \int_{\rr} | \xi |^{2s} |
-  \frac{1}{\lambda}\wh{u(\cdot, \lambda^{2}t)}(\frac{\xi}{\lambda}) |^2 d \xi
-  \right)^{1/2}
-  \\
-  & = \lambda \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
-  \lambda^{2}t)}(\frac{\xi}{\lambda}) |^2 d \xi  \right)^{1/2}
-  \\
-  & = \lambda \left( \int_{\rr} | \lambda \xi' |^{2s} 
-  \wh{u(\cdot, \lambda^{2}t)}(\xi') |^2 \lambda d \xi
-  \right)^{1/2}
-  \\
-  & = \lambda^{s + 3/2} \|u(\cdot, \lambda^{2}t) \|_{\dot{H}^s (\ci)}.
-\end{split}
-\end{equation*}
-%
-%
-Therefore, $\| u_{\lambda}(0) \|_{\dot{H}^s(\rr)} = \lambda^{s + 3/2} \|
-u_{0} \|_{\dot{H}^{s}(\rr)}$. Hence, $s=-3/2$ is the critical Sobolev index.
-\end{proof}
-%
-%
-\begin{framed}
+is left invariant by the transformation
+\[
+u_{\lambda}(t,x)\,=\,\frac{1}{\lambda^2}u\left(\frac{t}{\lambda^2}, \frac{x}{\lambda}\right),
+\]
+which points to the critical Sobolev index $s_c=-3/2$.
+
+Recently, the local well-posedness of \eqref{main} has received considerable interest, with the current state of the art being $s>-1/2$ for the non-periodic case, obtained by Kishimoto and Tsugawa \cite{KT10}, and $s>-3/8$ for the periodic case, due to Oh and Stefanov \cite{OS12}. For more previous results, we refer the reader to the papers of Linares \cite{L93}, Fang and Grillakis \cite{FG96}, Farah \cite{F09}, Farah and Scialom \cite{FS10}, and references therein.
+
+The main goal of this paper is to address the ill-posedness theory for \eqref{main}, which is far less understood. To our knowledge, the only results in this direction are:
+
+1. The bilinear estimate in the Bourgain-type spaces adapted to \eqref{main}, used in proving local well-posedness, fails for $s\leq -1/4$ in both the non-periodic and periodic cases, as shown in  \cite{F09} and \cite{FS10}, respectively;
+
+2. For the non-periodic problem, Farah \cite{F09} demonstrated that the solution map 
+\[
+S: H^s\times \{\psi_x |\,\psi\in H^{s-1}\}\subset H^s\times H^{s-2} \to C([0,T]; H^s), \quad
+S(u_0,u_1)\,=\,u,
+\]
+is not $C^2$ at zero for $s<-2$.
+
+
+Our results, on the other hand, are concerned with the failure of continuity for the above solution map, and rely on a rather general technique introduced by Bejenaru and Tao \cite{BT06}, in the context of a quadratic nonlinear Schrodinger equation. This technique has been used also for other dispersive equations: KdV-Burgers (Molinet-Vento \cite{MV09}, \cite{MV10}), Benjamin-Bona-Mahony (Panthee \cite{P11}), Benjamin-Bona-Mahony-Burgers (Banquet \cite{B11}). 
+
+
+\section{Statement of main results}
+
+\subsection{Framework} Let us now describe the setup in \cite{BT06}, directly formulated for \eqref{main}. The nonlinear ``good" Boussinesq equation can be seen as an abstract semilinear evolution equation, with a bilinear nonlinearity, which can be written in the form 
+\begin{equation}
+u\,=\,L(f)\,+\,N(u,u),
+\label{LN}
+\end{equation}
+where $f=(u_0, u_1)$ is an initial data lying in a data space $D$ (e.g., $H^s \times H^{s-2}$), the solution $u$ takes values in a solution space $S \subseteq	 C([0,T]; H^s)$, $L: D \to S$ is a linear operator, and $N:S\times S \to S$ is a bilinear form, both of which are densely defined.  
+
+If  $(D,\|\cdot \|_D)$ and $(S,\|\cdot \|_S)$ are a pair of Banach spaces satisfying 
+\begin{equation}
+\|L(f)\|_S \leq C \|f\|_D,\qquad \|N(u,v)\|_S \leq C \|u\|_S \|v\|_S,
+\label{estim}
+\end{equation}
+where $C>0$ is an absolute constant, the equation $\eqref{LN}$ is called \textbf{quantitatively well-posed}, as a standard contraction argument shows that, for all  $\|f\|_D<\frac{1}{16C^2}$, there exists a unique solution $u$ for $\eqref{LN}$, with $\|u\|_D<\frac{1}{4C}$. In fact, the solution is the sum of an absolutely convergent series in S, 
+\begin{equation}
+u\,=\,\sum_{n=1}^{\infty} A_n(f), \qquad (\forall) \|f\|_D<\frac{1}{16C^2},
+\label{series}
+\end{equation}
+where the nonlinear maps $A_n: D\to S$ ($n\geq 1$) are defined recursively by
+\begin{equation}
+A_1(f)\,=\,L(f), \qquad A_n(f)\,=\,\sum_{k=1}^{n-1} N(A_k(f),A_{n-k}(f)), \qquad (\forall)n\geq 2.
+\label{An}
+\end{equation}
+
+
 \begin{remark}
-Since the scaling conserves data in $\dot{H}^{-3/2}$, it
-seems that this equation is ``like KdV''.
-So one may expect KdV type theorems.
-That is, $s_c=-3/4$ on the line and $s_c=-1/2$ on the circle,
-if one uses bilinear estimates.
-But, Kappeler and collaborators went all the way to $-1$ for KdV.
-However KdV is integrable. Is this equation integrable?
-Also, people conjecture that the critical index for KdV well-posedness 
-in some appropriate sense should be the scaling index which is  $-3/2$.
-\label{rem:kdv-like}
+In the notation of \cite{F09}, the non-periodic problem is quantitatively well-posed for
+\[
+D\,=\,H^s\times \{\psi_x |\,\psi\in H^{s-1}\} \subset H^s\times H^{s-2}, \qquad S= C([0,T]; H^s)\cap X^T_{s,b},\]
+with the usual norms, where $s>-1/4$ and $b>1/2$. Similar spaces are available for the periodic problem (see \cite{FS10}).
+\label{qw}
 \end{remark}
-\end{framed}
-%
-%
-\begin{itemize}
-  \item for 
-    \[
-    u_{tt}-u_{xx}+(u^2)_{xx}\,=\,0,
-    \]
-    one has 
-    \[
-    u_{\lambda}(t,x)\,=\,u\left(\frac{t}{\lambda}, \frac{x}{\lambda}\right),
-    \]
-    which leads to $s_c=\frac 12$.
-\end{itemize}
-\begin{proof}
-Let $u(x, t)$ be a solution to the $B_1$ equation, that is
-%
-$$
-B_1(u)=
- \partial_t^2u - \partial^2_x u + \partial_x^2(u^2)  = 0
-$$
-%
-We would like to find the constants
-$a, b, c$ such that
+
+
+\begin{remark}
+The local well-posedness results of Kishimoto-Tsugawa \cite{KT10} and Oh-Stefanov \cite{OS12} are obtained by rewriting the Boussinesq equation in the form of a Schrodinger and Schrodinger-like equation, respectively, using \textbf{nonlinear} transformations. For example, \cite{KT10} relies on
 \[
-u_\lambda (x, t) = \lambda^a u(\lambda^b x, \lambda^c t)
-\]
-is also a solution to $B_1$.  Since 
-$$
-B_1(u_\lambda)=
-\lambda^{a+2c} \partial_t^2u 
--
- \lambda^{a+2b} \partial^2_x u 
- +
-  \lambda^{2a+2b}
-  \partial_x^2(u^2),  
-$$
-we see that $u_\lambda$ is a $B_1$ solution only if
-$$
-a+2c=a+2b=2a+2b,
-$$
-or
-$
-a=0, b=c.
-$
-  Thus
+v\,=\,u - i(1 - \partial_{xx})^{-1} u_t\]
+to transform \eqref{main} into
 \[
-u_\lambda (x, t) = u(\lambda^{b}x,  \lambda^{b} t).
+ i v_{t} \,-\, v_{xx} = \frac{\bar{v}-v}{2}\, -
+\,\left[\partial_{xx}\,(1 - \partial_{xx})^{-1}\right] \frac{(v + \bar{v})^{2}}{4}, \quad v(0)\,=\,u_0 - i(1 - \partial_{xx})^{-1} u_1,
 \]
-%
-%
-Therefore, replacing  $ \lambda^b$ with  $ \lambda$ gives the following scaling:
-%
+which is a quadratic nonlinear Schrodinger equation, followed by a bilinear analysis which is done in modified Bourgain-type spaces for this equation. 
+
+Due to the nonlinear link between the two problems, it is highly nontrivial how to translate this result into a quantitatively well-posed one for \eqref{main}. The same goes for the normal form argument in  \cite{OS12}. We plan to address these questions in a future work.
+\label{sw}
+\end{remark}
+
+Moreover, Bejenaru-Tao's argument (precisely Proposition 1 in \cite{BT06}) tells us that if the solution series \eqref{series} is continuous as a function of $f$ in  weaker topologies than the ones given by $\| \cdot\|_D$ and $\| \cdot \|_S$, then each of its terms is also continuous in this setup. This is the key fact  that will be used in our proof.
+
+\subsection{Method of proof} A strategy in proving an ill-posedness result based on the previous idea can be formulated as follows:
+
+1. Start with a \textbf{quantitative well-posedness} pair $(D,S)$ for which one has, as described above, a continuous solution map associated to \eqref{LN},
 \begin{equation}
-\label{B2-scal}
-\boxed{u(x, t) \ \text{solution to} \  B_1
- \Longrightarrow 
-u_\lambda (x, t) = u(\lambda x, \lambda t) \ \text{is also a
-solution to} \  B_1. 
-}
-\end{equation}
-\label{rem:scaling-B2}
-To find the critical Sobolev index, we compute
-%
-%
+f\in (B_1,\|\cdot \|_D)\,\longrightarrow\,u\in (B_2,\|\cdot \|_S),
+\end{equation} 
+where $B_1\subset D$ and $B_2 \subset S$ are two balls centered at the origin;
+
+2. Choose two weaker norms, $\| \cdot\|_{D'}$ and $\| \cdot\|_{S'}$ related to the regularity for which you try to prove ill-posedness and find an $n\geq 1$ and a sequence $(f_N)_N\subset D$ such that
 \begin{equation}
-\begin{split}
-  \| u_{\lambda} \|_{\dot{H}^s(\ci)} 
-  & =  \| u(\lambda x, \lambda t) \|_{\dot{H}^{s}(\ci)}
-  \\
-  & = \left( \int_{\rr} | \xi |^{2s} | \wh{u(\lambda x,
-  \lambda t)}^x (\xi, t)| \right)^{1/2}.
-\end{split}
-\label{crit-ind-comp-B2}
+\limsup_{N\to \infty} \|f_N\|_D\,\ll\,1, \qquad \quad \sup_N \frac{\|A_n(f_N)\|_{S'}}{\|f_N\|_{D'}}\,=\,\infty.
+\label{ip}
 \end{equation}
-%
-But
-%
-%
-\begin{equation*}
-\begin{split}
-  \wh{u(\lambda x, \lambda t)^x}(\xi, t)
-  & = \int_{\rr}e^{-i\xi x}u(\lambda x, \lambda t) dx
-  \\
-  & = \frac{1}{\lambda} \int_{\rr}e^{-i \frac{n}{\lambda} x'}u(x',
-  \lambda t) dx'
-  \\
-  & = \frac{1}{\lambda} \wh{u(\cdot, \lambda t)}(\frac{\xi}{\lambda})
-\end{split}
-\end{equation*}
-%
-%
-Substituting back into \cref{crit-ind-comp-B2}, we obtain
-%
-%
-\begin{equation*}
-\begin{split}
-  \| u_{\lambda} \|_{\dot{H}^s(\rr)} 
-  & = \left( \int_{\rr} | \xi |^{2s} |
-  \frac{1}{\lambda}\wh{u(\cdot, \lambda t)}(\frac{\xi}{\lambda}) |^2 d \xi
-  \right)^{1/2}
-  \\
-  & = \frac{1}{\lambda} \left( \int_{\rr}| \xi |^{2s} | \wh{u(\cdot,
-  \lambda t)}(\frac{\xi}{\lambda}) |^2 d \xi  \right)^{1/2}
-  \\
-  & = \frac{1}{\lambda} \left( \int_{\rr} | \lambda \xi' |^{2s} 
-  \wh{u(\cdot, \lambda)}(\xi') |^2 \lambda d \xi
-  \right)^{1/2}
-  \\
-  & = \lambda^{s - 1/2} \|u(\cdot, t) \|_{\dot{H}^s (\rr)}.
-\end{split}
-\end{equation*}
-%
-%
-Therefore, $\| u_{\lambda(0)} \|_{\dot{H}^s(\rr)} = \lambda^{s - 1/2} \|
-u_{0} \|_{\dot{H}^{s}(\rr)}$, and so $s=1/2$ is the critical Sobolev index.
-\end{proof}
-This might suggest that the current results are not optimal.
-%
-%
-\bibliography{/Users/davidkarapetyan/math/bib-files/references}
-%
-%\nocite{*}
+
+This will show that 
+\begin{equation}
+A_n: (B_1,\|\cdot \|_{D'})\,\longrightarrow\,(B_2,\| \cdot\|_{S'}),
+\end{equation} 
+is not continuous at the origin, which implies that the same is true for the solution map in these coarser  topologies. Moreover, what makes this strategy go through is that, as the time of existence $T=T(\|f\|_D)$ and $\limsup_{N\to \infty} \|f_N\|_D \ll 1$, the $u_N$'s (for $N$ sufficiently large) will all be defined for the same amount of time.
+
+
+We are now ready to state our main result:
+
+\begin{theorem}
+Let the Cauchy problem \eqref{main} be quantitatively well-posed for
+\[
+D\,=\,H^s \times H^{s-2}(M), \quad S\,\subseteq \,C([0,T]; H^s(M)), \]
+where  $M=\mathbb{R}$ or $\mathbb{T}$. Then the solution map
+\begin{equation}
+S: H^{s'} \times H^{s'-2}(M) \to C([0,T]; H^{s'}(M)), \quad
+S(u_0,u_1)\,=\,u,
+\label{solmap}
+\end{equation}
+is not continuous at the origin for any $s'< \min\{-2-s, s\}$.
+\label{mainth}
+\end{theorem}
+
+Based on Remark \ref{qw}, we obtain immediately the following improvement of the $s'<-2$ ill-posedness result mentioned above:
+
+\begin{corollary}
+The solution map \eqref{solmap} is not continuous at the origin for all $s'<-7/4$, in both the periodic and the non-periodic cases.
+\end{corollary}
+
+\begin{remark}
+Theorem \ref{mainth} suggests that $s=-1$ is potentially the threshold between well-posedness and ill-posedness for \eqref{main}.  In the non-periodic case, this can be corroborated also with the intimate relation between the Boussinesq equation and the quadratic nonlinear Schrodinger equation (as described in Remark \ref{sw}) , and the fact that for 
+\[
+iv_t\,+\,v_{xx}\,=\,v^2,
+\]
+$s=-1$ is indeed that threshold, the main result of Bejenaru-Tao \cite{BT06}. 
+\end{remark}
+
+
+\section{Proof of Theorem \ref{mainth}}
+We will use the strategy outlined in our method of proof and show that, for a quantitative well-posedness  index $s$, we can construct a sequence $(f_N)_N$ satisfying
+\[
+\limsup_{N\to \infty} \|f_N\|_{H^s \times H^{s-2}}\,\ll\,1, \qquad \quad \sup_N \frac{\|A_2(f_N)\|_{C([0,T],H^{s'})}}{\|f_N\|_{H^{s'} \times H^{s'-2}}}\,=\,\infty,\]
+for any $s'< \min\{-2-s, s\}$. We start by computing the nonlinear map $A_2$.
+
+
+\subsection{Formulas for $A_2$} In the non-periodic case, using the Fourier transform in the spatial variable and Duhamel's principle, one can derive that the solution of the linear problem
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}\,=\,F, \quad (t,x)\in \mathbb{R}_+\times\mathbb{R},\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
+\end{array}\right.
+\label{hom}
+\end{equation}
+is given by the formula
+\begin{equation}
+\hat{u}(t,\xi)\,=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)\,+\,\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)\,+\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\hat{F}(s,\xi)\,ds,
+\label{lin}\end{equation}
+where $\lambda(\xi)=\sqrt{\xi^2+\xi^4}$. 
+
+Therefore, \eqref{main} can be restated in integral form as
+\begin{equation}
+\aligned
+\hat{u}(t,\xi)\,&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)-\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)} \,\widehat{(u^2)_{xx}}(s,\xi)\,ds\\
+&=\,\cos(t \lambda(\xi)) \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi)+\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u^2}(s,\xi)\,ds,\endaligned
+\label{mainf}
+\end{equation}
+which is nothing but the Fourier version of \eqref{LN} with
+\begin{equation}
+\aligned
+\widehat{Lf}(t,\xi)\,=\,\cos(t \lambda(\xi))& \hat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \hat{u}_1(\xi),\quad f=(u_0,u_1),\\
+\widehat{N(u,v)}(t,\xi)&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{u\cdot v}(s,\xi)\,ds.\endaligned
+\label{lnf}
+\end{equation}
+
+Using now \eqref{An}, we can infer that
+\[
+A_2(f)\,=\,N(A_1(f),A_1(f))\,=\,N(L(f),L(f)),\]
+which further implies
+\begin{equation}
+\aligned
+\widehat{A_2(f)}(t,\xi)\,&=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{(Lf)^2}(s,\xi)\,ds\\
+&=\,\int_0^t \int_{\mathbb{R}}\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{Lf}(s,\xi-\eta)\,\widehat{Lf}(s,\eta)\,d\eta\,ds.\endaligned
+\label{A2f}
+\end{equation}
+
+For the periodic case, the computations are almost identical, the only difference being that, instead of integrals in $\xi$ or $\eta$, we have to sum up series over integers in $n$ or $m$. As a consequence, we write directly the formula for the coefficients of $A_2(f)$:
+\begin{equation}
+\widehat{A_2(f)}(t,n)\,=\, n^2 \sum_{m\in\mathbb{Z}} \int_0^t \frac{\sin((t-s) \lambda(n))}{\lambda(n)} \widehat{Lf}(s,n-m)\,\widehat{Lf}(s,m)\,ds,
+\label{A2p}\end{equation}
+with
+\[
+\widehat{Lf}(t,m)\,=\,\cos(t \lambda(m)) \hat{u}_0(m)+\frac{\sin(t \lambda(m))}{\lambda(m)} \hat{u}_1(m),\quad f=(u_0,u_1).\]
+
+
+\subsection{Proof of the non-periodic case} Our choice for the sequence of initial data $(f_N)_{N\geq N_0}$, with $N_0$ a positive arbitrary integer, is given by
+\begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{r}{N^s} \chi_{\{N \leq |\xi| \leq N + 1\}\}},
+\label{fn}
+\end{equation}
+where $r>0$ is a positive constant and $s$ is a quantitative well-posedness index. A simple computation yields
+\begin{equation}
+\|f_N\|_{H^{s'}\times H^{s'-2}}\,=\,\|g_N\|_{H^s}\,\simeq\,r\,N^{s'-s},
+\label{hsfn}
+\end{equation}
+which tells us that
+\[
+\limsup_{N\to \infty} \|f_N\|_{H^{s'} \times H^{s' -2}}\,=\,0, \qquad (\forall)\ s'<s, 
+\]
+and, in order to have 
+\[
+\limsup_{N\to \infty} \|f_N\|_{H^s \times H^{s -2}}\,\ll\,1,
+\]
+one needs to take $r$ sufficiently small. This allows us to normalize the time of existence $T=T(r)$ for all the solutions of size at most $r$.
+
+Hence, choosing $r$ sufficiently small such that $T=1$, plugging the profile \eqref{fn} into \eqref{A2f} and taking into account \eqref{lnf}, we obtain
+\begin{equation}
+\aligned
+&\widehat{A_2(f_N)}(t,\xi)\\
+&=\int_0^t \int_{\mathbb{R}} \frac{\sin((t-t') \lambda(\xi))}{\lambda(\xi)} \xi^2 \cos(t' \lambda(\xi-\eta))\cos(t'\lambda(\eta))\widehat{g_N}(\xi-\eta)\widehat{g_N}(\eta)d\eta\,dt'\\
+&=\frac{r^2 \xi^2}{N^{2s}\lambda(\xi)}\int_0^t \int_{N \leq |\xi-\eta|, |\eta| \leq N+1}\sin((t-t') \lambda(\xi))\cos(t' \lambda(\xi-\eta))\cos(t'\lambda(\eta))d\eta\,dt'.\endaligned
+\label{A2fn}
+\end{equation}
+On the other hand,
+\begin{equation}
+\aligned
+\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))} &\geq \|A_2(f_N)(t)\|_{H^{s'}(1/4\leq |\xi| \leq 1/2)}\\ &\gtrsim \|A_2(f_N)(t)\|_{L^2(1/4\leq |\xi| \leq 1/2)},\label{hsA2}
+\endaligned
+\end{equation}
+where $0<t=t_N<1$ is an arbitrary time which will be specified later. Thus, we will be working in the regime given by $ |\xi|\sim 1$ and $|\eta|\sim N$, for which simple algebraic manipulations yield
+\begin{equation}
+\lambda(\xi) \sim 1,\quad \lambda(\xi-\eta)+\lambda(\eta) \sim N^2, \quad \left| \lambda(\xi-\eta)-\lambda(\eta)\right| \sim N.
+\label{aprox}
+\end{equation}
+
+Relying on the trigonometric identity
+\[
+\sin a\,\cos b\,\cos c=\frac{\sin (a+b+c)+\sin (a-b-c)+\sin (a+b-c)+\sin (a-b+c)}{4},
+\]
+we can perform the integration in $t'$ for \eqref{A2fn} to deduce:
+\begin{equation}
+\aligned
+N^{2s}\cdot \widehat{A_2(f_N)}&(t,\xi)\\ 
+\simeq  \int_{- N-1+\xi}^{-N} &+\int_{N+\xi}^{N+1} \bigg\{ a(t,\xi,\eta) \left[ \frac{1}{\lambda(\xi - \eta) + \lambda(\eta)- \lambda(\xi)} - \frac{1}{\lambda(\xi - \eta) + \lambda(\eta)+\lambda(\xi)} \right]\\
+&+b(t,\xi,\eta) \left[ \frac{1}{-\lambda(\xi - \eta) + \lambda(\eta)-\lambda(\xi)} + \frac{1}{\lambda(\xi - \eta) - \lambda(\eta)-\lambda(\xi)} \right]\bigg\}\,d\eta,
+\endaligned
+\end{equation}
+where
+\begin{equation}\aligned
+a(t,\xi,\eta)&= \cos (t\lambda(\xi))-\cos[t(\lambda(\xi - \eta) + \lambda(\eta))],\\ b(t,\xi,\eta)&= \cos (t\lambda(\xi))-\cos[t(\lambda(\xi - \eta) - \lambda(\eta))].
+\endaligned
+\end{equation}
+
+Using \eqref{aprox}, we can estimate the first integrand by
+\[
+\left|a(t,\xi,\eta) \left[ \frac{1}{\lambda(\xi - \eta) + \lambda(\eta)- \lambda(\xi)} - \frac{1}{\lambda(\xi - \eta) + \lambda(\eta)+\lambda(\xi)} \right]\right|\,\lesssim \frac{1}{N^4}, 
+\]
+while for the second one, we choose $t=t_N \sim \frac{1}{N}$ such that $b(t_N,\xi) \sim 1$, which further implies:
+\[
+b(t_N,\xi,\eta) \left[ \frac{1}{-\lambda(\xi - \eta) + \lambda(\eta)-\lambda(\xi)} + \frac{1}{\lambda(\xi - \eta) - \lambda(\eta)-\lambda(\xi)} \right] \sim \frac{1}{N^2}.\]
+Both estimates are uniform in $\xi$ and $\eta$.
+
+These allow us, then, to infer that for $N$ sufficiently large,
+\[
+\widehat{A_2(f_N)}(t_N,\xi) \sim \frac{1}{N^{2s+2}},
+\]
+uniformly in $\xi$, which in turn yields
+\[
+\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,\gtrsim\, \frac{1}{N^{s+s'+2}}.\]
+Thus
+\[
+\sup_N\,\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,=\,\infty,\]
+if $s'<s$ and $s+s'+2<0$, which finishes the proof.
+
+\subsection{Proof of the periodic case} The analysis is similar to the non-periodic one, as one picks the sequence of initial data $(f_N)_{N\geq 10}$ to be defined as
+\begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(n)\,=\,\frac{r}{N^s} \,\left(\chi_{\{n=N\}}\,+\,\chi_{\{n=1-N\}}\right).
+\label{fnp}
+\end{equation}
+As before, we obtain
+\[
+\|f_N\|_{H^{s'}\times H^{s'-2}}\,\simeq\,r\,N^{s'-s}, \qquad \widehat{A_2(f_N)}(t,n)\,=\,0, \ (\forall) n \neq 1,\]
+and
+\[
+\widehat{A_2(f_N)}(t,1)\,\sim\,\frac{1}{N^{2s}}\,\int_0^t \sin((t-t') \lambda(1))\cos(t' \lambda(N-1))\cos(t'\lambda(N))\,dt'.
+\]
+
+Next, we deduce
+\[
+\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))} \gtrsim \left|\widehat{A_2(f_N)}(t,1)\right|,
+\]
+which will be coupled with
+\[
+\widehat{A_2(f_N)}(t,1)\,\sim\,a(t,N)\cdot O(N^{-2s-4})\,+\,b(t,N)\cdot N^{-2s-2},
+\]
+where
+\[\aligned
+a(t,N)&= \cos (t\lambda(1))-\cos[t(\lambda(N-1) + \lambda(N))],\\ b(t,N)&= \cos (t\lambda(1))-\cos[t(\lambda(N) - \lambda(N-1))].
+\endaligned
+\]
+
+In comparison with the non-periodic case, we have a little bit more flexibility in our choice of $t=t_N$. We can take as in the previous subsection $t_N \sim \frac{1}{N}$, but we can also set $t_N=1$, as the divergence of the sequence $(\cos n)_n$ allows one to identify a subsequence $(N_k)_k\to\infty$ such that 
+\[
+\liminf_k \left|b(1, N_k)\right|\,>\,0.
+\]
+Any of these two avenues leads to the same conclusion:
+\[
+\sup_N\,\frac{\|A_2(f_N)\|_{C([0,1], H^{s'}(\mathbb{T}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,=\,\infty,\]
+for $s'<\min\{s,-2-s\}$, which concludes this argument.
+
+\section*{Acknowledgements}
+The first author would like to thank the Department of Mathematics at University of Notre Dame for the hospitality during the summer of 2011, where part of this project was completed. The first author was supported in part by the National Science Foundation Career grant DMS-0747656.
+
+\bibliographystyle{amsplain}
+\bibliography{bousbib}
+
+
 \end{document}
