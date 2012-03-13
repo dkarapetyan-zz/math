@@ -2,7 +2,7 @@
 %
 %
 \section{Introduction}
-We consider the derivative nonlinear Schr{\"o}dinger (dNLS) initial value problem (ivp)
+We consider the derivative nonlinear Schr{\"o}dinger (dNLS) initial value problem (IVP)
 %
 %
 \begin{gather}
@@ -135,7 +135,7 @@ We are now prepared to state our result.
 %
 \begin{theorem}
 	\label{1thm:prim}
-	The dNLS ivp is well-posed in $\dot{H}^s(\ci)$ for $s \ge \frac{1-m}{4}$.  
+	The dNLS IVP is well-posed in $\dot{H}^s(\ci)$ for $s \ge \frac{1-m}{4}$.  
 \end{theorem}
 %
 %
@@ -193,7 +193,7 @@ We are now prepared to state our result.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\begin{proposition}[Second Trilinear Estimate]
+\begin{proposition}[Second Bilinear Estimate]
 \label{1prop:bilinear-estimate2}
 For any $s \ge \frac{1-m}{4}$ we have
 %
@@ -1003,7 +1003,7 @@ corollary of \cref{1prop:prim-bilin-est} by using the ideas
 above and by modifying the proof of \cref{1prop:prim-bilin-est} slightly (i.e.,
 showing that if $b = \frac{1}{2}^-$, then \eqref{1prim-bilin-est} holds for
 $s\ge \frac{1-m}{4}^+$). To show that \eqref{1bilinear-estimate2} holds for the
-case $s=1/2$, we will have to resort to Kenig-Ponce-Vega~\cite{Kenig:1996aa} techniques.
+case $s=1/2$, we will have to resort to Kenig-Ponce-Vega~\cite{Kenig:1996yn} techniques.
 \end{remark}
 \end{framed}
 %
@@ -1140,7 +1140,7 @@ or, equivalently, that
 \end{equation}
 %
 %
-Following Kenig~\cite{Kenig:1996aa}, we now need the following Calculus lemma.
+Following Kenig~\cite{Kenig:1996yn}, we now need the following Calculus lemma.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1374,7 +1374,7 @@ completing the proof. \qquad \qedsymbol
 %
 %
 \section{Proof of Ill-Posedness}
-We adapt an argument from \cite{Burq_Gerad_Tzvetkov-An-instability-}. For $s<1/2$, $m \in \{4, 8, 12, \dots\}$, set
+We adapt an argument from \cite{Burq:2002xd}. For $s<1/2$, $m \in \{4, 8, 12, \dots\}$, set
 %
 %
 %
@@ -1491,11 +1491,11 @@ Next, let
 \end{equation*}
 %
 %
-Following our preceding computations, it is easy to show that $u_{n, k_{n}}$ is a solution to the ivp
+Following our preceding computations, it is easy to show that $u_{n, k_{n}}$ is a solution to the IVP
 %
 %
 \begin{equation}
-	\label{1family-ivp}
+	\label{1family-IVP}
 	\begin{split}
 		i\p_t u + \p_x^{m} + | u |^{2}u = 0,
 		\\
@@ -1606,7 +1606,7 @@ and then repeat the above arguments. \qquad \qedsymbol
 \begin{remark}
 	Note that this result implies that it will be impossible to use a Picard
 	iteration type argument to prove existence and uniqueness of solutions to the
-	dNLS ivp for $s<1/2$, since this technique would imply uniform
+	dNLS IVP for $s<1/2$, since this technique would imply uniform
 	continuity of the flow map.
 \end{remark}
 \end{framed}

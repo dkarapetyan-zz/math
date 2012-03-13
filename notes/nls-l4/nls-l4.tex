@@ -1,4 +1,4 @@
-\chapter{Well-Posedness for the Cubic NLS }
+\chapter{Well-Posedness for the Cubic NLS (via Bourgain Approach in $L^{4}$) }
 			  %
 				  %
 				  \section{Introduction}
@@ -56,217 +56,16 @@ and prove the following result.
 %
 %
 %
-We first derive a weak formulation of the NLS ivp. Without loss of 
-generality we let $\ci = [-2B, 2B]$, and use
-the following notation for the Fourier transform
-%
-%
-%
-%
-\begin{equation*}
-	\begin{split}
-		\widehat{f}(n) = \int_{\ci} e^{-ix n} f(x) \ dx.
-	\end{split}
-\end{equation*}
-Assume 
-$u(x,t)$ is a classical solution of \eqref{NLS-eq}-\eqref{NLS-init-data}.
-Then $u(\cdot ,   t): \rr \to C^2(\ci)$ and is $C^1$ in time; hence, applying 
-the Fourier transform to the NLS ivp in the space variable we obtain 
-%
-%
-\begin{gather*}
-	\p_t \widehat{u}(n, t) = -i n^2 \widehat{u}(n, t) + i  
-	\widehat{|u|^{2} u} (n, t),
-	\\
-	\widehat{u} (n,0) = \widehat{\vp}(n)
-\end{gather*}
-%
-%
-which is a globally well-defined relation in $t$ 
-and $n$. Multiplication by the integrating factor $e^{itn^2}$ then yields
-%%
-%%
-\begin{equation*}
-	\begin{split}
-		\left[ e^{it n^2} \widehat{u}(n) \right]_t = i
-		 e^{it n^2} \widehat{|u|^{2} u} (n, t).	
-	\end{split}
-\end{equation*}
-%
-%
-Integrating from $0$ to $t$, we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\wh{u}(n, t) = \wh{\vp}(n) e^{-it n^2} + i  
-		\int_0^t e^{i(t' - t)n^2} \wh{|u|^{2} u}(n, t') \ 
-		dt'
-	\end{split}
-\end{equation*}
-%
-%
-which by Fourier inversion yields 
-%
-%
-\begin{equation}
-	\label{NLS-integral-form}
-	\begin{split}
-		u(x,t) & = \sum_{n \in \zz} \wh{\vp}(n) e^{i\left( xn - t n^2 
-		\right)} 
-		 + i \sum_{n \in \zz} \int_0^t e^{i\left[ xn + \left( t' - t 
-		\right)n^2 \right]} \wh{|u|^2 u}(n, t') \ dt'.
-	\end{split}
-\end{equation}
-%
-%
-Here we remark that \eqref{NLS-integral-form} is a weaker 
-restatement of the Cauchy-problem \eqref{NLS-eq}-\eqref{NLS-init-data}, 
-since by construction any classical solution of the NLS ivp is a solution to 
-\eqref{NLS-integral-form}. This motivates the following.
-
-
-
-\begin{definition}
-	%
-	%
-	We say $u(x,t)$ is a \emph{local solution} of the NLS ivp
-\eqref{NLS-eq}-\eqref{NLS-init-data} if it satisfies the weak formulation 
-\eqref{NLS-integral-form} for $t \in I \subset \rr$. If $I = \rr$, then we say 
-$u$ is a \emph{global solution}. 
-%
-%
-\end{definition}
 %
 %
 Restrict $t \in [0, 2\delta]$, where $\delta = \pi/m_0$ for some $m_0 \in 
-\mathbb{N}$. We now derive an integral 
-equation global in $t$ and equivalent to \eqref{NLS-integral-form} for $t 
-\in [0, \delta]$. Let $\psi_1(t)$ be a cutoff function symmetric about the 
+\mathbb{N}$. Let $\psi_1(t)$ be a cutoff function symmetric about the 
 origin such that $\psi_1(t) = 1$ for $|t| \le \delta$ and $\text{supp} \, \psi_1 
 = 
-[-2\delta, 2\delta ]$. Multiplying the right hand side of expression 
-$\eqref{NLS-integral-form}$ by $\psi_1(t)$, we obtain
-%
-%
-\begin{equation}
-	\begin{split}
-		\label{cutoff-int-eq}
-		u(x, t)
-		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn - tn^{2
-		})} \widehat{\vp}(n) 
-		\\
-		& + \frac{i }{2 \pi} \psi_1(t) \int_0^t \sum_{n \in \zz} 
-		e^{i\left[ xn + (t - t')n^2 \right]} \wh{w}(n, t') \ dt'
-	\end{split}
-\end{equation}
-%
-%
-where $w(x, t) \doteq |u|^2 u$. Periodically extend $u(x, t)$ in the time 
-variable, and assume a priori that $u \in 
-L^4(\ci^2)$. 
-\\
-\hrule
-Claim: Therefore, by Fourier inversion (makes sense if we view $w$ as a 
-distribution, which we are permitted to do since $w \in L^{4/3}$) and 
-Fubini-Tonelli (does not make sense to me--what guarantee 
-do we have that $\wh{w} \in \ell^1$? \textbf{these questions have been resolved 
-in mNLS document--in process of copying them over})
-\\
-\hrule
-%
-\begin{equation}
-	\label{prim-int-form}
-	\begin{split}
-		& \frac{i }{2 \pi} \psi_1(t) \int_0^t \sum_{n \in \zz} 
-		e^{i\left[ xn + (t - t')n^2 \right]} \wh{w}(n, t') \ dt'
-		\\
-		& = \frac{i }{4 \pi^2} \psi_1(t)
-		\int_0^t 
-		e^{it'(\tau - n^2)} \ dt' 
-		\sum_{n, \tau \in \zz} e^{i(xn + tn^2)} \wh{w}(n, \tau) .
-	\end{split}
-\end{equation}
-%%
-%%
-Since
-%
-%
-\begin{equation*}
-	\begin{split}
-		\int_0^t e^{it'(\tau - n^2)} \ dt' = -i \frac{e^{it(\tau - n^{2  
-		})}- 1}{\tau - n^2}
-	\end{split}
-\end{equation*}
-%%
-%%
-expression \eqref{prim-int-form} gives
-%
-%
-%
-\begin{equation*}
-	\begin{split}
-		& \frac{i }{2 \pi} \psi_1(t) \int_0^t \sum_{n \in \zz} 
-		e^{i\left[ xn + (t - t')n^2 \right]} \wh{w}(n, t') \ dt'
-		\\
-		& = \frac{1}{4 \pi^2} \psi_1(t) \sum_{n, \tau \in \zz} 
-		e^{i(xn + tn^2)} \frac{e^{it(\tau - n^2)}- 1}{\tau - n^2} 
-		\wh{w}(n, \tau)  
-		\end{split}
-\end{equation*}
-%
-%
-which we substitute
-into \eqref{cutoff-int-eq} to obtain
-%
-%
-\begin{equation}
-	\begin{split}
-		\label{cutoff-int-eq-2}
-		u(x, t)
-		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn - tn^{2  
-		})} \widehat{\vp}(n) 
-		\\
-		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n, \tau \in \zz} 
-		e^{i(xn + tn^2)} \frac{e^{it(\tau - n^2)}- 1}{\tau - n^2} \wh{w}(n, 
-		\tau). 
-	\end{split}
-\end{equation}
-%
-%
-Next, we localize near the singular curve $\tau = n^2$. Let $\psi_2(t)$ be a cutoff function symmetric about the origin such that 
+[-2\delta, 2\delta ]$. Let $\psi_2(t)$ be a cutoff function symmetric about the origin such that 
 $\psi_2(t) = 1$ for $|t| \le B$ and $\text{supp} \, \psi_2 = 
 [-2B, 2 B]$.
-Multiplying the summand of the second term of \eqref{cutoff-int-eq-2} by $1 \pm \psi_2(\tau - n^2)$ and rearranging 
-terms, we have
-%
-%
-\begin{equation*}
-	\begin{split}
-		 u(x, t)
-		& = \frac{1}{2 \pi} \psi_1(t) \sum_{n \in \zz} e^{i(xn + tn^{2 
-		})} \widehat{\vp}(n) 
-		\\
-		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz} e^{ixn} \sum_{\tau \in \zz} 
-		e^{it \tau} \frac{ 1 - \psi_2(\tau - n^2) 
-		}{\tau - n^2} \wh{w}(n, \tau) 
-		\\
-		& - \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz} e^{i(xn + 
-		tn^2)}
-		\sum_{\tau \in \zz} \frac{1- \psi_2(\tau - n^2)}{\tau - n^2} \wh{w}(n, \tau) \ 
-		d\tau
-		\\
-		& + \frac{1}{4 \pi^2} \psi_1(t) \sum_{n \in \zz}
-		e^{i(xn + tn^2)}
-		\sum_{\tau \in \zz} 
-		\frac{\psi_2(\tau - n^2)\left[ e^{it(\tau - n^2)}-1 
-		\right]}{\tau - n^2} \wh{w}(n, \tau) 
-	\end{split}
-\end{equation*}
-%
-%
-which by a power series expansion of $[e^{it(\tau - n^2)}-1]$ simplifies  to
-%
+Then, using analogous computations to those done for the mNLS IVP, we see that the cubic NLS IVP is equivalent to 
 %
 \begin{align}
 	\label{main-int-expression-1}
@@ -344,7 +143,6 @@ mapping.  In Section 4 a similar argument for handling well-posedness for
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\vskip0.1in
 \subsection{Estimate for \eqref{main-int-expression-1}}
 Letting $f(x,t) = \psi(t) \sum_{n \in \zz} e^{i(xn + tn^2)} 
 \wh{\vp}(n)$, we have $\wh{f}(n,t) = \psi(t) \wh{\vp}(n) e^{itn^2}$,
@@ -363,7 +161,7 @@ from which we obtain
 %
 %
 We now require the following multiplier estimate, whose proof can be found in 
-\cite{Bourgain-Fourier-transfo-1}. %
+\cite{Bourgain:1993ju}. %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -413,30 +211,15 @@ Applying \cref{lem:four-mult-est} and \eqref{schwartz-bound} to
 		& \lesssim \|\vp \|_{L^2(\ci)}.
 	\end{split}
 \end{equation}
-where the last step follows from Plancharel and the estimate
-%
-%
-\begin{equation}
-	\label{schwartz-bound}
-	\begin{split}
-		\|\left( 1 + |\lambda| \right)^k \wh{\psi_1}(\lambda) 
-		\|_{L^\infty(\zz)} \le c_k , \qquad k\ge0
-	\end{split}
-\end{equation}
-%
-%
-whose proof is provided in the appendix.
-%
-%
-\vskip0.1in
 %
 %
 %
 %
 %
 %
-\vskip0.1in
-\textbf{Estimate for \eqref{main-int-expression-2}.}
+%
+%
+\subsection{Estimate for \eqref{main-int-expression-2}.}
 We have
 %
 %
@@ -535,8 +318,7 @@ Applying \cref{cor:four-mult-est-dual} to \eqref{3ag}, we conclude that
 %%
 %%
 
-\vskip0.1in
-\textbf{Estimate for \eqref{main-int-expression-3}.} 
+\subsection{Estimate for \eqref{main-int-expression-3}.} 
 Letting $$f(x,t) = \psi(t) \sum_{n \in \zz} e^{i\left( xn + tn^2 \right)} 
 \sum_{\lambda \in \zz} \frac{1 - \psi\left( \tau - n^2 \right)}{\tau - n^2} 
 \wh{w} \left( n, \tau \right),$$ we have
@@ -609,15 +391,7 @@ that
 \end{equation}
 %
 %
-\hrule
-Claim [Bourgain]: where the last step follows from orthogonality. 
-\\
-Preliminary Explanation: I understand now how Bourgain does this; the work is in 
-my mNLS document. I am in the process of copying it over to this document.
-\\
-\hrule
-%
-%
+where the last step follows from orthogonality. 
 But by \eqref{2ag} and \cref{cor:four-mult-est-dual}, we have
 \begin{equation*}
 	\begin{split}
@@ -652,7 +426,7 @@ constants, we obtain
 \end{equation}
 %
 %
-\textbf{Estimate for \eqref{main-int-expression-4}.}
+\subsection{Estimate for \eqref{main-int-expression-4}.}
 Noting that
 %
 %
@@ -735,13 +509,8 @@ Therefore, applying \cref{lem:four-mult-est} and
 \end{equation}
 %
 %
-\hrule
-Claim [Bourgain]: where the last step follows by the definition of 
+where the last step follows by the definition of 
 $\psi_2$. 
-\\
-Preliminary Explanation: Again, resolved in the mNLS document. It follows from a 
-duality argument, coupled with the first trilinear estimate proved there. \\
-\hrule
 Applying \cref{cor:four-mult-est-dual}, and letting $c$ absorb all 
 superficial constants, we conclude
 that 
@@ -879,52 +648,7 @@ $T = T(\vp)$ is a contraction on $B_M \subset L^4(\ci^2)$.
 %
 %
 %
-\section{Proofs of Lemmas and Estimates}
-\begin{proof}[Proof of \eqref{schwartz-bound}] We first observe that
-\begin{equation*}
-  \begin{split}
-    \wh{\psi_1}(0) = \int_\ci \psi_1 \ dt \le 2 \pi 
-  \end{split}
-\end{equation*}
-%
-%
-while for $k \ge 0$, we use integration by parts to express the 
-the Fourier transform of the periodic extension of $\psi_1$ 
-in the following form
-%
-%
-\begin{equation*}
-  \begin{split}
-    \wh{\psi_1}(\lambda) 
-    & = \int_\ci e^{-i \lambda t} \psi_1 (t) \ dt
-    = \frac{1}{\left( i \lambda \right)^k } \int_\ci e^{-i \lambda t} 
-    \p_t^k \psi_1(t) \ dt
-  \end{split}
-\end{equation*}
-%
-%
-which in conjunction with the estimate $\left( 1 + |\lambda|  \right)^{k } \le |2 \lambda|^k$ for $\lambda \in \mathbb{N}$ 
-gives
-%
-%
-\begin{equation*}
-  \begin{split}
-    \left( 1 + |\lambda| \right)^k |\wh{\psi_1}(\lambda)|
-    & \le |2 \lambda|^k | \int_\ci e^{-i \lambda t} \psi_1(t) \ dt |
-    \\
-    & \le 2 ^k | \int_\ci e^{-i \lambda t} \p_t^k \psi_1(t) \ dt|
-    \\
-    & \le 2^k \int_\ci | \p_t^k \psi(t) | \ dt 
-    \\
-    & \le 2^k \cdot 2 \pi  \|\p_t^k \psi_1(t) \|_{L^\infty(\ci)}
-    \\
-    & = c_k  
-  \end{split}
-\end{equation*}
-%
-which completes the proof.
-\end{proof}
-%
+
 %
 %
 \begin{proof}[Proof of \cref{cor:four-mult-est-dual}]

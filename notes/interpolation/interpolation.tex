@@ -1,127 +1,4 @@
-%
-\documentclass[12pt,reqno]{amsart}
-\usepackage{amssymb}
-\usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage{framed}  %for framing remarks, theorems, etc.
-\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg
-%\usepackage{showkeys}  %shows source equation labels on the pdf
-\usepackage[margin=3cm]{geometry}  %page layout
-%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
-\setcounter{secnumdepth}{1} %number only sections, not subsections
-\hypersetup{colorlinks=true,
-linkcolor=blue,
-citecolor=blue,
-urlcolor=blue,
-}
-\synctex=1
-\numberwithin{equation}{section}  %eliminate need for keeping track of counters
-\numberwithin{figure}{section}
-\setlength{\parindent}{0in} %no indentation of paragraphs after section title
-\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
-%
-%
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\noindent}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\nn}{\mathbb{N}}
-\newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
-\newcommand{\ci}{\mathbb{T}}
-\newcommand{\zzdot}{\dot{\zz}}
-\newcommand{\wh}{\widehat}
-\newcommand{\p}{\partial}
-\newcommand{\ee}{\varepsilon}
-\newcommand{\vp}{\varphi}
-%
-%
-\theoremstyle{plain}  
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{claim}{Claim}
-\newtheorem{conjecture}[subsection]{conjecture}
-%
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-%
-\theoremstyle{remark}
-\newtheorem{remark}{Remark}
-\newtheorem{case}{Case}
-%
-%
-%
-\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
-\makeautorefname{equation}{Equation}
-\makeautorefname{footnote}{footnote}
-\makeautorefname{item}{item}
-\makeautorefname{figure}{Figure}
-\makeautorefname{table}{Table}
-\makeautorefname{part}{Part}
-\makeautorefname{appendix}{Appendix}
-\makeautorefname{chapter}{Chapter}
-\makeautorefname{section}{Section}
-\makeautorefname{subsection}{Section}
-\makeautorefname{subsubsection}{Section}
-\makeautorefname{paragraph}{Paragraph}
-\makeautorefname{subparagraph}{Paragraph}
-\makeautorefname{theorem}{Theorem}
-\makeautorefname{theo}{Theorem}
-\makeautorefname{thm}{Theorem}
-\makeautorefname{addendum}{Addendum}
-\makeautorefname{add}{Addendum}
-\makeautorefname{maintheorem}{Main theorem}
-\makeautorefname{corollary}{Corollary}
-\makeautorefname{lemma}{Lemma}
-\makeautorefname{sublemma}{Sublemma}
-\makeautorefname{proposition}{Proposition}
-\makeautorefname{property}{Property}
-\makeautorefname{scholium}{Scholium}
-\makeautorefname{step}{Step}
-\makeautorefname{conjecture}{Conjecture}
-\makeautorefname{question}{Question}
-\makeautorefname{definition}{Definition}
-\makeautorefname{notation}{Notation}
-\makeautorefname{remark}{Remark}
-\makeautorefname{remarks}{Remarks}
-\makeautorefname{example}{Example}
-\makeautorefname{algorithm}{Algorithm}
-\makeautorefname{axiom}{Axiom}
-\makeautorefname{case}{Case}
-\makeautorefname{claim}{Claim}
-\makeautorefname{assumption}{Assumption}
-\makeautorefname{conclusion}{Conclusion}
-\makeautorefname{condition}{Condition}
-\makeautorefname{construction}{Construction}
-\makeautorefname{criterion}{Criterion}
-\makeautorefname{exercise}{Exercise}
-\makeautorefname{problem}{Problem}
-\makeautorefname{solution}{Solution}
-\makeautorefname{summary}{Summary}
-\makeautorefname{operation}{Operation}
-\makeautorefname{observation}{Observation}
-\makeautorefname{convention}{Convention}
-\makeautorefname{warning}{Warning}
-\makeautorefname{note}{Note}
-\makeautorefname{fact}{Fact}
-%
-\begin{document}
-\title{Interpolation Theorems}
-\author{David Karapetyan}
-\address{Department of Mathematics  \\
-University  of Notre Dame\\
-Notre Dame, IN 46556 }
-\date{}
-%
-\maketitle
-%
-%
-%
-%
-%
-%
+\chapter{Interpolation Theorems}
 \section{Riesz-Thorin}
 \label{sec:riesz-thorin}
 %
@@ -169,7 +46,7 @@ where
 %
 %
 {\bf Proof.} The case $p_0 = p_1 \doteq p$ follows immediately from the
-following lemma, whose proof is provided in the appendix.
+following lemma.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -208,6 +85,119 @@ where $\lambda \in (0,1)$ is defined by
 %
 \end{lemma}
 %
+\begin{proof}
+First, we show that $L^q \subset L^p + L^r$. If $f \in L^q$, let $E = \left\{ x:
+f(x) <1 \right\}$. Clearly $\|f \chi_{E}\|_{\infty} < 1$, while for for finite $r$, $\| f \chi_{E} \|_{r} \le \|f \chi_{E} \|_{q} \le \| f
+\|_{q}$. Similarly, $\| f \chi_{E^c} \|_{p} \le \|f \chi_{E^c} \|_{q} \le \|f\|_{q}$. 
+\\
+\\
+Next, we show that $L^{p} \cap L^{r} \subset L^{q}$ by proving embedding relation
+\eqref{embed-relation}.
+\begin{case}[$r < \infty$]
+Compute
+%
+\begin{equation}
+	\label{simp-riesz-comp-finite}
+	\begin{split}
+		\| f \|_{q}^{q}
+		& = \int_{\rr} | f |^{q}dx
+		\\
+		& = \int_{\rr} | f |^{\lambda q} | f |^{(1-\lambda)q}, \qquad \lambda \in
+		(0,1)
+		\\
+		& \le \left( \int_{\rr} | f |^{\lambda q \cdot \frac{p}{\lambda q}}dx
+		\right)^{\frac{\lambda q}{p}}
+		\left( \int_{\rr}| f |^{(1- \lambda)q \left(
+		\frac{1}{1-\frac{\lambda q}{p}}
+		\right)} dx \right)^{1- \frac{\lambda q}{p}} \qquad \text{(by H{\"o}lder)}
+		\\
+		& =\| f \|_{p}^{\lambda q} \left( \int_{\rr} | f |^{\frac{(1 -
+		\lambda)q}{(1 - \frac{\lambda q}{p})}}dx \right)^{1- \frac{\lambda q}{p}}.
+	\end{split}
+\end{equation}
+%
+%
+Define $\lambda$ by the relation	%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{(1 - \lambda)q}{1 - \frac{\lambda q}{p}} = r
+	\end{split}
+\end{equation*}
+%
+%
+which by algebra is equivalent to \eqref{embed-param-fin}.
+%
+%
+%
+%
+%
+Substituting into \eqref{simp-riesz-comp-finite} we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|f\|_{q}^{q} \le \| f \|_{p}^{\lambda q} \| f \|_{r}^{(1 - \lambda)q}.
+	\end{split}
+\end{equation*}
+%
+%
+Taking $q$th roots of both sides gives \eqref{embed-relation}.
+\end{case}	
+%
+%
+\begin{case}[$r = \infty$]
+Compute
+%
+\begin{equation}
+	\label{simp-riesz-comp-infty}
+	\begin{split}
+		\| f \|_{q}^{q}
+		& = \int_{\rr} | f |^{q}dx
+		\\
+		& = \int_{\rr} | f |^{\lambda q} | f |^{(1-\lambda)q} dx, \qquad \lambda \in
+		(0,1)
+		\\
+		& \le \left( \int_{\rr} | f |^{\lambda q} dx \right)
+		\| f \|_{\infty}^{(1 - \lambda)q}.
+	\end{split}
+\end{equation}
+Defining $\lambda$ by the relation
+%
+%
+\begin{equation*}
+	\begin{split}
+		\frac{1}{q} = \frac{\lambda}{p}
+	\end{split}
+\end{equation*}
+and substituting into the right hand side of \eqref{simp-riesz-comp-infty}, we obtain
+%
+%
+\begin{equation*}
+	\begin{split}
+		\| f \|_{q}^{q}
+		& \le \left( \int_{\rr} | f |^{p} dx \right) \|f \|_{\infty}^{(1 -
+		\lambda)q}.
+	\end{split}
+\end{equation*}
+%
+%
+Taking $q$th roots of both sides gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		\|f\|_{q} \le \left( \int_{\rr} | f |^{p} dx \right)^{\frac{1}{q}}
+		\|f \|_{\infty}^{1 -\lambda} = \|f\|_{p}^{\frac{p}{q}}
+		\|f\|_{\infty}^{1 - \lambda} = \|f\|_{p}^{\lambda} \|f\|_{\infty}^{1-
+		\lambda}.
+	\end{split}
+\end{equation*}
+\end{case}
+%
+%
+This completes the proof. 
+\end{proof}
 %
 Hence, we assume without loss of generality that $p_0 < p_1$. From this it
 follows that $p_\lambda < \infty$ for all $\lambda \in (0,1)$. This is a crucial
@@ -599,7 +589,7 @@ line $\text{Re}\, z=0$, and $| F(z) | \le M_1$ on the line $\text{Re}\, z=1$, th
 %
 \section{Stein Interpolation} 
 \label{sec:stein-interp}
-Following Klainerman \cite{Klainerman:fk}, we introduce the following.  
+Following Klainerman \cite{Klainerman:gk}, we introduce the following.  
 \begin{definition}
 Let $T_{z}$ be a family of linear operators indexed by $z \in D$. We say the
 $T_{z}$ are an analytic family of operators if
@@ -690,121 +680,7 @@ where $\chi(\xi)$ is a cutoff function symmetric about the origin.\
 we fix $g \in H^{s}$ with $\| g\|_{H^{s}} = 1$
 %
 %
-\appendix
-\section{}
-{\bf Proof of \autoref{lem:simp-riesz-thorin}.} 
 %
-First, we show that $L^q \subset L^p + L^r$. If $f \in L^q$, let $E = \left\{ x:
-f(x) <1 \right\}$. Clearly $\|f \chi_{E}\|_{\infty} < 1$, while for for finite $r$, $\| f \chi_{E} \|_{r} \le \|f \chi_{E} \|_{q} \le \| f
-\|_{q}$. Similarly, $\| f \chi_{E^c} \|_{p} \le \|f \chi_{E^c} \|_{q} \le \|f\|_{q}$. 
-\\
-\\
-Next, we show that $L^{p} \cap L^{r} \subset L^{q}$ by proving embedding relation
-\eqref{embed-relation}.
-\begin{case}[$r < \infty$]
-Compute
-%
-\begin{equation}
-	\label{simp-riesz-comp-finite}
-	\begin{split}
-		\| f \|_{q}^{q}
-		& = \int_{\rr} | f |^{q}dx
-		\\
-		& = \int_{\rr} | f |^{\lambda q} | f |^{(1-\lambda)q}, \qquad \lambda \in
-		(0,1)
-		\\
-		& \le \left( \int_{\rr} | f |^{\lambda q \cdot \frac{p}{\lambda q}}dx
-		\right)^{\frac{\lambda q}{p}}
-		\left( \int_{\rr}| f |^{(1- \lambda)q \left(
-		\frac{1}{1-\frac{\lambda q}{p}}
-		\right)} dx \right)^{1- \frac{\lambda q}{p}} \qquad \text{(by H{\"o}lder)}
-		\\
-		& =\| f \|_{p}^{\lambda q} \left( \int_{\rr} | f |^{\frac{(1 -
-		\lambda)q}{(1 - \frac{\lambda q}{p})}}dx \right)^{1- \frac{\lambda q}{p}}.
-	\end{split}
-\end{equation}
-%
-%
-Define $\lambda$ by the relation	%
-%
-\begin{equation*}
-	\begin{split}
-		\frac{(1 - \lambda)q}{1 - \frac{\lambda q}{p}} = r
-	\end{split}
-\end{equation*}
-%
-%
-which by algebra is equivalent to \eqref{embed-param-fin}.
-%
-%
-%
-%
-%
-Substituting into \eqref{simp-riesz-comp-finite} we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|f\|_{q}^{q} \le \| f \|_{p}^{\lambda q} \| f \|_{r}^{(1 - \lambda)q}.
-	\end{split}
-\end{equation*}
-%
-%
-Taking $q$th roots of both sides gives \eqref{embed-relation}.
-\end{case}	
-%
-%
-\begin{case}[$r = \infty$]
-Compute
-%
-\begin{equation}
-	\label{simp-riesz-comp-infty}
-	\begin{split}
-		\| f \|_{q}^{q}
-		& = \int_{\rr} | f |^{q}dx
-		\\
-		& = \int_{\rr} | f |^{\lambda q} | f |^{(1-\lambda)q} dx, \qquad \lambda \in
-		(0,1)
-		\\
-		& \le \left( \int_{\rr} | f |^{\lambda q} dx \right)
-		\| f \|_{\infty}^{(1 - \lambda)q}.
-	\end{split}
-\end{equation}
-Defining $\lambda$ by the relation
-%
-%
-\begin{equation*}
-	\begin{split}
-		\frac{1}{q} = \frac{\lambda}{p}
-	\end{split}
-\end{equation*}
-and substituting into the right hand side of \eqref{simp-riesz-comp-infty}, we obtain
-%
-%
-\begin{equation*}
-	\begin{split}
-		\| f \|_{q}^{q}
-		& \le \left( \int_{\rr} | f |^{p} dx \right) \|f \|_{\infty}^{(1 -
-		\lambda)q}.
-	\end{split}
-\end{equation*}
-%
-%
-Taking $q$th roots of both sides gives
-%
-%
-\begin{equation*}
-	\begin{split}
-		\|f\|_{q} \le \left( \int_{\rr} | f |^{p} dx \right)^{\frac{1}{q}}
-		\|f \|_{\infty}^{1 -\lambda} = \|f\|_{p}^{\frac{p}{q}}
-		\|f\|_{\infty}^{1 - \lambda} = \|f\|_{p}^{\lambda} \|f\|_{\infty}^{1-
-		\lambda}.
-	\end{split}
-\end{equation*}
-%
-%
-This completes the proof of \autoref{lem:simp-riesz-thorin}.	\qquad \qedsymbol		
-\end{case}
 %
 %
 {\bf Proof of \autoref{lem:simp-func}.}
@@ -910,11 +786,3 @@ Observe that from the boundedness of $F(z)$ in the strip $0 \le \text{Re}\, \le
 in the strip $0 \le \text{Re}\, z\le 1$. Taking the
 limit on the left hand side of \eqref{pre-limit-estimate} completes the proof.
 \qquad \qedsymbol
-
-
-
-
-%\nocite{*}
-\bibliography{/Users/davidkarapetyan/math/bib-files/references.bib}
-
-\end{document}

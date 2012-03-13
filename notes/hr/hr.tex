@@ -1,8 +1,8 @@
-\chapter{Non-Uniform Dependence and Well-posedness for 
+\chapter{Non-uniform Dependence and Well-posedness for 
 HR}
 \section{Introduction}
 %
-We consider the  initial value problem for
+We consider the  initial value problem (IVP) for
 the hyperelastic rod (HR)  equation
 %
 %
@@ -25,22 +25,22 @@ u \p_x^3 u
 \end{gather}
 %
 %
-where  $\gamma$  is a  nonzero constant,
+where $\gamma$ is a nonzero constant,
 and prove that the dependence of solutions on initial data is not uniformly 
 continuous in Sobolev spaces $H^s(\ci)$, $s>3/2$.
 Thus, we extend the result proved by Olson 
-\cite{Olson_2006_Non-uniform-dep} in the periodic
+\cite{Olson:2006rc} in the periodic
 case (for $s\ge 2$ and $\gamma \ne 3$)  to  $s>3/2$ (the entire 
 well-posedness range) for HR\@. Furthermore,  motivated by the work of
-Himonas  and Kenig \cite{Himonas:2009fk},
+Himonas  and Kenig \cite{Himonas:2009ck},
 we establish non-uniform dependence
 in the non-periodic case, where the method of traveling wave solutions used in  
-\cite{Olson_2006_Non-uniform-dep} does not seem to work.
+\cite{Olson:2006rc} does not seem to work.
 %
 %
 
 The HR equation was first
-derived by Dai in \cite{Dai_1998_Model-equations} as a one-dimensional 
+derived by Dai in \cite{Dai:1998gh} as a one-dimensional 
 model for finite-length and
 small-amplitude axial deformation waves in thin cylindrical
 rods composed of a compressible Mooney-Rivlin
@@ -55,88 +55,88 @@ the rod, with values ranging from $- 29.4760$ to $3.4174$.
 
 %
 The well-posedness of the HR equation has been studied by several authors. 
-In Yin \cite{Yin_2003_On-the-Cauchy-p} and Zhou 
-\cite{Zhou_2005_Local-well-pose}, a proof of local well-posedness in Sobolev 
+In Yin \cite{Yin:2003ii} and Zhou 
+\cite{Zhou:2005si}, a proof of local well-posedness in Sobolev 
 spaces $H^s$,  $s > 3/2$, is described  on the line and the circle, respectively. 
 Their approach is to rewrite the HR equation   
 in its non-local form, and then to verify the conditions needed to apply 
-Kato's semi-group theory \cite{Kato:1975}. 
+Kato's semi-group theory \cite{Kato:1975dn}. 
 For details on how this is done for CH on the line, see Rodriguez-Blanco 
-\cite{Rodriguez-Blanco_2001_On-the-Cauchy-p}. Blow-up criteria 
-is also investigated in \cite{Yin_2003_On-the-Cauchy-p} and 
-\cite{Zhou_2005_Local-well-pose}, as well as by Constantin and Strauss 
-\cite{Constantin_2000_Stability-of-a-}. 
+\cite{Rodriguez-Blanco:2001co}. Blow-up criteria 
+is also investigated in \cite{Yin:2003ii} and 
+\cite{Zhou:2005si}, as well as by Constantin and Strauss 
+\cite{Constantin:2000du}. 
 
 
 Setting $\gamma = 0$ gives the celebrated 
 BBM equation, which was proposed by 
 Benjamin, Bona, and Mahony 
-\cite{Benjamin_1972_Model-equations} as a model for 
+\cite{Benjamin:1972ny} as a model for 
 the unidirectional evolution of long waves.
 Solitary-wave solutions to this 
 equation are global and orbitally stable (see Benjamin 
-\cite{Benjamin_1972_The-stability-o}, 
-\cite{Benjamin_1972_Model-equations}, and 
-\cite{Constantin_2000_Stability-of-a-}).
+\cite{Benjamin:1972xm}, 
+\cite{Benjamin:1972ny}, and 
+\cite{Constantin:2000du}).
 For more general $\gamma$, the existence of global 
 solutions to HR on the line with constant $H^1$ energy
-was proved recently by Mustafa \cite{Mustafa:2007}
+was proved recently by Mustafa \cite{Mustafa:2007ou}
 using the approach developed by Bressan and 
-Constantin in \cite{Bressan_2007_Global-conserva}. Using a vanishing 
+Constantin in \cite{Bressan:2007bq}. Using a vanishing 
 viscosity argument, Coclite, 
-Holden, and Karlsen \cite{Coclite_2005_Global-weak-sol}
+Holden, and Karlsen \cite{Coclite:2005hd}
 established existence of a strongly continuous semigroup of global 
 weak solutions of HR on the line for initial data in $H^1$.
 Bendahmane, Coclite, and Karlsen 
-\cite{Bendahmane:2006p1301} extended this result to traveling 
+\cite{Bendahmane:2006oj} extended this result to traveling 
 wave solutions that are supersonic solitary shockwaves.
 For more information on the existence of global solutions to the HR
-equation, see Holden and Raynaud \cite{Holden_2007_Global-conserva}
-and \cite{Yin_2003_On-the-Cauchy-p}. 
+equation, see Holden and Raynaud \cite{Holden:2007hp}
+and \cite{Yin:2003ii}. 
 
 There is a variety of traveling wave solutions to the HR equation that can be 
 obtained using various combinations of peaks, cusps, compactons, 
 fractal-like waves, and plateaus (see Lenells 
-\cite{Lenells_2006_Traveling-waves}). Orbital stability of solitary wave 
-solutions was proved in \cite{Constantin_2000_Stability-of-a-}.
+\cite{Lenells:2006mo}). Orbital stability of solitary wave 
+solutions was proved in \cite{Constantin:2000du}.
 Solitary shock wave formation was 
-analyzed in Dai and Huo \cite{Dai_2000_Solitary-shock-} using traveling 
+analyzed in Dai and Huo \cite{Dai:2000vo} using traveling 
 wave solutions of the HR equation to derive a system of ordinary differential 
 equations, with a vertical singular line in the phase plane corresponding with the 
 formation of shock waves. Head-on collisions between two solitary 
 waves was investigated in the work of Hui-Hui Dai, 
-Shiqiang Dai, and Huo \cite{Dai_2000_Head-on-collisi} using a reductive 
+Shiqiang Dai, and Huo \cite{Dai:2000cd} using a reductive 
 perturbation method coupled with the technique of strained coordinates. 
 
 In this work we study the continuity of the data-to-solution map for the HR 
 equation.
 Using the method of traveling wave solutions it was shown in  
-\cite{Olson_2006_Non-uniform-dep} that the data-to-solution map
+\cite{Olson:2006rc} that the data-to-solution map
 $u_0  \mapsto u$ of the periodic HR equation is not uniformly continuous 
 from any bounded set in $H^s(\ci)$ into $C([0, T ], H^s(\ci))$ for $s \ge 
 2$ and $\gamma \neq 3$. Non-uniform dependence for the non-periodic CH 
 equation in 
-$H^s(\rr)$ for $s>3/2$ was proven in \cite{Himonas:2009fk} 
+$H^s(\rr)$ for $s>3/2$ was proven in \cite{Himonas:2009ck} 
 using the method of approximate solutions and well-posedness estimates. The 
 case $s=1$ for both the line and the circle
 was proved earlier by Himonas, Misio{\l}ek, and Ponce in 
-\cite{Himonas_2007_Non-uniform-con}.
-Recently in \cite{Himonas:2010} non-uniform 
+\cite{Himonas:2007qf}.
+Recently in \cite{Himonas:2010vp} non-uniform 
 continuity of the solution map for the CH equation
 on the circle has been proved
 for the whole range of Sobolev exponents for which local well-posedness of 
 CH is known.
 
-We mention that the continuity of the data-to-solution map  for CH has 
-been studied in  \cite{Himonas_2007_Non-uniform-con},
-\cite{Himonas_2001_The-Cauchy-prob}, and 
-\cite{Himonas:2005}, and for the Euler equations in 
-\cite{Himonas:2010a}. Continuity of this map for  
+We mention that the continuity of the data-to-solution map for CH has 
+been studied in  \cite{Himonas:2007qf},
+\cite{Himonas:2001db}, and 
+\cite{Himonas:2005qg}, and for the Euler equations in 
+\cite{Himonas:2010eu}. Continuity of this map for  
 the Benjamin-Ono equation was studied in Koch and Tzvetkov 
-\cite{Koch:2005}. For related ill-posedness results, we 
+\cite{Koch:2005pv}. For related ill-posedness results, we 
 refer the reader to Kenig, Ponce, and  Vega 
-\cite{Kenig_2001_On-the-ill-pose}, Christ, Colliander, and Tao 
-\cite{Christ_2003_Asymptotics-fre}, and the references 
+\cite{Kenig:2001so}, Christ, Colliander, and Tao 
+\cite{Christ:2003ez}, and the references 
 therein.
 
 Here we consider the initial value problem for the HR equation
@@ -156,27 +156,20 @@ More precisely, we show the following result:
 \label{thm:hr-non-unif-dependence}
 Let $\gamma$ be a nonzero constant. Then 
 the data-to-solution map $u(0) \mapsto u(t)$ of the Cauchy-problem
-for the HR equation
+for the HR IVP
 \eqref{hr}-\eqref{hr-data}
 is not uniformly continuous
 from any bounded subset of  $H^s$ into $C([-T, T], H^s)$
 for $s>3/2$ on the line and circle.
-%
 \end{theorem}
-%
-%
-%
 As we mentioned above, when  $\gamma=0$ the HR equation
 becomes the BBM equation.
-Bona and Tzvetkov \cite{Bona_2009_Sharp-well-pose} have recently proved  that this equation  
+Bona and Tzvetkov \cite{Bona:2009ww} have recently proved  that this equation  
 is globally well-posed in  Sobolev spaces $H^s$, if $s \ge 0$,
 and that its data-to-solution map is smooth.
-%
-%
-%
-Our approach  for proving \cref{thm:hr-non-unif-dependence}  
-mirrors  that in Himonas and Kenig \cite{Himonas:2009fk} and 
-Himonas, Kenig, and Misio{\l}ek \cite{Himonas:2010}.
+Our approach  for proving Theorem~\ref{thm:hr-non-unif-dependence}  
+mirrors  that in Himonas and Kenig \cite{Himonas:2009ck} and 
+Himonas, Kenig, and Misio{\l}ek \cite{Himonas:2010vp}.
 That is, we will choose 
 approximate solutions to the HR equation such that the size of the difference between approximate and actual solutions with 
 identical initial data is negligible. Hence, to understand the degree of 
@@ -247,13 +240,13 @@ u_0
 A proof of existence, uniqueness, and continuous dependence in this 
 theorem for $\gamma =1$ (CH) 
 is given  by Li and Olver in 
-\cite{Li_2000_Well-posedness-} using a regularization method, and in
-\cite{Rodriguez-Blanco_2001_On-the-Cauchy-p} using 
-Kato's semi-group method \cite{Kato:1975}. As mentioned 
+\cite{Li:2000nk} using a regularization method, and in
+\cite{Rodriguez-Blanco:2001co} using 
+Kato's semi-group method \cite{Kato:1975dn}. As mentioned 
 above, proofs of 
 existence, uniqueness, and continuous dependence for  HR
-have been outlined in \cite{Yin_2003_On-the-Cauchy-p} and 
-\cite{Zhou_2005_Local-well-pose} for the line and circle, 
+have been outlined in \cite{Yin:2003ii} and 
+\cite{Zhou:2005si} for the line and circle, 
 respectively. Both outlines rely upon an application of Kato's semi-group 
 method. However, we have not been able to find estimates  
 \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs}  in the literature.
@@ -261,12 +254,11 @@ Here we shall give a proof of local well-posedness of HR,
 including  estimates \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs},
 which are key ingredients in our work, 
 following an alternative approach used for nonlinear hyperbolic equations
-in Taylor \cite{Taylor:1991}.
-\\
-\\
+in Taylor \cite{Taylor:1991eg}.
+
 For the Burgers equation, it is also known that for $s > 3/2$, dependence is not
-better than continuous. Furthermore, Kato \cite{Kato:1975}
-showed that for $s > 3/2$ the data to solution map $u_{0} \mapsto u(t)$ is not
+better than continuous. Furthermore, Kato \cite{Kato:1975dn}
+showed that for $s > 3/2$ the data-to-solution map $u_{0} \mapsto u(t)$ is not
 H\"older continuous from a closed ball in $H^{s}(\rr)$ centered at $0$ and measured
 in the $H^{r}(\rr)$ norm, $r < s$, to $C([0, T], H^{r}(\rr))$, where $T$ depends upon
 the $H^{s}(\rr)$ radius of the ball. More precisely, for fixed $0 < \gamma < 1$
@@ -282,16 +274,16 @@ there exist solutions $u, v$ of Burgers with bounded initial data in $H^{s}(\rr)
 \end{split}
 \end{equation*}
 However, for certain general quasi-linear hyperbolic systems, Kato also obtained
-uniform continuity of the data to solution map for initial data in Sobolev
+uniform continuity of the data-to-solution map for initial data in Sobolev
 spaces with integer index, measured in a weaker Sobolev norm. More recently, Tao
-\cite{Tao:2004} obtained Lipschitz continuity of the data to solution map
+\cite{Tao:2004rg} obtained Lipschitz continuity of the data-to-solution map
 for the Benjamin-Ono equation for $H^{1}(\rr)$ initial data measured in $L^{2}(\rr)$.
-Herr, Ionescu, Kenig, and Koch \cite{Herr:2010p886} have also obtained Lipschitz
+Herr, Ionescu, Kenig, and Koch \cite{Herr:2010rv} have also obtained Lipschitz
 continuity in a weaker topology for the Benjamin-Ono with generalized
 dispersion. Hence, it is reasonable to ask whether a result similar to these
 holds for HR\@. Our main motivation stems from the work of Chen, Liu, and Zhang
-\cite{Chen:2011fk} on the
-b-family
+\cite{Chen:2011aa} on the
+$b$-family
 %
 %
 \begin{gather}
@@ -306,8 +298,8 @@ u(x,0) = u_0(x), \ x \in \ci \ \text{or} \ \rr, \ t \in \rr
 \end{gather}
 %
 %
-for which they proved H\"older continuity of the data to solution map from a closed ball $B(0, h)$ in $H^{s}(\rr)$, $s >
-3/2$ (measured in the $H^{r}(\rr)$ topology, $r <s$) to $C([0, T], H^{r}(\rr))$, with $T
+for which they proved H\"older continuity of the data-to-solution map from a closed ball $B(0, h)$ in $H^{s}(\rr)$, $s >
+3/2$ (measured in the $H^{r}(\rr)$ topology, $r <s$) to \\ $C([0, T], H^{r}(\rr))$, with $T
 = T(h)> 0$ and H\"older index $\alpha = \alpha(b, s, r)$ given by 
 %
 %
@@ -340,13 +332,13 @@ where
 Given this result, and the similarities between the $b$-family and HR (both can
 be thought of as weakly dispersive nonlocal perturbations of Burgers), in this
 work we study the continuity properties of the
-data-to-solution map for the HR equation, expanding upon \cref{thm:hr-non-unif-dependence}. More precisely, following \cite{Chen:2011fk} we show
+data-to-solution map for the HR IVP, expanding upon Theorem~\ref{thm:hr-non-unif-dependence}. More precisely, following \cite{Chen:2011aa} we show
 the following result:
 %
 %
 \begin{theorem}
 For $\gamma \neq 0$, the
-data to solution map for HR is H\"older continuous on both the line and circle from $B_{H^{s}}(R)$ (in
+data-to-solution map for HR is H\"older continuous on both the line and circle from $B_{H^{s}}(R)$ (in
 the topology of $H^{r}$) to $C([0, T], H^{r})$, where $T = T(R)$, for $s >
 3/2$, $-1 \le r < s$. More
 precisely, consider the following sets 
@@ -435,12 +427,12 @@ s-r, \quad & (s, r) \in \Omega_{3}.
 %
 %
 We remark that this result is sharper then the analogue obtained in
-\cite{Chen:2011fk} for the $b$-family. We are confident that the techniques
+\cite{Chen:2011aa} for the $b$-family. We are confident that the techniques
 applied here can be applied to sharpen the results obtained in
-\cite{Chen:2011fk}.
+\cite{Chen:2011aa}.
 
-The document is structured as follows. We first prove 
-\cref{thm:hr-non-unif-dependence} on the line and 
+This document is structured as follows. We first prove 
+Theorem~\ref{thm:hr-non-unif-dependence} on the line and 
 then on the circle.
 As mentioned above, we begin with two sequences of
 appropriate approximate solutions and then 
@@ -448,10 +440,10 @@ we construct  actual solutions
 coinciding at time zero  with the approximate solutions.
 The key step is to show that  the $H^s$-size of
 the difference between approximate and actual solutions 
-converges to zero (see \cref{applelem:bound_for_difference-of-approx-and-actual-soln}
-and \cref{prop:bound_for_difference-of-approx-actual-soln}). 
-We then prove \cref{thm:HR_existence_continuous_dependence} 
-using a Galerkin-type argument and energy estimates. Using the tools (energy estimates, commutator estimate, and multiplier estimate) used to prove \cref{thm:HR_existence_continuous_dependence}, we will then prove \cref{thm:main-thm}. 
+converges to zero (see Proposition~\ref{applelem:bound_for_difference-of-approx-and-actual-soln}
+and Proposition~\ref{prop:bound_for_difference-of-approx-actual-soln}). 
+We then prove Theorem~\ref{thm:HR_existence_continuous_dependence} 
+using a Galerkin-type argument and energy estimates. Using the tools (energy estimates, commutator estimate, and multiplier estimate) used to prove Theorem~\ref{thm:HR_existence_continuous_dependence}, we will then prove Theorem~\ref{thm:main-thm}. 
 %
 %
 %	
@@ -461,7 +453,6 @@ using a Galerkin-type argument and energy estimates. Using the tools (energy est
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
-%           Proof of  \cref on the line
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -476,19 +467,19 @@ using a Galerkin-type argument and energy estimates. Using the tools (energy est
 %
 %
 We begin by outlining the method of the proof,
-as it has been applied for the case $\gamma=1$ in \cite{Himonas:2009fk}.
+as it has been applied for the case $\gamma=1$ in \cite{Himonas:2009ck}.
 We will show  that there there exist two sequences of solutions 
-$u_n(t)$
-and $v_n(t)$ in $C([-T, T], H^s)$ such that
+$u_{\lambda}(t)$
+and $v_{\lambda}(t)$ in $C([-T, T], H^s(\rr))$ such that
 %
 %
 %
 %
 \begin{equation}
 \label{h-s-bdd}
-\| u_n(t)  \|_{H^s}
+\| u_{\lambda}(t)  \|_{H^s(\rr)}
 +
-\| v_n(t)  \|_{H^s}
+\| v_{\lambda}(t)  \|_{H^s(\rr)}
 \lesssim
 1,
 \end{equation}
@@ -499,12 +490,12 @@ and $v_n(t)$ in $C([-T, T], H^s)$ such that
 %
 \begin{equation}
 \label{zero-limit-at-0}
-\lim_{n\to\infty}
+\lim_{\lambda \to\infty}
 \|
-u_n(0)
+u_{\lambda}(0)
 -
-v_n(0)
-\|_{H^s}
+v_{\lambda}(0)
+\|_{H^s(\rr)}
 =
 0,
 \end{equation}
@@ -519,12 +510,12 @@ and
 %
 \begin{equation}
 \label{bdd-away-from-0}
-\liminf_{n\to\infty}
+\liminf_{\lambda \to\infty}
 \|
-u_n(t)
+u_{\lambda}(t)
 -
-v_n(t)
-\|_{H^s}
+v_{\lambda}(t)
+\|_{H^s(\rr)}
 \gtrsim
 |\sin ( \gamma t)|,
 \quad
@@ -536,28 +527,25 @@ We accomplish this in two steps.
 First, we will construct two sequences of approximate solutions
 satisfying the above properties.
 Then, we will construct two sequences of actual solutions 
-coinciding with the approximate solutions at time zero.
-The key point of this method is that 
-the difference between solutions and approximate solutions
-decays rapidly.
+coinciding with the approximate solutions at time zero such 
+that for small time the size of the difference of solutions and approximate
+solutions decays as $\lambda \to \infty$.
 
-%
-%
 For this method, it is more convenient 
 to rewrite the Cauchy problem for the HR equation 
-in the following non-local form
+in the non-local form
 %
 %
-\begin{align}
-& \p_t u =  -\gamma u \p_x u -
+\begin{gather}
+\p_t u =  -\gamma u \p_x u -
 \Lambda^{-1} \left[ \frac{3-\gamma}{2}u^2 +
 \frac{\gamma}{2} \left( \p_x u \right)^2
 \right],
 \label{apple1'}
 \\
-&  u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
+ u(x,0) = u_0(x), \; \; x \in \rr, \; \; t \in \rr
 \label{apple2'}
-\end{align}
+\end{gather}
 %
 %
 where 
@@ -570,9 +558,8 @@ where
 %
 %
 %
-
-\subsection{Approximate solutions}
-Following \cite{Himonas:2009fk}, our approximate solutions
+\subsection{Approximate Solutions}
+Following \cite{Himonas:2009ck}, our approximate solutions
 \\ $u^{\omega, \lambda} = u^{\omega,
 \lambda}(x,t)$ to \eqref{apple1'}-\eqref{apple2'} will
 consist of a low frequency and a high frequency part,
@@ -620,23 +607,23 @@ where $\phi$ is a $C^\infty$ cut-off function such that
 %
 %
 %
-and by \cref{thm:HR_existence_continuous_dependence} 
+and by Theorem~\ref{thm:HR_existence_continuous_dependence} 
 we let the low frequency part $u_\ell = u_{l,
 \omega, \lambda}(x,t)$ be the unique solution to the Cauchy problem
 %
 %
-\begin{align}
+\begin{gather}
 \label{u-l-apple1'}
-& \p_t u_\ell = -\gamma u_\ell \p_x u_\ell -
+\p_t u_\ell = -\gamma u_\ell \p_x u_\ell -
 \Lambda^{-1} \left[ \frac{3-\gamma}{2}(u_\ell)^2 +
 \frac{\gamma}{2} \left( \p_x u_\ell \right)^2
 \right],
 \\
-& u_\ell(x,0) = \omega \lambda^{-1} \tilde{\phi} \left(
+u_\ell(x,0) = \omega \lambda^{-1} \tilde{\phi} \left(
 \frac{x}{\lambda^{\delta}}
 \right), \quad x \in \rr, \quad t \in \rr
 \label{apple1ah}
-\end{align}
+\end{gather}
 %
 %
 %
@@ -659,7 +646,7 @@ We remark that for $\lambda >>1$ and $\delta < 2$ the approximate solutions
 $u^{\omega, \lambda}$ share a common lifespan $T >> 1$. To see why, we 
 first note that the high frequency part $u^{h, \omega, \lambda}$ has 
 infinite lifespan by the following, whose 
-proof can be found in \cite{Himonas:2009fk}: 
+proof can be found in \cite{Himonas:2009ck}: 
 %
 %
 \begin{lemma}
@@ -752,14 +739,11 @@ E_6 & = (3- \gamma)\Lambda^{-1}
 %
 %
 %
-Next we prove the decay of the error:
+Next we prove the decay of the error as $\lambda \to \infty$:
 %
 %
 \begin{proposition}
-Let $1<\delta<2$. Then for $s > 1$, bounded $\omega$, and
-$\lambda >>1$ we are assured the decay of the error $E$ of the
-approximate solutions to the HR equation. Specifically
-%
+Let $1<\delta<2$. Then for $s > 1$ and $\omega$ in a bounded set
 %
 %
 \begin{equation}
@@ -775,9 +759,8 @@ T.
 %
 %
 \begin{proof}
-    It will suffice to estimate the $H^1$ norms of each $E_i$. \vspace{0.25cm}\\
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_1}$.} 
-We have
+    It will suffice to estimate the $H^1$ norms of each $E_i$.
+For $E_{1}$ we have
 %
 %
 \begin{equation}
@@ -800,10 +783,10 @@ u_\ell(x,t)
 Applying the inequality 
 %
 %
-\begin{equation*}
+\begin{equation}
 \label{applec}
 \|fg\|_{H^1(\rr)} \lesssim \|f\|_{C^1(\rr)} \|g\|_{H^1(\rr)}
-\end{equation*}
+\end{equation}
 %
 %
 %
@@ -932,18 +915,14 @@ $u_\ell \in C( [-T,T], H^s(\rr))$ for all $s
 %
 \end{lemma}
 %
-An analogous result can be found in \cite{Himonas:2009fk}. 
+An analogous result can be found in \cite{Himonas:2009ck}, and is a simple consequence of Theorem~\ref{thm:HR_existence_continuous_dependence} and the profile of our initial data. Applying the inequality 
 %
-%
-%
-Applying the inequality 
-%
-\begin{equation*}
+\begin{equation}
 \begin{split}
 \|\Lambda^{-1} f \|_{H^1(\rr)} \le \|f\|_{L^2(\rr)},
 \label{apple27}
 \end{split}
-\end{equation*}
+\end{equation}
 %
 %
 and the algebra property of Sobolev spaces, we obtain
@@ -958,7 +937,7 @@ and the algebra property of Sobolev spaces, we obtain
 \end{equation*}
 %
 %
-which by \cref{appleb} gives
+which by Lemma~\ref{appleb} gives
 %
 %
 \begin{equation}
@@ -995,8 +974,7 @@ Substituting \eqref{apple1055} and \eqref{apple15} into \eqref{apple14}, we obta
 \end{equation}
 %
 %
-
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_2}$.} Applying  \eqref{applec}, we have
+For $E_{2}$, we apply \eqref{applec} to obtain
 \begin{equation}
 	\begin{split}
 		\|E_2\|_{H^1(\rr)} 
@@ -1042,8 +1020,7 @@ Applying estimates \eqref{apple19} and \eqref{apple10'} to \eqref{apple18}, we o
 %
 %
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_3}$.} 
-By  \eqref{applec}, we deduce
+For $E_{3}$ we see that \eqref{applec} implies
 \begin{equation}
 	\begin{split}
 		\|\gamma u^h \p_x u_\ell \| \lesssim \|u^h\|_{C^1(\rr)}
@@ -1082,7 +1059,7 @@ Therefore, from \eqref{apple22} and \eqref{apple23} it follows that
 	\begin{split}
 		\|u^h\|_{C^1(\rr)} \lesssim \lambda^{-\frac{\delta}{2} -s } + \lambda^{1
 		-\frac{\delta}{2} -s}
-		\approx \lambda^{1- \frac{\delta}{2} -s}.
+		\sim \lambda^{1- \frac{\delta}{2} -s}.
 		\label{apple24}
 	\end{split}
 \end{equation}
@@ -1094,7 +1071,7 @@ Substituting estimates \eqref{apple24} and  \eqref{apple10'} into \eqref{apple21
 	\end{split}
 \end{equation}
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_4}$.} Applying  \eqref{applec} we have
+For $E_{4}$ we apply \eqref{applec} to obtain
 \begin{equation}
 	\begin{split}
 		\|\gamma u^h \p_x u^h\|_{H^1(\rr)} \lesssim \|u^h\|_{C^1(\rr)}
@@ -1103,7 +1080,7 @@ Substituting estimates \eqref{apple24} and  \eqref{apple10'} into \eqref{apple21
 	\end{split}
 \end{equation}
 Substituting in \eqref{apple24}, and observing that $\|u^h\|_{H^1(\rr)} \lesssim 1$ for $\lambda >>1$ by 
-\cref{applea}, we obtain
+Lemma~\ref{applea}, we obtain
 \begin{equation}
 	\begin{split}
 		\|u^h \p_x u^h \|_{H^1(\rr)} \lesssim \lambda^{1-\frac{\delta}{2}-s}.
@@ -1113,8 +1090,7 @@ Substituting in \eqref{apple24}, and observing that $\|u^h\|_{H^1(\rr)} \lesssim
 %
 %
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_5}$.}
-Applying \eqref{apple27}, we obtain
+For $E_{5}$ we apply \eqref{apple27} to obtain
 \begin{equation}
 	\begin{split}
 		\|E_5\|_{H^1(\rr)}
@@ -1137,7 +1113,7 @@ Substituting \eqref{apple6} and \eqref{apple22} into \eqref{apple28}, we conclud
 %
 %
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_6}$.} Applying \eqref{apple27}, we obtain
+For $E_{6}$ we apply \eqref{apple27} to obtain
 \begin{equation}
 	\begin{split}
 		\|E_6\|_{H^1(\rr)} 
@@ -1147,7 +1123,7 @@ Substituting \eqref{apple6} and \eqref{apple22} into \eqref{apple28}, we conclud
 		\label{apple30}
 	\end{split}
 \end{equation}
-which by  \cref{appleb} and \eqref{apple22} reduces to
+which by Lemma~\ref{appleb} and \eqref{apple22} reduces to
 \begin{equation}
 	\begin{split}
 		\|E_6\|_{H^1(\rr)} \lesssim \lambda^{-1-s}.
@@ -1159,18 +1135,18 @@ which by  \cref{appleb} and \eqref{apple22} reduces to
 %
 %
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_7}$.} Applying \eqref{apple27}, we obtain
+For $E_{7}$ we apply \eqref{apple27} to obtain
 \begin{equation}
 	\begin{split}
 		\|E_7\|_{H^1(\rr)} 
 		& = \|\Lambda^{-1} \left[ \frac{\gamma}{2}\left( \p_x u \right)^2
 		\right]\|_{H^1(\rr)}
 		\\
-		& \lesssim  \|\p_x u^h\|_{L^\infty(\rr)} \|u^h\|_{H^1(\rr)}.
+		& \lesssim  \|\p_x u^h\|_{L^\infty(\rr)} \|u^h\|_{H^1(\rr)}
 		\label{apple32}
 	\end{split}
 \end{equation}
-which by  \cref{applea} and \eqref{apple23} reduces to
+which by Lemma~\ref{applea} and \eqref{apple23} reduces to
 \begin{equation}
 	\begin{split}
 		\|E_7\|_{H^1(\rr)} \lesssim \lambda^{1-\frac{\delta}{2}-s}.
@@ -1182,7 +1158,7 @@ which by  \cref{applea} and \eqref{apple23} reduces to
 %
 %
 %
-{\bf Estimating the $H^1$ norm of $\hyperref[all_errors_together]{E_8}$.} Applying \eqref{apple27}, we have
+For $E_{8}$ we apply \eqref{apple27} to obtain 
 \begin{equation}
 	\begin{split}
 		\|E_8\|_{H^1(\rr)}
@@ -1192,7 +1168,7 @@ which by  \cref{applea} and \eqref{apple23} reduces to
 		\label{apple33}
 	\end{split}
 \end{equation}
-which by  \cref{appleb} and \eqref{apple23} reduces to
+which by Lemma~\ref{appleb} and \eqref{apple23} reduces to
 \begin{equation}
 	\begin{split}
 		\|E_8\|_{H^1(\rr)} \lesssim \lambda^{-s}.
@@ -1200,7 +1176,7 @@ which by  \cref{appleb} and \eqref{apple23} reduces to
 	\end{split}
 \end{equation}
 Collecting all our estimates for the $E_i$ and recalling that we have assumed
-$1<\delta<2$, we obtain
+$1<\delta<2$, we see that
 \begin{equation*}
 	\begin{split}
 		\|E\|_{H^1(\rr)}
@@ -1214,31 +1190,31 @@ which completes the proof.
 %
 %
 %
-\subsection{Construction of solutions}
+\subsection{Construction of Solutions}
 We wish now to estimate the difference between approximate and actual 
 solutions to
-the HR i.v.p.\ with common initial data. Let
+the HR IVP with common initial data. Let
 $u_{\omega,\lambda}(x,t)$ be the unique solution to the HR equation
 with initial data $u^{\omega,\lambda}(x,0)$. That is,
 $u_{\omega,\lambda}$ solves the initial value problem
-\begin{align}
-& \p_t u_{\omega,\lambda} = - \gamma u_{\omega,\lambda} \p_x 
+\begin{gather}
+\p_t u_{\omega,\lambda} = - \gamma u_{\omega,\lambda} \p_x 
 u_{\omega,\lambda} - \Lambda^{-1} \left[
 \frac{3- \gamma}{2}\left( u_{\omega,\lambda} \right)^2 + 
 \frac{\gamma}{2}\left(
 \p_x u_{\omega,\lambda} \right)^2
 \right], \label{apple50}
 \\
-& u_{\omega,\lambda}(x, 0) = u^{\omega,\lambda}(x,0) = \omega \lambda^{-1}
+u_{\omega,\lambda}(x, 0) = u^{\omega,\lambda}(x,0) = \omega \lambda^{-1}
 \tilde{\phi} \left( \frac{x}{\lambda^\delta} \right)
 + \lambda^{-\frac{\delta}{2} -s}
 \phi\left( \frac{x}{\lambda^\delta} \right) \cos(\lambda x).
 \label{apple41}
-\end{align}
+\end{gather}
 %
 %
 %
-We will now prove that the $H^1(\rr)$ norm of the difference decays: 
+We will now prove that the $H^1(\rr)$ norm of the difference decays as $\lambda \to \infty$: 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1260,7 +1236,7 @@ We will now prove that the $H^1(\rr)$ norm of the difference decays:
 \begin{proposition}
 \label{applelem:bound_for_difference-of-approx-and-actual-soln}
 %
-Let $v = u^{\omega,\lambda} - u_{\omega,\lambda}$, with $\lambda >>1$.
+Let $v = u^{\omega,\lambda} - u_{\omega,\lambda}$.
 Then, for $s > 1$ and $1<\delta<2$ we have
 %
 %
@@ -1363,7 +1339,7 @@ u^{\omega,\lambda} \p_x v) dx
 \end{equation}
 %
 %
-We now estimate the three integrals in the right-hand side of 
+We now estimate the three integrals on the right-hand side of 
 \eqref{appleenergy-est}. Integrating by parts and applying Cauchy-Schwartz,  
 we obtain
 %
@@ -1430,7 +1406,7 @@ obtain
 \end{equation}
 %
 %
-Assume $\lambda >>1$. A straightforward calculation of derivatives yields
+A straightforward calculation of derivatives yields
 %
 %
 \begin{equation*}
@@ -1442,7 +1418,7 @@ u^h\|_{L^\infty(\rr)} \lesssim \lambda^{- \frac{\delta}{2} - s +2 }.
 \end{equation*}
 %
 %
-Furthermore, by the Sobolev Imbedding Theorem and \cref{appleb}, we have
+Furthermore, by the Sobolev Imbedding Theorem and Lemma~\ref{appleb}, we have
 %
 %
 %
@@ -1494,9 +1470,8 @@ Applying Gronwall's inequality completes the proof.
 %
 %
 %
-
 \subsection{Non-Uniform Dependence for $s>3/2$}
-Let $u_{\pm 1,\lambda}$ be solutions to the HR i.v.p.\ with initial 
+Let $u_{\pm 1,\lambda}$ be solutions to the HR IVP with initial 
 data $u^{\pm 1,
 n}(0)$. We wish to show that the $H^s$ norm of the difference of $u_{\pm 1,
 n}$ and the associated approximate solution $u^{\pm 1,\lambda}$
@@ -1517,7 +1492,7 @@ decays as $\lambda \to \infty$. Note that
 \end{equation*}
 %
 %
-where the last step follows from \cref{applea} and \cref{appleb}.
+where the last step follows from Lemma~\ref{applea} and Lemma~\ref{appleb}.
 Using \eqref{u_x-Linfty-Hs}, we have 
 %
 \begin{equation*}
@@ -1544,7 +1519,7 @@ Hence
 %
 %
 Furthermore, by 
-\cref{applelem:bound_for_difference-of-approx-and-actual-soln} 
+Lemma~\ref{applelem:bound_for_difference-of-approx-and-actual-soln} 
 %
 %
 \begin{equation}
@@ -1586,8 +1561,7 @@ gives
 %
 Next, we will use estimate \eqref{apple65} to prove non-uniform
 dependence when $s > 3/2$.
-
-\subsection*{Behavior at time $t=0$.}  We have
+\subsubsection{Behavior at time $t=0$}  We have
 %
 %
 %
@@ -1624,7 +1598,7 @@ Applying \eqref{tildphi} and recalling that $1<\delta<2$, we conclude that
 %  
 %
 
-\subsection*{Behavior at time  $t>0$.}  Using the reverse triangle inequality, we 
+\subsubsection{Behavior at time  $t>0$}  Using the reverse triangle inequality, we 
 have
 %
 %
@@ -1667,7 +1641,7 @@ u_{-1,\lambda}(t)
 %
 Using estimate \eqref{apple65} for the last two terms of 
 the right-hand side of \eqref{appleHR-slns-differ-t-pos} 
-and letting $\lambda$ go to $\infty$ 
+and letting $\lambda \to \infty$ 
 yields
 %
 %
@@ -1738,7 +1712,7 @@ t|
 %
 %
 %
-Letting $\lambda$ go to $\infty$, we see that \cref{applea}, \cref{appleb}, and \eqref{apple90} give
+Letting $\lambda \to \infty$, we see that Lemma~\ref{applea}, Lemma~\ref{appleb}, and \eqref{apple90} give
 %
 %
 %
@@ -1755,9 +1729,8 @@ u^{- 1,\lambda}(t)
 \end{equation}
 %
 %
-Combining \eqref{appleHR-slns-to-ap-est} with \eqref{apple91}, and 
-recalling that $T >>1$, we obtain \eqref{bdd-away-from-0}. This completes 
-the proof of \cref{thm:hr-non-unif-dependence} for the
+This completes 
+the proof of Theorem~\ref{thm:hr-non-unif-dependence} for the
 non-periodic case.  \qed
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1773,23 +1746,85 @@ non-periodic case.  \qed
 \section{Proof of Non-Uniform Dependence 
 on the Circle}
 \label{sec:3}
+%
+Here we follow the proof in \cite{Himonas:2010vp}. 
+We will show that there there exist two sequences of solutions 
+$u_n(t)$
+and $v_n(t)$ in $C([-T, T], H^s(\ci))$ such that
+%
+%
+%
+%
+\begin{equation}
+\| u_n(t)  \|_{H^s(\ci)}
++
+\| v_n(t)  \|_{H^s(\ci)}
+\lesssim
+1,
+\end{equation}
+%
+%
+%
+%
+%
+\begin{equation}
+\lim_{n\to\infty}
+\|
+u_n(0)
+-
+v_n(0)
+\|_{H^s(\ci)}
+=
+0,
+\end{equation}
+%
+%
+%
+%
+and
+%
+%
+%
+%
+\begin{equation}
+\liminf_{n\to\infty}
+\|
+u_n(t)
+-
+v_n(t)
+\|_{H^s(\ci)}
+\gtrsim
+|\sin ( \gamma t)|,
+\quad
+| \gamma t|\le 1.
+\end{equation}%
+%
+%
+As in the non-periodic case, we will first construct two sequences of approximate solutions
+satisfying the above properties.
+Then, we will construct two sequences of actual solutions 
+coinciding with the approximate solutions at time zero such that 
+for small time the size of the difference of solutions and approximate solutions decays as $n \to \infty$.
 
+Again, we rewrite the Cauchy problem for the HR equation 
+in the following non-local form
 %
-Here we follow the proof in \cite{Himonas:2010}. 
-Consider the periodic Cauchy problem for the HR equation
 %
-\begin{align}
-& \p_t u = -\gamma u \p_x u  - \Lambda^{-1} \left[ \frac{3 - 
+%
+\begin{gather}
+\p_t u = -\gamma u \p_x u  - \Lambda^{-1} \left[ \frac{3 - 
 \gamma}{2}u^2 +
 \frac{\gamma}{2}(\p_x u)^2 \right] ,
 \label{hyperelastic-rod-equation}
 \\
-& u(x,0) = u_0(x), \; \; x \in \ci, \; \; t \in \rr.  \label{init-cond}
-\end{align}
+u(x,0) = u_0(x), \; \; x \in \ci, \; \; t \in \rr.  \label{init-cond}
+\end{gather}
 %
 %
+\subsection{Approximate Solutions}
 %
-In this case the  approximate solutions are of the form
+Following \cite{Himonas:2010vp},
+we shall now take approximate solutions of the form
 %
 %
 \begin{equation}
@@ -1800,14 +1835,14 @@ u^{\omega,n}(x,t) = \omega n^{-1} + n^{-s} \cos \left( nx - \gamma \omega t
 where $n$ is a positive integer and $\omega$ is in a bounded subset of 
 $\rr$. We remark that the approximate 
 solutions are in $C^\infty(\ci)$ for all $t \in \rr$, and hence have 
-infinite lifespan in $H^s(\ci)$ for $s  \ge 0$. Furthermore, for $n>>1$ we 
+infinite lifespan in $H^s(\ci)$ for $s  \ge 0$. Furthermore, we 
 have 
 %
 %
 \begin{equation}
 \label{bound-approx}
 \begin{split}
-\|u^{\omega,n} \|_{H^s(\ci)} \approx 1	
+\|u^{\omega,n} \|_{H^s(\ci)} \sim 1	
 \end{split}
 \end{equation}
 %
@@ -1826,7 +1861,7 @@ from the inequality
 %
 Note that for $\gamma=1$ 
 one gets the  approximate solutions
-used for the CH equation in \cite{Himonas:2010}.
+used for the CH equation in \cite{Himonas:2010vp}.
 %
 %
 Substituting the approximate solutions into 
@@ -1863,7 +1898,7 @@ n^{-2s+2} \left [ 1- \cos \left (\frac{nx - \gamma \omega t}{2} \right)
 %
 %
 %
-Next we will prove a decaying estimate for the error:
+Next we will prove that the error decays as $n \to \infty$:
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1877,9 +1912,9 @@ Next we will prove a decaying estimate for the error:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
 \label{lem:error_of_approx_solution}
-Let $u^{\omega,n}$ be an approximate solution to the HR i.v.p., with 
-$\sigma \le 1$,  $\omega$ bounded, and $n >> 1$.
-Then for the error $E$ we have
+Let $u^{\omega,n}$ be an approximate solution to the HR IVP, with 
+$\sigma \le 1$ and $\omega$ in a bounded set.
+Then 
 %
 %
 \begin{equation}
@@ -1929,17 +1964,50 @@ and \eqref{1m}.
 %
 %
 %
-We are now prepared to prove a decaying estimate for the difference of 
-approximate and actual solutions:
+\subsection{Construction of Solutions}
+We wish now to estimate the difference between approximate and actual 
+solutions to
+the HR IVP with common initial data. Let
+$u_{\omega,n}(x,t)$ be the unique solution to the HR equation
+with initial data $u^{\omega,n}(x,0)$. That is,
+$u_{\omega,n}$ solves the initial value problem
+\begin{gather*}
+\p_t u_{\omega,n} = - \gamma u_{\omega,n} \p_x 
+u_{\omega,n} - n^{-1} \left[
+\frac{3- \gamma}{2}\left( u_{\omega,n} \right)^2 + 
+\frac{\gamma}{2}\left(
+\p_x u_{\omega,n} \right)^2
+\right], 
+\\
+u_{\omega,n}(x, 0) = u^{\omega,n}(x,0) = \omega n^{-1}.
+\end{gather*}
+%
+%
+%
+We will now prove that the size of the difference decays as $n \to \infty$: 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
 %
 %
 \begin{proposition}
 \label{prop:bound_for_difference-of-approx-actual-soln}
-Let $v=u^{\omega,n} - u_{\omega,n}$, $n >>1$,
-where $u_{\omega,n}$ denotes a solution to
-the Cauchy-problem \eqref{hyperelastic-rod-equation}-\eqref{init-cond} with
-initial data $u_0(x) = u^{\omega,n}(x,0)$.
-If \ $s > 3/2 $ and $\sigma = 1/2 + \ee$ for a sufficiently
+Let $v=u^{\omega,n} - u_{\omega,n}$.
+If $s > 3/2 $ and $\sigma = 1/2 + \ee$ for a sufficiently
 small $\ee = \ee(s) > 0$, then 
 %
 %
@@ -1954,7 +2022,7 @@ v(t)
 %
 %
 \begin{proof} The difference $v = u^{\omega,n} - u_{\omega,n}$ satisfies 
-the i.v.p
+the IVP 
 \begin{align}
 \label{1.7}
 & \p_t v  =  E - \frac{\gamma}{2} \p_x
@@ -2012,7 +2080,7 @@ D^\sigma v \ dx.
 %
 We now estimate each integral of the right-hand side
 of \eqref{X}.
-\subsection*{Estimate of Integral 1.} Applying Cauchy-Schwartz, we obtain
+For the first integral, we applying Cauchy-Schwartz and obtain
 %
 %
 \begin{equation}
@@ -2025,7 +2093,7 @@ of \eqref{X}.
 %
 %
 %
-\subsection*{Estimate of Integral 2.} We can rewrite
+For the second integral, we rewrite
 %
 %
 \begin{equation}
@@ -2062,7 +2130,7 @@ D^\sigma v \ dx \right |
 %
 %
 We now need the following result
-taken from \cite{Himonas:2010}:
+taken from \cite{Himonas:2010vp}:
 %
 \begin{lemma}
 \label{cor1}
@@ -2081,7 +2149,7 @@ If $\rho > 3/2$ and $0 \le \sigma + 1 \le \rho$, then
 %
 Let $\sigma = 1/2 + \ee$ and $\rho = 3/2 + \ee$, where 
 $\ee > 0$ is
-arbitrarily small. Applying Cauchy-Schwartz and \cref{cor1}, we obtain 
+arbitrarily small. Applying Cauchy-Schwartz and Lemma~\ref{cor1}, we obtain 
 %
 %
 %
@@ -2117,8 +2185,8 @@ u^{\omega,n} +
 %
 %
 
-\subsection*{Estimate of Integral 3.} Using Cauchy-Schwartz, and recalling that
-$\sigma = 1/2 + \ee$,  we obtain
+For the third integral, we use Cauchy-Schwartz and recall that
+$\sigma = 1/2 + \ee$ to obtain
 %
 %
 \begin{equation}
@@ -2134,8 +2202,7 @@ $\sigma = 1/2 + \ee$,  we obtain
 %
 %
 %
-\subsection*{Estimate of Integral 4.}
-We will need the following result.
+For the fourth integral, we will need the following result.
 %
 \begin{lemma}
   \label{lem:frac-deriv}
@@ -2171,13 +2238,13 @@ Applying Cauchy Schwartz in $k$, we bound this by
 %
 %
 %
-\begin{equation*}
+\begin{equation}
 \label{np-key-term-iu}
 \begin{split}
 \| f \|_{H^{s-1}}^{2} \sum_{n \in \zz}  (1 + n^{2})^{r-1}\sum_{k \in \zz} \frac{|
 \wh{g}(n - k) |^{2}}{(1 + k^{2})^{s-1}}.
 \end{split}
-\end{equation*}
+\end{equation}
 %
 But by change of variables and Fubini
 %
@@ -2292,7 +2359,7 @@ we obtain
 \quad s > 3/2, \ r \le 1/2, \ s + r \ge 2.
 \end{split}
 \end{equation}
-We now need the following result taken from Taylor \cite{Taylor:2011}.
+We now need the following result taken from Taylor \cite{Taylor:2011zy}.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2401,7 +2468,7 @@ We now need the following lemma:
 \begin{lemma}
 \label{lem:calc}
 %
-Fix $p, q > 0$ such that $p +q >1$, and let $r =\min\left\{p - \ee_{q}, q -
+Fix $p, q > 0$ such that $p +q >1$, and let \\ $r =\min\left\{p - \ee_{q}, q -
 \ee_{p}, p+q-1 \right\}$, where $\ee_{j} > 0$ is arbitrarily small for $j = 1$
 and $\ee_{j} = 0$ for $j \neq 1$. Adopt the notation
 $\langle x - \alpha \rangle  \doteq 1 + | x - \alpha |$. Then 
@@ -2770,7 +2837,7 @@ lifespan $T$. Hence, applying the triangle inequality,
 %
 %proof of existence relies on an argument similar to that used on the line to prove 
 %the existence of a common lifespan for the approximate solutions).
-Using \cref{lem:error_of_approx_solution} and
+Using Lemma~\ref{lem:error_of_approx_solution} and
 substituting \eqref{total-error-approx-solution} and \eqref{3r}
 into \eqref{10}, we obtain
 %
@@ -2797,19 +2864,19 @@ the proof. \qed
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{Non-Uniform Dependence for $s > 3/2$.}
+\subsection{Non-Uniform Dependence for $s > 3/2$}
 %
 %
 %
-Let $u_{\pm 1, n}$ be solutions to the HR i.v.p.\ with common initial data 
+Let $u_{\pm 1, n}$ be solutions to the HR IVP with common initial data 
 $u^{\pm 1,
 n}(0)$, respectively.
 We wish to show that the $H^s$ norm of the difference of $u_{\pm 1,
-n}$ and the associated approximate solution $u^{\pm 1, n}$ decays.
+n}$ and the associated approximate solution $u^{\pm 1, n}$ decays as $n \to \infty$.
 We assume
 $s > 3/2 $ and $\sigma = 1/2 + \ee$ \ for a sufficiently small
 $\ee= \ee(s) > 0$. 
-Then by \cref{prop:bound_for_difference-of-approx-actual-soln} we 
+Then by Proposition~\ref{prop:bound_for_difference-of-approx-actual-soln} we 
 have
 %
 %
@@ -2899,12 +2966,12 @@ analogous to that on the real line.
 %
 We will now prove well-posedness for the periodic case, after which we will
 provide the necessary details to extend the argument to the non-periodic case.
-\subsection{Existence.}
+\subsection{Existence}
 \label{existence}
-Here we will prove the existence of a solution to the HR i.v.p.\
+Here we will prove the existence of a solution to the HR IVP
 and inequalities
 \eqref{Life-span-est} and \eqref{u_x-Linfty-Hs}.  We begin by mollifying the HR equation, so that we may apply the following ODE
-theorem, taken from Dieudonn\`e \cite{Dieudonne:1969}: 
+theorem, taken from Dieudonn\`e \cite{Dieudonne:1969uc}: 
 %
 \begin{theorem}
 \label{ode_theorem}
@@ -2920,7 +2987,7 @@ To see why we cannot apply the Banach Space ODE Theorem to the HR equation as
 is, let $u=x^{-1/2} \chi_{[0,1]}$. Then $u
 \in L^{2}$ but $u\p_x u \notin L^{2}$. Hence, returning to the general case, we see
 that the HR equation as is can not be thought as an ODE on the space $H^s$. To
-deal with this problem we will replace the i.v.p \eqref{hr}--\eqref{hr-data} by  
+deal with this problem we will replace the HR IVP by  
 \begin{gather}
 \label{hr-moli}
 \p_t  u_\ee =
@@ -2928,17 +2995,11 @@ deal with this problem we will replace the i.v.p \eqref{hr}--\eqref{hr-data} by
 \left[\frac{3-\gamma}{2}u^2 + \frac{\gamma}{2}(\p_x u)^2 \right],
 \\
 \label{hr-moli-data} 
-u_\ee(x, 0) = u_0 (x),
+u_\ee(x, 0) = u_0 (x), \quad x \in \ci, \quad t \in \rr
 \end{gather}
 %
-where $J_\ee$ is defined as follows: Pick a non-negative $j(x) \in
-\mathcal{S}(\rr)$ and let
-\begin{equation*}
-\begin{split}
-j_\ee(x) = \frac{1}{\ee}j\left( \frac{x}{\ee} \right).
-\end{split}
-\end{equation*}
-We then define $J_\ee$ to be the ``Friedrichs mollifier''
+where $J_\ee$ is the ``Friedrichs mollifier''
+defined by 
 \begin{equation}
 \begin{split}
 J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
@@ -2946,7 +3007,15 @@ J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
 \end{equation}
 %
 %
-Notice that the map $f \mapsto J_{\ee} f$ is a bounded map from $H^s(\ci)$
+Here
+\begin{equation}
+\begin{split}
+j_\ee (x) = \frac{1}{2 \pi}\sum_{\xi \in \zz}
+\widehat{j}(\ee \xi) e^{i \xi x}, \quad \ee > 0
+\end{split}
+\end{equation}
+%
+where $\wh{j}(\xi) \in S(\rr)$. Notice that the map $f \mapsto J_{\ee} f$ is bounded from $H^s(\ci)$
 to $H^s(\ci)$.  In order to apply the ODE Theorem, we will also need to
 show that it is a continuously differentiable map:
 %
@@ -2994,8 +3063,8 @@ Let $w_n \xrightarrow{H^s(\ci)} w$. Then it is easy to check that
 \end{equation}
 This concludes the proof. 
 \end{proof}
-Hence, by \cref{ode_theorem}, for each $\ee > 0$ there exists a
-unique solution $u_\ee \in C(I, H^s(\ci))$ satisfying the Cauchy-problem
+Hence, by Theorem~\ref{ode_theorem}, for each $\ee > 0$ there exists a
+unique solution \\ $u_\ee \in C(I, H^s(\ci))$ satisfying the Cauchy-problem
 \eqref{hr-moli}-\eqref{hr-moli-data}. Next, we analyze the size and
 lifespan of the family $\{u_\ee\}$ of solutions.
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -3005,7 +3074,7 @@ lifespan of the family $\{u_\ee\}$ of solutions.
 %%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\subsection{Estimates  for Life-span and Sobolev norm of $u_\ee$.}
+\subsubsection{Energy Estimate for $u_\ee$}
 %
 We will show that there is a lower bound  $T$
 for $T_\ee$, which is  independent of $\ee\in(0, 1]$.
@@ -3027,7 +3096,7 @@ c_s
 %
 We will prove this inequality  by
 following the approach used for quasilinear symmetric
-hyperbolic systems in Taylor \cite{Taylor:1991}. In what follows we will suppress the
+hyperbolic systems in Taylor \cite{Taylor:1991eg}. In what follows we will suppress the
 $t$ parameter for the sake of clarity.
 %
 For any $s\in \ci$ let   $D^s=(1-\p_x^2)^{s/2}$ be the  operator
@@ -3334,7 +3403,7 @@ Combining \eqref{burgers_est'}, \eqref{hl1}, and \eqref{hl2}, we obtain
 %   
 %
 \noindent
-\subsection{Lifespan estimate of $u_\ee$.} To derive an explicit formula for
+\subsubsection{Lifespan Estimate for $u_\ee$} To derive an explicit formula for
 $T_\ee$ we proceed as follows.  Letting  $y(t)=
 \|u_\ee(t)\|_{H^s(\ci)}^2$ inequality  \eqref{B-diff-ineq} takes the
 form
@@ -3420,7 +3489,7 @@ T_0
 %   
 %
 \noindent
-\subsection{Size of the solution estimate} If we choose  $T=\frac12 T_0$, that is
+\subsubsection{Uniform Regularity of $\{u_{\ee}\}$} If we choose  $T=\frac12 T_0$, that is
 %
 \begin{equation} 
 \label{T-def}
@@ -3458,21 +3527,20 @@ $H^{s-1}(\ci)$ norm of $\p_t u_\ee(t)$:
 \begin{lemma}
 \label{hr_wp}
 Let  $u_0(x) \in  H^s(\ci)$, $s >3/2$. Then for any $\ee\in (0, 1]$
-the i.v.p.\ for the mollified HR equation 
+the IVP for the mollified HR equation 
 %
-\begin{equation} 
+\begin{gather} 
 \label{hr-moli-2}
 \partial_t  u_\ee 
 =
 -\gamma (J_\ee u_\ee \partial_x  J_\ee  u_\ee) - \p_x (1-\p_x^2)^{-1} \left
 [\frac{3-\gamma}{2}(u_\ee)^2 + \frac{\gamma}{2}(\p_x u_\ee)^2
 \right ], 
-\end{equation} 
 %
-\begin{equation} 
+\\
 \label{burgers-moli-data-2} 
-u_\ee(x, 0) = u_0 (x),
-\end{equation}
+u_\ee(x, 0) = u_0 (x)
+\end{gather}
 %
 has a unique solution $u_\ee( t)\in C([-T, T]; H^s(\ci))$. 
 In particular,
@@ -3512,7 +3580,7 @@ Here  $c_s$ is a constant depending only on $s$.
 %
 %
 \begin{proof} It suffices to prove  \eqref{dt-u-e-Hs-bound}.
-Using equation \eqref{hr-moli-2}, for any $t\in [-T, T]$ we have
+Using \eqref{hr-moli-2}, for any $t\in [-T, T]$ we have
 %
 \begin{equation*}
 \begin{split}
@@ -3598,15 +3666,11 @@ obtain \eqref{dt-u-e-Hs-bound}.
 %     Choosing  a convergent subsequence
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Choosing  a convergent subsequence.}
+\subsubsection{Choosing  a Convergent Subsequence}
 %
 Next we shall show that  the family $\{ u_\ee\}$ has a convergent subsequence
-whose limit $u$ solves the hyperelastic rod i.v.p. 
-Let
-$$
-I= [-T, T].
-$$
-By \cref{hr_wp} we have 
+whose limit $u$ solves the hyperelastic rod IVP\@. Let $I= [-T, T]$.
+By Lemma~\ref{hr_wp} we have 
 %
 \begin{equation}
 \label{C-1-fam}
@@ -3621,11 +3685,11 @@ and bounded. Since $I$ is compact, we have
 H^{s-1}(\ci)).
 \end{equation}
 %
-Now, by the Riesz Lemma, we can identify $H^s(\rr)$ with
-$(H^s(\rr))^*$, where for $w, \psi \in H^s(\rr)$ the duality is
+Now, by the Riesz Lemma, we can identify $H^s(\ci)$ with
+$(H^s(\ci))^{\star}$, where for $w, \psi \in H^s(\ci)$ the duality is
 defined by 
 \begin{equation*}
-T_w(\psi) = <w, \psi>_{H^s(\rr)}.
+T_w(\psi) = <w, \psi>_{H^s(\ci)}.
 \end{equation*}
 Hence, by the Riesz Representation Theorem it follows that we can
 identify \\ $L^\infty(I, H^s(\ci)) $ with the dual space of $L^1(I,
@@ -3634,19 +3698,18 @@ L^1(I, H^{s}(\ci))$ the duality is defined by
 %
 \begin{equation}
 T_v(\phi) = \int_I <v (t), \phi (t)>_{H^s(\rr)} dt  = \int_I
-\int_{\rr}
-\widehat{v}(\xi, t) \overline{\widehat{\phi}}(\xi, t) \cdot (1
-+ \xi^2)^s \ d \xi dt.
+\sum_{\xi \in \zz} \widehat{v}(\xi, t) \overline{\widehat{\phi}}(\xi, t) \cdot (1
++ \xi^2)^s  dt.
 \end{equation}
 %
 Next, we recall Aloaglu's Theorem:
 \begin{theorem}
 If $X$ is a normed vector space,
-the closed unit ball $B^* = \{f \in X^* : \|f\| \le
-1\}$ in $X^*$ is compact in the $weak^*$ topology.
+the closed unit ball \\ $B^{\star} = \{f \in X^{\star} : \|f\| \le
+1\}$ in $X^{\star}$ is compact in the $weak^{\star}$ topology.
 \end{theorem}
 Therefore the bounded family $\{u_\ee\}$ is compact 
-in the weak$^*$ topology of \\
+in the weak$^{\star}$ topology of \\
 $L^\infty(I, H^s(\ci))$. More precisely,
 there is a sequence  $\{ u_{\ee_n} \}$ converging
 weakly to a $ u\in L^{\infty}(I, H^s(\ci))$.
@@ -3659,7 +3722,7 @@ That is,
 \text{for all} \ \;\;  \phi \in L^1(I, H^{s}(\ci)).
 \end{equation}
 %
-In order to show that  $u$ solves the HR i.v.p.\ we need to 
+In order to show that  $u$ solves the HR IVP we need to 
 obtain a stronger  convergence for  $u_{\ee_n}$ so that 
 we can take the limit in the mollified HR equation.
 In fact we will prove that 
@@ -3732,8 +3795,7 @@ u_{\ee_n} \to u \; \; \text{in} \; \; C(I,H^{s-\sigma}(\ci)),
 %
 %%%%%%%%%%%%%%%%%%%%%%
 %
-\subsection{Equicontinuity of $\{u_\ee\}_\ee$  in
-$C(I,H^{s-\sigma}(\ci))$.} Applying  \cref{interpolation-lem} gives 
+Proceeding, we observe that Lemma~\ref{interpolation-lem} gives 
 %
 \begin{equation}
 \label{equic-1}
@@ -3751,21 +3813,6 @@ or
 %
 which shows that  the family  $\{u_\ee\}$ is equicontinuous in 
 $C(I, H^{s-\sigma}(\ci))$.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%      PreCompactness
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
-%		
-\subsection{Precompactness of $\{u_\ee(t)\}$ in $H^{s-\sigma}(\ci))$.}
 Now recall that
 \begin{equation}
 \label{compact-1}
@@ -3783,22 +3830,22 @@ it follows that $\{u_\ee(t)\}$ is precompact in $H^{s-\sigma}(\ci)$.
 %
 %
 %
-We are now in a position to apply Ascoli's Theorem: 
-\begin{theorem}
+We are now in a position to apply a result of Ascoli: 
+\begin{lemma}
 \label{Ascoli}
 (Ascoli)  Let $X$ be a Banach space, $I$ be a compact metric space,
 and $C(I,X)$  be the set of continuous functions $f: I\longrightarrow X$.
 Suppose $S \subset C(I,X)$  has the following properties:
 %
-\begin{itemize}
-\item[(1)]   $S$ is  equicontinuous.
-\item[(2)]  For each $x \in M$ that the set $S(x) = \{f(x)\}$  is  precompact in $X$.
-\end{itemize} 
+\begin{enumerate}[(i)]
+  \item{}   $S$ is  equicontinuous.
+  \item{}  For each $x \in M$ that the set $S(x) = \{f(x)\}$  is  precompact in $X$.
+\end{enumerate} 
 %
 Then $S$  is  precompact  in  $C(I,X)$.
-\end{theorem}
+\end{lemma}
 Compiling our previous results on equicontinuity and precompactness
-and applying \cref{Ascoli}, we
+and applying Lemma~\ref{Ascoli}, we
 conclude that there exists a subfamily $\left\{ u_{\ee_n} \right\}$
 such that
 \begin{equation}
@@ -3815,7 +3862,7 @@ u_{\ee_n} \to u \; \; \text{in} \; \; C(I, H^{s-\sigma}(\ci)).
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Verifying that the limit $u$ solves the HR equation.} 
+\subsubsection{Verifying that the Limit $u$ Solves the HR Equation} 
 We shall need the following. 
 \begin{proposition}
 \label{prop:1aa}
@@ -3879,10 +3926,10 @@ H^{s-\sigma-1}(\ci))}
 H^{s-\sigma}(\ci))}.
 \end{split}
 \end{equation*}
-Applying \eqref{tri} completes the proof of \cref{prop:1aa}. 
+Applying \eqref{tri} completes the proof of Proposition~\ref{prop:1aa}. 
 \end{proof}
 %
-Observe that \cref{prop:1aa} implies
+Observe that Proposition~\ref{prop:1aa} implies
 \begin{equation}
 \begin{split}
 \label{burgers_and_nonlocal_conv}
@@ -3974,7 +4021,7 @@ we must have
 \end{equation}
 %
 Thus we have constructed a solution $u \in L^\infty(I, H^s(\ci))$
-to the HR i.v.p. In fact, $u \in L^{\infty}(I, H^{s}(\ci)) \cap \text{Lip}(I,
+to the HR IVP\@. In fact, $u \in L^{\infty}(I, H^{s}(\ci)) \cap \text{Lip}(I,
 H^{s-1})$. To see this, we observe that $u_{\ee_{n}}(t) \to u(t)$ strongly in $H^{s}$, and so
 %
 %
@@ -4006,7 +4053,7 @@ where the last step follows from \eqref{dt-u-e-Hs-bound} and the mean value theo
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Proof that $u \in C(I, H^s(\ci))$.} 
+\subsubsection{Proof that $u \in C(I, H^s(\ci))$} 
 We first outline our strategy. Since \\
 $u \in L^\infty(I, H^s(\ci)) \bigcap \text{Lip}(I, H^{s-1})$, it is a
 continuous function from $I$ to $H^s(\ci)$ with respect to the weak
@@ -4355,7 +4402,7 @@ Therefore, by \eqref{3ff}, $u \in C(I, H^s(\ci))$. \qed
 %
 %
 %
-\subsection{Uniqueness.}
+\subsection{Uniqueness}
 %
 %
 Let $u,\omega \in C(I, H^s(\ci)), \ s > 3/2$ be two solutions to the
@@ -4394,87 +4441,27 @@ Multiplying both sides of \eqref{1v} by $D^\sigma v$ and integrating, we obtain
 \begin{equation}
 \begin{split}
 \frac{1}{2} \frac{d}{dt} \|v\|_{H^\sigma(\ci)}^2
-& =  \overbrace{-\frac{\gamma}{2} \int_{\ci} D^\sigma \p_x [v(u+w)] \cdot
-D^\sigma v \ dx}^i
+& =  -\frac{\gamma}{2} \int_{\ci} D^\sigma \p_x [v(u+w)] \cdot
+D^\sigma v \ dx
 \\
-& \overbrace{- \frac{3-\gamma}{2} \int_{\ci}  D^{\sigma -2}
+& - \frac{3-\gamma}{2} \int_{\ci}  D^{\sigma -2}
 \p_x[v(u+w)] \cdot
-D^\sigma v \ dx}^{ii} 
+D^\sigma v \ dx 
 \\
-& - \overbrace{\frac{\gamma}{2} \int_{\ci} D^{\sigma -2} \p_x [ \p_x v
-\cdot \p_x (u+w)]\cdot D^\sigma v \ dx }^{iii}.
+& - \frac{\gamma}{2} \int_{\ci} D^{\sigma -2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^\sigma v \ dx.
 \label{2v}
 \end{split}
 \end{equation}
-We will estimate (\hyperref[2v]{ii}) first.
-Applying Cauchy-Schwartz, we have 
-\begin{equation*}
-\begin{split}
-|ii|
-& \lesssim  \|D^{\sigma -2}
-\p_x [v(u+w)] \cdot D^\sigma
-v  \|_{L^1(\ci)}
-\\
-& \le   \|D^{\sigma -2} \p_x [v(u+w)]
-\|_{L^2(\ci)} \|v\|_{H^\sigma(\ci)}
-\\
-& \le \|v(u+w)\|_{H^{\sigma -1}(\ci)} \|v\|_{H^\sigma(\ci)}
-\end{split}
-\end{equation*}
-which by the algebra property and the Sobolev
-Imbedding Theorem gives
+To estimate the first integral, we rewrite
 \begin{equation}
 \begin{split}
-    |ii| \lesssim_{s} \|u+w\|_{H^{\sigma -1}(\ci)} \|v\|_{H^\sigma(\ci)}^2.
-\label{3v}
-\end{split}
-\end{equation}
-To estimate (\hyperref[2v]{iii}) we first apply
-Cauchy-Schwartz and the Sobolev Imbedding Theorem:
-\begin{equation*}
-\begin{split}
-|iii| & \lesssim  \|D^{\sigma -2} \p_x
-[\p_x v \cdot \p_x (u+w)] \cdot D^\sigma v  \|_{L^1(\ci)} 
+  & -\frac{\gamma}{2} \int_{\ci} D^\sigma \p_x [v(u+w)] \cdot
+D^\sigma v \ dx
 \\
-& \le   \|D^{\sigma -2} \p_x
-[\p_x v \cdot \p_x (u+w)] \|_{L^2(\ci)}
-\|v\|_{H^\sigma(\ci)}
-\\
-& \le 
-\|[\p_x v \cdot \p_x (u+w)] \|_{H^{\sigma -1}(\ci)}
-\|v\|_{H^\sigma(\ci)}.
-\end{split}
-\end{equation*}
-Restrict $\sigma > 1/2$. Then applying \eqref{impo}, we conclude
-that
-\begin{equation}
-\begin{split}
-|iii|
-& \lesssim 
-\|\p_x(u+w) \|_{H^{\sigma}(\ci)}
-\|\p_x v\|_{H^{\sigma -1}(\ci)} \|v\|_{H^\sigma(\ci)}
-\\
-& \lesssim_{s} \|u+w \|_{H^{\sigma + 1}(\ci)}
-\|v\|_{H^\sigma(\ci)}^2.
-\label{3'v}
-\end{split}
-\end{equation}
-It remains to estimate (\hyperref[2v]{i}).
-Proceeding, we rewrite
-\begin{equation}
-\begin{split}
-|i| & =
-\left |
--\frac{\gamma}{2} \int_{\ci} \left[ D^\sigma \p_x, \ u+w \right]v \cdot
+& = -\frac{\gamma}{2} \int_{\ci} \left[ D^\sigma \p_x, \ u+w \right]v \cdot
 D^\sigma v \ dx - \frac{\gamma}{2} \int_{\ci} (u+w) D^\sigma
-\p_x v \cdot D^\sigma v\ dx
-\right | 
-\\
-& \lesssim \left |  \int_{\ci} \left[ D^\sigma \p_x, \ u+w \right]v \cdot
-D^\sigma v \ dx \right |
-+ \left |  \int_{\ci} (u+w) D^\sigma \p_x v
-\cdot D^\sigma v\
-dx \right |.
+\p_x v \cdot D^\sigma v\ dx.
 \label{4v}
 \end{split}
 \end{equation}
@@ -4511,11 +4498,68 @@ Combining \eqref{4'v} and \eqref{7v} and applying the Sobolev Imbedding
 Theorem, we obtain the estimate
 \begin{equation}
 \begin{split}
-|i| \lesssim \|u+w\|_{H^\rho(\ci)} \|v\|_{H^\sigma(\ci)}^2.
+ |-\frac{\gamma}{2} \int_{\ci} D^\sigma \p_x [v(u+w)] \cdot
+D^\sigma v \ dx|
+\lesssim \|u+w\|_{H^\rho(\ci)} \|v\|_{H^\sigma(\ci)}^2.
 \label{8v}
 \end{split}
 \end{equation}
-Recall \eqref{2v}. Grouping \eqref{3v}, \eqref{3'v}, and \eqref{8v}, and applying
+For the second integral, we apply Cauchy-Schwartz to obtain
+\begin{equation*}
+\begin{split}
+|\frac{3-\gamma}{2} \int_{\ci}  D^{\sigma -2}
+\p_x[v(u+w)] \cdot
+D^\sigma v \ dx& | \lesssim  \|D^{\sigma -2}
+\p_x [v(u+w)] \cdot D^\sigma
+v  \|_{L^1(\ci)}
+\\
+& \le   \|D^{\sigma -2} \p_x [v(u+w)]
+\|_{L^2(\ci)} \|v\|_{H^\sigma(\ci)}
+\\
+& \le \|v(u+w)\|_{H^{\sigma -1}(\ci)} \|v\|_{H^\sigma(\ci)}
+\end{split}
+\end{equation*}
+which by the algebra property gives
+\begin{equation}
+\begin{split}
+    |\frac{3-\gamma}{2} \int_{\ci}  D^{\sigma -2}
+\p_x[v(u+w)] \cdot
+D^\sigma v \ dx& |  \lesssim_{s} \|u+w\|_{H^{\sigma -1}(\ci)} \|v\|_{H^\sigma(\ci)}^2.
+\label{3v}
+\end{split}
+\end{equation}
+For the third integral, we first apply
+Cauchy-Schwartz:
+\begin{equation*}
+\begin{split}
+|\frac{\gamma}{2} \int_{\ci} D^{\sigma -2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^\sigma v \ dx| & \lesssim  \|D^{\sigma -2} \p_x
+[\p_x v \cdot \p_x (u+w)] \cdot D^\sigma v  \|_{L^1(\ci)} 
+\\
+& \le   \|D^{\sigma -2} \p_x
+[\p_x v \cdot \p_x (u+w)] \|_{L^2(\ci)}
+\|v\|_{H^\sigma(\ci)}
+\\
+& \le 
+\|[\p_x v \cdot \p_x (u+w)] \|_{H^{\sigma -1}(\ci)}
+\|v\|_{H^\sigma(\ci)}.
+\end{split}
+\end{equation*}
+Restrict $\sigma > 1/2$. Then applying \eqref{impo}, we conclude
+that
+\begin{equation}
+\begin{split}
+|\frac{\gamma}{2} \int_{\ci} D^{\sigma -2} \p_x [ \p_x v
+\cdot \p_x (u+w)]\cdot D^\sigma v \ dx|& \lesssim 
+\|\p_x(u+w) \|_{H^{\sigma}(\ci)}
+\|\p_x v\|_{H^{\sigma -1}(\ci)} \|v\|_{H^\sigma(\ci)}
+\\
+& \lesssim_{s} \|u+w \|_{H^{\sigma + 1}(\ci)}
+\|v\|_{H^\sigma(\ci)}^2.
+\label{3'v}
+\end{split}
+\end{equation}
+Recall \eqref{2v}. Grouping \eqref{8v}-\eqref{3'v}, and applying
 the Sobolev Imbedding Theorem, we see that 
 \begin{equation}
 \begin{split}
@@ -4546,14 +4590,14 @@ the triangle inequality and \eqref{u_x-Linfty-Hs}. Hence, from
 & = 0.
 \end{split}
 \end{equation*}
-We conclude that solutions to the HR i.v.p.\ with initial data in
+We conclude that solutions to the HR IVP with initial data in
 $H^s(\ci)$ are unique for $s > 3/2$.  \qed
 %
 %
 %
 %
 \subsection{Continuous Dependence}
-Let $\left\{ u_{0, n} \right\}_n \subset H^s(\ci)$ be a uniformly bounded
+Let $\left\{ u_{0, n} \right\} \subset H^s(\ci)$ be a uniformly bounded
 sequence converging to $u_0$ in $H^s(\ci)$.
 Consider solutions $u $, $u^\ee$, $u^\ee_n$, and $u_n$ to the 
 Cauchy-problem
@@ -4643,7 +4687,7 @@ The proof of \eqref{enough_to_prove3} will be analogous to that of
 %
 %
 
-{\bf Proof of \eqref{enough_to_prove1}.}
+\begin{proof}[Proof of \eqref{enough_to_prove1}.]
 Consider two solutions $u $ and $u^\ee$ to the Cauchy-problem
 \eqref{hyperelastic-rod-equation}-\eqref{init-cond}
 with associated initial data $u_0$ and
@@ -4731,8 +4775,7 @@ Next we estimate $B$ in parts:
 %
 %
 %
-
-{\bf Estimate of Integral 1.} We can rewrite
+For the first integral, we can rewrite
 %
 %
 \begin{equation}
@@ -4797,7 +4840,7 @@ dx \right | \lesssim \|u^\ee \|_{H^s(\ci)} \|v\|_{H^s(\ci)}^2 + \|u^\ee
 %
 %
 %
-{\bf Estimate of Integral 2}. We can rewrite
+For the second integral, we rewrite
 %
 %
 \begin{equation}
@@ -4856,8 +4899,8 @@ dx \right |
 \end{equation}
 %
 %
-{\bf Estimate of Integral 3.} Applying Cauchy-Schwartz, the 
-algebra property of Sobolev spaces, and the Sobolev Imbedding Theorem gives
+For the third integral, we apply Cauchy-Schwartz, the 
+algebra property of Sobolev spaces, and the Sobolev Imbedding Theorem to obtain 
 %
 %
 \begin{equation}
@@ -4873,8 +4916,8 @@ v \ dx \right |  \lesssim \|u^\ee\|_{H^{s}(\ci)} \|v\|_{H^{s}(\ci)}^2.
 %
 %
 %
-{\bf Estimate of Integral 4.} Applying Cauchy-Schwartz, the 
-algebra property of Sobolev spaces, and the Sobolev Imbedding Theorem, we 
+For the fourth integral, we apply Cauchy-Schwartz, the 
+algebra property of Sobolev spaces, and the Sobolev Imbedding Theorem to 
 obtain
 %
 %
@@ -4973,7 +5016,7 @@ Applying \eqref{u_x-Linfty-Hs} and \eqref{schwartz}, the result follows.
 %
 %
 %
-We now aim to prove decay for the $\ee^{-1}
+We now aim to prove decay as $\ee \to 0$ for the $\ee^{-1}
 \|v\|_{H^{s-1}(\ci)} $ term in \eqref{15u}. To do so, we 
 will first obtain an estimate for
 $\|v\|_{H^\sigma(\ci)}$ for suitably chosen $\sigma < s-1$. Then, 
@@ -5202,7 +5245,7 @@ completes the proof.
 \end{proof}
 We now return to analyzing the $\ee^{-1}
 \|v\|_{H^{s-1}(\ci)} $ term of \eqref{15u}.
-Applying \eqref{16u} and \cref{prop:6r}, 
+Applying \eqref{16u} and Proposition~\ref{prop:6r}, 
 we obtain
 %
 %
@@ -5286,7 +5329,7 @@ Rewriting \eqref{y-express} yields
 \begin{equation*}
 	\begin{split}
 		\left( \frac{1}{y-\alpha} - \frac{1}{y-\beta} 
-		\right) \frac{dy}{dt} \lesssim \sqrt{1- o(1)} \approx 1.
+		\right) \frac{dy}{dt} \lesssim \sqrt{1- o(1)} \sim 1.
 	\end{split}
 \end{equation*}
 %
@@ -5345,7 +5388,7 @@ Noting that $\|v\|_{H^s(\ci)}$ is uniformly bounded in $\ee$ by
 \begin{split}
 \|v(0)\|_{H^s(\ci)} = \|u_0 - J_\ee u_0 \|_{H^s(\ci)} \to 0 \end{split}
 \end{equation*}
-by  \cref{lem4r}, we conclude from \eqref{key-decay-ineq} that
+by  Lemma~\ref{lem4r}, we conclude from \eqref{key-decay-ineq} that
 %
 %
 \begin{equation}
@@ -5358,7 +5401,8 @@ by  \cref{lem4r}, we conclude from \eqref{key-decay-ineq} that
 %
 %
 Choosing $\ee$ sufficiently small gives $\|v(t)\|_{H^s(\ci)} < \eta/3$, 
-completing the proof of \eqref{enough_to_prove1}. \qed
+completing the proof of \eqref{enough_to_prove1}. 
+\end{proof}
 %
 %
 %
@@ -5393,7 +5437,7 @@ obtain
 \end{equation*}
 %
 %
-which by differentiating the left-hand side and applying \cref{lem5r} to 
+which by differentiating the left-hand side and applying Lemma~\ref{lem5r} to 
 the right-hand side simplifies to
 \begin{equation}
 \begin{split}
@@ -5497,7 +5541,7 @@ We now return to analyzing the $\ee^{-1}
 \|v\|_{H^{s-1}(\ci)}$ term of \eqref{15qu}.
 Applying the 
 interpolation estimate \eqref{16u} and
-\cref{prop:left} gives
+Proposition~\ref{prop:left} gives
 %
 %
 %
@@ -5577,29 +5621,38 @@ proof is analogous to that of \eqref{enough_to_prove1}.
 %
 %
 %
-\section{Extending Well-Posedness for HR to the Non-Periodic Case}
+\section{Well-Posedness for HR in the Non-Periodic Case}
 \label{sec:defs}
 The method will be analogous to that of the periodic case, with two major
-modifications. First, we must choose a different mollifier $J_\ee$ in the
-proof of continuous dependence. Pick a
-function $j(x) \in \mathcal{S}(\rr)$ such that
-\begin{equation*}
-\begin{split}
-& 0 \le \widehat{j}(\xi) \le 1,
+modifications. First, we must choose a different mollifier $J_\ee$ for the initial data in the
+proof of continuous dependence. 
+Secondly, in the proof of existence, we will have difficulties in arranging
+that the solutions $\{u_\ee\}$ to the mollified HR IVP converge in $C(I,
+H^{s- \sigma}(\rr))$, $0 < \sigma < 1$ to a candidate solution $u$ of the HR
+IVP\@. We will get around this by considering the family $\left\{ \varphi
+u_\ee \right\}$ instead, where $\vp \in S(\rr)$.
+%
+%
+%
+%
+\subsection{Existence}
+Again, as in the non-periodic we see that the HR equation as is can not be thought as an ODE on the space $H^s$. To
+deal with this problem we will replace the HR IVP by  
+\begin{gather}
+  \label{hr-moli-r}
+\p_t  u_\ee =
+-\gamma J_\ee u_\ee \partial_x  J_\ee  u_\ee - \p_x (1-\p_x^2)^{-1} 
+\left[\frac{3-\gamma}{2}u^2 + \frac{\gamma}{2}(\p_x u)^2 \right],
 \\
-& \widehat{j}(\xi) = 1 \ \ \text{if} \ \ |\xi| \le 1.
-\end{split}
-\end{equation*}
-Letting
+u_\ee(x, 0) = u_0 (x) \quad x \in \ci, \quad t \in \rr.
+\label{hr-moli-data-r}
+\end{gather}
+%
+where $J_{\ee}$ is defined as follows: Pick a
+function $j(x) \in \mathcal{S}(\rr)$ and let 
 \begin{equation*}
 \begin{split}
-j_\ee(x) = \frac{1}{\ee} j \left (\frac{x}{\ee} \right )
-\end{split}
-\end{equation*}
-it can be verified that 
-\begin{equation*}
-\begin{split}
-\widehat{j_\ee}(\xi) = \widehat{j }(\ee \xi), \quad \ee > 0.
+j_\ee(x) = \frac{1}{\ee} j \left (\frac{x}{\ee} \right ).
 \end{split}
 \end{equation*}
 We then define $J_\ee$ to be the ``Friedrichs mollifier''
@@ -5608,23 +5661,16 @@ We then define $J_\ee$ to be the ``Friedrichs mollifier''
 J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
 \end{split}
 \end{equation*}
-Given this construction, the proofs of \cref{lem5r} and \cref{lem4r} for the non-periodic case will be
-analogous to those in the periodic case.
-Secondly, in the proof of existence, we will have difficulties in arranging
-that the solutions $\{u_\ee\}$ to the mollified HR i.v.p.\ converge in $C(I,
-H^{s- \sigma}(\rr))$, $0 < \sigma < 1$ to a candidate solution $u$ of the HR
-i.v.p. We will get around this by considering the family $\left\{ \varphi
-u_\ee \right\}$ instead, where $\vp \in S(\rr)$.
+Using an analogous argument to that in the periodic case, one can check that the map $f \mapsto J_{\ee} f$ is continuously differentiable from $H^s(\ci)$
+to $H^s(\ci)$.  Hence, by Theorem~\ref{ode_theorem}, for each $\ee > 0$ there exists a
+unique solution $u_\ee \in C(I, H^s(\rr))$ satisfying the Cauchy-problem
+\eqref{hr-moli-r}-\eqref{hr-moli-data-r}. In fact, Lemma~\ref{hr_wp} (uniform regularity) holds for the non-periodic case. The proof is analogous to that in the periodic case, and so we omit it.
 %
-%
-%
-%
-We divide our work into three parts:
-\subsection{Existence.}
+\subsubsection{Choosing a Convergent Subsequence}
 Mirroring the argument in the periodic case, we see that the bounded
-family $\{u_\ee\}$ is compact in the weak* topology of $L^\infty(I,
-H^{s}(\rr))$. More precisely, there is a sequence  $\{ u_{\ee_n} \}$
-converging weak* to a $ u\in L^{\infty}(I, H^s(\rr))$; that is 
+family $\{u_\ee\}$ is compact in the $\text{weak}^{\star}$ topology of $L^\infty(I,
+H^{s}(\rr))$, where $I \subset \rr$ is compact. More precisely, there is a sequence  $\{ u_{\ee_n} \}$
+converging $\text{weak}^{\star}$ to a $ u\in L^{\infty}(I, H^s(\rr))$; that is 
 %
 \begin{equation*}
 \label{hhweak-conv}
@@ -5641,20 +5687,20 @@ T_v(\varphi) = \int_I <v (t), \varphi (t)>_{H^s(\rr)} dt  = \int_I
 \end{equation}
 %
 Similarly, $\left\{ \p_x u_{\ee_n} \right\}$ is compact in the
-weak* topology of $L^\infty(I, H^{s-1}(\rr))$ and converges weak*
+$\text{weak}^{\star}$ topology of $L^\infty(I, H^{s-1}(\rr))$ and converges $\text{weak}^{\star}$
 to $\p_x u$. Hence, for any $k \in \mathbb{N}$, we have
 \begin{align}
 \label{base-weak}
-& (u_{\ee_n})^k \xrightarrow{\text{weak*}} u^k \ \
+& (u_{\ee_n})^k \xrightarrow{\text{weak}^{\star}} u^k \ \
 \text{on} \ \
 L^\infty(I, H^s(\rr)),
 \\
 \label{base-weak-2}
-& (\p_x u_{\ee_n})^k \xrightarrow{\text{weak*}} (\p_x u)^k
+& (\p_x u_{\ee_n})^k \xrightarrow{\text{weak}^{\star}} (\p_x u)^k
 \ \ \text{on} \ \
 L^\infty(I, H^{s-1}(\rr)). 
 \end{align}
-In order to show that $u$ solves the HR i.v.p., it would
+In order to show that $u$ solves the HR IVP, it would
 suffice to obtain a stronger convergence for  $u_{\ee_n}$ so that 
 we could take the limit in the mollified HR equation. However,
 this is difficult, and unnecessary. Rather, our approach will be to
@@ -5677,7 +5723,7 @@ $P \in \Psi^0$ and arbitrary $\vp \in S(\rr)$, $k \in
 \end{align}
 %
 which will then be applied to a rewritten version of the HR
-i.v.p. Our focus will be on proving \eqref{hhstrong-conv}; since the proof of
+IVP\@. Our focus will be on proving \eqref{hhstrong-conv}; since the proof of
 \eqref{hhstrong-conv-next} is similar, we will omit the
 details. First, we will need the following
 interpolation result:
@@ -5697,17 +5743,17 @@ then $v \in C^\sigma (I, H^{s- \sigma}(\rr))$ for  $0 < \sigma < 1$.
 %
 \begin{proof} It is analogous to the proof in the periodic case.
 \end{proof}
-Fix $k \in \mathbb{N}$. Using \cref{hhinterpolation-lem}, we
+Fix $k \in \mathbb{N}$. Using Lemma~\ref{hhinterpolation-lem}, we
 will show that the family
 \begin{equation*}
 \begin{split}
-\{\varphi P[(u_\ee)^k]\}_\ee
+\{\varphi P[(u_\ee)^k]\}
 \end{split}
 \end{equation*}
 is equicontinuous in $C(I, H^{s-\sigma}(\rr))$ 
 for $0 < \sigma < 1$ and $\varphi \in \mathcal{S}(\rr)$.
 We will follow this by proving that
-there exists a sub-family $\{\varphi P[(u_{\ee_n}(t))^k]\}_n$
+there exists a sub-family $\{\varphi P[(u_{\ee_n}(t))^k]\}$
 that is precompact in $H^{s-\sigma}(\rr)$ for $\sigma > 0$. 
 These two facts, in conjunction with Ascoli's Theorem, will
 yield
@@ -5734,11 +5780,9 @@ follow that
 %
 %%%%%%%%%%%%%%%%%%%%%%
 %
-\subsection{Equicontinuity of $\{ \varphi P [(u_\ee)^k]\}_\ee$  in $C(I,
-H^{s-\sigma}(\rr))$}
 %
 %
-Since $\varphi \in \mathcal{S}(\rr)$, the map $u \mapsto \vp u$
+Proceeding, we observe that since $\varphi \in \mathcal{S}(\rr)$, the map $u \mapsto \vp u$
 is a bounded linear function on $H^s(\rr)$, for arbitrary $s \in
 \rr$, where  
 \begin{equation}
@@ -5770,7 +5814,7 @@ is bounded and linear, with
 \label{op-norm-product}
 \end{split}
 \end{equation}
-Therefore, applying \cref{hhinterpolation-lem} gives 
+Therefore, applying Lemma~\ref{hhinterpolation-lem} gives 
 %
 \begin{equation*}
 \begin{split}
@@ -5802,7 +5846,7 @@ t'|,
 \ \text{for all} \   \,\,  t, t'\in I,
 \end{equation*}
 %
-which shows that  the family  $\{\varphi P [(u_\ee)^k]\}_\ee$ is
+which shows that  the family  $\{\varphi P [(u_\ee)^k]\}$ is
 equicontinuous in $C(I, H^{s-\sigma }(\rr))$.  
 %
 %
@@ -5818,10 +5862,8 @@ equicontinuous in $C(I, H^{s-\sigma }(\rr))$.
 %
 %
 %		
-\subsection{Precompactness of $\{\varphi P [(u_\ee(t))^k]\}_\ee$ in
-$H^{s-\sigma  }(\rr)$}
-Applying the algebra property of Sobolev
-Spaces, and recalling \eqref{the-map}-\eqref{op-norm-product}, we have
+Furthermore, observe that by the algebra property of Sobolev
+Spaces, and \eqref{the-map}-\eqref{op-norm-product}, we have
 \begin{equation}
 \begin{split}
 \label{hhcompact-1}
@@ -5832,7 +5874,7 @@ Spaces, and recalling \eqref{the-map}-\eqref{op-norm-product}, we have
 \end{split}
 \end{equation}
 %
-Letting $|t| \le T$, we now apply \cref{hr_wp} to
+Letting $|t| \le T$, we now apply Lemma~\ref{hr_wp} to
 \eqref{hhcompact-1} to obtain
 \begin{equation*}
 \begin{split}
@@ -5841,16 +5883,14 @@ Letting $|t| \le T$, we now apply \cref{hr_wp} to
 \end{split}
 \end{equation*}
 Therefore, by Rellich's Theorem, the family $\left\{
-\varphi P [(u_\ee(t))^k] \right\}_\ee$ is
+\varphi P [(u_\ee(t))^k] \right\}$ is
 precompact in $H^{s- \sigma }(\rr)$ for all $\sigma > 0$ and $|t| \le T$. 
-\\
-\\
 Hence, compiling our previous results on equicontinuity and precompactness
 and applying Ascoli's Theorem, we
 conclude that we can find $\tilde{u}$ and a subfamily 
-\\ $\left\{
+$\left\{
 \varphi P [(u_{\ee_n})^k]
-\right\}_n$ such that
+\right\}$ such that
 \begin{equation}
 \label{hhstrong-conv-of-u_ep}
 \varphi P [(u_{\ee_n})^k] \to \tilde{u}
@@ -5867,7 +5907,7 @@ We would now like to find out what $\tilde{u}$ is:
 For arbitrary $k \in \mathbb{N}$,
 \begin{equation}
 \begin{split}
-\varphi P [(u_{\ee_n})^k] \xrightarrow{weak^*}
+\varphi P [(u_{\ee_n})^k] \xrightarrow{weak^{\star}}
 \varphi P [u^k] \ \ \text{on} \ \ L^\infty(I,
 H^{s-\sigma}(\rr)).
 \label{hhcrit-conv-est}
@@ -5894,10 +5934,10 @@ are continuous; therefore
 T_\vp P: H^s(\rr) \to H^s(\rr)
 \end{split}
 \end{equation*}
-continuously. Since $H^{s}$, it follws that the adjoint operator $(T_\varphi P)^*$
+continuously. Since $H^{s}$ is a Hilbert space, it follows that the adjoint operator $(T_\varphi P)^{\star}$
 exists and
 \begin{equation*}
-(T_\varphi P)^*: H^s(\rr) \to H^s(\rr) 
+(T_\varphi P)^{\star}: H^s(\rr) \to H^s(\rr) 
 \end{equation*}
 continuously. Therefore, applying \eqref{base-weak}, we conclude that
 \begin{equation}
@@ -5907,14 +5947,14 @@ continuously. Therefore, applying \eqref{base-weak}, we conclude that
 P [(u_{\ee_n})^k],\  f>_{H^{s-\sigma }(\rr)} dt
 \\
 &= \int_I <u^k - 
-(u_{\ee_n})^k, \ (T_\vp P)^* f>_{H^{s-\sigma }(\rr)} \to 0
+(u_{\ee_n})^k, \ (T_\vp P)^{\star} f>_{H^{s-\sigma }(\rr)} \to 0
 \end{split}
 \end{equation}
 completing the proof. 
 \end{proof}
 %
 %
-Now, recalling \eqref{hhstrong-conv-of-u_ep} and applying \cref{hhlem:crit-conv}, we obtain
+Now, recalling \eqref{hhstrong-conv-of-u_ep} and applying Lemma~\ref{hhlem:crit-conv}, we obtain
 \begin{equation}
 \begin{split}
 \vp P [(u_{\ee_n})^k] \to \vp P [u^k] \ \ \text{in}  \ \ C(I,
@@ -5924,7 +5964,7 @@ H^{s-\sigma}(\rr))
 \end{equation}
 for arbitrary $k \in \mathbb{N}$.  Using precisely the same
 strategy we used to prove \eqref{hhvp_u_ep_conv} (applied now to
-the family $\{ \vp P [(\p_x u_{\ee})^k] \}_\ee$), one can also show
+the family $\{ \vp P [(\p_x u_{\ee})^k] \}$), one can also show
 \begin{equation}
 \begin{split}
 \vp P [ (\p_x u_{\ee_n})^k] \to \vp P [(\p_x u)^k] \ \ \text{in}  \ \ C(I,
@@ -5932,7 +5972,7 @@ H^{s-\sigma -1 }(\rr)).
 \end{split}
 \end{equation}
 We summarize our result below:
-\begin{theorem}
+\begin{proposition}
 \label{hhthm:crit1}
 Let $P \in \Psi^0$ be a pseudo-differential operator. Then for
 arbitrary $k \in \mathbb{N}$, 
@@ -5947,18 +5987,18 @@ H^{s-\sigma }(\rr)),
 H^{s-\sigma -1}(\rr)).
 \end{split}
 \end{equation}
-\end{theorem}
-\subsection{Verifying that the weak* limit $u$ solves the HR equation.} 
-We recall the mollified HR i.v.p
-\begin{align}
-& \p_t u_{\ee_n}  = -\gamma(J_{\ee_n} u_{\ee_n} \cdot \p_x
+\end{proposition}
+\subsubsection{Verifying that the Limit $u$ Solves the HR Equation} 
+We recall the mollified HR IVP 
+\begin{gather}
+\p_t u_{\ee_n}  = -\gamma(J_{\ee_n} u_{\ee_n} \cdot \p_x
 J_{\ee_n} u_{\ee_n}) - \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
 + \frac{\gamma}{2} (\p_x u)^2 \right ) 
 \label{hh1gr}
 \\
-& u(x,0) = u_0(x).
+u(x,0) = u_0(x).
 \label{hh2gr}
-\end{align}
+\end{gather}
 Multiplying both sides of \eqref{hh1gr} by $\varphi$ and rewriting,
 we obtain
 \begin{equation}
@@ -5970,7 +6010,7 @@ J_{\ee_n} \p_x u_{\ee_n}) - \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
 \end{split}
 \end{equation}
 The following lemma will play a crucial role in our proof of the
-existence of a solution to the HR i.v.p.
+existence of a solution to the HR IVP
 \begin{lemma}
 \label{hhlem:cc}
 For $\vp \in \mathcal{S}(\rr)$ such that
@@ -5987,8 +6027,8 @@ C(I, H^{s-\sigma-1}(\rr)).
 \end{equation}
 \end{lemma}
 %
-\begin{proof} We will need a couple of propositions:
-\begin{proposition}
+\begin{proof} We will need a couple of lemmas:
+\begin{lemma}
 For arbitrary $\vp \in \mathcal{S}(\rr)$
 \label{hhprop:1aa}
 \begin{equation}
@@ -5998,7 +6038,7 @@ C(I, H^{s-\sigma}(\rr)).
 \label{hh}
 \end{split}
 \end{equation}
-\end{proposition}
+\end{lemma}
 \begin{proof}
 Note that
 \begin{equation}
@@ -6035,12 +6075,12 @@ to \eqref{hh1bb} gives
 \|_{H^{s-\sigma}(\rr)} \right).
 \end{split}
 \end{equation}
-Letting $\ee \to 0$ in \eqref{hh2bb} and applying \cref{hhthm:crit1} completes
+Letting $\ee \to 0$ in \eqref{hh2bb} and applying Proposition~\ref{hhthm:crit1} completes
 the proof.
 \end{proof}
 %
 %
-\begin{proposition}
+\begin{lemma}
 \label{hhprop:dd}
 For arbitrary $ \vp \in \mathcal{S}(\rr)$,
 \begin{equation}
@@ -6050,18 +6090,18 @@ For arbitrary $ \vp \in \mathcal{S}(\rr)$,
 \label{hh0dd}
 \end{split}
 \end{equation}
-\end{proposition}
-\begin{proof} The result follows from \cref{hhthm:crit1}.
+\end{lemma}
+\begin{proof} The result follows from Proposition~\ref{hhthm:crit1}.
 The proof is nearly identical to that of
-\cref{hhprop:1aa}, with $s-1$ substituted for $s$
+Lemma~\ref{hhprop:1aa}, with $s-1$ substituted for $s$
 and $\p_x u_{\ee_n}$ substituted for $u_{\ee_n}$. 
 \end{proof}
 %
 %
-We now have enough tools to prove \cref{hhlem:cc}. Restrict the
+We now have enough tools to prove Lemma~\ref{hhlem:cc}. Restrict the
 choice of $\vp$ such that $\vp^\frac{1}{2} \in S(\rr)$
 (such Schwartz functions exist; as an example, take the square
-of the Gaussian). Using this fact, and applying \cref{hhprop:1aa} and \cref{hhprop:dd}, we conclude that
+of the Gaussian). Using this fact, and applying Lemma~\ref{hhprop:1aa} and Lemma~\ref{hhprop:dd}, we conclude that
 \begin{equation*}
 \begin{split}
 \vp J_{\ee_n} u_{\ee_n} \p_x J_{\ee_n} u_{\ee_n} 
@@ -6072,13 +6112,13 @@ of the Gaussian). Using this fact, and applying \cref{hhprop:1aa} and \cref{hhpr
 u \p_x u
 \end{split}
 \end{equation*}
-completing the proof of \cref{hhlem:cc}. 
+completing the proof of Lemma~\ref{hhlem:cc}. 
 \end{proof}
 %
 %
 %
 %
-By \cref{hhthm:crit1} it follows immediately that
+By Proposition~\ref{hhthm:crit1} it follows immediately that
 \begin{equation}
 \begin{split}
 & \vp \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2}
@@ -6176,24 +6216,36 @@ u \p_x u - \p_x(1- \p_x^2)^{-1} \left( \frac{3-\gamma}{2} u^2
 \end{split}
 \end{equation}
 Thus we have constructed a solution $u \in L^\infty(I, H^s(\rr))$
-to the HR i.v.p. In fact, $u \in C(I, H^s(\rr))$; the proof is analogous to that in the periodic case.
-\subsection{Uniqueness.} The proof is analogous to that in the periodic case.
-\subsection{Continuous Dependence.} The proof is analogous to the proof in
-the periodic case, with one important caveat. Recall how we defined the operator
-$J_\ee$. By construction, the proofs of \cref{lem5r} and \cref{lem4r} for the non-periodic case will be
-analogous to those in the periodic case. Hence, how we
+to the HR IVP. 
+
+\subsubsection{Proof that $u \in C(I, H^s(\rr))$} The proof is analogous to that in the periodic case.
+\subsection{Uniqueness} The proof is analogous to that in the periodic case.
+\subsection{Continuous Dependence} The proof is analogous to that in
+the periodic case, with one important caveat: we must choose an appropriate mollifier $J_{\ee}$ for the initial data. Pick a
+function $j(x) \in \mathcal{S}(\rr)$ such that
+\begin{equation*}
+\begin{split}
+& 0 \le \widehat{j}(\xi) \le 1,
+\\
+& \widehat{j}(\xi) = 1 \ \ \text{if} \ \ |\xi| \le 1.
+\end{split}
+\end{equation*}
+Letting
+\begin{equation*}
+\begin{split}
+j_\ee(x) = \frac{1}{\ee} j \left (\frac{x}{\ee} \right )
+\end{split}
+\end{equation*}
+we then define $J_\ee$ to be the ``Friedrichs mollifier''
+\begin{equation*}
+\begin{split}
+J_\ee f(x) = j_\ee * f(x), \quad \ee>0.
+\end{split}
+\end{equation*}
+Given this construction, the proofs of Lemma~\ref{lem5r} and Lemma~\ref{lem4r} for the non-periodic case are 
+analogous to those in the periodic case.
+
+Hence, how we
 construct the mollifier $J_\ee$ plays a critical role in the proofs of
-well-posedness for the HR i.v.p.\ in both the periodic and non-periodic cases. %
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				BBM
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
+well-posedness for the HR IVP in both the periodic and non-periodic cases. 
 %

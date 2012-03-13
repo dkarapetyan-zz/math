@@ -58,7 +58,7 @@ Our goal will be to prove the following.
 \end{theorem}
 %
 %
-Notice that \autoref{ode-thm} is a 
+Notice that \cref{ode-thm} is a 
 generalization of the following classical result.
 %
 %
@@ -99,7 +99,7 @@ generalization of the following classical result.
 	%
 	%
 	\end{theorem}
-To prove \autoref{ode-thm}, we will first define
+To prove \cref{ode-thm}, we will first define
 integration over Banach space. (To extend the theory of integration
 to arbitrary complete topological vector spaces with topology induced by a
 metric, one need
@@ -108,10 +108,10 @@ reader.) Then we will rewrite
 \eqref{ode-thm-eq} as an integral equation. A fixed point argument will complete
 the proof. These notes are heavily influenced by a
 number of excellent books, among them Dieudonn{\'e}
-\cite{Dieudonne_1969_Foundations-of-}, Yosida \cite{Yosida:1980fk},
-Folland \cite{Folland_1999_Real-analysis}, Jost
-\cite{Jost-1998-Postmodern-analysis}, Rudin \cite{Rudin:1976uq}, and Knapp
-\cite{Knapp:2005rm}-\cite{Knapp:2005yg}.
+\cite{Dieudonne:1969uc}, Yosida \cite{Yosida:1995ub},
+Folland \cite{Folland:1999xi}, Jost
+\cite{Jost:2005ra}, Rudin \cite{Rudin:1976ao}, and Knapp
+\cite{Knapp:2005gd}-\cite{Knapp:2005gz}.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -962,7 +962,7 @@ since $0 \le \alpha < 1$.
     %
     Let $T$ be a map
 	acting on $V_h$ via the relation $$Tv(t) = \vp + \int_0^t f(s, v(s) ) \ ds.$$
-	Recalling \autoref{lem:fixed-point}, we see that to complete the proof it will be enough to show that $T$ is a contraction on
+	Recalling \cref{lem:fixed-point}, we see that to complete the proof it will be enough to show that $T$ is a contraction on
 	$V_h$, for suitably small $h >0$. First, note that for $v \in V_h$, we have
 	%
 	%
@@ -1327,7 +1327,7 @@ element of $X$. Similarly, if $Df(t_0)$ exists for all $t_0 \in (a,b)$, then
 we may view the map $t_0 \to Df(t_0)$ as an
 element of $L( \rr, X)$. Hence, for a
 map $f:(a,b) \to X$, we see that the following is an equivalent
-reformulation of \autoref{def:diff}. 
+reformulation of \cref{def:diff}. 
 \begin{definition}
 	\label{def:diff-simp}
 	Let $X$ be Banach space, $(a,b) \subset \rr$ an open interval, and
@@ -1434,7 +1434,7 @@ Lastly, we include the following.
       \end{equation*}
       %
       %
-			Recalling \eqref{pre-int} and substituting, we conclude that
+			Substituting, we conclude that
 			\begin{equation*}
 				\begin{split}
 				h(x_0 + s) = g(f(x_0)) + g'(f(x_0))(f'(x_0)(s)) +
@@ -1525,7 +1525,7 @@ Lastly, we include the following.
 \label{sec:dep-param-smooth}
 %
 %
-Following Taylor \cite{Taylor:1995kx}, let $X$ be a Banach space, $U \subset X$ an open subset, and $F: U \to X$. Consider the non-autonomous system
+Following Taylor \cite{Taylor:2011zy}, let $X$ be a Banach space, $U \subset X$ an open subset, and $F: U \to X$. Consider the non-autonomous system
 %
 %
 \begin{gather}
@@ -1856,7 +1856,7 @@ obtain the corresponding result.
 \label{sec:dep-param}
 %
 %
-Following Taylor \cite{Taylor:1995kx}, let $X \subset \rr$ be an open subset,
+Following Taylor \cite{Taylor:2011zy}, let $X \subset \rr$ be an open subset,
 $U \subset C^{k}(X)$ be an open subset, where $k \in \mathbb{N}\cup \omega$, and
 $F: U \to C^{k}(X)$. We endow $C^{k}(X), k \in \mathbb{N}$ with the metric
 induced by its seminorms
@@ -2135,7 +2135,7 @@ where
 %
 Observe that $F$ maps open sets in $C^{k}$ to $C^{k}$,  $k \in \mathbb N \cup
 \{\infty \}$, and is hence an ODE on the space of $C^{k}$ functions. Following
-\cite{Bona_2009_Sharp-well-pose}, we note that the BBM is also an ODE on
+\cite{Bona:2009ww}, we note that the BBM is also an ODE on
 $H^{s}$, $s \ge 0$ due to the following bilinear estimate.
 %
 %
@@ -2165,7 +2165,7 @@ For $s \ge 0$
 %
 %
 \begin{proof}
-    We diverge slightly from the proof in \cite{Bona_2009_Sharp-well-pose}. Observe that
+    We diverge slightly from the proof in \cite{Bona:2009ww}. Observe that
         \begin{equation*}
         \begin{split}
         \| \p_{x}(1 - \p_{x}^{2})^{-1} (uv) \|_{H^{s}}
@@ -2285,12 +2285,3 @@ initial data, $s \ge 0$. Hence, the method of proof developed to prove
 non-uniform dependence for HR does not apply to the BBM.
 %
 %
-\subsection*{Acknowledgements.} The author thanks his advisor Alex Himonas for 
-his guidance and many helpful remarks. The author also thanks the Department of 
-Mathematics at the University of Notre Dame and the Arthur J. Schmitt Foundation for 
-supporting his doctoral 
-studies.
-
-%
-%
-
