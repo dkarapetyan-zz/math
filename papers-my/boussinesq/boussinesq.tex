@@ -748,7 +748,7 @@ estimate, whose proof we leave for later.
 \label{prop:bilinear-est}
 	%
 	%
-	If $s > -a$ for fixed $a \ge 1/2$, then 
+	If $s \ge -a + \ee$ for fixed $a \ge 1/2 - \ee$, then 
 	\begin{equation}
 	  \| w_{fg} \|_{\dot{X}_{s,-a}}
 		    \le c_{a} \|f\|_{X_{s}} \|g\|_{X_{s}}
@@ -1729,10 +1729,10 @@ Hence, we obtain
 \begin{equation}
   \label{region-4-1}
 \begin{split}
-  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle^{2a} \langle
+  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{3,1}}}{\langle \tau - n^{2} \rangle^{2a \pm \eta} \langle
       \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
   \\
-  &  \lesssim_{\ee} \sum_{n \in \zzdot} \frac{\chi_{A_{3,1}}\langle n - n_{1} \rangle ^{-2s-2a } \langle n_{1} \rangle ^{-2s-2a}}{\langle
+  &  \lesssim_{\eta} \sum_{n \in \zzdot} \frac{\chi_{A_{3,1}}\langle n - n_{1} \rangle ^{-2s-2a + \eta } \langle n_{1} \rangle ^{-2s-2a + \eta}}{\langle
     n\rangle ^{-2s}}
       \end{split}
 \end{equation}
@@ -1780,17 +1780,17 @@ Adopting the notation
 \end{split}
   \end{equation*}
   %
-  and applying \cref{lem:calc}, \cref{lem:key-trick}, and the fact that 
+  and applying \cref{lem:key-trick}, and the fact that 
   $0 < | n | < | n_{1} |$ in region $A_{3,1}$, we see that we can bound \eqref{region-4-1} by
   %
   %
   \begin{equation*}
   \begin{split}
-    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-4a +\ee}}{\langle n \rangle^{1 + \ee}} < \infty, \quad s \ge -a + \ee/4
+    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-4a  + 2 \eta +\ee}}{\langle n \rangle^{2a - \eta + \ee}} < \infty, \quad s \ge -a + \ee/4 + \eta/2, \ a > 1/2 - \ee/2 + \eta/2
   \end{split}
   \end{equation*}
   %
-  for $\ee > 0$, uniformly in $n_{1}$.
+  for $\ee, \eta > 0$, uniformly in $n_{1}$.
   %
   For region $A_{3,2}$, we apply \cref{lem:calc} and \cref{lem:key-trick} to obtain
   \begin{equation}
@@ -1832,7 +1832,7 @@ where
   A_{4,2}&=\{(n, n_1, \tau, \tau_1)\in A_4: |\tau_{1}-n_{1}^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}\\
   A_{4,3}&=\{(n, n_1, \tau, \tau_1)\in A_4: |\tau - \tau_{1}-(n - n_{1})^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}.
 \end{align*} 
-Hence, applying \cref{lem:calc} and \cref{lem:key-trick}, we obtain 
+Hence, applying \cref{lem:calc}, we obtain 
 %
 %
 %
@@ -1962,28 +1962,111 @@ We also apply \cref{lem:calc} in $B_{2}$ to obtain
 \end{split}
 \end{equation*}
 %
+We now observe that
+%
+%
+\begin{equation*}
+\begin{split}
+  | \tau_{1} - n_{1}^{2} + \tau - \tau_{1} - (n - n_{1})^{2} - (\tau - n^{2}) | = 2| n || n_{1}|
+\end{split}
+\end{equation*}
+
 By the pigeonhole principle, we have $\cup_{1 \le j \le 3} B_{3,j} = B_{3}$, where 
 \begin{align*}
-  B_{3,1}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau-n^{2}|\ge \frac{2}{3} |n_{1}|| n - n_{1} |\},\\
-  B_{3,2}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau_{1}-n_{1}^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}\\
-  B_{3,3}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau - \tau_{1}-(n - n_{1})^2|\ge \frac{2}{3} |n_{1}||n - n_{1}| \}.
+  B_{3,1}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau-n^{2}|\ge \frac{2}{3} |n|| n_{1} |\},\\
+  B_{3,2}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau_{1}+n_{1}^2|\ge \frac{2}{3} |n||n_{1}| \}\\
+  B_{3,3}&=\{(n, n_1, \tau, \tau_1)\in B_3: |\tau - \tau_{1}-(n - n_{1})^2|\ge \frac{2}{3} |n||n_{1}| \}.
 \end{align*} 
 %
 %
-The analysis for region $B_{3,1}$ is analogous to that for region $A_{3,1}$. 
-For region $B_{3,2}$, we apply a change of variable to obtain
+Hence, for region $B_{3,1}$ we apply the pidgeonhole smoothing and \cref{lem:calc} to obtain 
+\begin{equation}
+\begin{split}
+  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,1}}}{\langle \tau - n^{2} \rangle^{2a} \langle
+      \tau_{1} - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
+  \\
+  &  \lesssim_{\eta} \sum_{n \in \zzdot} \frac{\chi_{B_{3,1}}\langle n - n_{1} \rangle ^{-2s } \langle n_{1} \rangle ^{-2s-2a + \eta}}{\langle
+    n\rangle ^{-2s +2a-\eta}}
+      \end{split}
+\end{equation}
+%
+uniformly in $\tau$. Applying \cref{lem:key-trick}, and the fact that 
+$0 < | n | < | n_{1} |$ in region $B_{3,1}$, we bound this by
+%
+%
+\begin{equation*}
+\begin{split}
+\sum_{n \in \zzdot} \frac{\chi_{B_{3,1}}\langle n_{1} \rangle ^{\gamma(s)-2a + \eta - \ee}}{\langle
+    n\rangle ^{2a-\eta  + \ee}} < \infty, \quad s \ge -a + \ee/4 + \eta/2, \ a > 1/2 - \ee/2 + \eta/2.
+\end{split}
+\end{equation*}
+%
+%
+For region $B_{3,2}$, we apply the pidgeonhole smoothing and \cref{lem:calc} to obtain 
 \begin{equation}
 \begin{split}
   &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau - n^{2} \rangle^{2a} \langle
       \tau_{1} + n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
       \\
-      & = 
-      \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau - n^{2} \rangle^{2a} \langle
-      \tau_{1} - n_{1}^{2} \rangle  \langle \tau + \tau_{1} - (n - n_{1})^{2} \rangle} d \tau
-      \end{split}
+      & \lesssim \sum_{n \in \zzdot} \frac{\chi_{B_{3,1}}\langle n - n_{1} \rangle ^{-2s } \langle n_{1} \rangle ^{-2s-2a}}{\langle
+    n\rangle ^{-2s +2a}}
+  \end{split}
 \end{equation}
 %
-and the rest of the argument is identical to that of region $A_{3,2}$.
+and the rest of the argument is identical to that of region $B_{3,1}$.
+\begin{framed}
+  Suppose we want to be more clever and apply the KPV summation lemma here. Assume $a=1/2$, the endpoint case (and the ``natural'' value of $a$ for attaining the best well-posedness result). Integrating in $\tau$, applying \cref{lem:calc}, and using the smoothing in region $B_{3,2}$ via the pigeonhole principle, we get the bound (modulo a constant)
+%
+%
+\begin{equation*}
+\begin{split}
+  \frac{1}{\langle n_{1} \rangle^{2s+1}} \sum_{n \in \zzdot} \frac{\langle n \rangle ^{2s-1}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau_{1} + 2nn_{1} - n_{1}^{2} \rangle} 
+\end{split}
+\end{equation*}
+%
+%
+If $s \ge -1/2$, we bound this by
+\begin{equation*}
+\begin{split}
+  c_{\ee}\sum_{n \in \zzdot} \frac{\chi_{B_{3,2}}}{\langle \tau_{1} - n_{1}(  n_{1} - 2n) \rangle^{1-\ee}}
+\end{split}
+\end{equation*}
+which is unbounded. Why has the KPV method failed us? The answer lies in the curvature of the graph of $\tau_{1} = \pm n_{1}^{2}$ versus that of the graph of $\tau_{1} = n_{1}^{3}$ (KDV). For example, if we were to estimate the KDV analogue of the above%
+%
+\begin{equation*}
+\begin{split}
+      \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau - n^{3} \rangle^{2a} \langle
+      \tau_{1} - n_{1}^{3} \rangle  \langle \tau + \tau_{1} - (n - n_{1})^{3} \rangle} d \tau
+\end{split}
+\end{equation*}
+%
+%
+for $s \ge -1/2$, we get
+%
+%
+\begin{equation*}
+\begin{split}
+  c_{\ee}\sum_{n \in \zzdot} \frac{\chi_{B_{3,2}}}{\langle \tau_{1} - nn_{1}(n - n_{1})\rangle^{1-\ee}} < \infty,
+\end{split}
+\end{equation*}
+%
+(the denominator ``behaves'' like $n^{2}$, see Lemma 5.1 in \cite{Kenig:1996yn}).
+%
+\end{framed}
+
+For region $B_{3,3}$, we apply the pidgeonhole smoothing and \cref{lem:calc} to obtain 
+\begin{equation}
+\begin{split}
+  &  \frac{1}{\langle n_{1} \rangle^{2s}} \sum_{n \in \zzdot} \int_{\tau} \frac{\langle n \rangle ^{2s}}{\langle n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{B_{3,2}}}{\langle \tau - n^{2} \rangle^{2a} \langle
+  \tau_{1} + n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1})^{2} \rangle^{1 \pm \eta}} d \tau
+      \\
+      & \lesssim_{\eta} \sum_{n \in \zzdot} \frac{\chi_{B_{3,1}}\langle n - n_{1} \rangle ^{-2s } \langle n_{1} \rangle ^{-2s-1 + \eta}}{\langle
+    n\rangle ^{-2s +1 - \eta}}
+  \end{split}
+\end{equation}
+%
+and the rest of the argument is analogous to that of region $B_{3,1}$.
+
 The arguments for the regions $B_{3,3}$ and $B_{4}$ are analogous to those of regions $A_{3,3}$ and $A_{4}$, respectively. This completes the proof of
 \cref{prop:bilinear-est}. \qquad \qedsymbol
 %
