@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 \usepackage{fix-cm} %fix font errors
 \usepackage{amssymb}
-%\usepackage[notcite]{showkeys}
+\usepackage[notcite]{showkeys}
 \usepackage{appendix}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
@@ -246,12 +246,9 @@ We now introduce the following spaces.
   %
   %
   \begin{gather*}
-    \|F\|_{Z_{s}} = \|P_{| \tau| \ge 2n^{2}}F\|_{X_{s,1/2}} + \min \left \{ \|
-    P_{0 \le \tau \le 2n^{2}} u  \|_{X_{s+2,0}}, \| P_{0 \le \tau \le 2n^{2}} u
-    \|_{X_{s,1/2}}  \right \} 
-    \\
-    + \min \left \{ \| P_{-2n^{2} \le \tau \le 0} u
-    \|_{X_{s+2,0}}, \| P_{-2n^2 \le \tau \le 0} u  \|_{X_{s,1/2}}  \right \}
+    \|F\|_{Z_{s}} = \|P_{| \tau| \ge 2n^{2}}F\|_{X_{s,1/2}} + \| P_{0 \le \tau \le 2n^{2}} u
+    \|_{X_{s,1/2}}
+    + \| P_{-2n^2 \le \tau \le 0} u  \|_{\mathcal{X}_{s,1/2}}  
   \end{gather*}
 \end{definition}
 %
@@ -287,7 +284,7 @@ $X_{s,1/2}$. Using the equality
 \end{split}
 \end{equation*}
 %
-it follows that $\left \{ P_{0 \le \tau \le 2n^{2}} u_{n} \right \}$ is Cauchy in $X_{s+2,0}$ and $X_{s,1/2}$. Similarly, $\left \{P_{-2n^{2} \le \tau \le 0} u_{n} \right \}$ is Cauchy in $\mathcal{X}_{s+2,0}$ and $\mathcal{X}_{s,1/2}$.
+it follows that $\left \{ P_{0 \le \tau \le 2n^{2}} u_{n} \right \}$ is Cauchy $X_{s,1/2}$. Similarly, $\left \{P_{-2n^{2} \le \tau \le 0} u_{n} \right \}$ is Cauchy in $\mathcal{X}_{s,1/2}$.
 But $X_{s,b}, \mathcal{X}_{s,b}$ are Banach for all $s,b \in \rr$. 
 %
 \end{enumerate}
@@ -435,7 +432,7 @@ gives
     |^{2} \int_{\rr} | \wh{\psi}(\tau - n^{2}) |^{2}\left( 1 + |  \tau  -
     n^{2} | \right) d \tau
     \\
-    & =c_{\psi} \| u_{0} \|^{2}.
+    & \lesssim \| u_{0} \|^{2}.
 \end{align*}
 %
 %
@@ -460,7 +457,7 @@ Observe that
     & \lesssim \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} \wh{\psi}(\tau - n^{2})d \tau
     \\
-    & =c_{\psi} \| u_{0} \|^{2}.
+    & \lesssim \| u_{0} \|^{2}.
 \end{align*}
 %
 and
@@ -475,7 +472,7 @@ and
     & \lesssim \sum_{n \in \zz} \left( 1 + |n| \right)^{2s} | \wh{u_{0}}(n)
     |^{2} \int_{\rr} \wh{\psi}(\tau + n^{2})d \tau
     \\
-    & =c_{\psi} \| u_{0} \|^{2}.
+    & \lesssim \| u_{0} \|^{2}.
 \end{align*}
 
 %
@@ -573,7 +570,7 @@ Also,
     \wh{\psi}(\tau)|^{2} d \tau
     \\
     & \lesssim \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr}  (1 + | \tau - n^{2} |)| \wh{\psi}(\tau - n^{2}) |^{2} \right) d \tau
+    |^{2} \int_{\rr}  (1 + | \tau - n^{2} |)| \wh{\psi}(\tau - n^{2}) |^{2} d \tau
     \\
     & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d}{d \tau}
     \wh{\psi}(\tau)|^2 d \tau
@@ -586,7 +583,7 @@ and
 \begin{equation*}
   \begin{split}
     \| P_{0 \le  \tau  \le  2n^{2}}\cref{main1-rel-term-2} \|_{\mathcal{X}_{s,1/2}}^{2} 
-    & = \sum_{n \in \zzdot} (1 + |n|)^{2s} \int_{\rr}  \chi_{-2n^{2} \le \tau \le 0}(1 + | \tau + n^{2} |) | \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}(n)}}{2i
+    & = \sum_{n \in \zzdot} (1 + |n|)^{2s} \int_{\rr}  \chi_{-2n^{2} \le \tau \le 0}(1 + | \tau + n^{2} |) | \frac{\wh{\psi}(\tau - n^{2})\wh{u_{1}(n)}}{2i
     n^{2}} -
     \frac{\wh{\psi}(\tau + n^{2})\wh{u_{1}}(n)}{2i n^{2}} |^{2} d \tau
     \\
@@ -594,7 +591,7 @@ and
     \wh{\psi}(\tau)|^{2} d \tau
     \\
     & \lesssim \sum_{n \in \dot{\zz}} n^{-4} \left( 1 + |n| \right)^{2s} | \wh{u_{1}}(n)
-    |^{2} \int_{\rr}  (1 + | \tau + n^{2} |) | \wh{\psi}(\tau + n^{2}) |^{2} \right) d \tau
+    |^{2} \int_{\rr}  (1 + | \tau + n^{2} |) | \wh{\psi}(\tau + n^{2}) |^{2} d \tau
     \\
     & + |\wh{u_{1}}(0)|^{2} \int_{\rr} (1 + | \tau |) |\frac{d}{d \tau}
     \wh{\psi}(\tau)|^2 d \tau
@@ -609,7 +606,7 @@ Combining our estimates and taking square roots, it follows that
 \begin{equation}
   \label{u-1-est}
   \begin{split}
-    \|\cref{main1-rel-term-2}|_{Z_{s}} \le c_{\psi} 
+    \|\cref{main1-rel-term-2}|_{Z_{s}} \lesssim 
     \|u_{1}\|_{H^{s-2}}.
   \end{split}
 \end{equation}
@@ -672,10 +669,16 @@ Hence
 		\ d 
 		\tau 
 		\\
-		& \lesssim \sum_{a = \pm 1}
+		  & \lesssim 
  \sum_{n \in 
 		\zzdot} \chi_{| \tau | \ge 2n^{2}} \left (1 + |n| \right )^{2s} \int_\rr (1 +  | \tau - n^{2}|)^{-1} | \wh{w}(n, \tau) |^2 
 		 \ d \tau 
+		 \\
+		 & +  \sum_{n \in 
+		\zzdot} \chi_{| \tau | \ge 2n^{2}} \left (1 + |n| \right )^{2(s+1)} \int_\rr (1 +  | \tau + n^{2}|)^{-1} | \wh{w}(n, \tau) |^2 
+		 \ d \tau 
+		\\
+		& \lesssim \| P_{| \tau | \ge 2n^{2}}w \|_{X_{s,0}}
 		\\
 		& \lesssim \| P_{| \tau | \ge 2n^{2}}u \|^{2}_{X_{s,1/2}}
 \end{split}
@@ -700,9 +703,9 @@ estimate, whose proof we leave for later.
 \label{prop:bilinear-est}
 	%
 	%
-	If $s > -1/2$ then 
+	If $s \ge -1/2$ then 
 	\begin{equation}
-	  \| P_{| \tau | \ge 2n^{2}}(fg) \|_{X_{s,-1/2}}
+	  \| P_{| \tau | \ge 2n^{2}}(fg) \|_{X_{s,0}}
 		    \lesssim \|P_{| \tau | \ge 2n^{2}}f\|_{X_{s,1/2}} \|P_{| \tau | \ge 2n^{2}}g\|_{X_{s,1/2}}.
 	\end{equation}
 %
@@ -717,31 +720,28 @@ Also
 %
 \begin{equation}
 	\begin{split}
-		\|P_{0 \le  \tau  < 2n^{2}}\cref{main1-rel-term-3}\|_{X_{s-1,0}}^{2} 
+		\|P_{0 \le  \tau  \le 2n^{2}}\cref{main1-rel-term-3}_{a=1}\|_{X_{s,1/2}}^{2} 
     & \lesssim
-    \sum_{a = \pm 1} \| P_{| \tau | < 2n^{2}} \sum_{n \in \zz} e^{ixn} \int_\rr 
-		e^{it \tau} \frac{1 - a\psi (\tau - an^{2} ) 
-}{\tau - an^{2}} \wh{w}(n, \tau) \ 
-		d \tau\|_{X_{s-1,0}}^{2}
+    \| P_{| 0 \le \tau \le 2n^{2}} \sum_{n \in \zz} e^{ixn} \int_\rr 
+		e^{it \tau} \frac{1 - \psi (\tau - n^{2} ) 
+}{\tau - n^{2}} \wh{w}(n, \tau) \ 
+		d \tau\|_{X_{s,1/2}}^{2}
 		\\
-    & = \sum_{a = \pm 1}\sum_{n \in \zzdot} \chi_{| \tau | < 2n^{2}}\left (1 + |n| \right )^{2(s-1)} \int_\rr
-    \left | \frac{1 - a\psi(\tau - an^{2 
-})}{\tau - an^{2}} 
+    & = \sum_{n \in \zzdot} \chi_{0 \le \tau \le 2n^{2}}\left (1 + |n| \right )^{2s} \int_\rr (1 + | \tau - n^{2} |)
+    \left | \frac{1 - \psi(\tau - n^{2 
+})}{\tau - n^{2}} 
      \wh{w}(n, \tau) \right |^2 \ d 
 		\tau 
 		\\
-    & \le \sum_{a = \pm 1}
-    \sum_{n \in \zzdot} \chi_{| \tau | < 2n^{2}} \left (1 + |n| \right )^{2(s-1)} \int_{| \tau - an^{2}| \ge 1}
-    \frac{|  \wh{w}(n, \tau)|^2}{|\tau - an^{2}|^2} 
+    & \le 
+    \sum_{n \in \zzdot} \chi_{0 \le  \tau  < 2n^{2}} \left (1 + |n| \right )^{2s} \int_{| \tau - n^{2}| \ge 1} (1 + | \tau - n^{2} |)
+    \frac{|  \wh{w}(n, \tau)|^2}{|\tau - n^{2}|^2} 
 		\ d 
 		\tau 
 		\\
-		& \lesssim \sum_{a = \pm 1}
- \sum_{n \in 
-		\zzdot} (1-\chi_{| \tau | \ge 2n^{2}}) \left (1 + |n| \right )^{2(s-1)} \int_\rr (1 +  | \tau - n^{2}|)^{-2} | \wh{w}(n, \tau) |^2 
-		 \ d \tau 
+		& \lesssim \| P_{0 \le  \tau \le 2n^{2}}w \|_{X_{s,-1/2}}
 		\\
-		& \lesssim \| P_{| \tau | \ge 2n^{2}}u \|^{2}_{X_{s,1/2}}
+		& \lesssim \| P_{0 \le  \tau \le 2n^{2}}u \|^{2}_{X_{s,1/2}}
 \end{split}
 \end{equation}
 where the last step follows from the following bilinear
@@ -761,12 +761,11 @@ estimate, whose proof we leave for later.
 \label{prop:bilinear-est2}
 	%
 	%
-	If $s > -1$ then 
+	If $s \ge -1/2$ then 
 	\begin{equation}
-	  \| P_{| \tau | < 2n^{2}}w_{fg} \|_{\dot{X}_{s,-1}}
-		    \lesssim \|P_{| \tau | < 2n^{2}}f\|_{X_{s,-1}} \|P_{| \tau | \ge 2n^{2}}g\|_{X_{s,-1}}
+	  \| P_{0 \le  \tau  \le 2n^{2}}(fg) \|_{X_{s,-1/2}}
+		    \lesssim \|P_{0 \le  \tau \le 2n^{2}}f\|_{X_{s,1/2}} \|P_{0 \le \tau \le 2n^{2}}g\|_{X_{s,1/2}}.
 	\end{equation}
-  where $w_{fg}(x,t)$ = $fg (x,t)$.
 %
 %
 %
@@ -775,7 +774,54 @@ estimate, whose proof we leave for later.
 
 %
 %
-
+Next, we analyze
+%
+%
+\begin{equation}
+	\begin{split}
+		\|P_{0 \le  \tau  \le 2n^{2}}\cref{main1-rel-term-3}_{a=-1}\|_{X_{s,1/2}}^{2} 
+    & \lesssim
+    \| P_{| 0 \le \tau \le 2n^{2}} \sum_{n \in \zz} e^{ixn} \int_\rr 
+		e^{it \tau} \frac{1 - \psi (\tau + n^{2} ) 
+}{\tau + n^{2}} \wh{w}(n, \tau) \ 
+		d \tau\|_{X_{s,1/2}}^{2}
+		\\
+    & = \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} \int_\rr \chi_{0 \le \tau \le 2n^{2}}(1 + | \tau - n^{2} |)
+    \left | \frac{1 - \psi(\tau + n^{2 
+})}{\tau + n^{2}} 
+     \wh{w}(n, \tau) \right |^2 \ d 
+		\tau 
+		\\
+    & \le 
+    \sum_{n \in \zzdot}  \left (1 + |n| \right )^{2s} \int_{| \tau + n^{2}| \ge 1} \chi_{0 \le  \tau  < 2n^{2}}(1 + | \tau - n^{2} |)
+    \frac{|  \wh{w}(n, \tau)|^2}{|\tau + n^{2}|^2} 
+		\ d 
+		\tau 
+		\\
+& \lesssim
+    \sum_{n \in \zzdot}  \left (1 + |n| \right )^{2s} \int \chi_{0 \le  \tau  < 2n^{2}} (1 + | \tau - n^{2} |)
+    \frac{|  \wh{w}(n, \tau)|^2}{(1 + |\tau + n^{2}|)^2} d \tau
+\\
+		& \lesssim \| P_{0 \le  \tau \le 2n^{2}}w \|_{X_{s,-1/2}}
+		\\
+		& \lesssim \| P_{0 \le  \tau \le 2n^{2}}u \|^{2}_{X_{s,1/2}}
+\end{split}
+\end{equation}
+where the last step follows from \cref{prop:bilinear-est2}. 
+Having gone through all the above machinery, observe that we can estimate $\| P_{-2n^{2} \le \tau \le 0} \cref{main1-rel-term-3}_{a = \pm 1}\|_{\mathcal{X}_{s,1/2}}$ in precisely the same way when equipped with the following bilinear estimate, whose proof we leave for later. 
+\begin{proposition}
+	%
+	%
+	If $s \ge -1/2$ then 
+	\begin{equation}
+	  \| P_{-2n^{2} \le \tau \le 0}(fg) \|_{\mathcal{X}_{s,-1/2}}
+		    \lesssim \|P_{-2n^{2} \le \tau \le 0}f\|_{\mathcal{X}_{s,1/2}} \|P_{-2n^{2} \le \tau \le 0}g\|_{\mathcal{X}_{s,1/2}}.
+	\end{equation}
+%
+%
+%
+%
+\end{proposition}
 Collecting our estimates, we obtain%
 \begin{equation}
 	\begin{split}
@@ -824,118 +870,113 @@ Therefore,
 \begin{equation}
   \label{iu}
 	\begin{split}
-		& \| \cref{main1-rel-term-4} \|_{X_{s,1/2}} 
+	& \| P_{| \tau | \ge 2n^{2}}\cref{main1-rel-term-4} \|_{X_{s,1/2}}^{2} 
 		\\
     & \lesssim 
-    \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right)^{2s}
-    \int_\rr \left( 1 + | \tau - n^{2} \right ) | | \wh{\psi}\left(
-    \tau - an^{2} \right) |^2 \ d \tau \right.
+    \sum_{a = \pm 1} \sum_{n \in \zzdot} \left (1 + |n| \right)^{2s}
+    \int_\rr \chi_{|\tau| \ge 2n^{2}}\left( 1 + | \tau - n^{2} \right ) | | \wh{\psi}\left(
+    \tau - an^{2} \right) |^2 \ d \tau 
 		\\
-		& \times \left . |
+		& \times |
 		\int_\rr \frac{1 - \psi\left( \lambda - an^{2} \right)}{\lambda -
-		an^{2}} \wh{w}(n, \lambda) \ d \lambda |^2  \right)^{1/2}.
-  \end{split}
-\end{equation}
-Applying \cref{eqn:norm-key-ineq}, we have the bound
-%
-%
-\begin{equation*}
-\begin{split}
-& \sum_{a = \pm 1} 
-\int_\rr \left( 1 + | \tau - n^{2} \right ) | | \wh{\psi}\left(
-    \tau - an^{2} \right) |^2 \ d \tau 
-    \\
-    & \le  \sum_{a = \pm 1} 
-    \int_\rr \left( 1 + |\tau - an^{2} | \right ) | | \wh{\psi}\left(
-    \tau - an^{2} \right) |^2 \ d \tau 
-    \\
-    & = c_{\psi}.
-\end{split}
-\end{equation*}
-%
-Hence, the right hand side of \cref{iu} is bounded by
-%
-\begin{equation}
-  \begin{split}
-    & c_{\psi}  \sum_{a = \pm 1}\left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | \int_\rr
+		an^{2}} \wh{w}(n, \lambda) \ d \lambda |^2  
+		\\
+		& \lesssim 
+\sum_{a = \pm 1}\sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | \int_\rr
 		\frac{1 - \psi\left( \lambda - an^{2} \right)}{\lambda - an^{2}}
-		\wh{w}(n, \lambda) \ d\lambda |^2 \right)^{1/2}
+		\wh{w}(n, \lambda) \ d\lambda |^2 
 		\\
-    & \simeq  \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
+    & \simeq  \sum_{a = \pm 1} \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
 		\frac{1 - \psi\left( \lambda - an^{2} \right)}{|\lambda - an^{2}|}
-		|\wh{w}(n, \lambda) | \ d\lambda \right )^2 \right)^{1/2}
+		|\wh{w}(n, \lambda) | \ d\lambda \right )^2
 		\\
-    & \le \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_{| \lambda - 
-		an^{2} | \ge 1}
-		\frac{|\wh{w}(n, \lambda) |}{|\lambda - an^{2}|}
-		\ d\lambda \right )^2 \right)^{1/2}.
+    & \lesssim \sum_{a = \pm 1} \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int
+		\frac{(\chi_{A_{1}} + \chi_{A_{2}}+ \chi_{A_{3}})|\wh{w}(n, \lambda) |}{1 + |\lambda - an^{2}|}
+		\ d\lambda \right )^2 
   \end{split}
 \end{equation}
-Applying \cref{one-plus-ineq} then \cref{eqn:norm-key-ineq} we bound this by
+where $A_{1} = \{(n, \lambda) \in \zz \times \rr: | \tau | \ge n^{2} \}$, $A_{2} = \left \{ (n, \tau) \in \zz \times \rr: 0 \le \tau \le 2n^{2} \right \}$, and $A_{3} = \left \{ (n, \tau) \in \zz \times \rr: -2n^{2} \le \tau \le 0 \right \}$. Observe that in region $A_{1}$, $(1 + | \lambda - an^{2} |) \sim (1 + | \lambda + an^{2} |)$. Also observe that $(1 + | \lambda + n^{2} |) \ge (1 + | \lambda - n^{2} |)$ in region $A_{2}$, and $(1 + | \lambda + n^{2} |) \le (1 + | \lambda - n^{2} |)$ in region $A_{3}$. Therefore,
 \begin{equation}
-  \label{fh}
 \begin{split}
-  4  \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int_\rr
-    \frac{|\wh{w}(n, \lambda)|}{1 + | |\lambda| - n^{2}|}
-    \ d\lambda \right )^2 \right)^{1/2}.
-	\end{split}
-\end{equation}
-%
-By duality, the term in parenthesis is equal to
-%
-%%
-\begin{equation*}
-	\begin{split}
-	  \sup_{\|a_{n}\|_{\dot{\ell}^{2}}=1}| \sum_{n \in \zzdot} \left (1 + |n| \right )^{s}
-		a_n \int_{\rr} \frac{|\wh{w}(n, \lambda)|}{1 
-		+ | |\lambda| - n^{2} |} \ d \lambda |
-	\end{split}
-\end{equation*}
-%
-%%
-which by Cauchy-Schwartz is bounded by
-%
-%%
-\begin{equation}
-	\label{n1m}
-	\begin{split}
-	  &  \sup_{\|a_{n}\|_{\dot{\ell}^{2}}=1}| \sum_{n \in \zzdot} \left (1 + |n| \right )^{s} a_n
-		\int_{\rr}\frac{| \wh{w}(n, \lambda) |}{1 + | |\lambda| - n^{2} |} \ d \lambda |
+& \sum_{a = \pm 1} \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}  \left ( \int
+		\frac{(\chi_{A_{1}} + \chi_{A_{2}}+ \chi_{A_{3}})|\wh{w}(n, \lambda) |}{1 + |\lambda - an^{2}|}
+		\ d\lambda \right )^2
 		\\
-		& \le \sup_{\|a_{n}\|_{\dot{\ell}^{2}}=1} \left( \sum_{n \in \zzdot} | a_{n} |^2\int_{\rr} \frac{1}{\left( 1 + | |\lambda| - n^{2} | \right)^{1 + \eta}} \ d \lambda  
-		\right)^{1/2} 
-		\left ( \sum_{n \in \zzdot}\int_{\rr} \left (1 + |n| \right )^{2s} (1 + | | \lambda | - n^{2} |)^{\eta -1} \wh{w}(n, \lambda) 
-		|^2\ d \lambda 
-		\right)^{1/2}
-		\\
-  & \lesssim \|  w \|_{\dot{X}_{s, -(1- \eta)}}, \quad \eta > 0.
-\end{split}
-\end{equation}
+		& \lesssim \| P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}
+		\end{split}
+		\end{equation}
+		via the inequality $(a + b + c)^{2} \le 8(a^{2} + b^{2} +
+		c^{2})$ and the following bilinear estimates.
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		%				
+		%
+		%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%
+		%
+		\begin{proposition}
+\label{prop:bilin-1-endpoint}
+		For $s \ge -1/2$
+		\begin{equation}
+		\left [ \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int
+		\frac{\chi_{| \tau | \ge 2n^{2}}|\wh{fg}(n, \tau) |}{1 + |\tau - n^{2}|}
+		\ d\tau \right )^2 \right ]^{1/2} \lesssim \| P_{| \tau | \ge 2n^{2}} f \|_{X_{s,1/2}}\| P_{| \tau | \ge 2n^{2}} g \|_{X_{s,1/2}}
+		\end{equation}
+				\end{proposition}
+		%
+		%
+		\begin{proposition}
+		\label{prop:bilin-2-endpoint}
+		For $s \ge -1/2$
+		\begin{equation}
+		\left [ \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int
+		\frac{\chi_{| 0 \le \tau  \le 2n^{2}}|\wh{fg}(n, \tau) |}{1 + |\tau - n^{2}|}
+		\ d\tau \right )^2 \right ]^{1/2} \lesssim \| P_{0 \le \tau \le 2n^{2}} f \|_{X_{s,1/2}}\| P_{0 \le  \tau \le 2n^{2}} g \|_{X_{s,1/2}}
+		\end{equation}
+		\end{proposition}
+\begin{proposition}
+		\label{prop:bilin-3-endpoint}
+		For $s \ge -1/2$
+		\begin{equation}
+		\left [ \sum_{n \in \zz} \left (1 + |n| \right )^{2s}  \left ( \int
+		\frac{\chi_{-2n^{2} \le  \tau \le 0}|\wh{fg}(n, \tau) |}{1 + |\tau + n^{2}|}
+		\ d\tau \right )^2 \right ]^{1/2} \lesssim \| P_{-2n^{2} \le \tau \le 0} f \|_{\mathcal{X}_{s,1/2}}\| P_{-2n^{2} \le  \tau  \le 0} g \|_{\mathcal{X}_{s,1/2}}.
+		\end{equation}
+		\end{proposition}
+Estimating in analogous fashion, we obtain
+$$ \| P_{0 \le \tau \le 2n^{2}}\cref{main1-rel-term-4} \|_{X_{s,1/2}}^{2}
+\lesssim P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}
+$$
+and $$ \| P_{-2n^{2} \le  \tau  \le 0}\cref{main1-rel-term-4} \|_{X_{s,1/2}}
+\lesssim P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}
+$$
 %
 %
-Hence, taking $\eta > 0$ arbitrarily small
-and applying the bilinear estimate, we conclude that 
-%
+Hence, collecting our estimates and taking square roots, we obtain
 %
 \begin{equation}
-  \label{main-int3-est}
+  \label{main-int4-est}
 	\begin{split}
-    \|\cref{main1-rel-term-3}\|_{X_{s,1/2}} \le c_{\psi} 
-     \|u\|^{2}_{X_{s,1/2}}, \quad   s > -1/2.
+    \|\cref{main1-rel-term-4}\|_{Z_{s}} \lesssim 
+     \|u\|^{2}_{Z_{s}}, \quad   s \ge -1/2.
 	\end{split}
 \end{equation}
 
 %
 %
 %
-\subsubsection{Estimate for \cref{main1-rel-term-5}.}
+\subsubsection{Estimate for \cref{main1-rel-term-4.5}.}
 Note that
 %
 %
 \begin{equation}
 	\label{1n}
 	\begin{split}
-    \cref{main1-rel-term-5} \simeq \sum_{a = \pm 1}\sum_{k \ge 1}
+    \cref{main1-rel-term-4.5} \simeq \sum_{a = \pm 1}\sum_{k \ge 1}
 		\frac{i^k}{k!}g_k(x,t)
 	\end{split}
 \end{equation}
@@ -985,10 +1026,10 @@ Applying this to \cref{1n} and using Minkowski's inequality, we obtain
 \begin{equation}
 	\label{2n}
 	\begin{split}
-		& \|\cref{main1-rel-term-5}\|_{X_{s,1/2}} 
+		& \|P_{| \tau | \ge 2n^{2}}\cref{main1-rel-term-4.5}\|_{X_{s,1/2}} 
     \\
     & \lesssim \sum_{a = \pm 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s}
-    \int_\rr \left( 1 + | \tau - an^{2} | \right)^{2}
+    \int_\rr \chi_{| \tau | \ge 2n^{2}} \left( 1 + | \tau - an^{2} | \right)^{2}
     | \wh{\sum_{k \ge 1} \frac{i^k}{k!}g_k(x,t)} |^2 \ d \tau
 		\right)^{1/2}
 		\\
@@ -1007,7 +1048,7 @@ Applying this to \cref{1n} and using Minkowski's inequality, we obtain
 \end{equation}
 %
 %
-Applying \cref{eqn:norm-key-ineq} and the change
+Applying the change
 of variable $\tau - an^{2} = \tau'$
 gives
 %
@@ -1060,16 +1101,16 @@ Hence, applying \cref{3n} and \cref{4n} to \cref{2n}, we obtain
 \begin{equation}
 	\label{5n}
 	\begin{split}
-		\|\cref{main1-rel-term-5} \|_{X_{s,1/2}}
-		& \lesssim c_{\psi} \sum_{a = \pm 1}
+		\|P_{| \tau | \ge 2n^{2}}\cref{main1-rel-term-4.5} \|_{X_{s,1/2}}
+		& \lesssim \sum_{a = \pm 1}
     \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | h_k(n) |^2 
 		\right)^{1/2}
 		\\
-    & \le c_{\psi} \sum_{a = \pm 1} \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    & \le \sum_{a = \pm 1} \sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
     \times \sup_{k \ge [b] + 1} \left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} | 
 		h_k(n) |^2 \right)^{1/2}
 		\\
-    & = c_{\psi}  \sum_{a = \pm 1}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
+    & = \sum_{a = \pm 1}\sum_{k \ge [b] +1} \frac{1}{(k-[b] - 1)!}
     \\
     & \times \sup_{k \ge [b] + 1} 
 		\left( \sum_{n \in \zzdot} \left (1 + |n| \right )^{2s} |\int_\rr 
@@ -1101,64 +1142,67 @@ we bound the right hand side of \cref{5n} by
 \left[ \sum_{n \in \zzdot} (1 + | n |)^{2s}\left (  
 		\int_{| \tau - an^{2}  |\le 1} | \wh{w}(n, \tau) | \ d \tau \right ) ^2 
 		\right]^{1/2}
+		\\
+		  & \lesssim \left[ \sum_{n \in \zzdot} (1 + | n |)^{2s}\left(
+		  \int_\rr \frac{|\wh{w}(n, \tau)|}{1 + | \tau - n^{2} |} \ d
+		  \tau \right ) ^2 \right]^{1/2}.
+		\\
+		& \lesssim \| P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}
+		\end{split}
+		\end{equation*}
+%
+where the last step follows from the 
+the triangle inequality and 
+\cref{prop:bilin-1-endpoint}-\cref{prop:bilin-3-endpoint}. Hence, 
+%
+%
+\begin{equation}
+	\begin{split}
+    \|P_{| \tau | \ge 2n^{2}}\cref{main1-rel-term-4.5}\|_{X_{s,1/2}} \lesssim 
+    \| P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}.
 	\end{split}
-\end{equation*}
+\end{equation}
 %
-%%
-which by the inequality
+Doing an analogous analysis to the above, we also obtain
+\begin{equation}
+	\begin{split}
+    \|P_{0 \le \tau \le 2n^{2}}\cref{main1-rel-term-4.5}\|_{X_{s,1/2}} \lesssim 
+    \| P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\begin{split}
+    \|P_{-2n^{2} \le \tau \le 0}\cref{main1-rel-term-4.5}\|_{X_{s,1/2}} \lesssim 
+    \| P_{| \tau | \ge 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{0 \le  \tau  \le 2n^	2} \|_{X_{s,1/2}}^{2} + \| P_{-2n^{2} \le  \tau \le 0} \|_{\mathcal{X}_{s,1/2}}^{2}
+	\end{split}
+\end{equation}
 %
-%%
+Collecting these estimates, we obtain 
+%
+%
 \begin{equation*}
-	\begin{split}
-		1 \le 
-		\frac{2}{1 + | j |}, \qquad | j | \le 1
-	\end{split}
+\begin{split}
+\| \cref{main1-rel-term-4.5} \|_{Z_{s}} \lesssim \| u \|_{Z_{s}}^{2}.
+\end{split}
 \end{equation*}
 %
-%%
-and \cref{eqn:norm-key-ineq}
-is bounded by 
 %
-%%
-\begin{equation}
-\label{main-int4-est-X-s-part}
-	\begin{split}
-    & \left[ \sum_{n \in \zzdot} (1 + | n |)^{2s}\left( \int_\rr
-		\frac{|\wh{w}(n, \tau)|}{1 + | \tau - n^{2} |} \ d \tau \right ) ^2 
-		\right]^{1/2}.
-  \end{split}
-\end{equation}
-%
-%%
-Recalling the computations from \cref{fh} to \cref{main-int3-est}, we conclude
-that 
-%
-%
-\begin{equation}
-\label{main-int4-est}
-	\begin{split}
-    \|\cref{main1-rel-term-5}\|_{X_{s,1/2}} \le c_{\psi} 
-    \|u\|_{X_{s,1/2}}^{3}.
-	\end{split}
-\end{equation}
-%
-%
-Collecting estimates  
-\cref{main-int3-est}, and \cref{main-int4-est}, and recalling 
-\cref{main1-rel-term-2}-\cref{main1-rel-term-5}, we obtain
+Collecting our estimates for  
+\cref{main1-rel-term-1}-\cref{main1-rel-term-5}, we obtain
 the following.
 %
 %
 \begin{proposition}
 \label{prop:contraction}
 %
-For $s > -1/2$, we have
+For $s \ge -1/2$, we have
 %
 %%
 \begin{equation*}
 	\begin{split}
-    \|Tu\|_{X_{s,1/2}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
-    + \|u\|_{X_{s,1/2}}^2 
+    \|Tu\|_{Z_{s}} \le c \left( \|u_0 \|_{H^s(\ci)} + \|u_1 \|_{H^{s-2}(\ci)}
+    + \|u\|_{Z_{s}}^2 
 		\right).
 	\end{split}
 \end{equation*}
@@ -1167,7 +1211,7 @@ For $s > -1/2$, we have
 \end{proposition}
 %
 %
-From here, setting up the contraction is standard. Hence, we have reduced the proof of well-posedness to the proof of the bilinear estimate.
+From here, setting up the contraction is standard. Hence, we have reduced the proof of well-posedness to the proof of the bilinear estimates.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1179,16 +1223,16 @@ From here, setting up the contraction is standard. Hence, we have reduced the pr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-\section{Proof of \hyperref[prop:bilinear-est]{Periodic Bilinear Estimate}} 
+\section{Proof of Periodic Bilinear Estimates} 
 \label{sec:proof-bilin-est}
-By duality and the equivalence of the norms $\| \cdot \|_{X_{s,1/2}}$ and $\| \cdot \|_{\mathcal{X}_{s}}$, it suffices to show that for $s > -a$, 
+By duality it suffices to show that for $s \ge -1/2$, 
 %
 %%
 \begin{equation}
 	\label{duality-est}
 	\begin{split}
-	|	\sum_{n \in \zzdot}  (1 + |n|)^{s}
-	\int_{\rr} \langle | \tau | - n^{2}  \rangle ^{-a}\phi(n, \tau) \wh{uv}(n, \tau) d \tau | \lesssim \|u\|_{\mathcal{X}_{s}}
+	|	\sum_{n \in \zzdot}  \langle n \rangle^{s}
+	\int_{\rr} \chi_{| \tau | \ge 2n^{2}}\langle \tau - n^{2}  \rangle ^{-1/2}\phi(n, \tau) \wh{uv}(n, \tau) d \tau | \lesssim \|u\|_{\mathcal{X}_{s}}
     \|v\|_{\mathcal{X}_{s}}
     \|\phi \|_{L^{2}(\zzdot \times \rr)}.
 	\end{split}
@@ -1213,7 +1257,7 @@ Note first that $|\wh{uv}(n, \tau) |  = | \wh{u} *  \wh{v}
 \right)}{\langle n_1 \rangle ^s \langle |\tau_1| - n_1^{2} | \rangle }
 \\
 & \times \frac{c_{v}\left( n - n_1, \tau - \tau_1 \right)}{\langle n -
-n_1 \rangle ^s\ \langle |\tau - \tau_1 | -  (n - n_1)^{2} \rangle}
+n_1 \rangle ^s\ \langle \tau - \tau_{1} -  (n - n_1)^{2} \rangle}
   \ d \tau_1 
 \end{split}
 \end{equation}
@@ -1235,7 +1279,7 @@ and
 \begin{equation*}
 	\begin{split}
 		c_h(n, \tau) =
-		\langle n \rangle ^s \langle \tau - n^{2} \rangle^{-a} | \wh{h}\left( n, \tau \right) |.
+		\langle n \rangle ^s \langle \tau - n^{2} \rangle^{-1/2} | \wh{h}\left( n, \tau \right) |.
 	\end{split}
 \end{equation*}
 %
@@ -1255,7 +1299,7 @@ From our work above, it follows that
     \times \frac{c_f(n_1, \tau_1)}{\langle |\tau_1| - n_1^{2} \rangle^{1/2}}
 		\\
 		& \times
-		\frac{c_g(n - n_1, \tau - \tau_1 )}{\langle |\tau - \tau_1| - (n - n_1)
+		\frac{c_g(n - n_1, \tau - \tau_1 )}{\langle \tau - \tau_{1} - (n - n_1)
 		\rangle^{1/2}}\ d \tau_1.
 	\end{split}
 \end{equation}
@@ -1268,7 +1312,7 @@ Hence,
   \label{pre-fubini-int-form}
 	\begin{split}
     |\text{lhs of} \ \cref{duality-est}|
-    & \lesssim \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau)\langle | \tau | - n^{2} \rangle^{-a}  \langle n \rangle^s 
+    & \lesssim \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau)\langle \tau - n^{2} \rangle^{-1/2}  \langle n \rangle^s 
   \sum_{n_{1}}
   \int_{\tau_{1}} c_f(n_1, \tau_1)
 		c_g(n - n_1, \tau - \tau_1 )
@@ -1290,7 +1334,7 @@ $\tau_{1}, \xi_{1}$
 	\begin{split}
     & \sum_{n \in \zzdot} \int_{\tau}   \sum_{n_{1}}
     \int_{\tau_{1}} \chi_{A}
-    \phi(n, \tau) \langle n \rangle^s \langle \tau - n^{2} \rangle^{-a}
+    \phi(n, \tau) \langle n \rangle^s \langle \tau - n^{2} \rangle^{-1/2}
   c_f(n_1, \tau_1)
 		c_g(n - n_1, \tau - \tau_1 )
 		\\
@@ -1308,11 +1352,11 @@ is bounded by
 	\label{10g}
 	\begin{split}
     & \sum_{n \in \zzdot} \int_{\tau} \phi(n, \tau) \langle n \rangle ^{s}
-    \langle | \tau | - n^{2} \rangle ^{-a}
+    \langle \tau - n^{2} \rangle ^{-1/2}
     \\
     & \times \left( \sum_{n_{1}} \int_{\tau_{1}}
     \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle |
-    \tau_{1} | - n_{1}^{2}\rangle^{2}  \langle | \tau - \tau_{1} | -
+    \tau_{1} | - n_{1}^{2}\rangle^{2}  \langle \tau - \tau_{1} -
     (n - n_{1})^{2} \rangle^{2}} d \tau_{1} \right)^{1/2}
     \\
     & \times \left( \sum_{n_{1}} \int_{\tau_{1}} c_{u}^{2}(n, \tau_{1})
@@ -1331,7 +1375,7 @@ Applying Cauchy-Schwartz again, \cref{10g} is bounded by
 		\rr)}
 		\\
     & \times  \|\phi(n, \tau)  \langle n
-    \rangle ^{s} \langle \tau - n^{2} \rangle ^{-a}
+    \rangle ^{s} \langle \tau - n^{2} \rangle ^{-1/2}
 		\\
     & \times \left( \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1}
     \rangle ^{2s} \langle n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2}
@@ -1358,7 +1402,7 @@ Applying H{\"o}lder, we bound this by
 	\begin{split}
     & \|u\|_{X_{s,1/2}} \|v\|_{X_{s,1/2}} \| \phi \|_{L^{2}_{n, \tau}}
     \|\bigg (  \langle n
-    \rangle ^{2s} \langle | \tau | - n^{2} \rangle ^{-2a}
+    \rangle ^{2s} \langle \tau - n^{2} \rangle ^{-2a}
     \\
     & \times \left. 
     \sum_{n_{1}} \int_{\tau_{1}} \frac{\chi_{A}}{\langle n_{1} \rangle ^{2s} \langle
@@ -1376,7 +1420,7 @@ We seek to bound
   & \sum_{n \in \zzdot} \int_{\tau}  \sum_{n_{1}}
   \int_{\tau_{1}} \chi_{A} \phi(n, \tau)
     c_f(n_1, \tau_1)
-    c_g(n - n_1, \tau - \tau_1 ) \langle | \tau | - n^{2} \rangle ^{-a}
+    c_g(n - n_1, \tau - \tau_1 ) \langle \tau - n^{2} \rangle ^{-1/2}
 		\\
     & \times \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
     n-n_{1} \rangle ^{s}} \times \frac{1}{\langle |\tau_{1}| - n_{1}^{2} \rangle
@@ -1394,7 +1438,7 @@ Fubini, then Cauchy-Schwartz in $n_{1}, \tau_{1}$ to obtain the bound
   \\
   & \times \left \{\sum_{n_{1}} \int_{\tau_{1}}   
  \left[
- \sum_{n \in \zzdot} \int_{\tau} \langle | \tau | - n^{2} \rangle ^{-a}
+ \sum_{n \in \zzdot} \int_{\tau} \langle \tau - n^{2} \rangle ^{-1/2}
    \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
    n - n_{1}\rangle ^{s}} \times \frac{\chi_{A} |\phi(n, \tau)| c_{g}(n -
    n_{1}, \tau - \tau_{1})
@@ -1406,7 +1450,7 @@ Fubini, then Cauchy-Schwartz in $n_{1}, \tau_{1}$ to obtain the bound
   \\
   & \times \left \{\sum_{n_{1}} \int_{\tau_{1}}   
  \left[
- \sum_{n \in \zzdot} \int_{\tau} \langle | \tau | - n^{2} \rangle ^{-a}
+ \sum_{n \in \zzdot} \int_{\tau} \langle \tau - n^{2} \rangle ^{-1/2}
    \frac{\langle n \rangle ^{s}}{\langle n_{1} \rangle ^{s} \langle
    n - n_{1}\rangle ^{s}} \times \frac{\chi_{A}|\phi(n, \tau)| c_{g}(n -
    n_{1}, \tau - \tau_{1}) 
@@ -1427,11 +1471,11 @@ Applying Cauchy-Schwartz in $\tau, n$, we bound the last line by
     \right ] \right . 
    \\
    & \left. \times \left [ \sum_{n \in \zzdot} \int_{\tau} 
-\langle | \tau | - n^{2} \rangle ^{-2a}
+\langle \tau - n^{2} \rangle ^{-2a}
      \frac{\langle n \rangle
    ^{2s}}{\langle n_{1} \rangle ^{2s} \langle n - n_{1}\rangle ^{2s}}
    \times \frac{\chi_{A}}{\langle | \tau_{1} |
-   - n_{1}^{2} \rangle  \langle | \tau - \tau_{1} | - (n - n_{1}^{2})
+   - n_{1}^{2} \rangle  \langle \tau - \tau_{1} - (n - n_{1}^{2})
    \rangle} d \tau  \right ] \right \}^{1/2}d \tau_{1} 
 \end{split}
 \end{equation*}
@@ -1445,7 +1489,7 @@ which by Holder is bounded by
   \label{integral-bound-2nd-form-per}
 \begin{split}
   & \| \sum_{n \in \zzdot} \int_{\rr} 
-\langle | \tau | - n^{2} \rangle ^{-2a}
+\langle \tau - n^{2} \rangle ^{-2a}
   \frac{\langle n \rangle ^{2s}}{\langle n_{1} \rangle ^{2s} \langle
   n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A}}{\langle | \tau_{1} | - n_{1}^{2} \rangle  \langle | \tau -
   \tau_{1} | - (n - n_{1}^{2}) \rangle} d \tau 
@@ -1469,7 +1513,7 @@ either
 \begin{split}
   & \| \frac{1}{\langle n_{1} \rangle ^{2s}
   } \sum_{n \in \zzdot} \int_{\tau} 
-\langle | \tau | - n^{2} \rangle ^{-2a}
+\langle \tau - n^{2} \rangle ^{-2a}
   \frac{\langle n \rangle ^{2s}}{\langle
     n - n_{1}\rangle ^{2s}}  \times \frac{\chi_{A_{j}}}{\langle | \tau_{1} | - n_{1}^{2}
   \rangle  \langle | \tau -
@@ -1489,7 +1533,7 @@ or
      \|  \langle n
     \rangle ^{2s}
     \sum_{n_{1}}
-    \int_{\tau_{1}}\langle | \tau | - n^{2} \rangle ^{-2a} \frac{\chi_{A_{j}}}{\langle n_{1} \rangle ^{2s} \langle
+    \int_{\tau_{1}}\langle \tau - n^{2} \rangle ^{-2a} \frac{\chi_{A_{j}}}{\langle n_{1} \rangle ^{2s} \langle
     n-n_{1} \rangle ^{2s} \langle | \tau_{1}|-n_{1}^{2} \rangle  \langle  |\tau -
     \tau_{1} | -(n - n_{1})^{2}
     \rangle} d \tau_1  \|_{L^\infty_{n \neq 0, \tau}} < \infty.
@@ -1787,7 +1831,7 @@ Adopting the notation
   %
   \begin{equation*}
   \begin{split}
-    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-4a  + 2 \eta +\ee}}{\langle n \rangle^{2a - \eta + \ee}} < \infty, \quad s \ge -a + \ee/4 + \eta/2, \ a > 1/2 - \ee/2 + \eta/2
+    \sum_{n \in \zzdot} \frac{\langle n_{1}\rangle ^{\gamma(s)-4a  + 2 \eta +\ee}}{\langle n \rangle^{2a - \eta + \ee}} < \infty, \quad s \ge -1/2 + \ee/4 + \eta/2, \ a > 1/2 - \ee/2 + \eta/2
   \end{split}
   \end{equation*}
   %
@@ -1866,7 +1910,7 @@ uniformly in $\tau$. However, since $0 <  | n_{1} | < | n |$ in region $A_{4}$,w
    |n_{1}|^{2a}} 
    \\
    & =  \sum_{n_{1} \in \zz} \frac{\chi_{A_{4,1}}}{| n - n_{1}| ^{\ee}
-   |n_{1}|^{2a}}, \quad s \ge -a + \ee 
+   |n_{1}|^{2a}}, \quad s \ge -1/2 + \ee 
    \\
    & \lesssim \sum_{n_{1} \in \zz} \frac{\chi_{A_{4,1}}}{|n_{1}|^{2a + \ee}} < \infty \quad a > 1/2 - \ee. 
  \end{split}
@@ -1991,7 +2035,7 @@ $0 < | n | < | n_{1} |$ in region $B_{3,1}$, we bound this by
 \begin{equation*}
 \begin{split}
 \sum_{n \in \zzdot} \frac{\chi_{B_{3,1}}\langle n_{1} \rangle ^{\gamma(s)-2a + \eta - \ee}}{\langle
-    n\rangle ^{2a-\eta  + \ee}} < \infty, \quad s \ge -a + \ee/4 + \eta/2, \ a > 1/2 - \ee/2 + \eta/2.
+    n\rangle ^{2a-\eta  + \ee}} < \infty, \quad s \ge -1/2 + \ee/4 + \eta/2, \ a > 1/2 - \ee/2 + \eta/2.
 \end{split}
 \end{equation*}
 %
