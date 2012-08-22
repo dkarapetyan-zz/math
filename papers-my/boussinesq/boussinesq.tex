@@ -2,9 +2,10 @@
 %\usepackage{showkeys}
 \usepackage{amssymb}
 \usepackage{amsmath}
+%\usepackage{showkeys}
 \usepackage{amsfonts}
 \usepackage{hyperref}
-\usepackage{framed}
+%\usepackage{framed}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -68,7 +69,7 @@ u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
 \end{array}\right.
 \label{main}
 \end{equation}
-where $| f(u)| = |u|^{k}$, and $M=\mathbb{R}$ (the non-periodic case) or $M=\mathbb{T}$ (the periodic case). We remark that setting  $f(u) = u^{2}$ gives the ``good'' Boussinesq equation.
+where $| f(u)| \simeq |u|^{k}$, $k \ge 3$, and $M=\mathbb{R}$ (the non-periodic case) or $M=\mathbb{T}$ (the periodic case). We remark that setting  $f(u) = u^{2}$ gives the ``good'' Boussinesq equation.
 
 \section{Statement of main results}
 
@@ -99,13 +100,9 @@ where the nonlinear maps $A_n: D\to S$ ($n\geq 1$) are defined recursively by
 \label{An}
 \end{split}
 \end{equation}
-\begin{framed}
-  I have modified the Bejenaru-Tao definition slightly--theirs doesn't make any sense for $k >2$. 
-\end{framed}
+\textbf{I have modified the Bejenaru-Tao definition slightly--theirs doesn't make any sense for $k >2$.}
 Moreover, Bejenaru-Tao's argument (precisely Proposition 1 in \cite{BT06}) tells us that if the solution series \eqref{series} is continuous as a function of $f$ in  weaker topologies than the ones given by $\| \cdot\|_D$ and $\| \cdot \|_S$, then each of its terms is also continuous in this setup. This is the key fact  that will be used in our proof.
-
 \subsection{Method of proof} A strategy in proving an ill-posedness result based on the previous idea can be formulated as follows:
-
 1. Start with a \textbf{quantitative well-posedness} pair $(D,S)$ for which one has, as described above, a continuous solution map associated to \eqref{LN},
 \begin{equation}
 f\in (B_1,\|\cdot \|_D)\,\longrightarrow\,u\in (B_2,\|\cdot \|_S),
@@ -137,7 +134,7 @@ S: H^{s'} \times H^{s'-2}(M) \to C([0,T]; H^{s'}(M)), \quad
 S(u_0,u_1)\,=\,u,
 \label{solmap}
 \end{equation}
-is not continuous at the origin for any $s'< \min\{-1-(k-1)s, s\}$.
+is not continuous at the origin for any $s'< \min\{-(k-1)s, s\}$.
 \label{mainth}
 \end{theorem}
 
@@ -145,7 +142,7 @@ is not continuous at the origin for any $s'< \min\{-1-(k-1)s, s\}$.
 We will use the strategy outlined in our method of proof and show that, for a quantitative well-posedness  index $s$, we can construct a sequence $(f_N)_N$ satisfying
 \[
 \limsup_{N\to \infty} \|f_N\|_{H^s \times H^{s-2}}\,\ll\,1, \qquad \quad \sup_N \frac{\|A_{k}(f_N)\|_{C([0,T],H^{s'})}}{\|f_N\|_{H^{s'} \times H^{s'-2}}}\,=\,\infty,\]
-for any $s'< \min\{-1-(k-1)s, s\}$. We start by computing the nonlinear map $A_{k}$.
+for any $s'< \min\{-(k-1)s, s\}$. We start by computing the nonlinear map $A_{k}$.
 
 
 \subsection{Formulas for $A_{k}$} In the non-periodic case, using the Fourier transform in the spatial variable and Duhamel's principle, one can derive that the solution of the linear problem
@@ -212,9 +209,11 @@ with
 \widehat{Lf}(t,m)\,=\,\cos(t \lambda(m)) \hat{u}_0(m)+\frac{\sin(t \lambda(m))}{\lambda(m)} \hat{u}_1(m),\quad f=(u_0,u_1).\]
 
 
-\subsection{Proof of the non-periodic case} Our choice for the sequence of initial data $(f_N)_{N\geq N_0}$, with $N_0$ a positive arbitrary integer, is given by
+\subsection{Proof of the non-periodic case} We consider the cases $k =3$, $k > 3$ odd,  and $k > 3$ even separately. 
+\subsubsection{Odd $k >3$}
+Our choice for the sequence of initial data $(f_N)_{N\geq N_0}$, with $N_0$ a positive arbitrary integer, for $k$ even is given by
 \begin{equation}
-f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{r}{N^s} \chi_{\cup_{j=1}^{k-1}\{jN \leq |\xi| \leq j(N + 1)\}\}},
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{r}{N^s} \chi_{\cup_{j=1}^{2}\{jN \leq |\xi| \leq jN + 1\}\}},
 \label{fn}
 \end{equation}
 where $r>0$ is a positive constant and $s$ is a quantitative well-posedness index. A simple computation yields
@@ -247,7 +246,7 @@ Hence, choosing $r$ sufficiently small such that $T=1$, plugging the profile \eq
 \wh{g_{N}}(\xi_{k-2} - \xi_{k-1})
 \wh{g_{N}}(\xi_{k-1})
 d \eta\,ds\\
-&=\frac{r^2 \xi^2}{N^{ks}\lambda(\xi)}\int_0^t \int_{\cup_{j} \cup_{i} \{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}\sin((t-s) \lambda(\xi))
+&=\frac{r^2 \xi^2}{N^{ks}\lambda(\xi)}\int_0^t \int_{\cup_{j=1}^{2} \cup_{i} \{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}\sin((t-s) \lambda(\xi))
 \\
 & \times \cos(s \lambda(\xi- \xi_{1}))
 \cos(s \lambda(\xi_{1}- \xi_{2}))\dots
@@ -263,12 +262,12 @@ Next, we observe that
 \p_{x}^	2(u^{k}) = ku^{k-1}u_{xx} + k(k-1)u^{k-2}(u_{x})^{2}
 \end{split}
 \end{equation*}
-and so \eqref{A2fn} is equal to
+and so applying this to \eqref{mainf}, it follows that \eqref{A2fn} is equal to
 \begin{equation}
   \label{fg}
 \begin{split}
 & -k\frac{r^2}{N^{ks}\lambda(\xi)}\int_0^t 
-\int_{\cup_{j} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
+\int_{\cup_{j=1}^{2} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
 \sin((t-s) \lambda(\xi))
 \\
 & \times 
@@ -279,7 +278,7 @@ d \vec{\sigma}\,ds
 \\
 & - k(k-1)
 \frac{r^2}{N^{ks}\lambda(\xi)}\int_0^t 
-\int_{\cup_{j} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
+\int_{\cup_{j=1}^{2} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
 \sin((t-s) \lambda(\xi))
 \\
 & \times
@@ -297,61 +296,83 @@ On the other hand,
 \end{split}
 \end{equation}
 where $0<t=t_N<1$ is an arbitrary time which will be specified later. 
-Thus, we will be working in the regime given by $|\xi| \sim 1$, $|\xi_{j-1} - \xi_{j}|\sim N$, $1 \le j \le k$. Adopt the notation
+Thus, we will be working in the regime given by $|\xi| \sim 1$, $|\xi_{j-1} - \xi_{j}|\sim N$, $1 \le j \le k$. 
+
+Adopt the notation
 \begin{equation*}
 \begin{split}
   \vec{\eta} = \left( \lambda(\xi - \xi_{1}), \lambda(\xi_{1} - \xi_{2}), \cdots, \lambda(\xi_{k-1} - \xi_{k-2}), \lambda(\xi_{k-1}) \right)
 \end{split}
 \end{equation*}
-and observe that some simple algebraic manipulations yield
+and observe that some simple algebraic manipulations yield, for $| \xi_{k-1} | \approx 2N$ and odd $k > 3$, that either
 \begin{equation}
+  \label{aprox}
 \begin{split}
 & 
-\lambda(\xi) \sim 1,
-\\
-& 
-|(\xi - \xi_{1})^{2} + (k-1)(\xi_{k-2} - \xi_{k-1})\xi_{k-1}|
-\gtrsim O(N),
-\\
-&
-|\vec{\eta} \cdot \pm (1, -1, 1, -1, \ldots )| \sim O(N), \quad
-|\vec{\eta} \cdot  \vec{a} )| \sim O(N^{2})
-\label{aprox}
+(\xi - \xi_{1})^{2} + (k-1)(\xi_{k-2} - \xi_{k-1})\xi_{k-1}
+\approx 
+\begin{cases}
+  & N^{2} + (k-1)(-2N^{2}) = (-2k+3)N^{2}, \ \text{or} 
+ \\
+ & N^{2} + (k-1)(2N^{2}) = (2k+3)N^{2}.
+ \end{cases}
 \end{split}
 \end{equation}
-where $\pm (1, -1, 1, -1, \ldots ) \neq \vec{a} \in \left\{ -1, 1 \right\}^{k-1}$.
-We see from \eqref{fg}, \eqref{gh}, and \eqref{aprox} that is enough to find a non-zero lower bound for the magnitude of
+Furthermore, $|(2k+3)N^{2} + (-2k + 3)N^{2}| = 6N^{2}$. Similarly, if
+$| \xi_{k-1} | \approx N$, then either
+\begin{equation}
+  \label{aprox2}
+\begin{split}
+& 
+(\xi - \xi_{1})^{2} + (k-1)(\xi_{k-2} - \xi_{k-1})\xi_{k-1}
+\approx 
+\begin{cases}
+ & 2N^{2} + (k-1)(-N^{2}) = (3-k)N^{2}, \ \text{or}
+ \\
+ & 2N^{2} + (k-1)(N^{2}) = (k+1) N^{2}.
+ \end{cases}
+\end{split}
+\end{equation}
+Summing these two quantities, we again obtain $4N^{2}$. Therefore, since $\lambda(\eta)$ is invariant under the transformation $\eta \to -\eta$, 
+we see from \eqref{fg}, \eqref{gh}, \eqref{aprox}, and \eqref{aprox2} that is enough to find a non-zero lower bound for the magnitude of
 \begin{equation}
 \begin{split}
-& \frac{1}{N^{ks-1}}\int_0^t 
-\int_{\cup_{j} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
+& \frac{1}{N^{ks-2}}\int_0^t 
+\int_U
 \sin((t-s) \lambda(\xi))
 \\
 & \times 
 \cos(s \lambda(\xi- \xi_{1}))
 \cos(s \lambda(\xi_{1}- \xi_{2}))\dots\cos(s\lambda(\xi_{k-1}))
-d \vec{\sigma}\,ds.
+d \vec{\sigma}\,ds
 \end{split}
 \end{equation}
-Fixing $t = 1/N$ and applying the trigonometric equality
+where
+\begin{equation*}
+\begin{split}
+  & U = 
+{\cup_{j=1}^{2} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)}.
+  \end{split}
+\end{equation*}
+Assuming $t \le 1/N$ and applying the trigonometric equality
 \begin{equation*}
 \begin{split}
 \sin(a + b) = \sin a \cos b + \cos a \sin b
 \end{split}
 \end{equation*}
 we see that for $N >> 1$, it is enough to consider
-\begin{equation}
+\begin{equation*}
 \begin{split}
-& \frac{1}{N^{ks-1}}\int_0^t 
-\int_{\cup_{j} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
-\sin(s \lambda(\xi))
+& \frac{1}{N^{ks-2}}\int_0^t 
+\int_U
+\sin(s\lambda(\xi))
 \\
 & \times 
 \cos(s \lambda(\xi- \xi_{1}))
 \cos(s \lambda(\xi_{1}- \xi_{2}))\dots\cos(s\lambda(\xi_{k-1}))
 d \vec{\sigma}\,ds.
 \end{split}
-\end{equation}
+\end{equation*}
 Relying on the trigonometric identities
 \begin{gather*}
 \sin a\cos b= \frac{\sin(a + b) - \sin(a-b)}{2},
@@ -360,60 +381,181 @@ Relying on the trigonometric identities
 \end{gather*}
 we rewrite this, modulo constants, as
 \begin{gather*}
-  \frac{1}{N^{ks-1}} \int_{0}^{t}
-\int_{\cup_{j} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
+  \frac{1}{N^{ks-2}} \int_{0}^{t}
+  \int_{U}
 \sum_{\vec{\nu} \in A}  \sin(s \vec{\mu} \cdot \vec{\nu}) d \vec{\sigma} ds
 \end{gather*}
 where
 \begin{gather*}
   \vec{\mu} = \left ( \lambda(\xi_{1} - \xi_{2}), \lambda(\xi_{2} - \xi_{3}), \cdots, \lambda(\xi_{k-1}, \xi_{k-2}), \lambda(\xi_{k-1}), \lambda(\xi) \right ),
   \\
-  A = \left \{ (1, a_{1}, a_{2}, \cdots, a_{k}): a_{i} = \pm 1 \right \}.
+  A = \left \{ (1, a_{1}, a_{2}, \cdots, a_{k}): a_{i} = 1 \ \text{or} \ -1 \right \}.
 \end{gather*}
-Applying Fubini, we can perform the integration in $s$ first for \eqref{A2fn} to deduce:
+We now split the domain over which we are integrating and summing into the sets $V$ and $V^{c}$, where
+\begin{equation*}
+\begin{split}
+V = \{ ( \vec{\nu}, \vec{\mu} ) \in U \times A: |\vec{\nu} \cdot \vec{\mu} | \lesssim N \}.
+\end{split}
+\end{equation*}
+Observe that we can safely discard the case $\vec{\nu} \cdot \vec{\mu} = 0$. Hence, applying Fubini, we can perform the integration in $s$ first for \eqref{A2fn} to obtain
 \begin{equation}
   \begin{split}
-    N^{ks -1}\cdot \widehat{A_{k}(f_N)}&(t,\xi)
-    \simeq
-    \int_{\cup_{j} \cup_{i}\{jN \leq |\xi_{i-1}-\xi_{i}|\leq j(N+1)\}}
-    \sum_{\vec{\nu}}  [\cos(t \vec{\mu} \cdot \vec{\nu}) -1] (\vec{\mu} \cdot \vec{\nu})^{-1}
+    & \frac{1}{N^{ks-2}}  \left ( \underset{V}{\int \sum}
+   + \underset{V^{c}}{\int \sum}  \right )
+    [\cos(t \vec{\mu} \cdot \vec{\nu}) -1] (\vec{\mu} \cdot \vec{\nu})^{-1}
     d \vec{\sigma}.
-  \end{split}
+     \end{split}
 \end{equation}
-Now, recalling \eqref{aprox}, we observe that for $N >>1$ and $t = 1/N$
+Of course, $V$ may be empty. We now show that it is not.
+Observe that, for $k = 5$, 
+\begin{gather*}
+  | (\xi - \xi_{1})^{2} - (\xi_{1} - \xi_{2})^{2} - (\xi_{2} - \xi_{3})^{2} - (\xi_{3} - \xi_{4})^{2} + \xi_{4}^{2} | \lesssim N
+\end{gather*}
+when $|\xi - \xi_{1}| \approx 2N$ and $|
+\xi_{1} - \xi_{2}|, |\xi_{2} - \xi_{3}|, |\xi_{3} - \xi_{4}|,  |\xi_{4}| \approx N$, while for odd $k > 5$ 
+\begin{gather*}
+  |\vec{\eta} \cdot  (1, -1, -1, -1, 1, -1, \dots, 1, -1 )| \lesssim N  
+\end{gather*}
+for $ |\xi - \xi_{1}| \approx 2N $ and
+$| \xi_{j} - \xi_{j+1}| \approx N, \ j \ge 1 $, where
+\[\vec{\eta} =   
+\left ( \lambda(\xi_{1} - \xi_{2}), \lambda(\xi_{2} - \xi_{3}), \cdots, \lambda(\xi_{k-1}, \xi_{k-2}), \lambda(\xi_{k-1}) \right ).
+\]
+Now, assume $N >>1$ and $t = 1/{N}$. Then outside region $V$, we must have 
+%\begin{equation*}
+%\begin{split}
+ %& | \sum_{\vec{\nu} = \pm (1, -1, 1, -1, \dots)}  [\cos(t \vec{\mu} \cdot \vec{\nu})-1] (\vec{\mu} \cdot \vec{\nu})^{-1} |
+%\\
+%& \simeq 
+%\left | [\cos(N^{-1} O(N)) -1 ]
+%\left ( \frac{1}{O(N) - \lambda(\xi)} - \frac{1}{O(N)+ \lambda(\xi)} \right ) \right |
+%\\
+%& = O(N^{-2}).
+%\end{split}
+%\end{equation*}
+\begin{equation*}
+\begin{split}
+  | [\cos(t \vec{\mu} \cdot \vec{\nu})-1] (\vec{\mu} \cdot \vec{\nu})^{-1} |
+& \sim 
+| [\cos(N^{-1} \cdot O(N^{2}))-1] | 
+\left ( \frac{1}{O(N^{2}) - \lambda(\xi)} - \frac{1}{O(N^{2})+ \lambda(\xi)} \right )
+\\
+& \lesssim \frac{1}{N^{4}}
+\end{split}
+\end{equation*}
+while in $V$, we have
+\begin{equation*}
+\begin{split}
+  | [\cos(t \vec{\mu} \cdot \vec{\nu})-1] (\vec{\mu} \cdot \vec{\nu})^{-1} |
+& \sim 
+| [\cos(N^{-1} \cdot O(N))-1] | 
+\left ( \frac{1}{O(N) - \lambda(\xi)} - \frac{1}{O(N)+ \lambda(\xi)} \right )
+\\
+& \sim \frac{1}{N^{2}}.
+\end{split}
+\end{equation*}
+We remark that both these estimates are uniform in $\xi_{i}$ for $0 \le i \le k-1$.
+It allows us to infer that for $N$ sufficiently large,
+\[
+\widehat{A_{k}(f_N)}(t_N,\xi) \sim \frac{1}{N^{ks}},
+\]
+uniformly in $\xi$, which in turn yields
+\[
+\frac{\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,\gtrsim\, \frac{1}{N^{(k-1)s+s'}}.\]
+Thus
+\[
+\sup_N\,\frac{\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,=\,\infty,\]
+if $s'<s$ and $(k-1)s+s'<0$, which finishes the proof for odd $k$. \qed
+\subsubsection{Even $k$} 
+\begin{proof}
+The analysis for even $k$ is simpler than that for odd $k$, due to added flexibility in choosing our initial data. More precisely, we set \begin{equation}
+f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(\xi)\,=\,\frac{r}{N^s} \chi_{\{N \leq |\xi| \leq N + 1\}\}},
+\label{fn1}
+\end{equation}
+where $r>0$ is a positive constant and $s$ is a quantitative well-posedness index. A simple computation yields
+\begin{equation}
+\|f_N\|_{H^{s'}\times H^{s'-2}}\,=\,\|g_N\|_{H^s}\,\simeq\,r\,N^{s'-s},
+\label{hsfn}
+\end{equation}
+which tells us that
+\[
+\limsup_{N\to \infty} \|f_N\|_{H^{s'} \times H^{s' -2}}\,=\,0, \qquad (\forall)\ s'<s, 
+\]
+and, in order to have 
+\[
+\limsup_{N\to \infty} \|f_N\|_{H^s \times H^{s -2}}\,\ll\,1,
+\]
+one needs to take $r$ sufficiently small. This allows us to normalize the time of existence $T=T(r)$ for all the solutions of size at most $r$.
+Hence, choosing $r$ sufficiently small such that $T=1$, plugging the profile \eqref{fn} into \eqref{A2f}, 
+observing that, if $\xi \sim 1$, then
+\begin{equation}
+\begin{split}
+& 
+|(\xi - \xi_{1})^{2} + (k-1)(\xi_{k-2} - \xi_{k-1})\xi_{k-1}|
+\sim 
+  N^{2}, \ \text{for} \ k \ge 4
+\end{split}
+\end{equation}
+\textbf{With no disruptive cancellations occuring---same as in the odd case.}
+and following an analogous argument to that in the odd $k$ case, we obtain
+\begin{equation}
+  \begin{split}
+   & \frac{1}{N^{ks-2}}  \int_{U}
+        \sum_{\vec{\nu}}  [\cos(t \vec{\mu} \cdot \vec{\nu}) -1] (\vec{\mu} \cdot \vec{\nu})^{-1}
+    d \vec{\sigma}
+      \end{split}
+\end{equation}
+where
+\begin{equation*}
+\begin{split}
+U = \cup_{i}\{N \leq |\xi_{i-1}-\xi_{i}|\leq (N+1) \}.
+\end{split}
+\end{equation*}
+Next, we make the crucial observation that
+\begin{equation*}
+\begin{split}
+& | \vec{u} \cdot \pm (1, -1, 1, \dots) | \sim O(N)
+\\
+& | \vec{u} \cdot \vec{a} | \sim O(N^{2}) \ \text{where} \ \vec{a} \neq \pm(1, -1, 1, \dots) \in \left \{ -1,1 \right \}^{k-1}.
+\end{split}
+\end{equation*}
+and assume $N >>1$ and $t = 1/{N}$. Then 
 \begin{equation*}
 \begin{split}
  & | \sum_{\vec{\nu} = \pm (1, -1, 1, -1, \dots)}  [\cos(t \vec{\mu} \cdot \vec{\nu})-1] (\vec{\mu} \cdot \vec{\nu})^{-1} |
 \\
-& \simeq 
+& \sim 
 \left | [\cos(N^{-1} O(N)) -1 ]
 \left ( \frac{1}{O(N) - \lambda(\xi)} - \frac{1}{O(N)+ \lambda(\xi)} \right ) \right |
 \\
-& = O(N^{-2}).
+& = O(N^{-2})
 \end{split}
 \end{equation*}
-Similarly
+and
 \begin{equation*}
 \begin{split}
-  | \sum_{\vec{\nu} \in A: \, \vec{\nu} \neq \pm (1, -1, 1, -1, \dots)}  [\cos(t \vec{\mu} \cdot \vec{\nu})-1] (\vec{\mu} \cdot \vec{\nu})^{-1} |
+  & | \sum_{\vec{\nu} \in A: \ \vec{\nu} \neq \pm(1, -1, 1, -1,\dots)}  [\cos(t \vec{\mu} \cdot \vec{\nu})-1] (\vec{\mu} \cdot \vec{\nu})^{-1} |
+\\
 & \lesssim
 \left ( \frac{1}{O(N^{2}) - \lambda(\xi)} - \frac{1}{O(N^{2})+ \lambda(\xi)} \right )
 \\
 & = O(N^{-4}).
 \end{split}
 \end{equation*}
-We remark that both estimates are uniform in $\xi_{i}$ for $0 \le i \le k-1$.
-They allow us to infer that for $N$ sufficiently large,
+We remark that this estimate is uniform in $\xi_{i}$ for $0 \le i \le k-1$.
+It allows us to infer that for $N$ sufficiently large,
 \[
-\widehat{A_{k}(f_N)}(t_N,\xi) \sim \frac{1}{N^{ks+1}},
+\widehat{A_{k}(f_N)}(t_N,\xi) \sim \frac{1}{N^{ks}},
 \]
 uniformly in $\xi$, which in turn yields
 \[
-\frac{\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,\gtrsim\, \frac{1}{N^{(k-1)s+s'+1}}.\]
+\frac{\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,\gtrsim\, \frac{1}{N^{(k-1)s+s'}}.\]
 Thus
 \[
 \sup_N\,\frac{\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))}}{\|f_N\|_{H^{s'}\times H^{s'-2}}}\,=\,\infty,\]
-if $s'<s$ and $(k-1)s+s'+1<0$, which finishes the proof for nonlinearities of form $f(u) = u^{k}$. The result generalizes to arbitrary $f(u)$ satisfying $| f(u) | = u^{k}$ as follows. First, we note that substituting $f(u)$ with $-f(u)$ makes no difference in the proof above. This covers nonlinearities of the form $-u^{k}$. It remains to deal with nonlinearities with conjugates, for example, $f(u) = u^{2}\bar{u}$. For this, we observe that $g_{N}$ is a real valued function (in fact, $C^{\infty}$), and so, for integer $0 \le m \le k$,
+if $s'<s$ and $(k-1)s+s'<0$, which finishes the proof for even $k$. 
+\end{proof}
+Therefore, the proof of ill-posedness is complete for nonlinearities of form $f(u) = u^{k}$. The result generalizes to arbitrary $f(u)$ satisfying $| f(u) | = u^{k}$ as follows. First, we note that substituting $f(u)$ with $-f(u)$ makes no difference in the proof above. This covers nonlinearities of the form $-u^{k}$. It remains to deal with nonlinearities with conjugates, for example, $f(u) = u^{2}\bar{u}$. For this, we observe that $g_{N}$ is a real valued function (in fact, $C^{\infty}$), and so, for integer $0 \le m \le k$,
 \begin{equation*}
 \begin{split}
   \wh{(L \bar{f})^{k-m}Lf^{m}}(t, \xi)
@@ -423,42 +565,42 @@ if $s'<s$ and $(k-1)s+s'+1<0$, which finishes the proof for nonlinearities of fo
 & = \wh{(Lf)^{k}}(t, \xi).
   \end{split}
 \end{equation*}
-The proof is complete.
-
-\subsection{Proof of the periodic case} Here, we pick the sequence of initial data $(f_N)_{N\geq 10}$ to be defined as
-\begin{equation}
-  f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(n)\,=\,\frac{r}{N^s} \chi_{\cup_{j=1}^{k-1}\{| n | = jN\}\cup \{| n | = N-1\} }.
-\label{fnp}
-\end{equation}
-As before, we obtain
-\[
-\|f_N\|_{H^{s'}\times H^{s'-2}}\,\simeq\,r\,N^{s'-s}
-\]
-and
-\begin{equation}
-  \aligned
-& \widehat{A_{k}(f_N)}(t,n)\,\sim\
-\frac{r^2 n^2}{N^{ks}\lambda(n)}\int_0^t 
-\sum_{(n_{1}, \ldots, n_{k-1}) \in A}
-\sin((t-s) \lambda(n))
-\\
-& \times \cos(s \lambda(n- n_{1}))
-\cos(s \lambda(n_{1}- n_{2}))\dots
-\cos(s\lambda(n_{k-2} - n_{k-1}))
-\cos(s\lambda(n_{k-1}))d \vec{\sigma}\,ds
-\endaligned
-\end{equation}
-where 
-\[
-  A = \{ (n_{1}, \cdots, n_{k-1}) \in \cup_{j} \cup_{i}\{|n_{i-1}-n_{i}| =  jN\} \cup \left \{ | n_{i-1} - n_{i} | = N-1 \right \} \}
-\]
-with notation $n_{k} = 0$.
-The remainder of the proof is analogous to the non-periodic case. We only remark that, in lieu of \eqref{gh}, we use
-\begin{equation}
-  \begin{split}
-\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))} &\geq \|A_{k}(f_N)(t)\|_{H^{s'}(n = 1)}\\ &\gtrsim \|A_{k}(f_N)(t)\|_{\ell^2(n=1)}.
-\end{split}
-\end{equation}
+which completes the proof of Theorem~\ref{mainth} in the non-periodic case. \qed
+\subsection{Proof of the periodic case} 
+%Here, we pick the sequence of initial data $(f_N)_{N\geq 10}$ to be defined as
+%\begin{equation}
+  %f_N\,=\,(g_N, 0), \qquad \widehat{g_N}(n)\,=\,\frac{r}{N^s} \chi_{\cup_{j=1}^{k-1}\{| n | = jN\}\cup \{| n | = N-1\} }.
+%\label{fnp}
+%\end{equation}
+%As before, we obtain
+%\[
+%\|f_N\|_{H^{s'}\times H^{s'-2}}\,\simeq\,r\,N^{s'-s}
+%\]
+%and
+%\begin{equation}
+  %\aligned
+%& \widehat{A_{k}(f_N)}(t,n)\,\sim\
+%\frac{r^2 n^2}{N^{ks}\lambda(n)}\int_0^t 
+%\sum_{(n_{1}, \ldots, n_{k-1}) \in A}
+%\sin((t-s) \lambda(n))
+%\\
+%& \times \cos(s \lambda(n- n_{1}))
+%\cos(s \lambda(n_{1}- n_{2}))\dots
+%\cos(s\lambda(n_{k-2} - n_{k-1}))
+%\cos(s\lambda(n_{k-1}))d \vec{\sigma}\,ds
+%\endaligned
+%\end{equation}
+%where 
+%\[
+  %A = \{ (n_{1}, \cdots, n_{k-1}) \in \cup_{j=1}^{2} \cup_{i}\{|n_{i-1}-n_{i}| =  jN\} \cup \left \{ | n_{i-1} - n_{i} | = N-1 \right \} \}
+%\]
+%with notation $n_{k} = 0$.
+%The remainder of the proof is analogous to the non-periodic case. We only remark that, in lieu of \eqref{gh}, we use
+%\begin{equation}
+  %\begin{split}
+%\|A_{k}(f_N)\|_{C([0,1], H^{s'}(\mathbb{R}))} &\geq \|A_{k}(f_N)(t)\|_{H^{s'}(n = 1)}\\ &\gtrsim \|A_{k}(f_N)(t)\|_{\ell^2(n=1)}.
+%\end{split}
+%\end{equation}
 %\section*{Acknowledgements}
 %The first author was supported in part by the National Science Foundation Career grant DMS-0747656. The second author would like to thank the Department of Mathematics at the University of Rochester for supporting his stay.
 
