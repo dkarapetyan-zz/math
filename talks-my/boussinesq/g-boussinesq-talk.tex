@@ -1,0 +1,374 @@
+\documentclass{beamer}
+\setbeamersize{text margin left=0.4cm, text margin right=0.4cm}
+%\usetheme{Boadilla}
+\usetheme{Madrid}
+\setbeamertemplate{theorems}[numbered]
+\setbeamercovered{transparent}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{lmodern}
+\usepackage{cancel}
+\usepackage{hyperref}
+\synctex=1    
+\numberwithin{equation}{section}
+\newcommand{\bigno}{\bigskip\noindent}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\medno}{\medskip\noindent}
+\newcommand{\smallno}{\smallskip\noindent}
+\newcommand{\nin}{\noindent}
+\newcommand{\ts}{\textstyle}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\p}{\partial}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\tor}{\mathbb{T}}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\wh}{\widehat}
+\newcommand{\weak}{\rightharpoonup}
+\newcommand{\vp}{\varphi}
+\newtheorem{proposition}{Proposition}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}[subsection]{conjecture}
+%% Equation Numbers %%
+%%%%%%%%%%%%%%%%%%%%%%
+\title[Ill-posedness for g-Boussinesq]{Ill-posedness results for generalized Boussinesq equations}
+\author[Geba, Himonas, Karapetyan]{Dan Geba (University of Rochester), \\ Alex Himonas (University of Notre Dame), \\ David Karapetyan (University of Rochester)}
+\institute[UR, ND]{}
+\date{}
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+\section{Generalized Boussinesq: Introduction}
+\begin{frame}
+  \frametitle{Generalized Boussinesq equation}
+\begin{equation*}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}+(f(u))_{xx}\,=\,0, \qquad u=u(t,x): \mathbb{R}_+\times M \to \mathbb{R},\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
+\end{array}\right.
+\label{main}
+\end{equation*}
+\pause
+\begin{itemize}
+  \item $f(u)\,\simeq\,\pm\,|u|^{p-1}\,u$ is a pure power nonlinearity with $p>1$,
+and $M=\mathbb{R}$ (the non-periodic case) or $M=\mathbb{T}$ (the periodic case).
+\end{itemize}
+\pause
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+    \item  Similar type of  equation, with $f(u)=4u^3-6u^5$, derived by Falk, Laedke, and Spatschek in study of shape-memory alloys. 
+      \pause
+    \item For $f(u) =  u^{2}$, one recovers the classical ``good'' Boussinesq equation, which is a water wave model. 
+\pause
+    \item Non-periodic case, Bona and Sachs proved local well-posedness (LWP) for $f\in C^\infty(\mathbb{R})$, $f(0)=0$, and $(u_0,u_1)\in H^s \times H^{s-2}$, $s>5/2$. 
+  \end{itemize}
+    \end{frame}
+    \begin{frame}
+      \begin{itemize}
+    \item The LWP was then improved for pure power nonlinearities by Tsutsumi and Matahashi, who demonstrated that this holds for $u_0\in H^1$ and $u_1=\phi_{xx}$, with $\phi\in H^1$. 
+      \pause
+    \item Followed by Linares, who proved LWP for $(u_0,u_1)=(g, h_x)$ when either $(g,h) \in H^1\times L^2$ and $p>1$ or $(g,h) \in L^2 \times \dot{H}^{-1}$  and $1<p\leq 5$. Furthermore, one has global well-posedness (GWP) in the former setting if $\|g\|_{H^1}+\|h\|_{L^2}$ is sufficiently small. 
+      \pause
+    \item Farah showed LWP for $u_0\in H^s$ and $u_1=\phi_{xx}$, with $\phi\in H^s$, when
+\[
+p>1 \quad \text{and} \quad s\geq \max \left\{0,\,\frac{1}{2}-\frac{2}{p-1}\right\}. \]
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+\item For the defocusing problem $f(u)= -|u|^{p-1}\,u$, where $p\geq 3$ is an odd integer, Farah and Linares and Farah and Wang, respectively, proved GWP for 
+\[
+u(0)\in H^s, \quad u_t(0)=h_x , \quad h \in H^{s-1}, \quad s> 1-\frac{2}{3(p-1)}.
+\]
+\pause 
+\item For the periodic problem there are considerably fewer results. In fact, to our knowledge, the only LWP result is due to Grillakis and Fang, who proved this for $(u_0,u_1)\in H^s \times H^{s-2}$,  with 
+\[
+s\geq \max \left\{0,\,\frac{1}{2}-\frac{1}{p-1}\right\}. \]
+\pause
+\item They also showed that, for
+\[
+f(u)\,=\,\lambda |u|^{q-1}u - |u|^{r-1}u, \quad 1<q<r, \quad \lambda\in \mathbb{R},\] 
+GWP holds if $(u_0,u_1)\in H^1\times H^{-1}$. 
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+\item Observe that there is no ill-posedness (IP) result known for the generalized Boussinesq equation. 
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Main Results--Using Bejanaru-Tao Framework}
+  \begin{itemize}
+    \item If $p$ is an integer and $f(u)=\pm\, u^p$, then the generalized Boussinesq equation can be rewritten in the form 
+\begin{equation*}
+u\,=\,L(u_0,u_1)\,+\,N(u,u, \ldots, u),
+\label{LN}
+\end{equation*}
+where $(u_0, u_1)$ is an initial data lying in a data space $D$, $u$ takes values in a solution space $S$, $L: D \to S$ is a linear operator, and $N:S^{p} \to S$ is a $p$-linear operator, both of which are densely defined.  
+
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+\item If  $(D,\|\cdot \|_D)$ and $(S,\|\cdot \|_S)$ are Banach spaces satisfying 
+\begin{gather*}
+\|L(u_0,u_1)\|_S \lesssim \|(u_0,u_1)\|_D \\ \|N(u_{1}, u_{2}, \cdots, u_{p})\|_S \lesssim \| u_{1} \|_{S}\cdots\| u_{p} \|_{S}, 
+\label{estim}
+\end{gather*}
+then for $ \|(u_0,u_1)\|_D\ll 1$, we have the absolutely convergent sum
+\begin{equation*}
+u\,=\,\sum_{n=0}^{\infty} A_{n}(u_0,u_1), 
+\label{series}
+\end{equation*}
+\pause
+where the nonlinear maps $A_{p}: D\to S$ are defined recursively by
+\begin{equation*}
+  \begin{split}
+& A_{0}(u_0,u_1)=0, \qquad 
+  A_1(u_0,u_1)\,=\,L(u_0,u_1), \qquad 
+  \\
+  & A_{n}(u_0,u_1)\,=\,\sum_{\stackrel{n_{1}, \ldots, n_{p} \ge 0}{n_{1} + \ldots n_{p} = n}} N(A_{n_1}(u_0,u_1),\cdots, A_{n_{p}}(u_0,u_1)), \qquad (\forall)n\geq 2.
+\label{An}
+\end{split}
+\end{equation*}
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+    \item It is also proved that if the solution series is continuous, as a function of the initial data, in coarser topologies than the ones given by $\| \cdot\|_D$ and $\| \cdot \|_S$, then so is each of the nonlinear maps $A_{n}$. 
+      \pause
+    \item
+      Using this fact, we can prove an IP result if 
+i) a \textbf{quantitative well-posedness} pair $(D,S)$ for which one has the continuous solution map 
+\begin{equation*}
+(u_0,u_1) \in (B_1,\|\cdot \|_D)\,\longrightarrow\,u\in (B_2,\|\cdot \|_S),
+\end{equation*} 
+where $B_1\subset D$ and $B_2 \subset S$ are two balls centered at the origin;
+
+ii) two weaker norms, $\| \cdot\|_{D'}$ and $\| \cdot\|_{S'}$ and a sequence $\left(u^N_0,u^N_1\right)_N\subset D$ of initial data satisfying
+\pause
+\begin{align*}
+\limsup_{N\to \infty} \|\big(u^N_0,&u^N_1\big)\|_D\,\ll\,1, \quad \lim_{N\to \infty} \|\left(u^N_0,u^N_1\right)\|_{D'}\,=\,0,
+\\
+&\sup_N \|A_{p}\left(u^N_0,u^N_1\right)\|_{S'}\,\sim\,1.
+\label{cont}
+\end{align*}
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+    \item Indeed, these demonstrate that 
+\begin{equation*}
+A_{p}: (B_1,\|\cdot \|_{D'})\,\longrightarrow\,(B_2,\| \cdot\|_{S'})
+\end{equation*} 
+is not continuous at the origin, which then implies that the same is true for the solution map in these coarser  topologies.
+\pause
+\item A crucial fact used in this approach is that the first of the two conditions guarantees that the solutions corresponding to the sequence of initial data $\left(u^N_0,u^N_1\right)_N$, for $N$ sufficiently large, will all exist for a fixed amount of time, which is independent of $N$. 
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{remark}
+Initially, our condition for failure of continuity was
+\begin{equation*}
+  \sup_N \frac{\|A_p\left(u^N_0,u^N_1\right)\|_{S'}}{\|\left(u^N_0,u^N_1\right)\|_{D'}^{p}}\,=\,\infty.
+\end{equation*}
+However, this in fact is sufficient only to establish the failure of a $p$-linear estimate on $A_{p}$. 
+\end{remark}
+\pause
+We now have all the ingredients to state our IP results:
+\end{frame}
+\begin{frame}
+\begin{theorem}
+Let the g-Boussinesq Cauchy problem, with $p>1$ an integer and $f(u)=\pm\, u^p$, be quantitatively well-posed for
+\[
+D\,=\,H^s \times H^{s-2}(M) \quad \text{and} \quad S\,\subseteq \,C([0,T]; H^s(M)), \]
+where  $M=\mathbb{R}$ or $\mathbb{T}$ and $T=T(B_1)$ is the time of existence for a solution whose initial data is in $B_1$. Let $s'< \min\{s_p, s\}$,
+where
+\begin{equation*}
+s_p\,=\,\left\{
+\begin{array}{l}
+-2/p, \quad \text{for} \quad p \ \text{odd},\\
+\\
+-1/p, \quad \text{for} \quad p \ \text{even}.\\
+\end{array}\right.
+\label{sp}
+\end{equation*}
+Then, if a solution $u$ with associated initial data $(u_{0}, u_{1}) \in H^{s'} \times H^{s'}$ exists for g-Boussinesq, it cannot be obtained via a Picard iteration on any continuously embedded space $X \subset C([0, T]; H^{s'})$. For the Boussinesq, we obtain the stronger result of failure of continuity of the data to solution map at the origin for $s' < -1/2$.
+\end{theorem}
+\end{frame}
+\begin{frame}
+\begin{remark}
+For the ``good'' Boussinesq equation (i.e., $p=2$ and $f(u)=u^2$), our theorem recovers the sharp IP result of Kishimoto, $s<-1/2$. We believe our proof has the advantage that it is more natural, as it doesn't go through  the associated Schrodinger equation and, hence, it doesn't require an extra scaling argument.  
+\end{remark}
+\end{frame}
+\begin{frame}
+  \frametitle{The Proof}
+\begin{equation*}
+A_p(u_0,u_1)\,=\,N(L(u_0,u_1),L(u_0,u_1), \ldots, L(u_0,u_1)),
+\label{Ap}
+\end{equation*}
+\pause
+where
+\begin{equation*}
+\widehat{L(u_0,u_1)}(t,\xi)\,=\,\cos(t \lambda(\xi))\, \widehat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \,\widehat{u}_1(\xi)
+\label{L}
+\end{equation*}
+\pause
+and
+\begin{equation*}
+\widehat{N(u_{1},u_{2}, \ldots, u_{p})}(t,\xi)\,=\,\int_0^t\,\frac{\sin((t-s) \lambda(\xi))}{\lambda(\xi)}\, \xi^2\, \widehat{v_{1}  v_{2}  \ldots v_{p}}(s,\xi)\,ds,
+\label{N}
+\end{equation*}
+with $\lambda(\xi)=\sqrt{\xi^2+\xi^4}$. 
+\end{frame}
+\begin{frame}
+Next, our goal is to construct a sequence $\left(u^N_0,u^N_1\right)_N\subset H^s\times H^{s-2}$ of initial data which violates boundedness of the p-linear operator $A_p$ at the origin, when $s'< \min\{s_p, s\}$. It needs to satisfy
+\pause
+\begin{equation*}
+\limsup_{N\to \infty} \|u_0^N\|_{H^s} + \|u_0^N\|_ {H^{s-2}}\,\ll\,1, \qquad
+\lim_{N\to \infty} \|u_0^N\|_{H^{s'}} + \|u_0^N\|_ {H^{{s'}-2}}\,=\,0,
+\label{ivhs}
+\end{equation*}
+\pause
+and 
+\begin{equation*}
+\sup_N \frac{\|A_{p}(u_0^N,u_1^N)\|_{C([0,T],H^{s'})}}{(\|u_0^N\|_{H^{s'}} + \|u_0^N\|_ {H^{{s'}-2}})^{p}}\,=\,\infty.
+\label{ratio}
+\end{equation*}
+\end{frame}
+\begin{frame}
+The general profile for our initial data, in both cases, is
+\begin{align*}
+\widehat{u^N_0}(\xi)\,&=\,\frac{r}{N^{s}}\,\left(\varphi_{A_N}(\xi)\,+\,\varphi_{-A_N}(\xi)\right), \\
+\widehat{u^N_1}(\xi)\,&=\,-i \frac{r}{N^{s}}\,\lambda(\xi)\,\left(\varphi_{A_N}(\xi)\,-\,\varphi_{-A_N}(\xi)\right),\label{u1n}
+\end{align*}
+where $r>0$ is a positive parameter, $(A_N)_N$ is a sequence of subsets of $\mathbb{R}$ or $\mathbb{T}$ to be specified later, and $\varphi_A$ is the characteristic function of the set $A$. 
+\end{frame}
+\begin{frame}
+We obtain first that
+\begin{gather*}
+\widehat{L(u^N_0,u^N_1)}(t,\xi)\,=\, \frac{r}{N^{s}}\,\left(e^{-it\lambda(\xi)}\varphi_{A_N}(\xi)\,+\,e^{it\lambda(\xi)}\varphi_{-A_N}(\xi)\right)\,
+\\
+=\,\frac{r}{N^{s}}\,e^{\mp it\lambda(\xi)}\varphi_{\pm A_N}(\xi),
+\end{gather*}
+where we assumed, in the last expression, a silent summation convention for $\pm$. Moreover, the sign convention is the one suggested by the above notation, i.e., if $\xi\in \pm \,A_N$, then the corresponding exponent is $\mp \,is\lambda(\xi)$.
+\end{frame}
+\begin{frame}
+
+Subsequently, we are led to
+\begin{align*}
+\widehat{A_p(u^N_0,u^N_1)}(t,\xi)\,
+& =\, \frac{r^p \xi^2}{N^{ps}\lambda(\xi)}\int_0^t \,\sin((t-s) \lambda(\xi))\,\cdot
+\bigg[\int_{\mathbb{R}^{p-1}}\varphi_{\pm A_N}(\xi-\sum_{j=1}^{p-1} \eta_j)&\cdot e^{\mp is\lambda(\xi-\sum_{j=1}^{p-1}\eta_j)}\,
+\\
+& \cdot \prod_{j=1}^{p-1}\varphi_{\pm A_N}(\eta_j)\cdot e^{\mp is\lambda(\eta_j)}\,d\eta_1\ldots d\eta_{p-1}\bigg]ds.
+\end{align*}
+\end{frame}
+\begin{frame}
+We continue by recording an integral calculus result
+\begin{align*}
+\int_0^t\,\sin(\alpha(t-s))\,e^{i\beta s}\,ds\,&=\,\frac{-\alpha}{\beta^2-\alpha^2}(\cos (\beta t)-\cos (\alpha t))\\
+&+\,i\left[\frac{-\alpha}{\beta^2-\alpha^2}\sin (\beta t) + \frac{\beta}{\beta^2-\alpha^2}\sin (\alpha t)\right],
+\\
+& \alpha\neq \beta.
+\label{calc}
+\end{align*}
+\end{frame}
+\begin{frame}
+\frametitle{Outline of main ideas in the argument} 
+We will localize first the initial data $(u^N_0,u^N_1)$ at frequency $N$, i.e.,
+\[
+\eta\in \pm \,A_N\quad \Longrightarrow \quad |\eta| \approx N,\]
+\pause
+and we will measure the output of $A_p$ only at frequency $\xi \approx 1$. This allows us to argue that
+\begin{equation*}
+\aligned
+\|A_{p}(u_0^N,u_1^N)\|_{C([0,T], H^{s'})}\,\geq\, \|A_{p}(u_0^N,u_1^N)\|_{C([0,T], H^{s'}(\xi \approx 1))}\\
+\gtrsim\, \|A_{p}(u_0^N,u_1^N)\|_{C([0,T], L^2(\xi \approx 1))}.
+\endaligned
+\label{aphs}
+\end{equation*}
+\end{frame}
+\begin{frame}
+Secondly, 
+\begin{equation*}
+\alpha=\lambda(\xi) \quad \text{and} \quad \beta= -\,\epsilon_1\lambda(a_1)-\epsilon_2\lambda(a_2)-\cdots-\epsilon_p\lambda(a_p),
+\label{ab}
+\end{equation*}
+where
+\begin{equation*}
+\xi=  \epsilon_1 a_1+\epsilon_2 a_2+ \cdots+\epsilon_p a_p, \qquad \epsilon_j=\pm \,1, \ a_j\in A_N, \ (\forall)1\leq j\leq p.\label{xi}
+\end{equation*}
+\pause
+The key point in the proof is the construction of the sequence of subsets $(A_N)_N$ such that
+\begin{equation*}
+ |\beta|\,=\, \left\{
+\begin{array}{l}
+\ \beta \approx N^{2}, \quad \text{for} \quad p \ \text{odd},\\
+\\
+-\beta \approx N, \quad \text{for} \quad p \ \text{even}.\\
+\end{array}\right.
+\end{equation*}
+\end{frame}
+\begin{frame}
+\frametitle{Argument for $p$ even} 
+We split the discussion into two cases, depending on the parity of $p$. First, for $p$ even, the choice for the sequence $(A_N)_N$ is 
+\[
+A_N\,=\,[N,N+1], \quad (\forall) N \geq 1.
+\]
+\pause
+Then, for $\xi \in \left[\frac{1}{4},\frac{1}{2}\right]$ and $N$ sufficiently large, precisely half of the terms in the representation for $\xi$ above have the coefficient $\epsilon =1$. Otherwise
+\[
+\left|\epsilon_1 a_1+\epsilon_2 a_2+ \cdots+\epsilon_p a_p\right|\,\gtrsim\,N.\]
+This leads to
+\pause
+\begin{equation*}
+\|A_{p}(u_0^N,u_1^N)\|_{C([0,T], H^{s'})}\,\gtrsim\,  \frac{1}{N^{ps+1}}\,\sup_{\stackrel{t \in [0,T]}{\xi \in \left[\frac{1}{4},\frac{1}{2}\right]}} \,|\sin(\lambda(\xi)t)|.
+\label{aphs2}
+\end{equation*} 
+\end{frame}
+\begin{frame}
+Using $A_N\,=\,[N,N+1]$, also get
+\begin{equation*}
+ \|u_0^N\|_{H^{s'}} + \|u_0^N\|_ {H^{{s'}-2}}\,\approx\, r\,N^{s'-s},\qquad (\forall) s'\in \mathbb{R},
+\label{idhs} 
+\end{equation*}
+\pause
+Finally,  
+\begin{equation*}
+\frac{\|A_{p}(u_0^N,u_1^N)\|_{C([0,T],H^{s'})}}{(\|u_0^N\|_{H^{s'}} + \|u_0^N\|_ {H^{{s'}-2}})^{p}}\,\gtrsim\, \frac{1}{N^{ps' +1}}\end{equation*}
+thus finishing the argument for the case $p$ even.
+\end{frame}
+\begin{frame}
+  \frametitle{$p$ odd}
+The first remark we want to make here is that the previous choice for $A_N$ (i.e., $A_N\,=\,[N,N+1]$) doesn't work in this case, because, as $p$ is odd, 
+\[
+\left|\epsilon_1 a_1+\epsilon_2 a_2+ \cdots+\epsilon_p a_p\right|\,\approx\,N, 
+\]
+for all possible representations with $\epsilon_j=\pm \,1$, $a_j\in A_N$,  and $1\leq j\leq p$. 
+
+\pause
+Instead, we pick
+\[
+A_N\,=\,\tilde{A}_N\,\cup\,\tilde{A}_{2N}\,=\,\left[N+\frac{3(p-1)}{2p^2},N+\frac{3(p+2)}{2p^2}\right]\,\cup\, \left[2N, 2N+\frac{3}{p^2}\right]
+\]
+\pause
+the idea being that we can create something comparable to $1$ with $p/3$ triplets $(a,b,c)$, where $a$, $b \in \tilde{A}_N$ and $c \in \tilde{A}_{2N}$.
+\end{frame}
+\begin{frame}
+  \begin{center}
+    \Large{Thank you}
+\end{center}
+\end{frame}
+\end{document}

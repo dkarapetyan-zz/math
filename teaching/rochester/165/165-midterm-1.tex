@@ -1,0 +1,123 @@
+ \documentclass[12pt]{amsart}
+\usepackage{latest}
+%\usepackage{pdfsync}
+\usepackage[pdftex]{epsfig}
+\usepackage{epstopdf}
+\usepackage{enumerate}
+\usepackage{calc,ifthen}
+\usepackage{graphicx}
+\newcommand{\m}{\hspace{1em}}
+\synctex=1
+
+\synctex=1
+
+%%%%%
+
+\def \sm {\smallskip}
+\def\diff{{d\over{dx}}\,}
+\def\ds{\displaystyle}
+\def\headline{\vskip.25in \noindent}
+\def\scr{\scriptstyle}
+\def \hs {~~~~~~}
+\def \hh {~~~}
+\def\medno{\medskip \noindent}
+\def\bigno{\bigskip \noindent}
+\def\smno{\smallskip \noindent}
+\def\smallno{\smallskip \noindent}
+\def\D{\mathrm{d}}
+
+%%%%
+
+
+\begin{document}
+%:%% prelim, final, webpage
+\runType[final]
+
+
+%: \begin{answersheetmatter}
+\begin{answersheetmatter}[final]
+\whichCourse[Math. 165]
+\whichExam[Midterm 1]
+\dateOfExam[10/11/2012]
+\lengthOfTimeForExam[two hours]
+
+\begin{multiplechoiceStyle}[dotted]% [dotted] or [blank] missing=blank
+\breakAnswersAt{16} % first even past a half
+%: permutations
+\ll 1 23415
+\ll 2 12543
+\ll 3 35421
+\end{multiplechoiceStyle}
+\end{answersheetmatter}
+
+
+
+\makeanswersheet[]
+%: begin{exam}
+\begin{exam}
+
+\multiplechoiceStart[5 pts.]
+
+% 1  
+\begin{problem}
+  Find the solution to the initial value problem
+  \begin{gather*}
+  \frac{dy}{dt} = ty,
+  \\
+y(0) = 3.
+  \end{gather*}
+%
+\begin{answers}{1}
+$\;y = 3e^{t^{2}/2}$ \\
+$\;y=e^{t^{2}/2}$ \\
+$\;y=e^{t^{2}}$ \\
+$\;y=3e^{t/2}$ \\
+There is no solution\\
+\end{answers}
+\end{problem}
+
+
+\begin{problem}
+ Find the general solution to the differential equation
+  \begin{gather*}
+ \frac{-1}{3t^{2} y^{2}} \frac{dy}{dt} = 1.
+  \end{gather*}
+%
+\begin{answers}{1}
+$\;y = \frac{1}{t^{3} + c}$ \\
+$\;y=\frac{1}{3t^{2} + c}$ \\
+$\;y=\frac{1}{t^{3}}$ \\
+$\;y=\frac{3}{t^{3}}$ \\
+$\;y = \frac{1}{t^{2} + c}$ \\
+\end{answers}
+\end{problem}
+
+\begin{problem}
+ Find the solution to the first order initial value problem
+ \begin{gather*}
+  xy' + 2y = 5x^{3}
+  \\
+  y(1) = 2.
+  \end{gather*}
+%
+\begin{answers}{1}
+$\;y = x^{3} + \frac{1}{x^{2}}$ \\
+$\;y=x^{3} + \frac{2}{x^{2}}$ \\
+$\;y=x^{3}$ \\
+$\;y=x^{3} + \frac{c}{x^{2}}$ \\
+$\;y = x^{3} + x^{2}$ \\
+\end{answers}
+\end{problem}
+
+
+
+
+
+
+
+
+
+\end{exam}
+
+\makemarkedanswersheet
+\end{document}
