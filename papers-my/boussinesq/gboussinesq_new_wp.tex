@@ -1,0 +1,219 @@
+\documentclass{amsart}
+%\usepackage{showkeys}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{yhmath}
+\usepackage{framed}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{examp}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+
+\newcommand{\uol}{u^\omega_\lambda}
+\newcommand{\wh}{\widehat}
+\newcommand{\lbar}{\bar{l}}
+\renewcommand{\l}{\lambda}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\p}{\partial}
+\newcommand{\al}{\alpha}
+\newcommand{\ve}{q}
+\newcommand{\tg}{{tan}}
+\newcommand{\m}{q}
+\newcommand{\N}{N}
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\tc}{{\tilde{c}}}
+\newcommand{\tS}{{\tilde S}}
+\newcommand{\tP}{{\tilde P}}
+\newcommand{\tu}{{\tilde{u}}}
+\newcommand{\tw}{{\tilde{w}}}
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\begin{document}
+\title{Ill-posedness results for generalized Boussinesq equations}
+
+\author{Dan-Andrei Geba, A. Alexandrou Himonas, and David Karapetyan}
+
+\address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
+\address{Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556}
+\address{Department of Mathematics, University of Rochester, Rochester, NY 14627}
+\date{}
+
+\begin{abstract}
+In this article, we investigate the non-periodic initial value problem for generalized Boussinesq equations.
+\end{abstract}
+
+\subjclass[2000]{35B30, 35Q55}
+\keywords{Boussinesq equation, well-posedness, ill-posedness.}
+
+\maketitle
+
+\section{Introduction}
+
+In this paper, we are concerned with the Cauchy problem for the generalized Boussinesq equation
+\begin{equation}
+\left\{
+\begin{array}{l}
+u_{tt}-u_{xx}+u_{xxxx}+(f(u))_{xx}\,=\,0, \qquad u=u(t,x): \mathbb{R}_+\times M \to \mathbb{R},\\
+\\
+u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
+\end{array}\right.
+\label{main}
+\end{equation}
+where $M=\mathbb{R}$ (the non-periodic case). Such an  equation, with $f(u)=4u^3-6u^5$, was derived by Falk, Laedke, and Spatschek \cite{FLS} in the study of shape-memory alloys. For $f(u) =  u^{2}$ one recovers the classical ``good'' Boussinesq equation, which is known to describe electromagnetic waves in nonlinear dielectrics \cite{T93}. 
+
+As the ``good'' equation has been the subject of quite a few recent investigations (e.g., \cite{KT10}, \cite{OS12}, \cite{K12}), where almost-complete references for this problem have been discussed, we will mention here only previous results relevant to generalized type equations. 
+
+In the non-periodic case, Bona and Sachs \cite{BS} proved local well-posedness (LWP) of \eqref{main} for $f\in C^\infty(\mathbb{R})$, $f(0)=0$, and $(u_0,u_1)\in H^s \times H^{s-2}$, $s>5/2$. Moreover, for pure power nonlinearities, $f(u)\simeq\pm |u|^{p-1}\,u$, with $1<p<5$, they showed nonlinear stability of solitary wave solutions and found sufficient conditions for the global existence of smooth solutions.  The LWP was then improved for pure power nonlinearities by Tsutsumi and Matahashi \cite{TM}, who demonstrated that this holds for $u_0\in H^1$ and $u_1=\phi_{xx}$, with $\phi\in H^1$. This was followed by Linares \cite{L93}, who proved LWP for $(u_0,u_1)=(g, h_x)$ when either $(g,h) \in H^1\times L^2$ and $p>1$ or $(g,h) \in L^2 \times \dot{H}^{-1}$  and $1<p\leq 5$. Furthermore, one has global well-posedness (GWP) in the former setting if $\|g\|_{H^1}+\|h\|_{L^2}$ is sufficiently small. Finally, Farah \cite{F092} showed LWP for $u_0\in H^s$ and $u_1=\phi_{xx}$, with $\phi\in H^s$, when
+\[
+p>1 \quad \text{and} \quad s\geq \max \left\{0,\,\frac{1}{2}-\frac{2}{p-1}\right\}. \]
+For the defocusing problem $f(u)= -|u|^{p-1}\,u$, where $p\geq 3$ is an odd integer, Farah and Linares \cite{FL} and Farah and Wang \cite{FW12}, respectively, proved GWP for 
+\[
+u(0)\in H^s, \quad u_t(0)=h_x , \quad h \in H^{s-1}, \quad s> 1-\frac{2}{3(p-1)}.
+\]
+An important fact revealed by this literature review is the absence of ill-posedness (IP) results for generalized Boussinesq equations. This  was also mentioned in  \cite{FW12}, where it was posed as an interesting open problem. The goal of this article is to answer this question. 
+
+\section{Preliminaries}
+Using Duhamel's principle, we can rewrite \eqref{main} in the integral form
+\begin{equation}
+S(t)(u_0,u_1)\,=\,L(u_0,u_1)(t)\,\pm\, \int_0^t\,L \left( 0,\left((S(\tau)(u_0,u_1))^p\right)_{xx}\right)(t-\tau)\,d\tau,
+\end{equation}
+where
+\begin{equation}
+\widehat{L(u_0,u_1)}(t,\xi)\,=\,\cos(t \lambda(\xi))\, \widehat{u}_0(\xi)+\frac{\sin(t \lambda(\xi))}{\lambda(\xi)} \,\widehat{u}_1(\xi), \quad \lambda(\xi)\,=\,\sqrt{\xi^2+\xi^4}.
+\label{L}
+\end{equation}
+We wish now to measure $S(t)(u_{0}, u_{1})$ in appropriate function spaces, in order to set up a Picard iteration and obtain an existence and uniqueness result.  
+We introduce the following spaces, first introduced in unpublished work of Tataru.
+
+
+We shall also need the following Strichartz estimates
+\begin{equation*}
+\begin{split}
+\| u \|_{L^{p}_{t} L^{p}_{x}} \lesssim \| u \|_{X_{0, 1/2+}}, \ \ \text{where} \ \ \frac{2}{q} = \frac{1}{2} - \frac{1}{p}.
+\end{split}
+\end{equation*}
+Taking $p=q$, and interpolating with the estimate
+\begin{equation*}
+\begin{split}
+\| u \|_{L^{2}_{x,t}} \lesssim \| u \|_{X_{0,0}}
+\end{split}
+\end{equation*}
+we obtain
+\begin{equation*}
+\begin{split}
+\| u \|_{L^{4}_{x,t}} \lesssim \| u \|_{X_{0, 1/2+}}.
+\end{split}
+\end{equation*}
+We also state the following, taken from Farah.
+\begin{lemma}
+Let $|f(u)| \sim |u|^{k}$, and $D^{s}$ be a pseudodifferential operator defined by the relation $\wh{D^{s} f} = | \xi |^{s} \wh{f}$. Then
+\begin{enumerate}
+  \item 
+    \begin{equation*}
+    \begin{split}
+      \| D^{s} f(u) \| \lesssim \| u \|^{k-1}_{L^{(k-1)r_1}} \| D^{s}u \|_{L^{r_{2}}}
+    \end{split}
+    \end{equation*}
+ where $1/r = 1/r_{1} + 1/r_{2}, r_{1} \in (1, \infty], r_{2} \in (1, \infty);$ 
+\item{}
+\begin{equation*}
+\begin{split}
+\| D^{s}(uv) \|_{L^{r}} \lesssim (\| D^{s}u \|_{L^{r_{1}}} \| v \|_{L^{q_{2}}} + \| u \|_{L^{q_{1}}} \| D^{s} v \|_{L^{r_{2}}})
+\end{split}
+\end{equation*}
+where $1/r = 1/r_{1} + 1/q_{2} = 1/q_{1} + 1/r_{2}, r_{i} \in (1, \infty), q_{i} \in (1, \infty], i=1,2.$ 
+\end{enumerate}
+\label{lem:frac-dif}
+\end{lemma}
+\begin{framed}
+Personally, I don't think the Strichartz estimates from Farah's paper are going to be useful to us at all. What we really need 
+\end{framed}
+
+
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{10}
+
+\bibitem{BT06}
+I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
+  for a quadratic non-linear {S}chr\"odinger equation}, J. Funct. Anal.
+  \textbf{233} (2006), no.~1, 228--259.
+
+\bibitem{BS}
+J.~L. Bona and R.~L. Sachs, \emph{Global existence of smooth solutions and
+  stability of solitary waves for a generalized {B}oussinesq equation}, Comm.
+  Math. Phys. \textbf{118} (1988), no.~1, 15--29.
+
+\bibitem{FLS}
+F.~Falk, E.~W. Laedke, and K.~H. Spatschek, \emph{Stability of solitary-wave
+  pulses in shape-memory alloys}, Phys. Rev. B \textbf{36} (1987), no.~6,
+  3031--3041.
+
+\bibitem{FG96}
+Y.~F. Fang and M.~G. Grillakis, \emph{Existence and uniqueness for {B}oussinesq
+  type equations on a circle}, Comm. Partial Differential Equations \textbf{21}
+  (1996), no.~7-8, 1253--1277.
+
+\bibitem{F092}
+L.~G. Farah, \emph{Local solutions in {S}obolev spaces and unconditional
+  well-posedness for the generalized {B}oussinesq equation}, Commun. Pure Appl.
+  Anal. \textbf{8} (2009), no.~5, 1521--1539.
+
+\bibitem{FL}
+L.~G. Farah and F.~Linares, \emph{Global rough solutions to the cubic nonlinear
+  {B}oussinesq equation}, J. Lond. Math. Soc. (2) \textbf{81} (2010), no.~1,
+  241--254. \MR{2580463 (2011i:35214)}
+
+\bibitem{FW12}
+L.~G. Farah and H.~Wang, \emph{Global solutions in lower order {S}obolev spaces
+  for the generalized {B}oussinesq equation}, Electron. J. Differential
+  Equations \textbf{2012} (2012), no.~41, 1--13.
+
+\bibitem{K12}
+N.~Kishimoto, \emph{Sharp local well-posedness for the "good" {B}oussinesq
+  equation}, preprint, arXiv:1203.6374.
+
+\bibitem{KT10}
+N.~Kishimoto and K.~Tsugawa, \emph{Local well-posedness for quadratic nonlinear
+  {S}chr\"odinger equations and the ``good'' {B}oussinesq equation},
+  Differential Integral Equations \textbf{23} (2010), no.~5-6, 463--493.
+
+\bibitem{L93}
+F.~Linares, \emph{Global existence of small solutions for a generalized
+  {B}oussinesq equation}, J. Differential Equations \textbf{106} (1993), no.~2,
+  257--293.
+
+\bibitem{OS12}
+S.~Oh and A.~Stefanov, \emph{Improved local well-posedness for the periodic
+  "good" {B}oussinesq equation}, preprint, arXiv:1201.1942.
+
+\bibitem{TM}
+M.~Tsutsumi and T.~Matahashi, \emph{On the {C}auchy problem for the
+  {B}oussinesq type equation}, Math. Japon. \textbf{36} (1991), no.~2,
+  371--379.
+
+\bibitem{T93}
+S.~K. Turitsyn, \emph{Nonstable solitons and sharp criteria for wave collapse},
+  Phys. Rev. E (3) \textbf{47} (1993), no.~2, R796--R799.
+
+\end{thebibliography}
+
+
+\bibliographystyle{amsplain}
+\end{document}
