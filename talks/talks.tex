@@ -1708,7 +1708,7 @@ Want best estimate
   | I(\lambda) | \le C| \lambda |^{-\ee}
 \end{gather*}
 \item{}
-Want to relate $\ee$ to $S(x)$, i.e. it's nice properties.
+Want to relate $\ee$ to $S(x)$, i.e.\ it's nice properties.
 \item Definitions:
 \\
 $S(x) = \sum_{\alpha} s_{\alpha} x^{\alpha}$. Taylor Expansion.
@@ -1726,19 +1726,24 @@ $N(S) = \text{Newton polyhedron of S}= \text{convex hull of all} Q_{\alpha}$.
       d(S) = \sup_{t}: (t, t, \cdots, t, t) \nin N(S).
     \end{gather*}
     \item{}
-      Nondegeneracy Condition: Given any compact face $F$ of $N(S)$, let $S_{F}(	x = \sum_{\alpha \in F} s_{\alpha} x^{\alpha}$. Condition $\grad S_{F} \neq 0$ on $(\rr - \left\{ 0 \right\})^{n}$ for all $F$. 
+      Nondegeneracy Condition: Given any compact face $F$ of $N(S)$,
+     
+      let $S_{F}(x = \sum_{\alpha \in F} s_{\alpha} x^{\alpha}$. 
+      
+      Condition $\nabla S_{F} \neq 0$ on $(\rr - \left\{ 0 \right\})^{n}$ for all $F$. 
 \end{theorem}
 \item{}
   Questions: Can you relax nondegeneracy condition? If not, are there other Newton polyhedrom based statements? Reasons to think this can be done: Phong/Stein/Sturm proved multinlinear operator analogues, didn't require nondegen cond.
   \item{}
     Algorithm: Divide neighborhood of origin into horns as follows: One horn $H_{i}$ corresponds to each compact face $F_{i}$. On $H_{i}$, you have if $v, v' \in F$, $c_{i}^{-1} \le \frac{| x^{v} |}{x^{v_{'}}} \le C_{i}$. And if $v \in F_{i}$, $v' \nin F_{i}$, then $| x^{v'} | < \frac{1}{C_{i}^{N}}| X^{v} |$, $N >>0$. 
 \end{itemize}
+
 \section{Erdogan \\ Mathematical Problems Arising from Nonlinear Fiber Optics}
 
 \begin{itemize}
   \item 
-$u = complex amplitutde, \\
-t = position along cable, x = Retarded time, d = dispersion along the cable$. 
+$u$ = complex amplitutde, \\
+$t$ = position along cable, $x$ = Retarded time, $d$ = dispersion along the cable. 
 
     \begin{gather*}
     iu_{t} + d(t) u_{xx} + | u |^{2} u = 0
@@ -1757,4 +1762,18 @@ t = position along cable, x = Retarded time, d = dispersion along the cable$.
     \item{}
     Tzirakis, Zharnitsky, Near-linear dynamics in KDV with periodic boundary conditions.
 \end{itemize}
-  \end{document}
+
+
+\section{Paulsson \\ Falconer Problem}
+\begin{itemize}
+  \item 
+    Guth, Katz 2010 proved Erdos conjecture
+    \item{}
+    Higher dimensions open
+\end{itemize}
+
+
+
+
+\end{document}
+
