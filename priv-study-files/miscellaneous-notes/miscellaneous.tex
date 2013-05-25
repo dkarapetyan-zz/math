@@ -56,7 +56,7 @@ urlcolor=blue,
 \newtheorem{examp}{Example}[section]
 \newtheorem {exercise}[theorem] {Exercise}
 %
-\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
+%\makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother%
 %makes proof environment bold instead of italic
 \newcommand{\uol}{u^\omega_\lambda}
 \newcommand{\lbar}{\bar{l}}
@@ -118,7 +118,7 @@ Then
 \end{lemma}
 %
 %
-\begin{proof}[Proof of Lemma \ref{lem:diag}]
+\begin{proof}[Proof of Lemma~\ref{lem:diag}]
   Since $x_{k} \xrightarrow{X} x$, there exists $N > 0$ such that for $k > N$,
   we have $\|x -x_{k} \|_{X} \le 1$. Furthermore, if we denote $B_{X}(R) \doteq
   \left\{ x \in X: \| x \|_{X} \le 1 \right\}$, then $T_{k}
@@ -153,7 +153,122 @@ Then
   which completes the proof.
 \end{proof}
 
+\begin{lemma}
+If $E(X_{n}) \to a$ and $Var(X_{n}) \to 0$, then $X_{n} \xrightarrow{L^{2}(\Omega)}a$. That is, \\ $E[(X_{n} -a)^{2}] \to 0$.
+\label{lem:}
+\end{lemma}
 
+\begin{proof}
+Observe that $E[(X_{n}- a )^{2}] = E(X_{n}^{2}) - 2aE(X_{n}) + a^{2}$. Assume that $E(X_{n}) \to a$ and $Var(X_{n}) \to 0$; that is, $E(X_{n}) \to a$ and $[EX_{n}^{2}] - (E X_{n})^{2} \to 0$. Then
+\begin{equation*}
+\begin{split}
+  E[(X_{n} - a)^{2}] & = E(X_{n}^{2}) - 2aE(X_{n}) + a^{2}
+  \\
+  & = (EX_{n})^{2} - 2a E(X_{n}) + a^{2}
+  \\
+  & \to a^{2} - 2a +  a^{2} = 0 
+\end{split}
+\end{equation*}
+which completes the proof.
+\end{proof}
+
+\begin{lemma}
+If $\Delta_{n}(t) \xrightarrow{L^{2}(\Omega)} \Delta$, then for any continuous $f: \rr \to \rr$, there exists a subsequence $\{ \Delta_{n_{k}} \}$ such that $f(\Delta_{n_{k}}) \xrightarrow{L^{2}(\Omega)} f(\Delta(t))$.
+\label{lem:}
+\end{lemma}
+\begin{proof}
+Since $\Delta_{n}(t) \xrightarrow{L^{2}(\Omega)} \Delta(t)$, there exists a subsequence $\left \{ \Delta_{n_{k}} \right \}$ such that $\Delta_{n_{k}}(t) \xrightarrow{a.e.} \Delta(t)$. In fact, we can say more: $| \Delta(t) | \le C$. Hence, for $k$ sufficiently large, $| \Delta_{n_{k}}(t) | \le 2c$. Reindexing, we see that we must have $f(\Delta_{n_{k}}(t)) \xrightarrow{L^{\infty}(\Omega) f(\Delta)}$. But this implies $f(\Delta_{n_{k}}(t)) \xrightarrow{L^{2}(\Omega)}$, since our probability measure $\mathbb{P}$ is sigma-finite. That is,
+
+\begin{equation*}
+\begin{split}
+  \int_{\Omega} [f(\Delta(t)) - f(\Delta_{n_{k}}(t))]^{2} d \mathbb{P} 
+  & \le \| f(\Delta(t)) - f(\Delta_{n_{k}}(t)) \|^{2}_{L^{\infty}} \int_{\Omega} d \mathbb{P}
+  \\
+  & =  \| f(\Delta(t)) - f(\Delta_{n_{k}}(t)) \|^{2}_{L^{\infty}}
+  \\
+  & \to 0
+\end{split}
+\end{equation*}
+completing the proof.
+\end{proof}
+
+\begin{lemma}
+Let $X(t), Y(t)$ be two random variables. Suppose $X(t)$ has quadratic variation $a=a(t)$ from $0$ to $t$, and $Y(t)$ has zero quadratic variation from $0$ to $t$. Then $Z(t) = X(t) + Y(t)$ has quadratic variation $a = a(t)$.
+\label{lem:}
+\end{lemma}
+
+\begin{proof}
+Let $0 = t_{1} < t_{2} < \ldots < t_{n} = t$ be a partition of $[0, t]$. Then
+\begin{equation*}
+\begin{split}
+[Z, Z](t) = \lim_{\| II \| \to 0} \sum_{k=1}^{n} [Z(t_{k+1}) - Z(t_{k})]^{2}.
+\end{split}
+\end{equation*}
+But
+\begin{equation*}
+\begin{split}
+  & \sum_{k=1}^{n} [Z(t_{k+1}) - Z(t_{k})]^{2}
+  \\
+  & = \sum_{k=1}^{n} [X(t_{k+1}) - X(t_{k}) + Y(t_{k+1}) - Y(t_{k})]^{2}
+  \\
+  & = \sum_{k=1}^{n}[X(t_{k+1}) - X(t_{k})]^{2} + 
+  \sum_{k=1}^{n}[Y(t_{k+1}) - Y(t_{k})]^{2} + 2 \sum_{k=1}^{n} [X(t_{k+1}) - X(t_{k})] [Y(t_{k+1}) - Y(t_{k})]
+  \\
+ & \to a(t) + 2 \lim_{\| II \| \to 0} \sum_{k=1}^{n} [X(t_{k+1}) - X(t_{k})][Y(t_{k+1}) - Y(t_{k})]
+ \\
+& \to a(t) \ \ \text{by Cauchy Schwartz} 
+\end{split}
+\end{equation*}
+completing the proof.
+\end{proof}
+
+Let us now show how one can use the Ito Calculus to solve SDEs. 
+Let us return to the SDE for geometric Brownian motion
+\begin{equation*}
+\begin{split}
+dS = S(t) \alpha(t) dt + S(t) \sigma(t) dW(t) 
+\end{split}
+\end{equation*}
+which we rewrite as
+\begin{equation*}
+\begin{split}
+  \frac{dS}{S(t)} = \alpha(t) dt + \sigma(t) dW(t).
+\end{split}
+\end{equation*}
+Observe that it is the random noise in this model that makes it difficult to solve(if $\sigma = 0$, then the resulting equation is an ODE and can be easily solved explicitly.) Hence, we first restrict our attention to
+\begin{equation}
+  \label{pure-noise}
+\begin{split}
+\frac{dS(t)}{S(t)} = \sigma(t) dW(t).
+\end{split}
+\end{equation}
+
+By the Ito Calculus,
+
+\begin{equation*}
+\begin{split}
+d \log | S(t) |
+& = \frac{dS}{S(t)} -\frac{1}{2[S(t)]^{2}} \cdot [dS, dS](t)
+\\
+& = \frac{dS(t)}{S(t)}  -\frac{1}{2[S(t)]^{2}} \cdot \sigma^{2}(t) S^{2}(t)
+\\
+& = \frac{dS(t)}{S(t)} - \frac{1}{2} \sigma^{2}(t) dt
+\\
+& = \sigma(t) d W(t) - \frac{1}{2} \sigma^{2}(t) dt
+\end{split}
+\end{equation*}
+where the last line follows by substituting relation \eqref{pure-noise}. Therefore,
+\begin{equation*}
+\begin{split}
+  \log | S(t) | - \log | S(0) | = \int_{0}^{t} \sigma(s) dW(s) -\frac{1}{2} \int_{0}^{t} \sigma^{2}(s) ds.
+\end{split}
+\end{equation*}
+We conclude that
+\begin{equation*}
+\begin{split}
+S(t) = S_{0} \exp[\int_{0}^{t} \sigma(s) dW(s) - \frac{1}{2} \int_{0}^{t} \sigma^{2}(s) ds].
+\end{split}
+\end{equation*}
 
         %\nocite{*}
         %\bibliography{/Users/davidkarapetyan/Documents/math/}

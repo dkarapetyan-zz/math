@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<TITLE>Exam 1 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B> Midterm 1</B>
+</CENTER>
+
+<P>1:(a) x in A int B, then x not in A \ B and x in A so x in A \ (A \ B).
+Thus A int B subset A \ (A \ B). <BR>
+On the other hand, x in A \ (A \ B). Then x is in A but not in A \ B and 
+so x in A int B. Thus A \ (A \ B) subset A int B also and so the two sets 
+are equal. <BR> 
+(b),(c): See old HW and definitions in book. <BR>
+
+<P>2:<BR>
+(a): See book for definitions. <BR>
+(b): See old HW solution. <BR>
+(c): Choose x(1) in A, then as A is infinite, A-{x(1)} is nonempty so 
+we can choose x(2) in A-{x(1)},... , we continue in this manner choosing 
+x(n) from A-{x(1),x(2),..,x(n-1)}. We know we can do this since A is 
+infinite so A-{x(1),x(2),...,x(n-1)} is nonempty.
+Then S={x(1),x(2),.....} is a subset of A and f: N -> S, f(n)=x(n) is 
+clearly a bijection so S is countably infinite.
+
+<P>3:<BR>
+(a): See book for definitions. <BR>
+(b): <BR>
+|a+b| = |a| + |b| <-> (|a+b|)^2=(|a|+|b|)^2 [Since |x| nonnegative for all 
+x]<BR>
+<-> (|a+b|)^2 = |a|^2 + |b|^2 +2|a||b| <BR>
+<->  (a+b)^2 = a^2 + b^2 + 2|a||b| [Since |x|^2=x^2 for all x.] <BR>
+<->  a^2+ b^2 + 2ab = a^2 + b^2 + 2|a||b| <BR>
+<->  ab = |ab| <BR>
+<->  ab >= 0. <BR>
+(c): Let s=sup{ a + f(x) | x in X} and t=sup{ f(x) | x in X}. <BR>
+Then a + f(x) <= s for all x in X. So f(x) <= s-a for all x in X. 
+So s-a is an upper bound for {f(x) | x in X} and so t <= s-a. 
+Thus a+t <= s. <BR>
+On the other hand, f(x) <= t for all x in X so a + f(x) <= a +t for all x.
+So a+t is an upper bound for {a+f(x) | x in X} and so s <= a + t. <BR>
+Thus we have seen a+t <= s <= a+t and so s=a+t as desired. 
+
+<P>4:See old HW solutions. <BR>
+
+<P>5:<BR>
+(a),(b) See book/notes for definitions. <BR>
+(c): Suppose Int(boundary(A)) is nonempty and take x from within it.
+Then there is an open neighborhood U of x contained in boundary(A).
+However since x is also in boundary(A), U must contain points of A and M-A 
+by definition. Thus using U subset boundary(A) we see that boundary(A) 
+contains points of A and points of M-A. In other words, there are some 
+boundary points that are in A and some boundary points that aren't in A.
+Thus A is neither open or closed by (b). <BR>
+So we see Int(boundary(A)) nonempty -> A not closed and A not open. <BR>
+We get our desired result by taking the contrapositive of this 
+implication. <BR>
+(d): If r in R, and E > 0 then in B(r;E)=(r-E,r+E) there lie both rational 
+and irrational points. (Since every nonempty open interval contains a 
+rational and an irrational.) Thus we see that r is a boundary point of Q.
+So boundary(Q)=R. Since R is open in (R,d). Int(R)=R and so 
+Int(Boundary(Q))=R.
+
+
+<P>6: <BR>
+(a)See book for definitions. <BR>
+(b)See HW5 solutions. <BR>
+(c): We work in an ambient metric space (M,d). 
+Let K(m), m in J be an arbitrary collection of compact sets. (The 
+index set J need not be a subset of the natural numbers, so can be 
+uncountable too, let 1 in J though for notation purposes.) <BR>
+Now compact sets are always closed, and the intersection of any collection 
+of closed sets is closed so S = Int K(m) is a closed set. Let T=K(1) then 
+T is compact by hypothesis. By (b), S = S int T is compact. Thus we are 
+done. 
+
+
+<HR>
+<A HREF=""> Back to the Math 265 Homepage...</A>
+
+</BODY>
+</HTML>
+

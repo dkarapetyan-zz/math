@@ -1,0 +1,142 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 9 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B> Section 22: </B>
+</CENTER>
+
+<P>
+#1: <br>
+p^{-1}({a})=(0,infty) open in R so {a} open in A. <br>
+p^{-1}({b})=(-infty,0) open in R so {b} open in A. <br>
+p^{-1}({c})={0} NOT open in R so {c} NOT open in A. <br>
+p^{-1}({a,b})=(-infty,0) union (0,infty) open in R so {a,b} open in A. 
+<br>
+p^{-1}({a,c})=[0,infty) NOT open in R so {a,c} NOT open in A. <br>
+p^{-1}({b,c})=(-infty,0] NOT open in R so {b,c} NOT open in A. <br>
+A and empty set ALWAYS open in A. <br>
+All this is reflected accurately in the picture of Figure 22.3. <br>
+
+<P>
+#2:(a): p: X -> Y is continuous, f: Y -> X is continuous with 
+p compose f = identity map of Y. <br>
+We want to show p is a quotient map. Thus we need to check 3 things: <br>
+(1) p is onto. <br>
+(2) If U open in Y, then p^{-1}(U) open in X. <br>
+(3) If p^{-1}(U) open in X then U open in Y. <br>
+Pf: (2) follows since p is continuous. For (1), note 
+p compose f = identity of Y shows p has a right inverse. We have seen this 
+implies p is onto in previous HWs. <br>
+So it remains to show (3). So let U subset of Y and suppose p^{-1}(U) is 
+open in X. We then want to prove U is open in Y. <br>
+Well we know f: Y -> X is continuous so f^{-1}(p^{-1}(U)) is open in Y. 
+<br>. However f^{-1}(p^{-1}(U))=(p * f)^{-1}(U) [I'll use * for 
+composition] = Id^{-1}(U)=U. <br>
+Thus U is open in Y as desired and we are done. <br>
+(b): A a subset of X, r: X -> A with r(a)=a for all a in A. <br>
+Now define i: A -> X by i(a)=a. (inclusion map). Note if U open in X, 
+then i^{-1}(U)=A intersect U is open in A so i is a continuous map. <br>
+Now r(a)=a for all a in A can be written r(i(a))=a for all a in A and this 
+shows r * i = Identity of A. <br>
+By part(a), this shows r: X -> A is a quotient map. (Using p=r and 
+f=i) <br>
+
+<P>
+#6:(a). First recall a basis of the K-topology are things of the form 
+(a,b) or (c,d)-K. <br>
+Thus K is closed in the K-topology as its complement is open: <br>
+Pf: R-K= union (-M,M)-K where M in Z+ and each of these is open in 
+the K-topology. 
+<br>
+
+Also since the K-topology is finer than the usual topology, it is 
+Hausdorff and T_1 itself. <br>
+
+Now we look at p: R_K -> Y. We can view p(x)=x if x not in K and 
+p(x)=b for x in K. So Y=(R-K) union {b} with some wierd quotient topology. 
+<br>
+Note x in Y, x not equal to b then p^{-1}({x})={x} is closed in R_K 
+(since R_K is T_1) and so {x} is closed in Y. <br>
+On the other hand p^{-1}({b})=K is closed in R_K also so 
+{b} is closed in Y also. <br>
+Thus all one-point sets are closed in Y and hence all finite sets (which 
+are finite unions of one-point sets) are closed in Y and so Y is T_1. <br>
+
+However Y is not Hausdorff. To see this let U be a nhd of b in Y and 
+let V be a nhd of 0 in Y. (Note 0 not equal to b in Y since 0 not in K). 
+<br>
+If U'=p^{-1}(U) and V'=p^{-1}(V) then V' is a nhd of 0 in R_K and 
+U' is a nhd of K in R_K. <br> V' contains a basis nhd B of 0. 
+There are 2 cases: <br>
+Case1: If B is of the form (a,b) then a < 0 and b > 0 and B clearly 
+intersects K. 
+Thus V' would intersect U' and so V would intersect U. <br>
+Case2: If B is of the form (a,b)-K then a < 0 and b > 0. <br>
+Now there is k in K intersect (a,b) as before. However now k is not in B.
+Regardless a < k < b. <br> 
+<br> However as k in U' and U' open, there is basis element B' about k in 
+U'. This basis element has to be of the form (c,d). <br>
+Since k is in (a,b) intersect (c,d), this is a nonempty open set around 
+k and so contains uncountably many elements, in particular some non-K 
+elements. (K is countable) Thus (a,b)-K and (c,d) intersect. This shows as 
+(a,b)-K was in 
+V' and (c,d) in U' that U' and V' intersect and hence again that U and V 
+intersect. <br>
+Thus in Y, any nhd of 0 intersects any nhd of b and so Y is not Hausdorff. 
+<br> 
+(b): Now consider p x p: R_K x R_K -> Y x Y. We will show this is not a 
+quotient map by finding a set D in Y x Y which is not closed such that 
+(p x p)^{-1}(D) is closed in R_K x R_K. [If p x p were a quotient map, 
+this could not occur.] <br>
+
+Let D={(y,y) | y in Y} the "diagonal" subset of Y x Y.
+We have seen in a previous HW that the diagonal subset of X x X is closed 
+in X x X if and only if X is Hausdorff. <br>
+Thus D is NOT closed in Y x Y as we have seen Y is not Hausdorff. <br>
+
+Now (p x p)^{-1}(D)={(x,x') | p x p (x,x') in D }= {(x,x') | p(x)=p(x')}.
+<br>
+Thus (p x p)^{-1}(D)=D' union {(1/n,1/m) | n, m in Z+}. <br>
+Here D' is the diagonal in R_K x R_K which we know is closed in R_K x R_K 
+since R_K is Hausdorff. <br>
+
+Thus to show (p x p)^{-1}(D) is closed in R_K x R_K and be done, it 
+remains just to show {(1/n,1/m) |n,m in Z+} is closed in R_K x R_K. <br>
+
+This set is K x K. Now we have already seen K is closed in R_K so this 
+final thing will follow from the following general lemma: <br> 
+
+Lemma: A closed in X, B closed in Y then A x B closed in X x Y. <br>
+Pf of lemma: Assume A closed in X and B closed in Y then look at <br> 
+X x Y - A x B = [(X-A) x Y] union [X x (Y-B)]. <br>
+But X-A is open in X and Y-B is open in Y so  
+both (X-A) x Y and X x (Y-B) is open in  X x Y and so it follows that 
+the complement of A x B in X x Y is open, being the union of two open 
+sets. This shows A x B is closed in X x Y as desired. <br>
+
+<P>
+<CENTER>
+<B> Additional quotient questions: </B>
+</CENTER>
+
+<P>
+A1: (a) A rectangle. <br>
+(b)(i) A single circle. <br>
+(ii) One piece is a thin Mobius band, the other is a thin cylinder. 
+(If you do this with a model in R^3, the two pieces will be linked and 
+twisted) <br>
+
+<P>
+A2: Ask me since it is too hard to describe versus to draw.
+
+<HR>
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>
+
+

@@ -1,0 +1,167 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 3 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B>Section 6:</B>
+</CENTER>
+
+<P>6(a): Let A={1,2,...,n}, X={0,1} and define f: P(A) -> X^n via 
+f(U)=(b(1),...,b(n)) where b(j)=1 if j in U and b(j)=0 if j not in U. <br>
+Then note f(U)=f(V) if and only if U and V contain the same elements, 
+i.e., U=V and so f is one-to-one. <br> Also for any (b(1),..,b(n)) in X^n, 
+if we set U={j | b(j)=1} then U in P(A) and f(U)=(b(1),..,b(n)) and so 
+f is onto also. <br> Thus f is the desired bijection. <br>
+
+(b): If A is finite, then A <-> {1,2,...,n} and so P(A) <-> P({1,..,n})
+<-> X^n by part (a). X^n is finite by Corollary 6.8 and so we conclude 
+P(A) is finite. <br>
+
+<P>
+<CENTER>
+<B>Section 7</B>
+</CENTER>
+
+<P>3: X={0,1}, define f: P(Z+) -> X^Omega by 
+f(U)=(b(1),b(2),......) where b(j)=1 if j in U and b(j)=0 if j not in U. 
+<BR>
+Now f(U)=f(V) implies U and V contain exactly the same elements and 
+so U=V and hence f is one-to-one. <br>
+On the other hand given (b(1),b(2),.....) in X^Omega we 
+can define U={ j | b(j)=1} and then U in P(Z+) and f(U)=(b(1),....) 
+so f is onto also. <br> Thus f is the desired bijection.
+
+<P>4(a): 
+For fixed n in Z+, let P(n)={ x^n + a(n-1)x^(n-1) +...+ a(0) | a(i) 
+rational }. Then P(n) is the set of rational polynomials of degree n with 
+leading coefficient 1. <br>
+Now if we define f: P(n) -> Q^n by 
+f(x^n+a(n-1)x^(n-1)+...+a(0))=(a(n-1),a(n-2),..,a(0)) then this is clearly 
+a bijection. <br>
+Now Q is countable, and hence Q^n is countable by Theorem 7.6. 
+Thus we conclude P(n) is countable for each fixed n in Z+. <br>
+Then if P = Union P(n), then P is a countable union of countable sets 
+and so is countable. <br>
+Now for any polynomial p in P, we have Z(p)={ x | p(x)=0} is finite. <br>
+Thus if Alg={Algebraic numbers} then Alg= Union Z(p) where the union is 
+over p in P. Since each Z(p) is finite (hence ctbl.) and the union is 
+countable, we conclude Alg is countable. <br>
+(b): Tran={Transcendental numbers}=R-Alg. Now R = Alg U Tran. 
+If the set Tran were countable, then R would be the union of two countable 
+sets and hence be countable, contrary to what we know about it. 
+Thus since R is uncountable, we conclude that it must be that Tran is 
+uncountable too. <br>
+
+<P>5: <br>
+(a) Define g: A -> Z+ x Z+ by g(f)=(f(0),f(1)). <br>
+It is not hard to check that g is a bijection and hence A is countable 
+since Z+ x Z+ is. <br>
+(b) Define g: B(n) -> (Z+)^n by g(f)=(f(1),..,f(n)). <br>
+Again one can check that g is a bijection and hence B is countable 
+since (Z+)^n is. <br>
+(c) C is countable since a countable union of countable sets is countable. 
+<br>
+(e) Define g: E -> {0,1}^Omega by g(f)=(f(1),f(2),f(3),....). <br>
+This is easily checked to be a bijection and hence E is uncountable 
+since {0,1}^Omega, the set of sequences of 0 and 1's is uncountable. <br>
+(d) Define g: D -> (Z+)^Omega by g(f)=(f(1),f(2),f(3),....). <br>
+g is a bijection. Hence D is uncountable since the set of integer 
+sequences is uncountable. (Since for example the set of 0/1 sequences is 
+already uncountable.) <br>
+(f) Let F(N)={ f: Z+ -> {0,1} | f(m)=0 for m > N }. <br> 
+Then F = Union F(N). <br>
+Now g: F(N) -> {0,1}^N given by g(f)=(f(1),f(2),...,f(N)) is a injection 
+since for f,h in F(N) g(f)=g(h) implies f=h (entries after N are 0 for 
+both anyway). Also g is clearly onto so F(N) is bijective with {0,1}^N 
+and hence is finite. Thus F is a countable union of finite sets and hence 
+is countable. <br>
+(g) Let G(N)={ f: Z+ -> Z+ | f(m)=1 for m > N }. <br>
+Then G = Union G(N). <br>
+Now g: G(N) -> (Z+)^N given by g(f)=(f(1),f(2),...,f(N)) is a bijection 
+as argued in (f). Thus each G(N) is countable since (Z+)^N is. <br>
+Finally since G is a countable union of countable sets, G is countable. 
+<br>
+(h) H = Union H(m), m in Z+ where H(m) is the set of functions which are 
+"eventually m". By similar arguments as in (g), each individual H(m) 
+set is countable and hence H is countable as it is a ctbl union of ctbls. 
+<br>
+(i) Consider T = {(m,n) | m,n in Z+, m not equal to n}. 
+Since T is a subset of Z+ x Z+, T is countable. <br>
+Now define g: T -> I by g(m,n)={m,n}. This map is clearly onto but 
+is not one-to-one. (It is two-to-one, g(1,2)={1,2}=g(2,1) for example.). 
+<br> However we still have I is a surjective image of a countable set 
+so is countable by Theorem 7.1. <br>
+(j) J(m)=Set of all subsets of size m in Z+. Then by similar arguments as 
+in (i), each individual J(m) is countable. <br>
+Now J=Union J(m), m=0,1,2,3,... and so J is a countable union of 
+countable sets and so is countable. 
+
+<P>6(a): A(1)=A, A(n)=f(A(n-1)) for n > 1 and similarly B(1)=B, 
+B(n)=f(B(n-1)) for n > 1. <br>
+Note B < A (I will use < for subset) by assumption 
+so B(1) < A(1). <br>
+Thus f(B(1)) < f(A(1)) and so B(2) < A(2) and by induction 
+B(n)=f(B(n-1)) < A(n)=f(A(n-1)) for all n. Also note since f: A -> B,
+A(2)=f(A) < B(1)=B and so A(2) < B(1). Again by induction 
+A(n)=f(A(n-1)) < B(n-1)=f(B(n-2)) for all n > 1. <br>
+Thus we have picture  ... < B(3) < A(3) < B(2) < A(2) < B(1) < A(1). <br>
+Note by this all the sets A(n)-B(n), B(m)-A(m), for m,n in Z+ are 
+disjoint. Let R=A-union(A(n)-B(n))-union(B(m)-A(m)). [This will 
+consist of potential stuff in all B(m),A(m)'s for example.]<br>
+
+Now note h(R)=R, h(B(m)-A(m))=B(m)-A(m), and <br>
+finally h(A(n)-B(n))=f(A(n)-B(n))=f(A(n))-f((B(n)) [as f is one-to-one see 
+first week's exercises] <br>
+Thus h(A(n)-B(n))=A(n+1)-B(n+1) for all n >= 1. <br>
+From this we see h(A)=R union (B(m)-A(m)) union (A(n+1)-B(n+1)) for n,m in 
+Z+. <br>
+Thus besides A(1)-B(1) which is missed, h hits everything else and so is 
+onto as a function h: A -> B=B(1). <br>
+Now since h is one-to-one on the individual disjoint pieces R, B(m)-A(m),
+and A(n)-B(n) and since it maps these pieces to disjoint regions, 
+we can conclude h is one-to-one on A. <br>
+Thus h: A -> B is a bijection as desired. <br>
+(b): Set B=g(C) then since g is one-to-one, B and C have the same 
+cardinality. <br> Now B < A and  (gf): A -> B is injective 
+since the composition of two injective functions is injective. <br>
+Thus by part (a), we can find a bijection h: A -> B and so 
+A and B have the same cardinality also. <br>
+Finally since |A|=|B| and |B|=|C| we can conclude that |A|=|C| 
+since the composition of two bijections is a bijection. <br>
+[Here |A|=|B| means there is a bijection between A and B etc.]
+
+<P>9(a): Rewrite system * as ** as follows: <br>
+h(1)=1 <br>
+h(2)=2 <br>
+h(n+1)= sqrt(h(n) + h(n-1)^2) for n >= 2. <br>
+where the positive square root has been taken. <br>
+It is easy to check that any h satisfying these new conditions ** 
+satisfies the original ones *. <br>
+Define P: Union (R+)^n -> R+ by <br>
+P(a(1),..,a(n))=sqrt(a(n)+a(n-1)^2) if n >= 2 <br>
+P(a(1))=2 <br>
+Note no problem with sqrt as the a(j)'s are in R+. <br>
+Then by the principle of recursive definition, there is h: Z+ -> R+ 
+such that <br>
+h(1)=1 <br>
+h(n+1)=P(h(1),...,h(n)) for n >=1. <br>
+and this h easily is seen to satisfy ** and hence *. <br>
+9(b): Book is in error! The modified function will not work in system * 
+for n=2 case. <br>
+9(c): Supposing there is such a function. Then 
+using equations for n=2 case we get: <br>
+h(2)=[h(3)]^2 + [h(1)]^2 so 2=[h(3)]^2 + 1 so h(3)= +- 1. <br>
+Now using the equations for n=3 case we get: <br>
+h(3)=[h(4)]^2 + [h(2)]^2 so +- 1 = [h(4)]^2 + 4. <br>
+There is no real number h(4) that satisfies this and so we conclude 
+there was no h: Z+ -> R that satisfied the system given in (c). 
+
+
+<P>
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>

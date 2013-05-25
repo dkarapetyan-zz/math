@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 5 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B> Section 16:</B>
+</CENTER>
+
+<P> 
+#3: Note since all the sets are subsets of Y, if they are open in R, 
+they will automatically be open in Y. <BR>
+A is open in R and in Y as A=(-1,-1/2) union (1/2,1)= union of two R-basis 
+elements. <br>
+B is not open in R but open in Y. B is not open in R as 1 in B but there 
+is no interval (a,b) such that 1 in (a,b) subset B. B is open in Y since 
+it is the intersection of the open set (-100,-1/2) union (1/2,100) of 
+R with Y. <br>
+C is not open in Y or R since 1/2 in C but there is no (a,b) such that 
+1/2 in (a,b) subset C. <br>
+D is not open in Y or R for the same reason as for C. <br>
+1/x not in Z+ is the same as saying x not equal to 1/n for any n in Z+,
+thus E=(-1,1)-{0,1/n | n in Z+}=(-1,0) union A(n) where 
+A(n)=(1/(n+1),1/n) and the union is over all n in Z+. This is a union of 
+open sets in R so is open in R and hence also open in Y. <br>
+
+<P>
+#4: Consider a basis open set U x V of X x Y where U open in X and V open 
+in Y. Note pi_1(U x V)= U if V is not empty and the empty set if V is 
+empty. Either case, pi_1(U x V) is open in X. <br>
+Now if W is an open set of X x Y, then W = Union U(i) x V(i) for i in some 
+index set. Then pi_1(W)= Union pi_1(U(i) x V(i)) [Exercise 2(f) Pg 21]
+and so pi_1(W) is the union of open sets of X and hence is open in X. 
+Thus we have seen W open in X x Y -> pi_1(W) open in X and so pi_1 is an 
+open map. The proof that pi_2 : X x Y -> Y is open is similar.
+
+<P>
+#6: For any ((x,y)) (I will use ((-)) for Cartesian pairs here and 
+(-,-) for intervals) there are rational numbers a,b,c,d such that 
+a < x < b and c < y < d and so ((x,y)) in (a,b) x (c,d). 
+So ((x,y)) lies in some "rational square". <br>
+Also note for a,b,c,d,e,f,g,h rational, we have 
+[(a,b) x (c,d)] intersect [(e,f) x (g,h)] = 
+(max(a,e),min(b,f)) x (max(c,g),min(d,h)) which is another rational 
+square. So if B(1) and B(2) are two rational squares and ((x,y)) in B(1) 
+int 
+B(2) we can use B(3)=B(1) intersect B(2) since this is also a rational 
+square, so ((x,y)) in B(3) subset B(1) intersect B(2) trivially in this 
+case. 
+<br>
+Thus the rational squares are a basis for a topology on R^2 - it remains 
+to show that this gives the standard topology of the plane given by the 
+basis of ALL squares (a,b) x (c,d). 
+First of all, it is clear given B a rational square and ((x,y)) in B 
+we can find a usual square B' such that ((x,y)) in B' subset B since we 
+can just 
+use B'=B. 
+So we mainly have to look at ((x,y)) in B'=(a,b) x (c,d) a usual square 
+and find 
+a rational square B such that ((x,y)) in B subset B'.
+Well a < x < b and c < y < d. But between any two real numbers, we can 
+find a rational number and so we can find q(1),q(2),q(3),q(4) rational 
+such that a < q(1) < x < q(2) < b and c < q(3) < y < q(4) < d. 
+Then if B=(q(1),q(2)) x (q(3),q(4)) we have ((x,y)) in B subset B'.
+
+So by lemma 13.3, the topology defined by all the squares is the same as 
+the topology defined by the rational squares.
+
+Note this shows that R^2 does have a countable basis, since the 
+collection of all rational squares is countable. (Since it bijects with Q 
+x Q which is countable)
+
+<P>
+#8: This is best done by drawing pictures so let me just state the 
+answers: <br>
+In R_l x R: <br>
+Vertical lines inherit the standard topology of the line while lines of 
+any other slope inherit the lower limit topology. <br>
+In R_l x R_l: <br>
+Lines of nonnegative slope inherit the lower limit topology while lines of 
+negative slope inherit the discrete topology.
+
+<P>
+#9: Note R_d has a basis collection { {x} | x in R} consisting of the 
+singleton sets. Thus R_d x R has a basis of sets of the form {x} x (a,b) 
+which are small open-ended vertical line segments. 
+Notice all the basis sets for R_d x R are open in the dictionary topology 
+and vice versa (the "bigger intervals" in the dictionary topology are 
+unions of the "smaller" vertical line segments and so are still open in 
+the R_d x R topology.). Thus the open sets in both topologies are the same 
+and so R_d x R is the same topology as R^2 with the dictionary topology. 
+
+Given a open basis set B=(a,b) x (c,d) for the product topology of R^2 
+and ((x,y)) in B, it is clear that we can find a vertical segment B' 
+such that ((x,y)) in B' subset B. Thus the product topology will be 
+coarser than the dictionary topology by Lemma 13.3. On 
+the other hand the vertical segment {1} x (5,7) is not open in the usual 
+topology and so Usual topology is a strict subset of Dictionary topology.
+(In other words the standard topology is strictly coarser than the 
+dictionary topology.)
+
+<P>
+#10: All three topologies are different. Let us call the 
+topology inherited from (R^2,dictionary) the subspace dictionary 
+topology for the remainder of this problem. <br>
+Consider U=(0.4,0.6) x [0,0.2) in I x I, this is open in the product 
+topology of I x I as [0,0.2),(0.4,0.6) are open in I=[0,1]. <br>
+However in the dictionary topology of I x I, any nhd of ((0.5,0)) 
+has to go outside of U so U is not open in the dictionary topology of 
+I x I. Also U = union [((x,0)),((x,0.2)) ) where 0.4 < x < 0.6 and 
+this union is over half-open vertical line segments. Thus U is open 
+in the subspace topology from (R^2,dictionary).
+Thus  U shows that (I x I, dictionary) is different from the other two. 
+<br>
+Now consider V={((1/2,y)) | 0.2 < y < 0.8 }, V is open in 
+the dictionary and subspace dictionary topologies but not the product 
+topology. This shows product topology is different from the other two.
+<br>
+Thus we have seen all 3 topologies are distinct and the product topology 
+and dictionary topology are incomparable. It is not hard to show by 
+considering the basis elements that the subspace dictionary topology is 
+finer than the other two since the basis elements of the other two are 
+open in the subspace dictionary topology. <br>
+
+
+
+
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>
+

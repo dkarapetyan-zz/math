@@ -72,9 +72,9 @@ u(0,x)\,=\,u_0(x),\qquad u_t(0,x)\,=\,u_1(x),\\
 \end{equation}
 where $M=\mathbb{R}$ (the non-periodic case) or $M=\mathbb{T}$ (the periodic case). Such an  equation, with $f(u)=4u^3-6u^5$, was derived by Falk, Laedke, and Spatschek \cite{FLS} in the study of shape-memory alloys. For $f(u) =  u^{2}$ one recovers the classical ``good'' Boussinesq equation, which is known to describe electromagnetic waves in nonlinear dielectrics \cite{T93}. 
 
-As the ``good'' equation has been the subject of quite a few recent investigations (e.g., \cite{KT10}, \cite{OS12}, \cite{K12}), where almost-complete references for this problem have been discussed, we will mention here only previous results relevant to generalized type equations. 
+The ``good'' equation is, by far, the best understood member of the family described by \eqref{main}, being the subject of quite a few recent investigations: Farah \cite{F09}, Farah and Scialom \cite{FS10}, Kishimoto and Tsugawa \cite{KT10}, Oh and Stefanov \cite{OS12}, and Kishimoto \cite{K12}. It was showed by Kishimoto in \cite{K12} that both the periodic and non-periodic Cauchy problems are locally well-posed (LWP) in $H^s \times H^{s-2}$, for $s\geq-1/2$, and ill-posed (IP), for $s<-1/2$, in the sense that the associated flow map is not continuous at zero.
 
-In the non-periodic case, Bona and Sachs \cite{BS} proved local well-posedness (LWP) of \eqref{main} for $f\in C^\infty(\mathbb{R})$, $f(0)=0$, and $(u_0,u_1)\in H^s \times H^{s-2}$, $s>5/2$. Moreover, for pure power nonlinearities, $f(u)\simeq\pm |u|^{p-1}\,u$, with $1<p<5$, they showed nonlinear stability of solitary wave solutions and found sufficient conditions for the global existence of smooth solutions.  The LWP was then improved for pure power nonlinearities by Tsutsumi and Matahashi \cite{TM}, who demonstrated that this holds for $u_0\in H^1$ and $u_1=\phi_{xx}$, with $\phi\in H^1$. This was followed by Linares \cite{L93}, who proved LWP for $(u_0,u_1)=(g, h_x)$ when either $(g,h) \in H^1\times L^2$ and $p>1$ or $(g,h) \in L^2 \times \dot{H}^{-1}$  and $1<p\leq 5$. Furthermore, one has global well-posedness (GWP) in the former setting if $\|g\|_{H^1}+\|h\|_{L^2}$ is sufficiently small. Finally, Farah \cite{F092} showed LWP for $u_0\in H^s$ and $u_1=\phi_{xx}$, with $\phi\in H^s$, when
+For general equations, in the non-periodic case, Bona and Sachs \cite{BS} proved LWP of \eqref{main} for $f\in C^\infty(\mathbb{R})$, $f(0)=0$, and $(u_0,u_1)\in H^s \times H^{s-2}$, $s>5/2$. Moreover, for pure power nonlinearities, $f(u)\simeq\pm |u|^{p-1}\,u$, with $1<p<5$, they showed nonlinear stability of solitary wave solutions and found sufficient conditions for the global existence of smooth solutions.  The LWP was then improved for pure power nonlinearities by Tsutsumi and Matahashi \cite{TM}, who demonstrated that this holds for $u_0\in H^1$ and $u_1=\phi_{xx}$, with $\phi\in H^1$. This was followed by Linares \cite{L93}, who proved LWP for $(u_0,u_1)=(g, h_x)$ when either $(g,h) \in H^1\times L^2$ and $p>1$ or $(g,h) \in L^2 \times \dot{H}^{-1}$  and $1<p\leq 5$. Furthermore, one has global well-posedness (GWP) in the former setting if $\|g\|_{H^1}+\|h\|_{L^2}$ is sufficiently small. Finally, Farah \cite{F092} showed LWP for $u_0\in H^s$ and $u_1=\phi_{xx}$, with $\phi\in H^s$, when
 \[
 p>1 \quad \text{and} \quad s\geq \max \left\{0,\,\frac{1}{2}-\frac{2}{p-1}\right\}. \]
 For the defocusing problem $f(u)= -|u|^{p-1}\,u$, where $p\geq 3$ is an odd integer, Farah and Linares \cite{FL} and Farah and Wang \cite{FW12}, respectively, proved GWP for 
@@ -90,7 +90,9 @@ They also showed that, for
 f(u)\,=\,\lambda |u|^{q-1}u - |u|^{r-1}u, \quad 1<q<r, \quad \lambda\in \mathbb{R},\] 
 GWP holds if $(u_0,u_1)\in H^1\times H^{-1}$. 
 
-An important fact revealed by this literature review is the absence of ill-posedness (IP) results for generalized Boussinesq equations. This  was also mentioned in  \cite{FW12}, where it was posed as an interesting open problem. The goal of this article is to answer this question, our results addressing both the non-periodic and periodic cases. 
+One notices from this literature review the lack of IP results for generalized Boussinesq equations. In fact, this  was also mentioned in  \cite{FW12}, where it was proposed as an interesting open problem. The goal of this article is to answer this question, our results addressing both the non-periodic and periodic cases. 
+
+They are similar, in spirit, with the ones originating in the work of Bourgain \cite{B97} on the KdV equation (see also Tzvetkov \cite{T99}) and obtained also for other dispersive equations (e.g., Bona and Tzvetkov \cite{BT09}). Nevertheless, given that all of these papers are concerned strictly with equations having quadratic nonlinearities, we believe our results, especially for odd values of $p$, represent genuinely new contributions to the field.  
 
 \begin{theorem}
 Consider the Cauchy problem \eqref{main} with  $f(u)=\pm\, u^p$, where $p>1$ is an integer, and let 
@@ -108,12 +110,12 @@ Then there exists $T>0$ such that the flow map
 S(t):  H^{s} \times H^{s-2}(M) \to H^{s}(M), \quad S(t)(u_0,u_1)\,=\,u(t), \quad 0< t < T,
 \label{solmap}
 \end{equation}
-for \eqref{main} is not $C^p$ Fr\'{e}chet-differentiable at zero.
+for \eqref{main} does not admit a $p$-th order Fr\'{e}chet derivative at zero.
 \label{mainth}
 \end{theorem}
 
 \begin{remark}
-A careful inspection of the proof for Theorem \ref{mainth} reveals that in the particular case of the ``good'' Boussinesq equation, i.e., $p=2$, we obtain a much stronger result which was previously obtained by Kishimoto \cite{K12}. Our argument, which one needs to combine with a rather general method for proving IP introduced by Bejenaru and Tao \cite{BT06}, shows that the flow map is in fact not continuous at zero for $s<-\frac 12$.
+A careful inspection of the argument for Theorem \ref{mainth} reveals that, in the particular case of the ``good'' Boussinesq equation, we reprove Kishimoto's \cite{K12} stronger IP result, i.e., the flow map is not continuous at zero for $s<-\frac 12$. To achieve this, one needs to combine, in a straightforward way, our argument with a rather general method for proving IP introduced by Bejenaru and Tao \cite{BT06}.
 \end{remark}
 
 \begin{remark}
@@ -121,12 +123,15 @@ Our results apply also to generalized Boussinesq equations with
 \[
 u: \mathbb{R}_+\times M \to \mathbb{C},
 \]
-as all of the functions involved in our argument take real values. In these cases, the nonlinearity has the profile
+as all of the functions involved in our proof take real values. In these cases, the nonlinearity has the profile
 \[
 f(u)\,=\,\pm\,u^{p-q}\,\overline{u}^q,
 \]
 where both $p>1$ and $q\geq 0$ are integers and $p\geq q$. 
 \end{remark}
+
+A natural question is why such a result can be classified as an IP one. The reason is that, when one solves \eqref{main} by Picard iteration applied to an integral formulation, as a by-product of this method, the solution map is real analytic, hence $C^\infty$ Fr\'{e}chet-differentiable. Thus, Theorem \ref{mainth} states that the most often used method for solving nonlinear dispersive equations fails to work for our problem when $s$ verifies \eqref{sp}.
+
 
 
 \section{Preliminaries}
@@ -581,81 +586,11 @@ For all such representations, it is straightforward to deduce
 which finishes the proof.
 
 \section*{Acknowledgements}
-We are indebted to Nobu Kishimoto for pointing out to us the insufficiency of \eqref{ivhs} and \eqref{ratio} in claiming the discontinuity of the flow map. The first author was supported in part by the National Science Foundation Career grant DMS-0747656. 
-
-\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
-\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
-% \MRhref is called by the amsart/book/proc definition of \MR.
-\providecommand{\MRhref}[2]{%
-  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
-}
-\providecommand{\href}[2]{#2}
-\begin{thebibliography}{10}
-
-\bibitem{BT06}
-I.~Bejenaru and T.~Tao, \emph{Sharp well-posedness and ill-posedness results
-  for a quadratic non-linear {S}chr\"odinger equation}, J. Funct. Anal.
-  \textbf{233} (2006), no.~1, 228--259.
-
-\bibitem{BS}
-J.~L. Bona and R.~L. Sachs, \emph{Global existence of smooth solutions and
-  stability of solitary waves for a generalized {B}oussinesq equation}, Comm.
-  Math. Phys. \textbf{118} (1988), no.~1, 15--29.
-
-\bibitem{FLS}
-F.~Falk, E.~W. Laedke, and K.~H. Spatschek, \emph{Stability of solitary-wave
-  pulses in shape-memory alloys}, Phys. Rev. B \textbf{36} (1987), no.~6,
-  3031--3041.
-
-\bibitem{FG96}
-Y.~F. Fang and M.~G. Grillakis, \emph{Existence and uniqueness for {B}oussinesq
-  type equations on a circle}, Comm. Partial Differential Equations \textbf{21}
-  (1996), no.~7-8, 1253--1277.
-
-\bibitem{F092}
-L.~G. Farah, \emph{Local solutions in {S}obolev spaces and unconditional
-  well-posedness for the generalized {B}oussinesq equation}, Commun. Pure Appl.
-  Anal. \textbf{8} (2009), no.~5, 1521--1539.
-
-\bibitem{FL}
-L.~G. Farah and F.~Linares, \emph{Global rough solutions to the cubic nonlinear
-  {B}oussinesq equation}, J. Lond. Math. Soc. (2) \textbf{81} (2010), no.~1,
-  241--254. \MR{2580463 (2011i:35214)}
-
-\bibitem{FW12}
-L.~G. Farah and H.~Wang, \emph{Global solutions in lower order {S}obolev spaces
-  for the generalized {B}oussinesq equation}, Electron. J. Differential
-  Equations \textbf{2012} (2012), no.~41, 1--13.
-
-\bibitem{K12}
-N.~Kishimoto, \emph{Sharp local well-posedness for the "good" {B}oussinesq
-  equation}, preprint, arXiv:1203.6374.
-
-\bibitem{KT10}
-N.~Kishimoto and K.~Tsugawa, \emph{Local well-posedness for quadratic nonlinear
-  {S}chr\"odinger equations and the ``good'' {B}oussinesq equation},
-  Differential Integral Equations \textbf{23} (2010), no.~5-6, 463--493.
-
-\bibitem{L93}
-F.~Linares, \emph{Global existence of small solutions for a generalized
-  {B}oussinesq equation}, J. Differential Equations \textbf{106} (1993), no.~2,
-  257--293.
-
-\bibitem{OS12}
-S.~Oh and A.~Stefanov, \emph{Improved local well-posedness for the periodic
-  "good" {B}oussinesq equation}, preprint, arXiv:1201.1942.
-
-\bibitem{TM}
-M.~Tsutsumi and T.~Matahashi, \emph{On the {C}auchy problem for the
-  {B}oussinesq type equation}, Math. Japon. \textbf{36} (1991), no.~2,
-  371--379.
-
-\bibitem{T93}
-S.~K. Turitsyn, \emph{Nonstable solitons and sharp criteria for wave collapse},
-  Phys. Rev. E (3) \textbf{47} (1993), no.~2, R796--R799.
-
-\end{thebibliography}
+We are indebted to Nobu Kishimoto for helpful discussions in connection with the insufficiency of \eqref{ivhs} and \eqref{ratio} in claiming the discontinuity of the flow map. The first author was supported in part by the National Science Foundation Career grant DMS-0747656. 
 
 
 \bibliographystyle{amsplain}
+\bibliography{bousbib}
+
+
 \end{document}

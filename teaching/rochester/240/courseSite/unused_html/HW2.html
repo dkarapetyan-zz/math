@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 2 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B>Section4:</B>
+</CENTER>
+
+<P>1: <BR> More generally let us check that if = is an equivalence 
+relation (like say equality!) on B and f: A -> B. Then if we set u ~ v in 
+A iff f(u)=f(v), 
+~ will be an equivalence relation on A. <br>
+[In our case: A is R^2, B is R with the usual = and f(x,y)=y-x^2.] <br>
+REFLEXIVE: u ~ u as f(u)=f(u). <br>
+SYMMETRIC: u ~ v -> f(u)=f(v) -> f(v)=f(u) -> v ~ u. <br>
+TRANSITIVE: u ~ v and v ~ z -> f(u)=f(v) and f(v)=f(z) -> f(u)=f(z) -> u ~ 
+z. <br>
+Back to our example, the equivalence classes are parabolas of the form 
+y-x^2=a for various constants a. <br> 
+
+<P>4(a): Follows from proof of 1 above. <br>
+(b): Define g: A* -> B by g([a]) = f(a). This is a well-defined function, 
+i.e. does not have multiple outputs for a single input, as if [a]=[x] 
+then a ~ x and so f(a)=f(x) by definition and so g([a])=g([x]). <br>
+Now as f was onto, for b in B, there is a in A such that f(a)=b and 
+hence g([a])=b so g is onto also. <br>
+Now if g([a])=g([c]) then f(a)=f(c) and so a ~ c. Thus [a]=[c]. 
+So we conclude g is one-to-one also. Thus g is bijective. <br>
+
+<P>6: Let f: R^2 -> R be given by f(x,y)=y-x^2 for this problem. <BR>
+Given (u,v), (x,y), by trichotomy for usual (R,<), either: <br>
+(a) f(u,v) < f(x,y). In this case (u,v) < (x,y). <br>
+(b) f(u,v) > f(x,y). In this case (x,y) < (u,v). <br>
+(c) f(u,v)=f(x,y). Now in this case if u < x or x < u we can still 
+compare the vectors, we only need check if it is possible u=x also. 
+Well if u=x and f(u,v)=f(x,y) we get v-u^2=y-x^2 and so v=y since u=x. 
+Thus (u,v)=(x,y). <br>
+So in all cases we see either (u,v) < (x,y), (x,y) < (u,v) or (x,y)=(u,v). 
+<br>
+It only remains to check transitivity which is tedious but 
+straightforward. <br>
+To picture, note that on a given parabola f(x,y)=c=constant, 
+the vectors "get larger in the ordering" as we move to the right. <br>
+On the other hand all the vectors on the parabola f(x,y)=c 
+are larger than those on f(x,y)=d when c > d. <br>
+
+
+<P>12: <br>
+(i): (n,1) do not have immediate predecessors for any n in Z+, <br>
+(m,n) has immediate predecessor (m,n-1) for n > 1. <br>
+(1,1) is the smallest element. <br>
+<br>
+(ii): considering lines x-y=c=constant, we see that on y=x-c, 
+the ordering is increasing as we go upward, and also points on the 
+line y=x-c are bigger than those on the line y=x-d if c > d. <br>
+With this we see: <br>
+There is no smallest element as (m,n) > (m,n+1) for all m,n in Z+. <br>
+On each y=x-c line, all element have predecessors except the ones 
+that are bottomost i.e., of the form (c+1,1). <br>
+<br>
+(iii): considering lines x+y=c=constant, we see that on y=-x+c, 
+the ordering is increasing as we go upward, and also points on the line 
+y=-x+c are bigger than those on the line y=-x+d if c > d. <br>
+With this we see: <br>
+(1,1) is the smallest element as for any other element (m,n) in Z+ x Z+ we 
+have m+n > 1+1=2. <br>
+if (m,n) on the line x+y=c is not "bottomost" i.e., not (c-1,1), 
+it has predecessor, (m+1,n-1). <br> 
+On the other hand if it is bottomost, then note the predecessor of (c-1,1) 
+is the topmost element of the next lower line x+y=c-1, or in other words 
+(1,c-2). This works as long as we are not on the "lowest line" i.e. 
+as long as we are not looking at (1,1) which is the only element 
+with no predecessor in this ordering. <br>
+Since (ii) has no smallest element it is not of the order type of (i) or 
+(iii). <br>
+(i) is not of the order type of (iii) since (i) has infinitely many 
+elements with no immediate predecessor while (iii) has only got one 
+such element (1,1). <br>
+ 
+
+
+
+<P>
+<CENTER>
+<B>Section5:</B>
+</CENTER>
+
+<P>4: <BR> Choose some element say 0 in X (of course X need not actually  
+have zero in it but we will just use this symbolically for any chosen 
+element from X) for the rest of the exercise. <br>
+(a) f(x(1),..,x(m))=(x(1),..,x(m),0,0,0,..,0) 
+is an injective map f: X^m -> X^n for n >= m. (Use n-m 0's.) <br>
+(b) g((a(1),..,a(m)),(b(1),..,b(n)))=(a(1),..,a(m),b(1),..,b(n)) 
+is a bijection X^m x X^n -> X^(m+n). <br>
+(c) h(b(1),..,b(n))=(b(1),..,b(n),0,0,......) is an injection 
+h: X^n -> X^Omega. <br>
+(d) k((a(1),a(2),..,a(n)), (b(1),b(2),...))=(a(1),..,a(n),b(1),b(2),....) 
+is a bijection X^n x X^Omega -> X^Omega. <br>
+(e) l((a(1),a(2),...),(b(1),b(2),...))=(a(1),b(1),a(2),b(2),......) is 
+a bijection X^Omega x X^Omega -> X^Omega. <br>
+(f) m( (x(m,1)),...,(x(m,n)) ) = 
+(x(1,1),x(1,2),..,x(1,n),x(2,1),..,x(2,n)..) <br>
+is a bijection where (x(m,1)) is the first sequence (in m) and (x(m,2)) is 
+the second and so forth. <br>
+
+<P>5: <BR>
+(a) Z^Omega. YES. <BR>
+(b) x A(i), where A(i)={i,i+1,..}. YES. <BR>
+(c) R x ... x R x Z x Z x...., [99 R's]. YES. <BR>
+(d) NO. Since if we set A={(x(n)) in R^Omega | x(2)=x(3)} then 
+the constant sequences are all in A. Thus if A were to be a Cartesian 
+product of subsets of R, since any real number occurs as the second/third  
+coordinate of some element of A, we have A=R x R x R x....=R^Omega 
+which is not true since (1,2,3,4,...) is not in A. <br>
+
+
+<HR>
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>

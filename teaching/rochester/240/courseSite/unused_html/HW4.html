@@ -1,0 +1,198 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 4 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B>Section 10:</B>
+</CENTER>
+
+<P>
+#1: Let (X,<) be a well-ordered (WO) set. Now let S be a nonempty subset 
+of S which is bounded above by u in X. <br>
+Then UPP={v in X | v is an upper bound for S} is nonempty since u is in 
+it. <br>
+Thus by WO, UPP has a smallest element t in it. Thus t is an upper bound 
+for S such that if v is any other upper bound for S, t <= v. In other 
+words t is the least upper bound for S. <br>
+Thus we have shown that any nonempty, bounded above subset of X has 
+a least upper bound which is exactly the least upper bound property. <br>
+
+<P>
+#3: They do not have the same order type. {1,2} x Z+ has two elements 
+without an immediate predecessor: (1,1) and (2,1). <br>
+On the other hand Z+ x {1,2} has only one element without an immediate 
+predecessor, i.e., (1,1). <br>
+Thus they cannot be of the same order type. <br>
+In fact Z+ x {1,2} has the order type of Z+ under the map f given by: <br>
+f(n,1)=2n-1, f(n,2)=2n for n in Z+. <br>
+On the other hand {1,2} x Z+ has the order type of S(2omega) 
+where omega=small omega=first infinite ordinal and:
+S(2omega)={1,2,...,omega} union {omega+1,omega+2,...,2omega} - {2omega}. 
+<br>
+The order type map is g: {1,2} x Z+ -> S(2omega) given by: <br>
+g(1,n)=n and g(2,n)=omega+n-1. <br>
+
+<P>
+#6:(a): Suppose B is the largest element of S(Omega). Then 
+S(B)={x | x < B} is countable by one of the basic properties of S(Omega) 
+and so S(Omega)=S(B) union {B} would be countable, contrary to the 
+fact that S(Omega) is uncountable. <br>
+Thus S(Omega) has no largest element. <br>
+(b): For any a in S(Omega) we know S(a)={x | x < a} is countable. <br>
+Now S(Omega)=S(a) union {a} union {x | x > a}. <br>
+Since S(Omega) is uncountable and S(a),{a} are countable we 
+see that {x | x >a} has to be uncountable to not contradict the 
+fact that countable unions of countable sets are countable. <br>
+(c): First: Let us show that for any b in S(Omega), there is a c in X(0) 
+such that b < c. <br> Well, since there is no largest element in S(Omega) 
+and since in a well ordered set every nonlargest element has an immediate 
+successor (take the smallest from the set of successors), we can form 
+b < b + 1 < b+2 <..... inductively, thus {b+n | n in Z+} is bijective to 
+Z+where we use the usual notation for successors. 
+<br>
+Now S(b)={x | x < b} is countable and so 
+A=S(b) union {b} union {b+n | n in Z+} is countable so since S(Omega) 
+is uncountable, S(Omega)-A is nonempty. Thus we can take the smallest 
+element c in S(Omega)-A. Then it is easy to see that c is larger than 
+all elements in A but is the smallest of S(Omega)-A and so 
+c has no immediate predecessor. Thus c in X(0) has b < c as desired. <br>
+Second: Now we can look at  T=union S(c), where union is over c in X(0). 
+Now since any b in S(Omega), has some c in X(0) with b < c, then b in S(c) 
+so b in T. <br>
+Thus T=S(Omega)=union S(c), union over c in X(0). <br>
+Now since S(Omega) is uncountable and each S(c) is countable, 
+we see that X(0) has to be uncountable to not contradict the fact 
+that a countable union of countable sets is countable. <br>
+
+
+<P>
+<CENTER>
+<B>Section 13:</B>
+</CENTER>
+
+<P>
+#4(c): SmallestTopologyContaining(T1,T2)={empty,X,{a},{a,b},{b,c},{b}} 
+<br>
+Notice the topology is not the union of T1 and T2 since that is not 
+a topology since {a,b},{b,c} are in T1 union T2 but their intersection 
+{b} is not. In a topology the intersection of two open sets must be open 
+and that forces us to include {b} in the smallest topology containing 
+T1 and T2. <br>
+LargestTopologyContainedIn(T1,T2)={empty,X,{a}}. <br>
+Note this is the intersection of T1 and T2. <br>
+(a): From example in (c) we know if T(a), a in J are a collection of 
+topologies on a set X, the union T(a) need not be a topology for X. <br>
+However T=Intersection T(a) is a topology for X as we next check: <br>
+(i) X, empty in each T(a) thus X, empty in T. <br>
+(ii) If U,V are in T, then U,V are in each T(a). Thus since T(a) is 
+a topology, U int V is in each T(a) also. Thus U int V is in T. <br>
+(iii) If U(b), b in K is a collection in T. Then U(b) are in each T(a). 
+Since T(a) is a topology, Union U(b) is in T(a) for each a. <br>
+Thus Union U(b) is in T. <br>
+Thus T is a valid topology for X since it satisfies the axioms of a 
+topology. <br>
+ 
+<P>
+#7: <br>
+<B>(1) T(3) proper subset T(1). </B><br>
+Pf: Let U be a set open in T(3)-topology. (WLOG U not equal to empty or 
+R). <br> 
+Then U=R-{a(1),...,a(n)} for some finite set a(1) < a(2) < .. < a(n). 
+<br>
+So U=(-infty,a(1)) union (a(1),a(2)) union ... union (a(n-1),a(n)) union 
+(a(n),infty). <br>
+Thus U is clearly also open in T(1)-topology (the standard one) since it 
+is a union of open intervals and open rays. <br>
+On the other hand (1,2) is T(1)-open (standard top.) but is not of 
+the form R-(Finite set) so is not T(3)-open. Thus T(3) is a proper subset 
+of 
+T(1). <br>
+<B> (2) T(5) proper subset T(1). </B><br>
+Pf: (-infty,a) is open in T(1) or standard topology. <br>
+If U is open in T(5)-topology, then U is a union of sets of 
+the form (-infty,a) and so is also open in T(1)-topology. <br>
+However (1,3) is T(1)-open but not T(5)-open since there is no b 
+such that 2 in (-infty,b) subset (1,3). <br>
+Thus T(5) proper subset of T(1). <br>
+<B> (3) T(3) and T(5) are incomparable. </B><br>
+Pf: (-infty, 1) is open in T(5) but not in T(3) since it isn't of 
+the form R-(finite set). <br>
+R-{1,3}=(-infty,1) union (1,3) union (3, infty) is open in T(3) 
+but not in T(5) since there is no b such that 
+2 in (-infty,b) subset R-{1,3}. <br>
+<B> (4) T(1) proper subset T(2). </B> <br>
+Pf: See proof of Lemma 13.4 in the book. <br>
+<B> (5) T(2) proper subset T(4). </B><br>
+Pf: Consider (a,b). We can write this as (a,b)=Union (a,x] where 
+the union is over x in (a,b). <br> Thus (a,b) is open in the 
+T(4)-topology. <br>
+Consider K={1/n | n in Z+}. We will show R-K is open in T(4)-topology. 
+<br>
+R-K=(-infty,0] union (union(1/(n+1),1/n)) union (1,infty). <br>
+Each (1/(n+1),1/n) is open in T(4) by our previous work. <br>
+Similarly (1,infty)=union (n,n+2) for n=1,2,3,... is open 
+in T(4). <br>
+Now (-infty,0] = union (-n,-n+1] for n=1,2,3,.... is also open in T(4). 
+<br>
+Thus R-K is open in T(4) and hence (a,b)-K=(a,b) int (R-K) is open 
+in T(4). <br>
+Thus we have shown all the basis elements for the K-topology (T(2) 
+topology) are also open in T(4). Thus T(2) subset T(4). <br>
+(5,7] is open in T(4) but not in T(2) as there is no K-topology basis 
+element B such that 7 in B subset (5,7]. <br>
+
+<P>
+#8: (a) Check B={rational intervals} is a basis for usual topology of R. 
+<br>
+First: Check it is a basis. <br>
+(1) For any r in R, there are q(1), q(2) rational such that q(1) < r < 
+q(2). 
+<br>
+Thus r in (q(1),q(2)), a rational interval basis element. <br>
+(2) If B(1)=(q(1),q(2)) and B(2)=(q(3),q(4)) and x in B(1) int B(2) 
+then if B(3)=(max(q(1),q(3)),min(q(2),q(4)) then B(3) is a rational 
+interval with x in B(3) subset B(1) int B(2). <br>
+Thus B is a basis for a topology on R. <br>
+Second: Check that B-topology, (topology coming from B) is the standard 
+topology on R. <br>
+Since the standard topology uses all intervals as a basis, it has a 
+strictly bigger initial basis, thus it is clear 
+that T_B subset T_standard. (*) <br>
+However if (a,b) is an arbitrary interval and x in (a,b), then 
+again one can find q(1),q(2) rational such that <br>
+a < q(1) < x < q(2) < b since there must be rational numbers in the 
+nonempty intervals (a,x) and (x,b). <br>
+Thus x in (q(1),q(2)) subset (a,b). <br>
+Thus by Lemma 13.3, T_standard subset T_B which together with (*) 
+shows that T_standard=T_B. <br>
+In other words, B={rational intervals} is a basis for the standard 
+topology on R (note it is strictly smaller than the standard basis for R 
+but it gives the same topology in the end). 
+<br>
+<br>
+(b): Let C={[a,b) | a < b, a,b rational}. <br>
+Check that this is a basis for a topology on R. <br>
+(1) For any r in R, there is q(1), q(2) rational such that q(1) < r < 
+q(2). <br> Thut r in [q(1),q(2)). <br>
+(2) B(1)=[q(1),q(2)), B(2)=[q(3),q(4)), x in B(1) int B(2). <br>
+Then B(3)=[max(q(1),q(3)),min(q(3),q(4))) is in C and has 
+x in B(3) subset B(1) int B(2). <br>
+Thus C is a basis for a topology on R. <br>
+However the C-topology is not the lower limit topology on R!!!! <br>
+For example take an irrational number like e. <br>
+Then [e,6) is open in lower limit topology by definition. <br>
+However [e,6) is not open in C-topology since there is no C-neighborhood 
+of e contained in [e,6). <br>
+(A C-neighborhood of e would be of the form e in [q(1),q(2)) but 
+note we would have to have q(1) < e < q(2) since e itself is not rational. 
+Thus this [q(1),q(2)) would not be a subset of [e,6).) <br>
+
+<HR>
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>
+

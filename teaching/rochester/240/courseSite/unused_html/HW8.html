@@ -1,0 +1,250 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 8 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B> Section 20: </B>
+</CENTER>
+
+<P> 
+#1(a): d_1=metric described. It is pretty clear that 
+d_1(X,Y)=d_1(Y,X) and that d_1(X,Y) >= 0 and equals zero only if X=Y. <br>
+So we will concentrate on showing the triangle inequality. <br>
+Let X=(X(1),..,X(N)), Y=(Y(1),...,Y(N)), Z=(Z(1),...,Z(N)). <br>
+Then since d(a,b)=|a-b| is a metric on R, we have for each 1 <= k <= N, 
+<br>
+|X(k)-Y(k)| <= |X(k)-Z(k)| + |Z(k)-Y(k)| <br>
+Adding these inequalities for k=1,2...,N gives us the desired inequality: 
+<BR>
+d_1(X,Y) <= d_1(X,Z) + d_1(Z,Y). <br>
+
+In R^2, the basis elements look like "diamonds". For example,
+B_(d_1)(origin,1) is equal to
+{(x,y) | d_1((x,y),(0,0)) < 1}={(x,y) | |x| + |y| < 1}. <br>
+This has boundary the set of (x,y) with |x|+|y|=1 or 
+y = plus minus (1 plus minus x). <br>
+
+If p is the square metric, p(X,Y)=max(|X(k)-Y(k)|) then we have:
+
+p(X,Y) <= d_1(X,Y) <= np(X,Y). <br>
+
+The first inequality gives:
+B_{d_1}(X,E) = { Y | d_1(X,Y) < E} subset {Y | p(X,Y) < E} = B_p(X,E). 
+<br>
+
+The second inequality gives:
+B_p(X,E)={ Y | p(X,Y) < E} subset {Y | d_1(X,Y) < nE} = B_{d_1}(X,nE). 
+<br>
+
+This shows that it is always possible to fit one sort of metric ball into 
+the other sort about any point X so by lemma 13.3, d_1 defines the same 
+topology on R^n as p did, which is the standard product topology by Thm 
+20.3. <br>
+
+<P>
+#2: (R x R, dictionary) = R_discrete x R by Ex 9 page 92. <br>
+By Ex 3 page 133 of this HW set, a metric that gives this topology can be 
+obtained from the metrics giving the topology for the factors. <br>
+Note D(a,b)=1 if a not equal to b, 0 if a equals b gives the discrete 
+topology on R. <br>
+Thus pf we set p((x,y),(x',y'))=max(D(x,x'),|y-y'|), this will 
+give us a metric on R x R which gives the dictionary topology as its 
+metric topology, by Ex 3, page 133. <br>
+Thus the dictionary topology of the plane is metrizable. <br>
+
+<P>
+#4: (a) <br>
+To test F: R -> (R^omega,product) is continuous, one uses Thm 19.6, which 
+says F is continuous if and only if each of its coordinate functions 
+f_n: R -> R is continuous. <br>
+In this case a simple glance lets us know that f,g,h are all continuous 
+if the product topology is used for R^omega. <br>
+
+To test F: R -> (R^omega, box) is continuous we have no Thm so we have to 
+resort to seeing if the preimage of open sets are open. <br>
+
+Consider the box U: <br>
+U=(-1,1) x (-1/4,1/4) x (-1/9,1/9) x .... x(-1/n^2,1/n^2)x..... <br>
+U is open in (R^omega,box). <br>
+f^{-1}(U)<br>
+={t| such that nt in (-1/n^2,1/n^2) for all n} <br>
+={t | -1/n^2 < nt < 1/n^2 for all n in Z+} <br>
+={0} not open in R. <br>
+Thus f not continuous. <br>
+Similarly g^{-1}(U)={t| -1/n^2 < t < 1/n^2 for all n in Z+} ={0} <br>
+and h^{-1}(U)={t| -1/n^2 < t/n < 1/n^2 for all n in Z+}={0} <br>
+and so none of f,g,h is continuous if the box topology is used for 
+R^omega. <br>
+The uniform topology is a metric topology. In this case, usually using 
+the criterion of Thm 21.3 is the easiest thing to do to check continuity. 
+<br>
+Thus F: R -> (R^omega,uniform) is cts if and only if
+(whenever t(n) -> t in R, p(F(t(n)),F(t)) -> 0 where p is the 
+uniform-metric. <br>
+Note f(t(n))=(t(n),2t(n),3t(n),....) <br>
+f(t)=(t,2t,3t,4t,....) <br>
+So p(f(t),f(t(n))= 1 (infty cutoff) if t(n) not equal to t and 0 if 
+t(n)=t. <br>
+So it is possible t(n) -> t but p(f(t),f(t(n)) does not go to 0 for 
+example 1/n -> 0 but p(f(1/n),f(0)) does not go to 0. So f is not 
+continuous if R^omega is given the uniform topology. <br>
+For g, one computes p(g(t),g(t(n)))=min(|t-t(n)|,1) which does go to zero 
+as t(n) -> t and so g is continuous in the uniform topology. <br>
+For h, one computes p(h(t),h(t(n)))=min(sup_over_k(|t-t(n)|/k),1) 
+=min(|t-t(n)|,1) which does go to zero as t(n) -> t and so 
+h is also continuous in the uniform topology. <br>
+(b) By Ex6 page 118, to see what these families of sequences converge to 
+in (R^omega, product), one just looks coordinatewise, i.e., at each 
+column, we look at the sequence of real numbers in that column and see if 
+it converges to something. <br>
+Thus in (R^omega,product), X_k -> X if and only if it converges 
+"coordinatewise". <br>
+So for the 
+X_k, W_k, Y_k, Z_k, they all converge to the zero sequence O in the 
+product topology, since each of the columns in these families has 
+coordinates converging to zero. <br>
+
+
+Now since (R^omega, product) is Hausdorff, we know none of these sequences 
+of sequences have any other limit but the zero sequence in this topology. 
+<br>
+
+Since the box and uniform topologies are finer than the product topology 
+(Thm 20.4), we know that in these other topologies, these sequence of 
+sequences cannot possibly converge to anything else than what they did in 
+the product topology, i.e., O=Zero sequence. However in these finer 
+topologies they might not converge to that either!! So we have to check 
+that!!! <br>
+
+Uniform topology: <br>
+p(W_k,O)=1 (k cutoff). Thus W_k do NOT converge to O uniformly (in the 
+uniform topology). <br>
+p(X_k,O)=1/k -> 0 as k -> infty so X_k converge to O uniformly. <br>
+p(Y_k,O)=1/k -> 0 as k -> infty so Y_k converge to O uniformly. <br>
+p(Z_k,O)=1/k -> 0 as k -> infty so Z_k converge to O uniformly. <br>
+
+Box topology: <br>
+Consider U = (-1,1) x (-1/2,1/2) x ... x (-1/n,1/n) x .... <br>
+Note U is open nhd of O in the box topology. <br>
+The nth coordinate of W_n, X_n and Y_n is not STRICTLY less than 1/n and 
+so W_n,X_n,Y_n are not in U for any n. <br> 
+Thus W_n, X_n, Y_n sequences do NOT converge to O in the box topology. 
+<br>
+On the other hand let W=(a(1),b(1)) x ... x (a(n),b(n)) x ... 
+be a general box neighborhood of O. Then a(n) < 0 < b(n) for all n. <br>
+Let N be big enough so that j > N gives 1/j < min(b(1),b(2)). <br>
+Then note Z_k is in W for k > N. This is because its first and second 
+coordinates are 1/k < 1/N < min(b(1),b(2)) and so lie in (a(1),b(1)) 
+and (a(2),b(2)) while its other coordinates are 0 so lie in (a(n),b(n)) 
+trivially. <br>
+Thus Z_k do converge to O in the box topology. <br>
+
+
+<P>
+#5: In (R^omega, uniform), closure(R^infty)={sequences which converge to 
+zero.} <br>
+Pf: Let X=(X(1),X(2),.....) with lim X(n) = 0. <br>
+Let X_k=(X(1),X(2),..,X(k),0,0,....) then X_k in R^infty. <br>
+Note p(X_k,X)=[sup for j > k]|X(j)|. <br>
+Now for any E > 0, since lim X(n)=0, we have there is a N such that n > N 
+gives |X(n)| < E/2. <br>
+Thus p(X_k,X) <= E/2 for k > N. Thus B_p(X,E) intersects R^infty. <br>
+Since E > 0 was arbitrary, this shows X is in closure(R^infty). <br>
+On the other hand take Y=(Y(1),Y(2),....) where lim Y(n) not zero (also 
+including case of no limit.) <br>
+What this means is there is some E > 0, such that there are infinitely 
+many values of index j such that |Y(j)| >= E. Let J be the set of 
+these indices, so |J|=infinite. <br>
+Now if Z in R^infty, then Z=(Z(1),Z(2),...,Z(N),0,0,......). <br>
+Choose one of the indices in j in J with j > N (We know we can since 
+|J|=infinite). Then |Y(j)-Z(j)|=|Y(j)| >= E and so p(Y,Z) >= E. <br>
+Thus for every Z in R^infty, p(Y,Z) >= E > 0 (E fixed). Thus 
+B_p(Y,E/2) does not intersect R^infty and so Y is not in closure(R^infty). 
+<br> 
+
+<P>
+#6:(a): <br>
+Consider Y=(x_1+E-E/1, x_2+E-E/2,...,x_n+E-E/n,.....) then 
+Y in U(X,E) but p(X,Y)=sup(E-E/n)=E and so Y not in B_p(X,E) 
+since things in B_p(X,E) have p-distance STRICTLY LESS than E from X. <br>
+So this shows U(X,E) is not equal to B_p(X,E). <br>
+(b): Consider the Y above in U(X,E). Let D > 0, then there is N such 
+that E/N < D. <br>
+Consider Y'=(x_1+E-E/1,x_2+E-E/2,....,x_(N-1)+E-E/(N-1),x_(N)+E,....)
+notice that Y' is just Y where we just change the entry in the Nth 
+coordinate from x_N+E-E/N to x_N+E. <br>
+Thus p(Y,Y')=E/N < D so Y' in B_p(Y,D). <br> 
+However since the Nth coordinate of Y' is x_(N)+E, it is not in U(X,E). 
+<br>
+Thus we see for all D > 0, B_p(Y,D) intersects the complement of U(X,E).
+Since Y in U(X,E), this shows U(X,E) is not open in the uniform topology. 
+<br>
+(c): Let D < E < 1. <br>
+Notice if Y in U(X,D) then for all n, 
+X(n) - D < Y(n) < X(n) + D. <br>
+Thus Sup(|X(n)-Y(n)|) <= D (note less than becomes less than or equal 
+under sup). <br>
+So p(X,Y) <= D < E and so U(X,D) subset B_p(X,E) <br>
+Thus union(D < E) U(X,D) subset B_p(X,E). <br>
+On the other hand if Y in B_p(X,E), then p(X,Y)=C < E. <br>
+Take D such that C < D < E, then clearly Y in U(X,D) so 
+Y in union(D < E) U(X,D). <br> 
+So B_p(X,E) subset union(D < E) U(X,D) also. <br>
+Since we also have the reverse inclusion, this shows the two sets are 
+equal as desired. <br>
+
+<P>
+<CENTER>
+<B> Section 21: </B>
+</CENTER>
+
+<P>
+#3(a): Verify p is a metric. Set X=(x_1,...,x_n), Y=(y_1,..,y_n), 
+Z=(z_1,...,z_n) <br>
+d_i are metrics so d_i(x_i,y_i)=d_i(y_i,x_i) and so 
+this gives p(X,Y)=p(Y,X). <br>
+d_i(x_i,y_i) >= 0 give p(X,Y) >= 0. <br>
+On the other hand p(X,Y)=0 if and only if d_i(x_i,y_i)=0 for 1 <= i <= n. 
+<br>
+This happens if and only if x_i=y_i for 1 <= i <= n (since d_i were 
+metrics). <br>
+Thus p(X,Y)=0 if and only if X=Y. <br>
+Since the d_i were metrics we have: <br>
+d_i(x_i,y_i) <= d_i(x_i,z_i) + d_i(z_i,y_i) for 1 <= i <= n. <br>
+Clearly we can replace the RHS with the maximums and not effect the 
+inequality and so we get: <br>
+d_i(x_i,y_i) <= p(X,Z) + p(Z,Y) for 1 <= i <= n. <br>
+Now p(X,Y)=d_k(x_k,y_k) for some k in {1,2,..,n}. <br>
+Thus from the previous inequality, we get: <br>
+p(X,Y) <= p(X,Z) + p(Z,Y) which is the triangle inequality. <br>
+Thus p is a metric on the product space. <br>
+
+Now we show the p-topology is the product topology. <br>
+
+B_p(X,E)<br>
+={Y | p(Y,X) < E} <br>
+={(y_1,...,y_n) | max(d_i(x_i,y_i)) < E } <br>
+={(y_1,...,y_n) | d_i(x_i,y_i) < E for all 1 <= i <= n. } <br>
+= B_{d_1}(x_1,E) x B_{d_2}(x_2,E) x .... x B_{d_n}(x_n,E). <br>
+
+Thus the p-topology basis is the product topology basis and so the 
+p-topology is the product topology. <br>
+
+<P>
+#10: Define f: R^2 -> R by f(x,y)=xy and g: R^2 -> R by g(x,y)=x^2+y^2. 
+<br>
+From calculus, we know f and g are continuous. <br>
+A=f^{-1}({1}) so since {1} is closed in R, A is closed in R^2. <br>
+S^1=g^{-1}({1}) so since {1} is closed in R, S^1 is closed in R^2. <br>
+B^2=g^{-1}([0,1]) so since [0,1] is closed in R, B^2 is closed in R^2. 
+<br>
+
+<HR>
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>
+

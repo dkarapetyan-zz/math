@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<TITLE>Homework 6 Solutions</TITLE>
+</HEAD>
+<BODY>
+
+<P>
+<CENTER>
+<B> Section 17: </B>
+</CENTER>
+
+<P>
+#4:  U open in X and A closed in X then X-U closed in X and X-A open in X. 
+<br>
+Thus U-A=U intersection (X-A) is the intersection of two open sets and 
+hence is open. <br>
+Also A-U=A intersection (X-U) is the intersection of two closed sets and 
+hence is closed. <br>
+
+<P>
+#12: Let A be a subspace of X, X Hausdorff. 
+Given a,b in A distinct points, since X is Hausdorff we can find U,V open 
+in X, U int V=empty, a in U, b in V. <br>
+Then U'=U int A, V'=V int A are open in A, a in U', b in V' and U' int V' 
+= empty set. Thus A is Hausdorff also. <br>
+
+<P>
+#13: Let D denote the diagonal of X x X here. <br>
+(A) X Hausdorff -> D closed in X x X. <br>
+Pf: Let (a,b) be in X x X - D, then a not equal to b in X. <br>
+Since X is Hausdorff, we can find U nhd of a and V nhd of b such that 
+U intersection V is empty. <br>
+Then (a,b) in U x V open in X x X. Also note if (z,z) in U x V 
+then z in U intersection V, a contradiction to U,V being disjoint so 
+U x V subset X x X - D. Thus we see X x X - D is open. <br>
+Thus D is closed. QED. <br>
+(B) D closed in X x X -> X Hausdorff. <br>
+We reverse the steps. D closed in X x X says X x X - D is open. 
+Now if a,b in X are distinct then (a,b) in X x X - D but since X x X - D 
+is open we can find basis set U x V such that (a,b) in U x V subset X x X 
+-D. Since U x V does not intersect D we conclude that U and V are disjoint 
+open sets of X. Since a in U and b in V, we conclude X is indeed 
+Hausdorff. QED. <br>
+
+<P>
+#16: (a) <br>
+Standard topology: closure(K)=K union {0}. <br>
+K-topology: closure(K)=K. <br>
+(Note R-K=[(-100,100)-K] union (99,infty) union 
+(-infty,-99)] and these three pieces are open in the K-topology so R-K is 
+open in the K-topology and so K is closed in the K-topology.) <br>
+Finite complement topology: closure(K)=R. <br>
+This is because if a in R, then a nhd of a in the finite complement 
+topology is of the form R-F, F a finite set. Since K is infinite we see 
+R-F must intersect K and so every nhd of a intersects K, so a in 
+closure(K). <br>
+Upper limit topology: closure(K)=K. <br>
+R-K=(-infty,0] Union A(n) Union (1,infty) where A(n)=(1/(n+1),1/n) and 
+union is over all n in Z+. Each of these pieces is open in the upper limit 
+topology (which is finer than the standard topology) and so R-K is open in 
+the upper limit topology and so K is closed in this topology. <br>
+Ray topology, basis (-infty,a): closure(K)={x in R | x >= 0}. <br>
+If b in R, b >= 0 and b in (-infty,a) then a > b and so a > 0. 
+Thus (-infty,a) intersects K. So b in closure(K). On the other hand if b < 
+0, then b in (-infty, b/2) which is disjoint from K so b not in 
+closure(K). <br>
+(b): Note Hausdorff -> T_1 <br>
+Standard Topology: Hausdorff. <br>
+K-topology: Hausdorff (finer than standard). <br>
+Finite complement topology: T_1 but not Hausdorff. <br>
+This is since {x} has complement R-{x} which is open in finite complement 
+topology since |{x}|=1 is finite. Thus {x} is closed in this topology. 
+On the other hand given a,b distinct, U nhd of a, V nhd of B in this 
+topology then U=R-F, V=R-F' where F, F' are finite. Since F union F' is 
+finite and R is infinite there must be x in R-(F union F') and this x 
+will be in both U and V so U and V intersect. Thus this topology is not 
+Hausdorff. <br>
+Upper Limit Topology: Hausdorff (finer than standard.) <br>
+Ray topology: Neither. <br>
+It is not T_1 since if {x} is a point, then R-{x}=(-infty,x) union 
+(x,infty) and if y in (x, infty), no basis element around y lies inside 
+R-{x}. Thus R-{x} is not open in this topology and so {x} is not closed in 
+this topology. If a space is not T_1, it cannot be Hausdorff. 
+(contrapositive of statement at top of this question's solution) <br>
+
+
+<P>
+#18: <br>
+Closure(A)=A union {((0,1))} <br>
+Closure(B)=B union {((1,0))} <br>
+Closure(C)=C union { ((x,1)) | 0 <= x < 1} union {((1,0))} <br>
+Closure(D)=D union { ((x,1)) | 0 <= x < 1} union { ((x,0)) | 0 < x <=1} 
+<br>
+Closure(E)=E union { ((1/2,1)),((1/2,0)) } <br>
+
+<P>
+#20: <br>
+(a) Int(A)=empty, Boundary(A)=A. <br>
+(b) Int(B)=B, Boundary(B)=(y-axis) union (nonnegative x-axis) <br>
+(c) Int(C)={ ((x,y)) | x > 0 }, Boundary(C)=(y-axis) union (negative 
+x-axis) 
+<br>
+(d) Int(D)=empty, Boundary(D)=R^2. <br>
+(e) Int(E)={ ((x,y)) | 0 < x^2-y^2 <1}, Boundary(E)={((x,y)) | x^2-y^2=1 
+or 0}. <br>
+(f) Int(F)={ ((x,y)) | x not 0, y < 1/x}, Boundary(F)=(y-axis) union 
+{ ((x,y)) | x not 0, y=1/x } <br>
+
+
+<P>
+
+<A HREF=""> Back to the Math 240 Homepage...</A>
+
+</BODY>
+</HTML>
+
