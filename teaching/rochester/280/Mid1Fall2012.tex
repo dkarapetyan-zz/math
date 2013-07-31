@@ -1,0 +1,181 @@
+
+% Essential Formatting
+   
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb,amscd,latexsym}
+\usepackage[multipart,letter]{urmathexam}
+
+% Basic User Def's
+
+\def\ds{\displaystyle}
+\def\t{\theta}
+% Beginning of the Document
+
+\begin{document}
+\examtitle{MATH 280}{PRACTICE MIDTERM EXAM}{Oct 25, 2012}
+\studentinfo
+\instructions{
+  \begin{itemize}
+  \item
+    {\bf No calculators are allowed on this exam.}
+  \item
+  {\bf $8" \times 11"$ (both sides) note sheet is allowed on this exam.}
+  \item
+    {\bf Please show all your work.
+         You may use back pages if necessary.
+         You may not receive full credit for
+         a correct answer if there is no work shown.}
+    {\bf Attempt all questions.}
+    \end{itemize}
+}
+\finishfirstpage
+
+% Problems Start Here % ----------------------------------------------------- %
+\newpage
+
+
+\problem{12} 
+\noindent 
+(a) Order the functions $x, e^x, ln(x), x^2, x^3$ from left to right such that $f$ is to the left of $g$ if $f=O(g)$ as $x \to 0$. \\
+
+\vspace{1 in}
+
+\noindent
+(b) Order the functions $x, e^x, ln(x), x^2, x^3$ from left to right such that $f$ is to the left of $g$ if $f=O(g)$ as $x \to \infty$. \\
+
+\vspace{1 in}
+
+\noindent
+(c) State if the following assertions are true or false and give a brief explanation of your answer: \\
+(i) $\frac{n+1}{n^2} = O(\frac{1}{n})$ as $n \to \infty$. \\
+
+\vspace{1in}
+
+\noindent
+(ii) $\frac{n+1}{n^2}=o(\frac{1}{n})$ as $n \to \infty$. \\
+
+\vspace{1in}
+
+\noindent
+(iii) $e^x = 1+x+\frac{1}{2}x^2 + O(x^3)$ as $x \to 0$. \\
+
+\vspace{1in}
+
+\noindent
+(iv) $\cos(x) = 1-\frac{x^2}{2} + O(x^3)$ as $x \to \infty$. \\
+
+
+ 
+    
+\newpage
+\problem{12}
+Consider the recurrence 
+$$
+x_{n+2}=x_{n+1}+x_n
+$$
+for $n \geq 0$. \\
+
+\noindent
+(a) If $E$ is the shift operator on the vector space of complex sequences, and $\hat{x}=(x_0,x_1,x_2,\dots)$, rewrite the recurrence in the form 
+$p(E)\hat{x}=\hat{0}$. What is the characteristic polynomial $p(x)$? 
+
+\vspace{2 in}
+
+\noindent
+(b) Find the roots of the characteristic polynomial and use them to describe the general solution to this recurrence. 
+
+\vspace{1.5in}
+
+\noindent
+(c) If $x_0=0$ and $x_1=1$, find $x_2, x_3, x_4, x_5$ directly from the recurrence. \\
+
+\vspace{1in}
+
+\noindent
+(d) Find the particular solution to this recurrence when $x_0=0$ and $x_1=1$. In particular express $x_n$ as a function of $n$.
+
+\newpage
+
+\problem{12}
+(a) Find the binary expansion of the number $508$. \\
+
+\vspace{3 in}
+
+\noindent
+(b) Find the binary expansion of the number $\frac{1}{3}$. \\
+
+\vspace{3 in}
+
+\noindent
+(c) Find the hexadecimal representation of the binary number $101.110010010010$.
+
+\newpage
+
+\problem{6}
+\noindent
+Recall the typical $32$ bit computer representation of a floating point number as discussed in the book, reserves $1$ bit for the sign of the number, 
+$23$ bits for the mantissa and $8$ bits for the biased exponent. Express the representation 
+$00011000000000000000000010000111$ in the form $\pm q 2^m$. Give the value of this number in decimal.
+
+\vspace{2.5 in}
+
+\problem{6}
+\noindent
+Let $f(x)=x^4$ and $x_0=10$ with absolute error at most $\delta_x=0.1$. Compute $f'(x_0)$ and the condition number and use them to estimate 
+the absolute and relative error in $y_0=f(x_0)$. 
+
+\newpage
+\problem{6}
+In the bisection method, if $c_n$ is accurate to $10$ binary digits, then $c_{n+1}$ is accurate to at least $\underline{~~~~~~~~~~~~}$ binary digits. \\
+In the Newton-Raphson method, if $x_n$ is accurate to $5$ decimal digits, then a reasonable estimate for the accuracy of $x_{n+1}$ is that it is 
+accurate to $\underline{~~~~~~~~~~~~~~~}$ decimal digits. \\ 
+
+\problem{6}
+(a) What is the Newton-Raphson function $N_f(x)$ for $f(x)=x^3-5$. Simplify $N_f(x)$ until it is of the form 
+$ax+\frac{b}{x^2}$ for suitable constants $a$ and $b$. For which $x$ is it undefined? Explain why if we start with a positive seed $x_0$, we never 
+encounter this problem.
+
+\vspace{2 in}
+
+\noindent
+(b) If $x_0=1$ compute $x_1, x_2$.
+
+\newpage
+\problem{10}
+(a) Write down the recursion one obtains when one applies the secant method to the function $f(x)=x^2-7$. 
+
+\vspace{2 in}
+
+\noindent
+(b) Prove that in the secant method, to obtain $x_{n+2}$ one can draw a secant line between the points $(x_n,f(x_n))$ and $(x_{n+1},f(x_{n+1}))$ on the 
+graph of $f$ and see where it intersects the $x$-axis.
+
+\newpage
+\problem{15}
+Use Horner's method to do the following tasks. Please do not use a different method. \\
+(a) Evaluate the polynomial $p(x)=x^4-3x^3+2x^2-x+1$ at $x=2$ and find $q(x)=\frac{p(x)-p(2)}{x-2}$. 
+
+\vspace{ 2 in}
+
+\noindent
+(b) Verify that $1$ is a root of the polynomial $p(x)=x^4-3x^3+2x^2-x+1$ and deflate the polynomial at that root. \\
+
+\vspace{2 in}
+
+\noindent
+(c) Find $p'(2),p''(2), p'''(2)$ for the same polynomial in examples (a) and (b).
+
+\newpage
+\problem{10} Find an annulus in the complex plane such that all the zeros of the polynomial 
+$p(z)=4z^6 + 3z^5 + 2z^4 + 8z^5 + 4z^4 + 3z^3+2z^2+z+9$ must lie in it. Use the localization theorem and explain all your work.
+
+
+\newpage
+\problem{5} Let $p > 1$. Show that the function $f(x)=\frac{1}{p+x}$ maps the closed interval $[0,1]$ back into itself and is a contraction on this interval.
+
+% Problems End Here % ------------------------------------------------------- %
+
+\problemsdone
+\end{document}
+
+% End of the Document

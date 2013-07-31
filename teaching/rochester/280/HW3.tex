@@ -1,0 +1,109 @@
+\documentclass[12 pt]{article}
+\usepackage{amsmath,amsfonts,amsthm,amscd}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{pro}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{statement}[thm]{Statement}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{quot}[]{Result}
+\newcommand{\dime}{\operatorname{dim}}
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\chan}{\operatorname{char}}
+\newcommand{\degr}{\operatorname{deg}}
+\newcommand{\expo}{\operatorname{exp}}
+\newcommand{\spant}{\operatorname{span}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Term}{\operatorname{Term}}
+\newcommand{\Init}{\operatorname{Init}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Endo}{\operatorname{End}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Order}{\operatorname{ord}}
+\newcommand{\kerl}{\operatorname{Ker}}
+\newcommand{\Img}{\operatorname{Image}}
+\newcommand{\sine}{\operatorname{sin}}
+
+\begin{document}
+
+\centerline{\bf MATH 280: Homework 3 (Written=14 points). }
+\centerline{\bf Due in class, Monday, Oct 1}
+
+\bigskip
+
+\noindent
+[2 points]1. \\
+(a) Find the binary expansion of the number $\frac{1}{10}$. \\
+(b) If the number $\frac{1}{10}$ is correctly rounded to the nearest 
+left-shifted normalized binary number with 23 digit mantissa i.e., 
+$(1.a_1a_2a_3 \dots a_{23})_2 \times 2^m$, what is the absolute 
+roundoff error? What is the relative roundoff error?
+
+\medskip
+
+\noindent
+[2 points]2. For this question, consider a machine that works with normalized numbers with 5 decimal digits as its machine numbers. 
+Thus $0.12345 \times 10^3$ or $-0.98725 \times 10^{-1}$ etc. Let $fl(x)$ denote the nearest machine number on this machine to the real number $x$. 
+(If the two nearest machine numbers are of equal distance, let us round up say). \\
+(a) Find examples of real numbers $x$ and $y$ such that $fl(x+y)$ is not equal to $fl(fl(x)+fl(y))$. \\
+(b) Find examples of real numbers $x$ and $y$ such that $fl(xy)$ is not equal to $fl(fl(x) fl(y))$. \\
+(c) Find examples of machine numbers $x$, $y$ and $z$ such that $$fl(fl(xy) z) \neq fl(x fl(yz)).$$Thus "machine multiplication is not associative". 
+Recall that real numbers under actual multiplications have the "associative property" $$(xy)z=x(yz).$$
+
+
+
+\medskip
+
+\noindent
+[2 points]3. Following similar computations done in the book and class for 23-bit mantissas, find the unit roundoff error $\epsilon$ for a binary machine 
+using $48$-bit mantissas.
+\medskip
+
+\medskip
+
+\noindent
+[2 points]4. Let $x$ and $y$ be positive normalized binary machine numbers such that $x > y$ and $(1-\frac{y}{x}) = 0.0001$. Use Theorem 1 on Page 57 of the book 
+(Theorem on Loss of Precision) to compute the most and the least number of significant binary bits lost in the subtraction $x-y$.
+
+\medskip
+
+\noindent
+[3 points]5. Suggest a way to avoid loss of significance due to subtracting close quantities in each of the following calculations: \\
+(a) $log(x)-log(y)$  when $x$ is close to $y$ in value. \\
+(b) $\sqrt{1+x^2} - x$ when $x$ is very large. \\
+(c) $e^x - e$ when $x$ is close to $1$. 
+
+\medskip
+
+\noindent
+[3 points]6. Let $y=f(x)$. Recall that if $x^*=x_0 + \delta_x$ where $x_0$ is the true value and $\delta_x$ is an error in measurement, we call 
+$\delta_x$ the absolute error in $x$ and $\frac{\delta_x}{ x}$ the relative error in $x$.
+Similarly, $y^*=y_0 + \delta_y$ where $y^*=f(x^*)$ is the value of $y$ computed from $x^*$, $y_0=f(x_0)$ is the true value and $\delta_y$ is the absolute error in $y$. We have seen that as long 
+as $\delta_x$ is small, we have 
+$$
+|\delta_y| \sim |f'(x_0)| |\delta_x|
+$$
+i.e., absolute errors scale by a factor of $|f'(x_0)|$ when computing $y$ from $x$. 
+We have also seen that relative errors scale by a factor called the condition number, given by $|\frac{x_0 f'(x_0)}{f(x_0)}|$ when computing $y$ from $x$. \\
+(a) Let $y=f(x)=Cx$ where $C$ is a fixed positive constant. For any positive $x$, compute $f'(x)$ and the condition number. Given your answers state 
+clearly the factor which relates the absolute error of $y$ to the absolute error of $x$. Similarly state clearly the factor that relates 
+the relative error of $y$ to the relative error of $x$. \\
+(b) Let $y=f(x)=x^3$. Find factors that relate the absolute error of $y$ to the absolute error of $x$ and similarly the relative error of $y$ to the relative error 
+of $x$. \\
+(c) Using the same set up as problem $(b)$, let $x^* = 1000 \pm 1$. The absolute error in $x$ is at most 1 and relative error in $x$ at most $0.001$. Thus $x^*$ is somewhere between $999$ and $1001$ and so 
+$y^*=(x^*)^3$ is somewhere between $(999)^3$ and $(1001)^3$. Comparing these to $(1000)^3$, figure out the absolute and relative errors in $y$ 
+directly. Now use the formulas you got in (b) to predict these - how well did the formulas work? (Remember the formulas only work exactly 
+in the limit that $\delta_x$ is small so there are no guarantees when $\delta_x =1$ - you should answer based on how well you think they work in this case.)
+
+
+ 
+\end{document}
+
+
