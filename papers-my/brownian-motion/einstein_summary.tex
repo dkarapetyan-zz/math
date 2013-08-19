@@ -1,7 +1,3 @@
-%        File: /Users/davidkarapetyan/einstein_summary.tex
-%     Created: Mon Apr 27 02:00 PM 2009 E
-% Last Change: Mon Apr 27 02:00 PM 2009 E
-%
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amscd}
 \usepackage{amsfonts}
@@ -15,11 +11,6 @@
 \usepackage{cancel}
 \usepackage[colorlinks=true, pdfstartview=fitv, linkcolor=blue,
 citecolor=blue, urlcolor=blue]{hyperref}
-\input epsf
-\input texdraw
-\input txdtools.tex
-\input xy
-\xyoption{all}
 %%%%%%%%%%%%%%%%%%%%%%
 \usepackage{color}
 \definecolor{red}{rgb}{1.00, 0.00, 0.00}
@@ -86,48 +77,48 @@ citecolor=blue, urlcolor=blue]{hyperref}
 \begin{document}
 %\begin{titlepage}
 \title{An Exposition of Einstein's ``On the Brownian Motion of Small Suspended
-Particles''}
+  Particles''}
 \author{David Karapetyan }
 \address{Department of Mathematics  \\
-         University  of Notre Dame\\
-		          Notre Dame, IN 46556 }
-				  \date{\today}
-				  %
-				  \maketitle
-				  %
-				  %
-				  \parindent0in
-				  \parskip0.1in
-				  %
-				  %\end{titlepage}
-				  %
-				  %
-				  %
-				  \section{Calculating the Osmotic Pressure of Small Particles}
-				  \setcounter{equation}{0}
-				  Consider a tank filled with a volume V of a liquid separated by a
-				  permeable membrane. Dissolve $k$ grams of a non-electrolyte molecule
-				  into part $V^*$ of total volume $V$. Then the membrane will be
-				  subjected to osmotic pressure 
-				  \begin{equation*}
-					  \begin{split}
-						  \Pi = \frac{kRT}{NV^*}
-						  \label{osmotic-pressure}
-					  \end{split}
-				  \end{equation*}
-				  by the non-electrolyte solution, where
-				  \begin{equation*}
-					  \begin{split}
-						  & R = 0.08206 L \cdot atm \cdot mol^{-1} \cdot K^{-1}
-						  \; \text{(the gas constant)} 
-						  \\
-						  & \text{T is the absolute temperature (in Kelvins)}
-						  \\
-						  & N = 6.02214179 \times 10^{23} mol^{-1} \; \text{(Avogadro's
-						  Number)}.
-						  \label{osmotic-pressure-symbols}
-					  \end{split}
-				  \end{equation*}
+  University  of Notre Dame\\
+  Notre Dame, IN 46556 }
+\date{\today}
+%
+\maketitle
+%
+%
+\parindent0in
+\parskip0.1in
+%
+%\end{titlepage}
+%
+%
+%
+\section{Calculating the Osmotic Pressure of Small Particles}
+\setcounter{equation}{0}
+Consider a tank filled with a volume V of a liquid separated by a
+permeable membrane. Dissolve $k$ grams of a non-electrolyte molecule
+into part $V^*$ of total volume $V$. Then the membrane will be
+subjected to osmotic pressure 
+\begin{equation*}
+  \begin{split}
+    \Pi = \frac{kRT}{NV^*}
+    \label{osmotic-pressure}
+  \end{split}
+\end{equation*}
+by the non-electrolyte solution, where
+\begin{equation*}
+  \begin{split}
+    & R = 0.08206 L \cdot atm \cdot mol^{-1} \cdot K^{-1}
+    \; \text{(the gas constant)} 
+    \\
+    & \text{T is the absolute temperature (in Kelvins)}
+    \\
+    & N = 6.02214179 \times 10^{23} mol^{-1} \; \text{(Avogadro's
+      Number)}.
+    \label{osmotic-pressure-symbols}
+  \end{split}
+\end{equation*}
 Suppose that, instead of having $k$ grams of dissolved molecules, we had $k$ grams of
 suspended molecules; then the classical theory of thermodynamics suggests that no
 osmotic pressure would be exerted on the membrane. The author casts doubt on this
@@ -161,49 +152,49 @@ entropy, enthalpy, and position coordinates and their derivatives are
 all examples of state variables. We assume that our state variables will
 include all cartesian coordinates of the atoms in question. Furthermore, suppose 
 \begin{equation}
-	\begin{split}
-		\p_t p_v = \phi_v(p_1,p_2,\dots,p_n) \qquad (v=1,2,\dots,n).
-		\label{derivative-state-variable}
-	\end{split}
+  \begin{split}
+    \p_t p_v = \phi_v(p_1,p_2,\dots,p_n) \qquad (v=1,2,\dots,n).
+    \label{derivative-state-variable}
+  \end{split}
 \end{equation}
 Without loss of generality, we assume $p_1,p_2,\dots,p_j$ are cartesian coordinates of
 all the atoms in our system. By \eqref{derivative-state-variable} we know their
 velocity at time $t$; hence, our state variables completely determine the system in
 question. Since we have assumed beforehand that no outside forces are acting on our system, we must have 
 \begin{equation}
-	\begin{split}
-		\sum_{p_v} \p_t^2 p_v = 0
-		\label{energy-conserved-accelerations-cancel}
-	\end{split}
+  \begin{split}
+    \sum_{p_v} \p_t^2 p_v = 0
+    \label{energy-conserved-accelerations-cancel}
+  \end{split}
 \end{equation}
 (for example, if our state variables were merely coordinates, then the above asserts
 that the sum of the directional accelerations of all particles is zero). Applying the theory
 of classical thermodynamics with \eqref{derivative-state-variable} and
 \eqref{energy-conserved-accelerations-cancel} we obtain
 \begin{equation*}
-	\begin{split}
-		S = \frac{\bar{E}}{T} + \frac{RT}{N}\ln \int_{p_v} e^{-\frac{EN}{RT}}dp_1\dots dp_n
-		\label{entropy-equation}
-	\end{split}
+  \begin{split}
+    S = \frac{\bar{E}}{T} + \frac{RT}{N}\ln \int_{p_v} e^{-\frac{EN}{RT}}dp_1\dots dp_n
+    \label{entropy-equation}
+  \end{split}
 \end{equation*}
 where 
 \begin{equation*}
-	\begin{split}
-		& T \; \; \text{is the absolute temperature (in Kelvins) of the system}
-		\\
-		& \bar{E} \; \; \text{is the energy of the system at time} \; \; t
-		\\
-		& E \; \; \text{is the energy as a function of all possible states}
-		\; \; p_v.
-		\label{entropy-equation-defs}
-	\end{split}
+  \begin{split}
+    & T \; \; \text{is the absolute temperature (in Kelvins) of the system}
+    \\
+    & \bar{E} \; \; \text{is the energy of the system at time} \; \; t
+    \\
+    & E \; \; \text{is the energy as a function of all possible states}
+    \; \; p_v.
+    \label{entropy-equation-defs}
+  \end{split}
 \end{equation*}
 We'd like to calculate 
 \begin{equation*}
-	\begin{split}
-		B \doteq \frac{RT}{N}\ln \int_{p_v} e^{-\frac{EN}{RT}}dp_1\dots dp_n.
-		\label{B}
-	\end{split}
+  \begin{split}
+    B \doteq \frac{RT}{N}\ln \int_{p_v} e^{-\frac{EN}{RT}}dp_1\dots dp_n.
+    \label{B}
+  \end{split}
 \end{equation*}
 As it stands, it is exceedingly
 difficult to do so; we aim to simplify our task. Suppose we have $k$
@@ -212,30 +203,30 @@ $(x_k, y_k, z_k)$, respectively. Enclose each suspended particle $s_i$ in a smal
 that $E$ does not depend on the cartesian coordinates of the atoms and suspended
 particles in our system; hence we can write
 \begin{equation*}
-	dB = dx_1 dy_1\dots dz_k \cdot J
+  dB = dx_1 dy_1\dots dz_k \cdot J
 \end{equation*}
-where $J$ is independent of the $dx_i dy_i dz_i$. Furthermore, it is well-defined (i.e.
+where $J$ is independent of the $dx_i dy_i dz_i$. Furthermore, it is well-defined (i.e.\
 independent of the positions of the regions we choose to encapsulate the suspended
 particles). Hence, we have
 \begin{equation*}
-	\begin{split}
-		B & = \frac{RT}{N} \ln
-		\int_{V^*} \left[ J \right] dx_1dy_1dz_1\dots dx_k dy_k dz_k
-		\\
-		& = \frac{RT}{N} \ln \left[ J(V^*)^k \right]
-		\\
-		& = \frac{RT}{N}(\ln J + k \ln V^*)
-		\label{simplified-B}
-	\end{split}
+  \begin{split}
+    B & = \frac{RT}{N} \ln
+    \int_{V^*} \left[ J \right] dx_1dy_1dz_1\dots dx_k dy_k dz_k
+    \\
+    & = \frac{RT}{N} \ln \left[ J(V^*)^k \right]
+    \\
+    & = \frac{RT}{N}(\ln J + k \ln V^*)
+    \label{simplified-B}
+  \end{split}
 \end{equation*}
 from which we obtain
 \begin{equation*}
-	\begin{split}
-		\Pi & = \frac{dB}{dV^*}
-		\\
-		& = \frac{kRT}{NV^*}.
-		\label{pressure-from-molecular-heat}
-	\end{split}
+  \begin{split}
+    \Pi & = \frac{dB}{dV^*}
+    \\
+    & = \frac{kRT}{NV^*}.
+    \label{pressure-from-molecular-heat}
+  \end{split}
 \end{equation*}
 \\
 \hrule
@@ -244,107 +235,107 @@ without the use of classical thermodynamics. If we assume that the suspended par
 are spherical in shape, then their diffusion coefficient can be derived using the first
 law of thermodynamics and the formula for osmotic pressure. The result is 
 \begin{equation}
-	\begin{split}
-		D = \frac{RT}{6 \pi v L N}
-		\label{diffusion-coefficient}
-	\end{split}
+  \begin{split}
+    D = \frac{RT}{6 \pi v L N}
+    \label{diffusion-coefficient}
+  \end{split}
 \end{equation}
 where $L$ is the radius of the suspended particles, and $v$ is the coefficient of
 viscosity of the liquid.
 \\
 \hrule
 \section{Understanding Brownian Motion, and How It Can Be Used To Derive Avogadro's
-Number}
+  Number}
 Suppose we have $k$ suspended particles present in a liquid, as before. We now make the
 fundamental assumption that the x-coordinates of the particles distribute in a Gaussian
-manner, i.e. for a time interval $\tau$, the number of particles that will undergo a displacement along the x-axis lying
+manner, i.e.\ for a time interval $\tau$, the number of particles that will undergo a displacement along the x-axis lying
 between $y$ and $y + dy$ can be
 expressed as
 \begin{equation*}
-	\begin{split}
-		dk = k \phi(y) d\phi(y)
-		\label{1}
-	\end{split}
+  \begin{split}
+    dk = k \phi(y) d\phi(y)
+    \label{1}
+  \end{split}
 \end{equation*}
 where 
 \begin{equation*}
-	\begin{split}
-		\phi_{\sigma, u}(y) \doteq \frac{1}{ \sigma \sqrt{2 \pi}} e^{-\frac{(y-u)^2}{2 \sigma^2}}
-	\end{split}
+  \begin{split}
+    \phi_{\sigma, u}(y) \doteq \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(y-u)^2}{2 \sigma^2}}
+  \end{split}
 \end{equation*}
 which we recall is the probability density function of a normal
 distribution. Citing \eqref{energy-conserved-accelerations-cancel} as motivation,
 we set $u = 0$, obtaining 
 \begin{equation}
-	\begin{split}
-		\phi_{\sigma, 0}(y) \doteq \frac{1}{ \sigma \sqrt{2 \pi}} e^{-\frac{y^2}{2 \sigma^2}}.
-		\label{2}
-	\end{split}
+  \begin{split}
+    \phi_{\sigma, 0}(y) \doteq \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{y^2}{2 \sigma^2}}.
+    \label{2}
+  \end{split}
 \end{equation}
 Now, let $f(x,t): \rr^3 \times \rr \to \rr$ represent the number of particles per unit volume. Then
 the number of particles enclosed in a rectangular region with height and width equal
 to $1$ and length $dx$ parallel to the $x$-axis is simply $f(x,t) dx$. Hence we have
 \begin{equation}
-	\begin{split}
-		f(x,t + \tau) dx = dx \cdot \int_{y=-\infty}^{y=\infty} f(x+y, t) \phi(y) dy.
-		\label{3}
-	\end{split}
+  \begin{split}
+    f(x,t + \tau) dx = dx \cdot \int_{y=-\infty}^{y=\infty} f(x+y, t) \phi(y) dy.
+    \label{3}
+  \end{split}
 \end{equation}
 Furthermore, we can use a Taylor expansion to write
 \begin{equation}
-	\begin{split}
-		f(x, t + \tau) \approx f(x,t) + \tau \frac{\p f}{\p t}(x,t)
-		\label{4}
-	\end{split}
+  \begin{split}
+    f(x, t + \tau) \approx f(x,t) + \tau \frac{\p f}{\p t}(x,t)
+    \label{4}
+  \end{split}
 \end{equation}
 and
 \begin{equation}
-	\begin{split}
-		f(x + y, t) \approx f(x,t) + y \frac{\p f(x,t)}{\p x} +
-		\frac{y^2}{2!}\frac{\p^2 f(x,t)}{\p x^2}.
-		\label{5}
-	\end{split}
+  \begin{split}
+    f(x + y, t) \approx f(x,t) + y \frac{\p f(x,t)}{\p x} +
+    \frac{y^2}{2!}\frac{\p^2 f(x,t)}{\p x^2}.
+    \label{5}
+  \end{split}
 \end{equation}
 Substituting \eqref{5} and \eqref{4} into \eqref{3}, cancelling $dx$, and dropping the
 ``approximately equal'' sign in favor of equality, we obtain
 \begin{equation}
-	\begin{split}
-		f(x, t ) + \tau \frac{\p f(x,t)}{\p t}
-		& = f(x,t) \int_{-\infty}^{\infty} \phi(y)
-		dy
-		\\
-		& + \frac{\p f(x,t)}{\p x} \int_{-\infty}^{\infty} y \phi(y) dy +
-		\frac{\p^2 f(x,t)}{\p x^2} \int_{-\infty}^{\infty} \frac{y^2}{2}\phi(y) dy.
-		\label{6}
-	\end{split}
+  \begin{split}
+    f(x, t ) + \tau \frac{\p f(x,t)}{\p t}
+    & = f(x,t) \int_{-\infty}^{\infty} \phi(y)
+    dy
+    \\
+    & + \frac{\p f(x,t)}{\p x} \int_{-\infty}^{\infty} y \phi(y) dy +
+    \frac{\p^2 f(x,t)}{\p x^2} \int_{-\infty}^{\infty} \frac{y^2}{2}\phi(y) dy.
+    \label{6}
+  \end{split}
 \end{equation}
 We now aim to simplify \eqref{6}. First, note that 
 \begin{equation*}
-	\begin{split}
-		\int_{-\infty}^{\infty} \phi(y) dy = 1
-		\label{7}.
-	\end{split}
+  \begin{split}
+    \int_{-\infty}^{\infty} \phi(y) dy = 1
+    \label{7}.
+  \end{split}
 \end{equation*}
 Furthermore, the integrand of the second term of \eqref{6} is an odd function; hence
 the second term vanishes. Incorporating these changes we obtain
 \begin{equation*}
-	\begin{split}
-		\cancel{f(x, t )} + \tau \frac{\p f(x,t)}{\p t}
-		= \cancel{f(x,t)} +
-		\frac{\p^2 f(x,t)}{\p x^2} \int_{-\infty}^{\infty} \frac{y^2}{2}\phi(y) dy.
-		\label{8}
-	\end{split}
+  \begin{split}
+    \cancel{f(x, t )} + \tau \frac{\p f(x,t)}{\p t}
+    = \cancel{f(x,t)} +
+    \frac{\p^2 f(x,t)}{\p x^2} \int_{-\infty}^{\infty} \frac{y^2}{2}\phi(y) dy.
+    \label{8}
+  \end{split}
 \end{equation*}
 Dividing through by $\tau$ and setting 
 \begin{equation*}
-	\frac{1}{\tau}\int_{-\infty}^{\infty} \frac{y^2}{2}\phi(y) dy = D
+  \frac{1}{\tau}\int_{-\infty}^{\infty} \frac{y^2}{2}\phi(y) dy = D
 \end{equation*}
 we obtain the famous heat equation
 \begin{equation}
-	\begin{split}
-		\frac{\p f}{\p t} = D \frac{\p^2 f}{\p x^2}.
-		\label{9}
-	\end{split}
+  \begin{split}
+    \frac{\p f}{\p t} = D \frac{\p^2 f}{\p x^2}.
+    \label{9}
+  \end{split}
 \end{equation}
 Notice now that our previous work extends
 without loss of generality over all of $\rr^3$ (we had chosen the simple case of
@@ -353,33 +344,33 @@ identify the initial conditions. Assume that our
 non-electroylytic particles are initially suspended at the origin. Then for $x
 \lessgtr 0$ and $t=0$ we have
 \begin{equation}
-	\label{10}
-	f(x,t) = 0
+  \label{10}
+  f(x,t) = 0
 \end{equation}
 (all particles are still located at the origin at $t=0$; hence the
 density of particles outside the origin at time $t=0$ must be zero). Furthermore, since
 all particles must be contained in our tank, we have
 \begin{equation}
-	\begin{split}
-		\int_{-\infty}^{\infty} f(x,t) dx = k.
-		\label{11}
-	\end{split}
+  \begin{split}
+    \int_{-\infty}^{\infty} f(x,t) dx = k.
+    \label{11}
+  \end{split}
 \end{equation}
 Hence \eqref{9}, \eqref{10}, and \eqref{11} determine an initial value problem with 
 solution
 \begin{equation}
-	\begin{split}
-		f(x,t) = \frac{k}{\sqrt {4 \pi Dt}} e^{-\frac{x^2}{4Dt}}.
-		\label{12}
-	\end{split}
+  \begin{split}
+    f(x,t) = \frac{k}{\sqrt {4 \pi Dt}} e^{-\frac{x^2}{4Dt}}.
+    \label{12}
+  \end{split}
 \end{equation}
 Recalling \eqref{2}, we conclude from \eqref{12} that
 \begin{equation}
-	\begin{split}
-		f(x,t)
-		= k \phi_{\sqrt{2Dt}, 0}(x).
-		\label{13}
-	\end{split}
+  \begin{split}
+    f(x,t)
+    = k \phi_{\sqrt{2Dt}, 0}(x).
+    \label{13}
+  \end{split}
 \end{equation}
 Hence, the variance $\sigma^2$ of the dispersion of the particles is precisely
 $2Dt$. 
@@ -400,11 +391,11 @@ simple and elegant method for measuring Avogadro's number:
 By recalling
 \eqref{diffusion-coefficient} and substituting in the equality 
 \begin{equation*}
-	\sigma^2 = 2Dt
+  \sigma^2 = 2Dt
 \end{equation*}
 we can rearrange terms to obtain
 \begin{equation}
-	N = \frac{t}{\sigma^2} \cdot \frac{RT}{3 \pi v L}.
+  N = \frac{t}{\sigma^2} \cdot \frac{RT}{3 \pi v L}.
 \end{equation}
 Hence the problem of measuring the number of atoms in $k$ grams of our non-electrolytic
 molecule is reduced to measuring the variance of the displacement of the particles at
@@ -420,6 +411,6 @@ time $t$ and the osmotic pressure generated on the semi-permeable membrane.
 
 
 
-				  \end{document}
+\end{document}
 
 
