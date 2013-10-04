@@ -212,7 +212,9 @@ Subsequently, based on \eqref{dps} and \eqref{l+}, we deduce
 \aligned
 \widehat{A_p(u^N_0,u^N_1)}(t,\xi)\,=\,& \frac{\xi^2}{N^{p\sigma}\lambda(\xi)}\int_0^t \,\sin((t-\tau) \lambda(\xi))\,\cdot\\
 \bigg[\int_{\R^{p-1}}\varphi_{\pm A_N}(\xi-\sum_{j=1}^{p-1} \eta_j)&\cdot e^{\mp i\tau\lambda(\xi-\sum_{j=1}^{p-1}\eta_j)}\,
-\prod_{j=1}^{p-1}\varphi_{\pm A_N}(\eta_j)\cdot e^{\mp i\tau\lambda(\eta_j)}\,d\eta_1\ldots d\eta_{p-1}\bigg]d\tau
+\\
+& \prod_{j=1}^{p-1}\varphi_{\pm A_N}(\eta_j)\cdot e^{\mp
+i\tau\lambda(\eta_j)}\,d\eta_1\ldots d\eta_{p-1}\bigg]d\tau
 \endaligned
 \label{apn}
 \end{equation}
@@ -268,11 +270,11 @@ Finally, the key point in the argument is the construction of a sequence of subs
 \end{equation}
 This rules out possible cancellations and reduces the analysis of the problem to the one of the generic term.
 
-\section{Proof of Theorem~\ref{mainth} for $M=\R$}
+\section{Proof of Theorem~\texorpdfstring{\ref{mainth}}{} for \texorpdfstring{$M=\R$}{}}
 
 We split the discussion into two cases, depending on the parity of $p$.
 
-\subsection{Argument for $p$ even}
+\subsection{Argument for \texorpdfstring{$p$}{} even}
 Here, the choice for the sequence $(A_N)_N$ is 
 \[
 A_N\,=\,[N,N+1], \quad (\forall) N \geq 1.
@@ -341,7 +343,7 @@ Finally,  combining \eqref{aphs2} and \eqref{idhs}, we deduce for $N$ sufficient
  \frac{\left\|A_{p}(u_0^N,u_1^N)(t)\right\|_{H^s}}{\left(\left\|u_0^N\right\|_{H^{s}} + \left\|u_1^N\right\|_ {H^{{s}-2}}\right)^p}\,\gtrsim\, \frac{1}{N^{ps+1}},\end{equation}
 which yields \eqref{ratio} due to \eqref{sp}.
 
-\subsection{Argument for $p$ odd}
+\subsection{Argument for \texorpdfstring{$p$}{} odd}
 The first remark we want to make here is that the previous choice for $A_N$ (i.e., $A_N\,=\,[N,N+1]$) doesn't work in this case, because, as $p$ is odd, 
 \[
 \left|\epsilon_1 a_1+\epsilon_2 a_2+ \ldots+\epsilon_p a_p\right|\,\approx\,N, 
@@ -512,7 +514,8 @@ which implies on one hand $p\geq 9$. On the other hand, used in the above estima
 One can check case by case that, for $p\geq 9$, this upper bound for $\xi$ is less than the left-hand endpoint of $I_p$, which is obviously a contradiction. 
 \end{proof}
 
-As it turns out, the two lemmas are all that is needed to fully solve, for $(n_1, n_2, n_3, n_4)$, the diophantine system composed of \eqref{sumn} and \eqref{difn}. We argue by considering the possible values of $n_2+n_3$, which, according to \eqref{n2n3}, are $0$, $1$, and $2$.
+As it turns out, the two lemmas are all that is needed to fully solve, for \\
+$(n_1, n_2, n_3, n_4)$, the diophantine system composed of \eqref{sumn} and \eqref{difn}. We argue by considering the possible values of $n_2+n_3$, which, according to \eqref{n2n3}, are $0$, $1$, and $2$.
 
 If $n_2+n_3=0$, then $n_2=n_3=0$ and, using the notation in the previous lemma, $p=3\gamma$. This implies that $ p\equiv 0\, (\text{mod}\,3)$ and, due to \eqref{n1n2v2}, we obtain
 \[
@@ -533,10 +536,10 @@ which is given by \eqref{2mod32}.
 The case $n_2+n_3=2$ is similar, yielding \eqref{1mod31}-\eqref{1mod33}. This concludes the argument for $p$ odd, finishing also the proof for the non-periodic case of Theorem \ref{mainth}.
 
 
-\section{Proof of Theorem~\ref{mainth} for $M=\mathbb{T}$}
+\section{Proof of Theorem~\texorpdfstring{\ref{mainth}{}} for \texorpdfstring{$M=\mathbb{T}$}{}}
 The proof follows the same line of ideas as the one for $M=\R$, the integral formula \eqref{apn} being replaced by \eqref{app}. Moreover, it is substantially simplified by the discrete nature of this case. This is why we mention only the relevant differences and leave the details for the interested reader.
 
-\subsection{Argument for $p$ even} Here, we choose
+\subsection{Argument for \texorpdfstring{$p$} even} Here, we choose
 \[
 A_N\,=\,\left\{N,\, N+1\right\}\ \text{and} \ \xi\,=\,\frac{p}{2},
 \]
@@ -553,7 +556,7 @@ which implies the desired bound
 -\beta= |\beta| \approx N.
 \]
 
-\subsection{Argument for $p$ odd} In this instance, we take
+\subsection{Argument for \texorpdfstring{$p$} odd} In this instance, we take
 \[
 A_N\,=\,\left\{N,\, N+1, \, 2N\right\}\ \text{and} \ \xi\,=\,\frac{p+1}{2}\,+\, \lfloor\frac{p-3}{6}\rfloor.
 \]
@@ -590,7 +593,7 @@ We are indebted to Nobu Kishimoto for helpful discussions in connection with the
 
 
 \bibliographystyle{amsplain}
-\bibliography{bousbib}
+\bibliography{bousbib.bib}
 
 
 \end{document}

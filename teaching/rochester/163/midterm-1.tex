@@ -1,0 +1,168 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{graphicx}
+\usepackage[nohead, margin=0.5in]{geometry}
+\usepackage{enumerate}
+%\geometry{left=0.5in,right=0.5in,top=0.3in,bottom=0.5in} 
+
+\pagestyle{empty}
+%Next are definitions of "\one" etc. 
+%This is an easy way of assigning points to your questions and to 
+%your table all at once. 
+\newcommand{\one}{20}
+\newcommand{\two}{20}
+\newcommand{\three}{20}
+\newcommand{\four}{20}
+\newcommand{\five}{20}
+\newcommand{\rr}{\mathbb{R}}
+\synctex=1
+
+\begin{document}
+
+
+%feel free to change the title page
+%
+
+\begin{center}
+    \hrulefill\\
+    {\bf \textsf{\raisebox{-0.10cm}{Fall 2013: MATH 163} \hspace{\fill} 
+            \raisebox{-0.10cm}{Ordinary Differential Equations} \hspace{\fill}
+            \raisebox{-0.10cm}{David Karapetyan}}}\\
+    \hrulefill\\
+    {\large \rule{0cm}{1.2cm} \textsf{Friday 10/04/2013} \hfill
+        \textsf{Midterm} \hfill  \textsf{50 minutes}}\\
+    {\large\rule{0cm}{1.2cm}\textsf{Name: \framebox[2.9in]{\rule{0cm}{0.8cm}} 
+            \hspace{\fill}
+            Student ID: \framebox[2.1in]{\rule{0cm}{0.8cm}}}}\\
+\end{center}
+\vspace{0.8cm}
+
+\noindent
+{\bf \textsf{Instructions.}}
+
+\begin{enumerate}
+    \item Attempt all questions.   
+    \item Show all the steps of your work clearly.  
+    \item Good luck 
+        %The method (reasoning) used to 
+        %obtain an answer is worth more than the answer itself.   
+\end{enumerate}
+
+\vfill
+
+%The \rule commands create vertical space, which makes things sit nicely in 
+%vertical way in boxes of table below.
+
+\begin{center}
+    {\large
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Question} & \textsf{Points} &  \textsf{Your Score} \\
+            \hline
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q1} & \one &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q2} & \two &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q3} & \three &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q4} & \four &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q5} & \five &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+
+            \textsf{TOTAL} & 100 & \\
+            \hline
+        \end{tabular}
+    } 
+
+\end{center}
+
+\vfill
+
+
+\newpage
+\noindent
+\textbf{Q1}. \\ \\ 
+\begin{enumerate}[a)]
+    \item
+Find the general solution for $x > 0$ to the equation
+\begin{equation*}
+\begin{split}
+x \frac{dy}{dx} + 2y =1, \quad y=y(x).
+\end{split}
+\end{equation*}
+
+
+
+\vspace{5in}
+\item
+    Now find the unique solution satisfying $y(1) = 2$.
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Q2}. \\ \\ 
+\begin{enumerate}[a)]
+    \item
+Find all solutions to the equation
+\begin{equation*}
+\begin{split}
+\frac{dz}{dx}=x^{2} z^{2}.
+\end{split}
+\end{equation*}
+
+
+
+\vspace{5in}
+\item
+    Now find the unique solution satisfying $z(0) = 1$. What is the largest interval on the real line for which the solution exists?
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Q3}. \\ \\ 
+        Joey needs a loan to purchase a splendiferous persian rug. Bank A offers him a loan of $\$10,000$ at the annual interest rate of $5\%$. Set up a differential equation modeling how much Joey owes the bank at any time $t \ge 0$, and solve it. How much will Joey have paid in interest (in dollars) aonce he has repaid the loan?    
+
+        \newpage
+
+\noindent
+\textbf{Q4}. \\ \\ 
+State, with explanation, whether the following ODEs are linear or nonlinear. What order are they?
+
+\vspace{1in}
+\begin{enumerate}[a)]
+    \item
+        $y''' + 2y' + y^{2} = 5$, \quad $y = y(x)$
+        \vspace{2in}
+
+    \item
+        $xy' + y = 2$, \quad $y = y(x)$
+        \vspace{2in}
+
+    \item 
+        $10y' + 7y''$, \quad $y = y(x)$
+        \vspace{2in}
+
+
+\end{enumerate}
+\newpage
+\noindent
+\textbf{Q5}. \\ \\ 
+Does the following initial value problem have a unique solution? Why or why not?
+\begin{gather*}
+\frac{dy}{dt} = y^{2} + \cos(y) + t
+\\
+y(0) = 1
+\end{gather*}
+
+\end{document}
+
+
+
