@@ -1,0 +1,77 @@
+\documentclass[12 pt]{article}
+\usepackage{amsmath,amsfonts,amsthm,amscd}
+\usepackage{enumerate}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{pro}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{statement}[thm]{Statement}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{quot}[]{Result}
+\newcommand{\dime}{\operatorname{dim}}
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\chan}{\operatorname{char}}
+\newcommand{\degr}{\operatorname{deg}}
+\newcommand{\expo}{\operatorname{exp}}
+\newcommand{\spant}{\operatorname{span}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Term}{\operatorname{Term}}
+\newcommand{\Init}{\operatorname{Init}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Endo}{\operatorname{End}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Order}{\operatorname{ord}}
+\newcommand{\kerl}{\operatorname{Ker}}
+\newcommand{\Img}{\operatorname{Image}}
+\newcommand{\sine}{\operatorname{sin}}
+
+\begin{document}
+
+\centerline{\bf MATH 280: Homework 6} 
+
+\bigskip
+
+\noindent
+
+\noindent
+1. Recall that if $\mathbb{A}$ is a symmetric matrix and $\mathbb{A}=LU$ then
+\\ $LU=\mathbb{A}=\mathbb{A}^T=U^TL^T$ which yields $UL^{-T}=D=L^{-1}U^T$ with
+$D$ a diagonal matrix. Then $\mathbb{A}=LU=LDL^T$. If furthermore $\mathbb{A}$ is positive definite, then $D$ has positive entries on the diagonal and we can find a decomposition $D=D^{\frac{1}{2}} D^{\frac{1}{2}}$. Setting $\mathbb{\hat{L}}=LD^{\frac{1}{2}}$ we then find the Cholesky decomposition
+$\mathbb{A}=\hat{\mathbb{L}}\hat{\mathbb{L}}^T$. \\
+Use this to find the Cholesky decomposition of the following matrices:
+\begin{enumerate}[a)]
+  \item
+$$
+\mathbb{A}=\begin{bmatrix} 1 & 2 \\ 2 & 5 \end{bmatrix}
+$$
+\item
+$$
+\mathbb{A}=\begin{bmatrix} 4 & \frac{1}{2} & 1 \\ \frac{1}{2} & \frac{17}{16} & \frac{1}{4} \\  1 & \frac{1}{4} & \frac{33}{64} \end{bmatrix}
+$$
+\end{enumerate}
+2. Use the pivoting method to choose pivots in each column in a way to minimize computational error magnification to find decompositions
+of the form $P\mathbb{A} = LU$ where $P$ is a permutation matrix, $L$ is unit lower triangular and $U$ is upper triangular for the following matrices
+$\mathbb{A}$. In each case compute the initial "scale" of each row carefully, show your work to decide on pivots and circle pivot choices during the computation, and state the final $L$, $U$ and permutation $P$ clearly.
+\begin{enumerate}[a)]
+  \item
+$$
+\mathbb{A} = \begin{bmatrix} -1 & 1 & -4 \\ 2 & 2 & 0 \\ 3 & 3 & 2 \end{bmatrix}
+$$
+\item
+$$
+\mathbb{A} = \begin{bmatrix} 1 & 6 & 0 \\ 2 & 1 & 0 \\ 0 & 2 & 1 \end{bmatrix}
+$$
+\end{enumerate}
+3. Code a function that takes two matrices and either returns their
+product or an error if their product is not
+well-defined. If both matrices are $n \times n$, what is the computational
+complexity of your function? If a better algorithm exists, what is the best
+computational complexity we can hope for?
+\end{document}
