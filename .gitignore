@@ -48,7 +48,6 @@ Pictures/
 Public/
 share/
 math-backup/
-/texclipse_output
+texclipse_output/
 papers-other/
-/texclipse_output
-/tmp
+tmp/
