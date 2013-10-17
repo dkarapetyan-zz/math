@@ -1,0 +1,70 @@
+
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm,color}
+\usepackage{listings,xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bigo}{\mathcal{O}}
+\renewcommand{\proof}{\noindent {\bf Proof. }}
+\renewcommand{\labelenumi}{\bf \arabic{enumi}.}
+\newcommand{\solution}{\noindent {\bf Solution. }}
+\newcommand{\fin}{\hfill $\square$}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+{\bf Math 280: Solutions of Homework I}
+\end{center}
+\begin{enumerate}
+\item
+\proof
+(a) It is trivial when $x=0$. For the case $x\neq 0$, we have $|\sin(1/x)|\leq 1$. Hence $|f(x)|=|x||\sin(1/x)|\leq |x|$. Moreover, for fixed $\varepsilon>0$, if $|x-0|<\varepsilon$, then $|f(x)-f(0)|=|f(x)|\leq |x|=|x-0|<\varepsilon$. Hence, $f(x)$ is continuous at $x=0$. \fin
+
+(b) By the definition of differentiation, we have $$\frac{f(x)-f(0)}{x-0} = \frac{f(x)}{x} = \sin(1/x).$$ $\sin(1/x)$ is not convergent when $x\rightarrow 0$. In fact, $\{x_n=1/(\pi/2+2n\pi):n\in\N\}$ and $\{y_n=1/(3\pi/2+2n\pi):n\in\N\}$ are two sequences that are convergent to $0$, but $\sin(1/x_n)=1$ while $\sin(1/y_n)=-1$, for any $n\in\N$. Therefore $f(x)$ is not differentiable at $a=0$. \fin
+
+\item
+\solution
+(a) $\ln(x), x, x^2, x^3, e^x$. Since all these given functions are divergent to $+\infty$, we apply L'H$\hat{o}$spital rule on the functions to get the order. For example, $$\lim_{x \rightarrow + \infty} \frac{e^x}{x^3} = \lim_{x \rightarrow + \infty} \frac{e^x}{3x^2} = \lim_{x \rightarrow + \infty} \frac{e^x}{6x} = \lim_{x \rightarrow + \infty} \frac{e^x}{6}= + \infty.$$ Therefore, for fixed $C>0$, there exists an $N>0$ such that for any $x>N$, $|e^x/x^3|>C$. In other words, $|x^3|<(1/C)|e^x|$.
+
+(b) $x^3, x^2,x, e^x, \ln(x)$. When $x\rightarrow 0$, $|\ln(x)|\rightarrow + \infty$, $|e^x|\rightarrow 1$ and $x,x^2,x^3\rightarrow 0$. For $x,x^2,x^3$, we again apply L'H$\hat{o}$spital's rule. \fin
+
+\item
+\proof
+(a) False. $\frac{n+1}{n^2}=\frac{1}{n}+\frac{1}{n^2}=\frac{1}{n}+o(\frac{1}{n})$.
+
+(b) False. $\lim_{n\rightarrow \infty}\frac{n+1}{\sqrt{n}}=\lim_{n\rightarrow \infty}2\sqrt{n}=+ \infty$
+
+(c) False. $\lim_{n\rightarrow \infty}\frac{1/\ln(n)}{1/n}=\lim_{n\rightarrow \infty}\frac{n}{\ln(n)}=\lim_{n\rightarrow \infty}n = +\infty$.
+
+(d) True. $\lim_{n\rightarrow \infty}\frac{1/(n\ln(n))}{1/n} = \lim_{n\rightarrow \infty}\frac{1}{\ln(n)} = 0$.
+
+(e) False. $\lim_{n\rightarrow \infty}\frac{e^n}{n^5} = +\infty$ while $ \lim_{n\rightarrow \infty}\frac{1}{n}=0$.
+
+(f) False. $\lim_{x\rightarrow 0}\frac{e^x-1}{x^2}=\lim_{x\rightarrow 0}\frac{e^x}{2x}=+\infty$.
+
+(g) True. $\lim_{x\rightarrow 0}\frac{\cos(x)-1}{x^2} = \lim_{x\rightarrow 0}\frac{-\sin(x)}{2x} = \lim_{x\rightarrow 0}\frac{-\cos(x)}{2}=-1/2$.
+\fin
+\item
+C version:
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello world\n");
+    return 0;
+}
+\end{lstlisting}
+C++ version:
+\begin{lstlisting}[language=C++]
+
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello World" << std::endl;
+    return 0;
+}
+\end{lstlisting}
+\end{enumerate}
+\end{document}

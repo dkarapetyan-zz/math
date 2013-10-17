@@ -1,0 +1,138 @@
+
+%
+%    *** urmathexam.sty ***
+%
+% For typesetting exams!!!!!!!
+%
+
+% The Identification Part
+
+\ProvidesPackage{urmathexam}[2001/04/16]
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+
+% The Initial Code Part
+
+\topmargin 0pt
+\advance \topmargin by-\headheight
+\advance \topmargin by-\headsep
+\oddsidemargin 0pt
+\evensidemargin 0pt
+\marginparwidth 0.5in
+\textwidth 6.5in
+\linespread{1.2}
+
+\newcommand{\@tableheading}{}
+\newcommand{\@partheading}{}
+\newcommand{\anotherpart}{}
+
+\newcommand{\studentinfo}{
+  \noindent{\bf NAME (please print legibly):} \hrulefill{} \\
+  \noindent{\bf Student ID Number:} \hrulefill{} \\
+}
+\newcommand{\instructions}[1]{
+  #1
+}
+
+\newcommand{\@newpage}{\newpage}
+\newcommand{\@titleordate}[1]{#1}
+\newcommand{\@addanswer}[1]{#1}
+\newcommand{\finishfirstpage}{
+  \vspace*{-10mm}
+  \listofproblems
+  \problemsstart
+}
+\newcommand{\ans}{\vspace{0.2in} \hskip 3in ANSWER: \hrulefill{}}
+\def\pos{\vspace{0.2in}}
+
+% The Declaration of Options
+
+\DeclareOption{letter}{\textheight 8.9in}
+\DeclareOption{legal}{\textheight 11.5in}
+\DeclareOption{onepart}{}
+\DeclareOption{multipart}{
+  \renewcommand{\@tableheading}{
+    \addtocontents{pro}{\protect\multicolumn{3}{||c||}{Part-\Alph{part}} \\}
+    \addtocontents{pro}{\protect\hline \protect\hline}
+  }
+  \renewcommand{\@partheading}{{\bf\noindent Part-\Alph{part}}}
+  \renewcommand{\anotherpart}{
+    \@partend
+    \addtocontents{pro}{\hskip 1em}
+    \@partstart
+  }
+}
+\DeclareOption{answers}{
+  \renewcommand{\@newpage}{}
+  \renewcommand{\@titleordate}[1]{\today}
+  \renewcommand{\studentinfo}{}
+  \renewcommand{\@addanswer}[1]{#1 ANSWERS}
+  \renewcommand{\finishfirstpage}{\problemsstart}
+  \renewcommand{\ans}{\vspace{0.2in} \hskip 2.5in ANSWER:}
+  \renewcommand{\instructions}[1]{}
+}
+
+% The Execution of Options
+
+\ExecuteOptions{letter,onepart}
+\ProcessOptions
+
+% Exam Title Commands
+
+\newcommand{\examtitle}[3]{
+  \begin{center}
+    {\LARGE #1 \\ \vskip 0.1in}
+    {\large \@addanswer{#2} \\
+     \@titleordate{#3} \vskip 0.5in}
+  \end{center}
+}
+
+% Definition of Counters
+
+\newcounter{total}[part]
+\newcounter{problem}[part]
+
+% The Following Commands Produce the Table as well as the Problems
+
+\newcommand{\listofproblems}{
+             {\large \@starttoc{pro}}
+           }
+\newcommand{\problemsstart}{
+             \addtocontents{pro}{\protect\begin{center}}
+             \@partstart
+           }
+\newcommand{\@partstart}{
+             % This sets up the beginning of a part
+             \@newpage
+             \stepcounter{part}
+             \@partheading
+             % This starts the form of the table
+             \addtocontents{pro}{\protect\tabular{||r|r|c||}}
+             \addtocontents{pro}{\protect\multicolumn {3}{c}{\mbox{}} \\}
+             \addtocontents{pro}{\protect\hline \protect\hline}
+             \@tableheading
+             \addtocontents{pro}{QUESTION & VALUE & SCORE \\}
+             \addtocontents{pro}{\protect\hline \protect\hline}
+           }
+\newcommand{\problem}[1]{
+             \stepcounter{problem}
+             \addtocontents{pro}{\theproblem & #1 \quad & \\ \protect\hline}
+             \addtocounter{total}{#1}
+             {\bf \noindent\theproblem. (#1 pts)}
+           }
+\newcommand{\@partend}{
+             % This finishes the form of the table
+             \addtocontents{pro}{\protect\hline}
+             \addtocontents{pro}{TOTAL & \thetotal \,\, & \\ \protect\hline}
+             \addtocontents{pro}{\protect\hline}
+             \addtocontents{pro}{\protect\endtabular}
+           }
+\newcommand{\problemsdone}{
+             \@partend
+             \addtocontents{pro}{\protect\end{center}}
+             \marginpar{\mbox{}}  % See explanation below!
+           }
+
+% The \mbox command is used to produce an invisible margin note
+% on the last page.  This fixes a serious problem which can occur
+% if a user inserts \newpage immediately before \problemsdone.
+% In that case, however, a blank page will be produced.
