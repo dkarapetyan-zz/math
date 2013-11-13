@@ -73,11 +73,7 @@
             \textsf{Q4} & \four &\\
             \hline
             \rule[-0.3cm]{0cm}{1cm}
-            \textsf{Q5} & \five &\\
-            \hline
-            \rule[-0.3cm]{0cm}{1cm}
-
-            \textsf{TOTAL} & 100 & \\
+            \textsf{TOTAL} & 80 & \\
             \hline
         \end{tabular}
     } 
@@ -91,58 +87,52 @@
 \noindent
 \textbf{Q1}. \\ \\ 
 Let $A$ be a square matrix, and let $\sigma(A)$ denote its spectrum. Prove that
-if $\sigma(A) < 1$, then $I-A$ is invertible, and the Neumann series of $A$ converges in any norm to $(I
-- A)^{-1}$. \\
+if $\sigma(A) < 1$, then $I-A$ is invertible, and that the Neumann series of $A$ converges in any norm to $(I - A)^{-1}$. \\
 \newpage
 
 \noindent
 \textbf{Q2}.\\ \\ 
 \begin{enumerate}[a)]
-\item State the definitions of the $L^1$, $L^2$, and $L^\infty$ norms on $C^n$.
+\item State the definitions of the $L^1$, $L^2$, and $L^\infty$ norms on $\mathbb{C^n}$.
 \vspace{2in}
-\item State the definition of the operator norm for $n \times n$ matrices
+\item State the definition of the operator norm for $n \times n$ matrices.
 \vspace{2in}
-\item Let $A : C^n \to C^n$ be an $n \times n$ matrix. Prove that
-$ \| A \|_{\infty} = \sup_i \sum_{j = 1}^n | a_{ij} | $
+\item Let $A : \mathbb{C}^n \to \mathbb{C}^n$ be an $n \times n$ matrix. Prove that
+$ \| A \|_{\infty} = \sup_i \sum_{j = 1}^n | a_{ij} | $.
 \end{enumerate}
 
 \newpage
 
 \noindent
 \textbf{Q3}. \\ \\ 
-Let $A$ be an $n \times n$ matrix with distinct eigenvalues. Consider the
-algorithm 
+Let $A$ be an $n \times n$ matrix with distinct eigenvalues, $n, M \in
+\mathbb{N}$, and $x \in \mathbb{C}^n$. For arbitrary $v \in \mathbb{C}$, let
+$v_1$ denote its first coordinate. Consider the algorithm 
 \vspace{0.1in}\\
 \noindent
 input $n,A,x,M$ \\
 for $k=1,2,\ldots,M$ do \\
-$\phantom{bobo}y = Ax$ \\
-$\phantom{bobo}r = y_i/x_i$ \\
-$\phantom{bobo} x = y$ \\
+$\phantom{bobo}y \leftarrow Ax$ \\
+$\phantom{bobo}r \leftarrow y_1/x_1$ \\
+$\phantom{bobo} x \leftarrow y$ \\
 end \\
-return $r$ \\
+return $r$ 
+\vspace{0.3in} \\
 \noindent
-\vspace{1.5in}
-What is $r$? Prove it.
+As $M \to \infty$, what does $r$ converge to? Please supply a proof. 
 \newpage
 \noindent
 \textbf{Q4}. \\ \\ 
 \noindent
-a) Let $f(x)=x^5$ and $x_0=10$ with absolute error at most $\delta_x=0.2$. Compute $f'(x_0)$ and the condition number and use them to estimate 
-the absolute and relative error in $y_0=f(x_0)$. 
-
-\vspace{4in}
-
-\noindent
-b) After $n$ iterations of the bisection method for $f$, starting in the interval $[-1, 1]$, what candidate root do you arrivate at? What upper bound for the absolute error does the bisection method guarantee us? What is the actual absolute error?  
-
-\newpage
-\noindent
-
-\noindent \textbf{Q5}. \\ \\ 
-\noindent
-Write a C or C++ program implementing Newton's method for the function $f(x) = x^3 -7$, with initial starting point $x_0 = 2$.    
-\vspace{2in}
+Find an $LU$ factorization for the matrix
+\begin{equation*}
+A = \begin{bmatrix}
+60 & 30 & 20 \\
+30 & 20 & 15 \\
+20 & 15 & 12 \\
+\end{bmatrix}
+\end{equation*}
+where $L$ has unit diagonal. Note: guessing will not be awarded points---your work should make extensive use of the diagonal entries of $A$. 
 
 
 

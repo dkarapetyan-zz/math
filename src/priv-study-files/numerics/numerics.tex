@@ -1,24 +1,19 @@
-%
 \documentclass[12pt,reqno]{amsart}
-\usepackage{amssymb}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage[alphabetic, msc-links]{amsrefs} %for the bibliography; uses cite pkg
-%\usepackage{showkeys}  %shows source equation labels on the pdf
-\usepackage[margin=3cm]{geometry}  %page layout
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
-\setcounter{secnumdepth}{1} %number only sections, not subsections
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\usepackage{hyperref}
 \hypersetup{colorlinks=true,
 linkcolor=blue,
 citecolor=blue,
 urlcolor=blue,
 }
-\synctex=1
-\numberwithin{equation}{section}  %eliminate need for keeping track of counters
-\numberwithin{figure}{section}
-\setlength{\parindent}{0in} %no indentation of paragraphs after section title
-\renewcommand{\baselinestretch}{1.1} %increases vert spacing of text
-%
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \newcommand{\ds}{\displaystyle}
 \newcommand{\ts}{\textstyle}
 \newcommand{\nin}{\noindent}
@@ -32,357 +27,394 @@ urlcolor=blue,
 \newcommand{\p}{\partial}
 \newcommand{\ee}{\varepsilon}
 \newcommand{\vp}{\varphi}
-%
-%
-\theoremstyle{plain}  
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{claim}{Claim}
-\newtheorem{conjecture}[subsection]{conjecture}
-%
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-%
-\theoremstyle{remark}
-\newtheorem{remark}{Remark}
-%
-%
-%
-\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
-\makeautorefname{equation}{Equation}
-\makeautorefname{footnote}{footnote}
-\makeautorefname{item}{item}
-\makeautorefname{figure}{Figure}
-\makeautorefname{table}{Table}
-\makeautorefname{part}{Part}
-\makeautorefname{appendix}{Appendix}
-\makeautorefname{chapter}{Chapter}
-\makeautorefname{section}{Section}
-\makeautorefname{subsection}{Section}
-\makeautorefname{subsubsection}{Section}
-\makeautorefname{paragraph}{Paragraph}
-\makeautorefname{subparagraph}{Paragraph}
-\makeautorefname{theorem}{Theorem}
-\makeautorefname{theo}{Theorem}
-\makeautorefname{thm}{Theorem}
-\makeautorefname{addendum}{Addendum}
-\makeautorefname{add}{Addendum}
-\makeautorefname{maintheorem}{Main theorem}
-\makeautorefname{corollary}{Corollary}
-\makeautorefname{lemma}{Lemma}
-\makeautorefname{sublemma}{Sublemma}
-\makeautorefname{proposition}{Proposition}
-\makeautorefname{property}{Property}
-\makeautorefname{scholium}{Scholium}
-\makeautorefname{step}{Step}
-\makeautorefname{conjecture}{Conjecture}
-\makeautorefname{question}{Question}
-\makeautorefname{definition}{Definition}
-\makeautorefname{notation}{Notation}
-\makeautorefname{remark}{Remark}
-\makeautorefname{remarks}{Remarks}
-\makeautorefname{example}{Example}
-\makeautorefname{algorithm}{Algorithm}
-\makeautorefname{axiom}{Axiom}
-\makeautorefname{case}{Case}
-\makeautorefname{claim}{Claim}
-\makeautorefname{assumption}{Assumption}
-\makeautorefname{conclusion}{Conclusion}
-\makeautorefname{condition}{Condition}
-\makeautorefname{construction}{Construction}
-\makeautorefname{criterion}{Criterion}
-\makeautorefname{exercise}{Exercise}
-\makeautorefname{problem}{Problem}
-\makeautorefname{solution}{Solution}
-\makeautorefname{summary}{Summary}
-\makeautorefname{operation}{Operation}
-\makeautorefname{observation}{Observation}
-\makeautorefname{convention}{Convention}
-\makeautorefname{warning}{Warning}
-\makeautorefname{note}{Note}
-\makeautorefname{fact}{Fact}
-%
+\newcommand{\wt}{\widetilde}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}{Example}[section]
+\newtheorem{exercise}[theorem]{Exercise}
+\synctex=1
 \begin{document}
 \title{Notes on Numerical Computation }
 \author{David Karapetyan}
 \address{Department of Mathematics  \\
-         University  of Notre Dame\\
-				          Notre Dame, IN 46556 }
-									\date{08/12/10}
-									%
-									\maketitle
-									%
-									%
-									%
-									%
-									%
-									%
-									\section{Hermite Interpolation}
-Let $f(x) \in C^m(\rr)$ with 
+University  of Rochester\\
+Rochester, NY 14607 }
+\date{\today}
+%
+\maketitle
 %
 %
+%
+%
+%
+%
+\section{Hermite Interpolation}
+Let $f(x) \in C^m(\rr)$ with
 \begin{equation}
-	\label{hinterp-data}
-	\begin{split}
-		f^i(x_j) = b_{i j }, \qquad 0 \le j \le k, \ 0 \le i \le n_j
-	\end{split}
+\label{hinterp-data}
+\begin{split}
+f^i(x_j) = b_{i j }, \qquad 0 \le j \le k, \ 0 \le i \le n_j
+\end{split}
 \end{equation}
-%
-%
 where $b_{j k}$ is a constant. Can we find a polynomial $p(x)$ such that
-%
-%
 \begin{equation}
-	\label{h-poly-data}
-	\begin{split}
-		p^i(x_j) = b_{i j}, \qquad 0 \le j \le k, \ 0 \le i \le n_j, 
-	\end{split}
+\label{h-poly-data}
+\begin{split}
+p^i(x_j) = b_{i j}, \qquad 0 \le j \le k, \ 0 \le i \le n_j,
+\end{split}
 \end{equation}
-%
-%
 holds? If so, we call $p(x)$ a \emph{Hermite polynomial}, and we say that $p(x)$
-\emph{interpolates} $f(x)$ at the \emph{nodes} $x_k$. 
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%				 Unique Hermite Poly Theorem
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
+\emph{interpolates} $f(x)$ at the \emph{nodes} $x_k$.
 \begin{theorem}
-	If $\sum_{j=0}^{k} n_{j} = m-k$, then there exists a unique polynomial of
-	degree less than or equal to $m$ satisfying \eqref{h-poly-data}.
+If $\sum_{j=0}^{k} n_{j} = m-k$, then there exists a unique polynomial of
+degree less than or equal to $m$ satisfying \eqref{h-poly-data}.
 \end{theorem}
-%
-%
-%
 {\bf Proof.} Write
-%
-%
 \begin{equation*}
-	\begin{split}
-		p(x) = a_0 + a_{1}x + a_{2}x^2 +\cdots+ a_{m}x^m
-	\end{split}
+\begin{split}
+p(x) = a_0 + a_{1}x + a_{2}x^2 +\cdots+ a_{m}x^m
+\end{split}
 \end{equation*}
-%
-%
 where the constants $\{a_i\}_{0 \le i \le m}$ are to be determined. We wish to solve
 the system given by
-%
-%
-
 \begin{gather*}
-	a_{0}+a_{1}x_{j} + a_{2}x_{j}^2 +\cdots+a_{m}x_{j}^{m} = b_{0 j}
-	\\
-	a_{1} + 2 a_{2}x_{j} + 3a_{3}x_{j}^2 + \cdots+ m a_{m}x_{j}^{m-1} =
-	b_{1j}
-	\\
-	\vdots
-	\\
-	n_j! a_{ n_{j}} x_{j}^{m -n_{j}} +
-	(n_j + 1)! a_{n_{j}+1}
-	x_{j}^{m - n_{j}-1} + \cdots + \frac{m!}{(m-n_j)!} a_{m}x_{j} = b_{n_j j}
+a_{0}+a_{1}x_{j} + a_{2}x_{j}^2 +\cdots+a_{m}x_{j}^{m} = b_{0 j}
+\\
+a_{1} + 2 a_{2}x_{j} + 3a_{3}x_{j}^2 + \cdots+ m a_{m}x_{j}^{m-1} =
+b_{1j}
+\\
+\vdots
+\\
+n_j! a_{ n_{j}} x_{j}^{m -n_{j}} +
+(n_j + 1)! a_{n_{j}+1}
+x_{j}^{m - n_{j}-1} + \cdots + \frac{m!}{(m-n_j)!} a_{m}x_{j} = b_{n_j j}
 \end{gather*}
 ranging over $0 \le j \le k$. In matrix form, this is expressed by $A\vec{a}=B$, where
-%
-%
-%
-%
 \begin{gather*}
-		A= \begin{bmatrix}
-		A_1
-		\\
-		A_2
-		\\
-		\vdots
-		\\
-		A_k
-	\end{bmatrix}
-	, \ A_j=\begin{bmatrix}
-		1 & x_{j} & x_{j}^{2} & \cdots &\cdots &\cdots & \cdots &x_{j}^{m}\\
-	0 &1 &2x_{j} & \cdots &\cdots &\cdots &\cdots &mx_{j}^{m-1}\\
-	0 &0 &2 & \cdots &\cdots &\cdots &\cdots &m(m-1)x_{j}^{m-2}\\
-	\vdots & \vdots &\vdots &\ddots &\\
-	0 &0 &0 &\cdots & n_j! \  & (n_j + 1)! x_j & \cdots &\frac{m!}{(m-n_{j})!} x_j^{m -n_{j}}
+A= \begin{bmatrix}
+A_1
+\\
+A_2
+\\
+\vdots
+\\
+A_k
+\end{bmatrix}
+, \ A_j=\begin{bmatrix}
+1 & x_{j} & x_{j}^{2} & \cdots &\cdots &\cdots & \cdots &x_{j}^{m}\\
+0 &1 &2x_{j} & \cdots &\cdots &\cdots &\cdots &mx_{j}^{m-1}\\
+0 &0 &2 & \cdots &\cdots &\cdots &\cdots &m(m-1)x_{j}^{m-2}\\
+\vdots & \vdots &\vdots &\ddots &\\
+0 &0 &0 &\cdots & n_j! \  & (n_j + 1)! x_j & \cdots &\frac{m!}{(m-n_{j})!} x_j^{m -n_{j}}
 \end{bmatrix},
 \\
-	 \vec{a}=\begin{bmatrix}
-		a_{0}\\
-	a_{2}\\
-	\vdots\\
-	a_{m}
+\vec{a}=\begin{bmatrix}
+a_{0}\\
+a_{2}\\
+\vdots\\
+a_{m}
 \end{bmatrix}
 \\
- B = \begin{bmatrix}
-	B_1\\
-	B_2\\
-	\vdots \\
-	B_k
+B = \begin{bmatrix}
+B_1\\
+B_2\\
+\vdots \\
+B_k
 \end{bmatrix}
 , \ B_j=
-	\begin{bmatrix}
-	b_{0j}\\
-	b_{1j}\\
-	\vdots \\
-	b_{n_j j}.
+\begin{bmatrix}
+b_{0j}\\
+b_{1j}\\
+\vdots \\
+b_{n_j j}.
 \end{bmatrix}
 \end{gather*}
-%
-%
-%
-%
 Note that $A$ is a square $(m+1) \times (m+1)$ matrix. Therefore, to complete
 the proof it will be enough to show that $A$ is invertible, or, equivalently,
 that if $A \vec{a}=\vec{0}$, then $\vec{a} = \vec{0}$. Proceeding, suppose
 $A \vec{a}=\vec{0}$. Then $\vec{a}$ defines a polynomial $p(x)$ with root $x_j$ of
 multiplicity $n_j +1$. Hence,
-%
-%
 \begin{equation*}
-	\begin{split}
-		p(x) = q(x) \prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}.
-	\end{split}
+\begin{split}
+p(x) = q(x) \prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}.
+\end{split}
 \end{equation*}
-%
-%
 However, note that $\prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}$ is of order $m+1$,
 whereas the coefficients of $\vec{a}$ define $p(x)$ to be of order at most $m$.
 It follows that $q \equiv 0$. \qquad \qedsymbol
-%
-%
 \section{Finite Difference Method}
 \subsection{Burgers Equation}
 Recall the Burgers initial value problem (ivp)
-%
-%
 \begin{gather}
-	\label{burgers-eqn}
-	u_{t} = \frac{1}{2}(u^{2})_{x},
-	\\
-	\label{burgers-init-data}
-	u(x, 0) = u_{0}(x), \qquad x, t \in \rr.
+\label{burgers-eqn}
+u_{t} = \frac{1}{2}(u^{2})_{x},
+\\
+\label{burgers-init-data}
+u(x, 0) = u_{0}(x), \qquad x, t \in \rr.
 \end{gather}
-%
-%
-Note that for small \emph{stepsize} (or \emph{mesh}) $h, k >0$, 
-%
-%
+Note that for small \emph{stepsize} (or \emph{mesh}) $h, k >0$,
 \begin{equation*}
-	\begin{split}
-		 u_{t}(x,t) &\approx \frac{u(x, t+k) - u(x, t)}{k},
-		\\
-		 u_{x}(x, t) & \approx \frac{u(x+h, t) - u(x, t)}{h}.
-	\end{split}
+\begin{split}
+u_{t}(x,t) &\approx \frac{u(x, t+k) - u(x, t)}{k},
+\\
+u_{x}(x, t) & \approx \frac{u(x+h, t) - u(x, t)}{h}.
+\end{split}
 \end{equation*}
-%
-%
 Set
 \begin{gather*}
-	x_i = ih, \quad i \in \mathbb{Z}
-	\\
-	t_{j}=jk, \quad j \in \mathbb{N}
+x_i = ih, \quad i \in \mathbb{Z}
+\\
+t_{j}=jk, \quad j \in \mathbb{N}
 \end{gather*}
 and let
 \begin{gather*}
-	u_{i,j} = u(x_{i}, t_{j}).
+u_{i,j} = u(x_{i}, t_{j}).
 \end{gather*}
-%
-%
 Then the discretized Burgers ivp takes the form
-%
-%
 \begin{gather*}
-	\frac{u_{i, j+1}- u_{i,j}}{k}=\frac{1}{2h}\left( u_{i+1,j}^{2} -
-	u_{i,j}^{2} \right),
-	\\
-	u_{i,0} = u_{0}(ih)
+\frac{u_{i, j+1}- u_{i,j}}{k}=\frac{1}{2h}\left( u_{i+1,j}^{2} -
+u_{i,j}^{2} \right),
+\\
+u_{i,0} = u_{0}(ih)
 \end{gather*}
-%
-%
 or
 \begin{gather}
-	\label{burgers-discrete}
-	u_{i, j+1}=u_{i,j} + \frac{k}{2h}\left( u_{i+1,j}^{2} -
-	u_{i,j}^{2} \right),
-	\\
-	\label{burgers-discrete-init}
-	u_{i,0} = u_{0}(ih).
+\label{burgers-discrete}
+u_{i, j+1}=u_{i,j} + \frac{k}{2h}\left( u_{i+1,j}^{2} -
+u_{i,j}^{2} \right),
+\\
+\label{burgers-discrete-init}
+u_{i,0} = u_{0}(ih).
 \end{gather}
 Note that \eqref{burgers-discrete}-\eqref{burgers-discrete-init} gives us an
 explicit numerical solution to the Burgers ivp
 \eqref{burgers-eqn}-\eqref{burgers-init-data}. To illustrate this, we set
 $j=0$, and obtain
-%
-%
 \begin{equation}
-	\label{case-j=0}
-	\begin{split}
-		u_{i,1} = \underbrace{u_{i,0} + \frac{k}{2h}\left( u_{i+1,0}^{2} -
-		u_{i,0}^{2} \right)}_{\text{known from initial data
-		\eqref{burgers-discrete-init}}}.
-	\end{split}
+\label{case-j=0}
+\begin{split}
+u_{i,1} = \underbrace{u_{i,0} + \frac{k}{2h}\left( u_{i+1,0}^{2} -
+u_{i,0}^{2} \right)}_{\text{known from initial data
+\eqref{burgers-discrete-init}}}.
+\end{split}
 \end{equation}
-%
-%
 Similarly, for $j=1$, we have
-%
-%
 \begin{equation*}
-	\begin{split}
-		u_{i,2} = \underbrace{u_{i,1}}_{\text{known from
-		\eqref{case-j=0}}} + \frac{k}{2h}\left(
-    \underbrace{u_{i+1,1}^{2}}_{\text{known from \eqref{case-j=0}}} -
-		\underbrace{u_{i,1}^{2}}_{\text{known from
-		\eqref{case-j=0}}} \right).
-	\end{split}
-\end{equation*}
-%
-%
+\begin{split}
+u_{i,2} = \underbrace{u_{i,1}}_{\text{known from
+\eqref{case-j=0}}} + \frac{k}{2h}\left(
+\underbrace{u_{i+1,1}^{2}}_{\text{known from \eqref{case-j=0}}} -
+\underbrace{u_{i,1}^{2}}_{\text{known from
+\eqref{case-j=0}}} \right).
+\end{split}
+\end{equation*} 
 This process can be
 continued indefinitely to find $u_{i, j}$ for any $j \in \mathbb{N}$, and is
 called an \emph{explicit finite difference method} for numerically solving the
 Burgers ivp. An important drawback to this method is that it converges very
-slowly to solutions of the Burgers ivp. 
-%
-%
-%\nocite{*}
-%\bibliography{/Users/davidkarapetyan/Documents/math/bib-files/numerics}
-% \bib, bibdiv, biblist are defined by the amsrefs package.
-\begin{bibdiv}
-\begin{biblist}
+slowly to solutions of the Burgers ivp.
+\section{Orders of Convergence}
+We'd like to understand how fast a sequence convergence to its limit, without
+having to worry about silly constants.
+\begin{definition}
+Let $\{x_{n}\} \in \mathbb{C}$ be a sequence converging to $x$. We say that
+$x_{n} = O(\alpha_{n})$ if $|x_{n}| \le C |\alpha_{n}|$  for $n \ge N$, and $ x_n 
+= o(\alpha_n )$ if $|x_n| \le \ee_n |\alpha_n |$, where $\ee_n \to 0$.
+Similarly, for functions $f,g: \cc \to \cc$, we say that $f = O(g)$ in a
+neighborhood $N$ of $x$ if $|f(x_n) | \le C |g(x_n)|$ for all $x_n \in N$, and 
+$f = o(g)$ in a neighborhood $N$ of $x$ if $|f(x_n) | \le \ee_n |g(x_n)|$,
+where $\ee_n \to 0$,  for all $x_n \in N$.
+\end{definition}
 
-\bib{Kincaid-Cheney-1996-Numerical-analysis}{book}{
-      author={Kincaid, David},
-      author={Cheney, Ward},
-       title={Numerical analysis},
-     edition={Second},
-   publisher={Brooks/Cole Publishing Co.},
-     address={Pacific Grove, CA},
-        date={1996},
-        ISBN={0-534-33892-5},
-        note={Mathematics of scientific computing},
-      review={\MR{MR1388777 (97g:65003)}},
-}
+\begin{example}
+\begin{equation*}
+\frac{n+1}{n^2} \le \frac{2n}{n^2} = \frac{2}{n} = O\left(\frac{1}{n} \right)	
+\end{equation*}
+\end{example}
+\begin{example}
+\begin{equation*}
+\frac{1}{n \log n} \le \frac{\ee_n}{n} = o\left(\frac{1}{n}\right).
+\end{equation*}
+\end{example}
 
-\bib{LeVeque-1992-Numerical-methods-for-conservation}{book}{
-      author={LeVeque, Randall~J.},
-       title={Numerical methods for conservation laws},
-     edition={Second},
-      series={Lectures in Mathematics ETH Z{\"u}rich},
-   publisher={Birkh{\"a}user Verlag},
-     address={Basel},
-        date={1992},
-        ISBN={3-7643-2723-5},
-      review={\MR{MR1153252 (92m:65106)}},
-}
+\begin{example}
+\begin{equation*}
+\frac{5}{n} + e^{-n} = O\left( \frac{1}{n}\right)
+\end{equation*}
+\end{example}
 
-\end{biblist}
-\end{bibdiv}
-									\end{document}  
+\begin{remark}
+It is a true statement that $5/n^4 = O(1/n)$. However, this grossly
+misrepresents the asymptotic behavior of the sequence $5/n^4$. Typically, when
+we discuss the order of convergence of a sequence $x_n$ to its limit, we seek
+the sharpest order $\alpha_n$ of convergence. By sharp, we mean that if $|x_n| =
+O(\alpha_n)$, then $|x_n| \neq O(\alpha_n n^{-\ee})$, for any $\ee > 0$.
+\end{remark}
 
+\begin{example}
+Using Taylor series,
+\begin{equation*}
+e^x - \sum_{k = 0}^{n-1} \frac{1}{k!}x^k = \frac{1}{n!} f^{n+1}(\xi)x^n =
+O\left(\frac{1}{n!}\right).
+\end{equation*}
+\end{example}
+
+\section{Linear Difference Equations and Operators}
+
+Algorithms emit sequences. If we can detect a pattern between successive
+iterates that is ``linear'' in nature, we can use powerful tools from linear
+algebra to study the computational complexity and convergence properties of our
+algorithm.
+\begin{definition}
+Denote $V$ to be the set of all infinite complex sequences
+\begin{equation*}
+\vec{x} = [x_1, x_2, \ldots, x_n, \ldots]
+\end{equation*}
+equipped with addition
+\begin{equation*}
+\vec{x} + \vec{y} = [x_1 + y_1, x_2 + y_2, \ldots, x_n + y_n, \ldots]	
+\end{equation*}
+scalar multiplication
+\begin{equation*}
+\lambda \vec{x} = [\lambda x_1, \lambda x_2, \ldots, \lambda x_n, \ldots].
+\end{equation*}
+and norm
+\begin{equation*}
+\| \vec{x} \| = \sup \{|x_i| \}
+\end{equation*}
+It is not hard to see that $V$ is an separable infinite-dimensional vector
+space.
+\end{definition}
+We wish to study the vector space $\mathcal{L}(V)$ of bounded linear operators
+$T:
+V \to V$, equipped with the standard definitions for addition, scalar
+multiplication, and operator norm.
+In particular, we are interested in the shift operator
+\begin{align*}
+& E: V \to V,
+\\
+& E \vec{x} = [x_2, x_3, \ldots, x_{n+1}, \ldots].
+\end{align*}
+which has the property 
+\begin{align*}
+& (E^k x)_{n} = x_{n+k}.
+\end{align*}
+\begin{definition}
+Observe that the set of shift operators ${E_k}$ form a basis for a
+linear subspace of $\mathcal{L}(V)$. We call this the space of
+\emph{linear difference operators}, and denote it by $\mathcal{D}(V)$.
+\end{definition}
+\begin{definition}
+Consider an element $T = \sum_{i=0}^{m}c_i E^i \doteq p(E)$ of $D(V).$ We call
+$p(x) = \sum_{i=0}^{m} c_i x^i$ the \emph{characteristic polynomial} of $T$.
+\end{definition}
+\begin{remark}
+Studying a linear difference equation is equivalent to studying the nullspace
+of some operator $T \in D(V)$. Since $V$ is separable, we can think of
+$\mathcal{D}(V)$ heuristically as nothing more than the space of $\mathbb{N}
+\times \mathbb{N}$ matrices. 
+\end{remark}
+\begin{example}
+\begin{equation*}
+x_{n+2} - 3x_{n+1} + 2x_{n} = 0 \longleftrightarrow (E^2 - 3E^1 + 2)\vec{x} = 0
+\longleftrightarrow p(E) \vec{x} = 0, \quad p(\lambda) = \lambda^2 - 3 \lambda
++2.
+\end{equation*}
+\end{example}
+The tools from finite-dimensional matrix algebra extend to the
+countable-dimension case. More precisely, we can categorize the solutions of the
+of certain finite difference problem entirely in terms of eigenvectors and
+eigenvalues.
+\begin{theorem}
+\label{thm:dif-eq}
+Let $p(E) \vec{x} = 0$ be a linear difference equation. 
+\begin{enumerate}
+  \item 
+If $\lambda$ is a root
+to its characteristic polynomial, then $\vec{u} = [\lambda, \lambda^2,
+\lambda^3, \ldots]$ is a solution to $p(E) \vec{x} = 0$. 
+  \item 
+If all roots $\lambda_k$ of $p$ have multiplicity $1$ and are nonzero, then
+$ \bigcup_k \{ [\lambda_k, \lambda_k^2, \ldots] \}$ is a 
+a basis for the solution space of $p(E) \vec{x} = 0$.	
+\item If all roots $\lambda_k$ of $p$ are nonzero, and have multiplicity $k_n$
+greater than or equal to $1$, then $\bigcup_k \left\{ [\lambda_k, \lambda_k^2,
+\ldots], [\lambda_k, \lambda_k^2, \ldots]', \ldots, [\lambda_k, \lambda_k^2,
+\ldots ]^{(k_n -1)} \right\}$ is a basis for the solution space of $p(E)
+\vec{x} = 0$.
+\end{enumerate}
+\end{theorem}
+\begin{proof} We split the proof into two parts.
+\begin{enumerate}
+  \item 
+  We first show that $\vec{u}$ is an eigenvector of $p(E)$ with corresponding
+  eigenvalue $p(\lambda)$. Observe that
+  \begin{align*}
+p(E) \vec{u} = \left(\sum_{i=0}^m c_i E^i \right) \vec{u}
+& = \sum_{ i = 0}^m c_i \left( E^i \vec{u}\right)
+\\
+& = \sum_{i = 0}^m c_i [\lambda^{i+1}, \lambda^{i+2}, \ldots]
+\\
+& = \sum_{i = 0}^m c_i \lambda^i \vec{u}
+\\
+& = p(\lambda) \vec{u}.	 
+\end{align*}
+Hence, if $p(\lambda) = 0$, $\vec{u}$ is a solution.
+\item
+For each root $\lambda_k$, consider the corresponding solution $u^{(k)} =
+[\lambda_k, \lambda_k^2, \ldots]$. Let $\vec{x}$ be an arbitrary solution to our
+linear finite difference problem. We want to show that $\vec{x} = \sum_{k=1}^m
+a_k u^{(k)}$. We can write
+the first $m$ components of $\vec{x} = [x_1, x_2, \ldots]$ as 
+\begin{equation}
+\label{det}
+x_i = \sum_{k=1}^{m} a_k \lambda_k^i, \quad 1 \le i \le m.
+\end{equation}
+Writing this in matrix form, we obtain
+\begin{equation*}
+\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_m
+\end{bmatrix}
+= 
+\underbrace{
+\begin{bmatrix}
+\lambda_1 & \lambda_2 & \ldots & \lambda_m \\
+\lambda_1^2 & \lambda_2^2 & \ldots & \lambda_m^2 \\
+\vdots & \vdots & \ddots & \vdots \\
+\lambda_1^m & \lambda_2^m & \ldots & \lambda_m^m 
+\end{bmatrix}
+}_\text{A}
+\begin{bmatrix}
+a_1 \\ a_2 \\ \vdots \\ a_m
+\end{bmatrix}
+\end{equation*}
+We claim that the columns of $A$ are linearly
+independent. To see this, we wish to show that the determinant of $A$ is
+non-zero, via induction. For the base case, we consider the $1 \times 1$
+sub-matrix $[\lambda_m^m]$, which has non-zero determinant (we assumed apriori
+that the $\lambda_i$ are non-zero). For the inductive step, we assume the
+sub-matrix with diagonal entries $\lambda_2^2$ to $\lambda_m^m$ has non-zero
+determinant. Then it is easy to see that $A$ has non-zero determinant by taking
+its principal minor at $\lambda_1$. 
+Since A is a map from $\rr^m$ to itself, it follows that dimension of the nullspace of $A$ is $0$. Hence, $A$ is
+non-singular, and so completely determines the $a_i$, for $1 \le i \le m$. We
+can repeat the argument to obtain the next $m$ constants $a_i$. A simple 
+induction completes the proof. 
+\item
+In the case where roots of multiplicity greater than $1$, we have more
+difficulties: if we construct a matrix $A$ as in the proof of
+Theorem \ref{thm:dif-eq}, it will be singular. Hence, we must somehow construct
+new solutions out of roots with multiplicity greater than $1$. We do so as
+follows.
+\qedhere
+\end{enumerate}
+\end{proof}
+
+\end{document}

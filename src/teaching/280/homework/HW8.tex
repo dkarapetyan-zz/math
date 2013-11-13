@@ -33,17 +33,15 @@
 
 \begin{document}
 
-\centerline{\bf MATH 280: Homework 8 (Written=20 points). }
-\centerline{\bf Due in class, Monday, Nov 12}
+\centerline{\bf MATH 280: Homework 8 }
 
 \bigskip
 
 \noindent
-[2 points]1. \\ FREE POINTS!
 \medskip
 
 \noindent
-[5 points]2. \\ Recall the power method to find the largest eigenvalue of a $n \times n$ matrix $\mathbb{A}$. It works as long as $\mathbb{A}$ is non-defective 
+1. \\ Recall the power method to find the largest eigenvalue of a $n \times n$ matrix $\mathbb{A}$. It works as long as $\mathbb{A}$ is non-defective 
 and $|\lambda_1| > |\lambda_2| \geq \dots \geq |\lambda_n|$. Here let $\mathbb{A} u_i = \lambda_i x_i$ where $\{ u_1, \dots, u_n \}$ is an eigenbasis for 
 $\mathbb{C}^n$.
 In this case for generic choice of $\hat{x}_0$ and generic choice of linear functional $\phi$, one computes a recursive sequence $\hat{x}_n = \mathbb{A} \hat{x}_{n-1}$ and $r_n = \frac{\phi(\hat{x}_{n})}{\phi(\hat{x}_{n-1})}$. In this case we showed $r_n \to \lambda_1$ as $n \to \infty$. \\
@@ -60,13 +58,13 @@ and mimic the proof of the original theorem).
 
 \noindent
 (c) Let $\mathbb{A}=\begin{bmatrix} 1 & 2 \\ 1 & 4 \end{bmatrix}$. Let $\hat{x}_0 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ and choose functional 
-$\phi=\pi_1$ the projection to the 1st coordinate. With these choices compute the first 3 vectors $\hat{x}_1, \hat{x}_2, \hat{x}_3$ in the recursion and 
+$\phi=\pi_1$ the projection to the 1st coordinate. With these choices, code a program that computes the first 3 vectors $\hat{x}_1, \hat{x}_2, \hat{x}_3$ in the recursion and 
 the corresponding numbers $r_1, r_2, r_3$. On the other hand, find the characteristic polynomial and its roots using the quadratic formula. (In this case this can be done exactly). Compare the largest eigenvalue to $r_3$, how big is the absolute error?
 
 \medskip
 
 \noindent
-[4 points]3. \\ (a) Find the Gershgorin disks for each row of the matrix $\mathbb{A} = \begin{bmatrix} 6 & 2 & 1 \\ 1 & -5 & 0 \\ 2 & 1 & 4 \end{bmatrix}$. 
+2. \\ (a) Find the Gershgorin disks for each row of the matrix $\mathbb{A} = \begin{bmatrix} 6 & 2 & 1 \\ 1 & -5 & 0 \\ 2 & 1 & 4 \end{bmatrix}$. 
 Carefully shade the area given by these disks in the complex plane. Recall all the eigenvalues of $\mathbb{A}$ must lie in this shaded area. \\
 
 \noindent
@@ -79,23 +77,7 @@ and use your answer to give an upper bound for $\rho(\mathbb{A})$ without findin
 
 
 \noindent
-[4 points]4. \\ Let $\hat{x}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 1 \end{bmatrix}$, $\hat{x}_2=\begin{bmatrix} 1 \\ 1 \\ 0 \\ 0 \end{bmatrix}$, $\hat{x}_3=\begin{bmatrix} 0 \\ 1 \\ 1 \\ 0 \end{bmatrix}$. \\
-
-\noindent
-(a) Perform the Gram-Schmidt orthogonalization process to find an orthonormal set $\hat{u}_1, \hat{u}_2, \hat{u}_3$. (Notice in this case, all the vectors are real so the Hermitian inner product just becomes the usual dot product of $\mathbb{R}^4$.) \\
-
-\noindent
-(b) Express each $\hat{x}_i$ in terms of $\hat{u}_1, \dots, \hat{u}_i$ for 
-$i=1,2,3$. Use this to write $A=BT$ where $A$ is the matrix with columns $\hat{x}_i$, $B$ is the matrix with columns $\hat{u}_i$ and 
-$T$ is upper triangular with positive diagonal entries.
-
-\noindent
-(c) Solve the least squares problem $Ax=b$ for $b=\begin{bmatrix} 1 \\ 1 \\ 2 \\ 1 \end{bmatrix}$. What is $||Ax-b||_2$ for this solution?
-
-\medskip
-
-\noindent
-[5 points]5. \\ Let us suppose we have $N$ data points $(x_i,y_i)$ for $1 \leq i \leq N$ in the plane and wish to fit a straight line $y=mx+c$ thru these as best as we can. For any choice of $m$ and $c$ note that $mx_i+c$ is the $y$-value on the line when $x=x_i$. Thus $y_i-mx_i-c$ is the error between the $y$ value 
+3. \\ Let us suppose we have $N$ data points $(x_i,y_i)$ for $1 \leq i \leq N$ in the plane and wish to fit a straight line $y=mx+c$ thru these as best as we can. For any choice of $m$ and $c$ note that $mx_i+c$ is the $y$-value on the line when $x=x_i$. Thus $y_i-mx_i-c$ is the error between the $y$ value 
 predicted by the line and the actual $y$ value. The least square line fit is the choice of line which minimizes the quantity 
 $\sum_{i=1}^N (y_i-(mx_i+c))^2$ i.e., the sum of the errors squared. \\
 

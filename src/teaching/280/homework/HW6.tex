@@ -1,5 +1,6 @@
 \documentclass[12 pt]{article}
 \usepackage{amsmath,amsfonts,amsthm,amscd}
+\usepackage{enumerate}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{pro}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
@@ -33,52 +34,44 @@
 
 \begin{document}
 
-\centerline{\bf MATH 280: Homework 6 (Written=8 points). }
-\centerline{\bf Due in class, Monday, Oct 29}
+\centerline{\bf MATH 280: Homework 6} 
 
 \bigskip
 
 \noindent
-[2 points]1. \\ Thru a heuristic, it was argued that an $n \times n$ matrix has the hope of a unique $LU$-factorization if $L$ say is required 
-to be unit lower triangular. However this heuristic does not work well often for singular matrices. You will study this issue in this exercise: \\
-(a) Show that every matrix of the form $\mathbb{A}=\begin{bmatrix} 0 & a \\ 0 & b \end{bmatrix}$ has a $LU$-factorization. (Note it might be best to find the factorization directly by writing equations for the entries of $L$ and $U$). However also 
-show that even if $L$ is required to be unit lower triangular, the factorization is not unique in general. \\
-(b) Show that every matrix of the form $\mathbb{A}=\begin{bmatrix} 0 & 0 \\ a & b \end{bmatrix}$ has a $LU$-factorization. Does it have a $LU$ factorization 
-where $L$ is unit lower triangular?
-
-\vspace{0.2 in}
 
 \noindent
-[3 points]2. \\ Recall we showed in class that if $\mathbb{A}$ is a symmetric matrix and $\mathbb{A}=LU$ then $LU=\mathbb{A}=\mathbb{A}^T=U^TL^T$ which yields $UL^{-T}=D=L^{-1}U^T$
-with $D$ a diagonal matrix. Then $\mathbb{A}=LU=LDL^T$. If furthermore $\mathbb{A}$ is positive definite, then $D$ has positive entries on the diagonal and we can 
-find a decomposition $D=D^{\frac{1}{2}} D^{\frac{1}{2}}$. Setting $\mathbb{\hat{L}}=LD^{\frac{1}{2}}$ we then find the Cholesky decomposition 
+1. Recall that if $\mathbb{A}$ is a symmetric matrix and $\mathbb{A}=LU$ then
+\\ $LU=\mathbb{A}=\mathbb{A}^T=U^TL^T$ which yields $UL^{-T}=D=L^{-1}U^T$ with
+$D$ a diagonal matrix. Then $\mathbb{A}=LU=LDL^T$. If furthermore $\mathbb{A}$ is positive definite, then $D$ has positive entries on the diagonal and we can find a decomposition $D=D^{\frac{1}{2}} D^{\frac{1}{2}}$. Setting $\mathbb{\hat{L}}=LD^{\frac{1}{2}}$ we then find the Cholesky decomposition
 $\mathbb{A}=\hat{\mathbb{L}}\hat{\mathbb{L}}^T$. \\
-Use this to find the Cholesky decomposition of the following matrices: \\
-(a)
+Use this to find the Cholesky decomposition of the following matrices:
+\begin{enumerate}[a)]
+  \item
 $$
-\mathbb{A}=\begin{bmatrix} 1 & 2 \\ 2 & 5 \end{bmatrix}.
+\mathbb{A}=\begin{bmatrix} 1 & 2 \\ 2 & 5 \end{bmatrix}
 $$
-
-\noindent
-(b)
+\item
 $$
-\mathbb{A}=\begin{bmatrix} 4 & \frac{1}{2} & 1 \\ \frac{1}{2} & \frac{17}{16} & \frac{1}{4} \\  1 & \frac{1}{4} & \frac{33}{64} \end{bmatrix}.
+\mathbb{A}=\begin{bmatrix} 4 & \frac{1}{2} & 1 \\ \frac{1}{2} & \frac{17}{16} & \frac{1}{4} \\  1 & \frac{1}{4} & \frac{33}{64} \end{bmatrix}
 $$
-
-\noindent
-[3 points]3. \\ Use the pivoting method to choose pivots in each column in a way to minimize computational error magnification to find decompositions 
-of the form $P\mathbb{A} = LU$ where $P$ is a permutation matrix, $L$ is unit lower triangular and $U$ is upper triangular for the following matrices 
-$\mathbb{A}$. In each case compute the initial "scale" of each row carefully, show your work to decide on pivots and circle pivot choices during the computation, and state the final $L$, $U$ and permutation $P$ clearly. \\
-(a) \\
+\end{enumerate}
+2. Use the pivoting method to choose pivots in each column in a way to minimize computational error magnification to find decompositions
+of the form $P\mathbb{A} = LU$ where $P$ is a permutation matrix, $L$ is unit lower triangular and $U$ is upper triangular for the following matrices
+$\mathbb{A}$. In each case compute the initial "scale" of each row carefully, show your work to decide on pivots and circle pivot choices during the computation, and state the final $L$, $U$ and permutation $P$ clearly.
+\begin{enumerate}[a)]
+  \item
 $$
 \mathbb{A} = \begin{bmatrix} -1 & 1 & -4 \\ 2 & 2 & 0 \\ 3 & 3 & 2 \end{bmatrix}
 $$
-\noindent
-(b) \\
+\item
 $$
 \mathbb{A} = \begin{bmatrix} 1 & 6 & 0 \\ 2 & 1 & 0 \\ 0 & 2 & 1 \end{bmatrix}
 $$
-
+\end{enumerate}
+3. Code a function that takes two matrices and either returns their
+product or an error if their product is not
+well-defined. If both matrices are $n \times n$, what is the computational
+complexity of your function? If a better algorithm exists, what is the best
+computational complexity we can hope for?
 \end{document}
-
-
