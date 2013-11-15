@@ -39,7 +39,6 @@ urlcolor=blue,
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}{Example}[section]
 \newtheorem{exercise}[theorem]{Exercise}
-\synctex=1
 \begin{document}
 \title{Notes on Numerical Computation }
 \author{David Karapetyan}
@@ -398,9 +397,9 @@ a_1 \\ a_2 \\ \vdots \\ a_m
 We claim that the columns of $A$ are linearly
 independent. To see this, we wish to show that the determinant of $A$ is
 non-zero, via induction. For the base case, we consider the $1 \times 1$
-sub-matrix $[\lambda_m^m]$, which has non-zero determinant (we assumed apriori
-that the $\lambda_i$ are non-zero). For the inductive step, we assume the
-sub-matrix with diagonal entries $\lambda_2^2$ to $\lambda_m^m$ has non-zero
+sub-matrix $[\lambda_m^m]$, which has non-zero determinant (we assumed
+a priori that the $\lambda_i$ are non-zero). For the inductive step,
+we assume the sub-matrix with diagonal entries $\lambda_2^2$ to $\lambda_m^m$ has non-zero
 determinant. Then it is easy to see that $A$ has non-zero determinant by taking
 its principal minor at $\lambda_1$. 
 Since A is a map from $\rr^m$ to itself, it follows that dimension of the nullspace of $A$ is $0$. Hence, $A$ is
@@ -416,5 +415,64 @@ follows.
 \qedhere
 \end{enumerate}
 \end{proof}
+\section{Least Squares Problem}
+Ideally, we wish to find exact solutions to the linear problem $Ax = b$, where
+$A$ is an $m \times n$ complex matrix, $x$ is an $n \times 1$ column vector, and
+$b$ is an $m \times 1$ column vector . However, this is not always possible. For
+example, if $\text{rank A} < m$, then the column space of $A$ may not span $b$.
+In these situations, we look for $\tilde{x}$ such that $ \| b - A\tilde{x}\|$ is
+minimized. The choice of norm is irrelevant in finite-dimensional vector spaces,
+though the Euclidean norm ($\ell^2$) is a powerful choice, since we can then
+equip our normed space with the inner product
+\begin{equation*}
+\begin{split}
+& \langle u, v \rangle \doteq \sum_i u_i \bar{v_i}
+\\
+&  \langle u, u \rangle =\| u \|_{\ell^2}^2.
+\end{split}
+\end{equation*}
+Recall that operators on inner-product spaces always posses an adjoint. We now
+make use of this important property to simplify our minimization problem
+considerably.
+\begin{theorem}
+Let $A$ be an $m \times n$ complex matrix with $\text{rank}(A) = n$. 
+If $x$ is a point such that $A^{\star} (Ax - b) = 0$, then $x$ is the unique solution 
+to the least squares problem.
+\end{theorem} 
+\begin{proof}
+Assume $A^{\star}(Ax-b) = 0$. We first prove that $x$ must be a least squares solution. Observe that
+ $\overline{A^{\star}(Ax-b)} = 0$, or $A^T
+\overline{Ax-b} = 0$. Hence, $Ax-b$ is orthogonal to the column space of $A$. 
+Let $y$ be any other point. Since $A(x-y)$ lives in the column space of $A$
+, we see that $\langle Ax-b, A(x-y) \rangle = 0$. Hence, by the Pythagorean theorem,
+\begin{equation*}
+\| Ax - b \|_{\ell^2}^2 = \| Ay - b + A(x-y)
+\|_{\ell^2}^2 = \| Ay - b \|_{\ell^2}^2 + \| A(x-y) \|_{\ell^2}^2 \ge \| Ay - b
+\|_{\ell^2}^2.
+\end{equation*}
+Hence, $x$ is a least squares solution. Assume $y$ is a least squares solution. Then by our previous work, 
+we must have $ \| A(x - y) \|_{\ell^2} \neq 0$. This implies $x-y$ lives in the nullspace of $A$.
+But since $\text{rank}(A) = n$, by the rank-nullity theorem, the dimension of the nullspace 
+is $0$. We conclude that $x = y$. 
+\end{proof}
+Observe that if $A$ is unitary, we obtain $x$ immediately:
+\begin{equation*}
+o = A^{\star} (Ax-b) = x - A^{\star} b  \implies x = A^{\star} b.
+\end{equation*}
+This is a simplistic example that illustrates that unitary matrices simplify our least squares
+computations considerably. Hence, it makes sense to look at decompositions of $A$ 
+utilizing unitary matrices, in an attempt to simplify equations of form $A^{\star}(Ax-b = 0)$ 
+even further.
+More generally, suppose we can find a decomposition $A = QR$, where $Q$ is $m \times m$
+unitary, and $R$ is $m \times n$ upper-triangular? Then
+\begin{equation*}
+0 = A^{\star}(Ax-b) = R^{\star } Q^{\star}(Ax-b) = R^{\star} Q^{\star}(QRx - b) \implies R^{\star}Rx = R^{\star}Q^{\star} b.
+\end{equation*}
+Observe that $R^{\star}R$ is of $LU$ type. Hence, this $QR$ decomposition permits us to convert our problem of finding a least square
+into the equivalent problem of finding a solution $x$ to a problem of $LU$ type, which is much
+more tractable.
 
+We now discuss the two most popular $QR$ decomposition algorithms.
+\subsection{Gram-Schmidt}
+Some stuff
 \end{document}
