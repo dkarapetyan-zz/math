@@ -42,9 +42,6 @@ urlcolor=blue,
 \begin{document}
 \title{Notes on Numerical Computation }
 \author{David Karapetyan}
-\address{Department of Mathematics  \\
-University  of Rochester\\
-Rochester, NY 14607 }
 \date{\today}
 %
 \maketitle
@@ -415,13 +412,55 @@ follows.
 \qedhere
 \end{enumerate}
 \end{proof}
+
+
 \section{Least Squares Problem}
+\subsection{Orthogonal Transformations and Hilbert Spaces}
+We recall that linear transformations on finite-dimensional spaces are a combination
+of scalings, translations, and rotations. Consequently, since matrices are linear transformations,
+we would like to factor our matrices into a product of rotation matrices, and scaling matrices.
+However, we must first formalize our notion of rotation. 
+\begin{definition}
+A Hilbert Space $V$ is a vector space equipped with a conjugate bilinear form 
+$ \langle \cdot, \cdot \rangle : H \times H \to \cc $. More precisely, we have
+\begin{enumerate}[a)]
+\item{Symmetry:} $\langle x,y \rangle  = \overline{ \langle y,x \rangle   }$.
+\item{Linearity:} $\langle \lambda x + y, z \rangle  =
+\lambda \langle x, z \rangle  + \langle y, z \rangle$.
+\item{Reflexivity:} $\langle x, x \rangle  $ is real and positive, 
+and $\langle x, x \rangle = 0 $ if and only if $x = 0$.            
+\end{enumerate}
+\end{definition}
+It is easy to check that the relation
+\begin{equation*}
+\| v \| = \sqrt{\langle v, v \rangle}
+\end{equation*}
+defines a norm on any inner product space. If $ \langle x, y \rangle $ is real
+valued, we can think of it as the size of the angle between $x$
+and $y$. Indeed, in $\rr^2$ equipped with the standard euclidean inner product,
+one can check that
+\begin{equation*}
+\langle x, y \rangle  = \|x\| \|y\|\cos \theta
+\end{equation*}
+Hilbert spaces have other important properties. We shall utilize the next one 
+frequently. 
+
+\begin{theorem}
+Let $H$ be a Hilbert space, and $A : H \to H$ a bounded linear operator. Then
+there exists a map $A^{\star} : H \to H$ with the property that
+\begin{equation*}
+\langle Au, v \rangle  = \langle u, A^{\star}v \rangle 
+\end{equation*}
+for any $u, v \in H$. We call $A^{\star}$ the \emph{adjoint} of $A$.
+\end{theorem}
+\subsection{Simplification of Least Squares Problem via Adjoints} 
 Ideally, we wish to find exact solutions to the linear problem $Ax = b$, where
 $A$ is an $m \times n$ complex matrix, $x$ is an $n \times 1$ column vector, and
-$b$ is an $m \times 1$ column vector . However, this is not always possible. For
+$b$ is an $m \times 1$ column vector. However, this is not always possible. For
 example, if $\text{rank A} < m$, then the column space of $A$ may not span $b$.
 In these situations, we look for $\tilde{x}$ such that $ \| b - A\tilde{x}\|$ is
-minimized. The choice of norm is irrelevant in finite-dimensional vector spaces,
+minimized. The choice of norm is irrelevant in finite-dimensional vector spaces (a
+simple but useful corollary of Theorem \ref{thm:adj-ls}),
 though the Euclidean norm ($\ell^2$) is a powerful choice, since we can then
 equip our normed space with the inner product
 \begin{equation*}
@@ -435,6 +474,7 @@ Recall that operators on inner-product spaces always posses an adjoint. We now
 make use of this important property to simplify our minimization problem
 considerably.
 \begin{theorem}
+\label{thm:adj-ls}
 Let $A$ be an $m \times n$ complex matrix with $\text{rank}(A) = n$. 
 If $x$ is a point such that $A^{\star} (Ax - b) = 0$, then $x$ is the unique solution 
 to the least squares problem.
@@ -457,14 +497,14 @@ is $0$. We conclude that $x = y$.
 \end{proof}
 Observe that if $A$ is unitary, we obtain $x$ immediately:
 \begin{equation*}
-o = A^{\star} (Ax-b) = x - A^{\star} b  \implies x = A^{\star} b.
+0 = A^{\star} (Ax-b) = x - A^{\star} b  \implies x = A^{\star} b.
 \end{equation*}
 This is a simplistic example that illustrates that unitary matrices simplify our least squares
 computations considerably. Hence, it makes sense to look at decompositions of $A$ 
 utilizing unitary matrices, in an attempt to simplify equations of form $A^{\star}(Ax-b = 0)$ 
 even further.
 More generally, suppose we can find a decomposition $A = QR$, where $Q$ is $m \times m$
-unitary, and $R$ is $m \times n$ upper-triangular? Then
+unitary, and $R$ is $m \times n$ upper-triangular. Then
 \begin{equation*}
 0 = A^{\star}(Ax-b) = R^{\star } Q^{\star}(Ax-b) = R^{\star} Q^{\star}(QRx - b) \implies R^{\star}Rx = R^{\star}Q^{\star} b.
 \end{equation*}
@@ -473,6 +513,146 @@ into the equivalent problem of finding a solution $x$ to a problem of $LU$ type,
 more tractable.
 
 We now discuss the two most popular $QR$ decomposition algorithms.
-\subsection{Gram-Schmidt}
-Some stuff
+\subsubsection{Gram-Schmidt}
+\begin{theorem}
+Let $\{x_1, x_2, \ldots, x_n\}$ be a linearly independent in $C^n$. Then the set
+ \\ $ \left\{ u_1, u_2, \ldots, u_n \right\} $ is an orthonormal basis for $C^n$,
+where
+\begin{equation*}
+u_k = \frac{x_k - \sum_{i < k } \langle x_k, u_i \rangle u_i}{\|x_k -
+\sum_{i < k } \langle x_k, u_i \rangle u_i\|_{\ell^2}}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+It is is a straightforward computation of $ \langle u_i, u_j \rangle $.
+\end{proof}
+Applying the Gram-Schmidt process to the columns of a matrix  $ A $, we obtain
+the decomposition $ BT $, where $ B $ is an $ m \times n $ matrix consisting of
+the orthonormalized column vectors of $ A $, and $ T $ consists of an $ n \times
+n $ upper triangular matrix with positive diagonal, whose entries come from
+saved computations in the Gram-Schmidt algorithm.
+
+Substituting this decomposition into $A^{\star}(Ax-b) = 0$, we 
+\begin{equation*}
+T^{\star}Tx = T^{\star}B^{\star}b
+\end{equation*}
+which is again a problem of $LU$ type. 
+
+\begin{remark}
+Instead of resorting to Gram-Schmidt or some other factorization, we could
+attempt to solve $ A^{\star}(Ax - b) = 0 $ directly. That is, we attempt to
+solve $ A^{\star}Ax = A^{\star}b $ via a Cholesky factorization ($ A^{\star}A$
+is Hermitian and positive semidefinite). The problem with this approach is that
+we may have $\kappa(A^{\star}A) >> k(A)$. A good example of this is 
+\begin{equation*}
+A = 
+\begin{bmatrix}
+ 1 & 1 & 1 \\
+ \ee & 0 & 0 \\
+ 0 & \ee & 0 \\
+ 0 & 0 & \ee 
+\end{bmatrix}
+\end{equation*}
+\end{remark}
+\subsubsection{Householder}
+A Householder decomposition is of form $A = QR$, where $Q$ is a $m \times m$ unitary matrix, and
+$R$ is an $m \times n$ upper triangular matrix. Observe that the columns of a unitary matrix
+are orthonormal (they have other, useful properties), so this decomposition has better properties
+in general than the Gram-Schmidt decomposition. Indeed, substituting into $A^{\star}(Ax-b)$, we 
+obtain the $LU$ type problem
+\begin{equation*}
+R^{\star}R x = (QR)^{\star} b.
+\end{equation*}
+\subsubsection{Singular Value Decompositions}
+We now discuss arguably the most useful decomposition of an arbitrary $m \times
+n$ matrix. We first require a lemma.
+\begin{lemma}
+\label{lem:hermite}
+A Hermitian, positive semidefinite matrix has real positive eigenvalues.
+\end{lemma}
+\begin{proof}
+We first show that any Hermitian matrix has real eigenvalues. Suppose $A$ is Hermitian.
+Then
+\begin{equation*}
+v^{\star} A^{\star} v = (A v)^{\star} v = \bar{\lambda} \| v \|_{\ell^2}^{2}
+\end{equation*}
+and
+\begin{equation*}
+ v^{\star} A v = v^{\star} \lambda v =  \lambda \| v \|_{\ell^2}^{2}
+ \end{equation*}
+ Since $A$ is Hermitian, $A = A^{\star}$, so we must have $\bar{\lambda} =
+\lambda$, which implies that $\lambda$ is real. Furthermore, Hermitian matrices
+are not degenerate. That is, an $n \times n$ Hermitian matrix has n distinct
+eigenvectors, since any $n \times n$ Hermitian matrix is similar to a diagonal matrix (which
+has eigenvectors $e_1, e_2, \ldots, e_n$, where the $e_i$ are the standard 
+canonical basis vectors for $C^n$). 
+\end{proof}
+\begin{theorem}[Singular Value Decomposition]
+Let $A$ be an arbitrary $m \times n$ matrix with complex entries.
+Then there exists a decomposition $A = PDQ$, where $P$ is $m \times m$ unitary,
+$D$ is a $m \times n$ diagonal matrix, and $Q$ is a $n \times n$ unitary matrix.
+This decomposition is not necessarily unique.
+\end{theorem} 
+\begin{proof}
+The non-uniqueness of the $PDQ$ decomposition is easy: the $0$ matrix has multiple $PDQ$ type decompositions (just take $D$ = 0, and $P, Q$ to be
+arbitrary unitary matrices).
+To prove existence of the $PDQ$ decomposition for arbitrary $m \times n$ matrices $A$, we
+first assume without loss of generality that $m \ge n$ (otherwise, we consider $A^T$).
+By Lemma \ref{lem:hermite}, for each of $n$ linearly independent eigenvectors $u_i$ of $A^{\star}A$, for any 
+positive associate eigenvalues $\sigma_i^2$. Furthermore,
+\begin{equation}
+\label{u-trans}
+\| A u_i \|_{\ell^2}^2 = \langle Au_i, Au_i \rangle  = \langle u_i, A^{\star}A
+u_i \rangle = \sigma_i^{2} u_i
+\end{equation}
+We can also choose these eigenvectors such that they are orthonormal. To see
+this, recall that $A^{\star}A$ is Hermitian, and that Hermitian matrices are
+similar to diagonal matrices. Since square diagonal matrices have eigenvectors
+$e_i$, the eigenvectors of a Hermitian matrix are given by a unitary transformation
+of the $e_i$, which preserves orthonormality since 
+\begin{equation*}
+\langle Q u_i, Qu_j \rangle  = \langle u_i, Q^{\star}Q u_j \rangle  = \langle
+u_i, u_j \rangle  = \delta_{ij}.
+\end{equation*}
+Hence, we have the decomposition $A^{\star}A = \tilde{D}^{2}Q$ where $\tilde{D}$ is an $n \times n$
+matrix consisting of the positive square roots of eigenvalues $\sigma_i^2$ of
+$A^{\star}A$, and $Q$ is the $n \times n$ unitary matrix with rows
+$u_i^{\star}$. 
+ 
+We now massage this decomposition to come up with $PDQ$. In effect, we seek to
+factor $A^{\star}\tilde{D} = PD$, where $D$ is a $m \times n$ diagonal matrix
+with diagonal consisting of the $ |\sigma_i|$, and $P$ is $m \times m$ unitary. 
+Assume non-zero eigenvalues for $i \le r$, where $r \le n$, and zero otherwise.
+Then by \eqref{u-trans}, $A u_i \neq 0$ for $i \le r$, and $A u_i = 0$ otherwise.
+Set $v_i = Au_i/\sigma_i, 1 \le i \le r$. It is easy to check that these $v_i$ are orthonormal.
+Using Gram-Schmidt, extend the set ${v_1, \ldots, v_r}$ to an orthonormal set
+$\{v_1, \ldots, v_m \}$, and set $P$ to be the matrix with the $v_i$ on its columns.
+Then one can verify that $A = PDQ$. Notice that this decomposition is not unique--it depends on how we
+arrange our orthonormal vectors in $P$ and $Q$. 
+\end{proof}
+Substituting a singular value decomposition into our minimization result $A^{\star}(Ax - b) = 0$, 
+we obtain
+\begin{equation*}
+ 0 = Q^{\star} D P^{\star}(PDQx - b) = Q^{\star} D^{2} Qx - Q^{\star}D P^{\star}b \implies D^{2}Qx = DP^{\star}b
+\end{equation*}
+Let $D^{+}$ be the matrix with $1/\sigma_i$ in its diagonal
+for $\sigma_i \neq$, and $0's$ otherwise. This is what's known as a \emph{pseudo-inverse} of $D$. 
+Multiplying both sides of the last expression by $Q^{\star}(D^{+})^{2}$, we obtain
+\begin{equation*}
+x =Q^{\star} D^{+} P^{\star} b  
+\end{equation*}
+Hence, we have proved the following result. 
+
+\begin{theorem}
+Let $Ax = b$ be a system to which we seek least-squares solution, where
+$A$ has singular value decomposition $PDQ$.
+Then the solution is given by $x = A^{+}b$, where $A^{+} = Q^{\star} D^{+} P^{\star}$
+\end{theorem}
+This motivates the following definition.
+\begin{definition}
+Let $A$ be an arbitrary $m \times n$ matrix with singular value decomposition $PDQ$. 
+Then we call $A^{+} = Q^{\star}D^{+} P^{\star}$ it's \emph{pseudoinverse}.
+\end{definition}
+It can be shown that even though singular value decompositions for a matrix $A$ are not
+unique, the pseudoinverse $A^{+}$ is. 
 \end{document}
