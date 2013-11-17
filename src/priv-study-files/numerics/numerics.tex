@@ -508,7 +508,7 @@ unitary, and $R$ is $m \times n$ upper-triangular. Then
 \begin{equation*}
 0 = A^{\star}(Ax-b) = R^{\star } Q^{\star}(Ax-b) = R^{\star} Q^{\star}(QRx - b) \implies R^{\star}Rx = R^{\star}Q^{\star} b.
 \end{equation*}
-Observe that $R^{\star}R$ is of $LU$ type. Hence, this $QR$ decomposition permits us to convert our problem of finding a least square
+Hence, the $QR$ decomposition permits us to convert our problem of finding a least square
 into the equivalent problem of finding a solution $x$ to a problem of $LU$ type, which is much
 more tractable.
 
@@ -524,7 +524,7 @@ u_k = \frac{x_k - \sum_{i < k } \langle x_k, u_i \rangle u_i}{\|x_k -
 \end{equation*}
 \end{theorem}
 \begin{proof}
-It is is a straightforward computation of $ \langle u_i, u_j \rangle $.
+It is a straightforward computation of $ \langle u_i, u_j \rangle $.
 \end{proof}
 Applying the Gram-Schmidt process to the columns of a matrix  $ A $, we obtain
 the decomposition $ BT $, where $ B $ is an $ m \times n $ matrix consisting of
@@ -557,7 +557,7 @@ A =
 \subsubsection{Householder}
 A Householder decomposition is of form $A = QR$, where $Q$ is a $m \times m$ unitary matrix, and
 $R$ is an $m \times n$ upper triangular matrix. Observe that the columns of a unitary matrix
-are orthonormal (they have other, useful properties), so this decomposition has better properties
+are orthonormal (they have other useful properties), so this decomposition has better properties
 in general than the Gram-Schmidt decomposition. Indeed, substituting into $A^{\star}(Ax-b)$, we 
 obtain the $LU$ type problem
 \begin{equation*}
@@ -598,8 +598,9 @@ The non-uniqueness of the $PDQ$ decomposition is easy: the $0$ matrix has multip
 arbitrary unitary matrices).
 To prove existence of the $PDQ$ decomposition for arbitrary $m \times n$ matrices $A$, we
 first assume without loss of generality that $m \ge n$ (otherwise, we consider $A^T$).
-By Lemma \ref{lem:hermite}, for each of $n$ linearly independent eigenvectors $u_i$ of $A^{\star}A$, for any 
-positive associate eigenvalues $\sigma_i^2$. Furthermore,
+By Lemma \ref{lem:hermite}, for each of $n$ linearly independent eigenvectors
+$u_i$ of $A^{\star}A$, there exist associated positive eigenvalues $\sigma_i^2$.
+Furthermore,
 \begin{equation}
 \label{u-trans}
 \| A u_i \|_{\ell^2}^2 = \langle Au_i, Au_i \rangle  = \langle u_i, A^{\star}A
@@ -627,7 +628,7 @@ Then by \eqref{u-trans}, $A u_i \neq 0$ for $i \le r$, and $A u_i = 0$ otherwise
 Set $v_i = Au_i/\sigma_i, 1 \le i \le r$. It is easy to check that these $v_i$ are orthonormal.
 Using Gram-Schmidt, extend the set ${v_1, \ldots, v_r}$ to an orthonormal set
 $\{v_1, \ldots, v_m \}$, and set $P$ to be the matrix with the $v_i$ on its columns.
-Then one can verify that $A = PDQ$. Notice that this decomposition is not unique--it depends on how we
+Then one can verify that $A = PDQ$. Notice that this decomposition is not unique: it depends on how we
 arrange our orthonormal vectors in $P$ and $Q$. 
 \end{proof}
 Substituting a singular value decomposition into our minimization result $A^{\star}(Ax - b) = 0$, 
@@ -651,8 +652,255 @@ Then the solution is given by $x = A^{+}b$, where $A^{+} = Q^{\star} D^{+} P^{\s
 This motivates the following definition.
 \begin{definition}
 Let $A$ be an arbitrary $m \times n$ matrix with singular value decomposition $PDQ$. 
-Then we call $A^{+} = Q^{\star}D^{+} P^{\star}$ it's \emph{pseudoinverse}.
+Then we call $A^{+} = Q^{\star}D^{+} P^{\star}$ its \emph{pseudoinverse}.
 \end{definition}
 It can be shown that even though singular value decompositions for a matrix $A$ are not
 unique, the pseudoinverse $A^{+}$ is. 
+\section{Finding Eigenvectors and Eigenvalues}
+Having seen the importance of the singular value decomposition in the preceding
+section, we would like to develop an algorithm for finding the eigenvalues and
+corresponding eigenvectors of $A^{\star}A$ for any given matrix $A$. From there,
+we saw in the last section that we can orthonormalize the set of eigenvectors
+via Gram-Schmidt and, if necessary, extend this set to form a basis for $C^{n}$.
+Once we do that, our $PDQ$ decomposition will be complete.
+\subsection{The Power Method}
+We now develop an algorithm for finding the eigenvalue of maximum modulus 
+for a non-zero $n \times n$ matrix $A$
+and its corresponding eigenvector. We require that there is a unique
+eigenvalue of maximum modulus, and that $A$ be diagonalizable. 
+Proceeding, suppose $\lambda_1$ is the eigenvalue of maximum modulus.
+If $\lambda_1 = 0$, then $A = 0$, contradicting our earlier assumption. 
+Hence, $\lambda_1 \neq 0$, with corresponding eigenvector $u_1$.
+Choose $x^{(0)} \in \cc^n$ that is $n$-dimensional. Then we must have
+\begin{equation*}
+x^{(0)} = \sum_{i=1}^n a_i u_i, \quad a_i \neq 0 \ \forall i
+\end{equation*}
+It follows that
+\begin{align*}
+x^{(k)} 
+= A^{k}x^{(0)}
+= \sum_{i=1}^n a_i \lambda_i^{k} u_i 
+= \lambda_1^{k}\sum_{i=1}^n a_i (\lambda_i/\lambda_1)^k u_i = a_1 \lambda_1^k u_1 + \ee_k
+\end{align*}
+Let $\phi: \cc^n \to \cc$ be the projection function of an input onto
+its first coordinate. Then
+\begin{equation*}
+\phi(x^{(k)})/ \phi(x^{(k-1)}) \to \lambda_1
+\end{equation*}
+from which we obtain 
+\begin{equation*}
+x^{(k)}/\lambda_1^k \to a_1 u_1
+\end{equation*}
+which is the corresponding eigenvector. 
+From a theoretical standpoint, using this for finding the corresponding
+eigenvector is perfectly fine. However, numerically it is a bit imprecise,
+since we are using an approximation to $\lambda_1$ (due to machine rounding
+and termination of our algorithm after a pre-specified number of iterations)
+and then taking powers of it to compute our eigenvector. There is a risk that 
+this will compound the errors already present, introducing complexity
+to our problem. There is a simple way to bypass this: 
+we can normalize $x^{(k)} \to x^{(k)}/\| x^{(k)} \| \doteq
+\tilde{x}^{(k)}$ at each step, and still obtain
+\begin{equation*}
+\phi(\tilde{x}^{(k)})/ \phi(\tilde{x}^{(k-1)}) \to \lambda_1. 
+\end{equation*}
+However, now we also have 
+\begin{equation*}
+\tilde{x}^{(k)} = \frac{a_1 \lambda_1^k u_1 + \ee_k}{\| a_1 \lambda_1^k u_1 + \ee_k\|}
+\to u_1/\| u_1 \|
+\end{equation*}
+which is an eigenvector corresponding to the eigenvalue $\lambda_1$.
+\subsection{Inverse Power Method}
+This is almost identical to the Power method, with the additionally caveat that
+we require $A$ to be invertible. We observe that for square matrices, $Av =
+\lambda v$ implies $A^{-1}v \lambda^{-1}v$ so long as $A$ is invertible or,
+equivalently, that $\lambda \neq 0$. Hence, if $\lambda$ is the unique
+eigenvalue of minimum modulus of a diagonalizable matrix $A$, and it is the
+unique eigenvalue of maximum modulus of the diagonalizable matrix $A^{-1}$.
+Hence, we can apply the power method on $A^{-1}$ to find $\lambda^{-1}$, from
+which we recover $\lambda$. In practice, it is not computationally efficient to
+compute $A^{-1}$ and then run the power method. Rather, we 
+rewrite $x^{(k)} = (A^{-1})^k x^{(0)}$ in equivalent form as
+\begin{equation*}
+x^{(k)} = Ax^{(k-1)}
+\end{equation*}
+We can now apply an $LU$ decomposition to make it easy to compute $x^{(k)}$.
+To see that an invertible diagonalizable $n \times n$ matrix $A$ has cofactors that are all
+zero (and hence, admits an $LU$ decomposition), simply observe that $A = PDP^{-1}$ and
+where $P$ has columns consisting of $n$ linearly independent
+eigenvectors of $A$, and $D$ has diagonal with no zeroes in it. 
+The rest of the algorithm is then analogous to the power method.
+\subsection{Shifted Power Method}	
+Lastly, we would like to find all eigenvalues between those with largest and
+smallest modulus, respectively. First, observe that if a random chosen $\mu$ is
+closest to a simple eigenvalue $\lambda$ of a square matrix $A$, then $\lambda -
+\mu$ is the unique eigenvalue of minimum modulus of $A - \mu I$. If $A - \mu I$
+is invertible, we can run the inverse power method to obtain $\lambda - \mu$,
+from which we are able to obtain $\lambda$.
+
+\section{Linear Iteration}
+All linear iterations are of form
+\begin{equation*}
+x^{k+1} = Ax^{k} + b.
+\end{equation*}
+We would like to know under what conditions the iteration converges. To explore
+this line of questioning further, we will need a series of lemmas.
+\begin{lemma}[Schur's Lemma]
+Every square matrix is unitarily similar to an upper triangular matrix
+whose off diagonal entries are arbitrarily small.
+\end{lemma}
+\begin{corollary}
+\label{cor:spec}
+If $A$ is an $n \times n$ matrix with complex entries, then 
+\begin{equation*}
+\rho(A) = \inf_{ \| \cdot \|} \| A \|
+\end{equation*}
+\end{corollary}
+\begin{proof}
+We shall show that $\rho(A) \le \inf_{ \| \cdot \|} \| A \|$ and $\rho(A) \ge
+\inf_{ \| \cdot \|} \| A \|$, respectively. If $A$ is the $0$ matrix, there is
+nothing to prove. Otherwise, $A$ has s
+ome nonzero eigenvalue, with a corresponding eigenvector which cannot be $0$.
+Hence,
+\begin{equation*}
+|\lambda| \cancel{\| x \|} = \| Ax \| \le \| A \| \cancel{\| x \|}.
+\end{equation*}
+from which it follows that $\rho(A) \le \| A \|$. 
+
+For the reverse direction, we first apply Schur's Lemma to 
+decompose $SAS^{-1} = D + T_{\ee}$. Observing that similar matrices have the same spectrum,
+ we obtain 
+\begin{equation*}
+\| SAS^{-1} \|_{\ell_\infty} \le \rho(A) + \ee.
+\end{equation*}
+It is easy to check that, for fixed $S$,  $ \| A \|_{\ell^{\infty'}} \doteq \| S A S^{-1} \|_{\ell^\infty}$
+is a norm. 
+Since $\ee > 0$ can be taken to be arbitrarily small, we conclude that
+$\rho(A) \ge
+\inf_{ \| \cdot \|} \| A \|$.
+\end{proof}
+We now have the tools to prove the following.
+\begin{theorem}
+\label{thm:it}
+The linear iteration $x^{k+1} = Ax^{k} + b$ converges for any initial
+vector $x^{0}$ if and only if $\rho(A) < 1$. If so, then $x^{k} \to
+(I-A)^{-1}b$.
+\end{theorem}
+\begin{proof}
+To prove sufficiency, we first observe that convergence implies
+a fixed point to the map $x \mapsto Ax + b \doteq Tx$.
+This map is a contraction if \[\| Tx - Ty \| \le \| x - y \|,\] which simplifies
+via linearity of $T$ to \[\| A(x-y) \| \le \| x - y \|. \] But
+\begin{equation*}
+\| A(x-y) \| \le \| A \| \| x-y \| 
+\end{equation*}
+If $\rho(A) < 1$, by Corollary \ref{cor:spec} there exists a norm $\| \cdot \|$ such that
+$ \| A \| < 1.$ Hence, $T : C^n \to C^n$ is a contraction under this norm, and so Therefore,
+$x^{k}$ converges to some $x$ in this norm. Since all norms are equivalent on finite dimensional 
+spaces, it follows that $x^{k}$ converges to $x$ in any norm. Since $x$ is a fixed point of $T$, 
+we must have 
+$x = Ax + b$, or $x = (I-A)b$.
+To prove necessity, assume that $\rho(A) \ge 1$. Let $b = 0$ and $x^{0}$ be the eigenvector
+with largest eigenvalue $\lambda$ amongst all eigenvalues. Then $|\lambda| \ge 1$, and so 
+\begin{equation*}
+\| x^{k+1} - x^{k} \| = \| (\lambda^{k} - \lambda^{k-1})x^{0} \| =
+|\lambda|^{k} \| (1/\lambda -1) x^{0} \| \to \infty, \quad \lambda > 1
+\end{equation*}
+If $\lambda =1$, then $-\lambda$ is also an eigenvalue, with corresponding
+eigenvector $-x^{0}$. Therefore, assuming without loss
+of generality that $\lambda = -1$, we obtain
+\begin{equation*}
+\| x^{k+1} - x^{k} \| = \| (\lambda^{k} - \lambda^{k-1})x^{0} \| =
+2 \|x^{0} \| 
+\end{equation*}
+which implies $\{x^{k}\}$ is not Cauchy.
+\end{proof}
+\begin{corollary}[Neumann Iteration]
+The sum
+\begin{equation*}
+S \doteq \sum_{k = 0}^{\infty} A^{k}
+\end{equation*}
+converges if and only if
+$\rho(A) < 1$. If so, then $S = (I - A)^{-1}$.
+\end{corollary}
+\begin{proof}
+One can generalize the proof of Theorem \ref{thm:it} to let $b$ and our initial
+choice $x^{0}$ be matrices. Choosing $b = 0$ and $x^{0} = I$, we see that
+\begin{align*}
+& x^{1} = I,  \\
+& x^{2} = A + I,\\
+& x^{3} = A^{2} + A + I, \\
+& \vdots \\
+& x^{k} = \sum_{i = 0}^k A^{i}
+\end{align*} 
+which by Theorem \ref{thm:it} converges to $(I -A)^{-1}$.
+\end{proof}
+\begin{remark}
+This corollary is important in that it provides us  an $O(n^3)$ iterative method
+(multiplication of two $n \times n$ matrices takes $O(n^3)$ computations) for
+computing the inverses of matrices. More precisely, note that if $\rho(I + A)
+\ge 1$, then $\rho(I + cA) < 1$ for some $-1 < c < 1$. Hence, we can apply
+Neumann iteration to $I + cA$ to recover the inverse of $cA$. From there, it is
+easy to find the inverse of $A$.
+\end{remark}
+
+\subsection{Iterative Refinement Schemes}
+Observe that if $B = A^{-1}$, then
+\begin{equation*}
+x = x + B(b - Ax).
+\end{equation*}
+If $B \approx A^{-1}$, then we set
+\begin{equation*}
+x^{k+1} = x^{k} + B(b - Ax^{k}).
+\end{equation*}
+Let $Q = B^{-1}$. Then we obtain
+\begin{equation*}
+x^{k+1} = Q^{-1}(Q - A)x^{k} + Q^{-1}b.
+\end{equation*}
+\begin{definition}
+We call $Q$ a \emph{splitting} matrix. If $Q = I$, the iterative scheme is
+called \emph{Richardson Iteration}. If $Q$ is a diagonal matrix with diagonal
+equal to that of $A$, then it is called \emph{Jacobi Iteration}. Lastly, if $Q$
+is a lower triangular matrix with lower triangular part (including the diagonal)
+equal to that of $A$, the iterative scheme is called \emph{Gauss-Seidel
+Iteration}.
+\end{definition}
+Notice that in all three cases, $Q^{-1}$ is easily computed. Computing the exact inverse
+of an $n \times n$ matrix is generally an $O(n^3)$ computation, and computing
+an approximate inverse via Neumann iteration is also, in general, $O(n^3)$. For these special $Q$, 
+it is $O(n)$ (the exact inverse is computed via backward substitution of $n$ rows, while in the
+Neumann iteration we are multiplying by zero on $O(n^2)$ times) .
+
+However, if we wish to bypass finding the inverse of $Q$, we can do so. More precisely, if
+$Q = I$, we obtain
+observe that
+\begin{equation*}
+x^{k+1} = x^{k} + e^{k}, \quad e^{k} \doteq A^{-1}(b - Ax^{k})
+\end{equation*}
+Then one way to run our iterative refinement as follows: Given base case $x^{0}$, we compute 
+\begin{enumerate}[i)]
+\item $r^{k} = b - Ax^{k}$
+\item $Ae^{k} = r^{k}$
+\item $x^{k+1} = x^{k} + e^{k}$
+\end{enumerate}
+With an appropriate chosen splitting matrix $Q$, the analogous iteration may become
+more computationally efficient. We then have
+\begin{equation*}
+Qx^{k+1} = (Q - A)x^{k} + b.
+\end{equation*}
+Note that for Gauss-Seidel iteration, the choice of $Q$ is clever, in that this
+iteration  is converted to 
+\begin{equation*}
+L x^{k+1} = - U x^{k} + b
+\end{equation*}
+where $L$ and $U$ are the upper and lower triangular parts of $A$ respectively,
+where $U$ has zeroes on its diagonals. 
+
+\begin{remark}
+Hence, it is quite clear that it is more efficient to choose a splitting matrix
+before iterating. However, one must be careful to first identify whether or not
+the Gauss-Seidel scheme converges for a given matrix $A$. If it does, then in
+general it converges faster in general than the Jacobi and Richardson iterative
+schemes. If it does not, then we must resort to using another scheme.
+\end{remark}
 \end{document}

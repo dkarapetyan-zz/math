@@ -33,13 +33,12 @@
 
 \begin{document}
 
-\centerline{\bf MATH 280: Homework 9 (Written=20 points). }
-\centerline{\bf Due in class: Monday, Nov 19}
+\centerline{\bf MATH 280: Homework 9}
 
 \bigskip
 
 \noindent
-[6 points]1. \\ Recall a $m \times n$ matrix $\mathbb{A}$ has $n$ singular values $\sigma_1, \dots, \sigma_n$ which are the 
+1. \\ Recall a $m \times n$ matrix $\mathbb{A}$ has $n$ singular values $\sigma_1, \dots, \sigma_n$ which are the 
 positive square roots of the eigenvalues of the $n \times n$ matrix $\mathbb{A}^* \mathbb{A}$. Furthermore the matrix $\mathbb{A}^* \mathbb{A}$ is Hermitian and thus there 
 is an orthonormal basis $\{ \hat{u}_1, \dots, \hat{u}_n \}$ of $\mathbb{C}^n$ (or $\mathbb{R}^n$ if working with real matrices) consisting of eigenvectors of $\mathbb{A}^*\mathbb{A}$. In particular $\mathbb{A}^*\mathbb{A} \hat{u}_i = \sigma_i^2 \hat{u}_i$ for $1 \leq i \leq n$. The rank $r$ of $\mathbb{A}^* \mathbb{A}$ 
 is hence the same as the number of nonzero singular values of $\mathbb{A}$. \\
@@ -56,14 +55,14 @@ Find the singular values, corresponding orthonormal basis $\{ \hat{u}_1, \dots, 
 \medskip
 
 \noindent
-[2 points]2. \\ For a $m \times n$ matrix $\mathbb{A}$ show that $\mathbb{A}^*\mathbb{A}$ and $\mathbb{A}$ have the same nullspace.
-(Hint: If $\mathbb{A}^*\mathbb{A}\hat{x}=\hat{0}$, consider $<\mathbb{A}^*\mathbb{A}\hat{x}, \hat{x}>$ and use it to show 
+2. \\ For a $m \times n$ matrix $\mathbb{A}$ show that $\mathbb{A}^*\mathbb{A}$ and $\mathbb{A}$ have the same nullspace.
+(Hint: If $\mathbb{A}^*\mathbb{A}\hat{x}=\hat{0}$, consider $\langle\mathbb{A}^*\mathbb{A}\hat{x}, \hat{x} \rangle$ and use it to show 
 $\mathbb{A}\hat{x}=\hat{0}$.) Explain how this and the rank-nullity theorem shows that $rank(\mathbb{A}^*\mathbb{A})=rank(\mathbb{A})$ in general.
 
 \medskip
 
 \noindent
-[6 points]3. \\Recall given a $m \times n$ matrix $\mathbb{A}$, we can write $A=PDQ$ (singular-value decomposition) where $P$ is a $m \times m$ unitary matrix, $Q$ is a $n \times n$ unitary matrix and $D$ is a (pseudo) diagonal $m \times n$ matrix whose nonzero "diagonal" entries are $\sigma_1, \dots, \sigma_r$, the nonzero singular values of $\mathbb{A}$. Recall the rows of $Q$ are given by the adjoints of the set $\{ \hat{u}_1, \dots, \hat{u}_n \}$. The first $r$ columns of $P$ are computed 
+3. \\Recall given a $m \times n$ matrix $\mathbb{A}$, we can write $A=PDQ$ (singular-value decomposition) where $P$ is a $m \times m$ unitary matrix, $Q$ is a $n \times n$ unitary matrix and $D$ is a (pseudo) diagonal $m \times n$ matrix whose nonzero "diagonal" entries are $\sigma_1, \dots, \sigma_r$, the nonzero singular values of $\mathbb{A}$. Recall the rows of $Q$ are given by the adjoints of the set $\{ \hat{u}_1, \dots, \hat{u}_n \}$. The first $r$ columns of $P$ are computed 
 via the formula $\hat{v}_i = \frac{1}{\sigma_i} \mathbb{A} \hat{u}_i$ and the remaining $m-r$ are an extension to an orthonormal basis. The pseudoinverse 
 $\mathbb{A}^+$ of $\mathbb{A}$ is given by $Q^*D^+P^*$ where $D^+$ is the (pseudo) diagonal $n \times m$ matrix whose nonzero 
 "diagonal" entries are $\frac{1}{\sigma_1}, \dots, \frac{1}{\sigma_r}$. \\
@@ -74,7 +73,7 @@ $\mathbb{A}^+$ of $\mathbb{A}$ is given by $Q^*D^+P^*$ where $D^+$ is the (pseud
 \medskip
 
 \noindent
-[3 points]4. \\
+4. \\
 Recall a minimal solution to $A\hat{x}=\hat{b}$ is  a solution $\hat{x}$ that minimizes $||A\hat{x}-b||_2$ (least squares solution) such that it is of minimal length $||\hat{x}||_2$ amongst such least square solutions. Find the minimal solutions to the following systems: \\
 (a) 
 $$\begin{bmatrix} 1 \\ 1 \\1 \end{bmatrix} x_1 = \begin{bmatrix} 2 \\ 4 \\ 0 \end{bmatrix}.$$ \\
@@ -83,13 +82,10 @@ $$\begin{bmatrix} 4 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 7 \\ 0 & 0 & 0 \end{bmatrix}
 = \begin{bmatrix} 1 \\ 2 \\ 4 \\ 0 \end{bmatrix}.$$
 
 \noindent
-[3 points]5. \\
-Calculate the pseudoinverse of 
-$$\mathbb{A}_{\epsilon} =\begin{bmatrix} 1 & 0 \\ 0 & \epsilon \\ 0 & 0 \end{bmatrix}$$ considering the cases $\epsilon \neq 0$ and $\epsilon = 0$ 
-separately. Use your answers to show that the process of finding a pseudoinverse is {\bf not} continuous in general by showing that 
-$$
-\lim_{\epsilon \to 0} \mathbb{A}_{\epsilon}^+ \neq \mathbb{A}_0^+.
-$$
+5. \\
+Explain how in practice one could devise an algorithm to compute the singular
+value decomposition of a matrix. Hint: break your algorithm into pieces, and attack
+each piece with an algorithm we've learned previously. 
 
 \end{document}
 
