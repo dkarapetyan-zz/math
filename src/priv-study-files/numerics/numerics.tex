@@ -903,4 +903,83 @@ the Gauss-Seidel scheme converges for a given matrix $A$. If it does, then in
 general it converges faster in general than the Jacobi and Richardson iterative
 schemes. If it does not, then we must resort to using another scheme.
 \end{remark}
+\section{Well-Conditioned and Ill-Conditioned Linear Problems}
+Now that we have developed techniques for solving $n \times n$
+systems $Ax = b$, we'd like to understand how sensitive our system
+is to perturbations. More precisely, we can ask the following two questions:
+\begin{enumerate}[a)]
+\item If we shift $x \mapsto \tilde{x}$, how much does $b \mapsto 
+\tilde{b}$ shift, relative to the size of $b$?
+\item If we shift $b \to \tilde{b}$, how much does the solution $x \mapsto
+\tilde{x}$ shift, relative to the size of $x$?
+\end{enumerate}
+\begin{definition}
+Let $A$ be a square, invertible matrix. We call $\kappa(A) \doteq \| A \| \| A^{-1} \|$
+its \emph{condition number}.
+\end{definition}
+\begin{theorem}
+We have the estimates
+\begin{equation*}
+\kappa(A)^{-1} \frac{\| b - \tilde{b}\|}{\| b\|} \le \frac{\| x - \tilde{x} \|}{\| x \|}
+\le \kappa(A) \frac{ \| b - \tilde{b} \|}{ \| b \| }.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Observe that
+\begin{equation*}
+\| b - \tilde{b} \| \| x \| = \| A(x - \tilde{x})\| \| A^{-1}b \| 
+\le \kappa(A) \| x - \tilde{x} \| \| b \|
+\end{equation*}
+and
+\begin{equation*}
+\| x - \tilde{x} \| \| b \| = \| A^{-1}(b - \tilde{b})\| \| Ax \| 
+\le \kappa(A) \| b - \tilde{b} \| \| x \|
+\end{equation*}
+Rearranging the terms in each expression, we obtain the lower and upper
+bounds for the size of the relative shift of $\tilde{x}$ from $x$, completing
+the proof.
+\end{proof}
+Hence, large condition numbers imply that small perturbations in $b$ can have
+large impacts on the resulting perturbation of $x$, and vice versa.
+Motivated by this, we have the following definitions.
+\begin{definition}
+For a square matrix $A$, if $\kappa(A) \le 1$, we say $A$ is well-conditioned.
+Otherwise, we say $A$ is ill-conditioned.
+\end{definition}
+\begin{remark}
+The upper-bound we use for the upper bound necessary for $A$ to be well-conditioned
+is somewhat arbitrary, and ultimately depends on the problem we are analyzing
+and how accurate our collected data $b$ is. If we are dubious as to 
+the accuracy of our data-collecting techniques, we will 
+need $\kappa(A)$ to be small,
+perhaps much smaller than just $1$, in order to
+ensure that the $x$ we come up with as solution to $Ax = b$ is not far
+from the actual $x$ occurring in the real-world. In this case we would define
+a well-conditioned matrix as having a condition number less than some $c$, where
+$c << 1$. 
+\end{remark}
+\begin{remark}
+The condition number can also be thought of as a measure of how close a matrix
+is to not being invertible. For example, consider
+\begin{equation*}
+A_\ee = 
+\begin{bmatrix}
+1 & 1+ \ee \\
+1 - \ee & 1 \\
+\end{bmatrix}
+\end{equation*}
+A simple computation shows that $\kappa(A_\ee) = O(1/\ee^2)$.
+Hence, $\kappa(A_\ee) \to \infty$ as $\ee \to 0$. Of course,
+the matrix
+\begin{equation*}
+A = 
+\begin{bmatrix}
+1 & 1 \\
+1  & 1 \\
+\end{bmatrix}
+ = \lim_{\ee \to 0} A_\ee
+\end{equation*}
+is not invertible.
+\end{remark}
+
 \end{document}
