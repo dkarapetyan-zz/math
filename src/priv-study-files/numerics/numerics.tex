@@ -51,7 +51,178 @@ urlcolor=blue,
 %
 %
 %
-\section{Hermite Interpolation}
+\section{Interpolation}
+While finding a least fit line to a series of data points
+(see the least squares minimization problem in these notes)
+makes sense if the data points do indeed have a linear
+relation to one another, it is grossly inaccurate otherwise.
+One way around this is to find nonlinear functions that
+interpolate the data. If we assume these functions are analytic,
+then we end up with a possibly infinite polynomial interpolating
+the data in question. We now direct our attention to deriving
+the appropriate interpolating polynomial, given a set of associations
+$ \left\{ (x_i, y_i \right\}_{i = 0}^{n}$, where $f(x_i) = y_i$. 
+We shall first establish a lemma.
+\begin{lemma}[Vandermonde Determinant]
+\label{vander}
+Let 
+\begin{equation*}
+V_{n-k} \doteq  \begin{bmatrix}
+1 & x_k & x_k^{2} & \ldots & x_k^{n} \\
+1 & x_{k+1} & x_{k+1}^{2} & \ldots & x_{k+1}^{n} \\
+\vdots \\
+1 & x_n & x_n^{2} & \ldots & x_n^{n} \\
+\end{bmatrix}
+\end{equation*}
+Then \[ \det V_{n-k} = \prod_{k < i < j < n}(x_i - x_j) \]
+\end{lemma}
+\begin{proof}
+We first transform the first row and column to $e_1$ 
+via row and column operations. More precisely, we multiply the $n$ column by $-x_0$ and then
+add to the $n+1$ column, then multiply the $n-1$ column by $x_0$ and add
+to the $n$ column, all the way down to the first column. This gives
+\begin{equation*}
+V_{n-k}' = \begin{bmatrix}
+1 & 0 & 0 & 0 & \ldots  & 0 \\
+1 & (x_{k+1} - x_k) & x_{k+1}(x_{k+1} - x_k) & x_{k+1}^2(x_{k+1} - x_k) & \ldots & x_{k+1}^{n-1}(x_{k+1} - x_k) \\
+1 & (x_{k+2} - x_k) & x_{k+2}(x_{k+2} - x_k) & x_{k+2}^2(x_{k+2} - x_k) & \ldots & x_{k+2}^{n-1}(x_{k+2} - x_k) \\
+\vdots \\
+1 & (x_n - x_k) & x_n(x_n - x_k) & x_n^2(x_n - x_k) & \ldots & x_n^{n-1}(x_n - x_k) \\
+\end{bmatrix}
+\end{equation*}
+Now, multiplying the first row by $-1$ and adding it to the remaining rows,
+we obtain
+\begin{equation*}
+V_{n-k}' = \begin{bmatrix}
+1 & 0 & 0 & 0 & \ldots & 0 \\
+0 & (x_{k+1} - x_k) & x_{k+1}(x_{k+1} - x_k) & x_{k+1}^2(x_{k+1} - x_k) & \ldots & x_{k+1}^{n-1}(x_{k+1} - x_k) \\
+0 & (x_{k+2} - x_k) & x_{k+2}(x_{k+2} - x_k) & x_{k+2}^2(x_{k+2} - x_k) & \ldots & x_{k+2}^{n-1}(x_{k+2} - x_k) \\
+\vdots \\
+0 & (x_n - x_k) & x_n(x_n - x_k) & x_n^2(x_n - x_k) & \ldots & x_n^{n-1}(x_n - x_k) \\
+\end{bmatrix}
+\end{equation*}
+Observe that factoring $x_{k+i} -x_k$ from the $i+1$ row, for each $1 \le i \le n$, we obtain
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 \\
+0 & V_{n-k-1}
+\end{bmatrix}
+\end{equation*}
+Hence, the problem of computing the Vandermonde matrix determinant is inherently
+recursive. Recall that multiplying rows and columns by non-zero constants and adding them to each
+other does not impact the determinant of a matrix. However, if $A \mapsto A_c$
+via multiplication of a row by some nonzero constant $c$, then
+$|A_c| = c |A|$. Hence, from our above computations and a cofactor expansion
+of $V_n'$, it follows that 
+\begin{align*}
+& |V_{n-k}| = \prod_{k < i \le n} (x_i - x_k) |V_{n-k-1}|\\
+& | V_2 | = \left |
+\begin{bmatrix}
+1 & x_{n-1} \\
+1 & x_{n}
+\end{bmatrix}
+\right | = x_n - x_{n-1}
+\end{align*}
+which gives
+\begin{align*}
+|V_{n-k}| & = \prod_{k=0}^{n-2} \prod_{1 \le i \le n} (x_i - x_k)\\
+& = \prod_{k < i < j \le n} (x_i - x_k)
+\end{align*}
+completing the proof.
+\end{proof}
+\begin{theorem}
+For an arbitrary data set $ \left\{ (x_i, y_i) \right\}_{i = 0}^{n}$ with the $x_i$
+distinct, there
+exists a unique polynomial $p$ of degree at most $n$ such that
+\begin{equation*}
+p(x_i) = y_i, \quad 0 \le i \le n
+\end{equation*}
+\end{theorem}
+\begin{proof}
+For the existence and uniqueness, we write an ansatz of degree at most $n$
+\begin{equation*}
+p(x) = a_0 + a_1x + a_2x^2 + \ldots + a_nx^n
+\end{equation*}
+and try to find the $a_i$. 
+Our problem reduces to solving
+\begin{equation*}
+V_n a^{T} = y^{T}
+\end{equation*}
+where $\vec{a} = (a_0, a_1, \ldots, a_n)$, $\vec{y} = (y_0, y_1, \ldots, y_n)$,
+and where $V_n$ is the $(n+1) \times (n+1)$ Vandermonde matrix
+\begin{equation*}
+\begin{bmatrix}
+1 & x_0 & x_0^{2} & \ldots & x_0^{n} \\
+1 & x_1 & x_1^{2} & \ldots & x_1^{n} \\
+\vdots \\
+1 & x_n & x_n^{2} & \ldots & x_n^{n} \\
+\end{bmatrix}
+\end{equation*}
+which is invertible by Lemma \ref{vander}. Hence, the $a_i$ are uniquely determined.
+\end{proof}
+\begin{remark}
+Observe that we can find infinitely many polynomials of degree $m > n$
+interpolating a given data set $\left\{ (x_i, y_i) \right\}_{i=0}^n$. To see
+this, note that we can simply extend this data set to $ \left\{ (x_1, y_i
+\right\}_{i=0}^m$, where $(x_i, y_i)$, $n < i < m$ are chosen arbitrarily with
+the $x_i$ distinct, and then compute the inverse of the resulting Vandermonde
+matrix.
+\end{remark}
+\subsubsection{Newton Interpolation}
+As we have seen, finding exact solutions to $n \times n$
+systems of form $Ax = b$ takes $O(n^3)$ computations in general.
+Our advantage for our linear system is that we are dealing with polynomials,
+which have an incredible amount of structure. Hence, we are motivated
+to utilize this to develop an $O(n)$ algorithm for finding the explicit
+form of our polynomial. 
+To do so, we implement an idea of Newton, rewriting our polynomial as
+\begin{align*}
+p(x) &= c_0 + c_1(x - x_0) + c_2(x - x_0)(x - x_1) + \ldots
++ c_{n}(x - x_0)(x - x_1)\cdots(x - x_{n-1})
+\\
+& = \sum_{i=0}^{n} c_i \prod_{j=0}^{i-1} (x - x_j), \quad \prod_{j=0}^{1} (x - x_j) \doteq 1.
+\end{align*}
+The $c_i$ can be computed in a naive fashion by plugging in $x_i$ 
+and solving for $c_i$, for each $i$. Computation of $c_i$ will then depend
+on computations of all $c_{< i}$. Let us formalize all this. 
+\begin{definition}
+Let $f$ be a function which we wish to approximate via a polynomial,
+and $ \left\{ x_i, y_i \right\}_{i=0}^{n} $ a given data set with the
+$x_i$ distinct. Let
+\begin{equation*}
+p(x) = c_0 + c_1(x - x_0) + c_2(x - x_0)(x - x_1) + \ldots
++ c_{n}(x - x_0)(x - x_1)\cdots(x - x_{n-1})
+\end{equation*}
+be the unique polynomial of at most degree $n$ interpolating $f$
+on the given data set. We call
+\begin{equation*}
+f[x_0, x_1, \ldots, x_n] \doteq c_n
+\end{equation*}
+a \emph{divided difference} of $f$. It is the coefficient of the
+highest degree term in the polynomial of at most degree $n$ interpolating the
+given data set. 
+\end{definition}
+\begin{theorem}[Divided Differences]
+We have the recursive formula
+\begin{equation*}
+f[x_0, x_1, x_2, \ldots, x_n] = \frac{f[x_0, x_1, \ldots, x_{n-1}] - f[x_1, x_2, \ldots, x_n]}{x_n - x_0}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $p_{0,n}$ denote the unique polynomial of degree at most $n$ that
+interpolates $f$ at $x_0, x_1, \ldots, x_n$, and  We define
+$p_{1,n}$ the unique polynomial of degree at most $n-1$ that interpolates
+$f$ at $x_0, x_1, \ldots, x_n$. Then it is easy to check that
+\begin{equation*}
+p_{0,n} = p_{1,n} + \frac{x - x_n}{x_n - x_0}[p_{1,n} - p_{0,n-1}]
+\end{equation*}
+Observe that the coefficient of $x^n$ is given by the coefficient of $x_n$ in the expression 
+\begin{equation*}
+\frac{x(p_{1,n} - p_{0,n-1})}{x_n - x_0}
+\end{equation*}
+completing the proof.
+\end{proof}
+\subsection{Hermite}
 Let $f(x) \in C^m(\rr)$ with
 \begin{equation}
 \label{hinterp-data}
@@ -69,10 +240,11 @@ p^i(x_j) = b_{i j}, \qquad 0 \le j \le k, \ 0 \le i \le n_j,
 holds? If so, we call $p(x)$ a \emph{Hermite polynomial}, and we say that $p(x)$
 \emph{interpolates} $f(x)$ at the \emph{nodes} $x_k$.
 \begin{theorem}
-If $\sum_{j=0}^{k} n_{j} = m-k$, then there exists a unique polynomial of
+If $\sum_{j=0}^{k} (n_{j}+1) = m$, then there exists a unique polynomial of
 degree less than or equal to $m$ satisfying \eqref{h-poly-data}.
 \end{theorem}
-{\bf Proof.} Write
+\begin{proof} 
+Write
 \begin{equation*}
 \begin{split}
 p(x) = a_0 + a_{1}x + a_{2}x^2 +\cdots+ a_{m}x^m
@@ -132,7 +304,11 @@ b_{1j}\\
 b_{n_j j}.
 \end{bmatrix}
 \end{gather*}
-Note that $A$ is a square $(m+1) \times (m+1)$ matrix. Therefore, to complete
+Note that $A_j$ is a $(n_j +1) \times (m+1)$ matrix. Hence, for $A$ to be a 
+square matrix, we must have $\sum_{j = 0}^k (n_j+1) = m$, or
+$\sum_{j = 0}^{k} n_j = m - k - 1$
+
+Therefore, assuming this condition, to complete
 the proof it will be enough to show that $A$ is invertible, or, equivalently,
 that if $A \vec{a}=\vec{0}$, then $\vec{a} = \vec{0}$. Proceeding, suppose
 $A \vec{a}=\vec{0}$. Then $\vec{a}$ defines a polynomial $p(x)$ with root $x_j$ of
@@ -144,7 +320,13 @@ p(x) = q(x) \prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}.
 \end{equation*}
 However, note that $\prod_{j=0}^{k}(x-x_{j})^{n_{j}+1}$ is of order $m+1$,
 whereas the coefficients of $\vec{a}$ define $p(x)$ to be of order at most $m$.
-It follows that $q \equiv 0$. \qquad \qedsymbol
+It follows that $q \equiv 0$. 
+\end{proof}
+\begin{remark}
+Observe that if $\sum_{j=0}^{k}(n_j + 1) < m$, then the system is underdetermined.
+It is not too hard to show that we will have infinitely many solutions. That is, there will be infinitely
+many polynomials of degree $m$ which interpolate the given data.
+\end{remark}
 \section{Finite Difference Method}
 \subsection{Burgers Equation}
 Recall the Burgers initial value problem (ivp)
@@ -364,6 +546,7 @@ p(E) \vec{u} = \left(\sum_{i=0}^m c_i E^i \right) \vec{u}
 \end{align*}
 Hence, if $p(\lambda) = 0$, $\vec{u}$ is a solution.
 \item
+\label{simple}
 For each root $\lambda_k$, consider the corresponding solution $u^{(k)} =
 [\lambda_k, \lambda_k^2, \ldots]$. Let $\vec{x}$ be an arbitrary solution to our
 linear finite difference problem. We want to show that $\vec{x} = \sum_{k=1}^m
@@ -406,10 +589,37 @@ induction completes the proof.
 \item
 In the case where roots of multiplicity greater than $1$, we have more
 difficulties: if we construct a matrix $A$ as in the proof of
-Theorem \ref{thm:dif-eq}, it will be singular. Hence, we must somehow construct
-new solutions out of roots with multiplicity greater than $1$. We do so as
-follows.
-\qedhere
+Theorem \ref{thm:dif-eq}, it will be singular (we will have columns that are
+identical). Hence, we must somehow construct new solutions out of roots with
+multiplicity greater than $1$. We do so as
+follows. Assume $\lambda$ has multiplicity $n$. Then for $k \le n-1$
+\begin{align*}
+p(E)x^{(k)}(\lambda)
+& = [ p(E)x(\lambda) ]^{k} 
+\\
+& = [ p(\lambda)x(\lambda) ]^{k} 
+\\
+& = \sum_{i = 0}^{k} \binom{k}{i}p^{(k-i)}(\lambda) x^{(i)}(\lambda) = 0.
+\end{align*}
+Assume the set $ \left\{ x(\lambda)^{(k)} \right\}_{k=0}^{n-1} $ is not linearly
+independent.
+Then
+\begin{equation*}
+x^{(n-1)}(\lambda) = \sum_{i=0}^{n-2} c_i x^{(i)}(\lambda)
+\end{equation*}
+where some $c_i \neq 0$. By differentiation
+\begin{equation*}
+x^{(n)}(\lambda) = \sum_{i=0}^{n-1} c_i x^{(i)}(\lambda)
+\end{equation*}
+and hence
+\begin{equation*}
+p(E)x^{(n)}(\lambda) = 0
+\end{equation*}
+which implies $x(\lambda)$ has multiplicity greater than $n$, which is
+a contradiction. Lastly, we run an argument similar to that in \eqref{simple}
+to complete the proof, with the observation that we can now fill the
+``redundant'' columns generated by non-simple roots 
+with the new vectors we construct out of their derivatives.
 \end{enumerate}
 \end{proof}
 
@@ -981,5 +1191,4 @@ A =
 \end{equation*}
 is not invertible.
 \end{remark}
-
 \end{document}
