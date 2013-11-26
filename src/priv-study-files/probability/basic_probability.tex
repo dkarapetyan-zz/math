@@ -1,0 +1,151 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amssymb}
+\usepackage{appendix}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{1} %number only sections, not subsections
+%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+%\numberwithin{figure}{section}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\nin}{\noindent}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\zzdot}{\dot{\zz}}
+\newcommand{\wh}{\widehat}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{no}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}{Example}[section]
+\newtheorem {exercise}[theorem] {Exercise}
+\begin{document}
+\title{Basic Probability}
+\author{David Karapetyan}
+\address{Department of Mathematics  \\
+	University  of Rochester\\
+		Rochester, NY 14607 }
+		\date{\today}
+		\maketitle
+		\section{Common Distributions}
+		\subsection{Bernoulli Distribution}
+		We begin with the most basic distribution, from which
+		we are able to derive a multitude of others.
+	\begin{definition}
+Let $X$ be the random variable denoting the number of successes
+in $n$ independent trials, where $p$ is the probability of success in 
+an individual trial. Then
+\begin{equation*}
+b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k (1 - p)^{n-k}
+\end{equation*}
+is called the \emph{Bernoulli distribution} of $k$ successes
+in $n$ independent trials, where $p$ is the probability of success on an
+individual trial. The special case
+$p = 1/2$ is called a \emph{binomial distribution}. 
+\end{definition}
+\begin{example}
+Let $X$ denote the number of heads one obtains from $n$ flips of a
+two-sided, non-weighted coin. Then $X$ is binomially distributed.
+If the coin is weighted, then $X$ follows a Bernoulli distribution.
+\end{example}
+\subsection{Poisson Distribution}
+We wish now to study events that are distributed sparsely in time.
+Suppose we have a large number $n$ of independent trials, with
+success in each individual trial unlikely. In order to have a sparse
+distribution of events that is nontrivial (i.e. we have no successes),
+we need to assume that there is a positive
+probability that we achieve at least one success in $n$ trials. Hence, we assume the expected number of 
+successes $\lambda \doteq np$ to be nonzero. 
+
+Observe that with the above assumptions, we obtain
+\begin{equation*}
+\binom{n}{k} = \frac{n!}{(n-k)! k!} \approx \frac{n^k}{k!}
+\end{equation*}
+and so
+\begin{align*}
+P(X = k)
+& = \binom{n}{k} p^k (1 - p)^{n-k} \\
+& \approx \frac{n^k p^k q^{n-k}}{k!} \\
+& = \frac{\lambda^k q^{n-k}}{k!} \\
+& = \frac{\lambda^k (1-p)^{n-k}}{k!} \\
+& = \frac{\lambda^k (1-\lambda/n)^{n-k}}{k!} \\
+& \approx \frac{\lambda^k (1-\lambda/n)^{n}}{k!} , \quad n >> 1\\
+& \approx \frac{\lambda^k e^{-\lambda}}{k!}
+\end{align*}
+\begin{definition}
+We call
+\begin{align*}
+p(k, \lambda) \doteq \frac{\lambda^k e^{-\lambda}}{k!}
+\end{align*}
+the \emph{Poisson distribution} of $k$ successes in a large number
+of trials, where, on average, we expect $\lambda$ successes, 
+where $\lambda$ is much less than the number of trials. 
+That is, the trials have the feature that successes are
+sparsely distributed.
+\end{definition}
+We will now extend this result. Assume that in the interval $[0,1]$,
+we have $n$ equally spaced points, representing trials. Split this interval into two pieces,
+$[0,t]$ and $[t, 1]$. Then we have $nt$ trials in interval $[0,t]$ and
+$n - nt$ trials in interval $[t,1]$. Then the average number of successes
+in $[0,t]$ is given by $\lambda_t \doteq n t p = \lambda t$. Repeating
+our preceding computation, but with $\lambda$ replaced by $\lambda_t$
+and $n$ by $nt$, we obtain the following.
+\begin{theorem}
+Let $\lambda$ be the average number of successes in the interval $[0,1]$.
+The probability of finding exactly $k$ successes  in the subinterval $[0,t]$,
+$t \le 1$, is given by
+\begin{align*}
+p(k, \lambda t) = \frac{ (\lambda t)^{k} e^{-\lambda t}}{k!}
+\end{align*}
+\end{theorem}
+\begin{exercise}
+Generalize this result to intervals of arbitrary length.
+\end{exercise}
+\subsection{Negative Binomial Distribution}
+For an experiment, it is often important to know just how many trials
+one needs to achieve a certain number of successes. To tackle this problem,
+we ask a simpler question: out of a total of $n$ independent trials with
+either success or failure as the outcome, what is the probability
+that the $rth$ success occurs at the $vth$ trial, where $r \le v \le n$?
+We reason this out as follows: there is a total of $\binom{v-1}{r-1}$ ways to
+arrange $r-1$ successes out of $v-1$ trials, each with associated probability
+$p^{r-1}(1 - p)^{(v-1) - (r-1)} = p^{r-1}q^{v-r}$. Right after the $v-1$ trial, we would like to
+have the $rth$ success. This success has associated probability $p$. Putting
+everything together, we obtain the following.
+\begin{theorem}
+Let $X$ denote the number of successes achieved after $v$ independent trials of an experiment,
+where we assume a success occurs at trial $v$, and where the probability
+of success if $p$. Then the probability that $X=r$, where $r \le v$, is given by
+\begin{equation*}
+p(r, v, p) \doteq \mathbb{P}(X = r) = \binom{v-1}{r-1} p^{r} q^{v-r}
+\end{equation*}
+\begin{definition}
+We call $X$ a random variable with a \emph{negative binomial distribution}.
+\end{definition}
+\end{theorem}
+\end{document}
