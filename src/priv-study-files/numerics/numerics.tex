@@ -49,8 +49,56 @@ urlcolor=blue,
 %
 %
 %
-%
-%
+\section{Finding Roots of Functions}
+We are interested in finding $x$ such that
+$f(x) = a$, where $a \in \rr$. This is equivalent to finding
+the roots of the function $g(x) \doteq f(x) - a$.
+\subsection{Bisection Method}
+We assume that $f$ is continuous. Then if $f(a)f(b) \le 0$ for $a < b$,
+then we must have $f(x) = 0$ for some $x \in [a,b]$. The algorithm is as follows.
+\subsubsection{Convergence and Error Analysis} 
+We would like to first establish that our method converges to a root of
+$f(x)$ in the interval $[a,b]$, given that $f$ has a root in this interval.
+Now $ \left\{ a_n \right\} $ and $ \left\{ b_n \right\}  $ 
+are increasing, and decreasing sequences, respectively, both of which
+are bounded from below and above by $a$ and $b$. Hence, both converge
+to a limit. Indeed,
+\begin{equation}
+\label{b-a-dif}
+ b_{n+1} - a_{n+1} = 1/2(b_n - a_n)
+\end{equation}
+and so
+\begin{equation}
+\label{bd}
+b_{n} - a_{n} = 2^{-n}(b_0 - a_0)
+\end{equation}
+which implies
+\begin{equation*}
+\lim a_n = \lim b_{n} = c.
+\end{equation*}
+However, $a_n$ and $b_n$ have the property that
+\begin{equation*}
+f(a_n)f(b_n) \le 0.
+\end{equation*}
+By continuity
+\begin{equation*}
+0 \ge \lim f(a_n)f(b_n) = f(c)^2
+\end{equation*}
+which implies that $f(c) = 0$. Hence, the bisection method has converged to a root
+$c$ in $[a,b]$.
+Hence, one approach to approximating $c$ is to prescribe an error threshold, and
+take $a_n$, for $n$ sufficiently large. However, we can get a better estimate
+if we take $c_n \doteq 1/2(b_n - a_n)$. By triangle inequality and \eqref{b-a-dif}, we obtain
+\begin{equation*}
+|c - c_n| \le 1/2 (b_n - a_n)
+\end{equation*}
+and so
+\begin{equation*}
+|c - c_n| \le 2^{-n - 1}(b_0 - a_0)
+\end{equation*}
+Compare this with the estimate \eqref{bd}. It guarantees convergence
+that is at least twice as fast as that given by taking $a_n$ or $b_n$
+as our approximation to $c$.
 \section{Interpolation}
 While finding a least fit line to a series of data points
 (see the least squares minimization problem in these notes)
@@ -305,8 +353,7 @@ b_{n_j j}.
 \end{bmatrix}
 \end{gather*}
 Note that $A_j$ is a $(n_j +1) \times (m+1)$ matrix. Hence, for $A$ to be a 
-square matrix, we must have $\sum_{j = 0}^k (n_j+1) = m$, or
-$\sum_{j = 0}^{k} n_j = m - k - 1$
+square matrix, we must have $\sum_{j = 0}^k (n_j+1) = m$.
 
 Therefore, assuming this condition, to complete
 the proof it will be enough to show that $A$ is invertible, or, equivalently,
@@ -583,8 +630,9 @@ we assume the sub-matrix with diagonal entries $\lambda_2^2$ to $\lambda_m^m$ ha
 determinant. Then it is easy to see that $A$ has non-zero determinant by taking
 its principal minor at $\lambda_1$. 
 Since A is a map from $\rr^m$ to itself, it follows that dimension of the nullspace of $A$ is $0$. Hence, $A$ is
-non-singular, and so completely determines the $a_i$, for $1 \le i \le m$. We
-can repeat the argument to obtain the next $m$ constants $a_i$. A simple 
+non-singular, and so completely determines the $a_i$, for $1 \le i \le m$. 
+As a corollary of this argument, we obtain that the vectors $u^{(k)}$ are linearly
+independent. We now repeat the argument to obtain the next $m$ constants $a_i$. A simple 
 induction completes the proof. 
 \item
 In the case where roots of multiplicity greater than $1$, we have more
@@ -622,8 +670,44 @@ to complete the proof, with the observation that we can now fill the
 with the new vectors we construct out of their derivatives.
 \end{enumerate}
 \end{proof}
-
-
+Lastly, we would like to identify whether or not solutions  to a finite
+difference problem have the potential to blow up.
+\begin{definition}
+We say $x \in [x_1, x_2, \ldots, x_n, \ldots]$ is \emph{bounded}
+if $\sup_n | x_n | < \infty$. A difference equation $p(E)x = 0$ is 
+\emph{stable} if all its solutions are bounded.
+\end{definition}
+\begin{theorem}
+For a polynomial $p$ with $p(0) = 0$, $p(E)x = 0$ is stable if and only if
+all simple roots of $p$ satisfy $|\lambda| \le 1$, and all non-simple roots
+satisfy $|\lambda| < 1$. 
+\end{theorem}
+\begin{proof}
+To prove necessity, we observe that if $|\lambda| > 1$ for some simple root, or
+$|\lambda| \ge 1$ for some non-simple root, then $[\lambda, \lambda^2, \lambda^3,
+\ldots]$ or $[\lambda, \lambda^2, \lambda^3, \ldots]'$ are unbounded, respectively.
+To prove sufficiency, we observe that
+\begin{equation*}
+[\lambda, \lambda^2, \lambda^3,
+\ldots]^{(n)} = \left [ \frac{n!}{(n - k)!} \lambda^{n - k} \right ]_{n =
+k}^{\infty} 
+\end{equation*}
+is bounded for all $n \ge 0$ if $|\lambda| < 1$. This follows immediately from
+the estimate 
+\begin{equation*}
+\frac{n!}{(n - k)!} \lambda^{n - k}  \le n^{k} \lambda^{n-k} \to 0 \ \text{as} \
+n \to \infty
+\end{equation*}
+where the right hand side decays to $0$ as $n \to \infty$ if $|\lambda| < 1$. Lastly,
+every  solution to $p(E)x = 0$ is a finite linear combination of vectors of form
+$[\lambda, \lambda^2, \lambda^3, \ldots]^{(n)}$ by Theorem \ref{thm:dif-eq}.
+\end{proof}
+\begin{example}
+The difference equation $4x_n + 7x_{n-1} + 2 x_{n-2} - x_{n-3} = 0$ is
+unstable, because its characteristic polynomial 
+$4\lambda^{3} + 7\lambda^{2} + 2 \lambda - 1$ has a root $\lambda= -1$  
+of multiplicity $2$.
+\end{example}
 \section{Least Squares Problem}
 \subsection{Orthogonal Transformations and Hilbert Spaces}
 We recall that linear transformations on finite-dimensional spaces are a combination
