@@ -125,7 +125,7 @@ x_{n+1} = x_{n} - f(x_n)/f'(x_n).
 \end{align*}
 \subsubsection{Error Analysis}
 Assume we have a suitable $x_0 \in I$ and $f \in C^2(I)$ such that the algorithm converges
-to a root $r \in I$. Then we have
+to a \emph{simple} root $r \in I$. Then we have
 \begin{align*}
 e_{n+1} = x_{n+1 - r} = e_n - f(x_n)/f'(x_n) = \frac{e_n f'(x_n) - f(x_n)}{f'(x_n)}
 \end{align*}
@@ -133,11 +133,18 @@ and
 \begin{align*}
 0 = f(r) = f(x_n - e_n) = f(x_n) - e_n f'(x_n) + e_n^2 f''(\xi_n)/2.
 \end{align*}
-Substituting and applying the mean value theorem, we obtain 
+Substituting, we obtain 
 \begin{align*}
 | e_{n+1} | = \left | \frac{e_n^2 f''(\xi_n)}{2 f'(x_n)} \right |
 \end{align*}
-
+Since $r$ is a simple root by assumption, we can always choose a subsequence
+$\{x_{n_k} \}$ such that $f'(x_{n_k}) > c > 0$. Hence, using this fact
+that the continuity of $f''$, we obtain the estimate
+\begin{align*}
+| e_{n+1} | \lesssim | e_n|^2.
+\end{align*}
+Hence, if the Newton method converges to a simple root for a $C^2$ function,
+it converges quadratically. 
 \subsection{Secant Method}
 Note that for each iteration of Newton's method, we have
 two costly computations: computing $f(x_0)$ and $f'(x_0)$.
@@ -174,7 +181,189 @@ Therefore,
 \begin{align*}
 e_{n+1} \lesssim e_n e_{n-1}.
 \end{align*}
+\subsection{Fixed Points}
+Observe that Newton's method can be rewritten as 
+\begin{align*}
+x_{n+1} = F(x_n), \quad F(x) = x - f(x)/f'(x).
+\end{align*}
+More generally, observe that if arbitrary $F$ is continuous, and
+$x_n \to s$, then
+\begin{align*}
+s = \lim {x_{n+1}} = \lim F(x_n) = F(s)
+\end{align*}
 
+\begin{definition}
+Let $F: X \to X$, where $X$ is a vector space. We say $s \in X$ is a 
+\emph{fixed point} of $F$ if $F(s) = s$.
+\end{definition}
+Hence, the problem of finding the roots of a function $f$ is equivalent
+to finding the fixed points of $F(x) \doteq x - f(x)/f'(x)$.
+What conditions do we need to impose on $F$ in order to guarantee
+the existence of a fixed point?
+\begin{definition}
+  Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
+\emph{contraction} if there exists an $\alpha$, $0 \le \alpha <1$ such that
+%
+%
+\begin{equation*}
+	\begin{split}
+		d(Tx, Ty) \le \alpha d(x,y), \qquad \forall x, y \in X.
+	\end{split}
+\end{equation*}
+%
+\end{definition}
+%
+\begin{remark}
+	Observe that a contraction mapping is always continuous.
+\end{remark}
+%
+%
+\begin{example}
+	The function $T(x) = 0.1x^2$ defines a contraction mapping in the set 
+	$X = [-4, 4]$ equipped with the metric $d(x,y) = |x-y|$. 
+\end{example}
+We now give some examples of iterations with a contractive $F: \rr \to \rr$.
+\begin{example}
+\begin{align*}
+& x_0 = -15
+\\
+& x_{n+1} = 3 - \frac{x_n}{2}
+\end{align*}
+\end{example}
+\begin{example}
+\begin{align*}
+& x_0 = \pi/4
+\\
+& x_{n+1} = 2 - \sin(2x)/3
+\end{align*}
+\end{example} 
+
+	%
+	%
+	%
+	%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%
+	%
+	%				Banach Space Fixed Point Theorem 
+	%
+	%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%
+	%
+	\begin{proposition}
+		\label{lem:fixed-point}
+	Let $(X,d)$ be a complete metric space, and $T: X \to X$ a contraction
+	mapping. Then $T$ has a unique fixed point in $X$. That is, there is a unique
+	point $x^* \in X$ such that $Tx^* = x^*$. Furthermore, if $x_0$ is any point
+  in $X$, and we define the sequence $x_{n+1} = Tx_n$, then $x_n \xrightarrow{X} x^*$ as $n
+	\to \infty$.
+	\end{proposition}
+	%
+	%
+  \begin{proof} First we show uniqueness. If $x^*$ and $x^{**}$ are two fixed
+	points, then
+	%
+	%
+	\begin{equation*}
+		\begin{split}
+			d(x^*, x^{**}) = d(Tx^*, Tx^{**}) \le \alpha d(x^*, x^{**}) \implies d(x^*,
+			x^{**}) = 0 \implies x^* = x^{**}.
+		\end{split}
+	\end{equation*}
+	%
+	%
+To prove existence, we observe that since $X$ is complete it suffices to show
+that $x_n$ is Cauchy. A repeated application of the
+contraction inequality gives
+%
+%
+\begin{equation*}
+	\begin{split}
+		d\left( x_{n+1},x_n \right)
+		& = d\left( Tx_n, Tx_{n-1} \right)
+		\\
+		& \le \alpha d\left( x_n, x_{n-1} \right)
+		\\
+		& \le \alpha^2 d\left( x_{n-1}, x_{n-2} \right)
+		\\
+		& \cdots
+		\\
+		& \le \alpha^n d\left( x_1, x_0 \right).
+	\end{split}
+\end{equation*}
+%
+%
+Hence
+%
+%
+\begin{equation*}
+\begin{split}
+  d\left( x_{n+k},x_n \right)
+  & \le (\alpha^{n } +\alpha^{n+1} + \cdots +
+  \alpha^{n+k-2} + \alpha^{n+k-1})d(x_{1}, x_{0}) 
+  \\
+  & = \alpha^{n}(1 + \alpha + \cdots + \alpha^{k-2} + \alpha^{k-1})
+  \\
+  & \le \alpha^{n}\left( \frac{1}{1 - \alpha} \right)
+  \\
+  & \to 0 \ \text{as} \ n \to \infty
+\end{split}
+\end{equation*}
+%
+%
+since $0 \le \alpha < 1$. 
+\begin{remark}
+Note that it is not necessary that $F$ be contractive in order to 
+have convergence of an iteration. For example,
+\begin{align*}
+& x_{n+1} = 1/2 - x_n
+\\
+& x_0 = 1/4
+\end{align*}
+converges to $1/4$, but $F(x) \doteq 1/2 - x_n$ is not a contraction mapping
+on any closed subset $I \in \rr$. The key thing to realize is that
+for \emph{special} $x_0$ we can still have convergence for non-contractive $F$.
+The advantage of having contractive $F$ on a closed set $X$ is that we do not need to worry
+about our initial data--as long as it lives in $X$,
+we are guaranteed convergence of our iteration.
+\end{remark}
+\end{proof}
+It turns out that $F$ also gives great insight into the speed
+of convergence.
+\begin{proposition}
+Consider the iteration $x_{n+1} = F(x_n)$, where $F \in C^{q}(I)$ for some integer
+$q \ge 1$ and open $I \in \rr$. Assume $F$ is contractive on a closed subset $I' \subset I$.
+Then the iteration
+converges to $s = s(x_0)$, and the order of convergence is the first strictly positive integer $k \le q$
+such that $F^{(k)}(s) \neq 0$.
+\end{proposition}
+\begin{proof}
+Observe that
+\begin{align*}
+e_{n+1} = F(x_n) - s = F(s + e_n) - F(s).
+\end{align*}
+A Taylor expansion then gives
+\begin{align*}
+e_{n+1} = e_nF'(s) + e_n^2 F''(s)/2 + \ldots + e_n^{q-1}F^{(q-1)}(s)/(q-1)! + 
+e_n^q F^{(q)}(\xi_n)/q!.
+\end{align*}
+Furthermore,
+\begin{align*}
+e_{n+1} = F(x_n) - F(s) = F'(\xi_n)(e_n), \quad s < \xi_n < x_n
+\end{align*}
+Since $F$ is contractive on $I'$, it follows from the mean value theorem that 
+\begin{align*}
+| F'(x) | < 1, \quad \forall x \in I'.
+\end{align*}
+which guarantees that, for $n \gg 1$, we have $e_n \ll 1$. Assume $k \le q$ 
+is the first strictly positive integer such that $F^{(k)}(s) \neq 0$. Then from our
+Taylor expansion, and the continuity of $F^{(j)}$, $j \le q$, we obtain
+\begin{align*}
+|e_{n+1}| = O(|e_n|^k)
+\end{align*}
+completing the proof.
+\end{proof}
 \section{Interpolation}
 While finding a least fit line to a series of data points
 (see the least squares minimization problem in these notes)
