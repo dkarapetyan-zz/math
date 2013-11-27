@@ -1,5 +1,6 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{amssymb} %for symbols like lesssim
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{yhmath}   %makes fourier transform look nicer, among other things
 \usepackage{framed}  %for framing remarks, theorems, etc.
@@ -8,11 +9,11 @@
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \usepackage{hyperref}
-\hypersetup{colorlinks=true,
-linkcolor=blue,
-citecolor=blue,
-urlcolor=blue,
-}
+% \hypersetup{colorlinks=true,
+% linkcolor=blue,
+% citecolor=blue,
+% urlcolor=blue,
+% }
 \usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \newcommand{\ds}{\displaystyle}
 \newcommand{\ts}{\textstyle}
@@ -88,7 +89,7 @@ which implies that $f(c) = 0$. Hence, the bisection method has converged to a ro
 $c$ in $[a,b]$.
 Hence, one approach to approximating $c$ is to prescribe an error threshold, and
 take $a_n$, for $n$ sufficiently large. However, we can get a better estimate
-if we take $c_n \doteq 1/2(b_n - a_n)$. By triangle inequality and \eqref{b-a-dif}, we obtain
+if we take $c_n \doteq 1/2(a_n + b_n)$. By triangle inequality and \eqref{b-a-dif}, we obtain
 \begin{equation*}
 |c - c_n| \le 1/2 (b_n - a_n)
 \end{equation*}
@@ -98,7 +99,82 @@ and so
 \end{equation*}
 Compare this with the estimate \eqref{bd}. It guarantees convergence
 that is at least twice as fast as that given by taking $a_n$ or $b_n$
-as our approximation to $c$.
+as our approximation to $c$. Note that the speed of convergence is linear.
+\subsection{Newton's Method}
+The main advantages of Newton's method over the bisection method is that if it
+converges to a root, then its convergence is quadratic. The drawbacks is that it
+may not converge to a root at all if the starting point $x_0$ of the algorithm
+is not sufficiently close to a root. (In particular, a general heuristic is that
+if the function becomes steep near a root, then our choice $x_0$ has to be very
+close to that root in order to converge to it.) The essence of the Newton
+algorithm is to approximate a function via its linearization. More precisely,
+assuming $r$ is a root of $f \in C^2$, and $x_0$ is an initial guess a positive
+distance $h$ from $r$, we write
+\begin{align*}
+0 = f(r)  = f(x_0 + h) \approx f(x_0) + h f'(x_0) + O(h^2)
+\end{align*}
+from which we obtain $h \approx -f(x_0)/f'(x_0)$.
+Hence
+\begin{align*}
+r & \approx x_0 + h \\
+& \approx x_0 - \frac{f(x_0)}{f'(x_0)}.
+\end{align*}
+The Newton algorithm is then given by
+\begin{align*}
+x_{n+1} = x_{n} - f(x_n)/f'(x_n).
+\end{align*}
+\subsubsection{Error Analysis}
+Assume we have a suitable $x_0 \in I$ and $f \in C^2(I)$ such that the algorithm converges
+to a root $r \in I$. Then we have
+\begin{align*}
+e_{n+1} = x_{n+1 - r} = e_n - f(x_n)/f'(x_n) = \frac{e_n f'(x_n) - f(x_n)}{f'(x_n)}
+\end{align*}
+and 
+\begin{align*}
+0 = f(r) = f(x_n - e_n) = f(x_n) - e_n f'(x_n) + e_n^2 f''(\xi_n)/2.
+\end{align*}
+Substituting and applying the mean value theorem, we obtain 
+\begin{align*}
+| e_{n+1} | = \left | \frac{e_n^2 f''(\xi_n)}{2 f'(x_n)} \right |
+\end{align*}
+
+\subsection{Secant Method}
+Note that for each iteration of Newton's method, we have
+two costly computations: computing $f(x_0)$ and $f'(x_0)$.
+To reduce this cost, we introduce the approximation
+\begin{align*}
+f'(x_0) \approx \frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}.
+\end{align*}
+and substitute this into Newton's method to get
+\begin{align*}
+x_{n+1} = x_n - \frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}
+\end{align*}
+Observe that now we have only one costly computation per iteration.
+That is, we only need to compute $f(x_n)$, since $f(x_{n-1})$ is known
+from the previous iteration. 
+\subsubsection{Error Analysis}
+We write
+\begin{align*}
+e_{n+1} = x_{n+1}-r
+& = \frac{f(x_n)x_{n-1} - f(x_{n-1})x_n}{f(x_n) - f(x_{n-1})} - r
+\\
+& = \frac{f(x_n)e_{n-1} - f(x_{n-1})e_n}{f(x_n) - f(x_{n-1})}
+\\
+& = \frac{[f(x_n)/e_n - f(x_{n-1})/e_{n-1}](x_n - x_{n-1})}{[f(x_n) - f(x_{n-1})]/[x_n - x_{n-1}]}e_n e_{n-1}
+\end{align*}
+which by the mean value theorem is bounded by
+\begin{align*}
+& [f(x_n)/e_n - f(x_{n-1})/e_{n-1}][e_n + r - (e_{n-1} + r)]e_n e_{n-1}
+\\
+& = [f(x_n)  + f(x_{n-1}) - f(x_{n-1})e_n / e_{n-1} - f(x_n)e_{n-1}/e_n]e_n e_{n-1} 
+\\
+& \lesssim e_n e_{n-1}
+\end{align*}
+Therefore,
+\begin{align*}
+e_{n+1} \lesssim e_n e_{n-1}.
+\end{align*}
+
 \section{Interpolation}
 While finding a least fit line to a series of data points
 (see the least squares minimization problem in these notes)
