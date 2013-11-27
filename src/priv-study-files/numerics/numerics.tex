@@ -350,15 +350,16 @@ e_n^q F^{(q)}(\xi_n)/q!.
 \end{align*}
 Furthermore,
 \begin{align*}
-e_{n+1} = F(x_n) - F(s) = F'(\xi_n)(e_n), \quad s < \xi_n < x_n
+e_{n+1} = F(x_n) - F(s) = F'(\xi_n)e_n, \quad s < \xi_n < x_n
 \end{align*}
 Since $F$ is contractive on $I'$, it follows from the mean value theorem that 
 \begin{align*}
 | F'(x) | < 1, \quad \forall x \in I'.
 \end{align*}
-which guarantees that, for $n \gg 1$, we have $e_n \ll 1$. Assume $k \le q$ 
-is the first strictly positive integer such that $F^{(k)}(s) \neq 0$. Then from our
-Taylor expansion, and the continuity of $F^{(j)}$, $j \le q$, we obtain
+which guarantees that, for suitably large $N$, we have $e_n < 1$ for all $n > N$.
+Assume $k \le q$ is the first strictly positive integer such that $F^{(k)}(s) \neq 0$. Then from our
+Taylor expansion, the continuity of $F^{(j)}$, $j \le q$, and the fact that
+$e_i < e_i^j$ for any $j \ge 1$, we obtain
 \begin{align*}
 |e_{n+1}| = O(|e_n|^k)
 \end{align*}
