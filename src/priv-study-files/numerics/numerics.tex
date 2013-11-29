@@ -50,6 +50,177 @@
 %
 %
 %
+\section{Limitations of the Machine}
+\subsection{Introduction}
+A computer is just a sophisticated collection of circuits
+with ``off'' and ``on'' switches. We represent ``off'' and
+``on'' by $0$ and $1$, respectively. A computer program 
+at its lowest level is just a collection of a string of $0$'s and $1$'s.
+When we write a computer program in a higher level language such as C
+or Python, a compiler translates the program into $0$'s and $1$'s,
+which are then then processed by the computer.
+
+Besides the base $10$ system, it is important to understand binary (base $2$),
+octal (base $8$), and hexadecimal (base $16$). Binary is encountered most often,
+since that is the number system computer instructions (``on'' and ``off'' switches)
+are encoded in.
+
+\subsubsection{Loss of Precision}
+Each digit in a binary representation of a number takes a bit of memory to hold.
+Since there is a finite amount of memory in the computer, we must chop all digits
+after a specific digit in a binary number. 
+\begin{example}
+$1/10 = (0.001100110010011\ldots)_2 \approx (0.00110011)_2$
+\end{example}
+If we chop at the $nth$ digit, then the error bound is $10^{-n}$.
+We have the alternative of rounding up or down after the $nth$ digit. 
+In this case the error bound is $1/2 \times 10^{-n}$.
+
+For binary, we have the scientific notation $x = q \times 2^{m}$, where
+$1/2 < |q| < 1$. This is entirely analogous to the base $10$ case.
+
+In these days of increasing RAM and decreasing prices, one need not be too worried
+about truncation or rounding errors, unless the numerical simulation one is performing
+is highly unstable (in which case, small errors can lead to wildly incorrect results---more
+on this later).
+
+\subsubsection{Loss of Significance}
+\begin{definition}
+Let $x^\star \in \cc$ be an approximation to $x \in \cc$. Then we define
+the \emph{absolute error} and the \emph{relative error} as $|x - x^\star|$
+and $|(x - x^\star)/x|$, respectively.
+\end{definition}
+In practice, absolute error matters very little. Its prominent uses
+include tricking the masses into believing you are benevolent. They don't understand
+math. But we do!
+\begin{example}
+Angelina Jolie donates $20,000$ to SomeRidiculousCharity(SRC). The masses clap,
+the masses cheer, and celebrate her as a saint. Angelina Jolie's net
+worth is $20,000,000$. In absolute terms, this seems like a lot. In relative
+terms, she has donated \\ $20,000/20,000,000 \times 100 \%$, or $0.1 \%$ of
+one year's salary. For perspective, if Joe Johnson, average bloke's 
+annual salary is $60,000$, then $0.1 \%$ of this is $60$.
+\end{example}
+\begin{example}
+Take $x = 10^6 + 10^3$ and $x^\star = 10^6$. Then $x - x^\star = 10^3$,
+but $(x - x^\star)/x = 10^{-3}$.
+\end{example}
+In short, relative errors are much more important. 
+Loss of significance occurs when two nearly equal quantities are subtracted.
+\begin{example}
+Let $x = 0.3721478613$ and $y = 0.3720230572$. Then $x-y = 0.0001248121$.
+The repetitive $0's$ are taking up memory that could be better used storing
+significant digits (digits other than $0$). If our computer truncates
+after the $6th$ digit, then
+$x^\star = 0.37215$, $y^\star = 0.37202$, and the relative error
+of $x^\star-y^\star$ from $x-y$ is approximately $4\%$. This is because
+$x^\star - y^\star = 0.00013$. We have wasted three digits out of
+five digits on storing $0's$.
+\end{example}
+Hence, if possible, one should avoid subtracting nearly equal quantities
+in an algorithm.
+\begin{example}
+If $y = \sqrt{x^2 + 1} -1$ and we are inputting $x \approx 1$, we rewrite this as $x^2/\sqrt{x^2 + 1} + 1$.
+No loss of significance occurs in this latter form.
+\end{example}
+A loss of precision also occurs when dividing by a numbers very close to $0$.
+Indeed, we now demonstrate the link between subtracting two nearby numbers
+and division by a number close to $0$.
+\begin{example}
+ Let $x, y \approx 0$ be real, strictly positive
+numbers with a decimal component, and let $x^\star, y^\star$ be their truncated
+machine approximations, where the truncation occurs after the $5th$ decimal digit.
+We compute the relative error of $x^\star/y^\star$ from $x$; that is
+\begin{align*}
+!\frac{x/y - x^\star/y^\star}{x/y} |  = | \frac{x - x^\star y/y^\star}{x} |
+\end{align*}
+It is easy to see that $\lim_{y \to 0 }y/y^\star = 0$ (for a machine, $y/y^\star$
+will become undefined once $y$ gets small enough, but, while defined, it is
+a strictly decreasing quantity tending towards $0$). Therefore, our relative
+error approaches $x/x = 1$, or $100\%$.
+\end{example}
+As a last example, observe that even if we are careful not to subtract nearby
+quantities or divide by numbers close to $0$, we can still have precision errors
+if we are inputting approximated values into highly oscillatory functions.
+\begin{example}
+Consider the function $f(x) = \cos(nx)$, where $n >> 1$ is an integer.
+Then $f(2\pi) = 1$, but $f(2 \pi^\star)$ can be quite far from $1$.
+One way around this is to use interval arithmetic---that is, try to
+compute what interval values near $2 \pi$ will get mapped to. This is
+outside the scope of this course.
+\end{example}
+One way to partially offset all these worries about loss of precision
+and significance is to have a lot of RAM, and to take advantage
+of $64$ bit processors (which will eventually become $128$ bit, $256$ bit,
+and so on.
+\subsubsection{Numerical Instability}
+There are certain numerical iterations that are more sensitive
+to loss of precision and significance than others.
+\begin{example}
+Consider
+\begin{align*}
+& x_{n+1} = 13x_n/3 - 4x_{n-1}/3
+\\
+& x_0 = 1
+\\
+& x_1 = 1/3
+\end{align*}
+This has the theoretical solutions $x_n = (1/3)^n$. However, numerically,
+$x_n$ diverges to infinity. This is because of the loss of precision
+emanating from repeated subtractions of nearby quantities. These
+errors accumulate with each iteration. We call such a numerical iteration
+\emph{unstable}.
+\end{example}
+\begin{remark}
+A stable version of the same iteration is given by
+\begin{align*}
+& 2 x_n /3 - x_{n-1}/3
+\\
+& x_0 = 1
+\\
+& x_1 = 1/3
+\end{align*}
+\end{remark}
+We can extend our notion of instability to functions as well.
+For example, we can ask how sensitive a function's output value is
+to perturbations of its input. If $f$ is differentiable, we compute
+the relative error of $f$ at $x$:
+\begin{align*}
+\frac{f(x + h) - f(x)}{f(x)} \approx \frac{h f'(x)}{f(x)} = 
+\left[ \frac{x f'(x)}{f(x)}\right]\left( \frac{h}{x}\right)
+\end{align*}
+which motivates the following definition.
+\begin{definition}
+Let $I$ be an open subset of $\rr$. Then for $f \in C^1(I)$, 
+we call 
+\begin{align*}
+\left[ \frac{x f'(x)}{f(x)}\right]
+\end{align*}
+the \emph{condition number} of $f$ in $I$.
+\end{definition}
+Note that the condition number can potentially magnify
+the relative error ($h/x$) of the perturbed input, resulting
+in a potentially large relative error for the output. Heuristically,
+the condition number is a measure of how sensitive $f$ is to perturbations
+in its input.
+\begin{example}
+Let $f, g \in C^2$, $F = f + \ee g$, and $r$ a simple root of $f \in C^2$.
+Then we must perturb $r \mapsto r + h$ to obtain the corresponding
+root of $F$. We are interested in the magnitude of $h$. We have
+\begin{align*}
+0 = F(r + h) & \approx f(r) + hf'(r) + \ee g(r) + h\ee g'(r) + O(h^2)
+\\
+& = h[f'(r)  + \ee g'(r)] + \ee g(r)  + O(h^2)
+\end{align*}
+Assuming $h, \ee \ll 1$, we obtain 
+\begin{align*}
+h \approx -\frac{\ee g(r)}{f'(r)}
+\end{align*}
+Letting $f(x) = \prod_{k=1}^{20} (x-k)$ and $g(x) = x^{20}$, we obtain
+\[h \approx -\ee g(20)/f'(20) = -\ee 20^20/20! \approx -\ee 10^8.\]
+This suggests that even for small $\ee$, if $\ee \not < 10^{-8}$,
+then $h$ may potentially be very large. 
+\end{example}
 \section{Finding Roots of Functions}
 We are interested in finding $x$ such that
 $f(x) = a$, where $a \in \rr$. This is equivalent to finding
@@ -365,6 +536,79 @@ $e_i < e_i^j$ for any $j \ge 1$, we obtain
 \end{align*}
 completing the proof.
 \end{proof}
+\section{Roots of Polynomials}
+Polynomials have much nicer properties than arbitrary functions,
+so we'd like to use that to our advantage when looking for
+roots. 
+\begin{theorem}
+All zeroes of a polynomial $p(z) = a_0 + a_1 z + \ldots + a_{n-1}z^{n-1} + 
+a_n z^n$, $a_n \neq 0$ lie in a closed disc centered at the origin, with radius
+\begin{align*}
+r = 1 + |a_n|^{-1} \max_{0 \le k \le n-1} |a_k|.
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is enough to show that there are no zeroes outside this disc. Assuming
+$z$ is outside the disc, we estimate 
+\begin{align*}
+|p(z) |
+& \ge |a_n z^n| - | a_{n-1}z^{n-1} + \ldots + a_0 |
+\\
+& \ge |a_n| |z|^n | - c \sum_{k=0}^{n-1} |z|^{k}, \quad 
+c \doteq \max_{0 \le k \le n-1} |a_{k}|
+\\
+& = |a_n| |z|^n  - c \left[ \frac{|z|^n - 1}{|z|-1}\right]
+\\
+& > |a_n| |z|^n - c \left[ \frac{|z|^n - 1}{1 + |a_n|^{-1}c - 1}\right]
+\\
+& = |a_n| |z|^n - |a_n|(|z|^n - 1)
+\\
+& = |a_n| > 0.
+\end{align*}
+\end{proof}
+\begin{corollary}
+If all zeroes of a polynomial $p$ are in the disc $ \left\{ z: |z| \le r \right\}$,
+then all non-zero zeroes of $p$ are outside the disc $ \left\{ z: |z| < 1/r \right\}$.
+\end{corollary}
+\begin{proof}
+Let $s(z) \doteq z^n p(1/z)$. Then for nonzero $z_0$, $s(z_0) = 0$ if and only if
+$p(1/z_0) = 0$. But for nonzero $z_0$, $|z_0| \le r$ is equivalent to
+$|1/z_0 \ge 1/r|$, which completes the proof.
+\end{proof}
+\subsection{Polynomial Evaluation}
+For a polynomial $p(z)$, computing the value of $p(z_0)$ by computing
+$a_2 z^2, a_3 z^3, \ldots, a_n z^n$ in succession is inefficient.
+The standard method for evaluating a polynomial is via \emph{Horner's algorithm},
+which we now derive.
+
+Observe that if $p$ is $n$th order, then $q(z) = [p(z) - p(z_0)]/(z-z_0)$
+is $(n-1)$th order. Let \[p(x) = a_0 + a_1 z + \ldots + a_n z^n,
+\quad q(x) = b_0 + b_1z + \ldots + b_{n-1} b^{n-1}.\] Then
+writing $p(z) = (z- z_0)q(z) + p(z_0)$ and substituting, we obtain
+\[a_0 + \ldots + a_n z^n = (z - z_0)(b_0 + \ldots + b_{n-1}z^{n-1}) + p(z_0),\]
+which admits the following relations
+\begin{align*}
+& a_0 = p(z_0) - z_0b_0 \\
+& a_1 = b_0 - z_0 b_1 \\
+& a_2 = b_1 - z_0 b_2 \\
+& \vdots \\
+& a_{n-1} = b_{n-2} - z_0 b_{n-1} \\
+& a_n = b_{n-1}.
+\end{align*}
+Rewriting this, we obtain
+\begin{align*}
+& p(z_0) = a_0  + z_0b_0 \\
+& b_0 = a_1 + z_0 a_1 \\
+& b_2 = a_2 -+z_0 a_2 \\
+& \vdots \\
+& b_{n-1} = a_{n-2} + z_0 a_{n-1} \\
+& b_n = a_{n-1}
+\end{align*}
+Note that $b_n$ is known, since $a_{n-1}$ is known. Working backwards
+from this line by line, we obtain $p(z_0)$. Notice that there is a total
+of $n$ multiplications needed to do so. Contrast this with the
+$1 + 2 + \ldots + n+1 = O(n^2)$ multiplications needed when 
+evaluating $p(z_0)$ by computing $a_2 z^2, a_3 z^3$ and so on in succession.
 \section{Interpolation}
 While finding a least fit line to a series of data points
 (see the least squares minimization problem in these notes)
