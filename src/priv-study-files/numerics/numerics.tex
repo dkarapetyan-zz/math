@@ -1707,6 +1707,51 @@ the Gauss-Seidel scheme converges for a given matrix $A$. If it does, then in
 general it converges faster in general than the Jacobi and Richardson iterative
 schemes. If it does not, then we must resort to using another scheme.
 \end{remark}
+\section{Finding Exact Solutions to Matrix Systems}
+We are interested in exact solutions to the system $Ax = b$, 
+where $A$ is an invertible $n \times n$ matrix. The unique solution
+is given by $x = A^{-1}b$; however, it is numerically inefficient
+to compute $A^{-1}$ via Gaussian elimination. We have seen in the previous
+section that $A^{-1}$ can be estimated to any degree of accuracy we wish
+via Neumann iteration. However, another, more common technique is 
+to decompose $A$ into a product of matrices that makes the system $Ax = b$
+easy to solve. 
+\subsection{LU Decompositions} 
+Observe that if we can write $A = LU$, where
+$L$ and $U$ are lower and upper $n \times n$ matrices respectively,
+then solving $Ax = b$ reduces to solving $Ly = b$ and $Ux = y$.
+However, these two systems can easily be solved by backwards substitution
+and reverse backwards substitution, respectively.
+
+\subsubsection{Doolittle Factorisation}
+Assuming that $L$ has unit diagonal, and seek to find the remaining
+entries of $L$ and $U$. Let $L_i$ denote the $i$th row of $L$,
+and $U^j$ denote the $j$th column of $U$. Observe that
+\begin{align*}
+a_{ij} = L_i U^j = \sum_{s=1}^n \ell_{is} u_{sj} = \sum_{s=1}^{\min(i,j)} \ell_{is} u_{sj}.
+\end{align*}
+Using this formula, we compute the first row of $U$ 
+the first column of $L$ as follows. First we aim to compute the first row of $U$.
+To do so, we look at $L_1 U^k$, $1 \le k \le n$ and
+use the key fact that $\ell_{11} = 1$ and $\ell_{1i} = 0, 1 < i \le n$
+to compute $u_{11}, u_{12}, \ldots, u_{1n}$. 
+Having computed the first row, we now compute the first column of $L$
+by looking at $L_i U^1$, $2 \le i \le n$, and using the fact that
+$U$ is upper triangular. 
+For the inductive step, assume that we have computed the first $k-1$ rows
+of $U$, and the first $k-1$ columns of $L$. Note that
+\begin{align*}
+a_{kk} = \sum_{s=1}^{k-1}l_{ks}u_{sk} + u_{kk}
+\end{align*}
+which implies
+\begin{align*}
+u_{kk} = a_{kk} - \sum_{s=1}^{k-1}l_{ks}u_{sk}.
+\end{align*}
+However, both terms on the right hand side are known. In particular,
+we know the second term via the inductive hypothesis. 
+
+Now that we have computed $u_{kk}$, we use it as a pivot to compute
+the remaining values in the $k$th column of $U$. 
 \section{Well-Conditioned and Ill-Conditioned Linear Problems}
 Now that we have developed techniques for solving $n \times n$
 systems $Ax = b$, we'd like to understand how sensitive our system
