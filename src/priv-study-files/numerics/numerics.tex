@@ -1748,10 +1748,57 @@ which implies
 u_{kk} = a_{kk} - \sum_{s=1}^{k-1}l_{ks}u_{sk}.
 \end{align*}
 However, both terms on the right hand side are known. In particular,
-we know the second term via the inductive hypothesis. 
+we know the second term via the inductive hypothesis. Hence,
+we have computed $u_kk$.
 
 Now that we have computed $u_{kk}$, we use it as a pivot to compute
-the remaining values in the $k$th column of $U$. 
+the values in the $k$th column of $L$. 
+Observe that for $k < i \le n$
+\begin{align*}
+a_{ik} = L^i U^k = \sum_{s=1}^{\min(i,k)}\ell_{is}u_{sk}
+= \sum_{s=1}^{k-1} \ell_{is} u_{sk} + \ell_{ik} u_{kk}
+\end{align*}
+We then solve for $\ell_{ik}$. Note that every other in the expression
+on the right is known via the inductive hypothesis, and our previous
+computation of $u_{kk}$.
+
+Now that we have computed the $k$th column of $L$, we use it
+to compute the $k$th row of $U$. Observe that for $k < i \le n$
+\begin{align*}
+a_{ki} = L^k U^i = \sum_{s=1}^{\min(i,k)}\ell_{ks}u_{si}
+= \sum_{s=1}^{k-1} \ell_{ks} u_{si} + \ell_{kk} u_{ki}
+\end{align*}
+Observe that $u_{ki}$ is the only term on the right hand side
+that is not known. Every other term is known thanks to our computation
+of the $k$th column of $L$ earlier, and our inductive hypothesis. Hence,
+we can solve for $u_{ki}$, so long as divisions by zero do not occur.
+
+This completes the $LU$ decomposition algorithm. 
+
+\begin{definition}
+When $L$ is assumed to have unit diagonal
+as above, we call the algorithm a \emph{Doolittle factorisation}. 
+If $U$ is assumed to have unit diagonal, it is called a \emph{Crout
+factorisation}. If $A$ is symmetric and positive definite, it is called a
+\emph{Cholesky factorisation}.
+\end{definition}
+Observe that we have glossed over the fact that the algorithm fails
+if divisions by $0$ when solving for terms in $L$ or $U$. Fortunately,
+we have the following.
+\begin{proposition}
+Let $A$ be an invertible $n \times n$ matrix. Then there exists
+a permutation of the rows $P$ such that $PA$ admits 
+an $LU$ decomposition. More precisely, no divisions by $0$ will
+occur when running an $LU$ decomposition algorithm on $PA$.
+\end{proposition}
+\begin{remark}
+Note that $x$ is a solution to $Ax = b$ if and only if $PAx = b$.
+\end{remark}
+\begin{exercise}
+Show that a real, symmetric, positive definite matrix $A$ has a unique
+factorisation $L L^T$, where $L$ is lower triangular
+with a positive diagonal. Note that no permutation matrix $P$ is needed.
+\end{exercise}
 \section{Well-Conditioned and Ill-Conditioned Linear Problems}
 Now that we have developed techniques for solving $n \times n$
 systems $Ax = b$, we'd like to understand how sensitive our system
@@ -1805,7 +1852,7 @@ perhaps much smaller than just $1$, in order to
 ensure that the $x$ we come up with as solution to $Ax = b$ is not far
 from the actual $x$ occurring in the real-world. In this case we would define
 a well-conditioned matrix as having a condition number less than some $c$, where
-$c << 1$. 
+$c \ll 1$. 
 \end{remark}
 \begin{remark}
 The condition number can also be thought of as a measure of how close a matrix
