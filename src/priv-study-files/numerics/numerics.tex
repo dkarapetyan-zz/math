@@ -884,6 +884,36 @@ Observe that if $\sum_{j=0}^{k}(n_j + 1) < m$, then the system is underdetermine
 It is not too hard to show that we will have infinitely many solutions. That is, there will be infinitely
 many polynomials of degree $m$ which interpolate the given data.
 \end{remark}
+\subsection{Cubic Splines}
+The problem with Newton or Hermite interpolation is that if we have
+many data points, our interpolating polynomial $p$ will have degree $n \gg 1$.
+Evaluating this polynomial at a point $x_0$ will then take $O(n)$ computations.
+To sidestep this problem, we seek to divide our data up into pieces
+and to interpolate each piece individually via a cubic polynomial.
+Once we have done this, we will then stitch together.
+\begin{definition}
+A spline on an interval $[a,b]$ are polynomial pieces defined on 
+disjoint sub-intervals $[a_j,b_j]$ which cover $[a,b]$. 
+\end{definition}
+Let $S$ be the cubic spline that we seek to construct. We make
+the following assumptions.
+\begin{enumerate}
+\item On each interval $[t_{i-1}, t_i]$, $S$ is a polynomial of degree
+at most $3$.
+\item $S$ is $C^2$ on the boundary of each sub-interval.
+\end{enumerate}
+By the first assumption, $S''$ is linear on each sub-interval.
+Hence, if $S''_i(t_i) = z_i$ and $S''_{i}(t_{i+1}) = z_{i+1}$,
+then
+\begin{align*}
+S_{i}''(x) = \frac{z_i}{h_i}(t_{i+1} - x) + \frac{z_{i+1}}{h_i}(x- t_i),
+\quad h_i \doteq
+t_{i+1}- t_i	
+\end{align*}
+Integrating this, we obtain an at most cubic polynomial with  two unknown
+constants of integration $C, D$, which must be found along with the $z_i$.
+However, our regularity assumptions on the spline are powerful enough to allow
+us to do so.
 \section{Finite Difference Method}
 \subsection{Burgers Equation}
 Recall the Burgers initial value problem (ivp)
