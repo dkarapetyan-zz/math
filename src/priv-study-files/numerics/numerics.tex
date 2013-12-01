@@ -361,21 +361,15 @@ the existence of a fixed point?
 \begin{definition}
   Let $\left( X, d \right)$ be a metric space. A mapping $T: X \to X$ is called a
 \emph{contraction} if there exists an $\alpha$, $0 \le \alpha <1$ such that
-%
-%
 \begin{equation*}
 	\begin{split}
 		d(Tx, Ty) \le \alpha d(x,y), \qquad \forall x, y \in X.
 	\end{split}
 \end{equation*}
-%
 \end{definition}
-%
 \begin{remark}
 	Observe that a contraction mapping is always continuous.
 \end{remark}
-%
-%
 \begin{example}
 	The function $T(x) = 0.1x^2$ defines a contraction mapping in the set 
 	$X = [-4, 4]$ equipped with the metric $d(x,y) = |x-y|$. 
@@ -396,19 +390,6 @@ We now give some examples of iterations with a contractive $F: \rr \to \rr$.
 \end{align*}
 \end{example} 
 
-	%
-	%
-	%
-	%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%
-	%
-	%				Banach Space Fixed Point Theorem 
-	%
-	%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%
-	%
 	\begin{proposition}
 		\label{lem:fixed-point}
 	Let $(X,d)$ be a complete metric space, and $T: X \to X$ a contraction
@@ -417,25 +398,17 @@ We now give some examples of iterations with a contractive $F: \rr \to \rr$.
   in $X$, and we define the sequence $x_{n+1} = Tx_n$, then $x_n \xrightarrow{X} x^*$ as $n
 	\to \infty$.
 	\end{proposition}
-	%
-	%
   \begin{proof} First we show uniqueness. If $x^*$ and $x^{**}$ are two fixed
 	points, then
-	%
-	%
 	\begin{equation*}
 		\begin{split}
 			d(x^*, x^{**}) = d(Tx^*, Tx^{**}) \le \alpha d(x^*, x^{**}) \implies d(x^*,
 			x^{**}) = 0 \implies x^* = x^{**}.
 		\end{split}
 	\end{equation*}
-	%
-	%
 To prove existence, we observe that since $X$ is complete it suffices to show
 that $x_n$ is Cauchy. A repeated application of the
 contraction inequality gives
-%
-%
 \begin{equation*}
 	\begin{split}
 		d\left( x_{n+1},x_n \right)
@@ -450,11 +423,7 @@ contraction inequality gives
 		& \le \alpha^n d\left( x_1, x_0 \right).
 	\end{split}
 \end{equation*}
-%
-%
 Hence
-%
-%
 \begin{equation*}
 \begin{split}
   d\left( x_{n+k},x_n \right)
@@ -468,8 +437,6 @@ Hence
   & \to 0 \ \text{as} \ n \to \infty
 \end{split}
 \end{equation*}
-%
-%
 since $0 \le \alpha < 1$. 
 \begin{remark}
 Note that it is not necessary that $F$ be contractive in order to 
@@ -2022,6 +1989,6 @@ Letting $f = 1$, $f = x$, and $f = x^2$, respectively, we compute
 \end{align*}
 from which we obtain $A_0 = 1/6$, $A_1 = 2/3$, and $A_2 = 1/6$.
 Since $ \left\{ 1, x, x^2 \right\} $ is a basis for the vector space of 
-$2$nd degree polynomials, and since integration is a linear operation, we see that our approximation is in fact exact
-for all quadratic polynomials $f(x)$.
+polynomials of degree $\le 2$, and since integration is a linear operation, we see that our approximation is in fact exact
+for all polynomials $f(x)$ of degree $\le 2$.
 \end{document}
