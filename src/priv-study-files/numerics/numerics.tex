@@ -8,12 +8,6 @@
 \usepackage[margin=2.5cm]{geometry}  %page layout
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
-\usepackage{hyperref}
-% \hypersetup{colorlinks=true,
-% linkcolor=blue,
-% citecolor=blue,
-% urlcolor=blue,
-% }
 \usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \newcommand{\ds}{\displaystyle}
 \newcommand{\ts}{\textstyle}
@@ -32,24 +26,17 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{claim}[theorem]{Claim}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{no}[theorem]{Notation}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}{Example}[section]
-\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{exercise}{Exercise}
 \begin{document}
 \title{Notes on Numerical Computation }
 \author{David Karapetyan}
 \date{\today}
-%
 \maketitle
-%
-%
-%
-%
 \section{Limitations of the Machine}
 \subsection{Introduction}
 A computer is just a sophisticated collection of circuits
@@ -1593,8 +1580,8 @@ If $A$ is an $n \times n$ matrix with complex entries, then
 \begin{proof}
 We shall show that $\rho(A) \le \inf_{ \| \cdot \|} \| A \|$ and $\rho(A) \ge
 \inf_{ \| \cdot \|} \| A \|$, respectively. If $A$ is the $0$ matrix, there is
-nothing to prove. Otherwise, $A$ has s
-ome nonzero eigenvalue, with a corresponding eigenvector which cannot be $0$.
+nothing to prove. Otherwise, $A$ has 
+one nonzero eigenvalue, with a corresponding eigenvector which cannot be $0$.
 Hence,
 \begin{equation*}
 |\lambda| \cancel{\| x \|} = \| Ax \| \le \| A \| \cancel{\| x \|}.
@@ -1907,4 +1894,134 @@ A =
 \end{equation*}
 is not invertible.
 \end{remark}
+\section{Numerical Differentiation}
+Given a data set $ \left\{ x_i, y_i \right\} $, where $f(x_i) = y_i$, 
+we can estimate $f$ at a point $z_i$ by approximating it via a linearization. More
+precisely, if $f \in C^2(I)$, where $ \left\{ x_i \right\} \subset I$, we write
+$f(x + h) = f(x) + hf'(x) + h^2 f''(x)/2$ and so
+\begin{align*}
+f'(x) &= \frac{f(x+h) - f(x)}{h} - hf''(\xi)/2 \\
+& \approx \frac{f(x+h) - f(x)}{h} 
+\end{align*}
+However, observe that as $h$ becomes small, we begin to subtract
+\emph{nearly equal quantities}. This results in a loss of precision. Worse,
+this error from loss of precision is magnified by $1/h$. To offset this error,
+we require a better approximation to $f'(x)$ than the $O(h)$ approximation
+we have produced above. 
+\subsection{Richardson Extrapolation}
+The key to improving our approximation is to assume more regularity for $f$.
+We develop our improved approximation by first assuming $f$ is analytic; we leave
+as an exercise how to adapt the argument for $f \in C^k$, but not necessarily
+analytic. Write
+\begin{align*}
+f(x+h) &= \sum_{k=0}^\infty h^k f^{(k)}(x)/k!
+\\
+f(x+h) &= \sum_{k=0}^\infty (-1)^{k}h^k f^{(k)}(x)/k!
+\end{align*}
+Subtracting the second equation from the first and rearranging terms, we obtain 
+\begin{align*}
+f'(x) = \frac{f(x+h) - f(x-h)}{2h} - \left[ h^2f^{(3)}(x)/3! + h^4f^{(5)}(x)/5! + \ldots \right]
+\end{align*}
+which we rewrite as
+\begin{align*}
+L(h) \doteq \phi(h) + a_2 h^2 + a_4 h^4 + \ldots
+\end{align*}
+The approximation $L \approx \phi(x)$ has $O(h^2)$ error. To obtain greater
+accuracy for an approximation to $L$, we seek to eliminate the $h^2$ term.
+Observe that $L(h) = L(h/c)$ for any nonzero constant $c$. Then one can check
+that
+\begin{align*}
+3L(\cdot) = 4L(h/2) - L(h) & = [4\phi(h/2) + a_2 h^2 + a_4 h^4/4 + \ldots]
+ - [ \phi(h) + a_2 h^2 + a_4 h^4 + \ldots]
+ \\
+ & = 4 \phi(h/2) - \phi(h) - 3a_4 h^4/4 - 15a_6h^6/16 -\ldots 
+\end{align*}
+and so
+\begin{align*}
+L = \frac{4}{3}\phi(h/2) - \frac{1}{3}\phi(h) - \frac{a_4}{4}h^4 - \ldots
+\end{align*}
+Hence, $L \approx \frac{4}{3}\phi(h/2) - \frac{1}{3}\phi(h) $
+is a $O(h^4)$ approximation. 
+
+We can generalize this technique, known as \emph{Richardson extrapolation},
+to give an approximation to $L$ of
+$O(h^{2j})$, for any desired $j \in \mathbb{N}$. 
+\begin{exercise}
+Show that if $f \in C^k$ but $f \not \in C^{k+1}$, then we can modify
+the Richardson extrapolation algorithm developed above to obtain an 
+$O(h^{2j})$ approximation to $L$, for any positive integer $j < k$.
+\end{exercise}
+\subsection{Numerical Differentiation Using Polynomial Interpolation}
+An alternative approach is to use either Newton interpolation,
+Lagrange interpolation, or splines to interpolate a given data set.
+Once the interpolating polynomial is obtained, we simply differentiate it
+to obtain our approximation to $f'(x)$. This has the advantage
+that we do not suffer loss of precision due to subtraction of nearly equal
+quantities, as we do when computing $f'(x)$ via linearization. However,
+constructing a polynomial $p$ via interpolation, and then computing $p'(x)$
+for various inputs $x$ is computationally more costly. 
+\section{Numerical Integration}
+Consider the data set $ \left\{ x_i, y_i \right\}_{i=1}^{n}$, where $x_i = a$,
+$x_n = b$, $f(x_i) = y_i$,
+and where we assume without loss of generality that $\{x_i$\} is an
+increasing set. We can estimate the integral of $f$ in the region $I \subset [x_1, x_n]$
+using basic Calculus tools, such as right rectangles, left tangles, and trapezoids.
+Observe, however, that all these approaches are produced via linear splines
+between our data points. 
+
+We wish to generalize this approach to obtain more sophisticated, and precise,
+numerical integrals. To do so, we can either look for a polynomial or a spline
+that interpolates the given data points, and use this to find our approximation
+to the integral of $f$. More precisely, we have 
+\begin{align*}
+\int_a^b f(x)\, dx \approx \int_a^b p(x)\, dx
+\\
+|E_\ell(b-a)| \le | \int_a^b f(x) \, dx| \le |E_u (b-a)|
+\end{align*}
+where $E_\ell$ and $E_u$ are lower and upper bounds, respectively, for the $L^\infty$
+error of our polynomial approximation $p(x)$. Hence, lower and upper bounds for the error of our approximation $p(x)$
+are translated into lower and upper bounds for our integral approximation.
+
+Using Lagrange interpolation, it is easy to see that
+\begin{align*}
+\int_a^b f(x)\, dx \approx \sum_{i=0}^n f(x_i)\int_a^b l_i(x)\, dx 
+\doteq \sum_{i=0}^n A_i f(x_i)
+\end{align*}
+If the nodes are equally spaced, this is called a \emph{Newton-Coates Formula}.
+\begin{exercise}
+Show that for uniform spacing $h = (b-a)/n$ and $x_i = a + ih$,
+the Newton-Coates formula produces the composite trapezoid formula
+\begin{align*}
+\int_a^b f(x) \, dx \approx \frac{1}{2}\sum_{i=1}^n
+(x_i - x_{i-1})[f(x_{i-1}) - f(x_i)]
+\end{align*}
+\end{exercise}
+\begin{exercise}
+Derive Simpson's rule
+\begin{align*}
+\int_a^b f(x)\, dx \approx \frac{b-a}{6} \left [f(a) + 4f((a+b)/2) + f(b) \right]	
+\end{align*}
+via the Newton-Coates formula. The formula will guarantee that
+Simpson's rule is exact for polynomials of degree $\le 2$. Show that it is,
+in fact, exact for polynomials of degree $\le 3$.
+\end{exercise}
+Aside from integrating the Lagrange polynomials, another way we can
+compute the $A_i$ is via the method of undetermined coefficients. More precisely,
+suppose we seek $A_0, A_1, A_2$ such that
+\begin{align*}
+\int_0^1 f(x) \, dx \approx A_0 f(0) + A_1 f(1/2) + A_2 f(1).
+\end{align*}
+One way is to construct three equations for these three unknowns.
+Letting $f = 1$, $f = x$, and $f = x^2$, respectively, we compute
+\begin{align*}
+& 1 = A_0 + A_1 + A_2
+\\
+& 1/2 = 1/2A_1 + A_2
+\\
+& 1/3 = 1/4A_1 + A_2
+\end{align*}
+from which we obtain $A_0 = 1/6$, $A_1 = 2/3$, and $A_2 = 1/6$.
+Since $ \left\{ 1, x, x^2 \right\} $ is a basis for the vector space of 
+$2$nd degree polynomials, and since integration is a linear operation, we see that our approximation is in fact exact
+for all quadratic polynomials $f(x)$.
 \end{document}
