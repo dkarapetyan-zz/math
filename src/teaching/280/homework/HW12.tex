@@ -33,41 +33,22 @@
 
 \begin{document}
 
-\centerline{\bf MATH 280: Homework 12 (Written=20 points). }
-\centerline{\bf Due during final exam: Monday, Dec 17}
+\centerline{\bf MATH 280: Homework 11}
 
 \bigskip
 
 \noindent
-[6 points]1. \\ Find a formula for approximating $\int_{0}^3 f(x) dx$ 
+1. \\ Find a formula for approximating $\int_{0}^3 f(x) dx$ 
 via $Af(0) + Bf(1) + Cf(2)$. Your formula should be exact for all $f$ in $\Pi_2$, i.e., for all polynomials 
 of degree $\leq 2$.
 
 \medskip
 
 \noindent
-[6 points] 2. \\ In Theorem 1, on page 487 of the book, it is shown that the choice of nodes $x_0, \dots x_n$ that minimize 
-the error term in general for the approximation 
-$$
-\int_{-1}^1 f(x)dx \sim \sum_{i=0}^n A_i f(t_i)
-$$
-are the Chebyshev nodes i.e. the roots $t_i=\frac{(i+1)\pi}{n+2}$, $0 \leq i \leq n$ of $U_{n+1}$, the $(n+1)$st Chebyshev polynomial.
-These nodes can be obtained by uniformly spacing points on the upper unit circle and projecting these points to the $x$-axis.
-
-Find the Chebyshev nodes $t_0, t_1, \dots, t_5$ when $6$ nodes are used in the interval $[-1,1]$ to two decimal places. Draw a reasonably accurate picture 
-indicating their relative placement in the interval.
-Also find the best nodes $x_0, x_1, \dots, x_5$ to use for the interval $[2,4]$ to minimize error in general in the approximation
-$$
-\int_2^4 f(x)dx \sim \sum_{i=0}^5 A_i f(x_i).
-$$
-
-\medskip
-
-\noindent
-[8 points] 3. \\ In this exercise you will derive the Gaussian Quadrature formula for the interval $[-1,1]$ when $4$ nodes are used.
+2. \\ In this exercise you will derive the Gaussian Quadrature formula for the interval $[-1,1]$ when $4$ nodes are used.
 Recall a Gaussian Quadrature formula is one of the form 
 $$
-\int_a^b f(x) dx \sim \sum_{i=0}^n A_i f(x_i)
+\int_a^b f(x) dx \approx \sum_{i=0}^n A_i f(x_i)
 $$
 which is exact on $\Pi_{2n+1}$ the vector space of degree $\leq 2n+1$ polynomials. (In general such formulas are always exact on $\Pi_n$ if 
 they come from interpolation at $n+1$ nodes, but Gaussian quadrature improves this by choosing the nodes correctly to make the formula exact on $\Pi_{2n+1}$.) \\
@@ -84,10 +65,21 @@ $\Pi_4$. Use your answer to write down a nonzero polynomial $q(x)$ in $\Pi_4$ th
 \noindent
 (c) The final formula is 
 $$
-\int_{-1}^{1} f(x) dx \sim A_0f(x_0) + A_1f(x_1) + A_2f(x_2) + A_3f(x_3)
+\int_{-1}^{1} f(x) dx \approx A_0f(x_0) + A_1f(x_1) + A_2f(x_2) + A_3f(x_3)
 $$
 where $x_0, \dots, x_3$ are the nodes you found in (b). This formula will be exact on $\Pi_7$. Use this to set up a system of $4$ linear equations 
 in the $4$ unknowns $A_0, \dots A_3$. You do not have to solve for them but in principle you could. 
+\newpage
+\noindent
+3. \\
+Write code that, for strictly positive integer input $n$, computes 
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-x^2/2} \, dx 
+\end{align*}
+by decomposing the integral into $n$ integrals on the intervals
+\\ $[0,1/n]$, $[1/n, 2/n]$, \ldots,
+$[1-1/n, 1]$, and then applies Simpson's rule on each. If $n
+\gg 1$, what value do you get? What if you square this value?
 
 \end{document}
 

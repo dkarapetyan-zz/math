@@ -33,67 +33,53 @@
 
 \begin{document}
 
-\centerline{\bf MATH 280: Homework 11 (Written=20 points). }
-\centerline{\bf Due in class: Friday, Dec 7}
+\centerline{\bf MATH 280: Homework 11}
 
 \bigskip
 
 \noindent
-[10 points]1. \\ Recall thru any set of data $(t_0, y_0), \dots, (t_n, y_n)$ with $t_0 < t_1 < \dots < t_n$, we have seen that there is a 
-unique regular cubic spline $S$ that interpolates the data. 
-Consider the data: \\
-$$
-\begin{matrix} t & | & 0 & 1 & 2 & 3 \\
-y & | & 1 & 1 & 0 & 10 
-\end{matrix}
-$$
-with $t_i=i, 0 \leq i \leq 3$. \\
-(a) Compute $h_i=t_{i+1}-t_i$ for $i=0,1,2$. \\
+1. \\ Find a formula for approximating $\int_{0}^3 f(x) dx$ 
+via $Af(0) + Bf(1) + Cf(2)$. Your formula should be exact for all $f$ in $\Pi_2$, i.e., for all polynomials 
+of degree $\leq 2$.
+
+\medskip
 
 \noindent
-(b) Recall the notation $z_i=S''(t_i)$ so $z_0=z_3=0$ as we are looking for a {\bf regular} cubic spline. The other $z_i$ values were shown in the book and class 
-to satisfy the linear system:
-
+2. \\ In this exercise you will derive the Gaussian Quadrature formula for the interval $[-1,1]$ when $4$ nodes are used.
+Recall a Gaussian Quadrature formula is one of the form 
 $$
-\begin{bmatrix} 
-2(h_0+h_1) & h_1 \\
-h_1 & 2(h_1+h_2) 
-\end{bmatrix}
-\begin{bmatrix}
-z_1 \\
-z_2
-\end{bmatrix}
-=
-\begin{bmatrix}
-v_1 \\
-v_2 
-\end{bmatrix}
+\int_a^b f(x) dx \approx \sum_{i=0}^n A_i f(x_i)
 $$
-where
-$v_i=\frac{6}{h_i} (y_{i+1}-y_{i}) - \frac{6}{h_{i-1}}(y_i - y_{i-1})$.
-
-Use this to compute $z_1, z_2$ for this data. 
+which is exact on $\Pi_{2n+1}$ the vector space of degree $\leq 2n+1$ polynomials. (In general such formulas are always exact on $\Pi_n$ if 
+they come from interpolation at $n+1$ nodes, but Gaussian quadrature improves this by choosing the nodes correctly to make the formula exact on $\Pi_{2n+1}$.) \\
+(a) Recall to find Gaussian Quadrature formulas we introduce the inner product 
+$<f,g> = \int_{-1}^1 f(x) g(x) dx$ on the vector space of continuous real valued functions on $[-1,1]$. We seek to find a nonzero polynomial 
+of degree $4$ that is orthogonal to every polynomial in $\Pi_3$ under this inner product. By Theorem 1 on Page 493 of the book, the roots of this polynomial will 
+give us a Gaussian Quadrature formula with $4$ nodes $x_0, \dots, x_3$ that is exact on $\Pi_{2(3)+1}=\Pi_7$ i.e. polynomials of degree 7 or less. 
+{\bf Use the Gram Schmidt process on the basis $\{1,x, x^2, x^3, x^4\}$ of $\Pi_4$ so as to find an orthonormal basis (under the inner product above) for 
+$\Pi_4$. Use your answer to write down a nonzero polynomial $q(x)$ in $\Pi_4$ that is orthogonal to everything in $\Pi_3$.}
 
 \noindent
-(c) $S=S_i$ on the interval $[t_i, t_{i+1}]$ where we have shown 
-$$
-S_i(x)=\frac{z_i}{6h_i}(t_{i+1}-x)^3 + \frac{z_{i+1}}{6h_i}(x-t_i)^3 + (\frac{y_{i+1}}{h_i}-\frac{z_{i+1}h_i}{6})(x-t_i) + (\frac{y_i}{h_i}-\frac{z_ih_i}{6})(t_{i+1}-x)
-$$
-Use this to find the cubics $S_0, S_1, S_2$ as functions of $x$ (all other numbers should be plugged in and simplified).
-
-\bigskip
+(b) Find the roots of the polynomial $q(x)$ found in part (a). These are the nodes of the Gaussian quadrature formula we seek. 
 
 \noindent
-[10 points]2. \\ Derive the following two formulas for approximating derivatives and show that they both have $O(h^4)$ error terms by explicitly finding 
-formulas for these error terms also. You may assume $f$ has continuous sixth derivative - try to consolidate your error terms to involve only one 
-derivative term evaluated at a single point.
+(c) The final formula is 
 $$
-f'(x) \sim \frac{1}{12h}[-f(x+2h)+8f(x+h)-8f(x-h)+f(x-2h)] 
+\int_{-1}^{1} f(x) dx \approx A_0f(x_0) + A_1f(x_1) + A_2f(x_2) + A_3f(x_3)
 $$
-$$
-f''(x) \sim \frac{1}{12h^2}[-f(x+2h)+16f(x+h)-30f(x)+16f(x-h)-f(x-2h)]
-$$
-
+where $x_0, \dots, x_3$ are the nodes you found in (b). This formula will be exact on $\Pi_7$. Use this to set up a system of $4$ linear equations 
+in the $4$ unknowns $A_0, \dots A_3$. You do not have to solve for them but in principle you could. 
+\newpage
+\noindent
+3. \\
+Write code that, for strictly positive integer input $n$, computes 
+\begin{align*}
+\int_{-\infty}^{\infty} e^{-x^2/2} \, dx 
+\end{align*}
+by decomposing the integral into $n$ integrals on the intervals
+\\ $[0,1/n]$, $[1/n, 2/n]$, \ldots,
+$[1-1/n, 1]$, and then applies Simpson's rule on each. If $n
+\gg 1$, what value do you get? What if you square this value?
 
 \end{document}
 
