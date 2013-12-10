@@ -1,43 +1,55 @@
-\documentclass[12pt,reqno]{amsart}
-\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\documentclass[12pt]{article}
+\usepackage{amsthm}
 \usepackage{amssymb} %for symbols like lesssim
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
-%\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
-\numberwithin{equation}{section}  %eliminate need for keeping track of counters
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\noindent}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=green,
+    filecolor=magenta,
+    urlcolor=cyan
+    linkbordercolor=Blue
+    citebordercolor=Violet
+    filebordercolor=Red
+}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\nn}{\mathbb{N}}
 \newcommand{\zz}{\mathbb{Z}}
 \newcommand{\cc}{\mathbb{C}}
 \newcommand{\ci}{\mathbb{T}}
 \newcommand{\dollar}{\$}
-\newcommand{\zzdot}{\dot{\zz}}
 \newcommand{\wh}{\widehat}
 \newcommand{\p}{\partial}
 \newcommand{\ee}{\varepsilon}
 \newcommand{\vp}{\varphi}
 \newcommand{\wt}{\widetilde}
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
 \newtheorem*{definition}{Definition}
-\newtheorem*{remark}{Remark}
 \newtheorem*{example}{Example}
 \newtheorem*{exercise}{Exercise}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \begin{document}
 \title{Notes on Numerical Computation }
 \author{David Karapetyan}
+\date{}
 \maketitle
 \newpage
+\setcounter{tocdepth}{2}
 \tableofcontents
+
 \newpage
 \section{Limitations of the Machine}
 A computer is just a sophisticated collection of circuits
@@ -256,7 +268,7 @@ O\left(\frac{1}{n!}\right).
 \section{Linear Difference Equations and Operators}
 
 Algorithms emit sequences. If we can detect a pattern between successive
-iterates that is ``linear'' in nature, we can use powerful tools from linear
+iterates that is linear in nature, we can use powerful tools from linear
 algebra to study the computational complexity and convergence properties of our
 algorithm.
 \begin{definition}
@@ -303,7 +315,7 @@ Consider an element $T = \sum_{i=0}^{m}c_i E^i \doteq p(E)$ of $D(V).$ We call
 $p(x) = \sum_{i=0}^{m} c_i x^i$ the \emph{characteristic polynomial} of $T$.
 \end{definition}
 \begin{remark}
-Studying a linear difference equation is equivalent to studying the nullspace
+Studying a linear difference equation is equivalent to studying the null space
 of some operator $T \in D(V)$. Since $V$ is separable, we can think of
 $\mathcal{D}(V)$ heuristically as nothing more than the space of $\mathbb{N}
 \times \mathbb{N}$ matrices. 
@@ -329,7 +341,7 @@ to its characteristic polynomial, then $\vec{u} = [\lambda, \lambda^2,
 \lambda^3, \ldots]$ is a solution to $p(E) \vec{x} = 0$. 
   \item 
 If all roots $\lambda_k$ of $p$ have multiplicity $1$ and are nonzero, then
-$ \bigcup_k \{ [\lambda_k, \lambda_k^2, \ldots] \}$ is a 
+$ \bigcup_k \{ [\lambda_k, \lambda_k^2, \ldots] \}$ is  
 a basis for the solution space of $p(E) \vec{x} = 0$.	
 \item If all roots $\lambda_k$ of $p$ are nonzero, and have multiplicity $k_n$
 greater than or equal to $1$, then $\bigcup_k \left\{ [\lambda_k, \lambda_k^2,
@@ -384,18 +396,12 @@ a_1 \\ a_2 \\ \vdots \\ a_m
 \end{bmatrix}
 \end{equation*}
 We claim that the columns of $A$ are linearly
-independent. To see this, we wish to show that the determinant of $A$ is
-non-zero, via induction. For the base case, we consider the $1 \times 1$
-sub-matrix $[\lambda_m^m]$, which has non-zero determinant (we assumed
-a priori that the $\lambda_i$ are non-zero). For the inductive step,
-we assume the sub-matrix with diagonal entries $\lambda_2^2$ to $\lambda_m^m$ has non-zero
-determinant. Then it is easy to see that $A$ has non-zero determinant by taking
-its principal minor at $\lambda_1$. 
-Since A is a map from $\rr^m$ to itself, it follows that dimension of the nullspace of $A$ is $0$. Hence, $A$ is
-non-singular, and so completely determines the $a_i$, for $1 \le i \le m$. 
+independent. To see this, factor $\lambda_1^j$ from row $j$, for each $1 \le j
+\le m$. Then we obtain a Vandermonde matrix, which is invertible, by
+Lemma \ref{vander}. Hence, $A$
+is invertible, and so completely determines the $a_i$, for $1 \le i \le m$. 
 As a corollary of this argument, we obtain that the vectors $u^{(k)}$ are linearly
-independent. We now repeat the argument to obtain the next $m$ constants $a_i$. A simple 
-induction completes the proof. 
+independent. A simple induction on $m$ completes the proof. 
 \item
 In the case where roots of multiplicity greater than $1$, we have more
 difficulties: if we construct a matrix $A$ as in the proof of
@@ -483,7 +489,7 @@ $c_1 = (a + b)/2$. Then either $f(c_0)f(c_1) \le 0$ or $f(c_1)f(c_2) \le 0$.
 Assume without loss of generality that $f(c_0)f(c_1) \le 0$. Then we
 split the interval $[c_0, c_1]$ at its midpoint, and repeat the procedure. We
 now show that this procedure eventually yields a root of $f$.  
-\subsubsection{Convergence and Error Analysis} 
+\subsubsection*{Convergence and Error Analysis} 
 We would like to first establish that our method converges to a root of
 $f(x)$ in the interval $[a,b]$, given that $f$ has a root in this interval.
 Now $ \left\{ a_n \right\} $ and $ \left\{ b_n \right\}  $ 
@@ -549,7 +555,7 @@ The Newton algorithm is then given by
 \begin{align*}
 x_{n+1} = x_{n} - f(x_n)/f'(x_n).
 \end{align*}
-\subsubsection{Error Analysis}
+\subsubsection*{Error Analysis}
 Assume we have a suitable $x_0 \in I$ and $f \in C^2(I)$ such that the algorithm converges
 to a \emph{simple} root $r \in I$. Then we have
 \begin{align*}
@@ -585,7 +591,7 @@ x_{n+1} = x_n - \frac{f(x_n) - f(x_{n-1})}{x_n - x_{n-1}}
 Observe that now we have only one costly computation per iteration.
 That is, we only need to compute $f(x_n)$, since $f(x_{n-1})$ is known
 from the previous iteration. 
-\subsubsection{Error Analysis}
+\subsubsection*{Error Analysis}
 We write
 \begin{align*}
 e_{n+1} = x_{n+1}-r
@@ -734,6 +740,7 @@ Hence
 \end{split}
 \end{equation*}
 since $0 \le \alpha < 1$. 
+\end{proof}
 \begin{remark}
 Note that it is not necessary that $F$ be contractive in order to 
 have convergence of an iteration. For example,
@@ -749,7 +756,6 @@ The advantage of having contractive $F$ on a closed set $X$ is that we do not ne
 about our initial data---as long as it lives in $X$,
 we are guaranteed convergence of our iteration.
 \end{remark}
-\end{proof}
 It turns out that $F$ also gives great insight into the speed
 of convergence.
 \begin{proposition}
@@ -1361,7 +1367,7 @@ we observe that since the $x_i$ are roots of $q$, we have
 \end{align*}
 which completes the proof. 
 \end{proof}
-\section{Finite Difference Method for Solving Differential Equations}
+\section{Finite Difference Method for Differential Equations}
 \subsection{Burgers Equation}
 Recall the Burgers initial value problem (ivp)
 \begin{gather}
@@ -1587,8 +1593,8 @@ Let $y$ be any other point. Since $A(x-y)$ lives in the column space of $A$
 \|_{\ell^2}^2.
 \end{equation*}
 Hence, $x$ is a least squares solution. Assume $y$ is a least squares solution. Then by our previous work, 
-we must have $ \| A(x - y) \|_{\ell^2} \neq 0$. This implies $x-y$ lives in the nullspace of $A$.
-But since $\text{rank}(A) = n$, by the rank-nullity theorem, the dimension of the nullspace 
+we must have $ \| A(x - y) \|_{\ell^2} \neq 0$. This implies $x-y$ lives in the null space of $A$.
+But since $\text{rank}(A) = n$, by the rank-nullity theorem, the dimension of the null space 
 is $0$. We conclude that $x = y$. 
 \end{proof}
 Observe that if $A$ is unitary, we obtain $x$ immediately:
@@ -1609,7 +1615,7 @@ into the equivalent problem of finding a solution $x$ to a problem of $LU$ type,
 more tractable.
 
 We now discuss the two most popular $QR$ decomposition algorithms.
-\subsubsection{Gram-Schmidt}
+\subsubsection*{Gram-Schmidt}
 \begin{theorem}
 Let $\{x_1, x_2, \ldots, x_n\}$ be a linearly independent in $C^n$. Then the set
  \\ $ \left\{ u_1, u_2, \ldots, u_n \right\} $ is an orthonormal basis for $C^n$,
@@ -1650,7 +1656,7 @@ A =
 \end{bmatrix}
 \end{equation*}
 \end{remark}
-\subsubsection{Householder}
+\subsubsection*{Householder}
 A Householder decomposition is of form $A = QR$, where $Q$ is a $m \times m$ unitary matrix, and
 $R$ is an $m \times n$ upper triangular matrix. Observe that the columns of a unitary matrix
 are orthonormal (they have other useful properties), so this decomposition has better properties
@@ -1659,7 +1665,7 @@ obtain the $LU$ type problem
 \begin{equation*}
 R^{\star}R x = (QR)^{\star} b.
 \end{equation*}
-\subsubsection{Singular Value Decompositions}
+\subsubsection*{Singular Value Decompositions}
 We now discuss arguably the most useful decomposition of an arbitrary $m \times
 n$ matrix. We first require a lemma.
 \begin{lemma}
@@ -2015,7 +2021,7 @@ then solving $Ax = b$ reduces to solving $Ly = b$ and $Ux = y$.
 However, these two systems can easily be solved by backwards substitution
 and reverse backwards substitution, respectively.
 
-\subsubsection{Doolittle Factorisation}
+\subsubsection*{Doolittle Factorization}
 Assuming that $L$ has unit diagonal, and seek to find the remaining
 entries of $L$ and $U$. Let $L_i$ denote the $i$th row of $L$,
 and $U^j$ denote the $j$th column of $U$. Observe that
@@ -2069,10 +2075,10 @@ This completes the $LU$ decomposition algorithm.
 
 \begin{definition}
 When $L$ is assumed to have unit diagonal
-as above, we call the algorithm a \emph{Doolittle factorisation}. 
+as above, we call the algorithm a \emph{Doolittle factorization}. 
 If $U$ is assumed to have unit diagonal, it is called a \emph{Crout
-factorisation}. If $A$ is symmetric and positive definite, it is called a
-\emph{Cholesky factorisation}.
+factorization}. If $A$ is symmetric and positive definite, it is called a
+\emph{Cholesky factorization}.
 \end{definition}
 Observe that we have glossed over the fact that the algorithm fails
 if divisions by $0$ when solving for terms in $L$ or $U$. Fortunately,
@@ -2088,9 +2094,7 @@ Note that $x$ is a solution to $Ax = b$ if and only if $PAx = b$.
 \end{remark}
 \begin{exercise}
 Show that a real, symmetric, positive definite matrix $A$ has a unique
-factorisation $L L^T$, where $L$ is lower triangular
+factorization $L L^T$, where $L$ is lower triangular
 with a positive diagonal. Note that no permutation matrix $P$ is needed.
 \end{exercise}
-
-
 \end{document}
