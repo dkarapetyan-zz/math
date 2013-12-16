@@ -1680,14 +1680,12 @@ v^{\star} A^{\star} v = (A v)^{\star} v = \bar{\lambda} \| v \|_{\ell^2}^{2}
 \end{equation*}
 and
 \begin{equation*}
- v^{\star} A v = v^{\star} \lambda v =  \lambda \| v \|_{\ell^2}^{2}
+ v^{\star} A v = v^{\star} \lambda v =  \lambda \| v \|_{\ell^2}^{2}.
  \end{equation*}
  Since $A$ is Hermitian, $A = A^{\star}$, so we must have $\bar{\lambda} =
-\lambda$, which implies that $\lambda$ is real. Furthermore, Hermitian matrices
-are not degenerate. That is, an $n \times n$ Hermitian matrix has n distinct
-eigenvectors, since any $n \times n$ Hermitian matrix is similar to a diagonal matrix (which
-has eigenvectors $e_1, e_2, \ldots, e_n$, where the $e_i$ are the standard 
-canonical basis vectors for $C^n$). 
+\lambda$, which implies that $\lambda$ is real. Furthermore, since $A$ is
+positive definite, it follows that $v^\star A v \ge 0$, and hence,
+$\lambda \ge 0$.
 \end{proof}
 \begin{theorem}[Singular Value Decomposition]
 Let $A$ be an arbitrary $m \times n$ matrix with complex entries.
@@ -1696,8 +1694,10 @@ $D$ is a $m \times n$ diagonal matrix, and $Q$ is a $n \times n$ unitary matrix.
 This decomposition is not necessarily unique.
 \end{theorem} 
 \begin{proof}
-The non-uniqueness of the $PDQ$ decomposition is easy: the $0$ matrix has multiple $PDQ$ type decompositions (just take $D$ = 0, and $P, Q$ to be
+The non-uniqueness of the $PDQ$ decomposition is easy: the $0$ matrix has
+infinitely many $PDQ$ type decompositions (just take $D$ = 0, and $P, Q$ to be
 arbitrary unitary matrices).
+
 To prove existence of the $PDQ$ decomposition for arbitrary $m \times n$ matrices $A$, we
 first assume without loss of generality that $m \ge n$ (otherwise, we consider $A^T$).
 By Lemma \ref{lem:hermite}, for each of $n$ linearly independent eigenvectors
@@ -1709,13 +1709,15 @@ Furthermore,
 u_i \rangle = \sigma_i^{2} u_i
 \end{equation}
 We can also choose these eigenvectors such that they are orthonormal. To see
-this, recall that $A^{\star}A$ is Hermitian, and that Hermitian matrices are
-similar to diagonal matrices. Since square diagonal matrices have eigenvectors
-$e_i$, the eigenvectors of a Hermitian matrix are given by a unitary transformation
-of the $e_i$, which preserves orthonormality since 
+this, recall that $A^{\star}A$ is square, and that square matrices
+are unitarily similar to upper-triangular matrices (in fact, $A^\star A$ is
+Hermitian, so it is unitarily similar to a diagonal matrix).
+Since square upper-triangular matrices have eigenvectors $e_i$, the eigenvectors
+of a square matrix are given by a unitary transformation of the $e_i$,
+which preserves their orthonormality since
 \begin{equation*}
-\langle Q u_i, Qu_j \rangle  = \langle u_i, Q^{\star}Q u_j \rangle  = \langle
-u_i, u_j \rangle  = \delta_{ij}.
+\langle Q e_i, Qe_j \rangle  = \langle e_i, Q^{\star}Q e_j \rangle  = \langle
+e_i, e_j \rangle  = \delta_{ij}.
 \end{equation*}
 Hence, we have the decomposition $A^{\star}A = \tilde{D}^{2}Q$ where $\tilde{D}$ is an $n \times n$
 matrix consisting of the positive square roots of eigenvalues $\sigma_i^2$ of
