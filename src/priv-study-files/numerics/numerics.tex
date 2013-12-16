@@ -56,9 +56,8 @@ A computer is just a sophisticated collection of circuits
 with ``off'' and ``on'' switches. We represent ``off'' and
 ``on'' by $0$ and $1$, respectively. A computer program 
 at its lowest level is just a collection of $0$'s and $1$'s.
-When we write a computer program in a higher level language such as C
-or Python, a compiler translates the program into $0$'s and $1$'s,
-which are then then processed by the computer CPU.
+When we write a computer program in a static programming language such as C, a
+compiler translates the program into $0$'s and $1$'s, which are then then processed by the computer CPU.
 
 Besides the base $10$ system, it is important to understand binary (base $2$),
 octal (base $8$), and hexadecimal (base $16$). Binary is encountered most often,
@@ -66,9 +65,10 @@ since that is the number system computer instructions (``on'' and ``off'' switch
 are encoded in.
 
 \subsection{Loss of Precision}
-Each digit in a binary representation of a number takes a bit of memory to hold.
-Since there is a finite amount of memory in the computer, we must chop all digits
-after a specific digit in a binary number. 
+Each digit in a binary representation of a number takes a \emph{bit} of memory
+to hold. (There are $8$ bits in a byte, $1000$ bytes in a megabyte, $1000$
+megabytes in a gigabyte, and so on). Since there is a finite amount of memory in
+the computer, we must chop all digits after a specific digit in a binary number. 
 \begin{example}
 $1/10 = (0.001100110010011\ldots)_2 \approx (0.00110011)_2$
 \end{example}
@@ -107,7 +107,7 @@ In short, relative errors are much more important.
 Loss of significance occurs when two nearly equal quantities are subtracted.
 \begin{example}
 Let $x = 0.3721478613$ and $y = 0.3720230572$. Then $x-y = 0.0001248121$.
-The repetitive $0's$ are taking up memory that could be better used storing
+The repeating $0's$ are taking up memory that could be better used storing
 significant digits (digits other than $0$). If our computer truncates
 after the $6th$ digit, then
 $x^\star = 0.37215$, $y^\star = 0.37202$, and the relative error
@@ -163,8 +163,8 @@ Consider
 \\
 & x_1 = 1/3
 \end{align*}
-This has the theoretical solutions $x_n = (1/3)^n$. However, numerically,
-$x_n$ diverges to infinity. This is because of the loss of precision
+This has the theoretical solution $x_n = (1/3)^n$. However,
+$x_n$ diverges to infinity numerically. This is because of the loss of precision
 emanating from repeated subtractions of nearby quantities. These
 errors accumulate with each iteration. We call such a numerical iteration
 \emph{unstable}.
@@ -220,12 +220,12 @@ This suggests that even for small $\ee$, if $\ee \not < 10^{-8}$,
 then $h$ may potentially be very large. 
 \end{example}
 \section{Orders of Convergence}
-We'd like to understand how fast a sequence convergence to its limit, without
+We'd like to understand how fast a sequence converges to its limit, without
 having to worry about silly constants.
 \begin{definition}
 Let $\{x_{n}\} \in \mathbb{C}$ be a sequence converging to $x$. We say that
-$x_{n} = O(\alpha_{n})$ if $|x_{n}| \le C |\alpha_{n}|$  for $n \ge N$, and $ x_n 
-= o(\alpha_n )$ if $|x_n| \le \ee_n |\alpha_n |$, where $\ee_n \to 0$.
+$x_{n} = O(\alpha_{n})$ if there exists integer $N \ge 0$ such that
+$|x_{n}| \le C |\alpha_{n}|$ for $n \ge N$, and $ x_n = o(\alpha_n )$ if $|x_n| \le \ee_n |\alpha_n |$, where $\ee_n \to 0$.
 Similarly, for functions $f,g: \cc \to \cc$, we say that $f = O(g)$ in a
 neighborhood $N$ of $x$ if $|f(x_n) | \le C |g(x_n)|$ for all $x_n \in N$, and 
 $f = o(g)$ in a neighborhood $N$ of $x$ if $|f(x_n) | \le \ee_n |g(x_n)|$,
@@ -278,13 +278,13 @@ Denote $V$ to be the set of all infinite complex sequences
 \end{equation*}
 equipped with addition
 \begin{equation*}
-\vec{x} + \vec{y} = [x_1 + y_1, x_2 + y_2, \ldots, x_n + y_n, \ldots]	
+\vec{x} + \vec{y} = [x_1 + y_1, x_2 + y_2, \ldots, x_n + y_n, \ldots],
 \end{equation*}
 scalar multiplication
 \begin{equation*}
-\lambda \vec{x} = [\lambda x_1, \lambda x_2, \ldots, \lambda x_n, \ldots].
+\lambda \vec{x} = [\lambda x_1, \lambda x_2, \ldots, \lambda x_n, \ldots],
 \end{equation*}
-and norm
+and the norm
 \begin{equation*}
 \| \vec{x} \| = \sup \{|x_i| \}
 \end{equation*}
@@ -299,7 +299,7 @@ In particular, we are interested in the shift operator
 \begin{align*}
 & E: V \to V,
 \\
-& E \vec{x} = [x_2, x_3, \ldots, x_{n+1}, \ldots].
+& E \vec{x} = [x_2, x_3, \ldots, x_{n+1}, \ldots]
 \end{align*}
 which has the property 
 \begin{align*}
@@ -343,10 +343,10 @@ to its characteristic polynomial, then $\vec{u} = [\lambda, \lambda^2,
 If all roots $\lambda_k$ of $p$ have multiplicity $1$ and are nonzero, then
 $ \bigcup_k \{ [\lambda_k, \lambda_k^2, \ldots] \}$ is  
 a basis for the solution space of $p(E) \vec{x} = 0$.	
-\item If all roots $\lambda_k$ of $p$ are nonzero, and have multiplicity $k_n$
+\item If all roots $\lambda_k$ of $p$ are nonzero, and have multiplicity $m_k$
 greater than or equal to $1$, then $\bigcup_k \left\{ [\lambda_k, \lambda_k^2,
 \ldots], [\lambda_k, \lambda_k^2, \ldots]', \ldots, [\lambda_k, \lambda_k^2,
-\ldots ]^{(k_n -1)} \right\}$ is a basis for the solution space of $p(E)
+\ldots ]^{(m_k -1)} \right\}$ is a basis for the solution space of $p(E)
 \vec{x} = 0$.
 \end{enumerate}
 \end{theorem}
@@ -395,13 +395,12 @@ x_1 \\ x_2 \\ \vdots \\ x_m
 a_1 \\ a_2 \\ \vdots \\ a_m
 \end{bmatrix}
 \end{equation*}
-We claim that the columns of $A$ are linearly
-independent. To see this, factor $\lambda_1^j$ from row $j$, for each $1 \le j
-\le m$. Then we obtain a Vandermonde matrix, which is invertible, by
+Observe that if we factor $\lambda_1^j$ from row $j$, for each $1 \le j
+\le m$, we obtain a Vandermonde matrix, which is invertible, by
 Lemma \ref{vander}. Hence, $A$
-is invertible, and so completely determines the $a_i$, for $1 \le i \le m$. 
-As a corollary of this argument, we obtain that the vectors $u^{(k)}$ are linearly
-independent. A simple induction on $m$ completes the proof. 
+is invertible, and so completely determines the $a_k$, for $1 \le k \le m$. 
+As a corollary of this argument, we obtain that the vectors $u^{(k)}$, $1 \le k
+\le m$ are linearly independent. A simple induction on $m$ completes the proof. 
 \item
 In the case where roots of multiplicity greater than $1$, we have more
 difficulties: if we construct a matrix $A$ as in the proof of
@@ -411,9 +410,9 @@ multiplicity greater than $1$. We do so as
 follows. Assume $\lambda$ has multiplicity $n$. Then for $k \le n-1$
 \begin{align*}
 p(E)x^{(k)}(\lambda)
-& = [ p(E)x(\lambda) ]^{k} 
+& = [ p(E)x(\lambda) ]^{(k)} 
 \\
-& = [ p(\lambda)x(\lambda) ]^{k} 
+& = [ p(\lambda)x(\lambda) ]^{(k)} 
 \\
 & = \sum_{i = 0}^{k} \binom{k}{i}p^{(k-i)}(\lambda) x^{(i)}(\lambda) = 0.
 \end{align*}
@@ -523,11 +522,11 @@ Hence, one approach to approximating $c$ is to prescribe an error threshold, and
 take $a_n$, for $n$ sufficiently large. However, we can get a better estimate
 if we take $c_n \doteq 1/2(a_n + b_n)$. By triangle inequality and \eqref{b-a-dif}, we obtain
 \begin{equation*}
-|c - c_n| \le 1/2 (b_n - a_n)
+|c - c_n| \le (b_n - a_n)/2
 \end{equation*}
 and so
 \begin{equation*}
-|c - c_n| \le 2^{-n - 1}(b_0 - a_0)
+|c - c_n| \le 2^{-n - 1}(b_0 - a_0).
 \end{equation*}
 Compare this with the estimate \eqref{bd}. It guarantees convergence
 that is at least twice as fast as that given by taking $a_n$ or $b_n$
@@ -994,7 +993,8 @@ To do so, we implement an idea of Newton, rewriting our polynomial as
 p(x) &= c_0 + c_1(x - x_0) + c_2(x - x_0)(x - x_1) + \ldots
 + c_{n}(x - x_0)(x - x_1)\cdots(x - x_{n-1})
 \\
-& = \sum_{i=0}^{n} c_i \prod_{j=0}^{i-1} (x - x_j), \quad \prod_{j=0}^{1} (x - x_j) \doteq 1.
+& = \sum_{i=0}^{n} c_i \prod_{j=0}^{i-1} (x - x_j), \quad \prod_{j=0}^{-1}
+(x - x_j) \doteq 1.
 \end{align*}
 The $c_i$ can be computed in a naive fashion by plugging in $x_i$ 
 and solving for $c_i$, for each $i$. Computation of $c_i$ will then depend
@@ -1159,8 +1159,8 @@ It follows that $q \equiv 0$.
 \end{proof}
 \begin{remark}
 Observe that if $\sum_{j=0}^{k}(n_j + 1) < m$, then the system is underdetermined.
-This has at least one solution---to generate it, simply create
-``extra'' data such that \\ $\sum_{j=0}^k (n_j + 1) = m$. Recall that
+This has at least one solution: create
+``extra'' data such that $\sum_{j=0}^k (n_j + 1) = m$. Recall that
 undetermined systems have either no solutions, or infinitely many. 
 We conclude that there are infinitely many polynomials of degree $m$ which
 interpolate the given data.
@@ -1332,7 +1332,7 @@ Newton-Coates formula
 \doteq \sum_{i=0}^n A_i f(x_i)
 \end{align*}
 is exact for polynomials of degree $\le n$, by construction. However, not all
-data is created equal--some data ``represents'' $f$ better than others.
+data is created equal: some data ``represents'' $f$ better than others.
 This is reflected in the following marvelous theorem of Gauss. 
 \begin{theorem}
 Let $q$ be a nonzero polynomial of degree $n + 1$ that is $L^2[a,b]$ orthogonal
