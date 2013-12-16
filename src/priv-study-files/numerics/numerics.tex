@@ -1817,7 +1817,7 @@ This is almost identical to the Power method, with the additionally caveat that
 we require $A$ to be invertible. We observe that for square matrices, $Av =
 \lambda v$ implies $A^{-1}v \lambda^{-1}v$ so long as $A$ is invertible or,
 equivalently, that $\lambda \neq 0$. Hence, if $\lambda$ is the unique
-eigenvalue of minimum modulus of a diagonalizable matrix $A$, and it is the
+eigenvalue of minimum modulus of a diagonalizable matrix $A$, it is the
 unique eigenvalue of maximum modulus of the diagonalizable matrix $A^{-1}$.
 Hence, we can apply the power method on $A^{-1}$ to find $\lambda^{-1}$, from
 which we recover $\lambda$. In practice, it is not computationally efficient to
@@ -2090,11 +2090,11 @@ an $LU$ decomposition. More precisely, no divisions by $0$ will
 occur when running an $LU$ decomposition algorithm on $PA$.
 \end{proposition}
 \begin{remark}
-Note that $x$ is a solution to $Ax = b$ if and only if $PAx = b$.
+Note that $x$ is a solution to $Ax = b$ if and only if $PAx = Pb$.
 \end{remark}
 \begin{exercise}
 Show that a real, symmetric, positive definite matrix $A$ has a unique
 factorization $L L^T$, where $L$ is lower triangular
-with a positive diagonal. Note that no permutation matrix $P$ is needed.
+with a positive diagonal. Note that no permutation matrix $P$ is needed. Why?
 \end{exercise}
 \end{document}
