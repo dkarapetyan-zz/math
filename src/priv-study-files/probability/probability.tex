@@ -8,15 +8,16 @@
 \usepackage[margin=2.5cm]{geometry}  %page layout
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    citecolor=green,
-    filecolor=magenta,
-    urlcolor=cyan
-    linkbordercolor=Blue
-    citebordercolor=Violet
-    filebordercolor=Red
+     colorlinks=true,
+     linkcolor=blue,
+     citecolor=green,
+     filecolor=magenta,
+     urlcolor=cyan
+     linkbordercolor=Blue
+     citebordercolor=Violet
+     filebordercolor=Red
 }
+
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\nn}{\mathbb{N}}
 \newcommand{\zz}{\mathbb{Z}}
@@ -41,28 +42,25 @@
 \newtheorem*{exercise}{Exercise}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
-
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \begin{document}
-\title{Notes on Numerical Computation }
+\title{Probability}
 \author{David Karapetyan}
 \date{}
 \maketitle
 \newpage
 \setcounter{tocdepth}{2}
 \tableofcontents
-
 \newpage
-		\section{Outcomes, Events, and Likelihood}
-		
-		Throughout this course, we seek to rigorously describe the likelihood of
-		outcomes of an experiment, or, more generally, combinations of outcomes of an experiment.
-		For example, we would like to know the likelihood of the Dodgers
-		winning the pennant, or the likelihood that stock of a company will go up
-		in a week. We have used words to describe these events--since we are doing
-		mathematics, we would like to translate everything to numbers, without losing
-		any of the meaning.
-	\begin{example}
+\section{Outcomes and Events, and Likelihood}
+	Throughout this course, we seek to rigorously describe the likelihood of
+	outcomes of an experiment, or, more generally, combinations of outcomes of an experiment.
+	For example, we would like to know the likelihood of the Dodgers
+	winning the pennant, or the likelihood that stock of a company will go up
+	in a week. We have used words to describe these events--since we are doing
+	mathematics, we would like to translate everything to numbers, without losing
+	any of the meaning.
+\begin{example}
 A fair coin is tossed. There are two possible outcomes: heads (denoted by $0$) 
 and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the \emph{outcome
 space} or \emph{sample space}. The \emph{event space} consists of
@@ -92,15 +90,15 @@ $ \left\{ 2, 4, 6 \right\} , \left\{ 1,3,5 \right\} , \left\{ 3, 4, 5, 6
 \right\}, \left\{ 1 \right\} $.
 Observe that there are many other possible outcomes.
 \end{enumerate}
-\end{example}	
+\end{example}
 Observe that the larger the outcome space, the more complex
 our event space becomes. Also observe that the event
-``The outcome is even'' is the \emph{complement} (with respect to the 
+``The outcome is even'' is the \emph{complement} (with respect to the
 outcome space) of
 the event ``The outcome is odd''. That is, $ \left\{ 2,4,6 \right\}^c
-= \left\{ 1,3,5 \right\} $. 
+= \left\{ 1,3,5 \right\} $.
 
-Motivated by these two examples, we seek to generalize our notion of 
+Motivated by these two examples, we seek to generalize our notion of
 event space such that it completely models all possible events
 that can arise from a given outcome space. We have the following.
 \begin{definition}
@@ -142,11 +140,11 @@ A similar phenomenon holds for many other real-world events.
 
 \begin{definition}
 Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials . If the
-limit $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$. 
+limit $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$.
 \end{definition}
-Observe that $ 0 \le P \le 1$, by definition. 
+Observe that $ 0 \le P \le 1$, by definition.
 
-Next, let $A$ and $B$ be two disjoint events. Then 
+Next, let $A$ and $B$ be two disjoint events. Then
 it is easy to check that
 \begin{align*}
 N(A \cup B) = N(A) + N(B)
@@ -160,8 +158,7 @@ that $N(\Sigma) = N$. A similar argument shows $N(\emptyset) = 0$.
 This discussion motivates the following.
 \begin{definition}
 A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
-$\prob:
-\filter \to [0,1]$ which satisfies 
+$\prob: \filter \to [0,1]$ which satisfies
 \begin{enumerate}[a)]
 	\item
 $\prob(\Omega) = 1$, $\prob(\emptyset) = 0$
@@ -191,7 +188,7 @@ then
 A last technical distinction: the empty-set denotes the event ``nothing
 occurs'' and has probability $0$, by definition. However, there are many
 events in a given sigma-algebra that have probability $0$ but that are not the
-empty set. 
+empty set.
 
 \begin{example}What is the probability that, using a fair coin, one
 flips only heads in infinitely many tries? Letting $H_N$ denote the event
@@ -210,12 +207,12 @@ Observe that when we are given information, it allows us to adjust the
 probability of the event we are interested in. We wish to express this
 mathematically. Motivated by the ``zebra'' example, we have the following.
 \begin{definition}
-Let $\Omega, \filter$ be a $\sigma$-algebra, and $A, B \in \filter$ events. 
+Let $\Omega, \filter$ be a $\sigma$-algebra, and $A, B \in \filter$ events.
 Then $\prob(A | B)$ is defined to be the probability of $A$, given that $A \in \filter_B$, where $\filter_B
 \doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}.$
 \end{definition}
 Imagine that we roll a die, and wish to know the probability that
-we have rolled a $4$. 
+we have rolled a $4$.
 To compute this, we let $A$ denote the event that we roll a $4$. Then in the last section we saw
 that
 \begin{align*}
@@ -259,7 +256,7 @@ We begin with the most basic distribution, from which
 we are able to derive a multitude of others.
 \begin{definition}
 Let $X$ be the random variable denoting the number of successes
-in $n$ independent trials, where $p$ is the probability of success in 
+in $n$ independent trials, where $p$ is the probability of success in
 an individual trial. Then
 \begin{equation*}
 b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k (1 - p)^{n-k}
@@ -267,7 +264,7 @@ b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k (1 - p)^{n-k}
 is called the \emph{Bernoulli distribution} of $k$ successes
 in $n$ independent trials, where $p$ is the probability of success on an
 individual trial. The special case
-$p = 1/2$ is called a \emph{binomial distribution}. 
+$p = 1/2$ is called a \emph{binomial distribution}.
 \end{definition}
 \begin{example}
 Let $X$ denote the number of heads one obtains from $n$ flips of a
@@ -280,8 +277,8 @@ Suppose we have a large number $n$ of independent trials, with
 success in each individual trial unlikely. In order to have a sparse
 distribution of events that is nontrivial (i.e. we have no successes),
 we need to assume that there is a positive
-probability that we achieve at least one success in $n$ trials. Hence, we assume the expected number of 
-successes $\lambda \doteq np$ to be nonzero. 
+probability that we achieve at least one success in $n$ trials. Hence, we assume the expected number of
+successes $\lambda \doteq np$ to be nonzero.
 
 Observe that with the above assumptions, we obtain
 \begin{equation*}
@@ -304,8 +301,8 @@ We call
 p(k, \lambda) \doteq \frac{\lambda^k e^{-\lambda}}{k!}
 \end{align*}
 the \emph{Poisson distribution} of $k$ successes in a large number
-of trials, where, on average, we expect $\lambda$ successes, 
-where $\lambda$ is much less than the number of trials. 
+of trials, where, on average, we expect $\lambda$ successes,
+where $\lambda$ is much less than the number of trials.
 That is, the trials have the feature that successes are
 sparsely distributed.
 \end{definition}
