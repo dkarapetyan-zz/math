@@ -29,7 +29,10 @@
 \newcommand{\vp}{\varphi}
 \newcommand{\wt}{\widetilde}
 \newcommand{\filter}{\mathcal{F}}
+\newcommand{\borel}{\mathcal{B}}
 \newcommand{\prob}{\mathbb{P}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\covar}{\text{Covar}}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -235,7 +238,6 @@ of occurrences of $6$)/N}}
 \\
 & = \frac{\prob(A \cap B)}{\prob(B)}.
 \end{align*}
-Observe that if $\mathbb(B)$
 Motivated by this, we have the following definition.
 \begin{definition}
 Let $A, B$ be events, and suppose $B$ occurs. Then
@@ -249,8 +251,220 @@ $B$ does not occur.
 A family has two children. What is the probability that both are boys,
 given that at least one of them is a boy?
 \end{example}
-\section{Common Distributions}
-\subsection{Bernoulli Distribution}
+\begin{example}
+A family has two children. What is the probability that both are boys,
+given that the youngest is a boy?
+\end{example}
+Observe that if no information is given, the probability of two boys is $1/4$.
+Hence, the conditions given in the example above improve the probablity.
+Sometimes, given information may reduce the probability of an event.
+If the given information has no effect on the probability of an event,
+we say that the event and the information are \emph{independent}. We will
+discuss this more in the upcoming lectures.
+
+Often, when information is given, it makes computing probabilities easier.
+Consequently, the following result is extremely useful.
+\begin{lemma}
+Let $ \left\{ B_i \right\}_{i=1}^n$ be a partition of $\Omega$. Then
+for any $A \in \filter$
+\begin{align*}
+\prob(A) = \sum_{i = 1}^n \prob(A | B_i) \prob(B_i).
+\end{align*}
+\end{lemma}
+The above lemma has the limitation that sometimes $\prob(A |
+B)$ is difficult to compute as well. In such situations, oftentimes
+it is easier to compute $\prob(B | A)$. Fortunately, we have the following.
+\begin{lemma}[Bayes' Theorem] For events $A, B$, we have
+\begin{align*}
+\prob(A | B) = \frac{\prob(B | A) \prob (A)}{\prob(B)}
+\end{align*}
+\end{lemma}
+\begin{example}
+We are given two urns, each containing an assortment of colored balls.
+Urn $I$ contains two white and three blue balls, and urn $II$ contains
+three white and four blue balls. A ball is drawn at random from urn $I$
+and put into urn $II$, and then a ball is picked at random from urn $II$.
+What is the probability that it is blue?
+\end{example}
+\begin{example}
+You are on ``Let's Make a Deal''. There are three doors, with a new convertible
+behind one, and a goat behind each of the others. You pick door number $I$.
+To tease you, Monty opens door number $II$, revealing a goat, then offers to let
+you switch your choice to door number $III$. Should you?
+\end{example}
+\subsection{Independence}
+\begin{definition}
+We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if \[\prob(A |
+B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) \prob(B).\] More generally,
+a family $ \left\{ A_i \right\}_{i = 1}^n $ is
+\emph{independent} if 
+\[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
+\end{definition}
+\begin{example}
+What is the probability that Connie's first child will be a masculine child,
+given that a neighboring mobster recently had a boy?
+\end{example}
+\begin{example}
+What is the probability of flipping heads with a fair coin on the $10th$ trial,
+given that heads is flipped on all previous trials?
+\end{example}
+\subsection{Worked Examples}
+\begin{example}[Symmetric Random Walk]
+Las Vegas has decided to offer a new game, with $50/50$ odds
+of winning or losing in each iteration. The player begins with $\dollar k$
+and the house begins with $ \dollar N$. If the player wins in a round,
+he wins a dollar; otherwise, he loses a dollar. The player adopts the strategy
+to continue playing until either he or the casino is bankrupted.
+What the probability that the player goes bankrupt?
+\end{example}
+\begin{proof}[Solution]
+Let $A$ denote the event that the player is eventually bankrupted,
+and let $B$ denote victory for the player in the first trial.
+Then
+\begin{align*}
+\prob_k(A)
+& = \prob_k(A | B) \prob(B) + \prob_k(A | B^c) \prob(B^c)
+\\
+& = \frac{p_{k+1}}{2} + \frac{p_{k-1}}{2}
+\end{align*}
+We have the boundary conditions $p_0 = 1$ and $p_N = 0$, which we combine with
+the above \emph{difference equation} to obtain
+\begin{align*}
+\prob_k(A) = 1 - k/N.
+\end{align*}
+\end{proof}
+Observe that if we start off with $k \approx N$, the player stands a chance to
+bankrupt the casino! This is one of the reasons all games in Vegas have odds
+favoring the house. Also, the above example motivates casinos to have a lot of
+cash on hand, so that the amount you have at any given time is dwarfed by
+comparison. If you are a high roller with a bankroll rivaling the casino's,
+the casino will try to get you to play a game that give you terrible odds over
+the long run (for example, craps). If you decide to play blackjack (the game
+offering the best odds), the casino will try to distract you with drinks,
+entertainment, women/men, etc. It usually works.
+\begin{example}[False Positives]
+A rare disease affects one person in $10^5$. A test for the disease
+is wrong with robability $1/100$; that is, it is positive with probability
+$1/100$ for someone who is in fact healthy, and negative
+with probability $1/100$ for someone who is in fact ill. What is the probabiliy
+that you have the disease given that you took the test and it is positive?
+\end{example}
+\begin{proof}[Solution]
+Let $A$ be the event that we have the disease, and $B$ be the event
+that the test if positive. Then we apply
+Bayes' Theorem to obtain
+\begin{align*}
+\prob(A | B) & = \frac{\prob(B | A) \prob(A)}{\prob(B)}
+\\
+& = \frac{\prob(B | A) \prob(A)}{\prob(B|A) \prob(A) + \prob(B | A^c)
+\prob(A^c)}
+\\
+& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times (10^5 -
+1)/10^5}
+\\
+& \approx 1/1000.
+\end{align*}
+\end{proof}
+Moral: don't freak out if your doctor says you \emph{might} have
+cancer. Take the test again.
+\section{Translating Outcomes to Numbers}
+\subsection{Introduction}
+As we have seen, the sample space $\Omega$, equipped with an associated filter
+$\filter$ and probability measure $\prob: \filter \to [0,1]$ 
+are the lynchpins of our theory of probability. However, in practice,
+abstract outcomes $\omega \in \Omega$ and $E \in \filter$ are
+cumbersome to work with. We would like to ``translate'' our analysis
+on $(\Omega, \filter, \prob)$ to $(\rr, \borel_{\rr}, dx)$,
+where $\borel_{\rr}$ denotes the Borel $\sigma$-algebra on $\rr$ (the smallest 
+$\sigma$-algebra containing all the open sets in $\rr$), and $dx$ is
+Lebesgue measure. This translation will be given by continuous functions from
+$\Omega$, equipped with its $\sigma$-algebra structure, to $\rr$,
+equipped with the standard topology. We will call such functions 
+\emph{random variables}.
+\subsection{Random Varibles} 
+\begin{definition}
+A \emph{random variable} is a function $X: \Omega \to \rr$ with the property
+that $X^{-1}(U) \in \filter$ for every open $U \in \rr$. If the range of $X$
+is a countable subset of $\rr$, we say $X$
+is a \emph{discrete random variable}. If $\Omega$ is countable, we say that 
+$\left\{ \Omega, \filter, \prob \right\}$ is a \emph{discrete probability space}.
+\end{definition}
+As shorthand, we shall often denote $\{\omega\}: X(\omega) \in B$ by
+$\{X \in B$\}.
+\begin{remark}
+Observe that, for a discrete random variable $X: \Omega \to [\alpha_1,
+\ldots, \alpha_n]$,  $n \le \infty$, 
+\begin{align*}
+\prob(\Omega) = \sum_{i =1}^n \prob(X = x_i).
+\end{align*}
+\end{remark}
+Lastly, we say two random variables $X$, $Y$ are \emph{independent} if
+$\{X \in B_1\}$ and $\{Y \in B_2\}$ are independent for all Borel sets
+$B_1, B_2$. 
+\begin{example}
+Suppose we are interested in studying a single flip of a fair coin.
+Let
+$\Omega = \{H, T\}$ be the outcomes of a coin flip, and
+$\filter = \{\emptyset, \Omega, H, T \}$. Then $X: \Omega \to \rr$, given by
+$X(H) = 0$, $X(T) = 1$ is a discrete random variable.
+\end{example}
+\begin{example}
+A traveler is lost in the woods, and starts walking aimlessly, but never
+west. 
+We can assign numbers to the directions he takes. 
+Then $\Omega$ is the set of all possible directions (North, South, East
+and the \emph{continuum} of values in between these). Then
+$X: \Omega \to \rr$ given by $X(North) = 1$, $X(South) = -1$, $X(East) = 0$
+and $F_{X} \doteq \left\{ X^{-1}(U): U \in \rr \right\}$ is a continuous random
+variable.
+\end{example}
+\begin{definition}
+For a space $\left\{ \Omega, \filter \right\}$, we say that a measure $u$ is
+\emph{absolutely continuous} respect to a measure $v$, denoted $u \ll v$, if
+$v(E) = 0$ implies $u(E) = 0$ for every $E \in \filter$.
+\end{definition}
+\begin{theorem}[Radon-Nikodym]
+Let $u,v: \Omega \to \rr^n$ be measures on $\filter_{\Omega}$, with $u \ll v$.
+Then there exists a positive $f: \Omega \to \rr^n$ such that
+\begin{align*}
+u(E) = \int_{E} f(\omega) dv(\omega)
+\end{align*}
+for every $E \in \filter$.
+\end{theorem}
+The proof of this theorem lies outside the scope of this course, but can be
+found in almost every graduate textbook on analysis. 
+
+We now apply the Radon-Nikodym theorem to define continuous random variables.
+\begin{definition}
+Let $X$ be a random variable on a probability space $(\Omega, \filter, \prob)$. 
+The \emph{distribution measure} of $X$ is the probability measure $\mu_X:
+\borel_X \to [0,1]$ given by $\mu_X(B) = \prob(\{\omega\}: X(\omega) \in B)$.
+\end{definition}
+\begin{definition}
+A random variable $X$ is discrete if and only if it takes values in a countable
+subset of $\rr$, and continuous if and only if $\mu_X \ll dm$, where $dm$
+denotes Lebesgue measure on $\rr^n$. By Radon-Nikodym, its \emph{distribution
+function} $F(x) \doteq \prob(X \le x)$ is given by
+\begin{align*}
+F(x) = \int_{-\infty}^x f(z) \,dz.
+\end{align*}
+for some unique, positive $f(z)$, which we call \emph{probability density}
+function of $X$.
+If $X$ is discrete, we call
+$f(x) \doteq \prob(X = x)$ its \emph{mass function}.
+\end{definition}
+Lastly, we remark that there exist random variables which are neither
+discrete nor continuous, but rather a mixture of the two.
+\begin{example}[A Random Variable that is Neither Discrete Nor Continuous]
+A coin is tossed. We assign the event ``lands heads" the number $-1$, and 
+if it lands tails, we toss a rod, and assign ``lands tails" how far the rod has
+landed from us. In this case, our random variable $X$ is neither continuous nor
+discrete: it has a point mass at $X = H$, but is continuous otherwise.
+Observe that $X | \text{lands tails}$ and $X | \text{lands heads}$ are
+continuous and discrete, respectively.
+\end{example}
+\subsection{Common Discrete Distributions}
+\subsubsection{Bernoulli Distribution}
 We begin with the most basic distribution, from which
 we are able to derive a multitude of others.
 \begin{definition}
@@ -270,7 +484,7 @@ Let $X$ denote the number of heads one obtains from $n$ flips of a
 two-sided, non-weighted coin. Then $X$ is binomially distributed.
 If the coin is weighted, then $X$ follows a Bernoulli distribution.
 \end{example}
-\subsection{Poisson Distribution}
+\subsubsection{Poisson Distribution}
 We wish now to study events that are distributed sparsely in time.
 Suppose we have a large number $n$ of independent trials, with
 success in each individual trial unlikely. In order to have a sparse
@@ -323,7 +537,7 @@ p(k, \lambda t) = \frac{ (\lambda t)^{k} e^{-\lambda t}}{k!}
 \begin{exercise}
 Generalize this result to intervals of arbitrary length.
 \end{exercise}
-\subsection{Negative Binomial Distribution}
+\subsubsection{Negative Binomial Distribution}
 For an experiment, it is often important to know just how many trials
 one needs to achieve a certain number of successes. To tackle this problem,
 we ask a simpler question: out of a total of $n$ independent trials with
@@ -345,5 +559,450 @@ p(r, v, p) \doteq \mathbb{P}(X = r) = \binom{v-1}{r-1} p^{r} q^{v-r}
 We call $X$ a random variable with a \emph{negative binomial distribution}.
 \end{definition}
 \end{theorem}
-\end{document}
+\subsection{Common Continuous Distributions}
+\subsubsection{Uniform Distribution}
+\begin{definition}
+Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
+\prob$ such that the minimum and maximum values of $X$ are $a,b \in \rr$,
+respectively, and $\prob(c \le X \le d ) = \prob(c + t \le X \le d + t)$
+for all $c, d$ in $[a,b]$  and $t \in \rr$ such that $c+t, d+t \in [a,b]$.
+Then we say $X$ is \emph{uniformly distributed} in $[a,b]$. It is easy to check
+that $X$ has density  
+\begin{align*}
+f(x) = \begin{cases}
+1/(b-a), \quad & x \in [a,b] \\
+0 \quad &\text{otherwise}
+\end{cases}
+\end{align*}
+\end{definition}
+\subsubsection{Normal Distribution}
+\begin{definition}
+Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
+\prob$. We say $X$ is \emph{normally distributed} with standard deviation $\sigma$ and
+mean $\mu$ if $X$ has density
+\begin{align*}
+f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{ -\frac{(x - \mu)^2}{2 \sigma^2}}.
+\end{align*}
+If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
+distributed}.
+\end{definition}
+\section{Joint Distributions}
+Up to now, we have considered random variables taking values in $\rr$.
+It is easy to extend this theory to random variables taking values in $\rr^n$:
+our distribution of $X$ is then given by $\mu_X(B) =
+\prob(X^{-1}(B)$ for every Borel set $B \in
+\rr^2$. Using our intuition, we ask if our distribution function should be of
+\begin{align*}
+F(x) = \int_{-\infty}^{x} f(s) \, ds
+\end{align*}
+where now $ds$ denotes Lebesgue measure on $\rr^2$ and $x = (x_1, x_2) \in
+\rr^2$. However, what do we mean when we say $x \le y$ for $x, y \in \rr^2$? 
+We now investigate this.
 
+First, observe that if ${X}: \Omega \to \rr^n$, then $X = (X_1, X_2,
+\ldots, X_n)$, where $X_i: \Omega \to \rr$. Hence, our study of $X$ will be
+simplified if we can study it component-wise. Motivated by this, we define
+$x \le y$ iff $x_i \le y_i$. 
+\begin{definition}
+Let ${X} = (X_1, X_2, \ldots, X_n)$. Then the \emph{joint distribution}
+$F_X: \rr^n \to \rr$
+is defined as $F_X(x) = \prob({X} \le x)$.
+\begin{lemma}
+Let $F_X$ be a joint distribution. Then
+\begin{enumerate}[a)]
+\item
+$\lim_{x \to -\infty} F_X(x) = 1$ and $\lim_{x \to \infty}
+F_X(x) = 0$
+\item
+If $x \le y$, then $F_X(x \le F_X(y)$.
+\item
+$F(x)$ is continuous from above.
+\end{enumerate}
+\end{lemma}
+If all the $X_i$ are discrete, we say $X$ has a \emph{joint discrete
+distribution}. If all the $X_i$ are continuous, we say $X$ has a 
+\emph{joint continuous distribution}. If the distribution is jointly discrete,
+then for $x = (x_1, x_2, \ldots, x_n)$,
+ $F(x) = \prob(X_1 = x_1, X_2, = x_2,
+\ldots, X_n = x_n)$. If the distribution is jointly continuous, then by
+Radon-Nikodym
+\begin{align*}
+F(x) = \int_{-\infty}^x f(s) \, ds = \int_{-\infty}^{x_1} \ldots
+\int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_nx_n) \, ds_1 \, ds_2 \ldots \, ds_n.
+\end{align*}
+\subsection{Applications}
+One of the primary applications of joint distributions is in finding the
+distributions and associated density functions of sums and products of random
+variables.
+\begin{example}
+Let $X$ and $Y$ be continuous random variables, with associated densities
+$f_X(x)$ and $f_Y(y)$, respectively. What are the density functions of
+$Z = X+Y$ and $Z = XY$? What if $X$ and $Y$ are independent?
+\end{example}
+Recall that a continuous random variable $X: \Omega \to \rr^n$
+is defined to be a random variable whose distribution
+\begin{align*}
+u_X(B) \doteq \prob(X \in B)
+\end{align*}
+is absolutely continuous with respect to Lesbesgue measure on $\rr^n$. Hence, by
+the Radon-Nikodym theorem
+\begin{align*}
+F_Z(z) = \prob(Z \le z) = \prob((X,Y) \in B_z) 
+& = \int_{B_z} f \, dm
+\\
+& = \int_{B_y} \int_{B_x} f(x,y) \, dx dy
+\end{align*}
+Applying the observation that $B_z
+= \{(x,y):
+-\infty < x < \infty, y \le z-x \}$, we obtain the distribution function 
+\begin{align*}
+F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f_{(X,Y)}(x,y) dy dx.
+\end{align*}
+Differentiating with respect to $z$, we arrive
+at the density
+\begin{align*}
+f_Z(z) = \int_{-\infty}^{\infty} f_{(X,Y)}(x,z-x) dx
+\end{align*}
+If $X$ and $Y$ are independent, then $f_{(X,Y)}(x, y) = f_X(x) f_Y(y)$, giving
+\begin{align*}
+f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z-x) dx = f_X * f_Y(z).
+\end{align*}
+Similarly, for $Z = XY$, where $X > 0$ almost surely,  the distribution
+function is given by
+\begin{align*}
+F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z/x} f_{(X,Y)}(x,y) dy dx
+\end{align*}
+with density
+\begin{align*}
+f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_{(X,Y)}(x,z/x) dx.
+\end{align*}
+If $X$ and $Y$ are independent, this density becomes
+\begin{align*}
+f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_X(x) f_Y(z/x) dx.
+\end{align*}
+\section{Expectation}
+Let $X: \Omega \to [\alpha_1, \ldots, \alpha_k]$, $k < \infty$ be a random
+variable denoting the outcome of some experiment, and let $X_1, \ldots, X_n$ be independent trials
+of the same experiment, where $X_i:
+\Omega \to [\alpha_1, \ldots, \alpha_k]$. Then we 
+call
+\begin{align*}
+E(X) \doteq \lim_{n \to \infty} \frac{1}{n} \sum_{i =1}^n X_i \doteq \mu 
+\end{align*}
+the \emph{expectation}, or \emph{mean}, or $X$. If the limit does not exist,
+or $\mu = \pm \infty$, we say that the expectation does not exist.
+\end{definition}
+\begin{example}
+Let $X$ be a discrete random variable with mass function 
+\begin{align*}
+f(k) = \begin{cases}
+Ak^{-2},  \quad &k > 0
+\\
+0, \quad & k \le 0
+\end{cases}
+\end{align*}
+(Observe that for $f$ to be a mass function, $A$ must be chosen such that
+$\sum_{k = 1}^{\infty} k^{-2} = 1$.
+Then it is easy to check that
+\begin{align*}
+E(X) = \sum_{k=1}^{\infty} k Ak^{-2} = A \sum_{k=1}^{\infty} k^{-1} = \infty.
+\end{align*}
+
+\end{example}
+Observe that we can write
+\begin{align*}
+\frac{1}{n} \sum_{i = 1}^n X_i
+& = \frac{\alpha_i (\#\alpha_i) + \ldots +
+\alpha_n (\#\alpha_n)}{n}
+\\
+& \to \alpha_1 \prob(\alpha_1) + \ldots + \alpha_n \prob(\alpha_n).
+\end{align*}
+This motivates the following.
+\begin{definition}
+The \emph{expectation} of a random variable $X$ with mass function $f$ is
+\begin{align*}
+E(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad \sum |x
+f(x) | <
+\infty
+\end{align*}
+If $X$ is continuous with density $f(x)$, then
+\begin{align*}
+E(X) = \int_{-\infty}^{\infty} xf(x) \, dx, \quad \text{provided} \quad
+\int_{-\infty}^{\infty} |xf(x)| \, dx < \infty
+\end{align*}
+\end{definition}
+\begin{lemma}
+If $g: \rr \to \rr$ is continuous, then
+\begin{align*}
+E(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
+\int_{-\infty}^{\infty} g(x) f(x) \, dx
+\end{align*}
+\end{lemma}
+\begin{theorem}[Properties of Expectation]
+Let $X$ be a random variable. Then
+\begin{enumerate}[a)]
+	\item $E(aX + bY) = aE(X) + bE(Y)$.
+	\item E(1) = 1
+	\item If $X,Y$ are independent, then $E(XY) = E(X)E(Y)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We shall only do the discrete case; the proof for the continuous case is
+analagous.
+\begin{enumerate}[a)]
+\item This follows immediately from the linearity of sums and integrals.
+\item
+We have $E(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1.$
+\item
+Let $Z = XY$. Then
+\[E(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} xy f_{(X,Y)}(x,y) = \sum_x x f_X(x)
+\sum_y y f_Y(y) = E(X) E(Y)\].
+\end{enumerate}
+\end{proof}
+Having defined expectation, we can use it to define the
+\emph{variance} of a random variable $X$
+\begin{align*}
+E([X - E(X)]^2),
+\end{align*}
+the \emph{standard deviation}
+\begin{align*}
+\sigma_X \doteq \sqrt{\var(X)}
+\end{align*}
+and \emph{covariance} of random variables $X, Y$
+\begin{align*}
+\covar(X,Y) \doteq E([X - E(X)][Y - E(Y)])
+\end{align*}
+The standard deviation of a random variable $X$ is the average spread of the
+trials of an experiment away from the mean, and is always positive. 
+
+In practice, we consider the normalized covariance of two random variables,
+commonly called the \emph{correlation coefficient}
+\begin{align*}
+\rho(X,Y) = \frac{\covar(X,Y)}{\sigma_X \sigma_Y}
+\end{align*}
+The correlation coefficient has the following important property.
+\begin{theorem}
+For random variables $X, Y$, $|\rho(x,y)| \le 1$, where $|\rho(x,y)| = 1$ if and
+only if $aX + bY = 1$ almost surely, for some $a,b \in \rr$. 
+\end{theorem}
+\begin{proof}
+It is a standard application of Cauchy-Schwarz.
+\end{proof}
+From this theorem, we see that the correlation index of two random variables is
+a measure of the linear dependence of one random variable on another. If the
+index is negative, a rise in one random variables implies a fall in the other,
+and vice verse. If the coefficient is positive, then the variables rise or fall
+together.
+\begin{definition}
+We say two random variables $X$ and $Y$ are \emph{correlated} 
+if $E(XY) = E(X)E(Y)$.
+\end{definition}
+Observe that independent random variables are correlated. However,
+correlation does not, in general, imply independence. Heuristically, this is
+because correlation is only a measure of the degree of linear dependence
+between variables, and does not capture higher order (for example, quadratic)
+types of dependence. 
+\begin{example}
+Let $X$ be a continuous random variable with the standard normal distribution,
+and let $Y = X^2$. Clearly $X$ and $Y$ are dependent . However,
+\begin{align*}
+E(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} \, dx = 0
+\end{align*}
+by anti-symmetry, and so
+\begin{align*}
+E(XY) = E(X^3) = 0 = E(X) E(Y).
+\end{align*}
+which implies $X, Y$ are uncorrelated.
+\end{example}
+\section{Conditional Distributions and Expectation}
+\begin{definition}
+The \emph{conditional distribution function} of $Y$ given $X = x$,
+written $F_{Y|X}(\cdot | x)$ is defined by
+\begin{align*}
+F_{Y|X}(y|x) = \prob (Y \le y | X = x).
+\end{align*}
+In the discrete case, the \emph{conditional mass function}
+is given by
+\begin{align*}
+f_{Y|X}(y|x) = \prob(Y = y | X = x).
+\end{align*}
+\end{definition}
+Observe that, in the discrete case
+\begin{align*}
+f_{(X,Y)}(x,y)
+& = \prob(X \le x, Y \le y)
+\\
+& = \prob(X \le x \cap Y \le y)
+\\
+& = \prob(X \le x | Y \le y) \prob(Y \le y)
+\\
+& = f_{X|Y}	(x,y) f_y(y)	
+\end{align*}
+and so
+\begin{align*}
+f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}
+\end{align*}
+and similarly
+\begin{align*}
+f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+\end{align*}
+In the continuous case, we have some difficulties, since we are not allowed to
+condition on null events. However, we may consider
+\begin{align*}
+\prob(Y \le y , x \le X \le x + h)
+& = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
+\end{align*}
+which we can rewrite as
+\begin{align*}
+\prob(Y \le y | x \le X \le x + h)
+& = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
+\\
+& = \frac{hf_{(X,Y)}(x,y) + O(h^2)}{hf_X(x) + O(h^2)}
+\\
+& = \frac{f_{(X,Y)}(x,y) + O(h)}{f_X(x) + O(h)}
+\end{align*}
+Letting $h \to 0$, we obtain
+\begin{align*}
+f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+\end{align*}
+Similarly, 
+\begin{align*}
+f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}.
+\end{align*}
+Thus, the formulas for conditional distributions
+functions in both the discrete and continuous cases are identical.
+
+Since $Y|X =x$ is a random variable, we can write $\psi(x) = E(Y | X =x)$.
+Then $\psi(X)$ is a random varaible, which we call the expectation of $Y$ given
+$X$, also written as $E(Y|X)$.
+\begin{theorem}
+For any two random variable $X,Y: \Omega \to \rr^n$,
+\begin{align*}
+E(E(Y | X)) = E(Y)
+\end{align*}
+\begin{proof}
+For the discrete case, we have
+\begin{align*}
+E(\psi(X)) 
+& = \sum_{x} \psi(x) f_x(x)
+\\
+& = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
+\\
+& = \sum_{x,y} y f_{(x,y)}
+\\
+& = \sum_y y f_Y(y)
+\\
+& = E(Y)
+\end{align*}
+The proof for the continuous case is analagous. 
+\end{proof}
+\end{theorem}
+\begin{theorem}
+Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
+$E(g(X))< \infty$. Then
+\begin{align*}
+E(E(Y|X)g(X)) = E(Yg(X))
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is almost identical to that of the preceding theorem.
+\end{proof}
+The two thereoms above are immensely useful in solving a wide variety of
+discrete and non-discrete problems. Heuristically, they allow us to divide a
+difficult probability problem into several simpler problems.
+
+\begin{example}
+Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ points to
+heads. We play a game where we flip a coin repeatedly until we obtain
+$-1$ points, or $2$ points. What is the expected number of flips before the
+game terminates? 
+\end{example}
+
+Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
+to terminate if we begin with $i$ points. Then we have
+\begin{align*}
+E(X_0) & = E(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
+E(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
+\\
+& = (E(X_1) + 1) \frac{1}{2} + (E(X_{-1}) + 1) \frac{1}{2}
+\\
+& = \frac{1}{2}(E(X_1) + E(X_{-1})) + 1
+\\
+& = \frac{1}{2}E(X_1) + 1
+\\
+& = \frac{1}{2}[E(X_1 | \text{flip heads}) \frac{1}{2} + E(X_1 | \text{flip
+tails}) \frac{1}{2}] + 1
+\\
+& = \frac{1}{4}[E(X_1 | \text{flip heads}) + E(X_1 | \text{flip
+tails})] + 1
+\\
+& = \frac{1}{4} [ E(X_2) + 1  + E(X_0) + 1] + 1
+\\
+& = \frac{1}{4}[ E(X_0) + 2] + 1
+\end{align*}
+which gives $E(X_0) = 2.$
+\begin{example}
+A hen lays $N$ eggs, where $N$ has a poisson distribution with parameter
+$\lambda$. An egg hatches with probability $p$, independently  of the other
+eggs. Let $K$ be the number of chicks. Compute $E(K|N)$, $E(K)$, and $E(N | K)$.
+\end{example}
+To compute $E(K|N)$, we must first recall the poisson distribution
+\begin{align*}
+f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
+\end{align*}
+Given $N$ eggs, the probability that $K$ out of $N$ eggs hatch obeys a 
+Bernoulli distribution, and so 
+\begin{align*}
+f_{K|N}(k|n) = \binom{n}{k} p^k (1-p)^{n-k}
+\end{align*}
+Now, $E(K | N = n) = pn$, and so $E(K | N) = pN$. Furthermore, $E(K) = E(E(K
+| N	)) = E(pN) = p \lambda$.
+To compute $E(N | K)$, we apply Bayes Theorem to obtain
+\begin{align*}
+f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
+\\
+& = \begin{cases}
+\frac{\binom{n}{k}p^k (1-p)^{n-k} \lambda^n
+e^{-\lambda}/n}{\sum_{m \ge k}
+\binom{m}{k} p^k (1 - p)^{m-k} (\lambda^m e^{-\lambda})/m!}
+, \quad & n \ge k
+\\
+0, \quad & n<k
+\end{cases}
+\end{align*}
+where we obtained the denominator via the observation
+\begin{align*}
+\prob(K = k) & = \prob(K = k \cap N \ge k) 
+\\
+& = \sum_{m \ge k} \prob(K =
+k \cap N = m) 
+\\
+& = \sum_{m \ge k} \prob(K = k | N = m) \prob(N = m)
+\\
+& = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
+\\
+& = \sum_{m \ge k}
+\binom{m}{k} p^k (1 - p)^{m-k} (\lambda^m e^{-\lambda})/m!.
+\end{align*}
+Simplifying, we obtain
+\begin{align*}
+f_{N|K}(n|k) = 
+\begin{cases}
+\frac{(q\lambda)^{n-k} e^{-q\lambda}}{(n-k)!}, \quad & n \ge k
+\\
+0, \quad & n<k
+\end{cases}
+\end{align*}
+and so 
+\begin{align*}
+E(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
+\\
+& = \sum_{n \ge 0} (n + k) \frac{(q \lambda)^n e^{-q\lambda}}{n!}
+\\
+& = k \sum_{n \ge 0} \frac{(q \lambda)^n e^{-q\lambda}}{n!} + \sum_{n \ge 0}
+n \frac{(q\lambda)^n e^{-q\lambda}}{n!} 
+\\
+& = k + q\lambda.
+\end{align*}
+Hence, $E(N|K) = K + q \lambda$.
+\end{document}
