@@ -46,12 +46,13 @@
 \newtheorem*{remark}{Remark}
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \begin{document}
-\title{Probability}
+\title{Probability Notes}
 \author{David Karapetyan}
 \date{}
 \maketitle
 \newpage
 \setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{1}
 \tableofcontents
 \newpage
 \section{Outcomes and Events, and Likelihood}
@@ -74,11 +75,12 @@ space} or \emph{sample space}. The \emph{event space} consists of
 \end{enumerate}
 which we translate, via numbers, to the set $ \left\{ \left\{ 0 \right\} \cup
 \left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
-\right\} , \left\{ 1 \right\} \right \} $
-\end{example}	
+\right\} , \left\{ 1 \right\} \right \}$.
 Observe that the event ``Heads or tails'' is the union of the events
 ``Outcome is Heads'' and ``Outcome is tails'', and ``Heads and tails'' is
 their intersection.
+\end{example}	
+
 \begin{example}
 A die with six distinct faces is thrown. The outcome space is
 $ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
@@ -87,14 +89,14 @@ $ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
 \item The outcome is odd
 \item The outcome is greater than $2$
 \item The outcome is less than $2$.
-These events, respectively, are expressed via the sets \\
-$ \left\{ 2, 4, 6 \right\} , \left\{ 1,3,5 \right\} , \left\{ 3, 4, 5, 6
-\right\}, \left\{ 1 \right\} $.
-Observe that there are many other possible outcomes.
 \end{enumerate}
+These events, respectively, are expressed via the sets
+$ \left\{ 2, 4, 6 \right\} , \left\{ 1,3,5 \right\} , \left\{ 3, 4, 5, 6
+\right\}$, and $\left\{ 1 \right\}$.
+Observe that there are many other possible outcomes.
 \end{example}
 Observe that the larger the outcome space, the more complex
-our event space becomes. Also observe that the event
+our event space may become. Also observe that the event
 ``The outcome is even'' is the \emph{complement} (with respect to the
 outcome space) of
 the event ``The outcome is odd''. That is, $ \left\{ 2,4,6 \right\}^c
@@ -105,7 +107,7 @@ event space such that it completely models all possible events
 that can arise from a given outcome space. We have the following.
 \begin{definition}
 Let $\Omega$ be an outcome space. Then a \emph{$\sigma$-algebra}
-on $\Omega$, denoted by $\sigma(\Omega)$ is defined to be a
+or \emph{filter} on $\Omega$, denoted by $\filter(\Omega)$ is defined to be a
 set of subsets of $\Omega$ that is closed under countable
 unions and complements.
 More precisely
@@ -120,7 +122,7 @@ and wish to know the number of tosses we must use. Then our outcome space
 is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
 \right\},\ldots \right\}$. This is an infinite outcome space.
 \end{example}
-\begin{example} The following are all $\sigma$-algebras of $\Omega$:
+\begin{example} The following are all filters of $\Omega$:
 \begin{enumerate}[a)]
 \item $\left\{ \emptyset, \Omega \right\}$
 \item $\left\{ \emptyset, A, A^c, \Omega \right\}$
@@ -128,7 +130,7 @@ is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
 \end{enumerate}
 \end{example}
 Observe that a natural outcome space to use is the real line, or subsets
-thereof, and to build appropriate $\sigma$-algebras on top of it. We will return
+thereof, and to build appropriate filters on top of it. We will return
 to this idea later.
 
 \section{Discrete Probability}
@@ -145,7 +147,6 @@ Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials . If the
 limit $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$.
 \end{definition}
 Observe that $ 0 \le P \le 1$, by definition.
-
 Next, let $A$ and $B$ be two disjoint events. Then
 it is easy to check that
 \begin{align*}
@@ -156,7 +157,7 @@ and that, in general (i.e. for possibly disjoint $A$, $B$),
 N(A \cup B) = N(A) + N(B) - N(A \cap B).
 \end{align*}
 Furthermore, since $\Omega = A \cup A^c$, it follows immediately
-that $N(\Sigma) = N$. A similar argument shows $N(\emptyset) = 0$.
+that $N(\Omega) = N$. A similar argument shows $N(\emptyset) = 0$.
 This discussion motivates the following.
 \begin{definition}
 A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
@@ -193,13 +194,14 @@ events in a given sigma-algebra that have probability $0$ but that are not the
 empty set.
 
 \begin{example}What is the probability that, using a fair coin, one
-flips only heads in infinitely many tries? Letting $H_N$ denote the event
+flips only heads in infinitely many tries? 
+\end{example}
+Letting $H_N$ denote the event
 $N$ heads in the first $N$ tries, set continuity yields
 continuity,
 \begin{align*}
 P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 0.
 \end{align*}
-\end{example}
 \subsection{Conditional Probability}
 We now wish to tackle statement that often occur in practice,
 such as ``What is the probability that it will snow today, \emph{given}
@@ -209,8 +211,8 @@ Observe that when we are given information, it allows us to adjust the
 probability of the event we are interested in. We wish to express this
 mathematically. Motivated by the ``zebra'' example, we have the following.
 \begin{definition}
-Let $\Omega, \filter$ be a $\sigma$-algebra, and $A, B \in \filter$ events.
-Then $\prob(A | B)$ is defined to be the probability of $A$, given that $A \in \filter_B$, where $\filter_B
+Let $\Omega, \filter$ be a filter, and $A, B \in \filter$ be events, where
+$\prob(B) > 0$. Then $\prob(A | B)$ is defined to be the probability of $A$, given that $A \in \filter_B$, where $\filter_B
 \doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}.$
 \end{definition}
 Imagine that we roll a die, and wish to know the probability that
@@ -256,7 +258,7 @@ A family has two children. What is the probability that both are boys,
 given that the youngest is a boy?
 \end{example}
 Observe that if no information is given, the probability of two boys is $1/4$.
-Hence, the conditions given in the example above improve the probablity.
+Hence, the conditions given in the example above improve the probability.
 Sometimes, given information may reduce the probability of an event.
 If the given information has no effect on the probability of an event,
 we say that the event and the information are \emph{independent}. We will
@@ -272,8 +274,9 @@ for any $A \in \filter$
 \end{align*}
 \end{lemma}
 The above lemma has the limitation that sometimes $\prob(A |
-B)$ is difficult to compute as well. In such situations, oftentimes
-it is easier to compute $\prob(B | A)$. Fortunately, we have the following.
+B)$ is difficult to compute as well. In such situations, 
+it is often easier to compute $\prob(B | A)$. Fortunately, we have the
+following.
 \begin{lemma}[Bayes' Theorem] For events $A, B$, we have
 \begin{align*}
 \prob(A | B) = \frac{\prob(B | A) \prob (A)}{\prob(B)}
@@ -292,28 +295,11 @@ behind one, and a goat behind each of the others. You pick door number $I$.
 To tease you, Monty opens door number $II$, revealing a goat, then offers to let
 you switch your choice to door number $III$. Should you?
 \end{example}
-\subsection{Independence}
-\begin{definition}
-We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if \[\prob(A |
-B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) \prob(B).\] More generally,
-a family $ \left\{ A_i \right\}_{i = 1}^n $ is
-\emph{independent} if 
-\[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
-\end{definition}
-\begin{example}
-What is the probability that Connie's first child will be a masculine child,
-given that a neighboring mobster recently had a boy?
-\end{example}
-\begin{example}
-What is the probability of flipping heads with a fair coin on the $10th$ trial,
-given that heads is flipped on all previous trials?
-\end{example}
-\subsection{Worked Examples}
 \begin{example}[Symmetric Random Walk]
 Las Vegas has decided to offer a new game, with $50/50$ odds
 of winning or losing in each iteration. The player begins with $\dollar k$
-and the house begins with $ \dollar N$. If the player wins in a round,
-he wins a dollar; otherwise, he loses a dollar. The player adopts the strategy
+and the house begins with $ \dollar N$, where $N \gg k$. If the player wins in
+a round, he wins a dollar; otherwise, he loses a dollar. The player adopts the strategy
 to continue playing until either he or the casino is bankrupted.
 What the probability that the player goes bankrupt?
 \end{example}
@@ -325,7 +311,7 @@ Then
 \prob_k(A)
 & = \prob_k(A | B) \prob(B) + \prob_k(A | B^c) \prob(B^c)
 \\
-& = \frac{p_{k+1}}{2} + \frac{p_{k-1}}{2}
+& \approx \frac{p_{k+1}}{2} + \frac{p_{k-1}}{2}
 \end{align*}
 We have the boundary conditions $p_0 = 1$ and $p_N = 0$, which we combine with
 the above \emph{difference equation} to obtain
@@ -344,9 +330,9 @@ offering the best odds), the casino will try to distract you with drinks,
 entertainment, women/men, etc. It usually works.
 \begin{example}[False Positives]
 A rare disease affects one person in $10^5$. A test for the disease
-is wrong with robability $1/100$; that is, it is positive with probability
+is wrong with probability $1/100$; that is, it is positive with probability
 $1/100$ for someone who is in fact healthy, and negative
-with probability $1/100$ for someone who is in fact ill. What is the probabiliy
+with probability $1/100$ for someone who is in fact ill. What is the probability
 that you have the disease given that you took the test and it is positive?
 \end{example}
 \begin{proof}[Solution]
@@ -367,21 +353,36 @@ Bayes' Theorem to obtain
 \end{proof}
 Moral: don't freak out if your doctor says you \emph{might} have
 cancer. Take the test again.
+\subsection{Independence}
+\begin{definition}
+We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if \[\prob(A |
+B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) \prob(B).\] More generally,
+a family $ \left\{ A_i \right\}_{i = 1}^n $ is
+\emph{independent} if 
+\[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
+\end{definition}
+\begin{example}
+What is the probability that Connie's first child will be a masculine child,
+given that a neighboring mobster recently had a boy?
+\end{example}
+\begin{example}
+What is the probability of flipping heads with a fair coin on the $10th$ trial,
+given that heads is flipped on all previous trials?
+\end{example}
 \section{Translating Outcomes to Numbers}
-\subsection{Introduction}
 As we have seen, the sample space $\Omega$, equipped with an associated filter
 $\filter$ and probability measure $\prob: \filter \to [0,1]$ 
 are the lynchpins of our theory of probability. However, in practice,
-abstract outcomes $\omega \in \Omega$ and $E \in \filter$ are
+abstract outcomes $\omega \in \Omega$ and sets $E \in \filter$ are
 cumbersome to work with. We would like to ``translate'' our analysis
 on $(\Omega, \filter, \prob)$ to $(\rr, \borel_{\rr}, dx)$,
-where $\borel_{\rr}$ denotes the Borel $\sigma$-algebra on $\rr$ (the smallest 
-$\sigma$-algebra containing all the open sets in $\rr$), and $dx$ is
+where $\borel_{\rr}$ denotes the Borel filter on $\rr$ (the smallest 
+filter containing all the open sets in $\rr$), and $dx$ is
 Lebesgue measure. This translation will be given by continuous functions from
-$\Omega$, equipped with its $\sigma$-algebra structure, to $\rr$,
-equipped with the standard topology. We will call such functions 
+$\Omega$, equipped with its filter structure, to $\rr$,
+equipped with the Borel filter. We will call such functions 
 \emph{random variables}.
-\subsection{Random Varibles} 
+\subsection{Random Variables} 
 \begin{definition}
 A \emph{random variable} is a function $X: \Omega \to \rr$ with the property
 that $X^{-1}(U) \in \filter$ for every open $U \in \rr$. If the range of $X$
@@ -389,7 +390,7 @@ is a countable subset of $\rr$, we say $X$
 is a \emph{discrete random variable}. If $\Omega$ is countable, we say that 
 $\left\{ \Omega, \filter, \prob \right\}$ is a \emph{discrete probability space}.
 \end{definition}
-As shorthand, we shall often denote $\{\omega\}: X(\omega) \in B$ by
+As shorthand, we shall often denote $\{\omega: X(\omega) \in B\}$ by
 $\{X \in B$\}.
 \begin{remark}
 Observe that, for a discrete random variable $X: \Omega \to [\alpha_1,
@@ -533,6 +534,7 @@ $t \le 1$, is given by
 \begin{align*}
 p(k, \lambda t) = \frac{ (\lambda t)^{k} e^{-\lambda t}}{k!}
 \end{align*}
+with average $\lambda t$.
 \end{theorem}
 \begin{exercise}
 Generalize this result to intervals of arbitrary length.
@@ -570,7 +572,7 @@ Then we say $X$ is \emph{uniformly distributed} in $[a,b]$. It is easy to check
 that $X$ has density  
 \begin{align*}
 f(x) = \begin{cases}
-1/(b-a), \quad & x \in [a,b] \\
+x/(b-a), \quad & x \in [a,b] \\
 0 \quad &\text{otherwise}
 \end{cases}
 \end{align*}
@@ -597,7 +599,6 @@ F(x) = \int_{-\infty}^{x} f(s) \, ds
 \end{align*}
 where now $ds$ denotes Lebesgue measure on $\rr^2$ and $x = (x_1, x_2) \in
 \rr^2$. However, what do we mean when we say $x \le y$ for $x, y \in \rr^2$? 
-We now investigate this.
 
 First, observe that if ${X}: \Omega \to \rr^n$, then $X = (X_1, X_2,
 \ldots, X_n)$, where $X_i: \Omega \to \rr$. Hence, our study of $X$ will be
@@ -630,7 +631,7 @@ Radon-Nikodym
 F(x) = \int_{-\infty}^x f(s) \, ds = \int_{-\infty}^{x_1} \ldots
 \int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_nx_n) \, ds_1 \, ds_2 \ldots \, ds_n.
 \end{align*}
-\subsection{Applications}
+
 One of the primary applications of joint distributions is in finding the
 distributions and associated density functions of sums and products of random
 variables.
@@ -644,7 +645,7 @@ is defined to be a random variable whose distribution
 \begin{align*}
 u_X(B) \doteq \prob(X \in B)
 \end{align*}
-is absolutely continuous with respect to Lesbesgue measure on $\rr^n$. Hence, by
+is absolutely continuous with respect to Lebesgue measure on $\rr^n$. Hence, by
 the Radon-Nikodym theorem
 \begin{align*}
 F_Z(z) = \prob(Z \le z) = \prob((X,Y) \in B_z) 
@@ -661,13 +662,13 @@ F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f_{(X,Y)}(x,y) dy dx.
 Differentiating with respect to $z$, we arrive
 at the density
 \begin{align*}
-f_Z(z) = \int_{-\infty}^{\infty} f_{(X,Y)}(x,z-x) dx
+f_Z(z) = \int_{-\infty}^{\infty} f_{(X,Y)}(x,z-x) dx.
 \end{align*}
 If $X$ and $Y$ are independent, then $f_{(X,Y)}(x, y) = f_X(x) f_Y(y)$, giving
 \begin{align*}
 f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z-x) dx = f_X * f_Y(z).
 \end{align*}
-Similarly, for $Z = XY$, where $X > 0$ almost surely,  the distribution
+Similarly, for $Z = XY$,  the distribution
 function is given by
 \begin{align*}
 F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z/x} f_{(X,Y)}(x,y) dy dx
@@ -683,7 +684,7 @@ f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_X(x) f_Y(z/x) dx.
 \section{Expectation}
 Let $X: \Omega \to [\alpha_1, \ldots, \alpha_k]$, $k < \infty$ be a random
 variable denoting the outcome of some experiment, and let $X_1, \ldots, X_n$ be independent trials
-of the same experiment, where $X_i:
+of the same experiment, where \\ $X_i:
 \Omega \to [\alpha_1, \ldots, \alpha_k]$. Then we 
 call
 \begin{align*}
@@ -702,7 +703,7 @@ Ak^{-2},  \quad &k > 0
 \end{cases}
 \end{align*}
 (Observe that for $f$ to be a mass function, $A$ must be chosen such that
-$\sum_{k = 1}^{\infty} k^{-2} = 1$.
+$\sum_{k = 1}^{\infty} k^{-2} = 1$).
 Then it is easy to check that
 \begin{align*}
 E(X) = \sum_{k=1}^{\infty} k Ak^{-2} = A \sum_{k=1}^{\infty} k^{-1} = \infty.
@@ -714,21 +715,21 @@ Observe that we can write
 \frac{1}{n} \sum_{i = 1}^n X_i
 & = \frac{\alpha_i (\#\alpha_i) + \ldots +
 \alpha_n (\#\alpha_n)}{n}
-\\
-& \to \alpha_1 \prob(\alpha_1) + \ldots + \alpha_n \prob(\alpha_n).
+ \to \alpha_1 \prob(\alpha_1) + \ldots + \alpha_n \prob(\alpha_n).
 \end{align*}
 This motivates the following.
 \begin{definition}
 The \emph{expectation} of a random variable $X$ with mass function $f$ is
 \begin{align*}
-E(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad \sum |x
+E(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
+\sum_{x \in \rr: f(x) > 0} |x
 f(x) | <
 \infty
 \end{align*}
 If $X$ is continuous with density $f(x)$, then
 \begin{align*}
 E(X) = \int_{-\infty}^{\infty} xf(x) \, dx, \quad \text{provided} \quad
-\int_{-\infty}^{\infty} |xf(x)| \, dx < \infty
+\int_{-\infty}^{\infty} |xf(x)| \, dx < \infty.
 \end{align*}
 \end{definition}
 \begin{lemma}
@@ -748,7 +749,7 @@ Let $X$ be a random variable. Then
 \end{theorem}
 \begin{proof}
 We shall only do the discrete case; the proof for the continuous case is
-analagous.
+analogous.
 \begin{enumerate}[a)]
 \item This follows immediately from the linearity of sums and integrals.
 \item
@@ -830,11 +831,11 @@ f_{Y|X}(y|x) = \prob(Y = y | X = x).
 Observe that, in the discrete case
 \begin{align*}
 f_{(X,Y)}(x,y)
-& = \prob(X \le x, Y \le y)
+& = \prob_{\filter \times \filter}(X \le x, Y \le y)
 \\
-& = \prob(X \le x \cap Y \le y)
+& = \prob_{\filter} (X \le x \cap Y \le y)
 \\
-& = \prob(X \le x | Y \le y) \prob(Y \le y)
+& = \prob_{\filter}(X \le x | Y \le y) \prob_{\filter}(Y \le y)
 \\
 & = f_{X|Y}	(x,y) f_y(y)	
 \end{align*}
@@ -846,13 +847,17 @@ and similarly
 \begin{align*}
 f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
 \end{align*}
-In the continuous case, we have some difficulties, since we are not allowed to
-condition on null events. However, we may consider
+We will heretofore suppress the distinction between $\prob_{\filter \times
+\filter}$ and $\prob_{\filter}$, for the sake of clarity.
+
+Observe that in
+the continuous case, we have some difficulties,
+since we are not allowed to condition on null events. However, we may consider
 \begin{align*}
 \prob(Y \le y , x \le X \le x + h)
 & = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
 \end{align*}
-which we can rewrite as
+which we can rewrite, using Taylor series, as
 \begin{align*}
 \prob(Y \le y | x \le X \le x + h)
 & = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
@@ -873,7 +878,7 @@ Thus, the formulas for conditional distributions
 functions in both the discrete and continuous cases are identical.
 
 Since $Y|X =x$ is a random variable, we can write $\psi(x) = E(Y | X =x)$.
-Then $\psi(X)$ is a random varaible, which we call the expectation of $Y$ given
+Then $\psi(X)$ is a random variable, which we call the expectation of $Y$ given
 $X$, also written as $E(Y|X)$.
 \begin{theorem}
 For any two random variable $X,Y: \Omega \to \rr^n$,
@@ -892,22 +897,22 @@ E(\psi(X))
 \\
 & = \sum_y y f_Y(y)
 \\
-& = E(Y)
+& = E(Y).
 \end{align*}
-The proof for the continuous case is analagous. 
+The proof for the continuous case is analogous. 
 \end{proof}
 \end{theorem}
 \begin{theorem}
 Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
 $E(g(X))< \infty$. Then
 \begin{align*}
-E(E(Y|X)g(X)) = E(Yg(X))
+E(E(Y|X)g(X)) = E(Yg(X)).
 \end{align*}
 \end{theorem}
 \begin{proof}
 It is almost identical to that of the preceding theorem.
 \end{proof}
-The two thereoms above are immensely useful in solving a wide variety of
+The two theorems above are immensely useful in solving a wide variety of
 discrete and non-discrete problems. Heuristically, they allow us to divide a
 difficult probability problem into several simpler problems.
 
