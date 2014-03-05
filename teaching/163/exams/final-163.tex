@@ -1,0 +1,233 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{graphicx}
+\usepackage[nohead, margin=0.5in]{geometry}
+\usepackage{enumerate}
+%\geometry{left=0.5in,right=0.5in,top=0.3in,bottom=0.5in} 
+
+\pagestyle{empty}
+%Next are definitions of "\one" etc. 
+%This is an easy way of assigning points to your questions and to 
+%your table all at once. 
+\newcommand{\one}{20}
+\newcommand{\two}{20}
+\newcommand{\three}{10}
+\newcommand{\four}{20}
+\newcommand{\five}{20}
+\newcommand{\six}{10}
+\newcommand{\seven}{20}
+\newcommand{\rr}{\mathbb{R}}
+\synctex=1
+
+\begin{document}
+
+
+%feel free to change the title page
+%
+
+\begin{center}
+    \hrulefill\\
+    {\bf \textsf{\raisebox{-0.10cm}{Fall 2013: MATH 163} \hspace{\fill} 
+            \raisebox{-0.10cm}{Ordinary Differential Equations} \hspace{\fill}
+            \raisebox{-0.10cm}{David Karapetyan}}}\\
+    \hrulefill\\
+    {\large \rule{0cm}{1.2cm} \textsf{Thursday 12/19/2013} \hfill
+        \textsf{Final} \hfill  \textsf{180 minutes}}\\
+    {\large\rule{0cm}{1.2cm}\textsf{Name: \framebox[2.9in]{\rule{0cm}{0.8cm}} 
+            \hspace{\fill}
+            Student ID: \framebox[2.1in]{\rule{0cm}{0.8cm}}}}\\
+\end{center}
+\vspace{0.8cm}
+
+\noindent
+{\bf \textsf{Instructions.}}
+
+\begin{enumerate}
+    \item Attempt all questions.   
+    \item Show all the steps of your work clearly.  
+    \item Good luck 
+        %The method (reasoning) used to 
+        %obtain an answer is worth more than the answer itself.   
+\end{enumerate}
+
+\vfill
+
+%The \rule commands create vertical space, which makes things sit nicely in 
+%vertical way in boxes of table below.
+
+\begin{center}
+    {\large
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Question} & \textsf{Points} &  \textsf{Your Score} \\
+            \hline
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q1} & \one &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q2} & \two &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q3} & \three &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q4} & \four &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q5} & \five &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q6} & \six &\\
+            \hline
+                        \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q7} & \seven &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{TOTAL} & 120 & \\
+            \hline
+        \end{tabular}
+    } 
+
+\end{center}
+
+\vfill
+
+
+\newpage
+\noindent
+\textbf{Q1}. \\ \\ 
+\begin{enumerate}[a)]
+    \item
+Find the general solution to the equation
+\begin{equation*}
+\begin{split}
+y' - 2xy = \cos x, \qquad y = y(x).
+\end{split}
+\end{equation*}
+
+
+\vspace{5in}
+\item
+    Now find the unique solution satisfying $y(0) = 1$ .
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Q2}. \\ \\ 
+\begin{enumerate}[a)]
+    \item
+Find the general solution to the system
+\begin{equation*}
+\begin{split}
+& x_1' = -3x_1 - 2x_2
+\\
+& x_2' = -2x_1 - 2 x_2
+\end{split}
+\end{equation*}
+where $x_1 = x_1(t)$ and $x_2 = x_2(t)$.
+\vspace{5in}
+\item
+    Now find the unique solution satisfying $x_1(0) = 1$ and $x_2(0) = 0$. 
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Q3}. \\ \\ 
+Convert
+\begin{align*}
+y'' + 2y' + y = t^2, \qquad y = y(t)
+\end{align*}
+to a first order system. Explain how you recover the solution $y$
+to the above via the solution to your first order system.
+        \newpage
+
+\noindent
+\textbf{Q4}. \\ \\ 
+\begin{enumerate}[a)]
+\item
+Find the eigenvalues and corresponding eigenvectors of the matrix
+\begin{align*}
+A = \begin{bmatrix}
+2 & -4 \\
+-1 & -1
+\end{bmatrix}
+\end{align*}
+\vspace{3in}
+\item
+Find the general solution to
+\begin{align*}
+\vec{y}' = Ay + \vec{b}, \qquad \vec{y} = \vec{y}(t)
+\end{align*}
+where
+\begin{align*}
+\vec{y} = \begin{bmatrix}
+y_1(t) \\
+y_2(t)
+\end{bmatrix}, \quad
+\vec{b} = \begin{bmatrix}
+1 \\
+2
+\end{bmatrix}
+\end{align*}
+\end{enumerate}
+and $A$ is as in part $a)$.
+        \newpage
+
+\noindent
+\textbf{Q5}. \\ \\ 
+\begin{enumerate}[a)]
+	\item
+Find the unique solution to
+\begin{align*}
+y' = y^2 t^3 \\
+y(0)=1.
+\end{align*}
+\vspace{3in}
+\item
+Now, using Euler's method with stepsize $h = 1$, compute the value
+of $y(1)$ and $y(2)$. Compare these
+with the actual values you obtain using your
+solution to $a)$, and explain why they differ.
+\end{enumerate}
+\newpage
+\noindent
+\textbf{Q6}. \\ \\ 
+State, with explanation, whether the following ODEs are linear or nonlinear. What order are they?
+
+\vspace{1in}
+\begin{enumerate}[a)]
+    \item
+        $y'''' + 4y' + y^{3} = 5$, \quad $y = y(x)$
+        \vspace{2in}
+
+    \item
+        $x^3y' + y = 5$, \quad $y = y(x)$
+        \vspace{2in}
+
+    \item 
+        $y' + 7y'' = e^t$, \quad $y = y(t)$
+        \vspace{2in}
+\end{enumerate}
+\newpage
+\noindent
+\textbf{Q7}. \\ \\ 
+\begin{enumerate}[a)]
+	\item
+Use the method of undetermined coefficients to find the
+general solution for
+\begin{align*}
+y'' + 2y' -3y = 5e^t, \qquad y = y(t)
+\end{align*}
+\vspace{3in}
+\item
+
+Use variation of parameters to find the general solution for
+\begin{align*}
+y'' -3y' + 4y = \sin t, \qquad y = y(t)
+\end{align*}
+\end{enumerate}
+\end{document}
+
+
+

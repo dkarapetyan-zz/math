@@ -1,0 +1,142 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{graphicx}
+\usepackage[nohead, margin=0.5in]{geometry}
+\usepackage{enumerate}
+%\geometry{left=0.5in,right=0.5in,top=0.3in,bottom=0.5in} 
+\usepackage{listings}
+\pagestyle{empty}
+%Next are definitions of "\one" etc. 
+%This is an easy way of assigning points to your questions and to 
+%your table all at once. 
+\newcommand{\one}{20}
+\newcommand{\two}{20}
+\newcommand{\three}{20}
+\newcommand{\four}{20}
+\newcommand{\five}{20}
+\newcommand{\rr}{\mathbb{R}}
+\synctex=1
+
+\begin{document}
+
+
+%feel free to change the title page
+%
+
+\begin{center}
+    \hrulefill\\
+    {\bf \textsf{\raisebox{-0.10cm}{Fall 2013: MATH 280} \hspace{\fill} 
+            \raisebox{-0.10cm}{Numerical Analysis} \hspace{\fill}
+            \raisebox{-0.10cm}{David Karapetyan}}}\\
+    \hrulefill\\
+    {\large \rule{0cm}{1.2cm} \textsf{Wednesday 11/13/2013} \hfill
+        \textsf{Midterm} \hfill  \textsf{75 minutes}}\\
+    {\large\rule{0cm}{1.2cm}\textsf{Name: \framebox[2.9in]{\rule{0cm}{0.8cm}} 
+            \hspace{\fill}
+            Student ID: \framebox[2.1in]{\rule{0cm}{0.8cm}}}}\\
+\end{center}
+\vspace{0.8cm}
+
+\noindent
+{\bf \textsf{Instructions.}}
+
+\begin{enumerate}
+    \item Attempt all questions.   
+    \item Show all the steps of your work clearly.  
+    \item Good luck 
+        %The method (reasoning) used to 
+        %obtain an answer is worth more than the answer itself.   
+\end{enumerate}
+
+\vfill
+
+%The \rule commands create vertical space, which makes things sit nicely in 
+%vertical way in boxes of table below.
+
+\begin{center}
+    {\large
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Question} & \textsf{Points} &  \textsf{Your Score} \\
+            \hline
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q1} & \one &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q2} & \two &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q3} & \three &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q4} & \four &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{TOTAL} & 80 & \\
+            \hline
+        \end{tabular}
+    } 
+
+\end{center}
+
+\vfill
+
+
+\newpage
+\noindent
+\textbf{Q1}. \\ \\ 
+Let $A$ be a square matrix, and let $\sigma(A)$ denote its spectrum. Prove that
+if $\sigma(A) < 1$, then $I-A$ is invertible, and that the Neumann series of $A$ converges in any norm to $(I - A)^{-1}$. \\
+\newpage
+
+\noindent
+\textbf{Q2}.\\ \\ 
+\begin{enumerate}[a)]
+\item State the definitions of the $L^1$, $L^2$, and $L^\infty$ norms on $\mathbb{C^n}$.
+\vspace{2in}
+\item State the definition of the operator norm for $n \times n$ matrices.
+\vspace{2in}
+\item Let $A : \mathbb{C}^n \to \mathbb{C}^n$ be an $n \times n$ matrix. Prove that
+$ \| A \|_{\infty} = \sup_i \sum_{j = 1}^n | a_{ij} | $.
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Q3}. \\ \\ 
+Let $A$ be an $n \times n$ matrix with distinct eigenvalues, $n, M \in
+\mathbb{N}$, and $x \in \mathbb{C}^n$. For arbitrary $v \in \mathbb{C}$, let
+$v_1$ denote its first coordinate. Consider the algorithm 
+\vspace{0.1in}\\
+\noindent
+input $n,A,x,M$ \\
+for $k=1,2,\ldots,M$ do \\
+$\phantom{bobo}y \leftarrow Ax$ \\
+$\phantom{bobo}r \leftarrow y_1/x_1$ \\
+$\phantom{bobo} x \leftarrow y$ \\
+end \\
+return $r$ 
+\vspace{0.3in} \\
+\noindent
+As $M \to \infty$, what does $r$ converge to? Please supply a proof. 
+\newpage
+\noindent
+\textbf{Q4}. \\ \\ 
+\noindent
+Find an $LU$ factorization for the matrix
+\begin{equation*}
+A = \begin{bmatrix}
+60 & 30 & 20 \\
+30 & 20 & 15 \\
+20 & 15 & 12 \\
+\end{bmatrix}
+\end{equation*}
+where $L$ has unit diagonal. Note: guessing will not be awarded points---your work should make extensive use of the diagonal entries of $A$. 
+
+
+
+
+\end{document}
+
+
+

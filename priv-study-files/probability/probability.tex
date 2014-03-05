@@ -1,21 +1,20 @@
 \documentclass[12pt]{article}
 \usepackage{amsthm}
 \usepackage{amssymb} %for symbols like lesssim
-\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{mathtools} %amsmath extension package
 \usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
 \usepackage{hyperref}
-\hypersetup{
-     colorlinks=true,
-     linkcolor=blue,
-     citecolor=green,
-     filecolor=magenta,
-     urlcolor=cyan
-     linkbordercolor=Blue
-     citebordercolor=Violet
-     filebordercolor=Red
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=green,
+filecolor=magenta,
+urlcolor=cyan
+linkbordercolor=Blue
+citebordercolor=Violet
+filebordercolor=Red
 }
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\nn}{\mathbb{N}}
@@ -143,7 +142,7 @@ rolled in $N$ tries. One can observe that
 A similar phenomenon holds for many other real-world events.
 
 \begin{definition}
-Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials . If the
+Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials. If the
 limit $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$.
 \end{definition}
 Observe that $ 0 \le P \le 1$, by definition.
@@ -152,7 +151,7 @@ it is easy to check that
 \begin{align*}
 N(A \cup B) = N(A) + N(B)
 \end{align*}
-and that, in general (i.e. for possibly disjoint $A$, $B$),
+and that, in general (i.e.\ for possibly disjoint $A$, $B$),
 \begin{align*}
 N(A \cup B) = N(A) + N(B) - N(A \cap B).
 \end{align*}
@@ -206,14 +205,14 @@ P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 0.
 We now wish to tackle statement that often occur in practice,
 such as ``What is the probability that it will snow today, \emph{given}
 that the sky is grey today'', or ``What is the probability that a mystery word
-is 'zebra', \emph{given} that the first three letters are 'z', 'e', 'b'''.
+is `zebra', \emph{given} that the first three letters are `z', `e', `b'''.
 Observe that when we are given information, it allows us to adjust the
 probability of the event we are interested in. We wish to express this
 mathematically. Motivated by the ``zebra'' example, we have the following.
 \begin{definition}
 Let $\Omega, \filter$ be a filter, and $A, B \in \filter$ be events, where
 $\prob(B) > 0$. Then $\prob(A | B)$ is defined to be the probability of $A$, given that $A \in \filter_B$, where $\filter_B
-\doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}.$
+\doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}$.
 \end{definition}
 Imagine that we roll a die, and wish to know the probability that
 we have rolled a $4$.
@@ -273,7 +272,7 @@ for any $A \in \filter$
 \prob(A) = \sum_{i = 1}^n \prob(A | B_i) \prob(B_i).
 \end{align*}
 \end{lemma}
-The above lemma has the limitation that sometimes $\prob(A |
+the above lemma has the limitation that sometimes $\prob(A |
 B)$ is difficult to compute as well. In such situations, 
 it is often easier to compute $\prob(B | A)$. Fortunately, we have the
 following.
@@ -489,7 +488,7 @@ If the coin is weighted, then $X$ follows a Bernoulli distribution.
 We wish now to study events that are distributed sparsely in time.
 Suppose we have a large number $n$ of independent trials, with
 success in each individual trial unlikely. In order to have a sparse
-distribution of events that is nontrivial (i.e. we have no successes),
+distribution of events that is nontrivial (i.e.\ we have no successes),
 we need to assume that there is a positive
 probability that we achieve at least one success in $n$ trials. Hence, we assume the expected number of
 successes $\lambda \doteq np$ to be nonzero.
@@ -532,7 +531,7 @@ Let $\lambda$ be the average number of successes in the interval $[0,1]$.
 The probability of finding exactly $k$ successes  in the subinterval $[0,t]$,
 $t \le 1$, is given by
 \begin{align*}
-p(k, \lambda t) = \frac{ (\lambda t)^{k} e^{-\lambda t}}{k!}
+p(k, \lambda t) = \frac{(\lambda t)^{k} e^{-\lambda t}}{k!}
 \end{align*}
 with average $\lambda t$.
 \end{theorem}
@@ -583,7 +582,7 @@ Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
 \prob$. We say $X$ is \emph{normally distributed} with standard deviation $\sigma$ and
 mean $\mu$ if $X$ has density
 \begin{align*}
-f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{ -\frac{(x - \mu)^2}{2 \sigma^2}}.
+f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}.
 \end{align*}
 If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
 distributed}.
@@ -612,7 +611,7 @@ is defined as $F_X(x) = \prob({X} \le x)$.
 Let $F_X$ be a joint distribution. Then
 \begin{enumerate}[a)]
 \item
-$\lim_{x \to -\infty} F_X(x) = 1$ and $\lim_{x \to \infty}
+$\lim_{x \to \infty} F_X(x) = 1$ and $\lim_{x \to -\infty}
 F_X(x) = 0$
 \item
 If $x \le y$, then $F_X(x \le F_X(y)$.
@@ -624,7 +623,7 @@ If all the $X_i$ are discrete, we say $X$ has a \emph{joint discrete
 distribution}. If all the $X_i$ are continuous, we say $X$ has a 
 \emph{joint continuous distribution}. If the distribution is jointly discrete,
 then for $x = (x_1, x_2, \ldots, x_n)$,
- $F(x) = \prob(X_1 = x_1, X_2, = x_2,
+ $f(x) = \prob(X_1 = x_1, X_2, = x_2,
 \ldots, X_n = x_n)$. If the distribution is jointly continuous, then by
 Radon-Nikodym
 \begin{align*}
@@ -697,9 +696,9 @@ or $\mu = \pm \infty$, we say that the expectation does not exist.
 Let $X$ be a discrete random variable with mass function 
 \begin{align*}
 f(k) = \begin{cases}
-Ak^{-2},  \quad &k > 0
+Ak^{-2},  \quad &k\in \zz^{+} 
 \\
-0, \quad & k \le 0
+0, \quad & \text{otherwise}
 \end{cases}
 \end{align*}
 (Observe that for $f$ to be a mass function, $A$ must be chosen such that
@@ -798,8 +797,8 @@ together.
 We say two random variables $X$ and $Y$ are \emph{correlated} 
 if $E(XY) = E(X)E(Y)$.
 \end{definition}
-Observe that independent random variables are correlated. However,
-correlation does not, in general, imply independence. Heuristically, this is
+Observe that independent random variables are uncorrelated. However,
+lack of correlation does not, in general, imply independence. Heuristically, this is
 because correlation is only a measure of the degree of linear dependence
 between variables, and does not capture higher order (for example, quadratic)
 types of dependence. 
@@ -968,7 +967,7 @@ f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
 \\
 & = \begin{cases}
 \frac{\binom{n}{k}p^k (1-p)^{n-k} \lambda^n
-e^{-\lambda}/n}{\sum_{m \ge k}
+e^{-\lambda}/n!}{\sum_{m \ge k}
 \binom{m}{k} p^k (1 - p)^{m-k} (\lambda^m e^{-\lambda})/m!}
 , \quad & n \ge k
 \\
@@ -1010,4 +1009,7 @@ n \frac{(q\lambda)^n e^{-q\lambda}}{n!}
 & = k + q\lambda.
 \end{align*}
 Hence, $E(N|K) = K + q \lambda$.
+
+
+
 \end{document}

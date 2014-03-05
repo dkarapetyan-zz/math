@@ -1,0 +1,153 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{graphicx}
+\usepackage[nohead, margin=0.5in]{geometry}
+\usepackage{enumerate}
+%\geometry{left=0.5in,right=0.5in,top=0.3in,bottom=0.5in} 
+\usepackage{listings}
+\pagestyle{empty}
+%Next are definitions of "\one" etc. 
+%This is an easy way of assigning points to your questions and to 
+%your table all at once. 
+\newcommand{\p}{\partial}
+\newcommand{\one}{20}
+\newcommand{\two}{20}
+\newcommand{\three}{20}
+\newcommand{\four}{20}
+\newcommand{\five}{20}
+\newcommand{\six}{20}
+\newcommand{\rr}{\mathbb{R}}
+\synctex=1
+
+\begin{document}
+
+
+%feel free to change the title page
+%
+
+\begin{center}
+    \hrulefill\\
+    {\bf \textsf{\raisebox{-0.10cm}{Fall 2013: MATH 280} \hspace{\fill} 
+            \raisebox{-0.10cm}{Numerical Analysis} \hspace{\fill}
+            \raisebox{-0.10cm}{David Karapetyan}}}\\
+    \hrulefill\\
+    {\large \rule{0cm}{1.2cm} \textsf{Wednesday 12/18/2013} \hfill
+        \textsf{Final} \hfill  \textsf{180 minutes}}\\
+    {\large\rule{0cm}{1.2cm}\textsf{Name: \framebox[2.9in]{\rule{0cm}{0.8cm}} 
+            \hspace{\fill}
+            Student ID: \framebox[2.1in]{\rule{0cm}{0.8cm}}}}\\
+\end{center}
+\vspace{0.8cm}
+
+\noindent
+{\bf \textsf{Instructions.}}
+
+\begin{enumerate}
+    \item Attempt all questions.   
+    \item Show all the steps of your work clearly.  
+    \item Good luck 
+        %The method (reasoning) used to 
+        %obtain an answer is worth more than the answer itself.   
+\end{enumerate}
+
+\vfill
+
+%The \rule commands create vertical space, which makes things sit nicely in 
+%vertical way in boxes of table below.
+
+\begin{center}
+    {\large
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Question} & \textsf{Points} &  \textsf{Your Score} \\
+            \hline
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q1} & \one &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q2} & \two &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q3} & \three &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q4} & \four &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q5} & \five &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q6} & \six &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{TOTAL} & 120 & \\
+            \hline
+        \end{tabular}
+    } 
+
+\end{center}
+
+\vfill
+
+
+\newpage
+\noindent
+\textbf{Q1}. \\ \\ 
+Let $A$ be a square matrix, and let $\sigma(A)$ denote its spectrum.
+Assuming Schur's Lemma, prove that
+\begin{align*}
+\sigma(A) = \inf_{\| \cdot \|} \| A \|
+\end{align*}
+
+\newpage
+
+\noindent
+\textbf{Q2}.\\ \\ 
+Write a finite difference scheme algorithm in C or C++ for solving the
+\emph{transport equation}
+\begin{align*}
+& \p_t u - \p_x u = t
+\\
+& u(x,0) = x
+\end{align*}
+where $u = u(x,t)$, $x \in \rr$, and $t \in \rr^{+}$.
+\newpage
+
+\noindent
+\textbf{Q3}. \\ \\ 
+Find the pseudoinverse for the matrix
+\begin{align*}
+A = 
+\begin{bmatrix}
+1 & 2 & 3\\
+2 & 4 & 6 \\
+2 & 3 & 4 \\
+\end{bmatrix}.
+\end{align*}
+\newpage
+\noindent
+\textbf{Q4}. \\ \\ 
+What is iterative refinement? State an iterative refinement scheme, and explain
+(without proof) the conditions necessary for it to converge. 
+\newpage
+\noindent \textbf{Q5}. \\ \\ 
+\noindent
+Derive the composite trapezoid formula via Newton-Coates by using
+the uniform spacing $h = (b-a)/n$, where $x_i = a + ih$, for $0 \le i \le n$.
+\vspace{2in}
+\newpage
+\noindent \textbf{Q6}. \\ \\ 
+\noindent
+Prove that a Hermitian, positive semidefinite matrix has real, positive
+eigenvalues.
+\vspace{2in}
+
+
+
+
+
+\end{document}
+
+
+

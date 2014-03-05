@@ -1,0 +1,362 @@
+
+% Essential Formatting
+   
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb,amscd,latexsym}
+\usepackage[multipart,letter]{urmathexam}
+
+% Basic User Def's
+
+\def\ds{\displaystyle}
+\def\t{\theta}
+% Beginning of the Document
+
+\begin{document}
+\examtitle{MATH 280}{PRACTICE FINAL EXAM}{Dec 17, 2012}
+\studentinfo
+\instructions{
+  \begin{itemize}
+  \item
+    {\bf No calculators are allowed on this exam.}
+  \item
+  {\bf $8" \times 11"$ (both sides) note sheet is allowed on this exam.}
+  \item
+    {\bf Please show all your work.
+         You may use back pages if necessary.
+         You may not receive full credit for
+         a correct answer if there is no work shown.}
+    {\bf Attempt all questions.}
+    \end{itemize}
+}
+\finishfirstpage
+
+% Problems Start Here % ----------------------------------------------------- %
+\newpage
+
+
+\problem{12} 
+\noindent 
+(a) Order the functions $x, , \sqrt{x}, e^x, ln(x), x^2, x^3$ from left to right such that $f$ is to the left of $g$ if $f=O(g)$ as $x \to 0$. \\
+
+\vspace{1 in}
+
+\noindent
+(b) Order the functions $x, \sqrt{x}, e^x, ln(x), x^2, x^3$ from left to right such that $f$ is to the left of $g$ if $f=O(g)$ as $x \to \infty$. \\
+
+\vspace{1 in}
+
+\noindent
+(c) State if the following assertions are true or false and give a brief explanation of your answer: \\
+(i) $\frac{1}{n ln(n)} = O(\frac{1}{n})$ as $n \to \infty$. \\
+
+\vspace{1in}
+
+\noindent
+(ii) $\frac{1}{n ln(n)}=o(\frac{1}{n})$ as $n \to \infty$. \\
+
+\vspace{1in}
+
+\noindent
+(iii) $\sin(x) = 1 - \frac{1}{2}x^2 + O(x^3)$ as $x \to \infty$. \\
+
+\vspace{1in}
+
+\noindent
+(iv) $\frac{1}{1+x^2} = 1- x^2+  O(x^3)$ as $x \to 0$. \\
+
+
+ 
+    
+\newpage
+\problem{12}
+Consider the recurrence 
+$$
+x_{n+2}=x_{n+1}+2x_n
+$$
+for $n \geq 0$. \\
+
+\noindent
+(a) If $E$ is the shift operator on the vector space of complex sequences, and $\hat{x}=(x_0,x_1,x_2,\dots)$, rewrite the recurrence in the form 
+$p(E)\hat{x}=\hat{0}$. What is the characteristic polynomial $p(x)$? 
+
+\vspace{2 in}
+
+\noindent
+(b) Find the roots of the characteristic polynomial and use them to describe the general solution to this recurrence. 
+
+\vspace{1.5in}
+
+\noindent
+(c) If $x_0=0$ and $x_1=1$, find $x_2, x_3, x_4, x_5$ directly from the recurrence. \\
+
+\vspace{1in}
+
+\noindent
+(d) Find the particular solution to this recurrence when $x_0=0$ and $x_1=1$. In particular express $x_n$ as a function of $n$.
+
+\newpage
+
+\problem{12}
+(a) Find the binary expansion of the number $272$. \\
+
+\vspace{3 in}
+
+\noindent
+(b) Find the binary expansion of the number $\frac{1}{5}$. \\
+
+\vspace{3 in}
+
+\noindent
+(c) Find the hexadecimal representation of the binary number $110.110010110010$.
+
+\newpage
+
+\problem{6}
+\noindent
+Recall the typical $32$ bit computer representation of a floating point number as discussed in the book, reserves $1$ bit (1st bit) for the sign of the number, 
+$8$ bits (bits 2 thru 9) for the biased exponent, and $23$ bits (bits 10 thru 32) for the mantissa. Express the representation 
+$11011000010000000000000000000000$ in the form $\pm q 2^m$. Give the value of this number in decimal.
+
+\vspace{2.5 in}
+
+\problem{6}
+\noindent
+Let $f(x)=x^5$ and $x_0=10$ with absolute error at most $\delta_x=0.1$. Compute $f'(x_0)$ and the condition number and use them to estimate 
+the absolute and relative error in $y_0=f(x_0)$. 
+
+\newpage
+\problem{6}
+In the bisection method, if $c_n$ is accurate to $20$ binary digits, then $c_{n+1}$ is accurate to at least $\underline{~~~~~~~~~~~~}$ binary digits. \\
+In the Newton-Raphson method, if $x_n$ is accurate to $15$ decimal digits, then a reasonable estimate for the accuracy of $x_{n+1}$ is that it is 
+accurate to $\underline{~~~~~~~~~~~~~~~}$ decimal digits. \\ 
+
+\problem{6}
+(a) What is the Newton-Raphson function $N_f(x)$ for $f(x)=x^3-7$. Simplify $N_f(x)$ until it is of the form 
+$ax+\frac{b}{x^2}$ for suitable constants $a$ and $b$. For which $x$ is it undefined? Explain why if we start with a positive seed $x_0$, we never 
+encounter this problem.
+
+\vspace{2 in}
+
+\noindent
+(b) If $x_0=1$ compute $x_1, x_2$.
+
+\newpage
+\problem{10}
+(a) Write down the recursion one obtains when one applies the secant method to the function $f(x)=x^3-10$. 
+
+\vspace{2 in}
+
+\noindent
+(b) Prove that in the secant method, to obtain $x_{n+2}$ one can draw a secant line between the points $(x_n,f(x_n))$ and $(x_{n+1},f(x_{n+1}))$ on the 
+graph of $f$ and see where it intersects the $x$-axis.
+
+\newpage
+\problem{12}
+Use Horner's method to do the following tasks. Please do not use a different method. \\
+(a) Evaluate the polynomial $p(x)=x^4+3x^3+2x^2+x+1$ at $x=2$ and find $q(x)=\frac{p(x)-p(2)}{x-2}$. 
+
+\vspace{ 2 in}
+
+\noindent
+(b) Verify that $-1$ is a root of the polynomial $p(x)=x^4+3x^3+2x^2+x+1$ and deflate the polynomial at that root. \\
+
+\vspace{2 in}
+
+\noindent
+(c) Find $p'(2),p''(2), p'''(2)$ for the same polynomial in examples (a) and (b).
+
+\newpage
+\problem{10} Find an annulus in the complex plane such that all the zeros of the polynomial 
+$p(z)=4z^6 + 8z^5 + 4z^4 + 3z^3+2z^2+z+13$ must lie in it. Use the localization theorem and explain all your work.
+
+
+\newpage
+\problem{8} 
+(a) Explain why $f(x)=\cos(x)$ maps $[0,1] \to [0,1]$ and is a contraction on this interval. 
+
+\vspace{3 in}
+
+\noindent
+(b) Explain why for any starting seed $x_0 \in \mathbb{R}$ we have the recursive sequence given by $x_{n+1}=\cos(x_n)$ converges to the 
+same limit (independent of $x_0$).
+
+\anotherpart
+
+\problem{8}
+\noindent
+Find the LU factorization of the matrix $A=\begin{bmatrix}   -4 & - 3 \\ -4 & - 8 \end{bmatrix}$ where $L$ is unit lower triangular and $U$ is upper triangular.
+
+\vspace{3in}
+
+\problem{10}
+Recall on $\mathbb{R}^n$ we have a few different norms. For example
+$$
+||x||_{\infty}=max\{ |x_i| | 1 \leq i \leq n \}
+$$
+$$
+||x||_{1}=\sum_{i=1}^n |x_i| 
+$$
+and the Euclidean norm 
+$$
+||x||_{2}=\sqrt{\sum_{i=1}^n x_i^2}.
+$$
+(a) Show that $$||x||_{\infty} \leq ||x||_2 \leq ||x||_1$$ for all vectors $x \in \mathbb{R}^n$. \\
+
+\vspace{2in}
+
+\noindent
+(b) Show that $$||x||_1 \leq n ||x||_{\infty}$$ and $$||x||_2 \leq \sqrt{n} ||x||_{\infty}$$ for all $x \in \mathbb{R}^n$. \\
+
+\vspace{2in}
+
+\problem{12}
+Let $\mathbb{A} = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 1 & 1 \end{bmatrix}$. \\
+(a)Compute $||\mathbb{A}||_{\infty}$ and $\kappa_{\infty}(\mathbb{A})$ the condition number of $\mathbb{A}$ computed 
+using the matrix norm $||\cdot ||_{\infty}$ subordinate to the vector norm $|| \cdot ||_{\infty}$. \\
+
+\vspace{2in}
+
+\noindent
+(b) If $b=(1,0,2)^T$ and $b'=(1.01,-0.02, 2.03)^T$ and $\mathbb{A}x=b, \mathbb{A}x'=b'$, 
+what is an upper bound for $||x-x'||_{\infty}$? (Give an upper bound that does not require you to solve for $x$ and $x'$.) What is an upper bound for $\frac{||x-x'||}{||x||}$?
+
+\vspace{ 2in}
+
+\noindent
+(c) Let $\mathbb{B}= \begin{bmatrix} 1.2 & 0.4 & -0.3 \\ 0.2 & 0.9 & -0.1 \\ 0.1 & 0.3 & 0.8 \end{bmatrix}$.
+Find $\mathbb{A}=\mathbb{I} - \mathbb{B}$ and compute $||\mathbb{A}||_{\infty}$. 
+Use this to explain why $\mathbb{B}^{-1}$ exists and give a Neumann series (matrix power series) that converges to $\mathbb{B}^{-1}$. \\
+
+\vspace{ 3 in}
+
+\problem{12}
+\noindent
+Consider the system of linear equations given by:
+$$
+\begin{bmatrix} 3 & 1  \\ 1 & 3   \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2  \end{bmatrix}
+=
+\begin{bmatrix} 5 \\ 3  \end{bmatrix}
+$$
+(a) In the Jacobi Iterative Method, find the splitting matrix $\mathbb{Q}$ for this system and compute 
+$\mathbb{I} - \mathbb{Q}^{-1} \mathbb{A}$. Write down the corresponding recursion system and 
+find $|| \mathbb{I}-\mathbb{Q}^{-1}\mathbb{A}||_{\infty}$. Does this method converge to a solution 
+for every initial seed in this case? \\
+
+\newpage
+
+\noindent
+(b) In the Gauss-Seidel Method, find the splitting matrix $\mathbb{Q}$ for this system and compute 
+$\mathbb{I} - \mathbb{Q}^{-1} \mathbb{A}$. Write down the corresponding recursion system and 
+find $|| \mathbb{I}-\mathbb{Q}^{-1}\mathbb{A}||_{\infty}$. Does this method converge to a solution for every initial seed in this case?\\
+
+\vspace{3in}
+
+\problem{8}
+Find the Gershgorin disks for each row of the matrix $\mathbb{A} = \begin{bmatrix} 6 & 2 & 1 \\ 1 & -5 & 0 \\ 2 & 1 & 4 \end{bmatrix}$. 
+Carefully shade the area given by these disks in the complex plane. Recall all the eigenvalues of $\mathbb{A}$ must lie in this shaded area.
+
+\vspace{3in}
+
+\problem{12}
+Recall a $m \times n$ matrix $\mathbb{A}$ has $n$ singular values $\sigma_1, \dots, \sigma_n$ which are the 
+positive square roots of the eigenvalues of the $n \times n$ matrix $\mathbb{A}^* \mathbb{A}$. Furthermore the matrix $\mathbb{A}^* \mathbb{A}$ is Hermitian and thus there 
+is an orthonormal basis $\{ \hat{u}_1, \dots, \hat{u}_n \}$ of $\mathbb{C}^n$ (or $\mathbb{R}^n$ if working with real matrices) consisting of eigenvectors of $\mathbb{A}^*\mathbb{A}$. In particular $\mathbb{A}^*\mathbb{A} \hat{u}_i = \sigma_i^2 \hat{u}_i$ for $1 \leq i \leq n$. The rank $r$ of $\mathbb{A}^* \mathbb{A}$ 
+is hence the same as the number of nonzero singular values of $\mathbb{A}$. \\
+(a) Find the singular values, corresponding orthonormal basis $\{ \hat{u}_1, \dots, \hat{u}_n \}$ and rank($\mathbb{A}^*\mathbb{A}$) of the matrix 
+$\begin{bmatrix} 2 & 1 \end{bmatrix}$.
+
+\vspace{3in}
+\noindent
+(b) Recall given a $m \times n$ matrix $\mathbb{A}$, we can write $A=PDQ$ (singular-value decomposition) where $P$ is a $m \times m$ unitary matrix, $Q$ is a $n \times n$ unitary matrix and $D$ is a (pseudo) diagonal $m \times n$ matrix whose nonzero "diagonal" entries are $\sigma_1, \dots, \sigma_r$, the nonzero singular values of $\mathbb{A}$. Recall the rows of $Q$ are given by the adjoints of the set $\{ \hat{u}_1, \dots, \hat{u}_n \}$. The first $r$ columns of $P$ are computed 
+via the formula $\hat{v}_i = \frac{1}{\sigma_i} \mathbb{A} \hat{u}_i$ and the remaining $m-r$ are an extension to an orthonormal basis. The pseudoinverse 
+$\mathbb{A}^+$ of $\mathbb{A}$ is given by $Q^*D^+P^*$ where $D^+$ is the (pseudo) diagonal $n \times m$ matrix whose nonzero 
+"diagonal" entries are $\frac{1}{\sigma_1}, \dots, \frac{1}{\sigma_r}$. Find the singular value decomposition and pseudo inverse of the matrix 
+in part(a). \\
+
+\newpage
+
+\problem{12}
+(a) Find the Lagrange cardinal functions $\ell_i(x), 0 \leq i \leq 2$ for the nodes $x_0=1, x_1=0, x_2=-1$. 
+Simplify your answers. 
+
+\vspace{2 in}
+
+\noindent
+(b) Recall given a function $f$ and distinct nodes $x_0, x_1, \dots, x_n$, the unique degree $\leq n$ polynomial $p(x)$ with $p(x_i)=f(x_i), 0 \leq i \leq n$ 
+is given by 
+$$
+\sum_{k=0}^n f[x_0,\dots,x_k] \prod_{i < k} (x-x_i)
+$$
+where $f[x_0,\dots,x_k]$ is a divided difference. Use the recursive algorithm discussed in class and the book to find the divided differences and 
+the interpolating polynomial for the following data points: \\
+$\begin{matrix} x & | & 1 & 2 & 4 
+\\  y & | & 3 & 4 & 0
+\end{matrix}$
+
+\newpage
+
+\noindent
+(c) Recall in Hermite interpolation where values of a function $f(x)$ and its derivatives need to be interpolated, this can be viewed as an algorithmic interpolation  where $x$ values are repeated. In this case the recursion becomes
+for $x_0 \leq x_1 \leq \dots \leq x_n$:
+
+$$
+f[x_0, \dots, x_n] = \begin{cases} \frac{f[x_1,\dots,x_n] - f[x_0, \dots, x_{n-1}]}{x_n-x_0} \text{ if } x_n \neq x_0 \\
+\frac{f^{(n)}(x_0)}{n!} \text{ if } x_0=x_n
+\end{cases}
+$$
+Use this to find a quadratic interpolating polynomial $f(x)$ such that \\
+$f(0)=1, f'(0)=2, f(1)=-1$. Though this case can be done directly by other methods, please use the Hermite interpolating algorithm.
+
+\vspace{3in}
+
+\problem{8}
+Show that the following approximation holds for any $f \in C^5[a,b]$ (i.e. $f$ has continuous 5th derivative on the interval $[a,b]$) where the error term is $O(h^4)$.
+$$
+f'(x) \sim \frac{1}{12h}[-f(x+2h)+8f(x+h)-8f(x-h)+f(x-2h)] 
+$$
+
+\newpage
+
+\problem{8}
+In numerical integration formulas $\int_a^b f(x) dx \sim \sum_{i=0}^n A_i f(x_i)$ derived from interpolating $f$ by a degree $\leq n$ polynomial at 
+the nodes $x_0, \dots, x_n$, it is known that the formula has zero error for $f \in \Pi_n$ where $Pi_n$ is the vector space of degree $\leq n$ polynomials. \\
+(a) In general it is known that the error term in this approximation is minimized over all $f$ when the nodes are chosen as the zeros of the Chebyshev polynomial.
+Draw a picture indicating how one can geometrically find the placement of these nodes in the case where $n=3$ i.e. $4$ nodes $x_0, x_1, x_2, x_3$ are used 
+for the interval $[-2,2]$.
+
+\vspace{3 in}
+
+\noindent
+(b) On the other hand, one can also ask to choose nodes such that the error is zero for a large a vector space as possible. These are called 
+Gauss Quadrature Formulas. In general the formula 
+$$
+\int_a^b f(x) dx ~ \sum_{i=0}^n A_i f(x_i)
+$$
+can be made to have zero error for all $f \in \Pi_k$ where $k=$~\underline{\hskip 1.5 in}. (Please fill in the blanks with the correct function of $n$).
+In the case of $6$ nodes $x_0, x_1, \dots x_5$, and the interval $[0,1]$ please describe a process to choose the nodes correctly to get a 
+Gaussian Quadrature formula. You do not have to carry out the computations as they would be very tedious but please describe the process so 
+that in principle someone could follow your process to get the answer.
+
+\newpage
+
+\problem{10}
+Given the first order differential equation initial condition problem:
+$$
+\frac{dx}{dt} = x^2+t^2
+$$
+$x(0)=1$.
+(a) Explain why there must exist a unique solution $x(t)$ for $t$ in some open interval about $t=0$. 
+
+\vspace{2 in}
+
+\noindent
+(b) Use the 1st order Taylor method (Euler method) to derive an approximate recursive formula for 
+$x(t+h)$ in terms of $x(t),t,h$. For any given step size $h$, this can then be used to generate approximate values of the solution.
+
+% Problems End Here % ------------------------------------------------------- %
+
+\problemsdone
+\end{document}
+
+% End of the Document

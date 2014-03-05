@@ -1,0 +1,145 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{graphicx}
+\usepackage[nohead, margin=0.5in]{geometry}
+\usepackage{enumerate}
+%\geometry{left=0.5in,right=0.5in,top=0.3in,bottom=0.5in} 
+\usepackage{listings}
+\pagestyle{empty}
+%Next are definitions of "\one" etc. 
+%This is an easy way of assigning points to your questions and to 
+%your table all at once. 
+\newcommand{\one}{20}
+\newcommand{\two}{20}
+\newcommand{\three}{20}
+\newcommand{\four}{20}
+\newcommand{\five}{20}
+\newcommand{\rr}{\mathbb{R}}
+\synctex=1
+
+\begin{document}
+
+
+%feel free to change the title page
+%
+
+\begin{center}
+    \hrulefill\\
+    {\bf \textsf{\raisebox{-0.10cm}{Spring 2014: MATH 285} \hspace{\fill} 
+            \raisebox{-0.10cm}{Introduction to Applied Mathematics} \hspace{\fill}
+            \raisebox{-0.10cm}{David Karapetyan}}}\\
+    \hrulefill\\
+    {\large \rule{0cm}{1.2cm} \textsf{Wednesday 03/05/2014} \hfill
+        \textsf{Midterm} \hfill  \textsf{75 minutes}}\\
+    {\large\rule{0cm}{1.2cm}\textsf{Name: \framebox[2.9in]{\rule{0cm}{0.8cm}} 
+            \hspace{\fill}
+            Student ID:\@\framebox[2.1in]{\rule{0cm}{0.8cm}}}}\\
+\end{center}
+\vspace{0.8cm}
+
+\noindent
+{\bf \textsf{Instructions.}}
+
+\begin{enumerate}
+    \item Attempt all questions.   
+    \item Show all the steps of your work clearly.  
+    \item Good luck 
+        %The method (reasoning) used to 
+        %obtain an answer is worth more than the answer itself.   
+\end{enumerate}
+
+\vfill
+
+%The \rule commands create vertical space, which makes things sit nicely in 
+%vertical way in boxes of table below.
+
+\begin{center}
+    {\large
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Question} & \textsf{Points} &  \textsf{Your Score} \\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q1} & \one &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q2} & \two &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q3} & \three &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q4} & \four &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q5} & \five &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+
+            \textsf{TOTAL} & 100 & \\
+            \hline
+        \end{tabular}
+    } 
+
+\end{center}
+
+\vfill
+
+
+\newpage
+\noindent
+\textbf{Q1}. \\ \\ 
+A rare disease affects one person in $10^5$. A test for the disease
+is wrong with probability $1/100$; that is, it is positive with probability
+$1/100$ for someone who is in fact healthy, and negative
+with probability $1/100$ for someone who is in fact ill. What is the probability
+that you have the disease given that you took the test and it is positive?
+\newpage
+\noindent
+\textbf{Q2}.\\ \\ 
+\begin{enumerate}[(a)]
+    \item Give the definition of a $\sigma$-algebra on a sample space. What are the properties of a probability measure on this $\sigma$-algebra? 
+        \vspace{5in}
+    \item Give the definition of a real-valued random variable.
+\end{enumerate}
+
+\newpage
+
+\noindent
+\textbf{Q3}. \\ \\ 
+
+Let $X$ and $Y$ be two continuous independent random variables with associated densities $f_X$ and $f_Y$, respectively. Derive the density functions of $X+Y$ and $X^{1/2}$, where we are taking the \emph{positive} root of $X$.  
+\newpage
+\noindent
+\textbf{Q4}. \\ \\ 
+\noindent
+\begin{enumerate}[(a)]
+    \item
+Suppose we have a biased coin ($3/4$ probability for flipping heads) and assign $-1$ points to flipping tails, and $+1$ points to
+flipping heads. We play a game where, starting with $0$ points, we flip this coin repeatedly until we obtain $-1$ points, or $2$ points. What is the expected number of flips before the
+game terminates? 
+\vspace{4in}
+\item Let getting to $-1$ points be considered a loss, and to $2$ points a win.
+    What is the probability that you win the game? 
+\end{enumerate}
+\newpage
+\noindent
+
+\noindent \textbf{Q5}. \\ \\ 
+\noindent
+Prove that, for discrete random variables $X$ and $Y$ 
+\begin{align*}
+f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+\end{align*}
+Show that the same equality holds if $X$ and $Y$ are continuous random
+variables.
+
+\vspace{2in}
+
+
+
+
+\end{document}
+
+
+

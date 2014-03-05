@@ -1,0 +1,92 @@
+\documentclass[12 pt]{article}
+\usepackage{amsmath,amsfonts,amsthm,amscd}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{pro}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{statement}[thm]{Statement}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{quot}[]{Result}
+\newcommand{\dime}{\operatorname{dim}}
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\chan}{\operatorname{char}}
+\newcommand{\degr}{\operatorname{deg}}
+\newcommand{\expo}{\operatorname{exp}}
+\newcommand{\spant}{\operatorname{span}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Term}{\operatorname{Term}}
+\newcommand{\Init}{\operatorname{Init}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Endo}{\operatorname{End}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Order}{\operatorname{ord}}
+\newcommand{\kerl}{\operatorname{Ker}}
+\newcommand{\Img}{\operatorname{Image}}
+\newcommand{\sine}{\operatorname{sin}}
+
+\begin{document}
+
+\centerline{\bf MATH 280: Homework 9}
+
+\bigskip
+
+\noindent
+1. \\ Recall a $m \times n$ matrix $\mathbb{A}$ has $n$ singular values $\sigma_1, \dots, \sigma_n$ which are the 
+positive square roots of the eigenvalues of the $n \times n$ matrix $\mathbb{A}^* \mathbb{A}$. Furthermore the matrix $\mathbb{A}^* \mathbb{A}$ is Hermitian and thus there 
+is an orthonormal basis $\{ \hat{u}_1, \dots, \hat{u}_n \}$ of $\mathbb{C}^n$ (or $\mathbb{R}^n$ if working with real matrices) consisting of eigenvectors of $\mathbb{A}^*\mathbb{A}$. In particular $\mathbb{A}^*\mathbb{A} \hat{u}_i = \sigma_i^2 \hat{u}_i$ for $1 \leq i \leq n$. The rank $r$ of $\mathbb{A}^* \mathbb{A}$ 
+is hence the same as the number of nonzero singular values of $\mathbb{A}$. \\
+Find the singular values, corresponding orthonormal basis $\{ \hat{u}_1, \dots, \hat{u}_n \}$ and rank($\mathbb{A}^*\mathbb{A}$) of the following matrices: \\
+(a) $\begin{bmatrix} 4 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 7 \\ 0 & 0 & 0 \end{bmatrix} $\\
+
+\noindent
+(b) $\begin{bmatrix} 2 & 1 \end{bmatrix}$ \\
+
+\noindent
+(c) $\begin{bmatrix} 5 \\ - 4 \end{bmatrix} $
+
+
+\medskip
+
+\noindent
+2. \\ For a $m \times n$ matrix $\mathbb{A}$ show that $\mathbb{A}^*\mathbb{A}$ and $\mathbb{A}$ have the same nullspace.
+(Hint: If $\mathbb{A}^*\mathbb{A}\hat{x}=\hat{0}$, consider $\langle\mathbb{A}^*\mathbb{A}\hat{x}, \hat{x} \rangle$ and use it to show 
+$\mathbb{A}\hat{x}=\hat{0}$.) Explain how this and the rank-nullity theorem shows that $rank(\mathbb{A}^*\mathbb{A})=rank(\mathbb{A})$ in general.
+
+\medskip
+
+\noindent
+3. \\Recall given a $m \times n$ matrix $\mathbb{A}$, we can write $A=PDQ$ (singular-value decomposition) where $P$ is a $m \times m$ unitary matrix, $Q$ is a $n \times n$ unitary matrix and $D$ is a (pseudo) diagonal $m \times n$ matrix whose nonzero "diagonal" entries are $\sigma_1, \dots, \sigma_r$, the nonzero singular values of $\mathbb{A}$. Recall the rows of $Q$ are given by the adjoints of the set $\{ \hat{u}_1, \dots, \hat{u}_n \}$. The first $r$ columns of $P$ are computed 
+via the formula $\hat{v}_i = \frac{1}{\sigma_i} \mathbb{A} \hat{u}_i$ and the remaining $m-r$ are an extension to an orthonormal basis. The pseudoinverse 
+$\mathbb{A}^+$ of $\mathbb{A}$ is given by $Q^*D^+P^*$ where $D^+$ is the (pseudo) diagonal $n \times m$ matrix whose nonzero 
+"diagonal" entries are $\frac{1}{\sigma_1}, \dots, \frac{1}{\sigma_r}$. \\
+(a) Find the singular-value decomposition and the pseudoinverse of the matrix in 1(a). \\
+(b) Find the singular-value decomposition and the pseudoinverse of the matrix in 1(b). \\
+(c) Find the singular-value decomposition and the pseudoinverse of the matrix in 1(c). \\
+
+\medskip
+
+\noindent
+4. \\
+Recall a minimal solution to $A\hat{x}=\hat{b}$ is  a solution $\hat{x}$ that minimizes $||A\hat{x}-b||_2$ (least squares solution) such that it is of minimal length $||\hat{x}||_2$ amongst such least square solutions. Find the minimal solutions to the following systems: \\
+(a) 
+$$\begin{bmatrix} 1 \\ 1 \\1 \end{bmatrix} x_1 = \begin{bmatrix} 2 \\ 4 \\ 0 \end{bmatrix}.$$ \\
+(b) 
+$$\begin{bmatrix} 4 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 7 \\ 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} 
+= \begin{bmatrix} 1 \\ 2 \\ 4 \\ 0 \end{bmatrix}.$$
+
+\noindent
+5. \\
+Explain how in practice one could devise an algorithm to compute the singular
+value decomposition of a matrix. Hint: break your algorithm into pieces, and attack
+each piece with an algorithm we've learned previously. 
+
+\end{document}
+
+
