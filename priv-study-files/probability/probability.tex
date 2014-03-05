@@ -59,14 +59,14 @@ filebordercolor=Red
 	outcomes of an experiment, or, more generally, combinations of outcomes of an experiment.
 	For example, we would like to know the likelihood of the Dodgers
 	winning the pennant, or the likelihood that stock of a company will go up
-	in a week. We have used words to describe these events--since we are doing
+	in a week. We have used words to describe these events---since we are doing
 	mathematics, we would like to translate everything to numbers, without losing
 	any of the meaning.
 \begin{example}
 A fair coin is tossed. There are two possible outcomes: heads (denoted by $0$) 
 and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the \emph{outcome
 space} or \emph{sample space}. The \emph{event space} consists of
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item Outcome is heads or tails
 \item Outcome is heads and tails
 \item Outcome is heads
@@ -83,7 +83,7 @@ their intersection.
 \begin{example}
 A die with six distinct faces is thrown. The outcome space is
 $ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item The outcome is even
 \item The outcome is odd
 \item The outcome is greater than $2$
@@ -98,8 +98,9 @@ Observe that the larger the outcome space, the more complex
 our event space may become. Also observe that the event
 ``The outcome is even'' is the \emph{complement} (with respect to the
 outcome space) of
-the event ``The outcome is odd''. That is, $ \left\{ 2,4,6 \right\}^c
-= \left\{ 1,3,5 \right\} $.
+the event ``The outcome is odd''. That is,
+${\left\{ 2,4,6 \right\}}^c
+= \left\{ 1,3,5 \right\}$.
 
 Motivated by these two examples, we seek to generalize our notion of
 event space such that it completely models all possible events
@@ -110,7 +111,7 @@ or \emph{filter} on $\Omega$, denoted by $\filter(\Omega)$ is defined to be a
 set of subsets of $\Omega$ that is closed under countable
 unions and complements.
 More precisely
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item $ A_i \in  \sigma \implies \cup_i A_i \in \sigma$
 \item $A_i \in \sigma \implies A_i^c \in \sigma$
 \end{enumerate}
@@ -122,7 +123,7 @@ is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
 \right\},\ldots \right\}$. This is an infinite outcome space.
 \end{example}
 \begin{example} The following are all filters of $\Omega$:
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item $\left\{ \emptyset, \Omega \right\}$
 \item $\left\{ \emptyset, A, A^c, \Omega \right\}$
 \item The power set of $\Omega$
@@ -161,7 +162,7 @@ This discussion motivates the following.
 \begin{definition}
 A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
 $\prob: \filter \to [0,1]$ which satisfies
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 	\item
 $\prob(\Omega) = 1$, $\prob(\emptyset) = 0$
 \item
@@ -173,7 +174,7 @@ measures such as $P \equiv 0$ or $P \equiv 1$. Furthermore,
 we can show the following, whose proof we leave to the reader.
 \begin{lemma}
 Let $\prob$ be a probability measure on $(\Omega, \filter)$
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item $\prob(A^c) = 1 - \prob(A)$
 \item $\prob(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 \item If $B \subset A$, then $P(A) \ge P(B)$.
@@ -205,7 +206,8 @@ P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 0.
 We now wish to tackle statement that often occur in practice,
 such as ``What is the probability that it will snow today, \emph{given}
 that the sky is grey today'', or ``What is the probability that a mystery word
-is `zebra', \emph{given} that the first three letters are `z', `e', `b'''.
+is `zebra', \emph{given} that the first three letters are
+`z', `e', `b'.
 Observe that when we are given information, it allows us to adjust the
 probability of the event we are interested in. We wish to express this
 mathematically. Motivated by the ``zebra'' example, we have the following.
@@ -232,8 +234,8 @@ we rolled a $6$. Putting this all together, we obtain
 \prob(A | B) & = \lim_{N \to \infty} N(A \cap B)/(N -
 \text{number of occurrences of $6$})
 \\
-& = \lim_{N \to \infty} \frac{N(A \cap B)}{N} \times \frac{1}{1 - (\text{number
-of occurrences of $6$)/N}}
+& = \lim_{N \to \infty} \frac{N(A \cap B)}{N}
+\times \frac{1}{1 - (\text{number of occurrences of $6$})/N}
 \\
 & = \frac{\prob(A \cap B)}{(1 - \prob(B^c))}
 \\
@@ -266,7 +268,8 @@ discuss this more in the upcoming lectures.
 Often, when information is given, it makes computing probabilities easier.
 Consequently, the following result is extremely useful.
 \begin{lemma}
-Let $ \left\{ B_i \right\}_{i=1}^n$ be a partition of $\Omega$. Then
+Let $ {\left\{ B_i \right\}}_{i=1}^n$ be a
+partition of $\Omega$. Then
 for any $A \in \filter$
 \begin{align*}
 \prob(A) = \sum_{i = 1}^n \prob(A | B_i) \prob(B_i).
@@ -356,7 +359,7 @@ cancer. Take the test again.
 \begin{definition}
 We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if \[\prob(A |
 B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) \prob(B).\] More generally,
-a family $ \left\{ A_i \right\}_{i = 1}^n $ is
+a family $ {\left\{ A_i \right\}}_{i = 1}^n $ is
 \emph{independent} if 
 \[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
 \end{definition}
@@ -456,8 +459,8 @@ $f(x) \doteq \prob(X = x)$ its \emph{mass function}.
 Lastly, we remark that there exist random variables which are neither
 discrete nor continuous, but rather a mixture of the two.
 \begin{example}[A Random Variable that is Neither Discrete Nor Continuous]
-A coin is tossed. We assign the event ``lands heads" the number $-1$, and 
-if it lands tails, we toss a rod, and assign ``lands tails" how far the rod has
+A coin is tossed. We assign the event ``lands heads'' the number $-1$, and 
+if it lands tails, we toss a rod, and assign ``lands tails'' how far the rod has
 landed from us. In this case, our random variable $X$ is neither continuous nor
 discrete: it has a point mass at $X = H$, but is continuous otherwise.
 Observe that $X | \text{lands tails}$ and $X | \text{lands heads}$ are
@@ -472,7 +475,7 @@ Let $X$ be the random variable denoting the number of successes
 in $n$ independent trials, where $p$ is the probability of success in
 an individual trial. Then
 \begin{equation*}
-b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k (1 - p)^{n-k}
+b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k {(1 - p)}^{n-k}
 \end{equation*}
 is called the \emph{Bernoulli distribution} of $k$ successes
 in $n$ independent trials, where $p$ is the probability of success on an
@@ -500,12 +503,12 @@ Observe that with the above assumptions, we obtain
 and so
 \begin{align*}
 P(X = k)
-& = \binom{n}{k} p^k (1 - p)^{n-k} \\
+& = \binom{n}{k} p^k {(1 - p)}^{n-k} \\
 & \approx \frac{n^k p^k q^{n-k}}{k!} \\
 & = \frac{\lambda^k q^{n-k}}{k!} \\
-& = \frac{\lambda^k (1-p)^{n-k}}{k!} \\
-& = \frac{\lambda^k (1-\lambda/n)^{n-k}}{k!} \\
-& \approx \frac{\lambda^k (1-\lambda/n)^{n}}{k!} , \quad n >> 1\\
+& = \frac{\lambda^k {(1-p)}^{n-k}}{k!} \\
+& = \frac{\lambda^k {(1-\lambda/n)}^{n-k}}{k!} \\
+& \approx \frac{\lambda^k {(1-\lambda/n)}^{n}}{k!} , \quad n >> 1\\
 & \approx \frac{\lambda^k e^{-\lambda}}{k!}
 \end{align*}
 \begin{definition}
@@ -531,7 +534,7 @@ Let $\lambda$ be the average number of successes in the interval $[0,1]$.
 The probability of finding exactly $k$ successes  in the subinterval $[0,t]$,
 $t \le 1$, is given by
 \begin{align*}
-p(k, \lambda t) = \frac{(\lambda t)^{k} e^{-\lambda t}}{k!}
+p(k, \lambda t) = \frac{{(\lambda t)}^{k} e^{-\lambda t}}{k!}
 \end{align*}
 with average $\lambda t$.
 \end{theorem}
@@ -546,7 +549,7 @@ either success or failure as the outcome, what is the probability
 that the $rth$ success occurs at the $vth$ trial, where $r \le v \le n$?
 We reason this out as follows: there is a total of $\binom{v-1}{r-1}$ ways to
 arrange $r-1$ successes out of $v-1$ trials, each with associated probability
-$p^{r-1}(1 - p)^{(v-1) - (r-1)} = p^{r-1}q^{v-r}$. Right after the $v-1$ trial, we would like to
+$p^{r-1}{(1 - p)}^{(v-1) - (r-1)} = p^{r-1}q^{v-r}$. Right after the $v-1$ trial, we would like to
 have the $rth$ success. This success has associated probability $p$. Putting
 everything together, we obtain the following.
 \begin{theorem}
@@ -582,7 +585,7 @@ Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
 \prob$. We say $X$ is \emph{normally distributed} with standard deviation $\sigma$ and
 mean $\mu$ if $X$ has density
 \begin{align*}
-f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}.
+f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{{(x - \mu)}^2}{2 \sigma^2}}.
 \end{align*}
 If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
 distributed}.
@@ -591,7 +594,7 @@ distributed}.
 Up to now, we have considered random variables taking values in $\rr$.
 It is easy to extend this theory to random variables taking values in $\rr^n$:
 our distribution of $X$ is then given by $\mu_X(B) =
-\prob(X^{-1}(B)$ for every Borel set $B \in
+\prob(X^{-1}(B))$ for every Borel set $B \in
 \rr^2$. Using our intuition, we ask if our distribution function should be of
 \begin{align*}
 F(x) = \int_{-\infty}^{x} f(s) \, ds
@@ -602,19 +605,19 @@ where now $ds$ denotes Lebesgue measure on $\rr^2$ and $x = (x_1, x_2) \in
 First, observe that if ${X}: \Omega \to \rr^n$, then $X = (X_1, X_2,
 \ldots, X_n)$, where $X_i: \Omega \to \rr$. Hence, our study of $X$ will be
 simplified if we can study it component-wise. Motivated by this, we define
-$x \le y$ iff $x_i \le y_i$. 
+$x \le y$ if and only if $x_i \le y_i$. 
 \begin{definition}
 Let ${X} = (X_1, X_2, \ldots, X_n)$. Then the \emph{joint distribution}
 $F_X: \rr^n \to \rr$
 is defined as $F_X(x) = \prob({X} \le x)$.
 \begin{lemma}
 Let $F_X$ be a joint distribution. Then
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item
 $\lim_{x \to \infty} F_X(x) = 1$ and $\lim_{x \to -\infty}
 F_X(x) = 0$
 \item
-If $x \le y$, then $F_X(x \le F_X(y)$.
+If $x \le y$, then $F_X(x) \le F_X(y)$.
 \item
 $F(x)$ is continuous from above.
 \end{enumerate}
@@ -628,7 +631,7 @@ then for $x = (x_1, x_2, \ldots, x_n)$,
 Radon-Nikodym
 \begin{align*}
 F(x) = \int_{-\infty}^x f(s) \, ds = \int_{-\infty}^{x_1} \ldots
-\int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_nx_n) \, ds_1 \, ds_2 \ldots \, ds_n.
+\int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_n) \, ds_1 \, ds_2 \ldots \, ds_n.
 \end{align*}
 
 One of the primary applications of joint distributions is in finding the
@@ -712,9 +715,9 @@ E(X) = \sum_{k=1}^{\infty} k Ak^{-2} = A \sum_{k=1}^{\infty} k^{-1} = \infty.
 Observe that we can write
 \begin{align*}
 \frac{1}{n} \sum_{i = 1}^n X_i
-& = \frac{\alpha_i (\#\alpha_i) + \ldots +
+& = \frac{\alpha_i (\#\alpha_i) + \cdots +
 \alpha_n (\#\alpha_n)}{n}
- \to \alpha_1 \prob(\alpha_1) + \ldots + \alpha_n \prob(\alpha_n).
+ \to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
 \end{align*}
 This motivates the following.
 \begin{definition}
@@ -740,29 +743,29 @@ E(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
 \end{lemma}
 \begin{theorem}[Properties of Expectation]
 Let $X$ be a random variable. Then
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 	\item $E(aX + bY) = aE(X) + bE(Y)$.
-	\item E(1) = 1
+	\item E (1) = 1
 	\item If $X,Y$ are independent, then $E(XY) = E(X)E(Y)$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 We shall only do the discrete case; the proof for the continuous case is
 analogous.
-\begin{enumerate}[a)]
+\begin{enumerate}[(a)]
 \item This follows immediately from the linearity of sums and integrals.
 \item
-We have $E(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1.$
+We have $E(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
 \item
 Let $Z = XY$. Then
 \[E(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} xy f_{(X,Y)}(x,y) = \sum_x x f_X(x)
-\sum_y y f_Y(y) = E(X) E(Y)\].
+\sum_y y f_Y(y) = E(X) E(Y).\]
 \end{enumerate}
 \end{proof}
 Having defined expectation, we can use it to define the
 \emph{variance} of a random variable $X$
 \begin{align*}
-E([X - E(X)]^2),
+E({[X - E(X)]}^2),
 \end{align*}
 the \emph{standard deviation}
 \begin{align*}
@@ -804,7 +807,7 @@ between variables, and does not capture higher order (for example, quadratic)
 types of dependence. 
 \begin{example}
 Let $X$ be a continuous random variable with the standard normal distribution,
-and let $Y = X^2$. Clearly $X$ and $Y$ are dependent . However,
+and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
 \begin{align*}
 E(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} \, dx = 0
 \end{align*}
@@ -944,7 +947,7 @@ tails})] + 1
 \\
 & = \frac{1}{4}[ E(X_0) + 2] + 1
 \end{align*}
-which gives $E(X_0) = 2.$
+which gives $E(X_0) = 2$.
 \begin{example}
 A hen lays $N$ eggs, where $N$ has a poisson distribution with parameter
 $\lambda$. An egg hatches with probability $p$, independently  of the other
@@ -957,7 +960,7 @@ f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
 Given $N$ eggs, the probability that $K$ out of $N$ eggs hatch obeys a 
 Bernoulli distribution, and so 
 \begin{align*}
-f_{K|N}(k|n) = \binom{n}{k} p^k (1-p)^{n-k}
+f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
 \end{align*}
 Now, $E(K | N = n) = pn$, and so $E(K | N) = pN$. Furthermore, $E(K) = E(E(K
 | N	)) = E(pN) = p \lambda$.
@@ -966,9 +969,9 @@ To compute $E(N | K)$, we apply Bayes Theorem to obtain
 f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
 \\
 & = \begin{cases}
-\frac{\binom{n}{k}p^k (1-p)^{n-k} \lambda^n
+\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
 e^{-\lambda}/n!}{\sum_{m \ge k}
-\binom{m}{k} p^k (1 - p)^{m-k} (\lambda^m e^{-\lambda})/m!}
+\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
 , \quad & n \ge k
 \\
 0, \quad & n<k
@@ -986,13 +989,13 @@ k \cap N = m)
 & = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
 \\
 & = \sum_{m \ge k}
-\binom{m}{k} p^k (1 - p)^{m-k} (\lambda^m e^{-\lambda})/m!.
+\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!.
 \end{align*}
 Simplifying, we obtain
 \begin{align*}
 f_{N|K}(n|k) = 
 \begin{cases}
-\frac{(q\lambda)^{n-k} e^{-q\lambda}}{(n-k)!}, \quad & n \ge k
+\frac{{(q\lambda)}^{n-k} e^{-q\lambda}}{(n-k)!}, \quad & n \ge k
 \\
 0, \quad & n<k
 \end{cases}
@@ -1001,10 +1004,10 @@ and so
 \begin{align*}
 E(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
 \\
-& = \sum_{n \ge 0} (n + k) \frac{(q \lambda)^n e^{-q\lambda}}{n!}
+& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
 \\
-& = k \sum_{n \ge 0} \frac{(q \lambda)^n e^{-q\lambda}}{n!} + \sum_{n \ge 0}
-n \frac{(q\lambda)^n e^{-q\lambda}}{n!} 
+& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 0}
+n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
 \\
 & = k + q\lambda.
 \end{align*}
