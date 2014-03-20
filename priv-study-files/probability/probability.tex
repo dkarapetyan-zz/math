@@ -2,20 +2,23 @@
 \usepackage{amsthm}
 \usepackage{amssymb} %for symbols like lesssim
 \usepackage{mathtools} %amsmath extension package
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+%\mathtoolsset{showonlyrefs}
 \usepackage{cancel}  %for cancelling terms explicity on pdf
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
-linkcolor=blue,
-citecolor=green,
-filecolor=magenta,
-urlcolor=cyan
-linkbordercolor=Blue
-citebordercolor=Violet
-filebordercolor=Red
+    linkcolor=blue,
+    citecolor=green,
+    filecolor=magenta,
+    urlcolor=cyan
+    linkbordercolor=Blue
+    citebordercolor=Violet
+    filebordercolor=Red
 }
+\usepackage{microtype} %improve spacing
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\nn}{\mathbb{N}}
 \newcommand{\zz}{\mathbb{Z}}
@@ -45,54 +48,54 @@ filebordercolor=Red
 \newtheorem*{remark}{Remark}
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \begin{document}
-\title{Probability Notes}
+\title{Probability and Finance Notes}
 \author{David Karapetyan}
 \date{}
 \maketitle
 \newpage
 \setcounter{tocdepth}{2}
-\setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{2}
 \tableofcontents
 \newpage
 \section{Outcomes and Events, and Likelihood}
-	Throughout this course, we seek to rigorously describe the likelihood of
-	outcomes of an experiment, or, more generally, combinations of outcomes of an experiment.
-	For example, we would like to know the likelihood of the Dodgers
-	winning the pennant, or the likelihood that stock of a company will go up
-	in a week. We have used words to describe these events---since we are doing
-	mathematics, we would like to translate everything to numbers, without losing
-	any of the meaning.
+Throughout this course, we seek to rigorously describe the likelihood of
+outcomes of an experiment, or, more generally, combinations of outcomes of an experiment.
+For example, we would like to know the likelihood of the Dodgers
+winning the pennant, or the likelihood that stock of a company will go up
+in a week. We have used words to describe these events---since we are doing
+mathematics, we would like to translate everything to numbers, without losing
+any of the meaning.
 \begin{example}
-A fair coin is tossed. There are two possible outcomes: heads (denoted by $0$) 
-and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the \emph{outcome
-space} or \emph{sample space}. The \emph{event space} consists of
-\begin{enumerate}[(a)]
-\item Outcome is heads or tails
-\item Outcome is heads and tails
-\item Outcome is heads
-\item Outcome is tails
-\end{enumerate}
-which we translate, via numbers, to the set $ \left\{ \left\{ 0 \right\} \cup
-\left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
-\right\} , \left\{ 1 \right\} \right \}$.
-Observe that the event ``Heads or tails'' is the union of the events
-``Outcome is Heads'' and ``Outcome is tails'', and ``Heads and tails'' is
-their intersection.
+    A fair coin is tossed. There are two possible outcomes: heads (denoted by $0$) 
+    and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the \emph{outcome
+    space} or \emph{sample space}. The \emph{event space} consists of
+    \begin{enumerate}[(a)]
+        \item Outcome is heads or tails
+        \item Outcome is heads and tails
+        \item Outcome is heads
+        \item Outcome is tails
+    \end{enumerate}
+    which we translate, via numbers, to the set $ \left\{ \left\{ 0 \right\} \cup
+        \left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
+    \right\} , \left\{ 1 \right\} \right \}$.
+    Observe that the event ``Heads or tails'' is the union of the events
+    ``Outcome is Heads'' and ``Outcome is tails'', and ``Heads and tails'' is
+    their intersection.
 \end{example}	
 
 \begin{example}
-A die with six distinct faces is thrown. The outcome space is
-$ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
-\begin{enumerate}[(a)]
-\item The outcome is even
-\item The outcome is odd
-\item The outcome is greater than $2$
-\item The outcome is less than $2$.
-\end{enumerate}
-These events, respectively, are expressed via the sets
-$ \left\{ 2, 4, 6 \right\} , \left\{ 1,3,5 \right\} , \left\{ 3, 4, 5, 6
-\right\}$, and $\left\{ 1 \right\}$.
-Observe that there are many other possible outcomes.
+    A die with six distinct faces is thrown. The outcome space is
+    $ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
+    \begin{enumerate}[(a)]
+        \item The outcome is even
+        \item The outcome is odd
+        \item The outcome is greater than $2$
+        \item The outcome is less than $2$.
+    \end{enumerate}
+    These events, respectively, are expressed via the sets
+    $ \left\{ 2, 4, 6 \right\} , \left\{ 1,3,5 \right\} , \left\{ 3, 4, 5, 6
+    \right\}$, and $\left\{ 1 \right\}$.
+    Observe that there are many other possible outcomes.
 \end{example}
 Observe that the larger the outcome space, the more complex
 our event space may become. Also observe that the event
@@ -106,28 +109,28 @@ Motivated by these two examples, we seek to generalize our notion of
 event space such that it completely models all possible events
 that can arise from a given outcome space. We have the following.
 \begin{definition}
-Let $\Omega$ be an outcome space. Then a \emph{$\sigma$-algebra}
-or \emph{filter} on $\Omega$, denoted by $\filter(\Omega)$ is defined to be a
-set of subsets of $\Omega$ that is closed under countable
-unions and complements.
-More precisely
-\begin{enumerate}[(a)]
-\item $ A_i \in  \sigma \implies \cup_i A_i \in \sigma$
-\item $A_i \in \sigma \implies A_i^c \in \sigma$
-\end{enumerate}
+    Let $\Omega$ be an outcome space. Then a \emph{$\sigma$-algebra}
+    or \emph{filter} on $\Omega$, denoted by $\filter(\Omega)$ is defined to be a
+    set of subsets of $\Omega$ that is closed under countable
+    unions and complements.
+    More precisely
+    \begin{enumerate}[(a)]
+        \item $ A_i \in  \sigma \implies \cup_i A_i \in \sigma$
+        \item $A_i \in \sigma \implies A_i^c \in \sigma$
+    \end{enumerate}
 \end{definition}
 \begin{example}
-Suppose we are tossing a fair coin repeatedly until the first tail shoes up,
-and wish to know the number of tosses we must use. Then our outcome space
-is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
-\right\},\ldots \right\}$. This is an infinite outcome space.
+    Suppose we are tossing a fair coin repeatedly until the first tail shoes up,
+    and wish to know the number of tosses we must use. Then our outcome space
+    is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
+    \right\},\ldots \right\}$. This is an infinite outcome space.
 \end{example}
 \begin{example} The following are all filters of $\Omega$:
-\begin{enumerate}[(a)]
-\item $\left\{ \emptyset, \Omega \right\}$
-\item $\left\{ \emptyset, A, A^c, \Omega \right\}$
-\item The power set of $\Omega$
-\end{enumerate}
+    \begin{enumerate}[(a)]
+        \item $\left\{ \emptyset, \Omega \right\}$
+        \item $\left\{ \emptyset, A, A^c, \Omega \right\}$
+        \item The power set of $\Omega$
+    \end{enumerate}
 \end{example}
 Observe that a natural outcome space to use is the real line, or subsets
 thereof, and to build appropriate filters on top of it. We will return
@@ -138,55 +141,55 @@ to this idea later.
 Suppose we roll a $6$-sided die $N$ times. Let $N(A)$ denote the number of $4's$
 rolled in $N$ tries. One can observe that
 \begin{align*}
-\lim_{N \to \infty} N(A)/N = 1/6.
+    \lim_{N \to \infty} N(A)/N = 1/6.
 \end{align*}
 A similar phenomenon holds for many other real-world events.
 
 \begin{definition}
-Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials. If the
-limit $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$.
+    Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials. If the
+    limit $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$.
 \end{definition}
 Observe that $ 0 \le P \le 1$, by definition.
 Next, let $A$ and $B$ be two disjoint events. Then
 it is easy to check that
 \begin{align*}
-N(A \cup B) = N(A) + N(B)
+    N(A \cup B) = N(A) + N(B)
 \end{align*}
 and that, in general (i.e.\ for possibly disjoint $A$, $B$),
 \begin{align*}
-N(A \cup B) = N(A) + N(B) - N(A \cap B).
+    N(A \cup B) = N(A) + N(B) - N(A \cap B).
 \end{align*}
 Furthermore, since $\Omega = A \cup A^c$, it follows immediately
 that $N(\Omega) = N$. A similar argument shows $N(\emptyset) = 0$.
 This discussion motivates the following.
 \begin{definition}
-A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
-$\prob: \filter \to [0,1]$ which satisfies
-\begin{enumerate}[(a)]
-	\item
-$\prob(\Omega) = 1$, $\prob(\emptyset) = 0$
-\item
-For disjoint $A_i$, $\prob(\cup_i^n A_i) = \sum_{i = 1}^n \prob(A_i)$.
-\end{enumerate}
+    A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
+    $\prob: \filter \to [0,1]$ which satisfies
+    \begin{enumerate}[(a)]
+        \item
+            $\prob(\Omega) = 1$, $\prob(\emptyset) = 0$
+        \item
+            For disjoint $A_i$, $\prob(\cup_i^n A_i) = \sum_{i = 1}^n \prob(A_i)$.
+    \end{enumerate}
 \end{definition}
 Observe that our construction immediately rules out silly probability
 measures such as $P \equiv 0$ or $P \equiv 1$. Furthermore,
 we can show the following, whose proof we leave to the reader.
 \begin{lemma}
-Let $\prob$ be a probability measure on $(\Omega, \filter)$
-\begin{enumerate}[(a)]
-\item $\prob(A^c) = 1 - \prob(A)$
-\item $\prob(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-\item If $B \subset A$, then $P(A) \ge P(B)$.
-\item \emph{(Set Continuity)}.
-If $\cup_i^\infty A_i = A$ and
-$\cap B_i^\infty = B$, with $A_i \subset A_j$ and $B_j \subset B_i$ for $j > i$,
-then
-\begin{align*}
-& \lim \prob(A_i) = \prob(\lim \cup_i^n A_i) = \prob(A) \\
-& \lim \prob(B_i) = \prob(\lim \cap_i^n B_i) = \prob(B) \\
-\end{align*}
-\end{enumerate}
+    Let $\prob$ be a probability measure on $(\Omega, \filter)$
+    \begin{enumerate}[(a)]
+        \item $\prob(A^c) = 1 - \prob(A)$
+        \item $\prob(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+        \item If $B \subset A$, then $P(A) \ge P(B)$.
+        \item \emph{(Set Continuity)}.
+            If $\cup_i^\infty A_i = A$ and
+            $\cap B_i^\infty = B$, with $A_i \subset A_j$ and $B_j \subset B_i$ for $j > i$,
+            then
+            \begin{align*}
+                & \lim \prob(A_i) = \prob(\lim \cup_i^n A_i) = \prob(A) \\
+                & \lim \prob(B_i) = \prob(\lim \cap_i^n B_i) = \prob(B) \\
+            \end{align*}
+    \end{enumerate}
 \end{lemma}
 A last technical distinction: the empty-set denotes the event ``nothing
 occurs'' and has probability $0$, by definition. However, there are many
@@ -194,13 +197,13 @@ events in a given sigma-algebra that have probability $0$ but that are not the
 empty set.
 
 \begin{example}What is the probability that, using a fair coin, one
-flips only heads in infinitely many tries? 
+    flips only heads in infinitely many tries? 
 \end{example}
 Letting $H_N$ denote the event
 $N$ heads in the first $N$ tries, set continuity yields
 continuity,
 \begin{align*}
-P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 0.
+    P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 0.
 \end{align*}
 \subsection{Conditional Probability}
 We now wish to tackle statement that often occur in practice,
@@ -212,16 +215,16 @@ Observe that when we are given information, it allows us to adjust the
 probability of the event we are interested in. We wish to express this
 mathematically. Motivated by the ``zebra'' example, we have the following.
 \begin{definition}
-Let $\Omega, \filter$ be a filter, and $A, B \in \filter$ be events, where
-$\prob(B) > 0$. Then $\prob(A | B)$ is defined to be the probability of $A$, given that $A \in \filter_B$, where $\filter_B
-\doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}$.
+    Let $\Omega, \filter$ be a filter, and $A, B \in \filter$ be events, where
+    $\prob(B) > 0$. Then $\prob(A | B)$ is defined to be the probability of $A$, given that $A \in \filter_B$, where $\filter_B
+    \doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}$.
 \end{definition}
 Imagine that we roll a die, and wish to know the probability that
 we have rolled a $4$.
 To compute this, we let $A$ denote the event that we roll a $4$. Then in the last section we saw
 that
 \begin{align*}
-\prob(A) = \lim_{N \to \infty} N(A)/N.
+    \prob(A) = \lim_{N \to \infty} N(A)/N.
 \end{align*}
 Suppose now that we are given the event $B$, which is the event that we haven't
 rolled a $6$.
@@ -231,32 +234,32 @@ new value? We simply discard all trials whose rolls gave a $6$, as this is clear
 impossible with the new die. Of course, we must also discard the number of times
 we rolled a $6$. Putting this all together, we obtain
 \begin{align*}
-\prob(A | B) & = \lim_{N \to \infty} N(A \cap B)/(N -
-\text{number of occurrences of $6$})
-\\
-& = \lim_{N \to \infty} \frac{N(A \cap B)}{N}
-\times \frac{1}{1 - (\text{number of occurrences of $6$})/N}
-\\
-& = \frac{\prob(A \cap B)}{(1 - \prob(B^c))}
-\\
-& = \frac{\prob(A \cap B)}{\prob(B)}.
+    \prob(A | B) & = \lim_{N \to \infty} N(A \cap B)/(N -
+    \text{number of occurrences of $6$})
+    \\
+    & = \lim_{N \to \infty} \frac{N(A \cap B)}{N}
+    \times \frac{1}{1 - (\text{number of occurrences of $6$})/N}
+    \\
+    & = \frac{\prob(A \cap B)}{(1 - \prob(B^c))}
+    \\
+    & = \frac{\prob(A \cap B)}{\prob(B)}.
 \end{align*}
 Motivated by this, we have the following definition.
 \begin{definition}
-Let $A, B$ be events, and suppose $B$ occurs. Then
-\begin{align*}
-\prob(A | B) \doteq \frac{\prob(A \cap B)}{\prob(B)}
-\end{align*}
+    Let $A, B$ be events, and suppose $B$ occurs. Then
+    \begin{align*}
+        \prob(A | B) \doteq \frac{\prob(A \cap B)}{\prob(B)}
+    \end{align*}
 \end{definition}
 Observe that it is implicit in the definition that $\prob(B) > 0$, otherwise
 $B$ does not occur.
 \begin{example}
-A family has two children. What is the probability that both are boys,
-given that at least one of them is a boy?
+    A family has two children. What is the probability that both are boys,
+    given that at least one of them is a boy?
 \end{example}
 \begin{example}
-A family has two children. What is the probability that both are boys,
-given that the youngest is a boy?
+    A family has two children. What is the probability that both are boys,
+    given that the youngest is a boy?
 \end{example}
 Observe that if no information is given, the probability of two boys is $1/4$.
 Hence, the conditions given in the example above improve the probability.
@@ -268,58 +271,58 @@ discuss this more in the upcoming lectures.
 Often, when information is given, it makes computing probabilities easier.
 Consequently, the following result is extremely useful.
 \begin{lemma}
-Let $ {\left\{ B_i \right\}}_{i=1}^n$ be a
-partition of $\Omega$. Then
-for any $A \in \filter$
-\begin{align*}
-\prob(A) = \sum_{i = 1}^n \prob(A | B_i) \prob(B_i).
-\end{align*}
+    Let $ {\left\{ B_i \right\}}_{i=1}^n$ be a
+    partition of $\Omega$. Then
+    for any $A \in \filter$
+    \begin{align*}
+        \prob(A) = \sum_{i = 1}^n \prob(A | B_i) \prob(B_i).
+    \end{align*}
 \end{lemma}
 the above lemma has the limitation that sometimes $\prob(A |
 B)$ is difficult to compute as well. In such situations, 
 it is often easier to compute $\prob(B | A)$. Fortunately, we have the
 following.
 \begin{lemma}[Bayes' Theorem] For events $A, B$, we have
-\begin{align*}
-\prob(A | B) = \frac{\prob(B | A) \prob (A)}{\prob(B)}
-\end{align*}
+    \begin{align*}
+        \prob(A | B) = \frac{\prob(B | A) \prob (A)}{\prob(B)}
+    \end{align*}
 \end{lemma}
 \begin{example}
-We are given two urns, each containing an assortment of colored balls.
-Urn $I$ contains two white and three blue balls, and urn $II$ contains
-three white and four blue balls. A ball is drawn at random from urn $I$
-and put into urn $II$, and then a ball is picked at random from urn $II$.
-What is the probability that it is blue?
+    We are given two urns, each containing an assortment of colored balls.
+    Urn $I$ contains two white and three blue balls, and urn $II$ contains
+    three white and four blue balls. A ball is drawn at random from urn $I$
+    and put into urn $II$, and then a ball is picked at random from urn $II$.
+    What is the probability that it is blue?
 \end{example}
 \begin{example}
-You are on ``Let's Make a Deal''. There are three doors, with a new convertible
-behind one, and a goat behind each of the others. You pick door number $I$.
-To tease you, Monty opens door number $II$, revealing a goat, then offers to let
-you switch your choice to door number $III$. Should you?
+    You are on ``Let's Make a Deal''. There are three doors, with a new convertible
+    behind one, and a goat behind each of the others. You pick door number $I$.
+    To tease you, Monty opens door number $II$, revealing a goat, then offers to let
+    you switch your choice to door number $III$. Should you?
 \end{example}
 \begin{example}[Symmetric Random Walk]
-Las Vegas has decided to offer a new game, with $50/50$ odds
-of winning or losing in each iteration. The player begins with $\dollar k$
-and the house begins with $ \dollar N$, where $N \gg k$. If the player wins in
-a round, he wins a dollar; otherwise, he loses a dollar. The player adopts the strategy
-to continue playing until either he or the casino is bankrupted.
-What the probability that the player goes bankrupt?
+    Las Vegas has decided to offer a new game, with $50/50$ odds
+    of winning or losing in each iteration. The player begins with $\dollar k$
+    and the house begins with $ \dollar N$, where $N \gg k$. If the player wins in
+    a round, he wins a dollar; otherwise, he loses a dollar. The player adopts the strategy
+    to continue playing until either he or the casino is bankrupted.
+    What the probability that the player goes bankrupt?
 \end{example}
 \begin{proof}[Solution]
-Let $A$ denote the event that the player is eventually bankrupted,
-and let $B$ denote victory for the player in the first trial.
-Then
-\begin{align*}
-\prob_k(A)
-& = \prob_k(A | B) \prob(B) + \prob_k(A | B^c) \prob(B^c)
-\\
-& \approx \frac{p_{k+1}}{2} + \frac{p_{k-1}}{2}
-\end{align*}
-We have the boundary conditions $p_0 = 1$ and $p_N = 0$, which we combine with
-the above \emph{difference equation} to obtain
-\begin{align*}
-\prob_k(A) = 1 - k/N.
-\end{align*}
+    Let $A$ denote the event that the player is eventually bankrupted,
+    and let $B$ denote victory for the player in the first trial.
+    Then
+    \begin{align*}
+        \prob_k(A)
+        & = \prob_k(A | B) \prob(B) + \prob_k(A | B^c) \prob(B^c)
+        \\
+        & \approx \frac{p_{k+1}}{2} + \frac{p_{k-1}}{2}
+    \end{align*}
+    We have the boundary conditions $p_0 = 1$ and $p_N = 0$, which we combine with
+    the above \emph{difference equation} to obtain
+    \begin{align*}
+        \prob_k(A) = 1 - k/N.
+    \end{align*}
 \end{proof}
 Observe that if we start off with $k \approx N$, the player stands a chance to
 bankrupt the casino! This is one of the reasons all games in Vegas have odds
@@ -331,45 +334,45 @@ the long run (for example, craps). If you decide to play blackjack (the game
 offering the best odds), the casino will try to distract you with drinks,
 entertainment, women/men, etc. It usually works.
 \begin{example}[False Positives]
-A rare disease affects one person in $10^5$. A test for the disease
-is wrong with probability $1/100$; that is, it is positive with probability
-$1/100$ for someone who is in fact healthy, and negative
-with probability $1/100$ for someone who is in fact ill. What is the probability
-that you have the disease given that you took the test and it is positive?
+    A rare disease affects one person in $10^5$. A test for the disease
+    is wrong with probability $1/100$; that is, it is positive with probability
+    $1/100$ for someone who is in fact healthy, and negative
+    with probability $1/100$ for someone who is in fact ill. What is the probability
+    that you have the disease given that you took the test and it is positive?
 \end{example}
 \begin{proof}[Solution]
-Let $A$ be the event that we have the disease, and $B$ be the event
-that the test if positive. Then we apply
-Bayes' Theorem to obtain
-\begin{align*}
-\prob(A | B) & = \frac{\prob(B | A) \prob(A)}{\prob(B)}
-\\
-& = \frac{\prob(B | A) \prob(A)}{\prob(B|A) \prob(A) + \prob(B | A^c)
-\prob(A^c)}
-\\
-& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times (10^5 -
-1)/10^5}
-\\
-& \approx 1/1000.
-\end{align*}
+    Let $A$ be the event that we have the disease, and $B$ be the event
+    that the test if positive. Then we apply
+    Bayes' Theorem to obtain
+    \begin{align*}
+        \prob(A | B) & = \frac{\prob(B | A) \prob(A)}{\prob(B)}
+        \\
+        & = \frac{\prob(B | A) \prob(A)}{\prob(B|A) \prob(A) + \prob(B | A^c)
+        \prob(A^c)}
+        \\
+        & = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times (10^5 -
+        1)/10^5}
+        \\
+        & \approx 1/1000.
+    \end{align*}
 \end{proof}
 Moral: don't freak out if your doctor says you \emph{might} have
 cancer. Take the test again.
 \subsection{Independence}
 \begin{definition}
-We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if \[\prob(A |
-B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) \prob(B).\] More generally,
-a family $ {\left\{ A_i \right\}}_{i = 1}^n $ is
-\emph{independent} if 
-\[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
+    We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if \[\prob(A |
+    B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) \prob(B).\] More generally,
+    a family $ {\left\{ A_i \right\}}_{i = 1}^n $ is
+    \emph{independent} if 
+    \[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
 \end{definition}
 \begin{example}
-What is the probability that Connie's first child will be a masculine child,
-given that a neighboring mobster recently had a boy?
+    What is the probability that Connie's first child will be a masculine child,
+    given that a neighboring mobster recently had a boy?
 \end{example}
 \begin{example}
-What is the probability of flipping heads with a fair coin on the $10th$ trial,
-given that heads is flipped on all previous trials?
+    What is the probability of flipping heads with a fair coin on the $10th$ trial,
+    given that heads is flipped on all previous trials?
 \end{example}
 \section{Translating Outcomes to Numbers}
 As we have seen, the sample space $\Omega$, equipped with an associated filter
@@ -386,106 +389,106 @@ equipped with the Borel filter. We will call such functions
 \emph{random variables}.
 \subsection{Random Variables} 
 \begin{definition}
-A \emph{random variable} is a function $X: \Omega \to \rr$ with the property
-that $X^{-1}(U) \in \filter$ for every open $U \in \rr$. If the range of $X$
-is a countable subset of $\rr$, we say $X$
-is a \emph{discrete random variable}. If $\Omega$ is countable, we say that 
-$\left\{ \Omega, \filter, \prob \right\}$ is a \emph{discrete probability space}.
+    A \emph{random variable} is a function $X: \Omega \to \rr$ with the property
+    that $X^{-1}(U) \in \filter$ for every open $U \in \rr$. If the range of $X$
+    is a countable subset of $\rr$, we say $X$
+    is a \emph{discrete random variable}. If $\Omega$ is countable, we say that 
+    $\left\{ \Omega, \filter, \prob \right\}$ is a \emph{discrete probability space}.
 \end{definition}
 As shorthand, we shall often denote $\{\omega: X(\omega) \in B\}$ by
 $\{X \in B$\}.
 \begin{remark}
-Observe that, for a discrete random variable $X: \Omega \to [\alpha_1,
-\ldots, \alpha_n]$,  $n \le \infty$, 
-\begin{align*}
-\prob(\Omega) = \sum_{i =1}^n \prob(X = x_i).
-\end{align*}
+    Observe that, for a discrete random variable $X: \Omega \to [\alpha_1,
+    \ldots, \alpha_n]$,  $n \le \infty$, 
+    \begin{align*}
+        \prob(\Omega) = \sum_{i =1}^n \prob(X = x_i).
+    \end{align*}
 \end{remark}
 Lastly, we say two random variables $X$, $Y$ are \emph{independent} if
 $\{X \in B_1\}$ and $\{Y \in B_2\}$ are independent for all Borel sets
 $B_1, B_2$. 
 \begin{example}
-Suppose we are interested in studying a single flip of a fair coin.
-Let
-$\Omega = \{H, T\}$ be the outcomes of a coin flip, and
-$\filter = \{\emptyset, \Omega, H, T \}$. Then $X: \Omega \to \rr$, given by
-$X(H) = 0$, $X(T) = 1$ is a discrete random variable.
+    Suppose we are interested in studying a single flip of a fair coin.
+    Let
+    $\Omega = \{H, T\}$ be the outcomes of a coin flip, and
+    $\filter = \{\emptyset, \Omega, H, T \}$. Then $X: \Omega \to \rr$, given by
+    $X(H) = 0$, $X(T) = 1$ is a discrete random variable.
 \end{example}
 \begin{example}
-A traveler is lost in the woods, and starts walking aimlessly, but never
-west. 
-We can assign numbers to the directions he takes. 
-Then $\Omega$ is the set of all possible directions (North, South, East
-and the \emph{continuum} of values in between these). Then
-$X: \Omega \to \rr$ given by $X(North) = 1$, $X(South) = -1$, $X(East) = 0$
-and $F_{X} \doteq \left\{ X^{-1}(U): U \in \rr \right\}$ is a continuous random
-variable.
+    A traveler is lost in the woods, and starts walking aimlessly, but never
+    west. 
+    We can assign numbers to the directions he takes. 
+    Then $\Omega$ is the set of all possible directions (North, South, East
+    and the \emph{continuum} of values in between these). Then
+    $X: \Omega \to \rr$ given by $X(North) = 1$, $X(South) = -1$, $X(East) = 0$
+    and $F_{X} \doteq \left\{ X^{-1}(U): U \in \rr \right\}$ is a continuous random
+    variable.
 \end{example}
 \begin{definition}
-For a space $\left\{ \Omega, \filter \right\}$, we say that a measure $u$ is
-\emph{absolutely continuous} respect to a measure $v$, denoted $u \ll v$, if
-$v(E) = 0$ implies $u(E) = 0$ for every $E \in \filter$.
+    For a space $\left\{ \Omega, \filter \right\}$, we say that a measure $u$ is
+    \emph{absolutely continuous} respect to a measure $v$, denoted $u \ll v$, if
+    $v(E) = 0$ implies $u(E) = 0$ for every $E \in \filter$.
 \end{definition}
 \begin{theorem}[Radon-Nikodym]
-Let $u,v: \Omega \to \rr^n$ be measures on $\filter_{\Omega}$, with $u \ll v$.
-Then there exists a positive $f: \Omega \to \rr^n$ such that
-\begin{align*}
-u(E) = \int_{E} f(\omega) dv(\omega)
-\end{align*}
-for every $E \in \filter$.
+    Let $u,v: \Omega \to \rr^n$ be measures on $\filter_{\Omega}$, with $u \ll v$.
+    Then there exists a positive $f: \Omega \to \rr^n$ such that
+    \begin{align*}
+        u(E) = \int_{E} f(\omega) dv(\omega)
+    \end{align*}
+    for every $E \in \filter$.
 \end{theorem}
 The proof of this theorem lies outside the scope of this course, but can be
 found in almost every graduate textbook on analysis. 
 
 We now apply the Radon-Nikodym theorem to define continuous random variables.
 \begin{definition}
-Let $X$ be a random variable on a probability space $(\Omega, \filter, \prob)$. 
-The \emph{distribution measure} of $X$ is the probability measure $\mu_X:
-\borel_X \to [0,1]$ given by $\mu_X(B) = \prob(\{\omega\}: X(\omega) \in B)$.
+    Let $X$ be a random variable on a probability space $(\Omega, \filter, \prob)$. 
+    The \emph{distribution measure} of $X$ is the probability measure $\mu_X:
+    \borel_X \to [0,1]$ given by $\mu_X(B) = \prob(\{\omega\}: X(\omega) \in B)$.
 \end{definition}
 \begin{definition}
-A random variable $X$ is discrete if and only if it takes values in a countable
-subset of $\rr$, and continuous if and only if $\mu_X \ll dm$, where $dm$
-denotes Lebesgue measure on $\rr^n$. By Radon-Nikodym, its \emph{distribution
-function} $F(x) \doteq \prob(X \le x)$ is given by
-\begin{align*}
-F(x) = \int_{-\infty}^x f(z) \,dz.
-\end{align*}
-for some unique, positive $f(z)$, which we call \emph{probability density}
-function of $X$.
-If $X$ is discrete, we call
-$f(x) \doteq \prob(X = x)$ its \emph{mass function}.
+    A random variable $X$ is discrete if and only if it takes values in a countable
+    subset of $\rr$, and continuous if and only if $\mu_X \ll dm$, where $dm$
+    denotes Lebesgue measure on $\rr^n$. By Radon-Nikodym, its \emph{distribution
+    function} $F(x) \doteq \prob(X \le x)$ is given by
+    \begin{align*}
+        F(x) = \int_{-\infty}^x f(z) \,dz.
+    \end{align*}
+    for some unique, positive $f(z)$, which we call \emph{probability density}
+    function of $X$.
+    If $X$ is discrete, we call
+    $f(x) \doteq \prob(X = x)$ its \emph{mass function}.
 \end{definition}
 Lastly, we remark that there exist random variables which are neither
 discrete nor continuous, but rather a mixture of the two.
 \begin{example}[A Random Variable that is Neither Discrete Nor Continuous]
-A coin is tossed. We assign the event ``lands heads'' the number $-1$, and 
-if it lands tails, we toss a rod, and assign ``lands tails'' how far the rod has
-landed from us. In this case, our random variable $X$ is neither continuous nor
-discrete: it has a point mass at $X = H$, but is continuous otherwise.
-Observe that $X | \text{lands tails}$ and $X | \text{lands heads}$ are
-continuous and discrete, respectively.
+    A coin is tossed. We assign the event ``lands heads'' the number $-1$, and 
+    if it lands tails, we toss a rod, and assign ``lands tails'' how far the rod has
+    landed from us. In this case, our random variable $X$ is neither continuous nor
+    discrete: it has a point mass at $X = H$, but is continuous otherwise.
+    Observe that $X | \text{lands tails}$ and $X | \text{lands heads}$ are
+    continuous and discrete, respectively.
 \end{example}
 \subsection{Common Discrete Distributions}
 \subsubsection{Bernoulli Distribution}
 We begin with the most basic distribution, from which
 we are able to derive a multitude of others.
 \begin{definition}
-Let $X$ be the random variable denoting the number of successes
-in $n$ independent trials, where $p$ is the probability of success in
-an individual trial. Then
-\begin{equation*}
-b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k {(1 - p)}^{n-k}
-\end{equation*}
-is called the \emph{Bernoulli distribution} of $k$ successes
-in $n$ independent trials, where $p$ is the probability of success on an
-individual trial. The special case
-$p = 1/2$ is called a \emph{binomial distribution}.
+    Let $X$ be the random variable denoting the number of successes
+    in $n$ independent trials, where $p$ is the probability of success in
+    an individual trial. Then
+    \begin{equation*}
+        b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k {(1 - p)}^{n-k}
+    \end{equation*}
+    is called the \emph{Bernoulli distribution} of $k$ successes
+    in $n$ independent trials, where $p$ is the probability of success on an
+    individual trial. The special case
+    $p = 1/2$ is called a \emph{binomial distribution}.
 \end{definition}
 \begin{example}
-Let $X$ denote the number of heads one obtains from $n$ flips of a
-two-sided, non-weighted coin. Then $X$ is binomially distributed.
-If the coin is weighted, then $X$ follows a Bernoulli distribution.
+    Let $X$ denote the number of heads one obtains from $n$ flips of a
+    two-sided, non-weighted coin. Then $X$ is binomially distributed.
+    If the coin is weighted, then $X$ follows a Bernoulli distribution.
 \end{example}
 \subsubsection{Poisson Distribution}
 We wish now to study events that are distributed sparsely in time.
@@ -498,29 +501,29 @@ successes $\lambda \doteq np$ to be nonzero.
 
 Observe that with the above assumptions, we obtain
 \begin{equation*}
-\binom{n}{k} = \frac{n!}{(n-k)! k!} \approx \frac{n^k}{k!}
+    \binom{n}{k} = \frac{n!}{(n-k)! k!} \approx \frac{n^k}{k!}
 \end{equation*}
 and so
 \begin{align*}
-P(X = k)
-& = \binom{n}{k} p^k {(1 - p)}^{n-k} \\
-& \approx \frac{n^k p^k q^{n-k}}{k!} \\
-& = \frac{\lambda^k q^{n-k}}{k!} \\
-& = \frac{\lambda^k {(1-p)}^{n-k}}{k!} \\
-& = \frac{\lambda^k {(1-\lambda/n)}^{n-k}}{k!} \\
-& \approx \frac{\lambda^k {(1-\lambda/n)}^{n}}{k!} , \quad n >> 1\\
-& \approx \frac{\lambda^k e^{-\lambda}}{k!}
+    P(X = k)
+    & = \binom{n}{k} p^k {(1 - p)}^{n-k} \\
+    & \approx \frac{n^k p^k q^{n-k}}{k!} \\
+    & = \frac{\lambda^k q^{n-k}}{k!} \\
+    & = \frac{\lambda^k {(1-p)}^{n-k}}{k!} \\
+    & = \frac{\lambda^k {(1-\lambda/n)}^{n-k}}{k!} \\
+    & \approx \frac{\lambda^k {(1-\lambda/n)}^{n}}{k!} , \quad n >> 1\\
+    & \approx \frac{\lambda^k e^{-\lambda}}{k!}
 \end{align*}
 \begin{definition}
-We call
-\begin{align*}
-p(k, \lambda) \doteq \frac{\lambda^k e^{-\lambda}}{k!}
-\end{align*}
-the \emph{Poisson distribution} of $k$ successes in a large number
-of trials, where, on average, we expect $\lambda$ successes,
-where $\lambda$ is much less than the number of trials.
-That is, the trials have the feature that successes are
-sparsely distributed.
+    We call
+    \begin{align*}
+        p(k, \lambda) \doteq \frac{\lambda^k e^{-\lambda}}{k!}
+    \end{align*}
+    the \emph{Poisson distribution} of $k$ successes in a large number
+    of trials, where, on average, we expect $\lambda$ successes,
+    where $\lambda$ is much less than the number of trials.
+    That is, the trials have the feature that successes are
+    sparsely distributed.
 \end{definition}
 We will now extend this result. Assume that in the interval $[0,1]$,
 we have $n$ equally spaced points, representing trials. Split this interval into two pieces,
@@ -530,16 +533,16 @@ in $[0,t]$ is given by $\lambda_t \doteq n t p = \lambda t$. Repeating
 our preceding computation, but with $\lambda$ replaced by $\lambda_t$
 and $n$ by $nt$, we obtain the following.
 \begin{theorem}
-Let $\lambda$ be the average number of successes in the interval $[0,1]$.
-The probability of finding exactly $k$ successes  in the subinterval $[0,t]$,
-$t \le 1$, is given by
-\begin{align*}
-p(k, \lambda t) = \frac{{(\lambda t)}^{k} e^{-\lambda t}}{k!}
-\end{align*}
-with average $\lambda t$.
+    Let $\lambda$ be the average number of successes in the interval $[0,1]$.
+    The probability of finding exactly $k$ successes  in the subinterval $[0,t]$,
+    $t \le 1$, is given by
+    \begin{align*}
+        p(k, \lambda t) = \frac{{(\lambda t)}^{k} e^{-\lambda t}}{k!}
+    \end{align*}
+    with average $\lambda t$.
 \end{theorem}
 \begin{exercise}
-Generalize this result to intervals of arbitrary length.
+    Generalize this result to intervals of arbitrary length.
 \end{exercise}
 \subsubsection{Negative Binomial Distribution}
 For an experiment, it is often important to know just how many trials
@@ -553,42 +556,42 @@ $p^{r-1}{(1 - p)}^{(v-1) - (r-1)} = p^{r-1}q^{v-r}$. Right after the $v-1$ trial
 have the $rth$ success. This success has associated probability $p$. Putting
 everything together, we obtain the following.
 \begin{theorem}
-Let $X$ denote the number of successes achieved after $v$ independent trials of an experiment,
-where we assume a success occurs at trial $v$, and where the probability
-of success if $p$. Then the probability that $X=r$, where $r \le v$, is given by
-\begin{equation*}
-p(r, v, p) \doteq \mathbb{P}(X = r) = \binom{v-1}{r-1} p^{r} q^{v-r}
-\end{equation*}
-\begin{definition}
-We call $X$ a random variable with a \emph{negative binomial distribution}.
-\end{definition}
+    Let $X$ denote the number of successes achieved after $v$ independent trials of an experiment,
+    where we assume a success occurs at trial $v$, and where the probability
+    of success if $p$. Then the probability that $X=r$, where $r \le v$, is given by
+    \begin{equation*}
+        p(r, v, p) \doteq \mathbb{P}(X = r) = \binom{v-1}{r-1} p^{r} q^{v-r}
+    \end{equation*}
+    \begin{definition}
+        We call $X$ a random variable with a \emph{negative binomial distribution}.
+    \end{definition}
 \end{theorem}
 \subsection{Common Continuous Distributions}
 \subsubsection{Uniform Distribution}
 \begin{definition}
-Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
-\prob$ such that the minimum and maximum values of $X$ are $a,b \in \rr$,
-respectively, and $\prob(c \le X \le d ) = \prob(c + t \le X \le d + t)$
-for all $c, d$ in $[a,b]$  and $t \in \rr$ such that $c+t, d+t \in [a,b]$.
-Then we say $X$ is \emph{uniformly distributed} in $[a,b]$. It is easy to check
-that $X$ has density  
-\begin{align*}
-f(x) = \begin{cases}
-x/(b-a), \quad & x \in [a,b] \\
-0 \quad &\text{otherwise}
-\end{cases}
-\end{align*}
+    Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
+    \prob$ such that the minimum and maximum values of $X$ are $a,b \in \rr$,
+    respectively, and $\prob(c \le X \le d ) = \prob(c + t \le X \le d + t)$
+    for all $c, d$ in $[a,b]$  and $t \in \rr$ such that $c+t, d+t \in [a,b]$.
+    Then we say $X$ is \emph{uniformly distributed} in $[a,b]$. It is easy to check
+    that $X$ has density  
+    \begin{align*}
+        f(x) = \begin{cases}
+            x/(b-a), \quad & x \in [a,b] \\
+            0 \quad &\text{otherwise}
+        \end{cases}
+    \end{align*}
 \end{definition}
 \subsubsection{Normal Distribution}
 \begin{definition}
-Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
-\prob$. We say $X$ is \emph{normally distributed} with standard deviation $\sigma$ and
-mean $\mu$ if $X$ has density
-\begin{align*}
-f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{{(x - \mu)}^2}{2 \sigma^2}}.
-\end{align*}
-If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
-distributed}.
+    Let $X$ be a continuous random variable on a probability space $\Omega, \filter,
+    \prob$. We say $X$ is \emph{normally distributed} with standard deviation $\sigma$ and
+    mean $\mu$ if $X$ has density
+    \begin{align*}
+        f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{{(x - \mu)}^2}{2 \sigma^2}}.
+    \end{align*}
+    If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
+    distributed}.
 \end{definition}
 \section{Joint Distributions}
 Up to now, we have considered random variables taking values in $\rr$.
@@ -597,7 +600,7 @@ our distribution of $X$ is then given by $\mu_X(B) =
 \prob(X^{-1}(B))$ for every Borel set $B \in
 \rr^2$. Using our intuition, we ask if our distribution function should be of
 \begin{align*}
-F(x) = \int_{-\infty}^{x} f(s) \, ds
+    F(x) = \int_{-\infty}^{x} f(s) \, ds
 \end{align*}
 where now $ds$ denotes Lebesgue measure on $\rr^2$ and $x = (x_1, x_2) \in
 \rr^2$. However, what do we mean when we say $x \le y$ for $x, y \in \rr^2$? 
@@ -607,173 +610,173 @@ First, observe that if ${X}: \Omega \to \rr^n$, then $X = (X_1, X_2,
 simplified if we can study it component-wise. Motivated by this, we define
 $x \le y$ if and only if $x_i \le y_i$. 
 \begin{definition}
-Let ${X} = (X_1, X_2, \ldots, X_n)$. Then the \emph{joint distribution}
-$F_X: \rr^n \to \rr$
-is defined as $F_X(x) = \prob({X} \le x)$.
-\begin{lemma}
-Let $F_X$ be a joint distribution. Then
-\begin{enumerate}[(a)]
-\item
-$\lim_{x \to \infty} F_X(x) = 1$ and $\lim_{x \to -\infty}
-F_X(x) = 0$
-\item
-If $x \le y$, then $F_X(x) \le F_X(y)$.
-\item
-$F(x)$ is continuous from above.
-\end{enumerate}
-\end{lemma}
-If all the $X_i$ are discrete, we say $X$ has a \emph{joint discrete
-distribution}. If all the $X_i$ are continuous, we say $X$ has a 
-\emph{joint continuous distribution}. If the distribution is jointly discrete,
-then for $x = (x_1, x_2, \ldots, x_n)$,
- $f(x) = \prob(X_1 = x_1, X_2, = x_2,
-\ldots, X_n = x_n)$. If the distribution is jointly continuous, then by
-Radon-Nikodym
-\begin{align*}
-F(x) = \int_{-\infty}^x f(s) \, ds = \int_{-\infty}^{x_1} \ldots
-\int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_n) \, ds_1 \, ds_2 \ldots \, ds_n.
-\end{align*}
+    Let ${X} = (X_1, X_2, \ldots, X_n)$. Then the \emph{joint distribution}
+    $F_X: \rr^n \to \rr$
+    is defined as $F_X(x) = \prob({X} \le x)$.
+    \begin{lemma}
+        Let $F_X$ be a joint distribution. Then
+        \begin{enumerate}[(a)]
+            \item
+                $\lim_{x \to \infty} F_X(x) = 1$ and $\lim_{x \to -\infty}
+                F_X(x) = 0$
+            \item
+                If $x \le y$, then $F_X(x) \le F_X(y)$.
+            \item
+                $F(x)$ is continuous from above.
+        \end{enumerate}
+    \end{lemma}
+    If all the $X_i$ are discrete, we say $X$ has a \emph{joint discrete
+    distribution}. If all the $X_i$ are continuous, we say $X$ has a 
+    \emph{joint continuous distribution}. If the distribution is jointly discrete,
+    then for $x = (x_1, x_2, \ldots, x_n)$,
+    $f(x) = \prob(X_1 = x_1, X_2, = x_2,
+    \ldots, X_n = x_n)$. If the distribution is jointly continuous, then by
+    Radon-Nikodym
+    \begin{align*}
+        F(x) = \int_{-\infty}^x f(s) \, ds = \int_{-\infty}^{x_1} \ldots
+        \int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_n) \, ds_1 \, ds_2 \ldots \, ds_n.
+    \end{align*}
 
-One of the primary applications of joint distributions is in finding the
-distributions and associated density functions of sums and products of random
-variables.
-\begin{example}
-Let $X$ and $Y$ be continuous random variables, with associated densities
-$f_X(x)$ and $f_Y(y)$, respectively. What are the density functions of
-$Z = X+Y$ and $Z = XY$? What if $X$ and $Y$ are independent?
-\end{example}
-Recall that a continuous random variable $X: \Omega \to \rr^n$
-is defined to be a random variable whose distribution
-\begin{align*}
-u_X(B) \doteq \prob(X \in B)
-\end{align*}
-is absolutely continuous with respect to Lebesgue measure on $\rr^n$. Hence, by
-the Radon-Nikodym theorem
-\begin{align*}
-F_Z(z) = \prob(Z \le z) = \prob((X,Y) \in B_z) 
-& = \int_{B_z} f \, dm
-\\
-& = \int_{B_y} \int_{B_x} f(x,y) \, dx dy
-\end{align*}
-Applying the observation that $B_z
-= \{(x,y):
--\infty < x < \infty, y \le z-x \}$, we obtain the distribution function 
-\begin{align*}
-F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f_{(X,Y)}(x,y) dy dx.
-\end{align*}
-Differentiating with respect to $z$, we arrive
-at the density
-\begin{align*}
-f_Z(z) = \int_{-\infty}^{\infty} f_{(X,Y)}(x,z-x) dx.
-\end{align*}
-If $X$ and $Y$ are independent, then $f_{(X,Y)}(x, y) = f_X(x) f_Y(y)$, giving
-\begin{align*}
-f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z-x) dx = f_X * f_Y(z).
-\end{align*}
-Similarly, for $Z = XY$,  the distribution
-function is given by
-\begin{align*}
-F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z/x} f_{(X,Y)}(x,y) dy dx
-\end{align*}
-with density
-\begin{align*}
-f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_{(X,Y)}(x,z/x) dx.
-\end{align*}
-If $X$ and $Y$ are independent, this density becomes
-\begin{align*}
-f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_X(x) f_Y(z/x) dx.
-\end{align*}
-\section{Expectation}
-Let $X: \Omega \to [\alpha_1, \ldots, \alpha_k]$, $k < \infty$ be a random
-variable denoting the outcome of some experiment, and let $X_1, \ldots, X_n$ be independent trials
-of the same experiment, where \\ $X_i:
-\Omega \to [\alpha_1, \ldots, \alpha_k]$. Then we 
-call
-\begin{align*}
-E(X) \doteq \lim_{n \to \infty} \frac{1}{n} \sum_{i =1}^n X_i \doteq \mu 
-\end{align*}
-the \emph{expectation}, or \emph{mean}, or $X$. If the limit does not exist,
-or $\mu = \pm \infty$, we say that the expectation does not exist.
+    One of the primary applications of joint distributions is in finding the
+    distributions and associated density functions of sums and products of random
+    variables.
+    \begin{example}
+        Let $X$ and $Y$ be continuous random variables, with associated densities
+        $f_X(x)$ and $f_Y(y)$, respectively. What are the density functions of
+        $Z = X+Y$ and $Z = XY$? What if $X$ and $Y$ are independent?
+    \end{example}
+    Recall that a continuous random variable $X: \Omega \to \rr^n$
+    is defined to be a random variable whose distribution
+    \begin{align*}
+        u_X(B) \doteq \prob(X \in B)
+    \end{align*}
+    is absolutely continuous with respect to Lebesgue measure on $\rr^n$. Hence, by
+    the Radon-Nikodym theorem
+    \begin{align*}
+        F_Z(z) = \prob(Z \le z) = \prob((X,Y) \in B_z) 
+        & = \int_{B_z} f \, dm
+        \\
+        & = \int_{B_y} \int_{B_x} f(x,y) \, dx dy
+    \end{align*}
+    Applying the observation that $B_z
+    = \{(x,y):
+    -\infty < x < \infty, y \le z-x \}$, we obtain the distribution function 
+    \begin{align*}
+        F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f_{(X,Y)}(x,y) dy dx.
+    \end{align*}
+    Differentiating with respect to $z$, we arrive
+    at the density
+    \begin{align*}
+        f_Z(z) = \int_{-\infty}^{\infty} f_{(X,Y)}(x,z-x) dx.
+    \end{align*}
+    If $X$ and $Y$ are independent, then $f_{(X,Y)}(x, y) = f_X(x) f_Y(y)$, giving
+    \begin{align*}
+        f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z-x) dx = f_X * f_Y(z).
+    \end{align*}
+    Similarly, for $Z = XY$,  the distribution
+    function is given by
+    \begin{align*}
+        F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z/x} f_{(X,Y)}(x,y) dy dx
+    \end{align*}
+    with density
+    \begin{align*}
+        f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_{(X,Y)}(x,z/x) dx.
+    \end{align*}
+    If $X$ and $Y$ are independent, this density becomes
+    \begin{align*}
+        f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_X(x) f_Y(z/x) dx.
+    \end{align*}
+    \section{Expectation}
+    Let $X: \Omega \to [\alpha_1, \ldots, \alpha_k]$, $k < \infty$ be a random
+    variable denoting the outcome of some experiment, and let $X_1, \ldots, X_n$ be independent trials
+    of the same experiment, where \\ $X_i:
+    \Omega \to [\alpha_1, \ldots, \alpha_k]$. Then we 
+    call
+    \begin{align*}
+        E(X) \doteq \lim_{n \to \infty} \frac{1}{n} \sum_{i =1}^n X_i \doteq \mu 
+    \end{align*}
+    the \emph{expectation}, or \emph{mean}, or $X$. If the limit does not exist,
+    or $\mu = \pm \infty$, we say that the expectation does not exist.
 \end{definition}
 \begin{example}
-Let $X$ be a discrete random variable with mass function 
-\begin{align*}
-f(k) = \begin{cases}
-Ak^{-2},  \quad &k\in \zz^{+} 
-\\
-0, \quad & \text{otherwise}
-\end{cases}
-\end{align*}
-(Observe that for $f$ to be a mass function, $A$ must be chosen such that
-$\sum_{k = 1}^{\infty} k^{-2} = 1$).
-Then it is easy to check that
-\begin{align*}
-E(X) = \sum_{k=1}^{\infty} k Ak^{-2} = A \sum_{k=1}^{\infty} k^{-1} = \infty.
-\end{align*}
+    Let $X$ be a discrete random variable with mass function 
+    \begin{align*}
+        f(k) = \begin{cases}
+            Ak^{-2},  \quad &k\in \zz^{+} 
+            \\
+            0, \quad & \text{otherwise}
+        \end{cases}
+    \end{align*}
+    (Observe that for $f$ to be a mass function, $A$ must be chosen such that
+    $\sum_{k = 1}^{\infty} k^{-2} = 1$).
+    Then it is easy to check that
+    \begin{align*}
+        E(X) = \sum_{k=1}^{\infty} k Ak^{-2} = A \sum_{k=1}^{\infty} k^{-1} = \infty.
+    \end{align*}
 
 \end{example}
 Observe that we can write
 \begin{align*}
-\frac{1}{n} \sum_{i = 1}^n X_i
-& = \frac{\alpha_i (\#\alpha_i) + \cdots +
-\alpha_n (\#\alpha_n)}{n}
- \to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
+    \frac{1}{n} \sum_{i = 1}^n X_i
+    & = \frac{\alpha_i (\#\alpha_i) + \cdots +
+    \alpha_n (\#\alpha_n)}{n}
+    \to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
 \end{align*}
 This motivates the following.
 \begin{definition}
-The \emph{expectation} of a random variable $X$ with mass function $f$ is
-\begin{align*}
-E(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
-\sum_{x \in \rr: f(x) > 0} |x
-f(x) | <
-\infty
-\end{align*}
-If $X$ is continuous with density $f(x)$, then
-\begin{align*}
-E(X) = \int_{-\infty}^{\infty} xf(x) \, dx, \quad \text{provided} \quad
-\int_{-\infty}^{\infty} |xf(x)| \, dx < \infty.
-\end{align*}
+    The \emph{expectation} of a random variable $X$ with mass function $f$ is
+    \begin{align*}
+        E(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
+        \sum_{x \in \rr: f(x) > 0} |x
+        f(x) | <
+        \infty
+    \end{align*}
+    If $X$ is continuous with density $f(x)$, then
+    \begin{align*}
+        E(X) = \int_{-\infty}^{\infty} xf(x) \, dx, \quad \text{provided} \quad
+        \int_{-\infty}^{\infty} |xf(x)| \, dx < \infty.
+    \end{align*}
 \end{definition}
 \begin{lemma}
-If $g: \rr \to \rr$ is continuous, then
-\begin{align*}
-E(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
-\int_{-\infty}^{\infty} g(x) f(x) \, dx
-\end{align*}
+    If $g: \rr \to \rr$ is continuous, then
+    \begin{align*}
+        E(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
+        \int_{-\infty}^{\infty} g(x) f(x) \, dx
+    \end{align*}
 \end{lemma}
 \begin{theorem}[Properties of Expectation]
-Let $X$ be a random variable. Then
-\begin{enumerate}[(a)]
-	\item $E(aX + bY) = aE(X) + bE(Y)$.
-	\item E (1) = 1
-	\item If $X,Y$ are independent, then $E(XY) = E(X)E(Y)$.
-\end{enumerate}
+    Let $X$ be a random variable. Then
+    \begin{enumerate}[(a)]
+        \item $E(aX + bY) = aE(X) + bE(Y)$.
+        \item E (1) = 1
+        \item If $X,Y$ are independent, then $E(XY) = E(X)E(Y)$.
+    \end{enumerate}
 \end{theorem}
 \begin{proof}
-We shall only do the discrete case; the proof for the continuous case is
-analogous.
-\begin{enumerate}[(a)]
-\item This follows immediately from the linearity of sums and integrals.
-\item
-We have $E(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
-\item
-Let $Z = XY$. Then
-\[E(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} xy f_{(X,Y)}(x,y) = \sum_x x f_X(x)
-\sum_y y f_Y(y) = E(X) E(Y).\]
-\end{enumerate}
+    We shall only do the discrete case; the proof for the continuous case is
+    analogous.
+    \begin{enumerate}[(a)]
+        \item This follows immediately from the linearity of sums and integrals.
+        \item
+            We have $E(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
+        \item
+            Let $Z = XY$. Then
+            \[E(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} xy f_{(X,Y)}(x,y) = \sum_x x f_X(x)
+            \sum_y y f_Y(y) = E(X) E(Y).\]
+    \end{enumerate}
 \end{proof}
 Having defined expectation, we can use it to define the
 \emph{variance} of a random variable $X$
 \begin{align*}
-E({[X - E(X)]}^2),
+    E({[X - E(X)]}^2),
 \end{align*}
 the \emph{standard deviation}
 \begin{align*}
-\sigma_X \doteq \sqrt{\var(X)}
+    \sigma_X \doteq \sqrt{\var(X)}
 \end{align*}
 and \emph{covariance} of random variables $X, Y$
 \begin{align*}
-\covar(X,Y) \doteq E([X - E(X)][Y - E(Y)])
+    \covar(X,Y) \doteq E([X - E(X)][Y - E(Y)])
 \end{align*}
 The standard deviation of a random variable $X$ is the average spread of the
 trials of an experiment away from the mean, and is always positive. 
@@ -781,15 +784,15 @@ trials of an experiment away from the mean, and is always positive.
 In practice, we consider the normalized covariance of two random variables,
 commonly called the \emph{correlation coefficient}
 \begin{align*}
-\rho(X,Y) = \frac{\covar(X,Y)}{\sigma_X \sigma_Y}
+    \rho(X,Y) = \frac{\covar(X,Y)}{\sigma_X \sigma_Y}
 \end{align*}
 The correlation coefficient has the following important property.
 \begin{theorem}
-For random variables $X, Y$, $|\rho(x,y)| \le 1$, where $|\rho(x,y)| = 1$ if and
-only if $aX + bY = 1$ almost surely, for some $a,b \in \rr$. 
+    For random variables $X, Y$, $|\rho(x,y)| \le 1$, where $|\rho(x,y)| = 1$ if and
+    only if $aX + bY = 1$ almost surely, for some $a,b \in \rr$. 
 \end{theorem}
 \begin{proof}
-It is a standard application of Cauchy-Schwarz.
+    It is a standard application of Cauchy-Schwarz.
 \end{proof}
 From this theorem, we see that the correlation index of two random variables is
 a measure of the linear dependence of one random variable on another. If the
@@ -797,8 +800,8 @@ index is negative, a rise in one random variables implies a fall in the other,
 and vice verse. If the coefficient is positive, then the variables rise or fall
 together.
 \begin{definition}
-We say two random variables $X$ and $Y$ are \emph{correlated} 
-if $E(XY) = E(X)E(Y)$.
+    We say two random variables $X$ and $Y$ are \emph{correlated} 
+    if $E(XY) = E(X)E(Y)$.
 \end{definition}
 Observe that independent random variables are uncorrelated. However,
 lack of correlation does not, in general, imply independence. Heuristically, this is
@@ -806,48 +809,48 @@ because correlation is only a measure of the degree of linear dependence
 between variables, and does not capture higher order (for example, quadratic)
 types of dependence. 
 \begin{example}
-Let $X$ be a continuous random variable with the standard normal distribution,
-and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
-\begin{align*}
-E(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} \, dx = 0
-\end{align*}
-by anti-symmetry, and so
-\begin{align*}
-E(XY) = E(X^3) = 0 = E(X) E(Y).
-\end{align*}
-which implies $X, Y$ are uncorrelated.
+    Let $X$ be a continuous random variable with the standard normal distribution,
+    and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
+    \begin{align*}
+        E(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} \, dx = 0
+    \end{align*}
+    by anti-symmetry, and so
+    \begin{align*}
+        E(XY) = E(X^3) = 0 = E(X) E(Y).
+    \end{align*}
+    which implies $X, Y$ are uncorrelated.
 \end{example}
 \section{Conditional Distributions and Expectation}
 \begin{definition}
-The \emph{conditional distribution function} of $Y$ given $X = x$,
-written $F_{Y|X}(\cdot | x)$ is defined by
-\begin{align*}
-F_{Y|X}(y|x) = \prob (Y \le y | X = x).
-\end{align*}
-In the discrete case, the \emph{conditional mass function}
-is given by
-\begin{align*}
-f_{Y|X}(y|x) = \prob(Y = y | X = x).
-\end{align*}
+    The \emph{conditional distribution function} of $Y$ given $X = x$,
+    written $F_{Y|X}(\cdot | x)$ is defined by
+    \begin{align*}
+        F_{Y|X}(y|x) = \prob (Y \le y | X = x).
+    \end{align*}
+    In the discrete case, the \emph{conditional mass function}
+    is given by
+    \begin{align*}
+        f_{Y|X}(y|x) = \prob(Y = y | X = x).
+    \end{align*}
 \end{definition}
 Observe that, in the discrete case
 \begin{align*}
-f_{(X,Y)}(x,y)
-& = \prob_{\filter \times \filter}(X \le x, Y \le y)
-\\
-& = \prob_{\filter} (X \le x \cap Y \le y)
-\\
-& = \prob_{\filter}(X \le x | Y \le y) \prob_{\filter}(Y \le y)
-\\
-& = f_{X|Y}	(x,y) f_y(y)	
+    f_{(X,Y)}(x,y)
+    & = \prob_{\filter \times \filter}(X \le x, Y \le y)
+    \\
+    & = \prob_{\filter} (X \le x \cap Y \le y)
+    \\
+    & = \prob_{\filter}(X \le x | Y \le y) \prob_{\filter}(Y \le y)
+    \\
+    & = f_{X|Y}	(x,y) f_y(y)	
 \end{align*}
 and so
 \begin{align*}
-f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}
+    f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}
 \end{align*}
 and similarly
 \begin{align*}
-f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+    f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
 \end{align*}
 We will heretofore suppress the distinction between $\prob_{\filter \times
 \filter}$ and $\prob_{\filter}$, for the sake of clarity.
@@ -856,25 +859,25 @@ Observe that in
 the continuous case, we have some difficulties,
 since we are not allowed to condition on null events. However, we may consider
 \begin{align*}
-\prob(Y \le y , x \le X \le x + h)
-& = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
+    \prob(Y \le y , x \le X \le x + h)
+    & = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
 \end{align*}
 which we can rewrite, using Taylor series, as
 \begin{align*}
-\prob(Y \le y | x \le X \le x + h)
-& = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
-\\
-& = \frac{hf_{(X,Y)}(x,y) + O(h^2)}{hf_X(x) + O(h^2)}
-\\
-& = \frac{f_{(X,Y)}(x,y) + O(h)}{f_X(x) + O(h)}
+    \prob(Y \le y | x \le X \le x + h)
+    & = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
+    \\
+    & = \frac{hf_{(X,Y)}(x,y) + O(h^2)}{hf_X(x) + O(h^2)}
+    \\
+    & = \frac{f_{(X,Y)}(x,y) + O(h)}{f_X(x) + O(h)}
 \end{align*}
 Letting $h \to 0$, we obtain
 \begin{align*}
-f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+    f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
 \end{align*}
 Similarly, 
 \begin{align*}
-f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}.
+    f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}.
 \end{align*}
 Thus, the formulas for conditional distributions
 functions in both the discrete and continuous cases are identical.
@@ -883,136 +886,415 @@ Since $Y|X =x$ is a random variable, we can write $\psi(x) = E(Y | X =x)$.
 Then $\psi(X)$ is a random variable, which we call the expectation of $Y$ given
 $X$, also written as $E(Y|X)$.
 \begin{theorem}
-For any two random variable $X,Y: \Omega \to \rr^n$,
-\begin{align*}
-E(E(Y | X)) = E(Y)
-\end{align*}
-\begin{proof}
-For the discrete case, we have
-\begin{align*}
-E(\psi(X)) 
-& = \sum_{x} \psi(x) f_x(x)
-\\
-& = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
-\\
-& = \sum_{x,y} y f_{(x,y)}
-\\
-& = \sum_y y f_Y(y)
-\\
-& = E(Y).
-\end{align*}
-The proof for the continuous case is analogous. 
-\end{proof}
+    For any two random variable $X,Y: \Omega \to \rr^n$,
+    \begin{align*}
+        E(E(Y | X)) = E(Y)
+    \end{align*}
+    \begin{proof}
+        For the discrete case, we have
+        \begin{align*}
+            E(\psi(X)) 
+            & = \sum_{x} \psi(x) f_x(x)
+            \\
+            & = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
+            \\
+            & = \sum_{x,y} y f_{(x,y)}
+            \\
+            & = \sum_y y f_Y(y)
+            \\
+            & = E(Y).
+        \end{align*}
+        The proof for the continuous case is analogous. 
+    \end{proof}
 \end{theorem}
 \begin{theorem}
-Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
-$E(g(X))< \infty$. Then
-\begin{align*}
-E(E(Y|X)g(X)) = E(Yg(X)).
-\end{align*}
+    Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
+    $E(g(X))< \infty$. Then
+    \begin{align*}
+        E(E(Y|X)g(X)) = E(Yg(X)).
+    \end{align*}
 \end{theorem}
 \begin{proof}
-It is almost identical to that of the preceding theorem.
+    It is almost identical to that of the preceding theorem.
 \end{proof}
 The two theorems above are immensely useful in solving a wide variety of
 discrete and non-discrete problems. Heuristically, they allow us to divide a
 difficult probability problem into several simpler problems.
 
 \begin{example}
-Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ points to
-heads. We play a game where we flip a coin repeatedly until we obtain
-$-1$ points, or $2$ points. What is the expected number of flips before the
-game terminates? 
+    Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ points to
+    heads. We play a game where we flip a coin repeatedly until we obtain
+    $-1$ points, or $2$ points. What is the expected number of flips before the
+    game terminates? 
 \end{example}
 
 Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
 to terminate if we begin with $i$ points. Then we have
 \begin{align*}
-E(X_0) & = E(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
-E(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
-\\
-& = (E(X_1) + 1) \frac{1}{2} + (E(X_{-1}) + 1) \frac{1}{2}
-\\
-& = \frac{1}{2}(E(X_1) + E(X_{-1})) + 1
-\\
-& = \frac{1}{2}E(X_1) + 1
-\\
-& = \frac{1}{2}[E(X_1 | \text{flip heads}) \frac{1}{2} + E(X_1 | \text{flip
-tails}) \frac{1}{2}] + 1
-\\
-& = \frac{1}{4}[E(X_1 | \text{flip heads}) + E(X_1 | \text{flip
-tails})] + 1
-\\
-& = \frac{1}{4} [ E(X_2) + 1  + E(X_0) + 1] + 1
-\\
-& = \frac{1}{4}[ E(X_0) + 2] + 1
+    E(X_0) & = E(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
+    E(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
+    \\
+    & = (E(X_1) + 1) \frac{1}{2} + (E(X_{-1}) + 1) \frac{1}{2}
+    \\
+    & = \frac{1}{2}(E(X_1) + E(X_{-1})) + 1
+    \\
+    & = \frac{1}{2}E(X_1) + 1
+    \\
+    & = \frac{1}{2}[E(X_1 | \text{flip heads}) \frac{1}{2} + E(X_1 | \text{flip
+    tails}) \frac{1}{2}] + 1
+    \\
+    & = \frac{1}{4}[E(X_1 | \text{flip heads}) + E(X_1 | \text{flip
+    tails})] + 1
+    \\
+    & = \frac{1}{4} [ E(X_2) + 1  + E(X_0) + 1] + 1
+    \\
+    & = \frac{1}{4}[ E(X_0) + 2] + 1
 \end{align*}
 which gives $E(X_0) = 2$.
 \begin{example}
-A hen lays $N$ eggs, where $N$ has a poisson distribution with parameter
-$\lambda$. An egg hatches with probability $p$, independently  of the other
-eggs. Let $K$ be the number of chicks. Compute $E(K|N)$, $E(K)$, and $E(N | K)$.
+    A hen lays $N$ eggs, where $N$ has a poisson distribution with parameter
+    $\lambda$. An egg hatches with probability $p$, independently  of the other
+    eggs. Let $K$ be the number of chicks. Compute $E(K|N)$, $E(K)$, and $E(N | K)$.
 \end{example}
 To compute $E(K|N)$, we must first recall the poisson distribution
 \begin{align*}
-f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
+    f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
 \end{align*}
 Given $N$ eggs, the probability that $K$ out of $N$ eggs hatch obeys a 
 Bernoulli distribution, and so 
 \begin{align*}
-f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
+    f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
 \end{align*}
 Now, $E(K | N = n) = pn$, and so $E(K | N) = pN$. Furthermore, $E(K) = E(E(K
 | N	)) = E(pN) = p \lambda$.
 To compute $E(N | K)$, we apply Bayes Theorem to obtain
 \begin{align*}
-f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
-\\
-& = \begin{cases}
-\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
-e^{-\lambda}/n!}{\sum_{m \ge k}
-\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
-, \quad & n \ge k
-\\
-0, \quad & n<k
-\end{cases}
+    f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
+    \\
+    & = \begin{cases}
+        \frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
+            e^{-\lambda}/n!}{\sum_{m \ge k}
+        \binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
+        , \quad & n \ge k
+        \\
+        0, \quad & n<k
+    \end{cases}
 \end{align*}
 where we obtained the denominator via the observation
 \begin{align*}
-\prob(K = k) & = \prob(K = k \cap N \ge k) 
-\\
-& = \sum_{m \ge k} \prob(K =
-k \cap N = m) 
-\\
-& = \sum_{m \ge k} \prob(K = k | N = m) \prob(N = m)
-\\
-& = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
-\\
-& = \sum_{m \ge k}
-\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!.
+    \prob(K = k) & = \prob(K = k \cap N \ge k) 
+    \\
+    & = \sum_{m \ge k} \prob(K =
+    k \cap N = m) 
+    \\
+    & = \sum_{m \ge k} \prob(K = k | N = m) \prob(N = m)
+    \\
+    & = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
+    \\
+    & = \sum_{m \ge k}
+    \binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!.
 \end{align*}
 Simplifying, we obtain
 \begin{align*}
-f_{N|K}(n|k) = 
-\begin{cases}
-\frac{{(q\lambda)}^{n-k} e^{-q\lambda}}{(n-k)!}, \quad & n \ge k
-\\
-0, \quad & n<k
-\end{cases}
+    f_{N|K}(n|k) = 
+    \begin{cases}
+        \frac{{(q\lambda)}^{n-k} e^{-q\lambda}}{(n-k)!}, \quad & n \ge k
+        \\
+        0, \quad & n<k
+    \end{cases}
 \end{align*}
 and so 
 \begin{align*}
-E(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
-\\
-& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
-\\
-& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 0}
-n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
-\\
-& = k + q\lambda.
+    E(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
+    \\
+    & = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
+    \\
+    & = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 0}
+    n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
+    \\
+    & = k + q\lambda.
 \end{align*}
 Hence, $E(N|K) = K + q \lambda$.
+\section{Risk}
+\begin{definition}
+    A \emph{riskless asset} is an asset whose future value can be precisely determined. If an asset is not riskless, we say it is a \emph{risky asset} 
+\end{definition}
+The idea of a riskless asset is a theoretical construction. No asset in the world is without some risk. However, the primary example of a (nearly) riskless asset is a bond of a stable government. Examples of risky assets include stock in a limited liability company (especially those on the Nasdaq or outside the Fortune 500),
+and real estate.
+
+\begin{theorem}[Axioms of Market Efficiency]
+    In an efficient market, we have the following: 
+    \begin{enumerate}
+        \item 
+            In a free market, all available information about an asset is contained in its price. In other words, the price of an asset reflects its risk.
+        \item 
+            The past price of a stock has no influence on its present price. More precisely,
+            stock movement is a martingale.
+    \end{enumerate}
+\end{theorem}
+We will assume these axioms throughout the course. Of course, they are not true in general, otherwise there would be no bargains in the market, and investors like Warren Buffett would not have had nearly as much success as they have had. However, the axiom does hold for the average investor in general. More precisely, by the time the average investor hears about a deal, the deal vanishes (that is, quicker, savvier investors like Buffett swoop in before them), which in turn makes a deal less of a bargain (demand for it raises the price). 
+
+Rephrased differently, our competition with each other allows stock prices to stabilize. Observe further that the riskiness of a stock is related to how high its price is.
+The more expensive a stock, the more you have to lose if you a purchase a share and the company goes under. 
+
+Since the two axioms hold for the overwhelming majority of investors, of what use
+is finance to them? 
+\begin{remark}
+    The purpose of finance is not so much to beat the market,
+    but to relate the prices of assets to each other, in order to reduce our exposure to risk. This is known as \emph{hedging}, and will be discussed in detail in the upcoming lectures.  
+\end{remark}
+\begin{example}
+    Generally, when the price of pork goes up, the price of beef goes down, since they are goods that can be substituted for one another. If I have a portfolio consisting of pork, I am in danger of losing a considerable amount of money if the price of pork goes down. To hedge against this, I also purchase beef. Now, if the price of pork goes down, my gains from my beef investment will offset them. However, if the price of pork goes up, I will lose money on my beef investment. What is of note is that the potential ``swing'', or variance, around my expected gains from my portfolio has been diminished by \emph{hedging} our pork purchase with a beef purchase.
+\end{example}
+\subsection{Introduction to Hedging and Risk Diversification}
+Suppose there is a contract on the market, which guarantees $100$ is we flip heads with a fair coin, and $0$ otherwise. We would like to find what the fair price is for the contract. 
+
+Our expected winnings is $50$ dollars. However, people are naturally \emph{risk averse}, especially when large sums of money are involved. Hence, we are willing to pay $\le \$50$. Now suppose another contract exists that pays out $100$ if we flip tails, and $0$ otherwise. Since both contracts above exist on the market, we can buy both and be guaranteed $100$. Hence, each contract must be worth $50$ dollars \emph{when the other is available}.  The ability to hedge has eliminated the effects of our natural risk aversion!. 
+
+A closely related idea is \emph{diversification}. 
+\begin{example}
+    Suppose now that there are $N$ independent coin flips $X_i$, each paying $100/N$ for heads, and $0$ for tails. Let $X \doteq X_1 + X_2 + \cdots + X_n$. Then $E(X) = 50$, as in the single coin example above. However
+    \begin{align*}
+        \text{Var}(X)
+        & = E({[X - 50]}^2)
+        \\
+        & = E(X^2) - 2500
+        \\
+        & = \sum_{i,j: i \neq j} E(X_i)E(X_j) + \sum_{i=1}^N E(X_i^2) - 2500 E_{llalsdf}
+        \\
+        & = \sum_{i,j: i \neq j} 2500/N^2 + \sum_{i=1}^{N} 5000/N^2 - 2500
+        \\
+        & = (N^{2} - N)(2500/N^2) + 5000/N - 2500
+        \\
+        & = 2500/N 
+    \end{align*}
+    and so
+    \begin{align*}
+        \sigma(X) = 50/N \to 0.
+    \end{align*}
+    Observe, that for the single coin case, $N = 1$ and $\sigma(X) = 50$.
+    Hence, spreading one's investments around, or \emph{diversifying} allows them to
+    control variance and, hence, control risk. However, a consequence of our analysis is that the more diversified a portfolio, the less chance that one will make a great deal of money (i.e.\ deviate far from the mean).  
+\end{example}
+\subsection{Assets}
+We now give a brief overview of some of the most common assets.
+
+\subsubsection{Stocks}
+Most shares traded on the market are from \emph{limited liability} companies.
+What this means is that if the company goes bankrupt, the investor loses their investment, but can't be sued if the company is sued. The investor makes money from the stock via both dividends paid out, and by the price of the share on the market.
+
+\subsubsection{Bonds}
+The most typical is a $30$ year bond, with coupons (i.e.\ interest payments) issued every year. The principal is returned at the end of the $30$ years.
+They are  not entirely riskless---interest rates may change, diminishing the value of the bond on the open market. This is reflected by the \emph{yield} of the bond, where we define \begin{equation*}
+    \text{yield} = \frac{\text{interest payment}}{\text{price of bond}}.
+\end{equation*}
+Since bonds from stable governments are close to riskless, their yield is typically low (around $3\%$). Bonds from unstable governments are very risky (good luck getting General Sibanda to return your principal once he takes over Zimbabwe), and so have high yields.
+\subsubsection{Corporate Bonds}
+These are loans to a company, and their riskiness varies, depending on the stability of the company. 
+\subsubsection{Derivatives}
+These are any instrument whose value is determined by the value of another asset, commonly called the \emph{underlying}. At their core, derivatives are instruments that allow us to offset the risk of an asset by adopting the ``opposite'' risk.
+\begin{example}
+    Suppose a firm will be paid in yen one year into the future,and will want to exchange the yen into dollars immediately upon payment.
+    If the exchange rate dips in one year, the firm will lose money. To lessen the risk of this occurring, the firm can purchase a \emph{forward contract}. That is, it can agree today to a fixed exchange rate for a fixed amount of yen one year into the future. Observe that if the exchange rate is greater one year from now than that fixed in the contract, the firm loses potential profits. However, if the exchange rate is less one year from now than that in the contract, the firm has guarded itself from great losses. 
+\end{example}
+If the amount of yen paid at the end of the year will be highly variable, the firm can enter into an \emph{option}, which is a contract to exchange \emph{any} quantity of yen at a fixed interest rate, in the future. However, unlike forwards, options are \emph{not-binding}. That is, the firm would have the option to not exercise the contract if it is not variable to a year from now.
+\begin{definition}
+    A \emph{call option} is a contract whose purchaser has the option to buy an asset at an agreed upon rate in the future. A \emph{put option} is the a contract whose purchaser has the option to sell an asset at an agreed upon rate in the future. A \emph{vanilla option} is either an \emph{American option} or \emph{European option}---an American option can be exercised any day before an agreed upon day in the future, while a European option can only be exercised on one agreed upon day in the future.
+\end{definition}
+The pricing of options is a difficult problem, which we shall tackle in future lectures.\section{Arbitrage}
+We motivate our discussion of \emph{arbitrage} via an example. 
+\begin{example}
+Suppose $1$ British pound is worth $1.5$ dollars,  $1$ dollar is worth $100$ yen, 
+and $1$ pound is worth $149$ yen.
+We now construct a strategy to make a profit \emph{without risk of losses} as follows: 
+We borrow $149$ yen, immediately exchange it for $1$ pound, which we exchange for $1.5$ dollars. Then we exchange our $1.5$ dollars for $150$ yen, which we use to pay back our debt of $149$ yen. All these trades are executed instantaneously, allowing us to avoid interest costs. Therefore, our 
+our net profit is $150 - 149 = 1$. This type of investment opportunity is known as an
+\emph{arbitrage opportunity}.
+\end{example}
+We remark that arbitrage opportunities do exist in the market, but they don't exist for long, due to their extreme desirability. That is, once enough people find out about the opportunity in the example, it raises the number of people demanding to exchange yen for pounds, lowering the value of yen relative to pounds until a $150:1$ yen to pound ratio is reached, upon which the arbitrage opportunity disappears.  
+
+Since arbitrage opportunities are rare and vanish quickly, we will assume 
+absence of arbitrage in our models. Furthermore, we shall adopt all the following
+assumptions when building models of the financial market:
+
+\begin{enumerate}[(i)]
+    \item No market moving. That is, one can buy and sell any amount of an asset
+        without affecting its price. Many prop shops attempt to violate this by artificially moving prices, thereby constructing an arbitrage opportunity. This has adverse effects for the economy and market efficiency.   
+    \item Liquidity---we can buy or sell any amount of an asset. Observe that Wall St.\  provides this. Indeed, any stable stock exchange does. 
+    \item We are allowed to short assets.
+    \item Fractional quantities of shares can be purchased. This is motivated by the idea that if there are $10^{6}$ shares of a particular stock available, then $1/10^6 \sim 0.5/10^{6}$.
+    \item No transaction costs, commonly known as the \emph{bid-offer spread}. This is of course false in the real world, but we assume it to simplify our models. Observe that our assumption introduces a negligible error if the transaction cost is small relative to the value of the asset being exchanged.
+\end{enumerate}
+    \subsection{Mathematical Definition of Arbitrage, and its Corollaries}
+    \begin{definition}
+        A portfolio is said to be an \emph{arbitrage portfolio} if today it is
+        of $x$ value, and in the future it has zero probability of being $<x$ in value,
+        and nonzero probability of being $>x$ in value. 
+    \end{definition}
+    \begin{theorem}[Monotonicity Theorem]
+    Consider two portfolios $A, B$ with values $A(t)$ and $B(t)$, respectively. 
+    If $A(T) \ge B(T)$ in every state of the world at time $T$, then
+    $A(t) \ge B(t)$ for every $t < T$. In addition, if we know that
+    $A(T) > B(T)$ in some states of the world at time $T$, then
+    $A(t) > B(t)$ for all $t < T$. 
+    \end{theorem}
+    \begin{proof}
+    Consider portfolio $C$ constructed by going long $A$, and short $B$. Then
+    $C(T) = A(T) - B(T) \ge 0$ in all states of the world at time $T$. 
+    By the no-arbitrage principle, we must have $C(t) \ge 0$. \qedhere
+    \end{proof}
+    \begin{corollary}
+    A vanilla call option or put option is always of positive value before expiry.
+    \end{corollary}
+    \begin{proof}
+        Let $A$ be a portfolio that is long a call option, and $B$ be an empty
+        portfolio.  Then $B$ has zero value for all time, while $A(T) = {(S_{T}
+    - K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
+    B(T)$ in all world states, and hence $A(t) \ge B(t)$ by monotonicity.
+    \end{proof}
+    \begin{corollary}[Weighted Symmetry of Randomness]
+    If two portfolios $P$ and $Q$ are equal at some $t < T$ and $P(T) > Q(T)$
+    in some world states, then $Q(T) > P(T)$ in others. 
+    \end{corollary}
+    \begin{proof}
+    Assume $P(T) > Q(T)$ in some world states evolving from time $t$, where
+    $P(t) = Q(t)$. We proceed by contradiction. Suppose $P(T) < Q(T)$ does not hold
+    in any world state. Then $P(T) \ge Q(T)$ in all world states. By monotonicity,
+    $P(t) > Q(t)$, which is a contradiction.
+    \end{proof}
 
 
+\subsection{Arbitrage-Free Pricing}
+\subsubsection{Forward Exchange Rates}
+    Suppose a firm wants to enter a contract to exchange up to $1$
+    dollar for yen a year from now at an exchange rate $K'$. We
+    wish to compute a non-arbitrage inducing exchange rate $K'$ for the
+    contract. 
+    Assume we start off with net worth $0$ dollars. Recall that we assume that there are no transaction costs, so we are allowed to enter the forward without a fee. 
+    Next, observe that we can hedge a long position in the forward by
+    shorting $1/(1+r)$ in bonds, which we then exchange at today's exchange rate
+    $K$ for yen.\footnote{The way to find the appropriate short is to ask yourself: If
+        the market exchange rate in a year's time is bigger than $K'$,
+        which currency has benefited? Why?  We lose out on having agreed to
+        a forward exchange rate $K$, but can benefit by having invested in
+    the currency that weakened over the course of the year.}
+    
+    We then invest this in the Japanese bond market, which accrues interest at rate $d$. We then must exchange this back for dollars at year end at the forward exchange rate $1/K'$, and we use the proceeds to pay back our debt from shorting, which is now $1$. Hence, in all possible states of the world in one year, our net worth in dollars will be
+    \begin{equation*}
+    \begin{split}
+        \frac{K}{K'} \left( \frac{1+d}{1+r} \right) -  1.
+    \end{split}
+    \end{equation*}
+    Since we started with $0$ dollars, we must end up with $0$ dollars,  otherwise an arbitrage opportunity is present. Therefore,
+    \begin{equation*}
+    \begin{split}
+        \frac{K}{K'} \left( \frac{1+d}{1+r} \right) -  1=0
+    \end{split}
+    \end{equation*}
+which gives\footnote{Observe that we did not need to even consider stocks
+and derivatives in our hedging argument. Perhaps their existence would
+create an even bigger arbitrage than the one we obtain above if
+\eqref{forward-cont} does not hold. However, this is irrelevant---the
+existence of bonds and forwards in a market is enough to force
+\eqref{forward-cont} to hold.}
+    \begin{equation}
+        \label{forward-cont}
+    \begin{split}
+        K' = K\left( \frac{1+d}{1+r} \right). 
+    \end{split}
+    \end{equation}
+    \begin{exercise}
+     Show that our exchange of exactly $1$, and our strategy to short $1/(1+r)$ is somewhat artificial: we can short $a/(1+r)$, where $0 < a < 1$, and obtain the same
+value for $K'$.
+    \end{exercise}
+    Hence, we have shown that going long a forward contract is equivalent
+    to the bond shorting strategy we have outlined above. The strategy of pricing an asset by decomposing it into instruments whose price can be computed is known as \emph{replication}.
+\subsubsection{Bounds for Option Prices}
+Recall that a European call option grants the owner the right, but not the obligation, to purchase an asset at price $K$ at some point in the future, but not before. 
+Let $S$ be the value of the underlying at expiry. Then at expiry, the \emph{pay-off} of the option is precisely
+\begin{equation*}
+\begin{split}
+    {(S - K)}_{+} = \text{max}(S - K, 0)
+\end{split}
+\end{equation*}
+Similarly, for a put option we have pay-off
+\begin{equation*}
+\begin{split}
+    {(K - S)}_{+} = \text{max}(K - S, 0)
+\end{split}
+\end{equation*}
+\begin{theorem}[Put-call parity]
+If a call option, with price $C$, and a put option, with price $P$, and a forward contract, of price $F$, have the same strike and expiry, then
+\begin{equation*}
+\begin{split}
+C - P = F
+\end{split}
+\end{equation*}
+\label{thm:put-call}
+\end{theorem}
+\begin{proof}
+    Observe that if we adopt a portfolio long a call option, and short a put,
+    both with strike price $K$, then the pay off of the portfolio at expiry,
+    \emph{in all states of the world}, is $S-K -C + P$, where $C$, and $P$ are
+    the prices of the call and put options at starting time $t = 0$,
+    respectively. If we go long a forward contract with strike price $K$ and
+    cost $F$, this will have pay-off $S-K - F$ at expiry in all states of the
+    world. 
+    Next, observe that, at expiry, $(S - K - F) - (S - K - C + P) = C - P - F$.
+    If $C - P - F \ge 0$, then by the monotonicity theorem, a portfolio long a
+    call option, short a put, and short a forward has value $\ge 0$ in all
+    states. If $C - P - F > 0$, we have an arbitrage opportunity; that is, we can short a call-put portfolio, invest the proceeds in a forward, and always be guaranteed a profit.
+    Similarly, if $C - P - F < 0$, then we can short a forward, go long a call-put portfolio, and always be guaranteed a profit. Hence, by the no arbitrage principle, we
+    conclude that we must have $C - P - F = 0$, or $C - P = F$. 
+\end{proof}
+\begin{theorem}[Bounds on Option Prices]
+Let $C_t$ be the price of a call option on a non-dividend paying stock, $S_t$, with
+expiry $T$ and strike $K$. Let $Z_t$ be the price of a zero-coupon bond with maturity $T$, at which time
+it is worth $\$1$. 
+Then we have
+\begin{equation*}
+\begin{split}
+    S_{0} > C_{0} > S_{0} - KZ_{0}.
+\end{split}
+\end{equation*}
+\label{thm:bound-op-prices}
+\end{theorem}
+\begin{proof}
+    At expiry the stock is worth $S_{T}$ and the option is worth
+    $\text{max}(S_{T} - K, 0)$. Hence, the stock is always worth at least as much
+    as the option in all world states at time $T$. By the monotonicity theorem, it follows
+    that $S_{0} > C_{0}$. 
 
+    To establish the lower pound, consider the portfolio long one option and $K$ zero-coupon bonds which
+    mature at time $T$. Then at expiry, our portfolio is worth
+    \begin{equation*}
+    \begin{split}
+        {(S_{T} - K)}_{+} + K =  \text{max}(S_{T}, K) \ge S_{T}
+    \end{split}
+    \end{equation*}
+    Observe that our analysis implies that in some world states at time $T$, our portfolio is worth as much as the stock, and in others it is worth more. By the monotonicity theorem, this is true for all $t < T$, and so
+    \begin{equation*}
+    \begin{split}
+        C_{0} + KZ_{0} > S_{0} 
+    \end{split}
+    \end{equation*}
+    or
+    \begin{equation*}
+    \begin{split}
+        C_{0} > S_{0} - KZ_{0}
+    \end{split}
+    \end{equation*}
+    completing the proof.
+\end{proof}
+\begin{remark}
+    In particular, if the interest rate is non-negative, then $Z_{t} < 1$ for any $t < T$, and so
+    $C_{t} > S_{t} - K$. This implies that, before expiry, an option is always worth more than the value
+    that would be obtained by exercising it today.
+\end{remark}
+This remark, in conjunction with the above theorem, implies the following.
+\begin{corollary}
+\label{am-eu-equiv}
+If interest rates are non-negative, then a European call option and an American call option with the same
+non-dividend paying underlying stock with the same strike and expiry, are of equal value. 
+\end{corollary}
 \end{document}
