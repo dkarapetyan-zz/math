@@ -980,7 +980,6 @@ $X$, also written as $E(Y|X)$.
 The two theorems above are immensely useful in solving a wide variety of
 discrete and non-discrete problems. Heuristically, they allow us to divide a
 difficult probability problem into several simpler problems.
-
 \begin{example}
 	Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ 
 	points to
@@ -988,7 +987,6 @@ difficult probability problem into several simpler problems.
 	$-1$ points, or $2$ points. What is the expected number of flips before the
 	game terminates? 
 \end{example}
-
 Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
 to terminate if we begin with $i$ points. Then we have
 \begin{align*}
@@ -1674,9 +1672,214 @@ option starting in July with expiry in December.  The prices will be the same.
 			C(K, T, S_{2}, t) - C(k, T, S_{1}, t) \le (S_{2} - S_{1})Z(t).
 		\end{split}
 	\end{equation*}
-	This establishes the Lipschitz continuity. Lastly, dividing both sides by 
+	This establishes the Lipschitz continuity. Lastly, dividing both sides by
 	$(S_{2} - S_{1})$ and invoking the mean-value theorem
 	gives the desired bounds on $\p C/ \p S$, if it exists.
 \end{proof}
-\end{document}
+\begin{remark}[The Federal Reserve]
+	Observe that concavity in $S$. More precisely, from
+	\cref{thm:bound-op-prices} we have
+	\begin{equation*}
+		\begin{split}
+			KZ_{t} > S_{t} - C_{t}
+		\end{split}
+	\end{equation*}
+	Concavity in $S$ tells us that, for fixed $t$, there exists $N$ such that for
+	$S > N$, $C_{t}$ quickly diminishes to zero value. Hence, from
+	\cref{thm:bound-op-prices}, we see that
+	\begin{equation*}
+		\begin{split}
+			KZ_{t} > S_{t} - C_{t} \approx S_{t}, \quad S \gg 1
+		\end{split}
+	\end{equation*}
+	Hence, for fixed $K$, we see that, for $S \gg 1$, the lower bound for $Z_{t}$
+	increases as $S$ increases.  In short, for low strikes $K$, high stock prices
+	indicate high interest rates. Similarly, convexity in $K$ implies that, for
+	high strikes, interest rates decrease as strike increases. If interest rates
+	are set low, and strike is considerably higher, then stock price is high.
 
+	If the Federal Reserve feels inflation setting on, it can increase interest
+	rates,
+	which in turn lowers either strike prices or stock price.  If strike price is
+	lowered, options become the better investment long term than the stock, which
+	in turn lowers \emph{its} price, due to fall in demand. Hence, a sufficiently
+	high interest rate will result in a fall of stock price. This is one of the
+	main reasons why the Federal Reserve manipulates interest rates.
+\end{remark}
+	\section{The Continuous Black-Scholes Formula}
+In order to accurately price an option, our model must take into account the infinitelymany states the future can take. To simplify our discussion, we shall first restrict our model to futures with finitely many states, and zero-interest. 
+
+Proceeding, suppose we wish to price an option today with an underlying worth $100$,
+and expiry one day into the future. Furthermore, suppose that we know
+that the underlying will tomorrow be worth $110$ with probability $p$,
+and $90$ tomorrow with probability $1-p$, where $p \neq 0,1$. 
+\begin{remark}
+	Observe that if $p=1$, then we have an arbitrage opportunity, since
+	we can go short $\$100$ worth in bonds, purchase the stock at $100$, which then will increase to $110$, after which we can pay back our bond debt and be left with 
+	a profit of $10$, risk free. A similar arbitrage exists for the case when $p=0$.
+\end{remark}
+\subsection{The Non-Arbitrage Approach}
+Consider a portfolio $P$
+that is long $\delta$ shares of the underlying, and short the option.
+Then
+\begin{equation*}
+\begin{split}
+P(0) & = \delta S(0) + C_{0} - C(0)
+\\
+& P(T) = \begin{cases}
+	110 \delta + C_{0} - 10, \quad & \text{in some states}
+	\\
+	90 \delta + C_{0}, \quad & \text{in others}.
+\end{cases}
+\end{split}
+\end{equation*}
+Observe that if $P(T)$ were the same in all states, monotonicity would force
+$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
+we must have
+\begin{equation*}
+\begin{split}
+110 \delta + C_{0} - 10 = 90 \delta + C_{0}
+\end{split}
+\end{equation*}
+which gives $\delta = 1/2$. Hence, for $\delta = 1/2$, we have
+$P(0) = P(T)$, which by substitution gives us
+\begin{equation*}
+\begin{split}
+\frac{100}{2} = \frac{90}{2} + C_{0}
+\end{split}
+\end{equation*}
+or $C_{0} = 5$. Hence, arbitrage considerations have once again
+allowed us to price an option. Observe furthermore that we were able
+to price the option independently of the probability $0 < p < 1$. 
+Hence, it is reasonable to ask whether we can choose a probability
+$0 < p' < 1$ that somehow simplifies our computations.
+\subsection{The Risk Neutral Approach}
+From our arbitrage considerations, we see that, for suitably chosen
+$\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
+have $E(P(0)) = E(P(T))$. Let us weaken our assumptions a little by allowing
+arbitrary $\delta$, while still assuming $E(P(0)) = E(P(T))$. 
+Now, $E(P(0)) = P(0) = 100 \delta$, so
+\begin{equation*}
+\begin{split}
+(110 \delta + C_{0} - 10) p + (90 \delta + C_{0}) (1- p) = 100 \delta
+\end{split}
+\end{equation*}
+which reduces to
+\begin{equation*}
+\begin{split}
+20 \delta p - 10p + C_{0} = 10 \delta
+\end{split}
+\end{equation*}
+Observe that for $p = 1/2$, the dependence on $\delta$ vanishes, and we obtain
+$C_{0} = 5$. We call $p = 1/2$ the \emph{risk-neutral} probability.
+
+Does such a probability exist in the general case?
+\begin{theorem}
+\label{thm:risk-neutral}
+Consider a two state, no interest world for an asset $S$. Suppose $S(0) = s$
+and 
+\begin{equation*}
+\begin{split}
+S(T) = \begin{cases}
+	s + u, \quad & \text{with probability }p \\
+	s - d, \quad & \text{with probability }1-p
+\end{cases}
+\end{split}
+\end{equation*}
+where $u = d \ge 0$. Suppose the option is worth $\alpha$ in the ``up'' state
+and $\beta$ in the ``down'' state.
+Then the price of a call option $C(0)$ with underlying
+$S$ and expiry $T$ is equal to the expected price of the option at time $T$
+with $p = 1/2$. That is, \[ C(0) = 1/2(\alpha + \beta). \]
+\end{theorem}
+\begin{proof}
+Construct a portfolio by buying $\delta$
+shares of $S$ and shorting a call option with underlying $S$.
+Then, to obtain a portfolio without risk, we must find $\delta$ such that
+our portfolio has the same value in either the ``up'' or ``down'' states.
+Hence, we set 
+\begin{equation*}
+\begin{split}
+s + u \delta - \alpha + C_{0} = (s - d) \delta - \beta + C_{0}
+\end{split}
+\end{equation*}
+which gives
+\begin{equation*}
+\begin{split}
+	\delta = \frac{\alpha - \beta}{u + d}
+\end{split}
+\end{equation*}
+By monotonicity, we must have $P(0) = P(T)$,
+and so
+\begin{equation*}
+\begin{split}
+& \frac{s(\alpha - \beta)}{u + d} = (s + u) \delta - \alpha + C_{0} \\
+& \frac{s(\alpha - \beta)}{u + d} = (s - d) \delta - \beta + C_{0}. 
+\end{split}
+\end{equation*}
+Summing these two equations, substituting in $\delta$, and simplifying gives
+\begin{equation}
+	\label{rn-drift}
+\begin{split}
+	C_{0} & =
+	\frac{1}{2} \left [ \frac{\alpha - \beta}{u + d} (d - u) \right ]
+	+ \frac{1}{2}(\alpha + \beta)
+	\\
+	& = \frac{1}{2}(\alpha + \beta)
+\end{split}
+\end{equation}
+which gives $C_{0} = 1/2(\alpha + \beta)$ for $u = d$, completing the proof.
+\end{proof}
+\begin{remark}
+Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
+by setting the right-hand-side of~\eqref{rn-drift} equal to 
+\[p' \alpha + (1-p')\beta \] and solving for $p'$. 
+\end{remark}
+\subsection{Pricing the Two-Step Model}
+As before, we assume zero-interest. Let an underlying $S$ be worth
+$100$ today ($t=0$), with up and down states of $\pm 5$ tomorrow ($t=1$), respectively.  We let each of these states, in turn, have up and down states of
+$\pm 5$ the following day. Our option will have a strike price of $100$
+and expiry $T = 2$ two days from now. 
+
+We can see this two step model as a one step model: in the up and down states
+tomorrow, the option will have some value. Applying 
+\cref{thm:risk-neutral}, we can then take the risk-neutral 
+expectation over these two values to obtain the cost of the option today.
+That is
+\begin{equation*}
+\begin{split}
+& C_{105}(0) = E(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
+\frac{1}{2}{(100 - 100)}_{+} = 5
+\\
+& C_{95}(0) = E(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
+\frac{1}{2}{(90 - 100)}_{+} = 0
+\end{split}
+\end{equation*}
+and so
+\begin{equation*}
+\begin{split}
+C_{100}(0) = E(C_{100}(1))
+& = \frac{1}{2}C_{105}(0) + \frac{1}{2} C_{95}(0)
+\\
+& = 2.5.
+\end{split}
+\end{equation*}
+Note that this is nothing but the expected value
+of $C(T)$ over all possible two-step paths; that is
+\begin{equation*}
+\begin{split}
+2.5 = C_{100}(0) = \frac{{(110-100)}_{+} + 2 {(100 - 100)}_{+} + {(90 - 100)}_{+}}{4}
+\end{split}
+\end{equation*}
+Let $C$ be an option with underlying $S$, whose price follows
+a tree with $N$ steps, with a choice of two
+directions for each step (``up'' and ``down'').
+Since the price of the option depends solely on the price of the
+underlying, we may adopt the notation $C(t) = f(S(t))$. Then
+an induction shows that
+\begin{equation*}
+\begin{split}
+C_{0} = E(C(T)) =  \prob(S = S_{0} + Nu)
+\end{split}
+\end{equation*}
+\end{document}
