@@ -73,7 +73,7 @@ any of the meaning.
 	$0$) 
 	and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the 
 	\emph{outcome
-		space} or \emph{sample space}. The \emph{event space} consists of
+	space} or \emph{sample space}. The \emph{event space} consists of
 	\begin{enumerate}[(a)]
 		\item Outcome is heads or tails
 		\item Outcome is heads and tails
@@ -83,7 +83,7 @@ any of the meaning.
 	which we translate, via numbers, to the set $ \left\{ \left\{ 0 \right\} 
 		\cup
 		\left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
-		\right\} , \left\{ 1 \right\} \right \}$.
+	\right\} , \left\{ 1 \right\} \right \}$.
 	Observe that the event ``Heads or tails'' is the union of the events
 	``Outcome is Heads'' and ``Outcome is tails'', and ``Heads and tails'' is
 	their intersection.
@@ -130,7 +130,7 @@ that can arise from a given outcome space. We have the following.
 	Suppose we are tossing a fair coin repeatedly until the first tail shoes up,
 	and wish to know the number of tosses we must use. Then our outcome space
 	is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
-		\right\},\ldots \right\}$. This is an infinite outcome space.
+	\right\},\ldots \right\}$. This is an infinite outcome space.
 \end{example}
 \begin{example} The following are all filters of $\Omega$:
 	\begin{enumerate}[(a)]
@@ -367,13 +367,13 @@ entertainment, women/men, etc. It usually works.
 		\prob(A | B) & = \frac{\prob(B | A) \prob(A)}{\prob(B)}
 		\\
 		& = \frac{\prob(B | A) \prob(A)}{\prob(B|A) \prob(A) + \prob(B | A^c)
-			\prob(A^c)}
-		\\
-		& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times 
-			(10^5 -
-			1)/10^5}
-		\\
-		& \approx 1/1000.
+	\prob(A^c)}
+	\\
+	& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times 
+	(10^5 -
+1)/10^5}
+\\
+& \approx 1/1000.
 	\end{align*}
 \end{proof}
 Moral: don't freak out if your doctor says you \emph{might} have
@@ -382,8 +382,8 @@ cancer. Take the test again.
 \begin{definition}
 	We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if 
 	\[\prob(A |
-		B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) 
-		\prob(B).\] More generally,
+	B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) 
+	\prob(B).\] More generally,
 	a family $ {\left\{ A_i \right\}}_{i = 1}^n $ is
 	\emph{independent} if 
 	\[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
@@ -417,7 +417,7 @@ equipped with the Borel filter. We will call such functions
 	is a countable subset of $\rr$, we say $X$
 	is a \emph{discrete random variable}. If $\Omega$ is countable, we say that 
 	$\left\{ \Omega, \filter, \prob \right\}$ is a \emph{discrete probability 
-		space}.
+	space}.
 \end{definition}
 As shorthand, we shall often denote $\{\omega: X(\omega) \in B\}$ by
 $\{X \in B$\}.
@@ -480,7 +480,7 @@ We now apply the Radon-Nikodym theorem to define continuous random variables.
 	subset of $\rr$, and continuous if and only if $\mu_X \ll dm$, where $dm$
 	denotes Lebesgue measure on $\rr^n$. By Radon-Nikodym, its 
 	\emph{distribution
-		function} $F(x) \doteq \prob(X \le x)$ is given by
+	function} $F(x) \doteq \prob(X \le x)$ is given by
 	\begin{align*}
 		F(x) = \int_{-\infty}^x f(z) \,dz.
 	\end{align*}
@@ -602,7 +602,7 @@ everything together, we obtain the following.
 	\end{equation*}
 	\begin{definition}
 		We call $X$ a random variable with a \emph{negative binomial 
-			distribution}.
+		distribution}.
 	\end{definition}
 \end{theorem}
 \subsection{Common Continuous Distributions}
@@ -632,10 +632,10 @@ everything together, we obtain the following.
 	mean $\mu$ if $X$ has density
 	\begin{align*}
 		f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{{(x - \mu)}^2}{2 
-				\sigma^2}}.
+		\sigma^2}}.
 	\end{align*}
 	If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
-		distributed}.
+	distributed}.
 \end{definition}
 \section{Joint Distributions}
 Up to now, we have considered random variables taking values in $\rr$.
@@ -670,7 +670,7 @@ $x \le y$ if and only if $x_i \le y_i$.
 		\end{enumerate}
 	\end{lemma}
 	If all the $X_i$ are discrete, we say $X$ has a \emph{joint discrete
-		distribution}. If all the $X_i$ are continuous, we say $X$ has a 
+	distribution}. If all the $X_i$ are continuous, we say $X$ has a 
 	\emph{joint continuous distribution}. If the distribution is jointly 
 	discrete,
 	then for $x = (x_1, x_2, \ldots, x_n)$,
@@ -774,8 +774,8 @@ Observe that we can write
 \begin{align*}
 	\frac{1}{n} \sum_{i = 1}^n X_i
 	& = \frac{\alpha_i (\#\alpha_i) + \cdots +
-		\alpha_n (\#\alpha_n)}{n}
-	\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
+\alpha_n (\#\alpha_n)}{n}
+\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
 \end{align*}
 This motivates the following.
 \begin{definition}
@@ -818,7 +818,7 @@ This motivates the following.
 			Let $Z = XY$. Then
 			\[E(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} x y f_{(X,Y)}(x,y) = \sum_x 
 				x f_X(x)
-				\sum_y y f_Y(y) = E(X) E(Y).\]
+			\sum_y y f_Y(y) = E(X) E(Y).\]
 	\end{enumerate}
 \end{proof}
 Having defined expectation, we can use it to define the
@@ -913,7 +913,7 @@ and similarly
 	f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
 \end{align*}
 We will heretofore suppress the distinction between $\prob_{\filter \times
-	\filter}$ and $\prob_{\filter}$, for the sake of clarity.
+\filter}$ and $\prob_{\filter}$, for the sake of clarity.
 
 Observe that in
 the continuous case, we have some difficulties,
@@ -1000,10 +1000,10 @@ to terminate if we begin with $i$ points. Then we have
 	& = \frac{1}{2}E(X_1) + 1
 	\\
 	& = \frac{1}{2}[E(X_1 | \text{flip heads}) \frac{1}{2} + E(X_1 | \text{flip
-		tails}) \frac{1}{2}] + 1
+	tails}) \frac{1}{2}] + 1
 	\\
 	& = \frac{1}{4}[E(X_1 | \text{flip heads}) + E(X_1 | \text{flip
-		tails})] + 1
+	tails})] + 1
 	\\
 	& = \frac{1}{4} [ E(X_2) + 1  + E(X_0) + 1] + 1
 	\\
@@ -1032,13 +1032,13 @@ To compute $E(N | K)$, we apply Bayes Theorem to obtain
 	f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
 	\\
 	& = \begin{cases}
-		\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
-			e^{-\lambda}/n!}{\sum_{m \ge k}
-			\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
-		, \quad & n \ge k
-		\\
-		0, \quad & n<k
-	\end{cases}
+	\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
+	e^{-\lambda}/n!}{\sum_{m \ge k}
+	\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
+	, \quad & n \ge k
+	\\
+	0, \quad & n<k
+\end{cases}
 \end{align*}
 where we obtained the denominator via the observation
 \begin{align*}
@@ -1070,10 +1070,10 @@ and so
 	& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
 	\\
 	& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 
-		0}
-	n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
-	\\
-	& = k + q\lambda.
+0}
+n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
+\\
+& = k + q\lambda.
 \end{align*}
 Hence, $E(N|K) = K + q \lambda$.
 \section{Risk}
@@ -1144,7 +1144,7 @@ heads with a fair coin, and $0$ otherwise. We would like to find what the fair
 price is for the contract. 
 
 Our expected winnings is $50$ dollars. However, people are naturally \emph{risk 
-	averse}, especially when large sums of money are involved. Hence, we are 
+averse}, especially when large sums of money are involved. Hence, we are 
 willing to pay $\le \$50$. Now suppose another contract exists that pays out 
 $100$ if we flip tails, and $0$ otherwise. Since both contracts above exist on 
 the market, we can buy both and be guaranteed $100$. Hence, each contract must 
@@ -1216,7 +1216,7 @@ instruments that allow us to offset the risk of an asset by adopting the
 	to exchange the yen into dollars immediately upon payment.
 	If the exchange rate dips in one year, the firm will lose money. To lessen 
 	the risk of this occurring, the firm can purchase a \emph{forward 
-		contract}. That is, it can agree today to a fixed exchange rate for a fixed 
+	contract}. That is, it can agree today to a fixed exchange rate for a fixed 
 	amount of yen one year into the future. Observe that if the exchange rate 
 	is greater one year from now than that fixed in the contract, the firm 
 	loses potential profits. However, if the exchange rate is less one year 
@@ -1234,7 +1234,7 @@ now.
 	asset at an agreed upon rate in the future. A \emph{put option} is the a 
 	contract whose purchaser has the option to sell an asset at an agreed upon 
 	rate in the future. A \emph{vanilla option} is either an \emph{American 
-		option} or \emph{European option}---an American option can be exercised any 
+	option} or \emph{European option}---an American option can be exercised any 
 	day before an agreed upon day in the future, while a European option can 
 	only be exercised on one agreed upon day in the future.
 \end{definition}
@@ -1312,7 +1312,7 @@ assumptions when building models of the financial market:
 \begin{proof}
 	Let $A$ be a portfolio that is long a call option, and $B$ be an empty
 	portfolio.  Then $B$ has zero value for all time, while $A(T) = {(S_{T}
-		- K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
+	- K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
 	B(T)$ in all states, and hence $A(t) \ge B(t)$ by monotonicity.
 \end{proof}
 \begin{corollary}[Weighted Symmetry of Randomness]
@@ -1532,8 +1532,8 @@ option starting in July with expiry in December.  The prices will be the same.
 			\begin{equation*}
 				\begin{split}
 					\frac{\p^{2} C}{\p
-						k^{2}}(K) > 0 \ \text{if} \ \frac{\p^{2} C}{\p
-						k^{2}}(K) \text{exists}
+					k^{2}}(K) > 0 \ \text{if} \ \frac{\p^{2} C}{\p
+					k^{2}}(K) \text{exists}
 				\end{split}
 			\end{equation*}
 		\item\label{itm:third}
@@ -1602,11 +1602,11 @@ option starting in July with expiry in December.  The prices will be the same.
 			\\
 			& \ge {[\theta(S_{T} - K_{2}) + (1 - \theta)(S_{T} - K_{1})]}_{+}
 			- {\left( S_{T} - \left[ \theta K_{2} + (1 - \theta)K_{1} \right]
-				\right)}_{+}
+			\right)}_{+}
 			\\
 			& = {\left[ S_{T} - [\theta K_{2} + (1 - \theta)K_{1}] \right]}_{+}
 			- {\left( S_{T} - \left[ \theta K_{2} + (1 - \theta)K_{1} \right]
-				\right)}_{+}
+			\right)}_{+}
 			\\
 			& = 0.
 		\end{split}
@@ -1706,7 +1706,7 @@ option starting in July with expiry in December.  The prices will be the same.
 	high interest rate will result in a fall of stock price. This is one of the
 	main reasons why the Federal Reserve manipulates interest rates.
 \end{remark}
-	\section{The Continuous Black-Scholes Formula}
+\section{The Continuous Black-Scholes Formula}
 In order to accurately price an option, our model must take into account the infinitelymany states the future can take. To simplify our discussion, we shall first restrict our model to futures with finitely many states, and zero-interest. 
 
 Proceeding, suppose we wish to price an option today with an underlying worth $100$,
@@ -1723,163 +1723,288 @@ Consider a portfolio $P$
 that is long $\delta$ shares of the underlying, and short the option.
 Then
 \begin{equation*}
-\begin{split}
-P(0) & = \delta S(0) + C_{0} - C(0)
-\\
-& P(T) = \begin{cases}
-	110 \delta + C_{0} - 10, \quad & \text{in some states}
-	\\
-	90 \delta + C_{0}, \quad & \text{in others}.
-\end{cases}
+	\begin{split}
+		P(0) & = \delta S(0) + C_{0} - C(0)
+		\\
+		& P(T) = \begin{cases}
+		110 \delta + C_{0} - 10, \quad & \text{in some states}
+		\\
+		90 \delta + C_{0}, \quad & \text{in others}.
+	\end{cases}
 \end{split}
-\end{equation*}
-Observe that if $P(T)$ were the same in all states, monotonicity would force
-$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
-we must have
-\begin{equation*}
-\begin{split}
-110 \delta + C_{0} - 10 = 90 \delta + C_{0}
-\end{split}
-\end{equation*}
-which gives $\delta = 1/2$. Hence, for $\delta = 1/2$, we have
-$P(0) = P(T)$, which by substitution gives us
-\begin{equation*}
-\begin{split}
-\frac{100}{2} = \frac{90}{2} + C_{0}
-\end{split}
-\end{equation*}
-or $C_{0} = 5$. Hence, arbitrage considerations have once again
-allowed us to price an option. Observe furthermore that we were able
-to price the option independently of the probability $0 < p < 1$. 
-Hence, it is reasonable to ask whether we can choose a probability
-$0 < p' < 1$ that somehow simplifies our computations.
-\subsection{The Risk Neutral Approach}
-From our arbitrage considerations, we see that, for suitably chosen
-$\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
-have $E(P(0)) = E(P(T))$. Let us weaken our assumptions a little by allowing
-arbitrary $\delta$, while still assuming $E(P(0)) = E(P(T))$. 
-Now, $E(P(0)) = P(0) = 100 \delta$, so
-\begin{equation*}
-\begin{split}
-(110 \delta + C_{0} - 10) p + (90 \delta + C_{0}) (1- p) = 100 \delta
-\end{split}
-\end{equation*}
-which reduces to
-\begin{equation*}
-\begin{split}
-20 \delta p - 10p + C_{0} = 10 \delta
-\end{split}
-\end{equation*}
-Observe that for $p = 1/2$, the dependence on $\delta$ vanishes, and we obtain
-$C_{0} = 5$. We call $p = 1/2$ the \emph{risk-neutral} probability.
+	\end{equation*}
+	Observe that if $P(T)$ were the same in all states, monotonicity would force
+	$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
+	we must have
+	\begin{equation*}
+		\begin{split}
+			110 \delta + C_{0} - 10 = 90 \delta + C_{0}
+		\end{split}
+	\end{equation*}
+	which gives $\delta = 1/2$. Hence, for $\delta = 1/2$, we have
+	$P(0) = P(T)$, which by substitution gives us
+	\begin{equation*}
+		\begin{split}
+			\frac{100}{2} = \frac{90}{2} + C_{0}
+		\end{split}
+	\end{equation*}
+	or $C_{0} = 5$. Hence, arbitrage considerations have once again
+	allowed us to price an option. Observe furthermore that we were able
+	to price the option independently of the probability $0 < p < 1$. 
+	Hence, it is reasonable to ask whether we can choose a probability
+	$0 < p' < 1$ that somehow simplifies our computations.
+	\subsection{The Risk Neutral Approach}
+	From our arbitrage considerations, we see that, for suitably chosen
+	$\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
+	have $E(P(0)) = E(P(T))$. Let us weaken our assumptions a little by allowing
+	arbitrary $\delta$, while still assuming $E(P(0)) = E(P(T))$. 
+	Now, $E(P(0)) = P(0) = 100 \delta$, so
+	\begin{equation*}
+		\begin{split}
+			(110 \delta + C_{0} - 10) p + (90 \delta + C_{0}) (1- p) = 100 \delta
+		\end{split}
+	\end{equation*}
+	which reduces to
+	\begin{equation*}
+		\begin{split}
+			20 \delta p - 10p + C_{0} = 10 \delta
+		\end{split}
+	\end{equation*}
+	Observe that for $p = 1/2$, the dependence on $\delta$ vanishes, and we obtain
+	$C_{0} = 5$. We call $p = 1/2$ the \emph{risk-neutral} probability.
 
-Does such a probability exist in the general case?
-\begin{theorem}
-\label{thm:risk-neutral}
-Consider a two state, no interest world for an asset $S$. Suppose $S(0) = s$
-and 
-\begin{equation*}
-\begin{split}
-S(T) = \begin{cases}
-	s + u, \quad & \text{with probability }p \\
-	s - d, \quad & \text{with probability }1-p
-\end{cases}
-\end{split}
-\end{equation*}
-where $u = d \ge 0$. Suppose the option is worth $\alpha$ in the ``up'' state
-and $\beta$ in the ``down'' state.
-Then the price of a call option $C(0)$ with underlying
-$S$ and expiry $T$ is equal to the expected price of the option at time $T$
-with $p = 1/2$. That is, \[ C(0) = 1/2(\alpha + \beta). \]
-\end{theorem}
-\begin{proof}
-Construct a portfolio by buying $\delta$
-shares of $S$ and shorting a call option with underlying $S$.
-Then, to obtain a portfolio without risk, we must find $\delta$ such that
-our portfolio has the same value in either the ``up'' or ``down'' states.
-Hence, we set 
-\begin{equation*}
-\begin{split}
-s + u \delta - \alpha + C_{0} = (s - d) \delta - \beta + C_{0}
-\end{split}
-\end{equation*}
-which gives
-\begin{equation*}
-\begin{split}
-	\delta = \frac{\alpha - \beta}{u + d}
-\end{split}
-\end{equation*}
-By monotonicity, we must have $P(0) = P(T)$,
-and so
-\begin{equation*}
-\begin{split}
-& \frac{s(\alpha - \beta)}{u + d} = (s + u) \delta - \alpha + C_{0} \\
-& \frac{s(\alpha - \beta)}{u + d} = (s - d) \delta - \beta + C_{0}. 
-\end{split}
-\end{equation*}
-Summing these two equations, substituting in $\delta$, and simplifying gives
-\begin{equation}
-	\label{rn-drift}
-\begin{split}
-	C_{0} & =
-	\frac{1}{2} \left [ \frac{\alpha - \beta}{u + d} (d - u) \right ]
-	+ \frac{1}{2}(\alpha + \beta)
-	\\
-	& = \frac{1}{2}(\alpha + \beta)
-\end{split}
-\end{equation}
-which gives $C_{0} = 1/2(\alpha + \beta)$ for $u = d$, completing the proof.
-\end{proof}
-\begin{remark}
-Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
-by setting the right-hand-side of~\eqref{rn-drift} equal to 
-\[p' \alpha + (1-p')\beta \] and solving for $p'$. 
-\end{remark}
-\subsection{Pricing the Two-Step Model}
-As before, we assume zero-interest. Let an underlying $S$ be worth
-$100$ today ($t=0$), with up and down states of $\pm 5$ tomorrow ($t=1$), respectively.  We let each of these states, in turn, have up and down states of
-$\pm 5$ the following day. Our option will have a strike price of $100$
-and expiry $T = 2$ two days from now. 
+	Does such a probability exist in the general case?
+	\begin{theorem}\label{thm:risk-neutral}
+		Consider a two state, no interest world for an asset $S$. Suppose $S(0) = s$
+		and 
+		\begin{equation*}
+			\begin{split}
+				S(T) = \begin{cases}
+					s + u, \quad & \text{with probability }p \\
+					s - d, \quad & \text{with probability }1-p
+				\end{cases}
+			\end{split}
+		\end{equation*}
+		where $u = d \ge 0$. Suppose the option is worth $\alpha$ in the ``up'' state
+		and $\beta$ in the ``down'' state.
+		Then the price of a call option $C(0)$ with underlying
+		$S$ and expiry $T$ is equal to the expected price of the option at time $T$
+		with $p = 1/2$. That is, \[ C(0) = 1/2(\alpha + \beta). \]
+	\end{theorem}
+	\begin{proof}
+		Construct a portfolio by buying $\delta$
+		shares of $S$ and shorting a call option with underlying $S$.
+		Then, to obtain a portfolio without risk, we must find $\delta$ such that
+		our portfolio has the same value in either the ``up'' or ``down'' states.
+		Hence, we set 
+		\begin{equation*}
+			\begin{split}
+				s + u \delta - \alpha + C_{0} = (s - d) \delta - \beta + C_{0}
+			\end{split}
+		\end{equation*}
+		which gives
+		\begin{equation*}
+			\begin{split}
+				\delta = \frac{\alpha - \beta}{u + d}
+			\end{split}
+		\end{equation*}
+		By monotonicity, we must have $P(0) = P(T)$,
+		and so
+		\begin{equation*}
+			\begin{split}
+				& \frac{s(\alpha - \beta)}{u + d} = (s + u) \delta - \alpha + C_{0} \\
+				& \frac{s(\alpha - \beta)}{u + d} = (s - d) \delta - \beta + C_{0}. 
+			\end{split}
+		\end{equation*}
+		Summing these two equations, substituting in $\delta$, and simplifying gives
+		\begin{equation}\label{rn-drift}
+			\begin{split}
+				C_{0} & =
+				\frac{1}{2} \left [ \frac{\alpha - \beta}{u + d} (d - u) \right ]
+				+ \frac{1}{2}(\alpha + \beta)
+				\\
+				& = \frac{1}{2}(\alpha + \beta)
+			\end{split}
+		\end{equation}
+		which gives $C_{0} = 1/2(\alpha + \beta)$ for $u = d$, completing the proof.
+	\end{proof}
+	\begin{remark}
+		Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
+		by setting the right-hand-side of~\eqref{rn-drift} equal to 
+		\[p' \alpha + (1-p')\beta \] and solving for $p'$. 
+	\end{remark}
+	\subsection{Pricing the Two-Step Model}
+	As before, we assume zero-interest. Let an underlying $S$ be worth
+	$100$ today ($t=0$), with up and down states of $\pm 5$ tomorrow ($t=1$), respectively.  We let each of these states, in turn, have up and down states of
+	$\pm 5$ the following day. Our option will have a strike price of $100$
+	and expiry $T = 2$ two days from now. 
 
-We can see this two step model as a one step model: in the up and down states
-tomorrow, the option will have some value. Applying 
-\cref{thm:risk-neutral}, we can then take the risk-neutral 
-expectation over these two values to obtain the cost of the option today.
-That is
-\begin{equation*}
-\begin{split}
-& C_{105}(0) = E(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
-\frac{1}{2}{(100 - 100)}_{+} = 5
-\\
-& C_{95}(0) = E(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
-\frac{1}{2}{(90 - 100)}_{+} = 0
-\end{split}
-\end{equation*}
-and so
-\begin{equation*}
-\begin{split}
-C_{100}(0) = E(C_{100}(1))
-& = \frac{1}{2}C_{105}(0) + \frac{1}{2} C_{95}(0)
-\\
-& = 2.5.
-\end{split}
-\end{equation*}
-Note that this is nothing but the expected value
-of $C(T)$ over all possible two-step paths; that is
-\begin{equation*}
-\begin{split}
-2.5 = C_{100}(0) = \frac{{(110-100)}_{+} + 2 {(100 - 100)}_{+} + {(90 - 100)}_{+}}{4}
-\end{split}
-\end{equation*}
-Let $C$ be an option with underlying $S$, whose price follows
-a tree with $N$ steps, with a choice of two
-directions for each step (``up'' and ``down'').
-Since the price of the option depends solely on the price of the
-underlying, we may adopt the notation $C(t) = f(S(t))$. Then
-an induction shows that
-\begin{equation*}
-\begin{split}
-C_{0} = E(C(T)) =  \prob(S = S_{0} + Nu)
-\end{split}
-\end{equation*}
-\end{document}
+	We can see this two step model as a one step model: in the up and down states
+	tomorrow, the option will have some value. Applying 
+	\cref{thm:risk-neutral}, we can then take the risk-neutral 
+	expectation over these two values to obtain the cost of the option today.
+	That is
+	\begin{equation*}
+		\begin{split}
+			& C_{105}(0) = E(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
+			\frac{1}{2}{(100 - 100)}_{+} = 5
+			\\
+			& C_{95}(0) = E(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
+			\frac{1}{2}{(90 - 100)}_{+} = 0
+		\end{split}
+	\end{equation*}
+	and so
+	\begin{equation*}
+		\begin{split}
+			C_{100}(0) = E(C_{100}(1))
+			& = \frac{1}{2}C_{105}(0) + \frac{1}{2} C_{95}(0)
+			\\
+			& = 2.5.
+		\end{split}
+	\end{equation*}
+	Note that this is nothing but the expected value
+	of $C(T)$ over all possible two-step paths; that is
+	\begin{equation*}
+		\begin{split}
+			2.5 = C_{100}(0) = \frac{{(110-100)}_{+} + 2 {(100 - 100)}_{+} + {(90 - 100)}_{+}}{4}
+		\end{split}
+	\end{equation*}
+	In general, let $C$ be an option with underlying $S$, whose price follows
+	a tree with $N$ steps, with a choice of two
+	directions for each step (``up'' and ``down'').
+	Since the price of the option depends solely on the price of the
+	underlying, we may adopt the notation $C(t) = f(S(t))$. Then
+	an induction shows that
+	\begin{equation*}
+		\begin{split}
+			C_{0} = E(C(T)) & =  \sum_{i = 0}^{j}\prob(S = S_{0} + (N-j)u - jd)
+			f(S_{0} + (N-j)u - jd)
+			\\
+			& = \sum_{j = 0}^{N}\prob(S = S_{0} + (N-2j)u)
+			f(S_{0} + (N-2j)u), \quad u = d
+		\end{split}
+	\end{equation*}
+	Next, observe that there are $N \choose j$ ways to sort $j$ up movements and
+	$N-j$ down movements. Each arrangement corresponds to a different path; however,
+	each path with $j$ up movements and $N-j$ down movements leads to the same final
+	node. Hence, our preceding computation simplifies to
+	\begin{equation*}
+		\begin{split}
+			C_{0} = 	\frac{1}{2N} \sum_{j = 0}^{N} {N \choose j}f(S_{0} + (N-2j)u).
+		\end{split}
+	\end{equation*}
+	\section{The Continuous Time Black-Scholes in the Absence of Interest}
+	We now seek to price options in continuous time. We begin with the assumptions
+	\begin{enumerate}[(i)]
+		\item The underlying asset is today worth $S(0) = 0$.
+		\item Expiry is $T$.
+		\item $E(S(T)) = S_{0}$.
+		\item $\text{var}(S(T)) = \sigma^{2} T$.
+		\item The asset follows a \emph{symmetric random walk}. That is, 
+			\begin{equation*}
+				\begin{split}
+					S(t + \Delta t)  = \begin{cases}
+						S(t) + \alpha, \quad & p = 1/2 \\
+						S(t) - \alpha, \quad & 1-p
+					\end{cases}
+				\end{split}
+			\end{equation*}
+	\end{enumerate}
+	Suppose it takes $k$ steps until we reach the expiry $T$. Then
+	each step can be modeled by mutually independent random variables
+	$Z_{i}$, each taking the values $\pm \beta$ with equal probability.
+	Furthermore, 
+	\begin{equation*}
+		\begin{split}
+			\sigma^{2} T
+			& = \var(S(T)) = \var(Z_{1} + Z_{2} + \cdots + Z_{k})
+			\\
+			& = \var(Z_{1}) + \var(Z_{2}) + \cdots + \var(Z_{k})
+			\\
+			& = k \var(Z_{i}), \quad 1 \le i \le k
+		\end{split}
+	\end{equation*}
+	and so
+	\begin{equation*}
+		\begin{split}
+			\var(Z_{i}) = \sigma \sqrt{T/k} \doteq \sigma_{k}, \quad 1 \le i \le k.
+		\end{split}
+	\end{equation*}
+	Now, since each $Z_{i}$ has mean zero, we have
+	\begin{equation*}
+		\begin{split}
+			\var(Z_{i}) & = \frac{1}{2}\beta^{2} + \frac{1}{2}{(-\beta)}^{2}
+			\\
+			& = \beta
+		\end{split}
+	\end{equation*}
+	and hence
+	\begin{equation*}
+		\begin{split}
+			\beta = \sigma \sqrt{T/k}.
+		\end{split}
+	\end{equation*}
+	Letting
+	\begin{equation*}
+		\begin{split}
+			X_{i} = 
+			\begin{cases}
+				+1, & \quad p=1/2 \\
+				-1, & \quad p=1/2
+			\end{cases}
+		\end{split}
+	\end{equation*}
+	we see that
+	\begin{equation*}
+		\begin{split}
+			S(T) = S_{0} + \sum_{i = 0}^{k} \sigma_{k} X_{i}.
+		\end{split}
+	\end{equation*}
+	Then for an option that pays $f(S(T))$ at time $T$, we have
+	\begin{equation*}
+		\begin{split}
+			f(S(0)) = E(F(S(T)))
+			= E[f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i})]
+		\end{split}
+	\end{equation*}
+	We now would like to let $k \to \infty$, in order to get the best interest-free
+	approximation of call-option prices in the real-world.
+	\begin{theorem}[Central Limit Theorem]\label{thm:central-lim-thm}
+		Let $X_{1}, X_{2}, \cdots$ be a sequence of independent, identically
+		distributed random variables with finite means $\mu$ and finite, nonzero
+		variances $\sigma^{2}$. Let
+		\begin{equation*}
+			\begin{split}
+				S_{n} \doteq X_{1} + X_{2} + \cdots + X_{n}.
+			\end{split}
+		\end{equation*}
+		Then the cumulative distribution of 
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
+			\end{split}
+		\end{equation*}
+		converges pointwise to the standard normal distribution.
+	\end{theorem}
+	Hence,
+	\begin{equation*}
+		\begin{split}
+			S_{0} + \sigma_{k} \sum_{i = 1}^{k} X_{i}
+			= S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{k}} \sum_{i = 1}^{k}
+			X_{i}
+			\xrightarrow{\text{dist}} S_{0} + \sigma \sqrt{T} N(0,1)
+		\end{split}
+	\end{equation*}
+	which yields 
+	\begin{equation*}
+		\begin{split}
+			f(S(0)) & = E(f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i}))
+			\\
+			& \xrightarrow{\text{dist}} E(S_{0} + \sigma \sqrt{T}N(0,1))
+			\\
+			& = \frac{1}{\sqrt{2 \pi}} \int_{\rr} f(S_{0} + \sigma \sqrt{T}x)
+			e^{-x^{2}/2}
+			\, dx. 
+		\end{split}
+	\end{equation*}
+	\end{document}
