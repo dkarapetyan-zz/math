@@ -34,9 +34,10 @@
 \newcommand{\wt}{\widetilde}
 \newcommand{\filter}{\mathcal{F}}
 \newcommand{\borel}{\mathcal{B}}
-\newcommand{\prob}{\mathbb{P}}
-\newcommand{\var}{\text{Var}}
-\newcommand{\covar}{\text{Covar}}
+\DeclareMathOperator{\ex}{\mathbb{E}}
+\DeclareMathOperator{\prob}{\mathbb{P}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\covar}{\mathrm{Covar}}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -50,7 +51,8 @@
 \newtheorem*{remark}{Remark}
 \numberwithin{equation}{section}  %eliminate need for keeping track of counters
 \begin{document}
-\title{Probability and Finance Notes}
+
+\title{Probability and Applications to Finance}
 \author{David Karapetyan}
 \date{}
 \maketitle
@@ -59,7 +61,7 @@
 \setcounter{secnumdepth}{2}
 \tableofcontents
 \newpage
-\section{Outcomes and Events, and Likelihood}
+\section{Outcomes, Events, and Likelihood}
 Throughout this course, we seek to rigorously describe the likelihood of
 outcomes of an experiment, or, more generally, combinations of outcomes of an 
 experiment.
@@ -746,7 +748,7 @@ $x \le y$ if and only if $x_i \le y_i$.
 	\Omega \to [\alpha_1, \ldots, \alpha_k]$. Then we 
 	call
 	\begin{align*}
-		E(X) \doteq \lim_{n \to \infty} \frac{1}{n} \sum_{i =1}^n X_i \doteq 
+		\ex(X) \doteq \lim_{n \to \infty} \frac{1}{n} \sum_{i =1}^n X_i \doteq 
 		\mu 
 	\end{align*}
 	the \emph{expectation}, or \emph{mean}, or $X$. If the limit does not exist,
@@ -765,7 +767,7 @@ $x \le y$ if and only if $x_i \le y_i$.
 	$\sum_{k = 1}^{\infty} k^{-2} = 1$).
 	Then it is easy to check that
 	\begin{align*}
-		E(X) = \sum_{k=1}^{\infty} k A k^{-2} = A \sum_{k=1}^{\infty} k^{-1} = 
+		\ex(X) = \sum_{k=1}^{\infty} k A k^{-2} = A \sum_{k=1}^{\infty} k^{-1} = 
 		\infty.
 	\end{align*}
 
@@ -781,30 +783,30 @@ This motivates the following.
 \begin{definition}
 	The \emph{expectation} of a random variable $X$ with mass function $f$ is
 	\begin{align*}
-		E(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
+		\ex(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
 		\sum_{x \in \rr: f(x) > 0} |x
 		f(x) | <
 		\infty
 	\end{align*}
 	If $X$ is continuous with density $f(x)$, then
 	\begin{align*}
-		E(X) = \int_{-\infty}^{\infty} x f(x) \, dx, \quad \text{provided} \quad
+		\ex(X) = \int_{-\infty}^{\infty} x f(x) \, dx, \quad \text{provided} \quad
 		\int_{-\infty}^{\infty} |x f(x)| \, dx < \infty.
 	\end{align*}
 \end{definition}
 \begin{lemma}
 	If $g: \rr \to \rr$ is continuous, then
 	\begin{align*}
-		E(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
+		\ex(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
 		\int_{-\infty}^{\infty} g(x) f(x) \, dx
 	\end{align*}
 \end{lemma}
 \begin{theorem}[Properties of Expectation]
 	Let $X$ be a random variable. Then
 	\begin{enumerate}[(a)]
-		\item $E(a X + b Y) = a X(X) + b E(Y)$.
+		\item $\ex(a X + b Y) = a X(X) + b \ex(Y)$.
 		\item E (1) = 1
-		\item If $X,Y$ are independent, then $E(XY) = E(X)E(Y)$.
+		\item If $X,Y$ are independent, then $\ex(XY) = \ex(X)\ex(Y)$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -813,18 +815,18 @@ This motivates the following.
 	\begin{enumerate}[(a)]
 		\item This follows immediately from the linearity of sums and integrals.
 		\item
-			We have $E(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
+			We have $\ex(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
 		\item
 			Let $Z = XY$. Then
-			\[E(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} x y f_{(X,Y)}(x,y) = \sum_x 
+			\[\ex(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} x y f_{(X,Y)}(x,y) = \sum_x 
 				x f_X(x)
-			\sum_y y f_Y(y) = E(X) E(Y).\]
+			\sum_y y f_Y(y) = \ex(X) \ex(Y).\]
 	\end{enumerate}
 \end{proof}
 Having defined expectation, we can use it to define the
 \emph{variance} of a random variable $X$
 \begin{align*}
-	E({[X - E(X)]}^2),
+	\ex({[X - \ex(X)]}^2),
 \end{align*}
 the \emph{standard deviation}
 \begin{align*}
@@ -832,7 +834,7 @@ the \emph{standard deviation}
 \end{align*}
 and \emph{covariance} of random variables $X, Y$
 \begin{align*}
-	\covar(X,Y) \doteq E([X - E(X)][Y - E(Y)])
+	\covar(X,Y) \doteq \ex([X - \ex(X)][Y - \ex(Y)])
 \end{align*}
 The standard deviation of a random variable $X$ is the average spread of the
 trials of an experiment away from the mean, and is always positive. 
@@ -858,7 +860,7 @@ and vice verse. If the coefficient is positive, then the variables rise or fall
 together.
 \begin{definition}
 	We say two random variables $X$ and $Y$ are \emph{correlated} 
-	if $E(XY) = E(X)E(Y)$.
+	if $\ex(XY) = \ex(X)\ex(Y)$.
 \end{definition}
 Observe that independent random variables are uncorrelated. However,
 lack of correlation does not, in general, imply independence. Heuristically, 
@@ -871,12 +873,12 @@ types of dependence.
 	distribution,
 	and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
 	\begin{align*}
-		E(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} 
+		\ex(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} 
 		\, dx = 0
 	\end{align*}
 	by anti-symmetry, and so
 	\begin{align*}
-		E(XY) = E(X^3) = 0 = E(X) E(Y).
+		\ex(XY) = \ex(X^3) = 0 = \ex(X) \ex(Y).
 	\end{align*}
 	which implies $X, Y$ are uncorrelated.
 \end{example}
@@ -942,18 +944,18 @@ Similarly,
 Thus, the formulas for conditional distributions
 functions in both the discrete and continuous cases are identical.
 
-Since $Y|X =x$ is a random variable, we can write $\psi(x) = E(Y | X =x)$.
+Since $Y|X =x$ is a random variable, we can write $\psi(x) = \ex(Y | X =x)$.
 Then $\psi(X)$ is a random variable, which we call the expectation of $Y$ given
-$X$, also written as $E(Y|X)$.
+$X$, also written as $\ex(Y|X)$.
 \begin{theorem}
 	For any two random variable $X,Y: \Omega \to \rr^n$,
 	\begin{align*}
-		E(E(Y | X)) = E(Y)
+		\ex(\ex(Y | X)) = \ex(Y)
 	\end{align*}
 	\begin{proof}
 		For the discrete case, we have
 		\begin{align*}
-			E(\psi(X)) 
+			\ex(\psi(X)) 
 			& = \sum_{x} \psi(x) f_x(x)
 			\\
 			& = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
@@ -962,16 +964,16 @@ $X$, also written as $E(Y|X)$.
 			\\
 			& = \sum_y y f_Y(y)
 			\\
-			& = E(Y).
+			& = \ex(Y).
 		\end{align*}
 		The proof for the continuous case is analogous. 
 	\end{proof}
 \end{theorem}
 \begin{theorem}
 	Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
-	$E(g(X))< \infty$. Then
+	$\ex(g(X))< \infty$. Then
 	\begin{align*}
-		E(E(Y|X)g(X)) = E(Yg(X)).
+		\ex(\ex(Y|X)g(X)) = \ex(Yg(X)).
 	\end{align*}
 \end{theorem}
 \begin{proof}
@@ -990,33 +992,33 @@ difficult probability problem into several simpler problems.
 Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
 to terminate if we begin with $i$ points. Then we have
 \begin{align*}
-	E(X_0) & = E(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
-	E(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
+	\ex(X_0) & = \ex(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
+	\ex(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
 	\\
-	& = (E(X_1) + 1) \frac{1}{2} + (E(X_{-1}) + 1) \frac{1}{2}
+	& = (\ex(X_1) + 1) \frac{1}{2} + (\ex(X_{-1}) + 1) \frac{1}{2}
 	\\
-	& = \frac{1}{2}(E(X_1) + E(X_{-1})) + 1
+	& = \frac{1}{2}(\ex(X_1) + \ex(X_{-1})) + 1
 	\\
-	& = \frac{1}{2}E(X_1) + 1
+	& = \frac{1}{2}\ex(X_1) + 1
 	\\
-	& = \frac{1}{2}[E(X_1 | \text{flip heads}) \frac{1}{2} + E(X_1 | \text{flip
+	& = \frac{1}{2}[\ex(X_1 | \text{flip heads}) \frac{1}{2} + \ex(X_1 | \text{flip
 	tails}) \frac{1}{2}] + 1
 	\\
-	& = \frac{1}{4}[E(X_1 | \text{flip heads}) + E(X_1 | \text{flip
+	& = \frac{1}{4}[\ex(X_1 | \text{flip heads}) + \ex(X_1 | \text{flip
 	tails})] + 1
 	\\
-	& = \frac{1}{4} [ E(X_2) + 1  + E(X_0) + 1] + 1
+	& = \frac{1}{4} [ \ex(X_2) + 1  + \ex(X_0) + 1] + 1
 	\\
-	& = \frac{1}{4}[ E(X_0) + 2] + 1
+	& = \frac{1}{4}[ \ex(X_0) + 2] + 1
 \end{align*}
-which gives $E(X_0) = 2$.
+which gives $\ex(X_0) = 2$.
 \begin{example}
 	A hen lays $N$ eggs, where $N$ has a Poisson distribution with parameter
 	$\lambda$. An egg hatches with probability $p$, independently  of the other
-	eggs. Let $K$ be the number of chicks. Compute $E(K|N)$, $E(K)$, and $E(N | 
+	eggs. Let $K$ be the number of chicks. Compute $\ex(K|N)$, $\ex(K)$, and $\ex(N | 
 	K)$.
 \end{example}
-To compute $E(K|N)$, we must first recall the Poisson distribution
+To compute $\ex(K|N)$, we must first recall the Poisson distribution
 \begin{align*}
 	f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
 \end{align*}
@@ -1025,9 +1027,9 @@ Bernoulli distribution, and so
 \begin{align*}
 	f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
 \end{align*}
-Now, $E(K | N = n) = pn$, and so $E(K | N) = pN$. Furthermore, $E(K) = E(E(K
-| N	)) = E(pN) = p \lambda$.
-To compute $E(N | K)$, we apply Bayes Theorem to obtain
+Now, $\ex(K | N = n) = pn$, and so $\ex(K | N) = pN$. Furthermore, $\ex(K) = \ex(\ex(K
+| N	)) = \ex(pN) = p \lambda$.
+To compute $\ex(N | K)$, we apply Bayes Theorem to obtain
 \begin{align*}
 	f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
 	\\
@@ -1065,7 +1067,7 @@ Simplifying, we obtain
 \end{align*}
 and so 
 \begin{align*}
-	E(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
+	\ex(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
 	\\
 	& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
 	\\
@@ -1075,7 +1077,7 @@ n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!}
 \\
 & = k + q\lambda.
 \end{align*}
-Hence, $E(N|K) = K + q \lambda$.
+Hence, $\ex(N|K) = K + q \lambda$.
 \section{Risk}
 \begin{definition}
 	A \emph{riskless asset} is an asset whose future value can be precisely 
@@ -1155,14 +1157,14 @@ A closely related idea is \emph{diversification}.
 \begin{example}
 	Suppose now that there are $N$ independent coin flips $X_i$, each paying 
 	$100/N$ for heads, and $0$ for tails. Let $X \doteq X_1 + X_2 + \cdots + 
-	X_n$. Then $E(X) = 50$, as in the single coin example above. However
+	X_n$. Then $\ex(X) = 50$, as in the single coin example above. However
 	\begin{align*}
-		\text{Var}(X)
-		& = E({[X - 50]}^2)
+		\var(X)
+		& = \ex({[X - 50]}^2)
 		\\
-		& = E(X^2) - 2500
+		& = \ex(X^2) - 2500
 		\\
-		& = \sum_{i,j: i \neq j} E(X_i)E(X_j) + \sum_{i=1}^N E(X_i^2) - 2500 
+		& = \sum_{i,j: i \neq j} \ex(X_i)\ex(X_j) + \sum_{i=1}^N \ex(X_i^2) - 2500 
 		\\
 		& = \sum_{i,j: i \neq j} 2500/N^2 + \sum_{i=1}^{N} 5000/N^2 - 2500
 		\\
@@ -1459,7 +1461,7 @@ Similarly, for a put option we have pay-off
 	mature at time $T$. Then at expiry, our portfolio is worth
 	\begin{equation*}
 		\begin{split}
-			{(S_{T} - K)}_{+} + K =  \text{max}(S_{T}, K) \ge S_{T}
+			{(S_{T} - K)}_{+} + K =  \text{max}(S_{T}, K) \ge S_{T}.
 		\end{split}
 	\end{equation*}
 	Observe that our analysis implies that in some world states at time $T$, 
@@ -1507,35 +1509,26 @@ This remark, in conjunction with the above theorem, implies the following.
 \begin{definition}
 	Let $S$ be a stock that is fixed in price.
 	We say an option $C = C(K, T, S, t)$  is \emph{time-homogeneous} 
-	if $C(K, T, S, t) = C(K, T-t, S, 0)$
+	if $C(K, T, S, t) = C(K, T-t, S, 0)$.
 \end{definition}
 Intuitively, time-homogeneity tells us that, as long as the market remains
 stable, the cost of an option is influenced by its duration, and not the point
-in time which we evaluate it. In terms of price, it makes no difference if we
-evaluate an option starting in January with expiry in July, or an identical
-option starting in July with expiry in December.  The prices will be the same.
-\begin{theorem}[The Greeks]
+in time which we evaluate it. As an example, in terms of price it makes no difference if we evaluate an option starting in January with expiry in July, or an identical option starting in July with expiry in December.  The prices will be the same.
+\begin{theorem}
 	Let $C(K, T, S(t), t)$ denote a call option on an underlying $S$, with 
 	strike $K$ and expiry $T$. Then
 	\begin{enumerate}[(i)]
-		\item\label{itm:first} $C(K) = C(K, T, S(t), t)$ is a strictly decreasing Lipschitz continuous
+		\item\label{itm:first} $C(K) = C(K, T, S(t), t)$ is a strictly decreasing, strictly convex, Lipschitz continuous
 			function of $K$, with Lipschitz constant $Z(t)$, where $Z$ is a non-coupon
 			bearing bond with $Z(T) = 1$. Furthermore,
-			\begin{equation*}
-				\begin{split}
+			\begin{gather*}
 					-Z(t) < \frac{\p C}{\p K}(K) < 0 
-					\ \text{if}\  \frac{\p C}{\p K}(K) \  \text{exists} 
-				\end{split}
-			\end{equation*}
-
-		\item\label{itm:second} $C(K)$ is strictly convex in $K$. Furthermore,
-			\begin{equation*}
-				\begin{split}
+					\ \text{if}\  \frac{\p C}{\p K}(K) \  \text{exists,} 
+					\\
 					\frac{\p^{2} C}{\p
 					k^{2}}(K) > 0 \ \text{if} \ \frac{\p^{2} C}{\p
-					k^{2}}(K) \text{exists}
-				\end{split}
-			\end{equation*}
+					k^{2}}(K) \ \text{exists.}
+			\end{gather*}
 		\item\label{itm:third}
 			$C(T) = C(K, T, S(t), t)$ is a strictly increasing function of
 			$T$ when interest rates are non-negative.
@@ -1545,18 +1538,19 @@ option starting in July with expiry in December.  The prices will be the same.
 			\begin{equation*}
 				\begin{split}
 					\frac{\p C}{\p t}(t) < 0 \ \text{if} 
-					\  \frac{\p C}{\p t}(t) \ \text{exists}
+					\  \frac{\p C}{\p t}(t) \ \text{exists.}
 				\end{split}
 			\end{equation*}
 		\item\label{itm:fifth}
 			$C(S) = C(K, T, S(t), t)$ is a strictly increasing,
-			Lipschitz continuous function of $S$. Furthermore,
-			\begin{equation*}
-				\begin{split}
-					\frac{\p C}{\p S}(S) > 0 \ \text{if}
-					\ \frac{\p C}{\p S}(S) \ \text{exists}
-				\end{split}
-			\end{equation*}
+			strictly concave, Lipschitz continuous function of $S$. Furthermore,
+			\begin{gather*}
+					\frac{\p C}{\p S}(S) < 0 \ \text{if}
+					\ \frac{\p C}{\p S}(S) \ \text{exists,}
+					\\
+\frac{\p^{2} C}{\p S^{2}}(S) < 0 \ \text{if}
+					\ \frac{\p^{2} C}{\p S^2}(S) \ \text{exists.}
+			\end{gather*}
 	\end{enumerate}
 \end{theorem} 
 
@@ -1570,7 +1564,7 @@ option starting in July with expiry in December.  The prices will be the same.
 			& = (K_{2} - K_{1}) + {[S(T) - K_{2}]}_{+}
 			\\
 			& 
-			\ge {[S(T) - K_{1}]}_{+}
+			\ge {[S(T) - K_{1}]}_{+}.
 		\end{split}
 	\end{equation*}
 	Hence, by monotonicity,
@@ -1588,9 +1582,7 @@ option starting in July with expiry in December.  The prices will be the same.
 	This establishes the Lipschitz continuity. Lastly, dividing both sides by 
 	$(K_{2} - K_{1})$ and invoking the mean-value theorem
 	gives the desired bounds on $\p C/ \p K$, if it exists.
-\end{proof}
-\begin{proof}[Proof of \cref{itm:second}]
-	Observe that applying the identity ${(A + B)}_{+} \le A_{+} + B_{+}$
+	To establish the convexity, observe that applying the identity ${(A + B)}_{+} \le A_{+} + B_{+}$
 	gives
 	\begin{equation*}
 		\begin{split}
@@ -1620,7 +1612,7 @@ option starting in July with expiry in December.  The prices will be the same.
 		\end{split}
 	\end{equation*}
 	Lastly, if $\p^2 C/ \p K^2$ exists, then it is positive by the second
-	derivate test.
+	derivative test.
 \end{proof}
 \begin{proof}[Proof of \cref{itm:third}]
 	Let $T_{1} < T_{2}$, fix $t \le T_{1}$, and
@@ -1645,7 +1637,10 @@ option starting in July with expiry in December.  The prices will be the same.
 	completing the proof.
 \end{proof}
 \begin{proof}[Proof of \cref{itm:fifth}]
-	The proof is analogous to that of \cref{itm:first}. Proceeding,
+	The argument is analogous to that of \cref{itm:first}. We shall leave
+	the proof of concavity to the reader, and tackle the remainder.
+
+	Proceeding,
 	let $S_{1} < S_{2}$ be two fixed stock prices. Then $C(K, T, S, T) <
 	C(K, T, S_{2}, T)$, so by monotonicity
 	$C(K, T, S, t) < C(K, T, S_{2}, t)$ for all $t < T$. Hence,
@@ -1676,38 +1671,32 @@ option starting in July with expiry in December.  The prices will be the same.
 	$(S_{2} - S_{1})$ and invoking the mean-value theorem
 	gives the desired bounds on $\p C/ \p S$, if it exists.
 \end{proof}
-\begin{remark}[The Federal Reserve]
-	Observe that concavity in $S$. More precisely, from
-	\cref{thm:bound-op-prices} we have
-	\begin{equation*}
-		\begin{split}
-			KZ_{t} > S_{t} - C_{t}
-		\end{split}
-	\end{equation*}
-	Concavity in $S$ tells us that, for fixed $t$, there exists $N$ such that for
-	$S > N$, $C_{t}$ quickly diminishes to zero value. Hence, from
-	\cref{thm:bound-op-prices}, we see that
-	\begin{equation*}
-		\begin{split}
-			KZ_{t} > S_{t} - C_{t} \approx S_{t}, \quad S \gg 1
-		\end{split}
-	\end{equation*}
-	Hence, for fixed $K$, we see that, for $S \gg 1$, the lower bound for $Z_{t}$
-	increases as $S$ increases.  In short, for low strikes $K$, high stock prices
-	indicate high interest rates. Similarly, convexity in $K$ implies that, for
-	high strikes, interest rates decrease as strike increases. If interest rates
-	are set low, and strike is considerably higher, then stock price is high.
+%\begin{remark}[The Federal Reserve]
+	%Concavity in $S$ tells us that, for fixed $t$,
+	%there exists $N$ such that for
+	%$S > N$, $C_{t}$ quickly diminishes to zero value. Hence, from
+	%\cref{thm:bound-op-prices}, we see that
+	%\begin{equation*}
+		%\begin{split}
+			%KZ_{t} > S_{t} - C_{t} \approx S_{t}, \quad S \gg 1
+		%\end{split}
+	%\end{equation*}
+	%Hence, for fixed $K$, for $S \gg 1$, the lower bound for $Z_{t}$
+	%increases as $S$ increases.  In short, for low strikes $K$, high stock prices
+	%indicate high interest rates. Similarly, convexity in $K$ implies that, for
+	%high strikes, interest rates decrease as strike increases. If interest rates
+	%are set low, and strike is considerably higher, then stock price is high.
 
-	If the Federal Reserve feels inflation setting on, it can increase interest
-	rates,
-	which in turn lowers either strike prices or stock price.  If strike price is
-	lowered, options become the better investment long term than the stock, which
-	in turn lowers \emph{its} price, due to fall in demand. Hence, a sufficiently
-	high interest rate will result in a fall of stock price. This is one of the
-	main reasons why the Federal Reserve manipulates interest rates.
-\end{remark}
+	%If the Federal Reserve feels inflation setting on, it can increase interest
+	%rates,
+	%which in turn lowers either strike prices or stock price.  If strike price is
+	%lowered, options become the better investment long term than the stock, which
+	%in turn lowers \emph{its} price, due to fall in demand. Hence, a sufficiently
+	%high interest rate will result in a fall of stock price. This is one of the
+	%main reasons why the Federal Reserve manipulates interest rates.
+%\end{remark}
 \section{The Continuous Black-Scholes Formula}
-In order to accurately price an option, our model must take into account the infinitelymany states the future can take. To simplify our discussion, we shall first restrict our model to futures with finitely many states, and zero-interest. 
+In order to accurately price an option, our model must take into account the infinitely many states the future can take. To simplify our discussion, we shall first restrict our model to futures with finitely many states, and zero-interest. 
 
 Proceeding, suppose we wish to price an option today with an underlying worth $100$,
 and expiry one day into the future. Furthermore, suppose that we know
@@ -1715,24 +1704,22 @@ that the underlying will tomorrow be worth $110$ with probability $p$,
 and $90$ tomorrow with probability $1-p$, where $p \neq 0,1$. 
 \begin{remark}
 	Observe that if $p=1$, then we have an arbitrage opportunity, since
-	we can go short $\$100$ worth in bonds, purchase the stock at $100$, which then will increase to $110$, after which we can pay back our bond debt and be left with 
+	we can go short $100$ worth in bonds, purchase the stock at $100$, which then will increase to $110$, after which we can pay back our bond debt and be left with 
 	a profit of $10$, risk free. A similar arbitrage exists for the case when $p=0$.
 \end{remark}
 \subsection{The Non-Arbitrage Approach}
 Consider a portfolio $P$
 that is long $\delta$ shares of the underlying, and short the option.
 Then
-\begin{equation*}
-	\begin{split}
-		P(0) & = \delta S(0) + C_{0} - C(0)
+\begin{gather*}
+		P(0)  = \delta S(0) + C_{0} - C(0)
 		\\
-		& P(T) = \begin{cases}
+		 P(T)  = \begin{cases}
 		110 \delta + C_{0} - 10, \quad & \text{in some states}
 		\\
 		90 \delta + C_{0}, \quad & \text{in others}.
 	\end{cases}
-\end{split}
-	\end{equation*}
+	\end{gather*}
 	Observe that if $P(T)$ were the same in all states, monotonicity would force
 	$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
 	we must have
@@ -1748,7 +1735,7 @@ Then
 			\frac{100}{2} = \frac{90}{2} + C_{0}
 		\end{split}
 	\end{equation*}
-	or $C_{0} = 5$. Hence, arbitrage considerations have once again
+	or $C_{0} = 5$. Arbitrage considerations have once again
 	allowed us to price an option. Observe furthermore that we were able
 	to price the option independently of the probability $0 < p < 1$. 
 	Hence, it is reasonable to ask whether we can choose a probability
@@ -1756,9 +1743,9 @@ Then
 	\subsection{The Risk Neutral Approach}
 	From our arbitrage considerations, we see that, for suitably chosen
 	$\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
-	have $E(P(0)) = E(P(T))$. Let us weaken our assumptions a little by allowing
-	arbitrary $\delta$, while still assuming $E(P(0)) = E(P(T))$. 
-	Now, $E(P(0)) = P(0) = 100 \delta$, so
+	have $\ex(P(0)) = \ex(P(T))$. Let us weaken our assumptions a little by allowing
+	arbitrary $\delta$, while still assuming $\ex(P(0)) = \ex(P(T))$. 
+	Now, $\ex(P(0)) = P(0) = 100 \delta$, so
 	\begin{equation*}
 		\begin{split}
 			(110 \delta + C_{0} - 10) p + (90 \delta + C_{0}) (1- p) = 100 \delta
@@ -1846,17 +1833,17 @@ Then
 	That is
 	\begin{equation*}
 		\begin{split}
-			& C_{105}(0) = E(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
+			& C_{105}(0) = \ex(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
 			\frac{1}{2}{(100 - 100)}_{+} = 5
 			\\
-			& C_{95}(0) = E(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
+			& C_{95}(0) = \ex(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
 			\frac{1}{2}{(90 - 100)}_{+} = 0
 		\end{split}
 	\end{equation*}
 	and so
 	\begin{equation*}
 		\begin{split}
-			C_{100}(0) = E(C_{100}(1))
+			C_{100}(0) = \ex(C_{100}(1))
 			& = \frac{1}{2}C_{105}(0) + \frac{1}{2} C_{95}(0)
 			\\
 			& = 2.5.
@@ -1877,35 +1864,37 @@ Then
 	an induction shows that
 	\begin{equation*}
 		\begin{split}
-			C_{0} = E(C(T)) & =  \sum_{i = 0}^{j}\prob(S = S_{0} + (N-j)u - jd)
+			C_{0} = \ex(C(T)) & =  \sum_{i = 0}^{j}\prob(S = S_{0} + (N-j)u - jd)
 			f(S_{0} + (N-j)u - jd)
 			\\
 			& = \sum_{j = 0}^{N}\prob(S = S_{0} + (N-2j)u)
 			f(S_{0} + (N-2j)u), \quad u = d
 		\end{split}
 	\end{equation*}
-	Next, observe that there are $N \choose j$ ways to sort $j$ up movements and
+	Next, observe that there are $\binom{N}{j}$ ways to arrange $j$ up movements and
 	$N-j$ down movements. Each arrangement corresponds to a different path; however,
 	each path with $j$ up movements and $N-j$ down movements leads to the same final
 	node. Hence, our preceding computation simplifies to
 	\begin{equation*}
 		\begin{split}
-			C_{0} = 	\frac{1}{2N} \sum_{j = 0}^{N} {N \choose j}f(S_{0} + (N-2j)u).
+			C_{0} = 	\frac{1}{2N} \sum_{j = 0}^{N} {\binom{N}{j}}f(S_{0} + (N-2j)u).
 		\end{split}
 	\end{equation*}
-	\section{The Continuous Time Black-Scholes in the Absence of Interest}
-	We now seek to price options in continuous time. We begin with the assumptions
+	\section{The Continuous Time Black-Scholes in the Absence of Interest,
+	With Possibly Negative Stock Prices}
+	We now seek to price options in continuous time. We begin with the assumptions:
 	\begin{enumerate}[(i)]
 		\item The underlying asset is today worth $S(0) = 0$.
 		\item Expiry is $T$.
-		\item $E(S(T)) = S_{0}$.
-		\item $\text{var}(S(T)) = \sigma^{2} T$.
-		\item The asset follows a \emph{symmetric random walk}. That is, 
+		\item $\ex(S(T)) = S_{0}$.
+		\item $\var(S(T)) = \sigma^{2} T$.
+		\item The asset follows a \emph{symmetric random walk}. That is,
+			for some \\ $0=t_{0} < t_{1} < \cdots < t_{n-1} < t_{n} = T$, we have
 			\begin{equation*}
 				\begin{split}
-					S(t + \Delta t)  = \begin{cases}
-						S(t) + \alpha, \quad & p = 1/2 \\
-						S(t) - \alpha, \quad & 1-p
+					S(t_{j+1})  = \begin{cases}
+						S(t_{j}) + \alpha, \quad & p = 1/2 \\
+						S(t_{j}) - \alpha, \quad & 1-p
 					\end{cases}
 				\end{split}
 			\end{equation*}
@@ -1963,14 +1952,14 @@ Then
 	Then for an option that pays $f(S(T))$ at time $T$, we have
 	\begin{equation*}
 		\begin{split}
-			f(S(0)) = E(F(S(T)))
-			= E[f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i})]
+			f(S(0)) = \ex(f(S(T)))
+			= \ex[f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i})].
 		\end{split}
 	\end{equation*}
 	We now would like to let $k \to \infty$, in order to get the best interest-free
 	approximation of call-option prices in the real-world.
 	\begin{theorem}[Central Limit Theorem]\label{thm:central-lim-thm}
-		Let $X_{1}, X_{2}, \cdots$ be a sequence of independent, identically
+		Let $X_{1}, X_{2}, \ldots$ be a sequence of independent, identically
 		distributed random variables with finite means $\mu$ and finite, nonzero
 		variances $\sigma^{2}$. Let
 		\begin{equation*}
@@ -1992,19 +1981,421 @@ Then
 			S_{0} + \sigma_{k} \sum_{i = 1}^{k} X_{i}
 			= S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{k}} \sum_{i = 1}^{k}
 			X_{i}
-			\xrightarrow{\text{dist}} S_{0} + \sigma \sqrt{T} N(0,1)
+			\xrightarrow{\text{dist}} S_{0} + \sigma \sqrt{T} N(0,1).
 		\end{split}
 	\end{equation*}
-	which yields 
+	and so our option price is given by
 	\begin{equation*}
 		\begin{split}
-			f(S(0)) & = E(f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i}))
+			f(S(0)) & = \ex(f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i}))
 			\\
-			& \xrightarrow{\text{dist}} E(S_{0} + \sigma \sqrt{T}N(0,1))
+			& \xrightarrow{\text{dist}} \ex(S_{0} + \sigma \sqrt{T}N(0,1))
 			\\
 			& = \frac{1}{\sqrt{2 \pi}} \int_{\rr} f(S_{0} + \sigma \sqrt{T}x)
 			e^{-x^{2}/2}
 			\, dx. 
 		\end{split}
 	\end{equation*}
-	\end{document}
+	Unfortunately, our model is too simplistic, as it allows for stock prices to
+	be negative, and has assumed interest to be zero. 
+	\section{The Continuous Time Black-Scholes With Interest, and Only
+	Positive Stock Prices}
+Our one step, two state model before involved a stock price $S_{0}$ today
+increasing or decreasing to $S_{0} \pm u$, respectively. In the multi-step
+extension, this has the drawback of allowing for negative stock prices. 
+To remedy this, we alter our model by now having $S_{0}$ increase or decrease by a \emph{percentage}.
+That is, either $S_{0}$  goes to $S_{0}r_{+}$  or $S_{0}r_{-}$, where
+$r_{+} > 1$  and $0 < r_{-} < 1$. Extending this model to multiple
+steps, where at each step we increase or decrease by a factor of $r_{\pm}$,
+we see that the stock price is always bounded below by zero, as desired.
+However, to recover the benefits of the theory we developed for our previous
+model (where up states and down states were given by an addition of an
+increment, rather than a product), we
+consider the evolution of  $\log(S(t))$. Then, by the product rule for logarithms,
+it follows that $\log(S(t)) \to \log(S(t)) + \log(r_{\pm})$.
+
+In general, for an $n$ step symmetric model, adopting the notation $\Delta t =
+T/n$ for expiry $T$ and initial time $t=0$, we have 
+\begin{equation*}
+\begin{split}
+	\log S_{j \Delta t} = \log S_{(j-1) \Delta t} + X_{j}
+\end{split}
+\end{equation*}
+where
+\begin{equation*}
+\begin{split}
+	X_{j} = \begin{cases}
+		\sqrt{\Delta t} \sigma, & \quad p = 1/2 \\
+		 - \sqrt{\Delta t} \sigma, & \quad p = 1/2 \\
+	\end{cases}
+\end{split}
+\end{equation*}
+and the $X_{j}$, $1 \le j \le n$ are independent.
+Observe that, in this construction, $\Delta t \sigma^2$ is the variance,
+per unit time $\Delta t$ (or, equivalently, per step). 
+Since the $X_{j}$ are all independent, the variance from $t=0$ to $t=T$
+of our random stock evolution will be $\sigma^2 T$. Next,
+letting
+\begin{equation*}
+\begin{split}
+	Y_{j} = \begin{cases}
+	1, & \quad p=1/2 \\
+	-1, & \quad 1-p = 1/2
+	\end{cases}
+\end{split}
+\end{equation*}
+we see that
+\begin{equation*}
+\begin{split}
+	\log S_{j \Delta t} = \log S_{(j-1) \Delta t} + \sigma \sqrt{\Delta t}Y_{j}
+\end{split}
+\end{equation*}
+Next, observe that
+\begin{equation*}
+\begin{split}
+	\sqrt{\Delta t \sigma} \sum_{j = 1}^{n} Y_{j} = 
+	\sum _{j = 1}^{n} (\log S_{j \Delta t} - \log S_{(j-1) \Delta t})
+	= \log S_{T} - \log S_{0}
+\end{split}
+\end{equation*}
+which we rewrite as 
+\begin{equation*}
+\begin{split}
+	\log S_{t} = \log S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{n}}
+	\sum_{j=1}^{n} Y_{j} \xrightarrow{d} \log S_{0} \sigma \sqrt{T} N(0,1)
+\end{split}
+\end{equation*}
+where the last step follows from the central-limit theorem.
+Hence, 
+\begin{equation*}
+\begin{split}
+	S_{T} \overset{d}{=} S_{0} e^{\sigma \sqrt{T}N(0,1)}.
+\end{split}
+\end{equation*}
+We say that $S_{T}$ is \emph{log-normally distributed}, since its
+logarithm is normally distributed. Furthermore, observe that
+$S_{T}(\omega) \not < 0$ for all $\omega \in \Omega$.
+\subsection{One Timestep, Two States}
+We first restrict our attention to the one step, two state model, with
+initial stock price $S_{0}$ and up state and down state $S_{\pm}$. Observe that
+the assumption of no-arbitrage implies $S_{-} \le S_{0}e^{r \Delta t} < S_{+}$.
+We shall now attempt to price a call option $C$ with underlying $S$ at time
+$t=0$. 
+
+\subsubsection{The No-Arbitrage Pricing Approach}
+Consider a portfolio $P$ that is long $\delta$
+shares of the underlying, and short the option. Then
+\begin{gather*}
+	P(0)  = \delta S(0) \pm C_{0} 
+		\\
+		 P(T)  = \begin{cases}
+			 S_{+} \delta + C_{0} - (S_{+} - S_{0}), \quad & \text{in some states}
+		\\
+		S_{-} \delta + C_{0}, \quad & \text{in others}.
+	\end{cases}
+	\end{gather*}
+	Observe that if $P(T)$ were the same in all states, monotonicity would force
+	$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
+	we set the up state and down state of our portfolio equal to one another, and
+	obtain 
+	\begin{equation}\label{risk-free-delta}
+		\begin{split}
+			\delta = \frac{S_{+} - S_{0}}{S_{+} - S_{-}}.	
+		\end{split}
+	\end{equation}
+	Hence, by monotonicity, our portfolio is worth $\delta S_{0}$ at all times. 
+	However, for no arbitrage to occur, our portfolio should be worth
+	$\delta S_{0} e^{r \Delta t}$. Hence, our analysis has been misguided.
+
+	Where have we gone wrong? Observe that our portfolio has no bond component,
+	and hence fails to take account of the positive interest rate. To attempt to remedy this, we note that  once $C_{0}$ is obtained from shorting a call option, it can be
+	immediately invested in a bond, which will yield $C_{0}e^{rt}$ in the future.
+	That is
+	\begin{gather*}
+		P(0)  = \delta S(0) \pm C_{0},
+		\\
+		P(T)  = \begin{cases}
+			S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0}), \quad & \text{in some states}
+			\\
+			S_{-} \delta + C_{0}e^{rt}, \quad & \text{in others}.
+		\end{cases}
+	\end{gather*}
+Setting the up state of our portfolio equal to the down, we obtain
+\eqref{risk-free-delta},
+which is the same $\delta$ we obtained in the ``wrong'' model. 
+Applying monotonicity, we obtain that $P(0) = P(T)$, and so our porfolio value
+of $\delta S_{0}$ initially does not change. This again violates the
+no-arbitrage principle; that is
+
+\begin{equation*}
+\begin{split}
+	\delta S_{0} < \delta S_{0} e^{rT}
+\end{split}
+\end{equation*}
+and so we could construct an arbitrage by shorting $P$ and investing
+the proceeds in a bond.
+
+We need to revise our model some more. The critical observation that our failed
+attempts have led us to is the following: if $P(T)$
+is a risk neutral portfolio, then its value in both the up and down
+states must be equal to $e^{rT}P(T)$, in order to avoid arbitrage. 
+
+We formulate this rigorously by defining
+\begin{gather*}
+	P(0) = [\delta S_{0} \pm C_{0}] - \delta S_{0}
+	\\
+		P(T)  = \begin{cases}
+			S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0}) - e^{rT} \delta S_{0}, \quad & \text{in some states}
+			\\
+			S_{-} \delta + C_{0}e^{rt} - e^{rT} \delta S_{0}, \quad & \text{in others}.
+		\end{cases}
+\end{gather*}
+That is, $P$ is the portfolio we obtain by borrowing $\delta S_{0}$
+at $r$ interest, and then investing it into the portfolio that is long
+$\delta S_{0}$ shares of stock, and short an option.
+
+Setting the up and down states equal to one another, we obtain
+\eqref{risk-free-delta}. Applying monotonicity, we see that
+$0 = P(0) = P(T)$, which gives
+\begin{equation}\label{no-arb}
+\begin{split}
+S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0})
+ = 	\delta S_{-} + C_{0} e^{rT} = e^{rT} \delta S_{0} 
+\end{split}
+\end{equation}
+and so
+\begin{equation}
+\begin{split}
+	C_{0} = e^{-rT}\delta(e^{rT} S_{0} - S_{-})
+\end{split}
+\end{equation}
+Note that since~\eqref{no-arb} holds, no arbitrage using bonds is
+possible. Contrast this with our previous, failed models. 
+\subsubsection{The Risk Neutral Approach}
+Observe that for the no-arbitrage approach, we were able to find a risk-free
+$\delta$ by setting $P(T) = P(0)$ and solving.
+
+To find the risk-neutral probability $p$, we adopt an analogous approach,
+and assume $\ex(P(T)) = \ex(P(0))$. Then
+
+\begin{equation*}
+\begin{split}
+	p(\delta S_{+} + C_{0} e^{rT} - S_{+} + S_{0} - e^{rT}S_{0})
+	+ (1-p)(\delta S_{-} + C_{0} e^{rT} - e^{rT} \delta S_{0}) = 0
+\end{split}
+\end{equation*}
+which we rewrite as
+\begin{equation}
+	\label{ldr}
+\begin{split}
+	\delta \ex_{p}(S(T)) + C_{0} e^{rT} + p(S_{0} - S_{+}) = e^{rT} \delta
+	S_{0}.
+\end{split}
+\end{equation}
+Suppose we find $p$ such that 
+\begin{equation}\label{fpp}
+\begin{split}
+	\ex_{p}(S(T)) = e^{rT} S_{0}.
+\end{split}
+\end{equation}
+Then~\eqref{ldr} reduces to
+\begin{equation*}
+	 C_{0} e^{rT} + p(S_{0} - S_{+}) = 0 
+\end{equation*}
+Observe that we have eliminated the dependence on the value of $\delta$
+entirely. Solving for $C_{0}$, we obtain
+
+\begin{equation*}
+\begin{split}
+	C_{0} &= e^{-rT} p (S_{+} - S_{0})
+	\\
+	& = e^{-rT}\left[ p {(S_{+} - S_{0})}_{+}+(1-p){(S_{-} - S_{0})}_{+}\right]
+	\\
+	& = e^{-rT} \ex_{p}(f(S_{T}))
+\end{split}
+\end{equation*}
+Lastly, we compute the \emph{risk-neutral} probability $p$ from expression~\eqref{fpp}, which gives
+\begin{equation*}
+\begin{split}
+	p(S_{+}) + (1 -p)S_{-} = e^{rT} S_{0}
+\end{split}
+\end{equation*}
+or
+\begin{equation}\label{step-prob}
+\begin{split}
+	p = \frac{e^{rT} S_{0} - S_{-}}{S_{+} - S_{-}}.
+\end{split}
+\end{equation}
+%More generally, for a multi-step model, we have
+%\begin{equation}\label{step-prob-gen}
+%\begin{split}
+	%p_{j \Delta t} = \frac{e^{r j\Delta t} S_{0}(j \Delta t) - S_{-}(j \Delta
+%t)}{S_{+}(j \Delta t)
+	%- S_{-}(j\Delta t)}.
+%\end{split}
+%\end{equation}
+%where we remark that $S_{0}(j \Delta t)$ is a random variable: there are
+%$2^{j} -1$ possible nodes $S_{0}$ after $j$ timesteps of size $\Delta t$. 
+\subsection{Mutliple Timesteps}
+Assume now, starting from $t=0$,
+we have $N$ symmetric timesteps of length $\Delta t$, where
+$N \Delta t  = T$. Using the risk-neutral option pricing
+results in the previous section, and running an induction,
+it follows that 
+
+\begin{equation*}
+\begin{split}
+	C_{0} = e^{-rT} \ex_{\vec{p}}(f(S_{T}))
+\end{split}
+\end{equation*}
+where $\vec{p} \doteq \left\{ p_{1}, p_{2}, \ldots, p_{2^{N} -1} \right\}$
+is the vector of risk neutral probabilities at each step.
+Recall that, for zero interest, 
+$p_{i} = 1/2$ for all $i$. Indeed, this is implied by
+formula~\eqref{step-prob}. However, this formula also implies that
+for $r \neq 0$, the $p_i$ change as $\Delta t \to 0$. 
+Hence, computing $\ex_{\vec{p}}(f(S_{T}))$ via a counting argument as
+in the zero-interest case is considerably more difficult, due to the
+ever-changing $p_i$ as the timestep shrinks in size. Furthermore,
+each timestep size $\Delta t$ results in a new $\vec{p}$.
+Since we are interested in taking $\Delta t \to 0$, we see that a counting
+argument, while possible, is extremely cumbersome.
+Instead, we will seek to find the distribution of $S_{T}$ under
+the risk-neutral vector $\vec{p}$, as this will allow us to compute
+$E_{\vec{p}} (f(S_{T}))$ with relative ease. 
+
+Proceeding, we express a symmetric, multi-step model via the equation
+\begin{equation*}
+\begin{split}
+	\log S_{j} = \log S_{j - 1} \pm \sigma \sqrt{\Delta t}
+\end{split}
+\end{equation*}
+where we have adopted the notation $S_{j} \doteq S_{j \Delta t}$.
+This is equivalent to 
+\begin{equation*}
+\begin{split}
+	S_{j} = S_{j -1} e^{\pm \sigma \sqrt{\Delta t}}.
+\end{split}
+\end{equation*}
+From~\eqref{step-prob}, we see that the risk-neutral probability
+at $S_{j-1}$ is
+\begin{equation*}
+\begin{split}
+	\frac{S_{j-1}e^{r \Delta t} - S_{j-1} e^{-\sigma \sqrt{\Delta
+	t}}}{S_{j-1}e^{\sigma \sqrt{\Delta t}} - S_{j-1}e^{-\sigma \sqrt{\Delta t}}}.
+\end{split}
+\end{equation*}
+Cancelling $S_{j-1}$, we see that 
+\begin{equation*}
+\begin{split}
+	p  = \frac{e^{r \Delta t} -  e^{-\sigma \sqrt{\Delta t}}}{e^{\sigma
+		\sqrt{\Delta t}} - e^{-\sigma \sqrt{\Delta t}}}.
+\end{split}
+\end{equation*}
+Hence, the risk-neutral probabilities at each timestep do not depend
+on the initial stock price at the timestep or on the time elapsed,
+but only on the timestep size. Hence, $\vec{p}$ has been simplified
+considerably, since we have shown that $p_{i} = p_{j}$. 
+
+Employing a Maclaurin series expansion of $e^{x}$, we obtain
+
+\begin{equation*}
+\begin{split}
+	p = \frac{1}{2} \left[ 1 + \left( \frac{r - 1/2 \sigma^{2}}{\sigma}
+	\right)\sqrt{\Delta t} \right]  + O(\Delta t)
+\end{split}
+\end{equation*}
+Hence, we rewrite our symmetric, multi-step model as the
+\emph{risk-neutral}, multi-step model
+\begin{equation*}
+\begin{split}
+	\log S_{j} = \log S_{j-1} + \sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j}
+\end{split}
+\end{equation*}
+
+where
+\begin{equation*}
+\begin{split}
+	Z_{j} = \begin{cases}
+		1, \quad & p = p(\Delta t) \\
+		-1, \quad & 1-p  
+	\end{cases}
+\end{split}
+\end{equation*}
+We would like to take the limit of this expression as $ \to \infty$,
+and apply the central limit theorem. We compute
+\begin{equation*}
+\begin{split}
+	\ex(Z_{j}) & = \left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+	\right)\sqrt{\Delta t}  + O(\Delta t)
+	\\
+	& = \left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+	\right)\sqrt{T/N}  + O(N^{-1})
+\end{split}
+\end{equation*}
+and so 
+\begin{equation*}
+\begin{split}
+	\ex\left( \sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j} \right)
+	= (r - \frac{1}{2} \sigma^{2})T + O(N^{-1/2}) 
+\end{split}
+\end{equation*}
+Similarly, 
+\begin{equation*}
+\begin{split}
+	\var (Z_{j}) & = \ex(Z_{j}^2) - {[\ex(Z_{j})]}^{2} 
+	\\
+	& = 1 - {[\ex(Z_{j})]}^{2} 
+	\\
+	& = 1 - {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+\right)}^{2}
+	\Delta t  + O[{(\Delta t)}^{3/2}].
+\end{split}
+\end{equation*}
+and so
+\begin{equation*}
+\begin{split}
+	\var(\sum_{j=1}^{N} Z_{j}) 
+	& = \sum_{j=1}^{N}[\var(Z_{j})]
+	\\
+	& = N - N {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+\right)}^{2}
+	T/N  + N O[{(T/N)}^{3/2}]
+	\\
+	& = N - {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+\right)}^{2}
+	T  + O[N^{-1/2}]
+	\\
+	& = N + O(1)
+	\end{split}
+\end{equation*}
+Therefore,
+\begin{equation*}
+\begin{split}
+	\var(\sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j})
+	& = \sigma^{2} T/N\left( N + O(1) \right)
+	\\
+	& = \sigma^{2} T + O(N^{-1})
+\end{split}
+\end{equation*}
+Hence, by the central-limit theorem,
+\begin{equation*}
+\begin{split}
+	\sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j} \xrightarrow{\text{d}}
+	N (\left( r - \frac{1}{2} \sigma^{2} \right)T, \sigma^{2} T) 
+\end{split}
+\end{equation*}
+Using the fact that 
+\begin{equation*}
+	\sum_{j=1}^{N} (\log S_{j} - \log S_{j-1}) = \log S_{T} - \log S_{0},
+\end{equation*}
+we obtai
+\begin{equation*}
+\begin{split}
+	\log S_{T} \overset{\text{d}}{=} \log S_{0} + (r -
+	\frac{1}{2}\sigma^{2})T
+	+ \sigma \sqrt{T} N(0,1)
+\end{split}
+\end{equation*}
+
+\end{document}
