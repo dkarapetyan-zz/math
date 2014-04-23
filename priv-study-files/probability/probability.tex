@@ -83,8 +83,8 @@ any of the meaning.
 		\item Outcome is tails
 	\end{enumerate}
 	which we translate, via numbers, to the set $ \left\{ \left\{ 0 \right\} 
-		\cup
-		\left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
+	\cup
+	\left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
 	\right\} , \left\{ 1 \right\} \right \}$.
 	Observe that the event ``Heads or tails'' is the union of the events
 	``Outcome is Heads'' and ``Outcome is tails'', and ``Heads and tails'' is
@@ -144,7 +144,6 @@ that can arise from a given outcome space. We have the following.
 Observe that a natural outcome space to use is the real line, or subsets
 thereof, and to build appropriate filters on top of it. We will return
 to this idea later.
-
 \section{Discrete Probability}
 \subsection{Unconditional Probability}
 Suppose we roll a $6$-sided die $N$ times. Let $N(A)$ denote the number of $4's$
@@ -369,13 +368,13 @@ entertainment, women/men, etc. It usually works.
 		\prob(A | B) & = \frac{\prob(B | A) \prob(A)}{\prob(B)}
 		\\
 		& = \frac{\prob(B | A) \prob(A)}{\prob(B|A) \prob(A) + \prob(B | A^c)
-	\prob(A^c)}
-	\\
-	& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times 
-	(10^5 -
-1)/10^5}
-\\
-& \approx 1/1000.
+		\prob(A^c)}
+		\\
+		& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times 
+			(10^5 -
+		1)/10^5}
+		\\
+		& \approx 1/1000.
 	\end{align*}
 \end{proof}
 Moral: don't freak out if your doctor says you \emph{might} have
@@ -776,8 +775,8 @@ Observe that we can write
 \begin{align*}
 	\frac{1}{n} \sum_{i = 1}^n X_i
 	& = \frac{\alpha_i (\#\alpha_i) + \cdots +
-\alpha_n (\#\alpha_n)}{n}
-\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
+	\alpha_n (\#\alpha_n)}{n}
+	\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
 \end{align*}
 This motivates the following.
 \begin{definition}
@@ -1034,13 +1033,13 @@ To compute $\ex(N | K)$, we apply Bayes Theorem to obtain
 	f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
 	\\
 	& = \begin{cases}
-	\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
-	e^{-\lambda}/n!}{\sum_{m \ge k}
-	\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
-	, \quad & n \ge k
-	\\
-	0, \quad & n<k
-\end{cases}
+		\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
+		e^{-\lambda}/n!}{\sum_{m \ge k}
+		\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
+		, \quad & n \ge k
+		\\
+		0, \quad & n<k
+	\end{cases}
 \end{align*}
 where we obtained the denominator via the observation
 \begin{align*}
@@ -1072,10 +1071,10 @@ and so
 	& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
 	\\
 	& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 
-0}
-n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
-\\
-& = k + q\lambda.
+	0}
+	n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
+	\\
+	& = k + q\lambda.
 \end{align*}
 Hence, $\ex(N|K) = K + q \lambda$.
 \section{Risk}
@@ -1314,8 +1313,8 @@ assumptions when building models of the financial market:
 \begin{proof}
 	Let $A$ be a portfolio that is long a call option, and $B$ be an empty
 	portfolio.  Then $B$ has zero value for all time, while $A(T) = {(S_{T}
-	- K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
-	B(T)$ in all states, and hence $A(t) \ge B(t)$ by monotonicity.
+- K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
+B(T)$ in all states, and hence $A(t) \ge B(t)$ by monotonicity.
 \end{proof}
 \begin{corollary}[Weighted Symmetry of Randomness]
 	If two portfolios $P$ and $Q$ are equal at some $t < T$ and $P(T) > Q(T)$
@@ -1329,7 +1328,7 @@ assumptions when building models of the financial market:
 	monotonicity,
 	$P(t) > Q(t)$, which is a contradiction.
 \end{proof}
-\subsection{Arbitrage-Free Pricing}
+\subsection{Introduction to Arbitrage-Free Pricing}
 \subsubsection{Forward Exchange Rates}
 Suppose a firm wants to enter a contract to exchange up to $1$
 dollar for yen a year from now at an exchange rate $K'$. We
@@ -1445,7 +1444,7 @@ Similarly, for a put option we have pay-off
 			S_{t} > C_{t} > S_{t} - K Z_{t}.
 		\end{split}
 	\end{equation*}
-	In particular, if the interest rate is non-negatiave, then $C_{t} >
+	In particular, if the interest rate is non-negative, then $C_{t} >
 	S_{t} - K$ for $t < T$. 
 \end{theorem}
 \begin{proof}
@@ -1522,82 +1521,82 @@ in time which we evaluate it. As an example, in terms of price it makes no diffe
 			function of $K$, with Lipschitz constant $Z(t)$, where $Z$ is a non-coupon
 			bearing bond with $Z(T) = 1$. Furthermore,
 			\begin{gather*}
-					-Z(t) < \frac{\p C}{\p K}(K) < 0 
-					\ \text{if}\  \frac{\p C}{\p K}(K) \  \text{exists,} 
-					\\
-					\frac{\p^{2} C}{\p
+				-Z(t) < \frac{\p C}{\p K}(K) < 0 
+				\ \text{if}\  \frac{\p C}{\p K}(K) \  \text{exists,} 
+				\\
+				\frac{\p^{2} C}{\p
 					k^{2}}(K) > 0 \ \text{if} \ \frac{\p^{2} C}{\p
-					k^{2}}(K) \ \text{exists.}
-			\end{gather*}
-		\item\label{itm:third}
-			$C(T) = C(K, T, S(t), t)$ is a strictly increasing function of
-			$T$ when interest rates are non-negative.
-		\item\label{itm:fourth}
-			$C(t) = C(K, T, S(t), t)$ is a strictly decreasing function of
-			$t$. Furthermore, 
+						k^{2}}(K) \ \text{exists.}
+					\end{gather*}
+				\item\label{itm:third}
+					$C(T) = C(K, T, S(t), t)$ is a strictly increasing function of
+					$T$ when interest rates are non-negative.
+				\item\label{itm:fourth}
+					$C(t) = C(K, T, S(t), t)$ is a strictly decreasing function of
+					$t$. Furthermore, 
+					\begin{equation*}
+						\begin{split}
+							\frac{\p C}{\p t}(t) < 0 \ \text{if} 
+							\  \frac{\p C}{\p t}(t) \ \text{exists.}
+						\end{split}
+					\end{equation*}
+				\item\label{itm:fifth}
+					$C(S) = C(K, T, S(t), t)$ is a strictly increasing,
+					strictly concave, Lipschitz continuous function of $S$. Furthermore,
+					\begin{gather*}
+						\frac{\p C}{\p S}(S) < 0 \ \text{if}
+						\ \frac{\p C}{\p S}(S) \ \text{exists,}
+						\\
+						\frac{\p^{2} C}{\p S^{2}}(S) < 0 \ \text{if}
+						\ \frac{\p^{2} C}{\p S^2}(S) \ \text{exists.}
+					\end{gather*}
+			\end{enumerate}
+		\end{theorem} 
+
+		\begin{proof}[Proof of \cref{itm:first}]
+			Assume $K_{2} > K_{1}$. Then $C(K_{2}, T, S(t), t) < C(K_{1}, T, S(t), t)$
+			in all states. Hence, by monotonicity, $C(K_{2}, t) < C(K_{1}, t)$, and so
+			$C$ is  strictly decreasing with respect to $K$. Next, observe that
 			\begin{equation*}
 				\begin{split}
-					\frac{\p C}{\p t}(t) < 0 \ \text{if} 
-					\  \frac{\p C}{\p t}(t) \ \text{exists.}
+					C(K_{2}) + (K_{2} - K_{1})Z(T)
+					& = (K_{2} - K_{1}) + {[S(T) - K_{2}]}_{+}
+					\\
+					& 
+					\ge {[S(T) - K_{1}]}_{+}.
 				\end{split}
 			\end{equation*}
-		\item\label{itm:fifth}
-			$C(S) = C(K, T, S(t), t)$ is a strictly increasing,
-			strictly concave, Lipschitz continuous function of $S$. Furthermore,
-			\begin{gather*}
-					\frac{\p C}{\p S}(S) < 0 \ \text{if}
-					\ \frac{\p C}{\p S}(S) \ \text{exists,}
+			Hence, by monotonicity,
+			\begin{equation*}
+				\begin{split}
+					C(K_{2}, T, S(t), t) + (K_{2} - K_{1})Z(t) \ge C(K_{1}, T, S(t), t)
+				\end{split}
+			\end{equation*}
+			or
+			\begin{equation*}
+				\begin{split}
+					C(K_{1}, T, S(t), t) - C(K_{2}, T, S(T), t) \le (K_{2} - K_{1})Z(t).
+				\end{split}
+			\end{equation*}
+			This establishes the Lipschitz continuity. Lastly, dividing both sides by 
+			$(K_{2} - K_{1})$ and invoking the mean-value theorem
+			gives the desired bounds on $\p C/ \p K$, if it exists.
+			To establish the convexity, observe that applying the identity ${(A + B)}_{+} \le A_{+} + B_{+}$
+			gives
+			\begin{equation*}
+				\begin{split}
+					& \theta{(S_{T} - K_{2})}_{+} + (1 - \theta)(S_{T} - K_{1})
+					- {(S_{T} - [\theta K_{2} + (1 - \theta)K_{1}])}_{+}
 					\\
-\frac{\p^{2} C}{\p S^{2}}(S) < 0 \ \text{if}
-					\ \frac{\p^{2} C}{\p S^2}(S) \ \text{exists.}
-			\end{gather*}
-	\end{enumerate}
-\end{theorem} 
-
-\begin{proof}[Proof of \cref{itm:first}]
-	Assume $K_{2} > K_{1}$. Then $C(K_{2}, T, S(t), t) < C(K_{1}, T, S(t), t)$
-	in all states. Hence, by monotonicity, $C(K_{2}, t) < C(K_{1}, t)$, and so
-	$C$ is  strictly decreasing with respect to $K$. Next, observe that
-	\begin{equation*}
-		\begin{split}
-			C(K_{2}) + (K_{2} - K_{1})Z(T)
-			& = (K_{2} - K_{1}) + {[S(T) - K_{2}]}_{+}
-			\\
-			& 
-			\ge {[S(T) - K_{1}]}_{+}.
-		\end{split}
-	\end{equation*}
-	Hence, by monotonicity,
-	\begin{equation*}
-		\begin{split}
-			C(K_{2}, T, S(t), t) + (K_{2} - K_{1})Z(t) \ge C(K_{1}, T, S(t), t)
-		\end{split}
-	\end{equation*}
-	or
-	\begin{equation*}
-		\begin{split}
-			C(K_{1}, T, S(t), t) - C(K_{2}, T, S(T), t) \le (K_{2} - K_{1})Z(t).
-		\end{split}
-	\end{equation*}
-	This establishes the Lipschitz continuity. Lastly, dividing both sides by 
-	$(K_{2} - K_{1})$ and invoking the mean-value theorem
-	gives the desired bounds on $\p C/ \p K$, if it exists.
-	To establish the convexity, observe that applying the identity ${(A + B)}_{+} \le A_{+} + B_{+}$
-	gives
-	\begin{equation*}
-		\begin{split}
-			& \theta{(S_{T} - K_{2})}_{+} + (1 - \theta)(S_{T} - K_{1})
-			- {(S_{T} - [\theta K_{2} + (1 - \theta)K_{1}])}_{+}
-			\\
-			& = \theta{(S_{T} - K_{2})}_{+} + (1 - \theta){(S_{T} - K_{1})}_{+}
-			- {\left( S_{T} - [\theta K_{2} + (1 - \theta)K_{1}] \right)}_{+}
-			\\
-			& \ge {[\theta(S_{T} - K_{2}) + (1 - \theta)(S_{T} - K_{1})]}_{+}
-			- {\left( S_{T} - \left[ \theta K_{2} + (1 - \theta)K_{1} \right]
-			\right)}_{+}
-			\\
-			& = {\left[ S_{T} - [\theta K_{2} + (1 - \theta)K_{1}] \right]}_{+}
-			- {\left( S_{T} - \left[ \theta K_{2} + (1 - \theta)K_{1} \right]
+					& = \theta{(S_{T} - K_{2})}_{+} + (1 - \theta){(S_{T} - K_{1})}_{+}
+					- {\left( S_{T} - [\theta K_{2} + (1 - \theta)K_{1}] \right)}_{+}
+					\\
+					& \ge {[\theta(S_{T} - K_{2}) + (1 - \theta)(S_{T} - K_{1})]}_{+}
+					- {\left( S_{T} - \left[ \theta K_{2} + (1 - \theta)K_{1} \right]
+				\right)}_{+}
+				\\
+				& = {\left[ S_{T} - [\theta K_{2} + (1 - \theta)K_{1}] \right]}_{+}
+				- {\left( S_{T} - \left[ \theta K_{2} + (1 - \theta)K_{1} \right]
 			\right)}_{+}
 			\\
 			& = 0.
@@ -1698,140 +1697,161 @@ in time which we evaluate it. As an example, in terms of price it makes no diffe
 \section{Characteristic Functions}
 If $f = f(x)$ is integrable (that is, $\int_{\rr}| f | \ dx < \infty$), we define its \emph{Fourier transform} by
 \begin{equation*}
-\begin{split}
-	\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{-i x \xi} f(x) \ dx.
-\end{split}
+	\begin{split}
+		\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{-i x \xi} f(x) \ dx.
+	\end{split}
 \end{equation*}
 If $ \hat{f}(\xi)$ is integrable as well, then we have the
 following.
 \begin{theorem}\label{thm:fourier-inversion}
 	If $f, \hat{f}$ are integrable, then
 	\begin{equation*}
-	\begin{split}
-		f(x) = \int_{-\infty}^{\infty} e^{i x \xi} \hat{f}(\xi) \ d \xi.
-	\end{split}
+		\begin{split}
+			f(x) = \int_{-\infty}^{\infty} e^{i x \xi} \hat{f}(\xi) \ d \xi.
+		\end{split}
 	\end{equation*}
 \end{theorem}
 \begin{proof}
 	See Stein and Shakarchi \cite{zbMATH02171466}.
 \end{proof}
 \begin{proposition}\label{prop:}
-The Fourier transfrom has the following properties.
-\begin{enumerate}[(i)]
-	\item	$\wh{f(x+h)}(\xi) = \wh{f(\xi) e^{i h \xi}}$
-	\item $\wh{f(x) e^{-i x h}}(\xi) = \wh{f}(\xi + h)$	
-	\item $\wh{\frac{d}{dx} f(x)}(\xi) = i \xi$
-	\item $\wh{-ix f(x)}(\xi) = \frac{d}{d \xi}\wh{f}(\xi)$
-	\item $\hat{\hat{f}}(x) = f(-x)$
-	\item $\int_{\rr} \wh{f}(x) g(x) \ dx = \int_{\rr} f(x) \wh{g}(x) \ dx$
-	\item $\wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi)$.
-\end{enumerate}
+	The Fourier transform has the following properties.
+	\begin{enumerate}[(i)]
+		\item	$\wh{f(x+h)}(\xi) = \wh{f(\xi) e^{i h \xi}}$
+		\item $\wh{f(x) e^{-i x h}}(\xi) = \wh{f}(\xi + h)$	
+		\item $\wh{\frac{d}{dx} f(x)}(\xi) = i \xi$
+		\item $\wh{-ix f(x)}(\xi) = \frac{d}{d \xi}\wh{f}(\xi)$
+		\item $\hat{\hat{f}}(x) = f(-x)$
+		\item $\int_{\rr} \wh{f}(x) g(x) \ dx = \int_{\rr} f(x) \wh{g}(x) \ dx$
+		\item $\wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi)$.
+	\end{enumerate}
 \end{proposition}
 \begin{proof}
-The proofs are a straightforward
-aplication of $u$-substitution, and interchanging order of integration.
-See Stein and Shakarchi \cite{zbMATH02171466}. 
+	The proofs are a straightforward
+	application of $u$-substitution, and interchanging order of integration.
+	See Stein and Shakarchi \cite{zbMATH02171466}. 
 \end{proof}
 \begin{definition}
-The characteristic function of a random variable $X$ is given by
-\begin{equation*}
-\begin{split}
-	\phi_{X} = \ex(e^{-itX}).
-\end{split}
-\end{equation*}
+	The characteristic function of a random variable $X$ is given by
+	\begin{equation*}
+		\begin{split}
+			\phi_{X} = \ex(e^{-itX}).
+		\end{split}
+	\end{equation*}
 \end{definition}
 Observe that if $X$ has a density $f$, then
 \begin{equation*}
-\begin{split}
-	\phi(t) = \int_{\rr} e^{-itx} f(x) \ dx
-\end{split}
+	\begin{split}
+		\phi(t) = \int_{\rr} e^{-itx} f(x) \ dx
+	\end{split}
 \end{equation*}
 This is just the Fourier transform of the density. 
 \begin{framed}
-\begin{remark}
-Some texts set
-\[\phi_{X}(t) = \ex(e^{-itX})\]
-which is equivalent to our definition
-of the characteristic function, evaluated at $-t$. 
-\end{remark}
+	\begin{remark}
+		Some texts set
+		\[\phi_{X}(t) = \ex(e^{-itX})\]
+		which is equivalent to our definition
+		of the characteristic function, evaluated at $-t$. 
+	\end{remark}
 \end{framed}
 \begin{lemma}\label{lem:indep}
-If $X, Y$ are independent, then
-\begin{equation*}
-\begin{split}
-	\phi_{X + Y}(t) = \phi_{X}(t) \phi_{Y}(t).
-\end{split}
-\end{equation*}
+	If $X, Y$ are independent, then
+	\begin{equation*}
+		\begin{split}
+			\phi_{X + Y}(t) = \phi_{X}(t) \phi_{Y}(t).
+		\end{split}
+	\end{equation*}
 \end{lemma}
 \begin{proof}
-	If $X$ and $Y$ are independent, then $e^{itX}$ and $e^{itY}$ are independent.
+	If $X$ and $Y$ are independent, then $e^{-itX}$ and $e^{-itY}$ are independent.
 	Therefore
 	\begin{equation*}
-	\begin{split}
-		\phi_{X + Y}(t) = \ex(e^{itX + itY}) = \ex(e^{itX} e^{itY})
-		= \ex(e^{itX}) \ex (e^{itY}) = \phi_{X}(t) \phi_{Y}(t)
-	\end{split}
+		\begin{split}
+			\phi_{X + Y}(t) = \ex(e^{-itX - itY}) = \ex(e^{-itX} e^{-itY})
+			= \ex(e^{-itX}) \ex (e^{-itY}) = \phi_{X}(t) \phi_{Y}(t)
+		\end{split}
 	\end{equation*}
 	which completes the proof.
 \end{proof}
 \begin{framed}
-\begin{remark}
-Observe that if $X$ and $Y$ both have densities and are independent, then 
-the density of $X + Y$ is $f \star g$, and so 
-\[\phi_{X + Y}(t) = \wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi) =
-\phi_{X}(t) \phi_{Y}(t).\]
-Hence, the power of characteristic functions manifests itself when
-we are summing random variables: convolutions of functions are difficult to deal
-with, while products of functions, in general, are not. 
-\end{remark}
+	\begin{remark}
+		Observe that if $X$ and $Y$ both have densities and are independent, then 
+		the density of $X + Y$ is $f \star g$, and so 
+		\[\phi_{X + Y}(t) = \wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi) =
+		\phi_{X}(t) \phi_{Y}(t).\]
+		Hence, the power of characteristic functions manifests itself when
+		we are summing random variables: convolutions of functions are difficult to deal
+		with, while products of functions, in general, are not. 
+	\end{remark}
 \end{framed}
 \begin{definition}
-The joint characteristic function of $X$ and $Y$ is given by
-\begin{equation*}
-\begin{split}
-	\phi_{X,Y}(s,t) = \ex(e^{isX} e^{itY}).
-\end{split}
-\end{equation*}
+	The joint characteristic function of $X$ and $Y$ is given by
+	\begin{equation*}
+		\begin{split}
+			\phi_{X,Y}(s,t) = \ex(e^{-isX} e^{-itY}).
+		\end{split}
+	\end{equation*}
 \end{definition}
 Observe that if $(X, Y)$ has the joint density function $f(x, y)$, then
-letting $F(x, y) = e^{isx} e^{ity}$, we obtain
+letting $F(x, y) = e^{-isx} e^{-ity}$, we obtain
 \begin{equation*}
-\begin{split}
-\phi_{X,Y}(s,t) & = \ex(e^{isX} e^{itY})
-\\
-& = \ex(F(X, Y))
-\\
-& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} F(x, y) f(x, y) \ dx  dy
-\\
-& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity}
-f(x, y) \ dx  dy
-\end{split}
+	\begin{split}
+		\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY})
+		\\
+		& = \ex(F(X, Y))
+		\\
+		& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} F(x, y) f(x, y) \ dx  dy
+		\\
+		& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity}
+		f(x, y) \ dx  dy
+	\end{split}
 \end{equation*}
 which is just the Fourier transform of the joint density in the $x$ and $y$
 variables.
 \begin{lemma}\label{lem:char-ind}
-Two random variables $X$ and $Y$ are independent if and only if
-\begin{equation*}
-\begin{split}
-	\phi_{X, Y}(s, t)= \phi_{X}(s) \phi_{Y}(t), \quad \forall s, t
-\end{split}
-\end{equation*}
+	Two random variables $X$ and $Y$ are independent if and only if
+	\begin{equation*}
+		\begin{split}
+			\phi_{X, Y}(s, t)= \phi_{X}(s) \phi_{Y}(t), \quad \forall s, t
+		\end{split}
+	\end{equation*}
 \end{lemma}
 \begin{proof}
-To establish necessity, assume independence. Then
-$e^{isX}$ and $e^{itY}$ are independent for all $s, t$, and so
+	We prove this result for the case where $X$ and $Y$ have densities.
+	To establish necessity, assume independence. Then
+	$e^{-isX}$ and $e^{-itY}$ are independent for all $s, t$, and so
+	\begin{equation*}
+		\begin{split}
+			\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY}) = \ex(e^{-isX}) \ex(e^{-itY})
+			= \phi_{X}(s) \phi_{Y}(t).
+		\end{split}
+	\end{equation*}
+To establish the sufficiency, we prove the contrapositive. Assume there exist $s, t$ such that
 \begin{equation*}
 \begin{split}
-	\phi_{X,Y}(s,t) & = \ex(e^{isX} e^{itY}) = \ex(e^{isX}) \ex(e^{itY})
-	= \phi_{X}(s) \phi_{Y}(t).
+\ex(e^{-isX} e^{-itY}) \neq \ex(e^{-isX}) \ex(e^{-itY}).
 \end{split}
 \end{equation*}
-%For the sufficiency, assume there exist $s, t$ such that
-%\begin{equation*}
-%\begin{split}
-%\ex(e^{isX} e^{itY}) \neq \ex(e^{isX}) \ex(e^{itY}).
-%\end{split}
-%\end{equation*}
+Then this is equivalent to saying
+\begin{equation*}
+\begin{split}
+	\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
+	e^{-ity} h(y) \ dy
+	\neq 
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx
+dy.
+\end{split}
+\end{equation*}
+If $X$ and $Y$ are independent, then $f(x, y) = g(x) h(y)$, which implies
+\begin{equation*}
+\begin{split}
+	\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
+	e^{-ity} h(y) \ dy
+	= 
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx dy
+\end{split}
+\end{equation*}
+which is a contradiction.
 %Taking partial derivatives with respect
 %to $s$ and $t$ on the left and right hand sides,
 %and evaluating at $s=t=0$, we obtain
@@ -1847,58 +1867,56 @@ $e^{isX}$ and $e^{itY}$ are independent for all $s, t$, and so
 		the Bernoulli random variable outputs $1$ with probability $p$,
 		and $0$ with probability $1-p$.
 		\begin{equation*}
-		\begin{split}
-			\phi(t) = \ex(e^{itX}) = e^{it0}(1-p) + e^{it}p = 1-p + pe^{it}
-		\end{split}
+			\begin{split}
+				\phi(t) = \ex(e^{-itX}) = e^{-it0}(1-p) + e^{-it}p = 1-p + pe^{-it}
+			\end{split}
 		\end{equation*}
 	\item Bernoulli distribution with $n$ independent trials and parameter
 		$p$. Letting $X = X_{1} + \cdots + X_{n}$, where the $X_i$ denote
 		the trials, we have
 		\begin{equation*}
-		\begin{split}
-			\phi_{X}(t) = \phi_{X_{1} + \ldots + X_{n}}(t)
-			\\
-			& = \prod_{1 \le i \le n} \phi_{X_{i}}(t)
-			\\
-			& = \left[ 1-p + pe^{it} \right]^{n}.
-		\end{split}
+			\begin{split}
+				\phi_{X}(t) = \phi_{X_{1} + \ldots + X_{n}}(t)
+				 = \prod_{1 \le i \le n} \phi_{X_{i}}(t)
+				 = \left[ 1-p + pe^{-it} \right]^{n}.
+			\end{split}
 		\end{equation*}
 	\item Normal Distribution. If $X$ is $N(0,1)$, then
 		\begin{equation*}
-		\begin{split}
-			\phi(t) = \ex(e^{itX})
-			& = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{itx}
-			e^{-x^{2}/2} \ dx
-			\\
-			& = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2 \pi}} e^{-(x^{2} -2itx)/2} \
-			dx
-			\\
-			& = \int_{-\infty}^{\infty} e^{-(x-it)^{2}/2 - t^{2}/2} \ dx
-			\\
-			& = e^{-t^{2}/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}}
-			e^{-(x - it)^{2}/2} \ dx
-			\\
-			& = e^{-t^{2}/2}
-		\end{split}
+			\begin{split}
+				\phi(t) = \ex(e^{-itX})
+				& = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-itx}
+				e^{-x^{2}/2} \ dx
+				\\
+				& = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2 \pi}} e^{-(x^{2} -2itx)/2} \
+				dx
+				\\
+				& = \int_{-\infty}^{\infty} e^{-(x-it)^{2}/2 - t^{2}/2} \ dx
+				\\
+				& = e^{-t^{2}/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}}
+				e^{-(x - it)^{2}/2} \ dx
+				\\
+				& = e^{-t^{2}/2}
+			\end{split}
 		\end{equation*}
-	where the last step follows from complex integration.	
-	We now compute the characteristic function of $Y \overset{\text{d}}{=}N(\mu,
-	\sigma^{2})$ by observing that $Y \overset{\text{d}}{=} \sigma X + \mu$,
-	which gives
-	\begin{equation*}
-	\begin{split}
-		\phi_{Y}(t) = \phi_{\sigma X + \mu}
-		& =  \phi_{\sigma X}(t) \phi_{\mu}(t)
-		\\
-		& = e^{it\mu} \int_{-\infty}^{\infty} e^{i t \sigma x} e^{-x^{2}/2} \ dx
-		\\
-		& = e^{it \mu} \phi_{X}(\sigma t)
-		\\
-		& = e^{it \mu} e^{-( \sigma t)^{2}/2}
-		\\
-		& = e^{it \mu - (\sigma t)^{2}/2}
-	\end{split}
-	\end{equation*}
+		where the last step follows from complex integration.	
+		We now compute the characteristic function of $Y \overset{\text{d}}{=}N(\mu,
+		\sigma^{2})$ by observing that $Y \overset{\text{d}}{=} \sigma X + \mu$,
+		which gives
+		\begin{equation*}
+			\begin{split}
+				\phi_{Y}(t) = \phi_{\sigma X + \mu}
+				& =  \phi_{\sigma X}(t) \phi_{\mu}(t)
+				\\
+				& = e^{it\mu} \int_{-\infty}^{\infty} e^{i t \sigma x} e^{-x^{2}/2} \ dx
+				\\
+				& = e^{it \mu} \phi_{X}(\sigma t)
+				\\
+				& = e^{it \mu} e^{-( \sigma t)^{2}/2}
+				\\
+				& = e^{it \mu - (\sigma t)^{2}/2}
+			\end{split}
+		\end{equation*}
 \end{enumerate}
 \subsection{Convergence in Distribution Using Characteristic Functions}
 %\begin{definition}
@@ -1908,7 +1926,7 @@ $e^{isX}$ and $e^{itY}$ are independent for all $s, t$, and so
 %\end{definition}
 \begin{theorem}\label{thm:conv-char-dist}
 	Suppose $F_{1}, \cdots, F_{n}$ are a sequence of distributions
-with corresponding characteristic functions
+	with corresponding characteristic functions
 	$\phi_{1}, \cdots, \phi_{n}$, respectively. 
 	\begin{enumerate}[(i)]
 		\item If $F_{n} \to F$ pointwise in $\rr$,
@@ -1932,117 +1950,117 @@ with corresponding characteristic functions
 	with corresponding distribution functions $\{F_{i}\}$
 	\emph{converges in distribution} to a random variable $X$ with corresponding
 	distribution function $F$, if $F_{n} \to F$ pointwise in $\rr$.
- We denote this by $X_{n} \xrightarrow{\text{d}} X$.
+	We denote this by $X_{n} \xrightarrow{\text{d}} X$.
 \end{definition}
 \begin{theorem}[Weak Law of Large Numbers]\label{thm:weak-law}
 	Let $\left\{ X_{i} \right\}$ be a sequence of independent, identically
 	distributed random variables with finite means $\mu$. Let
 	$S_{n} \doteq X_{1} + \cdots X_{n}$. Then
 	\begin{equation*}
-	\begin{split}
-		\frac{S_{n}}{n} \xrightarrow{\text{d}} \mu.
-	\end{split}
+		\begin{split}
+			\frac{S_{n}}{n} \xrightarrow{\text{d}} \mu.
+		\end{split}
 	\end{equation*}
 \end{theorem}
 \begin{proof}
-	By \cref{thm:conv-char-dist}, it sufficies to show that
+	By \cref{thm:conv-char-dist}, it suffices to show that
 	the characteristic function of $S_{n}/n$ converges
 	pointwise to  $e^{it \mu}$, the characteristic function of $\mu$ (and clearly
 	continuous at $t=0$). Observe that
 	\begin{equation*}
-	\begin{split}
-		\phi_{n}(t) = \phi_{X_{1}/n + \ldots + X_{n}/n}(t)
-		= \prod_{1 \le j \le n} \phi_{X_{j}/n}(t)
-		& = \left[ \phi_{X_{1}/n}(t) \right]^{n}
-		\\
-		& = \left[ \phi_{X_{1}}(t/n) \right]^{n}
-	\end{split}
+		\begin{split}
+			\phi_{n}(t) = \phi_{X_{1}/n + \ldots + X_{n}/n}(t)
+			= \prod_{1 \le j \le n} \phi_{X_{j}/n}(t)
+			& = \left[ \phi_{X_{1}/n}(t) \right]^{n}
+			\\
+			& = \left[ \phi_{X_{1}}(t/n) \right]^{n}
+		\end{split}
 	\end{equation*}
 	where the two steps follow from the identical distribution of the $X_{i}$,
 	and the identity
 	\begin{equation*}
-	\begin{split}
-		\phi_{X_{1}/n}(t) = \ex(e^{i X_{1} t /n}) = \phi_{X_{1}}(t/n),
-	\end{split}
+		\begin{split}
+			\phi_{X_{1}/n}(t) = \ex(e^{i X_{1} t /n}) = \phi_{X_{1}}(t/n),
+		\end{split}
 	\end{equation*}
-respectively. A Maclaurin series expansion gives
-\begin{equation*}
-\begin{split}
-	\phi_{X_{1}}(t/n) & = \phi_{X_{1}}(0) + \phi_{X_{1}}'(0)(t/n) + o(t/n)
-	\\
-	& = 1 + (i \mu t)/n + o(t/n)
-\end{split}
-\end{equation*}
-and so
-\begin{equation*}
-\begin{split}
-	\lim_{n \to \infty} \left[ \phi_{X_{1}}(t/n) \right]^{n}
-	= \lim_{n \to \infty} \left[ 1 + (i \mu t)/n \right]^{n} = e^{i \mu t}
-\end{split}
-\end{equation*}
-completing the proof.
+	respectively. A Maclaurin series expansion gives
+	\begin{equation*}
+		\begin{split}
+			\phi_{X_{1}}(t/n) & = \phi_{X_{1}}(0) + \phi_{X_{1}}'(0)(t/n) + o(t/n)
+			\\
+			& = 1 + (i \mu t)/n + o(t/n)
+		\end{split}
+	\end{equation*}
+	and so
+	\begin{equation*}
+		\begin{split}
+			\lim_{n \to \infty} \left[ \phi_{X_{1}}(t/n) \right]^{n}
+			= \lim_{n \to \infty} \left[ 1 + (i \mu t)/n \right]^{n} = e^{i \mu t}
+		\end{split}
+	\end{equation*}
+	completing the proof.
 \end{proof}
 \begin{theorem}\label{thm:central-limit}
 	Let $ \left\{ X_{i} \right\}$ be independent, identically
 	distributed random variables with means $\mu$ and nonzero
 	variance $\sigma^{2}$. Let $S_{n} \doteq X_{1} + \cdots + X_{n}.$ Then
 	\begin{equation*}
-	\begin{split}
-		\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}} \xrightarrow{\text{d}} N(0,1).
-	\end{split}
+		\begin{split}
+			\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}} \xrightarrow{\text{d}} N(0,1).
+		\end{split}
 	\end{equation*}
 \end{theorem}
 \begin{proof}
-	By \cref{thm:conv-char-dist}, it sufficies to show that
+	By \cref{thm:conv-char-dist}, it suffices to show that
 	the characteristic function of $S_{n}/\sqrt{n \sigma^{2}}$ converges
 	pointwise to  $e^{-t^{2}/2}$, the characteristic function of 
-	a standard normal random variable (which is clearly
+	a standard normal random variable (and clearly
 	continuous at $t=0$). Let
 	$Y_{i} = (X_{i} - \mu)/n$. Then the $Y_{i}$ have mean $0$ and
 	variance $1$. Furthermore, 
 	\begin{equation*}
-	\begin{split}
-		\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
-		= \frac{X_{1} - \mu+ \cdots + X_{n} - \mu}{\sigma \sqrt{n}}
-		& = \frac{1}{\sqrt{n}}\left[ Y_{1} + \cdots + Y_{n} \right].
-	\end{split}
+		\begin{split}
+			\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
+			= \frac{X_{1} - \mu+ \cdots + X_{n} - \mu}{\sigma \sqrt{n}}
+			& = \frac{1}{\sqrt{n}}\left[ Y_{1} + \cdots + Y_{n} \right].
+		\end{split}
 	\end{equation*}
-Then
-\begin{equation*}
-\begin{split}
-	\phi_{\frac{1}{\sqrt{n}}\sum Y_{i}}(t)
-	= \phi_{\sum Y_{i}} = \left[ \phi_{Y_{1}}\left( t/\sqrt{n} \right) \right]^{n}
-\end{split}
-\end{equation*}
-where the last step follows from the fact that the $Y_{i}$ are identically
-distributed. Next, observe that
-\begin{equation*}
-\begin{split}
-	& \phi_{Y_{1}}'(0) = \ex (-iY_{1} e^{-itY_{1}}) \vert_{t = 0} = -i
-	\ex(Y_{1}) = 0
-	\\
-	& \phi_{Y_{1}}''(0) = \ex(Y_{1}^{2} e^{-itY_{1}}) \vert_{t = 0} = 
-	\ex(Y_{1}^{2}) = \var(Y_{1}) = 1.
-\end{split}
-\end{equation*}
-Hence, a Maclaurin expansion gives
-\begin{equation*}
-\begin{split}
-	\phi_{Y_{1}}(t) = 1 - t^{2}/2n + o(t^{2}/n)
-\end{split}
-\end{equation*}
-and so
-\begin{equation*}
-\begin{split}
-	\lim_{n \to \infty} \phi_{\frac{1}{\sqrt{n}} \sum Y_{i}}
-	= \lim_{n \to \infty} \left[ 1 - t^{2}/2n \right]^{n}
-	= e^{-t^{2}/2}
-\end{split}
-\end{equation*}
-which completes the proof.
+	Then
+	\begin{equation*}
+		\begin{split}
+			\phi_{\frac{1}{\sqrt{n}}\sum Y_{i}}(t)
+			= \phi_{\sum Y_{i}} = \left[ \phi_{Y_{1}}\left( t/\sqrt{n} \right) \right]^{n}
+		\end{split}
+	\end{equation*}
+	where the last step follows from the fact that the $Y_{i}$ are identically
+	distributed. Next, observe that
+	\begin{equation*}
+		\begin{split}
+			& \phi_{Y_{1}}'(0) = \ex (-iY_{1} e^{-itY_{1}}) \vert_{t = 0} = -i
+			\ex(Y_{1}) = 0
+			\\
+			& \phi_{Y_{1}}''(0) = \ex(Y_{1}^{2} e^{-itY_{1}}) \vert_{t = 0} = 
+			\ex(Y_{1}^{2}) = \var(Y_{1}) = 1.
+		\end{split}
+	\end{equation*}
+	Hence, a Maclaurin expansion gives
+	\begin{equation*}
+		\begin{split}
+			\phi_{Y_{1}}(t) = 1 - t^{2}/2n + o(t^{2}/n)
+		\end{split}
+	\end{equation*}
+	and so
+	\begin{equation*}
+		\begin{split}
+			\lim_{n \to \infty} \phi_{\frac{1}{\sqrt{n}} \sum Y_{i}}
+			= \lim_{n \to \infty} \left[ 1 - t^{2}/2n \right]^{n}
+			= e^{-t^{2}/2}
+		\end{split}
+	\end{equation*}
+	which completes the proof.
 \end{proof}
 
-\section{The Continuous Black-Scholes Formula}
+\section{Pricing the Multi-step, two State, zero interest Option}
 In order to accurately price an option, our model must take into account the
 infinitely many states the future can take. To simplify our discussion, we shall
 first restrict our model to futures with finitely many states, and
@@ -2057,299 +2075,315 @@ tomorrow with probability $1-p$, where $p \neq 0,1$.
 	we can go short $100$ worth in bonds, purchase the stock at $100$, which then will increase to $110$, after which we can pay back our bond debt and be left with 
 	a profit of $10$, risk free. A similar arbitrage exists for the case when $p=0$.
 \end{remark}
-\subsection{The Non-Arbitrage Approach}
+\subsection{The Arbitrage-free Approach}
 Consider a portfolio $P$
 that is long $\delta$ shares of the underlying, and short the option.
 Then
 \begin{gather*}
-		P(0)  = \delta S(0) + C_{0} - C(0)
-		\\
-		 P(T)  = \begin{cases}
+	P(0)  = \delta S(0) + C_{0} - C(0)
+	\\
+	P(T)  = \begin{cases}
 		110 \delta + C_{0} - 10, \quad & \text{in some states}
 		\\
 		90 \delta + C_{0}, \quad & \text{in others}.
 	\end{cases}
-	\end{gather*}
-	Observe that if $P(T)$ were the same in all states, monotonicity would force
-	$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
-	we must have
-	\begin{equation*}
-		\begin{split}
-			110 \delta + C_{0} - 10 = 90 \delta + C_{0}
-		\end{split}
-	\end{equation*}
-	which gives $\delta = 1/2$. Hence, for $\delta = 1/2$, we have
-	$P(0) = P(T)$, which by substitution gives us
-	\begin{equation*}
-		\begin{split}
-			\frac{100}{2} = \frac{90}{2} + C_{0}
-		\end{split}
-	\end{equation*}
-	or $C_{0} = 5$. Arbitrage considerations have once again
-	allowed us to price an option. Observe furthermore that we were able
-	to price the option independently of the probability $0 < p < 1$. 
-	Hence, it is reasonable to ask whether we can choose a probability
-	$0 < p' < 1$ that somehow simplifies our computations.
-	\subsection{The Risk Neutral Approach}
-	From our arbitrage considerations, we see that, for suitably chosen
-	$\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
-	have $\ex(P(0)) = \ex(P(T))$. Let us weaken our assumptions a little by allowing
-	arbitrary $\delta$, while still assuming $\ex(P(0)) = \ex(P(T))$. 
-	Now, $\ex(P(0)) = P(0) = 100 \delta$, so
-	\begin{equation*}
-		\begin{split}
-			(110 \delta + C_{0} - 10) p + (90 \delta + C_{0}) (1- p) = 100 \delta
-		\end{split}
-	\end{equation*}
-	which reduces to
-	\begin{equation*}
-		\begin{split}
-			20 \delta p - 10p + C_{0} = 10 \delta
-		\end{split}
-	\end{equation*}
-	Observe that for $p = 1/2$, the dependence on $\delta$ vanishes, and we obtain
-	$C_{0} = 5$. We call $p = 1/2$ the \emph{risk-neutral} probability.
+\end{gather*}
+Observe that if $P(T)$ were the same in all states, monotonicity would force
+$P(t) = P(T)$ for all $t \le T$, and hence, eliminate risk. For this to occur,
+we must have
+\begin{equation*}
+	\begin{split}
+		110 \delta + C_{0} - 10 = 90 \delta + C_{0}
+	\end{split}
+\end{equation*}
+which gives $\delta = 1/2$. Hence, for $\delta = 1/2$, we have
+$P(0) = P(T)$, which by substitution gives us
+\begin{equation*}
+	\begin{split}
+		\frac{100}{2} = \frac{90}{2} + C_{0}
+	\end{split}
+\end{equation*}
+or $C_{0} = 5$. Arbitrage considerations have once again
+allowed us to price an option. Observe furthermore that we were able
+to price the option independently of the probability $0 < p < 1$. 
+Hence, it is reasonable to ask whether we can choose a probability
+$0 < p' < 1$ that somehow simplifies our computations.
+\subsection{The Risk Neutral Approach}
+From our arbitrage considerations, we see that, for suitably chosen
+$\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
+have $\ex(P(0)) = \ex(P(T))$. Let us weaken our assumptions a little by allowing
+arbitrary $\delta$, while still assuming $\ex(P(0)) = \ex(P(T))$. 
+Now, $\ex(P(0)) = P(0) = 100 \delta$, so
+\begin{equation*}
+	\begin{split}
+		(110 \delta + C_{0} - 10) p + (90 \delta + C_{0}) (1- p) = 100 \delta
+	\end{split}
+\end{equation*}
+which reduces to
+\begin{equation*}
+	\begin{split}
+		20 \delta p - 10p + C_{0} = 10 \delta
+	\end{split}
+\end{equation*}
+Observe that for $p = 1/2$, the dependence on $\delta$ vanishes, and we obtain
+$C_{0} = 5$. We call $p = 1/2$ the \emph{risk-neutral} probability.
 
-	Does such a probability exist in the general case?
-	\begin{theorem}\label{thm:risk-neutral}
-		Consider a two state, no interest world for an asset $S$. Suppose $S(0) = s$
-		and 
-		\begin{equation*}
-			\begin{split}
-				S(T) = \begin{cases}
-					s + u, \quad & \text{with probability }p \\
-					s - d, \quad & \text{with probability }1-p
-				\end{cases}
-			\end{split}
-		\end{equation*}
-		where $u = d \ge 0$. Suppose the option is worth $\alpha$ in the ``up'' state
-		and $\beta$ in the ``down'' state.
-		Then the price of a call option $C(0)$ with underlying
-		$S$ and expiry $T$ is equal to the expected price of the option at time $T$
-		with $p = 1/2$. That is, \[ C(0) = 1/2(\alpha + \beta). \]
-	\end{theorem}
-	\begin{proof}
-		Construct a portfolio by buying $\delta$
-		shares of $S$ and shorting a call option with underlying $S$.
-		Then, to obtain a portfolio without risk, we must find $\delta$ such that
-		our portfolio has the same value in either the ``up'' or ``down'' states.
-		Hence, we set 
-		\begin{equation*}
-			\begin{split}
-				s + u \delta - \alpha + C_{0} = (s - d) \delta - \beta + C_{0}
-			\end{split}
-		\end{equation*}
-		which gives
-		\begin{equation*}
-			\begin{split}
-				\delta = \frac{\alpha - \beta}{u + d}
-			\end{split}
-		\end{equation*}
-		By monotonicity, we must have $P(0) = P(T)$,
-		and so
-		\begin{equation*}
-			\begin{split}
-				& \frac{s(\alpha - \beta)}{u + d} = (s + u) \delta - \alpha + C_{0} \\
-				& \frac{s(\alpha - \beta)}{u + d} = (s - d) \delta - \beta + C_{0}. 
-			\end{split}
-		\end{equation*}
-		Summing these two equations, substituting in $\delta$, and simplifying gives
-		\begin{equation}\label{rn-drift}
-			\begin{split}
-				C_{0} & =
-				\frac{1}{2} \left [ \frac{\alpha - \beta}{u + d} (d - u) \right ]
-				+ \frac{1}{2}(\alpha + \beta)
-				\\
-				& = \frac{1}{2}(\alpha + \beta)
-			\end{split}
-		\end{equation}
-		which gives $C_{0} = 1/2(\alpha + \beta)$ for $u = d$, completing the proof.
-	\end{proof}
-	\begin{remark}
-		Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
-		by setting the right-hand-side of~\eqref{rn-drift} equal to 
-		\[p' \alpha + (1-p')\beta \] and solving for $p'$. 
-	\end{remark}
-	\subsection{Pricing the Two-Step Model}
-	As before, we assume zero-interest. Let an underlying $S$ be worth
-	$100$ today ($t=0$), with up and down states of $\pm 5$ tomorrow ($t=1$), respectively.  We let each of these states, in turn, have up and down states of
-	$\pm 5$ the following day. Our option will have a strike price of $100$
-	and expiry $T = 2$ two days from now. 
-
-	We can see this two step model as a one step model: in the up and down states
-	tomorrow, the option will have some value. Applying 
-	\cref{thm:risk-neutral}, we can then take the risk-neutral 
-	expectation over these two values to obtain the cost of the option today.
-	That is
+Does such a probability exist in the general case?
+\begin{theorem}\label{thm:risk-neutral}
+	Consider a two state, no interest world for an asset $S$. Suppose $S(0) = s$
+	and 
 	\begin{equation*}
 		\begin{split}
-			& C_{105}(0) = \ex(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
-			\frac{1}{2}{(100 - 100)}_{+} = 5
-			\\
-			& C_{95}(0) = \ex(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
-			\frac{1}{2}{(90 - 100)}_{+} = 0
-		\end{split}
-	\end{equation*}
-	and so
-	\begin{equation*}
-		\begin{split}
-			C_{100}(0) = \ex(C_{100}(1))
-			& = \frac{1}{2}C_{105}(0) + \frac{1}{2} C_{95}(0)
-			\\
-			& = 2.5.
-		\end{split}
-	\end{equation*}
-	Note that this is nothing but the expected value
-	of $C(T)$ over all possible two-step paths; that is
-	\begin{equation*}
-		\begin{split}
-			2.5 = C_{100}(0) = \frac{{(110-100)}_{+} + 2 {(100 - 100)}_{+} + {(90 - 100)}_{+}}{4}
-		\end{split}
-	\end{equation*}
-	In general, let $C$ be an option with underlying $S$, whose price follows
-	a tree with $N$ steps, with a choice of two
-	directions for each step (``up'' and ``down'').
-	Since the price of the option depends solely on the price of the
-	underlying, we may adopt the notation $C(t) = f(S(t))$. Then
-	an induction shows that
-	\begin{equation*}
-		\begin{split}
-			C_{0} = \ex(C(T)) & =  \sum_{i = 0}^{j}\prob(S = S_{0} + (N-j)u - jd)
-			f(S_{0} + (N-j)u - jd)
-			\\
-			& = \sum_{j = 0}^{N}\prob(S = S_{0} + (N-2j)u)
-			f(S_{0} + (N-2j)u), \quad u = d
-		\end{split}
-	\end{equation*}
-	Next, observe that there are $\binom{N}{j}$ ways to arrange $j$ up movements and
-	$N-j$ down movements. Each arrangement corresponds to a different path; however,
-	each path with $j$ up movements and $N-j$ down movements leads to the same final
-	node. Hence, our preceding computation simplifies to
-	\begin{equation*}
-		\begin{split}
-			C_{0} = 	\frac{1}{2N} \sum_{j = 0}^{N} {\binom{N}{j}}f(S_{0} + (N-2j)u).
-		\end{split}
-	\end{equation*}
-	\section{The Continuous Time Black-Scholes in the Absence of Interest,
-	With Possibly Negative Stock Prices}
-	We now seek to price options in continuous time. We begin with the assumptions:
-	\begin{enumerate}[(i)]
-		\item The underlying asset is today worth $S(0) = 0$.
-		\item Expiry is $T$.
-		\item $\ex(S(T)) = S_{0}$.
-		\item $\var(S(T)) = \sigma^{2} T$.
-		\item The asset follows a \emph{symmetric random walk}. That is,
-			for some \\ $0=t_{0} < t_{1} < \cdots < t_{n-1} < t_{n} = T$, we have
-			\begin{equation*}
-				\begin{split}
-					S(t_{j+1})  = \begin{cases}
-						S(t_{j}) + \alpha, \quad & p = 1/2 \\
-						S(t_{j}) - \alpha, \quad & 1-p
-					\end{cases}
-				\end{split}
-			\end{equation*}
-	\end{enumerate}
-	Suppose it takes $k$ steps until we reach the expiry $T$. Then
-	each step can be modeled by mutually independent random variables
-	$Z_{i}$, each taking the values $\pm \beta$ with equal probability.
-	Furthermore, 
-	\begin{equation*}
-		\begin{split}
-			\sigma^{2} T
-			& = \var(S(T)) = \var(Z_{1} + Z_{2} + \cdots + Z_{k})
-			\\
-			& = \var(Z_{1}) + \var(Z_{2}) + \cdots + \var(Z_{k})
-			\\
-			& = k \var(Z_{i}), \quad 1 \le i \le k
-		\end{split}
-	\end{equation*}
-	and so
-	\begin{equation*}
-		\begin{split}
-			\var(Z_{i}) = \sigma \sqrt{T/k} \doteq \sigma_{k}, \quad 1 \le i \le k.
-		\end{split}
-	\end{equation*}
-	Now, since each $Z_{i}$ has mean zero, we have
-	\begin{equation*}
-		\begin{split}
-			\var(Z_{i}) & = \frac{1}{2}\beta^{2} + \frac{1}{2}{(-\beta)}^{2}
-			\\
-			& = \beta
-		\end{split}
-	\end{equation*}
-	and hence
-	\begin{equation*}
-		\begin{split}
-			\beta = \sigma \sqrt{T/k}.
-		\end{split}
-	\end{equation*}
-	Letting
-	\begin{equation*}
-		\begin{split}
-			X_{i} = 
-			\begin{cases}
-				+1, & \quad p=1/2 \\
-				-1, & \quad p=1/2
+			S(T) = \begin{cases}
+				s + u, \quad & \text{with probability }p \\
+				s - d, \quad & \text{with probability }1-p
 			\end{cases}
 		\end{split}
 	\end{equation*}
-	we see that
+	where $u = d \ge 0$. Suppose the option is worth $\alpha$ in the ``up'' state
+	and $\beta$ in the ``down'' state.
+	Then the price of a call option $C(0)$ with underlying
+	$S$ and expiry $T$ is equal to the expected price of the option at time $T$
+	with $p = 1/2$. That is, \[ C(0) = 1/2(\alpha + \beta). \]
+\end{theorem}
+\begin{proof}
+	Construct a portfolio by buying $\delta$
+	shares of $S$ and shorting a call option with underlying $S$.
+	Then, to obtain a portfolio without risk, we must find $\delta$ such that
+	our portfolio has the same value in either the ``up'' or ``down'' states.
+	Hence, we set 
 	\begin{equation*}
 		\begin{split}
-			S(T) = S_{0} + \sum_{i = 0}^{k} \sigma_{k} X_{i}.
+			s + u \delta - \alpha + C_{0} = (s - d) \delta - \beta + C_{0}
 		\end{split}
 	\end{equation*}
-	Then for an option that pays $f(S(T))$ at time $T$, we have
+	which gives
 	\begin{equation*}
 		\begin{split}
-			f(S(0)) = \ex(f(S(T)))
-			= \ex[f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i})].
+			\delta = \frac{\alpha - \beta}{u + d}
 		\end{split}
 	\end{equation*}
-	We now would like to let $k \to \infty$, in order to get the best interest-free
-	approximation of call-option prices in the real-world.
-	\begin{theorem}[Central Limit Theorem]\label{thm:central-lim-thm}
-		Let $X_{1}, X_{2}, \ldots$ be a sequence of independent, identically
-		distributed random variables with finite means $\mu$ and finite, nonzero
-		variances $\sigma^{2}$. Let
+	By monotonicity, we must have $P(0) = P(T)$,
+	and so
+	\begin{equation*}
+		\begin{split}
+			& \frac{s(\alpha - \beta)}{u + d} = (s + u) \delta - \alpha + C_{0} \\
+			& \frac{s(\alpha - \beta)}{u + d} = (s - d) \delta - \beta + C_{0}. 
+		\end{split}
+	\end{equation*}
+	Summing these two equations, substituting in $\delta$, and simplifying gives
+	\begin{equation}\label{rn-drift}
+		\begin{split}
+			C_{0} & =
+			\frac{1}{2} \left [ \frac{\alpha - \beta}{u + d} (d - u) \right ]
+			+ \frac{1}{2}(\alpha + \beta)
+			\\
+			& = \frac{1}{2}(\alpha + \beta)
+		\end{split}
+	\end{equation}
+	which gives $C_{0} = 1/2(\alpha + \beta)$ for $u = d$, completing the proof.
+\end{proof}
+\begin{framed}
+\begin{remark}
+	Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
+	by setting the right-hand-side of~\eqref{rn-drift} equal to 
+	\[p' \alpha + (1-p')\beta \] and solving for $p'$. 
+\end{remark}
+\end{framed}
+We now generalize our arguments. 
+As before, we assume zero-interest. Let an underlying $S$ be worth
+$100$ today ($t=0$), with up and down states of $\pm 5$ tomorrow ($t=1$), respectively.  We let each of these states, in turn, have up and down states of
+$\pm 5$ the following day. Our option will have a strike price of $100$
+and expiry $T = 2$ two days from now. 
+
+We can see this two step model as a one step model: in the up and down states
+tomorrow, the option will have some value. Applying 
+\cref{thm:risk-neutral}, we can then take the risk-neutral 
+expectation over these two values to obtain the cost of the option today.
+That is
+\begin{equation*}
+	\begin{split}
+		& C_{105}(0) = \ex(C_{105}(1)) = \frac{1}{2}{(110 - 100)}_{+} +
+		\frac{1}{2}{(100 - 100)}_{+} = 5
+		\\
+		& C_{95}(0) = \ex(C_{95}(1)) = \frac{1}{2}{(100 - 100)}_{+} +
+		\frac{1}{2}{(90 - 100)}_{+} = 0
+	\end{split}
+\end{equation*}
+and so
+\begin{equation*}
+	\begin{split}
+		C_{100}(0) = \ex(C_{100}(1))
+		& = \frac{1}{2}C_{105}(0) + \frac{1}{2} C_{95}(0)
+		\\
+		& = 2.5.
+	\end{split}
+\end{equation*}
+Note that this is nothing but the expected value
+of $C(T)$ over all possible two-step paths; that is
+\begin{equation*}
+	\begin{split}
+		2.5 = C_{100}(0) = \frac{{(110-100)}_{+} + 2 {(100 - 100)}_{+} + {(90 - 100)}_{+}}{4}
+	\end{split}
+\end{equation*}
+In general, let $C$ be an option with underlying $S$, whose price follows
+a tree with $N$ steps, with a choice of two
+directions for each step (``up'' and ``down'').
+Since the price of the option depends solely on the price of the
+underlying, we may adopt the notation $C(t) = f(S(t))$. Then
+an induction shows that
+\begin{equation*}
+	\begin{split}
+		C_{0} = \ex(C(T)) & =  \sum_{i = 0}^{j}\prob(S = S_{0} + (N-j)u - jd)
+		f(S_{0} + (N-j)u - jd)
+		\\
+		& = \sum_{j = 0}^{N}\prob(S = S_{0} + (N-2j)u)
+		f(S_{0} + (N-2j)u), \quad u = d
+	\end{split}
+\end{equation*}
+Next, observe that there are $\binom{N}{j}$ ways to arrange $j$ up movements and
+$N-j$ down movements. Each arrangement corresponds to a different path; however,
+each path with $j$ up movements and $N-j$ down movements leads to the same final
+node. Hence, our preceding computation simplifies to
+\begin{equation}\label{binom-sum}
+	\begin{split}
+		C_{0} = 	\frac{1}{2N} \sum_{j = 0}^{N} {\binom{N}{j}}f(S_{0} + (N-2j)u).
+	\end{split}
+\end{equation}
+We will see in the next section that this can be written more concisely as
+or, written more concisely,
+\begin{equation}
+	\begin{split}
+		C_{0} =  E(f(S_{0} + u \sum_{j=1}^{N})X_{j})	
+	\end{split}
+\end{equation}
+where the $\left\{ X_{i} \right\}$ are symmetric, independent random 
+variables taking the values $\pm 1$.
+
+\section{The Continuous Time Black-Scholes in the Absence of Interest,
+With Possibly Negative Stock Prices}
+We now seek to price options in continuous time 
+by taking $N \to \infty$ in the right-hand-side of \eqref{binom-sum}.
+
+We now generalize and clean up our construction in the previous section.
+We begin with the following assumptions: 
+\begin{enumerate}[(i)]
+	\item The underlying asset is today worth $S(0) = 0$.
+	\item Expiry is $T$.
+	\item $\ex(S(T)) = S_{0}$.
+	\item $\var(S(T)) = \sigma^{2} T$.
+	\item The asset follows a \emph{symmetric random walk}. That is,
+		for some \\ $0=t_{0} < t_{1} < \cdots < t_{n-1} < t_{n} = T$, we have
 		\begin{equation*}
 			\begin{split}
-				S_{n} \doteq X_{1} + X_{2} + \cdots + X_{n}.
+				S(t_{j+1})  = \begin{cases}
+					S(t_{j}) + \alpha, \quad & p = 1/2 \\
+					S(t_{j}) - \alpha, \quad & 1-p
+				\end{cases}
 			\end{split}
 		\end{equation*}
-		Then the cumulative distribution of 
-		\begin{equation*}
-			\begin{split}
-				\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
-			\end{split}
-		\end{equation*}
-		converges pointwise to the standard normal distribution.
-	\end{theorem}
-	Hence,
+\end{enumerate}
+Suppose it takes $k$ steps until we reach the expiry $T$. Then
+each step can be modeled by mutually independent random variables
+$Z_{i}$, each taking the values $\pm \beta$ with equal probability.
+Furthermore, 
+\begin{equation*}
+	\begin{split}
+		\sigma^{2} T
+		& = \var(S(T)) = \var(Z_{1} + Z_{2} + \cdots + Z_{k})
+		\\
+		& = \var(Z_{1}) + \var(Z_{2}) + \cdots + \var(Z_{k})
+		\\
+		& = k \var(Z_{i}), \quad 1 \le i \le k
+	\end{split}
+\end{equation*}
+and so
+\begin{equation*}
+	\begin{split}
+		\var(Z_{i}) = \sigma \sqrt{T/k} \doteq \sigma_{k}, \quad 1 \le i \le k.
+	\end{split}
+\end{equation*}
+Now, since each $Z_{i}$ has mean zero, we have
+\begin{equation*}
+	\begin{split}
+		\var(Z_{i}) & = \frac{1}{2}\beta^{2} + \frac{1}{2}{(-\beta)}^{2}
+		\\
+		& = \beta
+	\end{split}
+\end{equation*}
+and hence
+\begin{equation*}
+	\begin{split}
+		\beta = \sigma \sqrt{T/k}.
+	\end{split}
+\end{equation*}
+Letting
+\begin{equation*}
+	\begin{split}
+		X_{i} = 
+		\begin{cases}
+			+1, & \quad p=1/2 \\
+			-1, & \quad p=1/2
+		\end{cases}
+	\end{split}
+\end{equation*}
+we see that
+\begin{equation*}
+	\begin{split}
+		S(T) = S_{0} + \sum_{i = 0}^{k} \sigma_{k} X_{i}.
+	\end{split}
+\end{equation*}
+Then for an option that pays $f(S(T))$ at time $T$, we have
+\begin{equation*}
+	\begin{split}
+		f(S(0)) = \ex(f(S(T)))
+		= \ex[f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i})].
+	\end{split}
+\end{equation*}
+We now would like to let $k \to \infty$, in order to get the best interest-free
+approximation of call-option prices in the real-world.
+\begin{theorem}[Central Limit Theorem]\label{thm:central-lim-thm}
+	Let $X_{1}, X_{2}, \ldots$ be a sequence of independent, identically
+	distributed random variables with finite means $\mu$ and finite, nonzero
+	variances $\sigma^{2}$. Let
 	\begin{equation*}
 		\begin{split}
-			S_{0} + \sigma_{k} \sum_{i = 1}^{k} X_{i}
-			= S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{k}} \sum_{i = 1}^{k}
-			X_{i}
-			\xrightarrow{\text{dist}} S_{0} + \sigma \sqrt{T} N(0,1).
+			S_{n} \doteq X_{1} + X_{2} + \cdots + X_{n}.
 		\end{split}
 	\end{equation*}
-	and so our option price is given by
+	Then the cumulative distribution of 
 	\begin{equation*}
 		\begin{split}
-			f(S(0)) & = \ex(f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i}))
-			\\
-			& \xrightarrow{\text{dist}} \ex(S_{0} + \sigma \sqrt{T}N(0,1))
-			\\
-			& = \frac{1}{\sqrt{2 \pi}} \int_{\rr} f(S_{0} + \sigma \sqrt{T}x)
-			e^{-x^{2}/2}
-			\, dx. 
+			\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
 		\end{split}
 	\end{equation*}
-	Unfortunately, our model is too simplistic, as it allows for stock prices to
-	be negative, and has assumed interest to be zero. 
-	\section{The Continuous Time Black-Scholes With Interest, and Only
-	Positive Stock Prices}
+	converges pointwise to the standard normal distribution.
+\end{theorem}
+Hence,
+\begin{equation*}
+	\begin{split}
+		S_{0} + \sigma_{k} \sum_{i = 1}^{k} X_{i}
+		= S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{k}} \sum_{i = 1}^{k}
+		X_{i}
+		\xrightarrow{\text{dist}} S_{0} + \sigma \sqrt{T} N(0,1).
+	\end{split}
+\end{equation*}
+and so our option price is given by
+\begin{equation*}
+	\begin{split}
+		f(S(0)) & = \ex(f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i}))
+		\\
+		& \to \ex(S_{0} + \sigma \sqrt{T}N(0,1))
+		\\
+		& = \frac{1}{\sqrt{2 \pi}} \int_{\rr} f(S_{0} + \sigma \sqrt{T}x)
+		e^{-x^{2}/2}
+		\, dx. 
+	\end{split}
+\end{equation*}
+Unfortunately, our model is too simplistic, as it allows for stock prices to
+be negative, and has assumed interest to be zero. 
+\section{The Continuous Time Black-Scholes With Interest and Non-Negative
+Stock Prices}
 Our one step, two state model before involved a stock price $S_{0}$ today
 increasing or decreasing to $S_{0} \pm u$, respectively. In the multi-step
 extension, this has the drawback of allowing for negative stock prices. 
@@ -2367,18 +2401,18 @@ it follows that $\log(S(t)) \to \log(S(t)) + \log(r_{\pm})$.
 In general, for an $n$ step symmetric model, adopting the notation $\Delta t =
 T/n$ for expiry $T$ and initial time $t=0$, we have 
 \begin{equation*}
-\begin{split}
-	\log S_{j \Delta t} = \log S_{(j-1) \Delta t} + X_{j}
-\end{split}
+	\begin{split}
+		\log S_{j \Delta t} = \log S_{(j-1) \Delta t} + X_{j}
+	\end{split}
 \end{equation*}
 where
 \begin{equation*}
-\begin{split}
-	X_{j} = \begin{cases}
-		\sigma\sqrt{\Delta t} , & \quad p = 1/2 \\
-		 - \sigma\sqrt{\Delta t} , & \quad p = 1/2 \\
-	\end{cases}
-\end{split}
+	\begin{split}
+		X_{j} = \begin{cases}
+			\sigma\sqrt{\Delta t} , & \quad p = 1/2 \\
+			- \sigma\sqrt{\Delta t} , & \quad p = 1/2 \\
+		\end{cases}
+	\end{split}
 \end{equation*}
 and the $X_{j}$, $1 \le j \le n$ are independent.
 Observe that, in this construction, $\Delta t \sigma^2$ is the variance,
@@ -2387,40 +2421,40 @@ Since the $X_{j}$ are all independent, the variance from $t=0$ to $t=T$
 of our random stock evolution will be $\sigma^2 T$. Next,
 letting
 \begin{equation*}
-\begin{split}
-	Y_{j} = \begin{cases}
-	1, & \quad p=1/2 \\
-	-1, & \quad 1-p = 1/2
-	\end{cases}
-\end{split}
+	\begin{split}
+		Y_{j} = \begin{cases}
+			1, & \quad p=1/2 \\
+			-1, & \quad 1-p = 1/2
+		\end{cases}
+	\end{split}
 \end{equation*}
 we see that
 \begin{equation*}
-\begin{split}
-	\log S_{j \Delta t} = \log S_{(j-1) \Delta t} + \sigma \sqrt{\Delta t}Y_{j}
-\end{split}
+	\begin{split}
+		\log S_{j \Delta t} = \log S_{(j-1) \Delta t} + \sigma \sqrt{\Delta t}Y_{j}
+	\end{split}
 \end{equation*}
 Next, observe that
 \begin{equation*}
-\begin{split}
- \sigma	\sqrt{\Delta t } \sum_{j = 1}^{n} Y_{j} = 
-	\sum _{j = 1}^{n} (\log S_{j \Delta t} - \log S_{(j-1) \Delta t})
-	= \log S_{T} - \log S_{0}
-\end{split}
+	\begin{split}
+		\sigma	\sqrt{\Delta t } \sum_{j = 1}^{n} Y_{j} = 
+		\sum _{j = 1}^{n} (\log S_{j \Delta t} - \log S_{(j-1) \Delta t})
+		= \log S_{T} - \log S_{0}
+	\end{split}
 \end{equation*}
 which we rewrite as 
 \begin{equation*}
-\begin{split}
-	\log S_{t} = \log S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{n}}
-	\sum_{j=1}^{n} Y_{j} \xrightarrow{d} \log S_{0} +  \sigma \sqrt{T} N(0,1)
-\end{split}
+	\begin{split}
+		\log S_{t} = \log S_{0} + \sigma \sqrt{T} \times \frac{1}{\sqrt{n}}
+		\sum_{j=1}^{n} Y_{j} \xrightarrow{d} \log S_{0} +  \sigma \sqrt{T} N(0,1)
+	\end{split}
 \end{equation*}
 where the last step follows from the central-limit theorem.
 Hence, 
 \begin{equation*}
-\begin{split}
-	S_{T} \overset{d}{=} S_{0} e^{\sigma \sqrt{T}N(0,1)}.
-\end{split}
+	\begin{split}
+		S_{T} \overset{d}{=} S_{0} e^{\sigma \sqrt{T}N(0,1)}.
+	\end{split}
 \end{equation*}
 We say that $S_{T}$ is \emph{log-normally distributed}, since its
 logarithm is normally distributed. Furthermore, observe that
@@ -2437,52 +2471,52 @@ Consider a portfolio $P$ that is long $\delta$
 shares of the underlying, and short the option. Then
 \begin{equation*}
 	\begin{split}
-	P(0)  & = \delta S(0) \pm C_{0} 
+		P(0)  & = \delta S(0) \pm C_{0} 
 		\\
-		 P(T)  & = \begin{cases}
-			 S_{+} \delta + C_{0} - (S_{+} - S_{0}), \quad & \text{in some states}
-		\\
-		S_{-} \delta + C_{0}, \quad & \text{in others}.
+		P(T)  & = \begin{cases}
+			S_{+} \delta + C_{0} - (S_{+} - S_{0}), \quad & \text{in some states}
+			\\
+			S_{-} \delta + C_{0}, \quad & \text{in others}.
 		\end{cases}
 	\end{split}
-	\end{equation*}
-	Observe that if $P(T)$ were the same in all states, monotonicity would force
-	$P(t) = P(T)$ for all $t \le T$, and hence, elminate risk. For this to occur,
-	we set the up state and down state of our portfolio equal to one another, and
-	obtain 
-	\begin{equation}\label{risk-free-delta}
-		\begin{split}
-			\delta = \frac{S_{+} - S_{0}}{S_{+} - S_{-}}.	
-		\end{split}
-	\end{equation}
-	By monotonicity, our portfolio is worth $\delta S_{0}$ at all times. 
-	However, for no arbitrage to occur, our portfolio should be worth
-	$\delta S_{0} e^{r \Delta t}$. Hence, our analysis has been misguided.
+\end{equation*}
+Observe that if $P(T)$ were the same in all states, monotonicity would force
+$P(t) = P(T)$ for all $t \le T$, and hence, eliminate risk. For this to occur,
+we set the up state and down state of our portfolio equal to one another, and
+obtain 
+\begin{equation}\label{risk-free-delta}
+	\begin{split}
+		\delta = \frac{S_{+} - S_{0}}{S_{+} - S_{-}}.	
+	\end{split}
+\end{equation}
+By monotonicity, our portfolio is worth $\delta S_{0}$ at all times. 
+However, for no arbitrage to occur, our portfolio should be worth
+$\delta S_{0} e^{r \Delta t}$. Hence, our analysis has been misguided.
 
-	Where have we gone wrong? Observe that our portfolio has no bond component,
-	and hence fails to take account of the positive interest rate. To attempt to remedy this, we note that  once $C_{0}$ is obtained from shorting a call option, it can be
-	immediately invested in a bond, which will yield $C_{0}e^{rt}$ in the future.
-	That is
-	\begin{gather*}
-		P(0)  = \delta S(0) \pm C_{0},
+Where have we gone wrong? Observe that our portfolio has no bond component,
+and hence fails to take account of the positive interest rate. To attempt to remedy this, we note that  once $C_{0}$ is obtained from shorting a call option, it can be
+immediately invested in a bond, which will yield $C_{0}e^{rt}$ in the future.
+That is
+\begin{gather*}
+	P(0)  = \delta S(0) \pm C_{0},
+	\\
+	P(T)  = \begin{cases}
+		S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0}), \quad & \text{in some states}
 		\\
-		P(T)  = \begin{cases}
-			S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0}), \quad & \text{in some states}
-			\\
-			S_{-} \delta + C_{0}e^{rt}, \quad & \text{in others}.
-		\end{cases}
-	\end{gather*}
+		S_{-} \delta + C_{0}e^{rt}, \quad & \text{in others}.
+	\end{cases}
+\end{gather*}
 Setting the up state of our portfolio equal to the down, we obtain
 \eqref{risk-free-delta},
 which is the same $\delta$ we obtained in the ``wrong'' model. 
-Applying monotonicity, we obtain that $P(0) = P(T)$, and so our porfolio value
+Applying monotonicity, we obtain that $P(0) = P(T)$, and so our portfolio value
 of $\delta S_{0}$ initially does not change. This again violates the
 no-arbitrage principle; that is
 
 \begin{equation*}
-\begin{split}
-	\delta S_{0} < \delta S_{0} e^{rT}
-\end{split}
+	\begin{split}
+		\delta S_{0} < \delta S_{0} e^{rT}
+	\end{split}
 \end{equation*}
 and so we could construct an arbitrage by shorting $P$ and investing
 the proceeds in a bond.
@@ -2496,11 +2530,11 @@ We formulate this rigorously by defining
 \begin{align*}
 	P(0) & = [\delta S_{0} \pm C_{0}] - \delta S_{0}
 	\\
-		P(T)  & = \begin{cases}
-			S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0}) - e^{rT} \delta S_{0}, \quad & \text{in some states}
-			\\
-			S_{-} \delta + C_{0}e^{rt} - e^{rT} \delta S_{0}, \quad & \text{in others}.
-		\end{cases}
+	P(T)  & = \begin{cases}
+		S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0}) - e^{rT} \delta S_{0}, \quad & \text{in some states}
+		\\
+		S_{-} \delta + C_{0}e^{rt} - e^{rT} \delta S_{0}, \quad & \text{in others}.
+	\end{cases}
 \end{align*}
 That is, $P$ is the portfolio we obtain by borrowing $\delta S_{0}$
 at $r$ interest, and then investing it into the portfolio that is long
@@ -2510,16 +2544,16 @@ Setting the up and down states equal to one another, we obtain
 \eqref{risk-free-delta}. Applying monotonicity, we see that
 $0 = P(0) = P(T)$, which gives
 \begin{equation}\label{no-arb}
-\begin{split}
-S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0})
- = 	\delta S_{-} + C_{0} e^{rT} = e^{rT} \delta S_{0} 
-\end{split}
+	\begin{split}
+		S_{+} \delta + C_{0}e^{rt} - (S_{+} - S_{0})
+		= 	\delta S_{-} + C_{0} e^{rT} = e^{rT} \delta S_{0} 
+	\end{split}
 \end{equation}
 and so
 \begin{equation}
-\begin{split}
-	C_{0} = e^{-rT}\delta(e^{rT} S_{0} - S_{-})
-\end{split}
+	\begin{split}
+		C_{0} = e^{-rT}\delta(e^{rT} S_{0} - S_{-})
+	\end{split}
 \end{equation}
 Note that since~\eqref{no-arb} holds, no arbitrage using bonds is
 possible. Contrast this with our previous, failed models. 
@@ -2531,52 +2565,52 @@ To find the risk-neutral probability $p$, we adopt an analogous approach,
 and assume $\ex(P(T)) = \ex(P(0))$. Then
 
 \begin{equation*}
-\begin{split}
-	p(\delta S_{+} + C_{0} e^{rT} - S_{+} + S_{0} - e^{rT}S_{0})
-	+ (1-p)(\delta S_{-} + C_{0} e^{rT} - e^{rT} \delta S_{0}) = 0
-\end{split}
+	\begin{split}
+		p(\delta S_{+} + C_{0} e^{rT} - S_{+} + S_{0} - e^{rT}S_{0})
+		+ (1-p)(\delta S_{-} + C_{0} e^{rT} - e^{rT} \delta S_{0}) = 0
+	\end{split}
 \end{equation*}
 which we rewrite as
 \begin{equation}
 	\label{ldr}
-\begin{split}
-	\delta \ex_{p}(S(T)) + C_{0} e^{rT} + p(S_{0} - S_{+}) = e^{rT} \delta
-	S_{0}.
-\end{split}
+	\begin{split}
+		\delta \ex_{p}(S(T)) + C_{0} e^{rT} + p(S_{0} - S_{+}) = e^{rT} \delta
+		S_{0}.
+	\end{split}
 \end{equation}
 Suppose we find $p$ such that 
 \begin{equation}\label{fpp}
-\begin{split}
-	\ex_{p}(S(T)) = e^{rT} S_{0}.
-\end{split}
+	\begin{split}
+		\ex_{p}(S(T)) = e^{rT} S_{0}.
+	\end{split}
 \end{equation}
 Then~\eqref{ldr} reduces to
 \begin{equation*}
-	 C_{0} e^{rT} + p(S_{0} - S_{+}) = 0 
+	C_{0} e^{rT} + p(S_{0} - S_{+}) = 0 
 \end{equation*}
 Observe that we have eliminated the dependence on the value of $\delta$
 entirely. Solving for $C_{0}$, we obtain
 
 \begin{equation*}
-\begin{split}
-	C_{0} &= e^{-rT} p (S_{+} - S_{0})
-	\\
-	& = e^{-rT}\left[ p {(S_{+} - S_{0})}_{+}+(1-p){(S_{-} - S_{0})}_{+}\right]
-	\\
-	& = e^{-rT} \ex_{p}(f(S_{T}))
-\end{split}
+	\begin{split}
+		C_{0} &= e^{-rT} p (S_{+} - S_{0})
+		\\
+		& = e^{-rT}\left[ p {(S_{+} - S_{0})}_{+}+(1-p){(S_{-} - S_{0})}_{+}\right]
+		\\
+		& = e^{-rT} \ex_{p}(f(S_{T}))
+	\end{split}
 \end{equation*}
 Lastly, we compute the \emph{risk-neutral} probability $p$ from expression~\eqref{fpp}, which gives
 \begin{equation*}
-\begin{split}
-	p(S_{+}) + (1 -p)S_{-} = e^{rT} S_{0}
-\end{split}
+	\begin{split}
+		p(S_{+}) + (1 -p)S_{-} = e^{rT} S_{0}
+	\end{split}
 \end{equation*}
 or
 \begin{equation}\label{step-prob}
-\begin{split}
-	p = \frac{e^{rT} S_{0} - S_{-}}{S_{+} - S_{-}}.
-\end{split}
+	\begin{split}
+		p = \frac{e^{rT} S_{0} - S_{-}}{S_{+} - S_{-}}.
+	\end{split}
 \end{equation}
 %More generally, for a multi-step model, we have
 %\begin{equation}\label{step-prob-gen}
@@ -2588,7 +2622,7 @@ or
 %\end{equation}
 %where we remark that $S_{0}(j \Delta t)$ is a random variable: there are
 %$2^{j} -1$ possible nodes $S_{0}$ after $j$ timesteps of size $\Delta t$. 
-\subsection{Mutliple Timesteps}
+\subsection{Multiple Timesteps}
 Assume now, starting from $t=0$,
 we have $N$ symmetric timesteps of length $\Delta t$, where
 $N \Delta t  = T$. Using the risk-neutral option pricing
@@ -2596,9 +2630,9 @@ results in the previous section, and running an induction,
 it follows that 
 
 \begin{equation}\label{ui}
-\begin{split}
-	C_{0} = e^{-rT} \ex_{\vec{p}}(f(S_{T}))
-\end{split}
+	\begin{split}
+		C_{0} = e^{-rT} \ex_{\vec{p}}(f(S_{T}))
+	\end{split}
 \end{equation}
 where $\vec{p} \doteq \left\{ p_{1}, p_{2}, \ldots, p_{2^{N} -1} \right\}$
 is the vector of risk neutral probabilities at each step.
@@ -2618,95 +2652,94 @@ $E_{\vec{p}} (f(S_{T}))$ with relative ease.
 
 Proceeding, we express a symmetric, multi-step model via the equation
 \begin{equation*}
-\begin{split}
-	\log S_{j} = \log S_{j - 1} \pm \sigma \sqrt{\Delta t}
-\end{split}
+	\begin{split}
+		\log S_{j} = \log S_{j - 1} \pm \sigma \sqrt{\Delta t}
+	\end{split}
 \end{equation*}
 where we have adopted the notation $S_{j} \doteq S_{j \Delta t}$.
 This is equivalent to 
 \begin{equation*}
-\begin{split}
-	S_{j} = S_{j -1} e^{\pm \sigma \sqrt{\Delta t}}.
-\end{split}
+	\begin{split}
+		S_{j} = S_{j -1} e^{\pm \sigma \sqrt{\Delta t}}.
+	\end{split}
 \end{equation*}
 From~\eqref{step-prob}, we see that the risk-neutral probability
 at $S_{j-1}$ is
 \begin{equation*}
-\begin{split}
-	\frac{S_{j-1}e^{r \Delta t} - S_{j-1} e^{-\sigma \sqrt{\Delta
-	t}}}{S_{j-1}e^{\sigma \sqrt{\Delta t}} - S_{j-1}e^{-\sigma \sqrt{\Delta t}}}.
-\end{split}
+	\begin{split}
+		\frac{S_{j-1}e^{r \Delta t} - S_{j-1} e^{-\sigma \sqrt{\Delta
+		t}}}{S_{j-1}e^{\sigma \sqrt{\Delta t}} - S_{j-1}e^{-\sigma \sqrt{\Delta t}}}.
+	\end{split}
 \end{equation*}
 Cancelling $S_{j-1}$, we see that 
 \begin{equation*}
-\begin{split}
-	p  = \frac{e^{r \Delta t} -  e^{-\sigma \sqrt{\Delta t}}}{e^{\sigma
-		\sqrt{\Delta t}} - e^{-\sigma \sqrt{\Delta t}}}.
-\end{split}
-\end{equation*}
-Hence, the risk-neutral probabilities at each timestep do not depend
-on the initial stock price at the timestep or on the time elapsed,
-but only on the timestep size. Hence, $\vec{p}$ has been simplified
-considerably, since we have shown that $p_{i} = p_{j}$. 
+	\begin{split}
+		p  = \frac{e^{r \Delta t} -  e^{-\sigma \sqrt{\Delta t}}}{e^{\sigma
+			\sqrt{\Delta t}} - e^{-\sigma \sqrt{\Delta t}}}.
+		\end{split}
+	\end{equation*}
+	Hence, the risk-neutral probabilities at each timestep do not depend
+	on the initial stock price at the timestep or on the time elapsed,
+	but only on the timestep size. Hence, $\vec{p}$ has been simplified
+	considerably, since we have shown that $p_{i} = p_{j}$. 
 
-Employing a Maclaurin series expansion of $e^{x}$, we obtain
+	Employing a Maclaurin series expansion of $e^{x}$, we obtain
 
-\begin{equation*}
-\begin{split}
-	p = \frac{1}{2} \left[ 1 + \left( \frac{r - 1/2 \sigma^{2}}{\sigma}
-	\right)\sqrt{\Delta t} \right]  + O(\Delta t).
-\end{split}
-\end{equation*}
-Hence, we rewrite our symmetric, multi-step model as the
-\emph{risk-neutral}, multi-step model
-\begin{equation*}
-\begin{split}
-	\log S_{j} = \log S_{j-1} + \sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j}
-\end{split}
-\end{equation*}
-
-where
-\begin{equation*}
-\begin{split}
-	Z_{j} = \begin{cases}
-		1, \quad & p = p(\Delta t) \\
-		-1, \quad & 1-p  
-	\end{cases}
-\end{split}
-\end{equation*}
-We would like to take the limit of this expression as $N \to \infty$,
-and apply the central limit theorem. We compute
-\begin{equation*}
-\begin{split}
-	\ex(Z_{j}) = \left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
-	\right)\sqrt{\Delta t}  + O(\Delta t)
-\end{split}
-\end{equation*}
-and
-\begin{equation*}
-\begin{split}
-	\var (Z_{j}) & = \ex(Z_{j}^2) - {[\ex(Z_{j})]}^{2} 
-	\\
-	& = 1 - {[\ex(Z_{j})]}^{2} 
-	\\
-	& = 1 - {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
-\right)}^{2}
-	\Delta t  + O[{(\Delta t)}^{3/2}].
-\end{split}
+	\begin{equation*}
+		\begin{split}
+			p = \frac{1}{2} \left[ 1 + \left( \frac{r - 1/2 \sigma^{2}}{\sigma}
+			\right)\sqrt{\Delta t} \right]  + O(\Delta t).
+		\end{split}
+	\end{equation*}
+	Hence, we rewrite our symmetric, multi-step model as the
+	\emph{risk-neutral}, multi-step model
+	\begin{equation*}
+		\begin{split}
+			\log S_{j} = \log S_{j-1} + \sigma \sqrt{T/N} Z_{j}
+		\end{split}
+	\end{equation*}
+	where the $Z_{j}, 1 \le j \le N$, are independent and 
+	\begin{equation*}
+		\begin{split}
+			Z_{j} = \begin{cases}
+				1, \quad & p = p(\Delta t) \\
+				-1, \quad & 1-p.
+			\end{cases}
+		\end{split}
+	\end{equation*}
+	We would like to take the limit of this expression as $N \to \infty$,
+	and apply the central limit theorem. We compute
+	\begin{equation*}
+		\begin{split}
+			\ex(Z_{j}) = \left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+			\right)\sqrt{\Delta t}  + O(\Delta t)
+		\end{split}
+	\end{equation*}
+	and
+	\begin{equation*}
+		\begin{split}
+			\var (Z_{j}) & = \ex(Z_{j}^2) - {[\ex(Z_{j})]}^{2} 
+			\\
+			& = 1 - {[\ex(Z_{j})]}^{2} 
+			\\
+			& = 1 - {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+		\right)}^{2}
+		\Delta t  + O[{(\Delta t)}^{3/2}].
+	\end{split}
 \end{equation*}
 and so
 \begin{equation*}
-\begin{split}
-	\var(\sum_{j=1}^{N} Z_{j}) 
-	& = \sum_{j=1}^{N}[\var(Z_{j})]
-	\\
-	& = N - N {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
-\right)}^{2}
+	\begin{split}
+		\var(\sum_{j=1}^{N} Z_{j}) 
+		& = \sum_{j=1}^{N}[\var(Z_{j})]
+		\\
+		& = N - N {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
+	\right)}^{2}
 	T/N  + N O[{(T/N)}^{3/2}]
 	\\
 	& = N - {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
 \right)}^{2}
-	T  + O[N^{-1/2}].
+T  + O[N^{-1/2}].
 	\end{split}
 \end{equation*}
 Hence,
@@ -2720,57 +2753,169 @@ Hence,
 Subtracting the $O(N^{-1/2})$  and $O(N^{-1})$ terms, and equally distributing
 them into each $Z_{j}$, we can apply the central limit theorem to obtain
 \begin{equation*}
-\begin{split}
-\sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j} 
-& \xrightarrow{\text{d}}
-N \left [\left(r - \frac{1}{2} \sigma^{2} \right )T, \sigma^{2}T \right]
-\\
-& = \left(r - \frac{1}{2} \sigma^{2} \right)T + \sigma \sqrt{T} N(0,1).
-\end{split}
+	\begin{split}
+		\sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j} 
+		& \xrightarrow{\text{d}}
+		N \left [\left(r - \frac{1}{2} \sigma^{2} \right )T, \sigma^{2}T \right]
+		\\
+		& = \left(r - \frac{1}{2} \sigma^{2} \right)T + \sigma \sqrt{T} N(0,1).
+	\end{split}
 \end{equation*}
 Observing 
 \begin{equation*}
-\begin{split}
-	\sum_{j=1}^{N} \left( \log S_{j} - \log S_{j-1} \right) = S_{T} - S_{0}
-\end{split}
+	\begin{split}
+		\sum_{j=1}^{N} \left( \log S_{j} - \log S_{j-1} \right) = S_{T} - S_{0}
+	\end{split}
 \end{equation*}
 we conclude that
 \begin{equation*}
-\begin{split}
-	\log S_{T} \overset{\text{d}}{=} 
-	\log S_{0}  + \left( r - \frac{1}{2} \sigma^{2} \right)T
-	+ \sigma \sqrt{t} N(0,1)
-\end{split}
+	\begin{split}
+		\log S_{T} \overset{\text{d}}{=} 
+		\log S_{0}  + \left( r - \frac{1}{2} \sigma^{2} \right)T
+		+ \sigma \sqrt{t} N(0,1)
+	\end{split}
 \end{equation*}
 from which we obtain
 \begin{equation*}
-\begin{split}
-	S_{T} \overset{\text{d}}{=} 
-	S_{0} e^{\left( r - \frac{1}{2} \sigma^{2} \right)T + \sigma
-	\sqrt{t}N(0,1)}
-\end{split}
+	\begin{split}
+		S_{T} \overset{\text{d}}{=} 
+		S_{0} e^{\left( r - \frac{1}{2} \sigma^{2} \right)T + \sigma
+		\sqrt{t}N(0,1)}
+	\end{split}
 \end{equation*}
 \begin{framed}
-\begin{remark}
-A simple computation shows that
-\begin{equation*}
-\begin{split}
-	\ex_{p}(S_{T}) = S_{0}e^{rT}
-\end{split}
-\end{equation*}
-That is, under the risk neutral probability $p$, our stock grows, on average,
-at the bond market rate.
-\end{remark}
+	\begin{remark}
+		A simple computation shows that
+		\begin{equation*}
+			\begin{split}
+				\ex_{p}(S_{T}) = S_{0}e^{rT}.
+			\end{split}
+		\end{equation*}
+		That is, under the risk neutral probability $p$, our stock grows, on average,
+		at the bond market rate. This is consonant with our model's built-in
+		no-arbitrage assumptions.
+	\end{remark}
 \end{framed}
 From~\eqref{ui}, it follows that, for a call option $C$ with strike
 price $K$
 \begin{equation*}
+	\begin{split}
+		C_{0} & =  e^{-rT} \ex \left [{\left( S_{T} - K \right)}_{+} \right ].
+	\end{split}
+\end{equation*}
+It turns out the expectation can be computed explicitly.
+First, observe that
+\begin{equation*}
 \begin{split}
-	C_{0} & =  e^{-rT} \ex \left [{\left( S_{T} - K \right)}_{+} \right ]
+	\prob(S_{T} \le s)
+	& = \prob(e^{\sigma \sqrt{T}N(0,1)} \le
+	\frac{s}{S_{0}e^{(r- \frac{1}{2} \sigma^{2})T}})
+	\\
+	& = \prob \left [N(0,1) \le \frac{1}{\sigma \sqrt{T}} \log\left(
+	\frac{s}{S_{0} e^{(r - \frac{1}{2}\sigma^{2})T}} \right) \right ]
+	\\
+	& = \frac{1}{\sqrt{2 \pi}}  \int_{-\infty}^{ \ell}
+	e^{- x^{2}/2} \ dx
 \end{split}
 \end{equation*}
-
+where
+\begin{equation*}
+\begin{split}
+\ell = \frac{1}{\sigma \sqrt{T}}
+	\left [ \log s - \log S_{0} - (r - \frac{1}{2} \sigma^{2})T \right ].
+\end{split}
+\end{equation*}
+Hence, the density function of $S_{T}$ is given by
+\begin{equation*}
+\begin{split}
+	g_{S_{T}}(s) = \frac{d}{ds} \prob (S_{T} \le s)
+	= \frac{1}{\sigma s \sqrt{2 \pi T}}
+	e^{- \frac{1}{2 \sigma^{2} T} \left[ \log s - \log S_{0} - (r - \frac{1}{2}
+	\sigma^{2})T \right]}
+\end{split}
+\end{equation*}
+\begin{framed}
+\begin{remark}
+Observe that $g_{S_{T}}(s)$ is integrable in a neighborhood of $0$, due
+to exponential decay there dominating the $1/s$ term. 
+\end{remark}
+\end{framed}
+Therefore,
+\begin{equation*}
+\begin{split}
+	\ex_{p^{\star}}(f(S_{T})) = 
+	\frac{1}{\sigma \sqrt{2 \pi T}} \int_{-\infty}^{\infty}{(s- K)}_{+}
+	e^{- \frac{1}{2 \sigma^{2} T} \left[ \log s - \log S_{0} - (r - \frac{1}{2}
+	\sigma^{2})T \right]^{2}} \times \frac{1}{s}  \ ds
+\end{split}
+\end{equation*}
+Since ${(s-K)}_{+} = 0$ for $s < K$, the integral simplifies to
+\begin{equation*}
+\begin{split}
+\frac{1}{\sigma \sqrt{2 \pi T}} \int_{K}^{\infty}{(s- K)}
+	e^{- \frac{1}{2 \sigma^{2} T} \left[ \log s - \log S_{0} - (r - \frac{1}{2}
+	\sigma^{2})T \right]^{2}} \times \frac{1}{s}  \ ds
+\end{split}
+\end{equation*}
+Using the substitution $\mu = \left [ \log s - \log S_{0} - (r - \frac{1}{2}
+\sigma^{2})T \right ]/\sigma \sqrt{T}$, this becomes
+\begin{equation*}
+\begin{split}
+	& \frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
+\left [ S_{0}e^{(r - \frac{1}{2} \sigma^{2})T + s \sigma \sqrt{T}} - K
+\right ] e^{-s^{2}/2} \ ds
+\\
+& =
+\frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
+\left [ S_{0}e^{(r - \frac{1}{2} \sigma^{2})T + s \sigma \sqrt{T}}
+\right ] e^{-s^{2}/2} \ ds
+- 
+\frac{K}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty} e^{-s^{2}/2} \ ds
+\\
+& \doteq \text{I} - \text{II}
+\end{split}
+\end{equation*}
+where $\ell_{K} = \ell(K)$.
+Since integral II is symmetric with respect to $\ell$, we have
+\begin{equation*}
+\begin{split}
+	\text{II} = K N(-\ell_{K})
+\end{split}
+\end{equation*}
+To evaluate integral I, we rewrite it and apply the change of 
+variable $\mu = s - \sigma \sqrt{T}$. Thus
+\begin{equation*}
+\begin{split}
+	\text{I} = 
+	& \frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
+ S_{0}e^{rT}
+ e^{-(s- \sigma \sqrt{T})^{2}/2} \ ds
+\\
+& = \frac{S_{0} e^{rT}}{\sqrt{2 \pi}} \int_{\ell_{K} - \sigma \sqrt{T}}^{\infty}
+e^{-s^{2}/2} \ ds
+\\
+& = S_{0}e^{rT} N(-\ell_{K} + \sigma \sqrt{T})
+\end{split}
+\end{equation*}
+where the last step follows from the symmetry of the Gaussian.
+Putting everything together, we obtain the \emph{Black-Scholes Formula}
+\begin{equation*}
+\begin{split}
+	C_{0} & =  e^{-rT} \ex \left [{\left( S_{T} - K \right)}_{+} \right ]
+	\\
+	& = S_{0}N(-\ell_{K}) - Ke^{-rT} N(-\ell_{K} + \sigma \sqrt{T})
+	\\
+	& = S_{0}N(d_{1}) - Ke^{rT} N(d_{2})
+\end{split}
+\end{equation*}
+where
+\begin{equation*}
+\begin{split}
+	& d_{1} = \frac{\log(S_{0}/K) + (r + \sigma^{2}/2)T}{\sigma \sqrt{T}}
+	\\
+	 & d_{2} = \frac{\log(S_{0}/K) + (r - \sigma^{2}/2)T}{\sigma \sqrt{T}}.
+\end{split}
+\end{equation*}
 \bibliographystyle{amsalpha}
 \bibliography{/Users/davidkarapetyan/Documents/math/bib/references.bib}
-
 \end{document}
