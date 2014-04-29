@@ -1,0 +1,161 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{graphicx}
+\usepackage[nohead, margin=0.5in]{geometry}
+\usepackage{enumerate}
+%\geometry{left=0.5in,right=0.5in,top=0.3in,bottom=0.5in} 
+\usepackage{listings}
+\pagestyle{empty}
+%Next are definitions of "\one" etc. 
+%This is an easy way of assigning points to your questions and to 
+%your table all at once. 
+\newcommand{\one}{20}
+\newcommand{\two}{20}
+\newcommand{\three}{20}
+\newcommand{\four}{20}
+\newcommand{\five}{20}
+\newcommand{\rr}{\mathbb{R}}
+\synctex=1
+
+\begin{document}
+
+
+%feel free to change the title page
+%
+
+\begin{center}
+    \hrulefill\\
+    {\bf \textsf{\raisebox{-0.10cm}{Spring 2014: MATH 285} \hspace{\fill} 
+            \raisebox{-0.10cm}{Introduction to Applied Mathematics} \hspace{\fill}
+            \raisebox{-0.10cm}{David Karapetyan}}}\\
+    \hrulefill\\
+    {\large \rule{0cm}{1.2cm} \textsf{Wednesday 04/30/2014} \hfill
+        \textsf{Final} \hfill  \textsf{75 minutes}}\\
+    {\large\rule{0cm}{1.2cm}\textsf{Name: \framebox[2.9in]{\rule{0cm}{0.8cm}} 
+            \hspace{\fill}
+            Student ID:\@\framebox[2.1in]{\rule{0cm}{0.8cm}}}}\\
+\end{center}
+\vspace{0.8cm}
+
+\noindent
+{\bf \textsf{Instructions.}}
+
+\begin{enumerate}
+    \item Attempt all questions.   
+    \item Show all the steps of your work clearly.  
+    \item Good luck 
+        %The method (reasoning) used to 
+        %obtain an answer is worth more than the answer itself.   
+\end{enumerate}
+
+\vfill
+
+%The \rule commands create vertical space, which makes things sit nicely in 
+%vertical way in boxes of table below.
+
+\begin{center}
+    {\large
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Question} & \textsf{Points} &  \textsf{Your Score} \\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q1} & \one &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q2} & \two &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q3} & \three &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q4} & \four &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+            \textsf{Q5} & \five &\\
+            \hline
+            \rule[-0.3cm]{0cm}{1cm}
+
+            \textsf{TOTAL} & 100 & \\
+            \hline
+        \end{tabular}
+    } 
+
+\end{center}
+
+\vfill
+
+\newpage
+\noindent
+\textbf{Q1}. \\ \\ 
+Find the characteristic function of a random variable $X$ when it:
+\\
+\begin{enumerate}[(a)]
+	\item is uniformly distributed in the interval $[0,1]$.
+		\vspace{4in}
+		\item is equal to $\mu$ with probability $1$.
+\end{enumerate}
+\newpage
+\noindent
+\textbf{Q2}. \\ \\
+\begin{enumerate}[(a)]
+	\item What is the definition of arbitrage?
+		\vspace{2in}
+	\item 
+		State and prove the monotonicity theorem,
+		assuming a no-arbitrage economy.
+	\end{enumerate}
+\newpage
+\noindent
+\textbf{Q3}.\\ \\ 
+ Let $C(K, T, S(t), t)$ denote the price at time $t$ of a call option
+			with underlying $S$, expiry $T$, and strike $K$. 
+			\\ \\
+\begin{enumerate}[(a)]
+	\item Is $C$ an increasing function of $S$, decreasing function of $S$,
+		or neither? Why? (please supply a proof).
+			\vspace{5in}
+    \item Is $C$ an increasing function of $K$, decreasing function of $K$,
+			or neither? Why? (please supply a proof).
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Q4}. \\ \\ 
+\noindent
+\begin{enumerate}[(a)]
+    \item
+			Suppose we have a one-step, two state economy with zero interest.
+			Let $S_{0}$ denote the price of a stock at time $t=0$,
+			and $S_{T}$ be the random variable
+			denoting stock price after one step, where 
+			\begin{equation*}
+			\begin{split}
+				S_{T} = \begin{cases}
+					S_{0} + 2u, \quad & \text{with probability } p \\
+					S_{0} - u, \quad & \text{with probability } 1-p. \\
+				\end{cases}
+			\end{split}
+			\end{equation*}
+			Construct a portfolio consisting of $S$ and a call option $C$ with $S$
+			as an underlying and strike $S_{0}$
+			such that the portfolio is \emph{risk-free}.
+			\vspace{4in}
+		\item Find the risk-neutral probability for $S$, and use it to compute
+			the value of $C$ at time $t=0$. 
+
+		\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Q5}. \\ \\ 
+State and prove the weak law of large numbers.
+
+
+
+
+
+\end{document}
+
+
+

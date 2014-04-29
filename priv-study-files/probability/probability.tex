@@ -1,22 +1,20 @@
-\documentclass[12pt]{article}
-\usepackage{amsthm}
-\usepackage{amssymb} %for symbols like lesssim
-\usepackage{mathtools} %amsmath extension package
+\documentclass[12pt]{amsbook}
+%\usepackage{amssymb} %for symbols like lesssim
 %\mathtoolsset{showonlyrefs}
-\usepackage{cancel}  %for canceling terms explicitly on pdf
+%\usepackage{cancel}  %for canceling terms explicitly on pdf
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[margin=2.5cm]{geometry}  %page layout
 \usepackage{hyperref}
+
 \hypersetup{colorlinks=true,
 	linkcolor=blue,
-	citecolor=green,
-	filecolor=magenta,
-	urlcolor=cyan
-	linkbordercolor=Blue
-	citebordercolor=Violet
-	filebordercolor=Red
+	citecolor=blue,
+	filecolor=blue,
+	urlcolor=blue
+	linkbordercolor=blue
+	citebordercolor=blue
+	filebordercolor=blue
 }
-\usepackage{framed}
 \usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; 
 %uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly 
 %(conflicts with cref in particular)
@@ -54,14 +52,14 @@
 
 \title{Probability and Applications to Finance}
 \author{David Karapetyan}
-\date{}
+%\date{}
 \maketitle
-\newpage
-\setcounter{tocdepth}{2}
-\setcounter{secnumdepth}{2}
+%\copyright{ \the\year \ by David Karapetyan}
+%\setcounter{tocdepth}{2}
+%\setcounter{secnumdepth}{2}
 \tableofcontents
-\newpage
-\section{Outcomes, Events, and Likelihood}
+\part{Basic Probability}
+\chapter{Outcomes, Events, and Likelihood}
 Throughout this course, we seek to rigorously describe the likelihood of
 outcomes of an experiment, or, more generally, combinations of outcomes of an 
 experiment.
@@ -76,7 +74,7 @@ any of the meaning.
 	and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the 
 	\emph{outcome
 	space} or \emph{sample space}. The \emph{event space} consists of
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[(i)]
 		\item Outcome is heads or tails
 		\item Outcome is heads and tails
 		\item Outcome is heads
@@ -94,7 +92,7 @@ any of the meaning.
 \begin{example}
 	A die with six distinct faces is thrown. The outcome space is
 	$ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[(i)]
 		\item The outcome is even
 		\item The outcome is odd
 		\item The outcome is greater than $2$
@@ -123,7 +121,7 @@ that can arise from a given outcome space. We have the following.
 	set of subsets of $\Omega$ that is closed under countable
 	unions and complements.
 	More precisely
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[(i)]
 		\item $ A_i \in  \sigma \implies \cup_i A_i \in \sigma$
 		\item $A_i \in \sigma \implies A_i^c \in \sigma$
 	\end{enumerate}
@@ -135,7 +133,7 @@ that can arise from a given outcome space. We have the following.
 	\right\},\ldots \right\}$. This is an infinite outcome space.
 \end{example}
 \begin{example} The following are all filters of $\Omega$:
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[(i)]
 		\item $\left\{ \emptyset, \Omega \right\}$
 		\item $\left\{ \emptyset, A, A^c, \Omega \right\}$
 		\item The power set of $\Omega$
@@ -144,8 +142,8 @@ that can arise from a given outcome space. We have the following.
 Observe that a natural outcome space to use is the real line, or subsets
 thereof, and to build appropriate filters on top of it. We will return
 to this idea later.
-\section{Discrete Probability}
-\subsection{Unconditional Probability}
+\chapter{Discrete Probability}
+\section{Unconditional Probability}
 Suppose we roll a $6$-sided die $N$ times. Let $N(A)$ denote the number of $4's$
 rolled in $N$ tries. One can observe that
 \begin{align*}
@@ -173,7 +171,7 @@ This discussion motivates the following.
 \begin{definition}
 	A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
 	$\prob: \filter \to [0,1]$ which satisfies
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[(i)]
 		\item
 			$\prob(\Omega) = 1$, $\prob(\emptyset) = 0$
 		\item
@@ -186,7 +184,7 @@ measures such as $P \equiv 0$ or $P \equiv 1$. Furthermore,
 we can show the following, whose proof we leave to the reader.
 \begin{lemma}
 	Let $\prob$ be a probability measure on $(\Omega, \filter)$
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[(i)]
 		\item $\prob(A^c) = 1 - \prob(A)$
 		\item $\prob(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 		\item If $B \subset A$, then $P(A) \ge P(B)$.
@@ -216,12 +214,12 @@ continuity,
 	P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 
 	0.
 \end{align*}
-\subsection{Conditional Probability}
+\section{Conditional Probability}
 We now wish to tackle statement that often occur in practice,
 such as ``What is the probability that it will snow today, \emph{given}
 that the sky is grey today'', or ``What is the probability that a mystery word
 is `zebra', \emph{given} that the first three letters are
-`z', `e', `b'.
+`z', `e', `b'.''
 Observe that when we are given information, it allows us to adjust the
 probability of the event we are interested in. We wish to express this
 mathematically. Motivated by the ``zebra'' example, we have the following.
@@ -379,7 +377,7 @@ entertainment, women/men, etc. It usually works.
 \end{proof}
 Moral: don't freak out if your doctor says you \emph{might} have
 cancer. Take the test again.
-\subsection{Independence}
+\section{Independence}
 \begin{definition}
 	We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if 
 	\[\prob(A |
@@ -398,7 +396,7 @@ cancer. Take the test again.
 	trial,
 	given that heads is flipped on all previous trials?
 \end{example}
-\section{Translating Outcomes to Numbers}
+\chapter{Translating Outcomes to Numbers}
 As we have seen, the sample space $\Omega$, equipped with an associated filter
 $\filter$ and probability measure $\prob: \filter \to [0,1]$ 
 are the linchpins of our theory of probability. However, in practice,
@@ -411,7 +409,7 @@ Lebesgue measure. This translation will be given by continuous functions from
 $\Omega$, equipped with its filter structure, to $\rr$,
 equipped with the Borel filter. We will call such functions 
 \emph{random variables}.
-\subsection{Random Variables} 
+\section{Random Variables} 
 \begin{definition}
 	A \emph{random variable} is a function $X: \Omega \to \rr$ with the property
 	that $X^{-1}(U) \in \filter$ for every open $U \in \rr$. If the range of $X$
@@ -502,8 +500,8 @@ discrete nor continuous, but rather a mixture of the two.
 	Observe that $X | \text{lands tails}$ and $X | \text{lands heads}$ are
 	continuous and discrete, respectively.
 \end{example}
-\subsection{Common Discrete Distributions}
-\subsubsection{Bernoulli Distribution}
+\section{Common Discrete Distributions}
+\subsection{Bernoulli Distribution}
 We begin with the most basic distribution, from which
 we are able to derive a multitude of others.
 \begin{definition}
@@ -523,7 +521,7 @@ we are able to derive a multitude of others.
 	two-sided, non-weighted coin. Then $X$ is binomially distributed.
 	If the coin is weighted, then $X$ follows a Bernoulli distribution.
 \end{example}
-\subsubsection{Poisson Distribution}
+\subsection{Poisson Distribution}
 We wish now to study events that are distributed sparsely in time.
 Suppose we have a large number $n$ of independent trials, with
 success in each individual trial unlikely. In order to have a sparse
@@ -580,7 +578,7 @@ and $n$ by $nt$, we obtain the following.
 \begin{exercise}
 	Generalize this result to intervals of arbitrary length.
 \end{exercise}
-\subsubsection{Negative Binomial Distribution}
+\subsection{Negative Binomial Distribution}
 For an experiment, it is often important to know just how many trials
 one needs to achieve a certain number of successes. To tackle this problem,
 we ask a simpler question: out of a total of $n$ independent trials with
@@ -606,8 +604,8 @@ everything together, we obtain the following.
 		distribution}.
 	\end{definition}
 \end{theorem}
-\subsection{Common Continuous Distributions}
-\subsubsection{Uniform Distribution}
+\section{Common Continuous Distributions}
+\subsection{Uniform Distribution}
 \begin{definition}
 	Let $X$ be a continuous random variable on a probability space $\Omega, 
 	\filter,
@@ -624,7 +622,7 @@ everything together, we obtain the following.
 		\end{cases}
 	\end{align*}
 \end{definition}
-\subsubsection{Normal Distribution}
+\subsection{Normal Distribution}
 \begin{definition}
 	Let $X$ be a continuous random variable on a probability space $\Omega, 
 	\filter,
@@ -638,7 +636,7 @@ everything together, we obtain the following.
 	If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
 	distributed}.
 \end{definition}
-\section{Joint Distributions}
+\chapter{Joint Distributions}
 Up to now, we have considered random variables taking values in $\rr$.
 It is easy to extend this theory to random variables taking values in $\rr^n$:
 our distribution of $X$ is then given by $\mu_X(B) =
@@ -660,7 +658,7 @@ $x \le y$ if and only if $x_i \le y_i$.
 	is defined as $F_X(x) = \prob({X} \le x)$.
 	\begin{lemma}
 		Let $F_X$ be a joint distribution. Then
-		\begin{enumerate}[(a)]
+		\begin{enumerate}[(i)]
 			\item
 				$\lim_{x \to \infty} F_X(x) = 1$ and $\lim_{x \to -\infty}
 				F_X(x) = 0$
@@ -739,7 +737,7 @@ $x \le y$ if and only if $x_i \le y_i$.
 	\begin{align*}
 		f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_X(x) f_Y(z/x) dx.
 	\end{align*}
-	\section{Expectation}
+	\chapter{Expectation}
 	Let $X: \Omega \to [\alpha_1, \ldots, \alpha_k]$, $k < \infty$ be a random
 	variable denoting the outcome of some experiment, and let $X_1, \ldots, 
 	X_n$ be independent trials
@@ -754,567 +752,937 @@ $x \le y$ if and only if $x_i \le y_i$.
 	or $\mu = \pm \infty$, we say that the expectation does not exist.
 \end{definition}
 \begin{example}
-	Let $X$ be a discrete random variable with mass function 
-	\begin{align*}
-		f(k) = \begin{cases}
-			A k^{-2},  \quad &k\in \zz^{+} 
-			\\
-			0, \quad & \text{otherwise}
-		\end{cases}
-	\end{align*}
-	(Observe that for $f$ to be a mass function, $A$ must be chosen such that
-	$\sum_{k = 1}^{\infty} k^{-2} = 1$).
-	Then it is easy to check that
-	\begin{align*}
-		\ex(X) = \sum_{k=1}^{\infty} k A k^{-2} = A \sum_{k=1}^{\infty} k^{-1} = 
-		\infty.
-	\end{align*}
-
-\end{example}
-Observe that we can write
-\begin{align*}
-	\frac{1}{n} \sum_{i = 1}^n X_i
-	& = \frac{\alpha_i (\#\alpha_i) + \cdots +
-	\alpha_n (\#\alpha_n)}{n}
-	\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
-\end{align*}
-This motivates the following.
-\begin{definition}
-	The \emph{expectation} of a random variable $X$ with mass function $f$ is
-	\begin{align*}
-		\ex(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
-		\sum_{x \in \rr: f(x) > 0} |x
-		f(x) | <
-		\infty
-	\end{align*}
-	If $X$ is continuous with density $f(x)$, then
-	\begin{align*}
-		\ex(X) = \int_{-\infty}^{\infty} x f(x) \, dx, \quad \text{provided} \quad
-		\int_{-\infty}^{\infty} |x f(x)| \, dx < \infty.
-	\end{align*}
-\end{definition}
-\begin{lemma}
-	If $g: \rr \to \rr$ is continuous, then
-	\begin{align*}
-		\ex(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
-		\int_{-\infty}^{\infty} g(x) f(x) \, dx
-	\end{align*}
-\end{lemma}
-\begin{theorem}[Properties of Expectation]
-	Let $X$ be a random variable. Then
-	\begin{enumerate}[(a)]
-		\item $\ex(a X + b Y) = a X(X) + b \ex(Y)$.
-		\item E (1) = 1
-		\item If $X,Y$ are independent, then $\ex(XY) = \ex(X)\ex(Y)$.
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-	We shall only do the discrete case; the proof for the continuous case is
-	analogous.
-	\begin{enumerate}[(a)]
-		\item This follows immediately from the linearity of sums and integrals.
-		\item
-			We have $\ex(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
-		\item
-			Let $Z = XY$. Then
-			\[\ex(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} x y f_{(X,Y)}(x,y) = \sum_x 
-				x f_X(x)
-			\sum_y y f_Y(y) = \ex(X) \ex(Y).\]
-	\end{enumerate}
-\end{proof}
-Having defined expectation, we can use it to define the
-\emph{variance} of a random variable $X$
-\begin{align*}
-	\ex({[X - \ex(X)]}^2),
-\end{align*}
-the \emph{standard deviation}
-\begin{align*}
-	\sigma_X \doteq \sqrt{\var(X)}
-\end{align*}
-and \emph{covariance} of random variables $X, Y$
-\begin{align*}
-	\covar(X,Y) \doteq \ex([X - \ex(X)][Y - \ex(Y)])
-\end{align*}
-The standard deviation of a random variable $X$ is the average spread of the
-trials of an experiment away from the mean, and is always positive. 
-
-In practice, we consider the normalized covariance of two random variables,
-commonly called the \emph{correlation coefficient}
-\begin{align*}
-	\rho(X,Y) = \frac{\covar(X,Y)}{\sigma_X \sigma_Y}
-\end{align*}
-The correlation coefficient has the following important property.
-\begin{theorem}
-	For random variables $X, Y$, $|\rho(x,y)| \le 1$, where $|\rho(x,y)| = 1$ 
-	if and
-	only if $aX + bY = 1$ almost surely, for some $a,b \in \rr$. 
-\end{theorem}
-\begin{proof}
-	It is a standard application of Cauchy-Schwarz.
-\end{proof}
-From this theorem, we see that the correlation index of two random variables is
-a measure of the linear dependence of one random variable on another. If the
-index is negative, a rise in one random variables implies a fall in the other,
-and vice verse. If the coefficient is positive, then the variables rise or fall
-together.
-\begin{definition}
-	We say two random variables $X$ and $Y$ are \emph{correlated} 
-	if $\ex(XY) = \ex(X)\ex(Y)$.
-\end{definition}
-Observe that independent random variables are uncorrelated. However,
-lack of correlation does not, in general, imply independence. Heuristically, 
-this is
-because correlation is only a measure of the degree of linear dependence
-between variables, and does not capture higher order (for example, quadratic)
-types of dependence. 
-\begin{example}
-	Let $X$ be a continuous random variable with the standard normal 
-	distribution,
-	and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
-	\begin{align*}
-		\ex(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} 
-		\, dx = 0
-	\end{align*}
-	by anti-symmetry, and so
-	\begin{align*}
-		\ex(XY) = \ex(X^3) = 0 = \ex(X) \ex(Y).
-	\end{align*}
-	which implies $X, Y$ are uncorrelated.
-\end{example}
-\section{Conditional Distributions and Expectation}
-\begin{definition}
-	The \emph{conditional distribution function} of $Y$ given $X = x$,
-	written $F_{Y|X}(\cdot | x)$ is defined by
-	\begin{align*}
-		F_{Y|X}(y|x) = \prob (Y \le y | X = x).
-	\end{align*}
-	In the discrete case, the \emph{conditional mass function}
-	is given by
-	\begin{align*}
-		f_{Y|X}(y|x) = \prob(Y = y | X = x).
-	\end{align*}
-\end{definition}
-Observe that, in the discrete case
-\begin{align*}
-	f_{(X,Y)}(x,y)
-	& = \prob_{\filter \times \filter}(X \le x, Y \le y)
-	\\
-	& = \prob_{\filter} (X \le x \cap Y \le y)
-	\\
-	& = \prob_{\filter}(X \le x | Y \le y) \prob_{\filter}(Y \le y)
-	\\
-	& = f_{X|Y}	(x,y) f_y(y)	
-\end{align*}
-and so
-\begin{align*}
-	f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}
-\end{align*}
-and similarly
-\begin{align*}
-	f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
-\end{align*}
-We will heretofore suppress the distinction between $\prob_{\filter \times
-\filter}$ and $\prob_{\filter}$, for the sake of clarity.
-
-Observe that in
-the continuous case, we have some difficulties,
-since we are not allowed to condition on null events. However, we may consider
-\begin{align*}
-	\prob(Y \le y , x \le X \le x + h)
-	& = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
-\end{align*}
-which we can rewrite, using Taylor series, as
-\begin{align*}
-	\prob(Y \le y | x \le X \le x + h)
-	& = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
-	\\
-	& = \frac{hf_{(X,Y)}(x,y) + O(h^2)}{hf_X(x) + O(h^2)}
-	\\
-	& = \frac{f_{(X,Y)}(x,y) + O(h)}{f_X(x) + O(h)}
-\end{align*}
-Letting $h \to 0$, we obtain
-\begin{align*}
-	f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
-\end{align*}
-Similarly, 
-\begin{align*}
-	f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}.
-\end{align*}
-Thus, the formulas for conditional distributions
-functions in both the discrete and continuous cases are identical.
-
-Since $Y|X =x$ is a random variable, we can write $\psi(x) = \ex(Y | X =x)$.
-Then $\psi(X)$ is a random variable, which we call the expectation of $Y$ given
-$X$, also written as $\ex(Y|X)$.
-\begin{theorem}
-	For any two random variable $X,Y: \Omega \to \rr^n$,
-	\begin{align*}
-		\ex(\ex(Y | X)) = \ex(Y)
-	\end{align*}
-	\begin{proof}
-		For the discrete case, we have
+	Let $X$ be a discrete random variable with mass function\footnote{
+		Observe that for $f$ to be a mass function, $A$ must be chosen such that
+		$\sum_{k = 1}^{\infty} k^{-2} = 1$.}
 		\begin{align*}
-			\ex(\psi(X)) 
-			& = \sum_{x} \psi(x) f_x(x)
-			\\
-			& = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
-			\\
-			& = \sum_{x,y} y f_{(x,y)}
-			\\
-			& = \sum_y y f_Y(y)
-			\\
-			& = \ex(Y).
+			f(k) = \begin{cases}
+				A k^{-2},  \quad &k\in \zz^{+} 
+				\\
+				0, \quad & \text{otherwise}
+			\end{cases}
 		\end{align*}
-		The proof for the continuous case is analogous. 
-	\end{proof}
-\end{theorem}
-\begin{theorem}
-	Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
-	$\ex(g(X))< \infty$. Then
+		Then it is easy to check that
+		\begin{align*}
+			\ex(X) = \sum_{k=1}^{\infty} k A k^{-2} = A \sum_{k=1}^{\infty} k^{-1} = 
+			\infty.
+		\end{align*}
+	\end{example}
+	Observe that we can write
 	\begin{align*}
-		\ex(\ex(Y|X)g(X)) = \ex(Yg(X)).
+		\frac{1}{n} \sum_{i = 1}^n X_i
+		& = \frac{\alpha_i (\#\alpha_i) + \cdots +
+		\alpha_n (\#\alpha_n)}{n}
+		\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
 	\end{align*}
-\end{theorem}
-\begin{proof}
-	It is almost identical to that of the preceding theorem.
-\end{proof}
-The two theorems above are immensely useful in solving a wide variety of
-discrete and non-discrete problems. Heuristically, they allow us to divide a
-difficult probability problem into several simpler problems.
-\begin{example}
-	Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ 
-	points to
-	heads. We play a game where we flip a coin repeatedly until we obtain
-	$-1$ points, or $2$ points. What is the expected number of flips before the
-	game terminates? 
-\end{example}
-Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
-to terminate if we begin with $i$ points. Then we have
-\begin{align*}
-	\ex(X_0) & = \ex(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
-	\ex(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
-	\\
-	& = (\ex(X_1) + 1) \frac{1}{2} + (\ex(X_{-1}) + 1) \frac{1}{2}
-	\\
-	& = \frac{1}{2}(\ex(X_1) + \ex(X_{-1})) + 1
-	\\
-	& = \frac{1}{2}\ex(X_1) + 1
-	\\
-	& = \frac{1}{2}[\ex(X_1 | \text{flip heads}) \frac{1}{2} + \ex(X_1 | \text{flip
-	tails}) \frac{1}{2}] + 1
-	\\
-	& = \frac{1}{4}[\ex(X_1 | \text{flip heads}) + \ex(X_1 | \text{flip
-	tails})] + 1
-	\\
-	& = \frac{1}{4} [ \ex(X_2) + 1  + \ex(X_0) + 1] + 1
-	\\
-	& = \frac{1}{4}[ \ex(X_0) + 2] + 1
-\end{align*}
-which gives $\ex(X_0) = 2$.
-\begin{example}
-	A hen lays $N$ eggs, where $N$ has a Poisson distribution with parameter
-	$\lambda$. An egg hatches with probability $p$, independently  of the other
-	eggs. Let $K$ be the number of chicks. Compute $\ex(K|N)$, $\ex(K)$, and $\ex(N | 
-	K)$.
-\end{example}
-To compute $\ex(K|N)$, we must first recall the Poisson distribution
-\begin{align*}
-	f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
-\end{align*}
-Given $N$ eggs, the probability that $K$ out of $N$ eggs hatch obeys a 
-Bernoulli distribution, and so 
-\begin{align*}
-	f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
-\end{align*}
-Now, $\ex(K | N = n) = pn$, and so $\ex(K | N) = pN$. Furthermore, $\ex(K) = \ex(\ex(K
-| N	)) = \ex(pN) = p \lambda$.
-To compute $\ex(N | K)$, we apply Bayes Theorem to obtain
-\begin{align*}
-	f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
-	\\
-	& = \begin{cases}
-		\frac{\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
-		e^{-\lambda}/n!}{\sum_{m \ge k}
-		\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!}
-		, \quad & n \ge k
-		\\
-		0, \quad & n<k
-	\end{cases}
-\end{align*}
-where we obtained the denominator via the observation
-\begin{align*}
-	\prob(K = k) & = \prob(K = k \cap N \ge k) 
-	\\
-	& = \sum_{m \ge k} \prob(K =
-	k \cap N = m) 
-	\\
-	& = \sum_{m \ge k} \prob(K = k | N = m) \prob(N = m)
-	\\
-	& = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
-	\\
-	& = \sum_{m \ge k}
-	\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!.
-\end{align*}
-Simplifying, we obtain
-\begin{align*}
-	f_{N|K}(n|k) = 
-	\begin{cases}
-		\frac{{(q\lambda)}^{n-k} e^{-q\lambda}}{(n-k)!}, \quad & n \ge k
-		\\
-		0, \quad & n<k
-	\end{cases}
-\end{align*}
-and so 
-\begin{align*}
-	\ex(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
-	\\
-	& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
-	\\
-	& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 
-	0}
-	n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
-	\\
-	& = k + q\lambda.
-\end{align*}
-Hence, $\ex(N|K) = K + q \lambda$.
-\section{Risk}
-\begin{definition}
-	A \emph{riskless asset} is an asset whose future value can be precisely 
-	determined. If an asset is not riskless, we say it is a \emph{risky asset} 
-\end{definition}
-The idea of a riskless asset is a theoretical construction. No asset in the 
-world is without some risk. However, the primary example of a (nearly) riskless 
-asset is a bond of a stable government. Examples of risky assets include stock 
-in a limited liability company (especially those on the NASDAQ or outside the 
-Fortune 500),
-and real estate.
-
-\begin{theorem}[Axioms of Market Efficiency]
-	In an efficient market, we have the following: 
-	\begin{enumerate}
-		\item 
-			In a free market, all available information about an asset is 
-			contained in its price. In other words, the price of an asset 
-			reflects its risk.
-		\item 
-			The past price of a stock has no influence on its present price. 
-			More precisely,
-			stock movement is a martingale.
-	\end{enumerate}
-\end{theorem}
-We will assume these axioms throughout the course. Of course, they are not true 
-in general, otherwise there would be no bargains in the market, and investors 
-like Warren Buffett would not have had nearly as much success as they have had. 
-However, the axiom does hold for the average investor in general. More 
-precisely, by the time the average investor hears about a deal, the deal 
-vanishes (that is, quicker, savvier investors like Buffett swoop in before 
-them), which in turn makes a deal less of a bargain (demand for it raises the 
-price). 
-
-Rephrased differently, our competition with each other allows stock prices to 
-stabilize. Observe further that the riskiness of a stock is related to how high 
-its price is.
-The more expensive a stock, the more you have to lose if you a purchase a share 
-and the company goes under. 
-
-Since the two axioms hold for the overwhelming majority of investors, of what 
-use
-is finance to them? 
-\begin{remark}
-	The purpose of finance is not so much to beat the market,
-	but to relate the prices of assets to each other, in order to reduce our 
-	exposure to risk. This is known as \emph{hedging}, and will be discussed in 
-	detail in the upcoming lectures.  
-\end{remark}
-\begin{example}
-	Generally, when the price of pork goes up, the price of beef goes down, 
-	since
-	they are goods that can be substituted for one another. If I have a 
-	portfolio
-	consisting of pork, I am in danger of losing a considerable amount of money
-	if the price of pork goes down. To hedge against this, I also purchase beef.
-	Now, if the price of pork goes down, my gains from my beef investment will
-	offset them. However, if the price of pork goes up, I will lose money on my
-	beef investment. What is of note is that the potential ``swing'', or
-	variance, around my expected gains from my portfolio has been diminished by
-	\emph{hedging} our pork purchase with a beef purchase.
-\end{example}
-\subsection{Introduction to Hedging and Risk Diversification}
-Suppose there is a contract on the market, which guarantees $100$ is we flip 
-heads with a fair coin, and $0$ otherwise. We would like to find what the fair 
-price is for the contract. 
-
-Our expected winnings is $50$ dollars. However, people are naturally \emph{risk 
-averse}, especially when large sums of money are involved. Hence, we are 
-willing to pay $\le \$50$. Now suppose another contract exists that pays out 
-$100$ if we flip tails, and $0$ otherwise. Since both contracts above exist on 
-the market, we can buy both and be guaranteed $100$. Hence, each contract must 
-be worth $50$ dollars \emph{when the other is available}.  The ability to hedge 
-has eliminated the effects of our natural risk aversion!. 
-
-A closely related idea is \emph{diversification}. 
-\begin{example}
-	Suppose now that there are $N$ independent coin flips $X_i$, each paying 
-	$100/N$ for heads, and $0$ for tails. Let $X \doteq X_1 + X_2 + \cdots + 
-	X_n$. Then $\ex(X) = 50$, as in the single coin example above. However
+	This motivates the following.
+	\begin{definition}
+		The \emph{expectation} of a random variable $X$ with mass function $f$ is
+		\begin{align*}
+			\ex(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
+			\sum_{x \in \rr: f(x) > 0} |x
+			f(x) | <
+			\infty
+		\end{align*}
+		If $X$ is continuous with density $f(x)$, then
+		\begin{align*}
+			\ex(X) = \int_{-\infty}^{\infty} x f(x) \, dx, \quad \text{provided} \quad
+			\int_{-\infty}^{\infty} |x f(x)| \, dx < \infty.
+		\end{align*}
+	\end{definition}
+	\begin{lemma}
+		If $g: \rr \to \rr$ is continuous, then
+		\begin{align*}
+			\ex(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
+			\int_{-\infty}^{\infty} g(x) f(x) \, dx
+		\end{align*}
+	\end{lemma}
+	\begin{theorem}[Properties of Expectation]
+		Let $X$ be a random variable. Then
+		\begin{enumerate}[(i)]
+			\item $\ex(a X + b Y) = a X(X) + b \ex(Y)$.
+			\item E (1) = 1
+			\item If $X,Y$ are independent, then $\ex(XY) = \ex(X)\ex(Y)$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		We shall only do the discrete case; the proof for the continuous case is
+		analogous.
+		\begin{enumerate}[(i)]
+			\item This follows immediately from the linearity of sums and integrals.
+			\item
+				We have $\ex(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
+			\item
+				Let $Z = XY$. Then
+				\[\ex(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} x y f_{(X,Y)}(x,y) = \sum_x 
+					x f_X(x)
+				\sum_y y f_Y(y) = \ex(X) \ex(Y).\]
+		\end{enumerate}
+	\end{proof}
+	Having defined expectation, we can use it to define the
+	\emph{variance} of a random variable $X$
 	\begin{align*}
-		\var(X)
-		& = \ex({[X - 50]}^2)
+		\ex({[X - \ex(X)]}^2),
+	\end{align*}
+	the \emph{standard deviation}
+	\begin{align*}
+		\sigma_X \doteq \sqrt{\var(X)}
+	\end{align*}
+	and \emph{covariance} of random variables $X, Y$
+	\begin{align*}
+		\covar(X,Y) \doteq \ex([X - \ex(X)][Y - \ex(Y)])
+	\end{align*}
+	The standard deviation of a random variable $X$ is the average spread of the
+	trials of an experiment away from the mean, and is always positive. 
+
+	In practice, we consider the normalized covariance of two random variables,
+	commonly called the \emph{correlation coefficient}
+	\begin{align*}
+		\rho(X,Y) = \frac{\covar(X,Y)}{\sigma_X \sigma_Y}
+	\end{align*}
+	The correlation coefficient has the following important property.
+	\begin{theorem}
+		For random variables $X, Y$, $|\rho(x,y)| \le 1$, where $|\rho(x,y)| = 1$ 
+		if and
+		only if $aX + bY = 1$ almost surely, for some $a,b \in \rr$. 
+	\end{theorem}
+	\begin{proof}
+		It is a standard application of Cauchy-Schwarz.
+	\end{proof}
+	From this theorem, we see that the correlation index of two random variables is
+	a measure of the linear dependence of one random variable on another. If the
+	index is negative, a rise in one random variables implies a fall in the other,
+	and vice verse. If the coefficient is positive, then the variables rise or fall
+	together.
+	\begin{definition}
+		We say two random variables $X$ and $Y$ are \emph{correlated} 
+		if \[\ex(XY) = \ex(X)\ex(Y).\]
+	\end{definition}
+	Observe that independent random variables are uncorrelated. However,
+	lack of correlation does not, in general, imply independence. Heuristically, 
+	this is
+	because correlation is only a measure of the degree of linear dependence
+	between variables, and does not capture higher order (for example, quadratic)
+	types of dependence. 
+	\begin{example}
+		Let $X$ be a continuous random variable with the standard normal 
+		distribution,
+		and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
+		\begin{align*}
+			\ex(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} 
+			\, dx = 0
+		\end{align*}
+		by anti-symmetry, and so
+		\begin{align*}
+			\ex(XY) = \ex(X^3) = 0 = \ex(X) \ex(Y).
+		\end{align*}
+		which implies $X, Y$ are uncorrelated.
+	\end{example}
+	\chapter{Conditional Expectation}
+	\begin{definition}
+		The \emph{conditional distribution function} of $Y$ given $X = x$,
+		written $F_{Y|X}(\cdot | x)$ is defined by
+		\begin{align*}
+			F_{Y|X}(y|x) = \prob (Y \le y | X = x).
+		\end{align*}
+		In the discrete case, the \emph{conditional mass function}
+		is given by
+		\begin{align*}
+			f_{Y|X}(y|x) = \prob(Y = y | X = x).
+		\end{align*}
+	\end{definition}
+	Observe that, in the discrete case
+	\begin{align*}
+		f_{(X,Y)}(x,y)
+		& = \prob_{\filter \times \filter}(X \le x, Y \le y)
 		\\
-		& = \ex(X^2) - 2500
+		& = \prob_{\filter} (X \le x \cap Y \le y)
 		\\
-		& = \sum_{i,j: i \neq j} \ex(X_i)\ex(X_j) + \sum_{i=1}^N \ex(X_i^2) - 2500 
+		& = \prob_{\filter}(X \le x | Y \le y) \prob_{\filter}(Y \le y)
 		\\
-		& = \sum_{i,j: i \neq j} 2500/N^2 + \sum_{i=1}^{N} 5000/N^2 - 2500
-		\\
-		& = (N^{2} - N)(2500/N^2) + 5000/N - 2500
-		\\
-		& = 2500/N 
+		& = f_{X|Y}	(x,y) f_y(y)	
 	\end{align*}
 	and so
 	\begin{align*}
-		\sigma(X) = 50/N \to 0.
+		f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}
 	\end{align*}
-	Observe, that for the single coin case, $N = 1$ and $\sigma(X) = 50$.
-	Hence, spreading one's investments around, or \emph{diversifying} allows 
-	them to
-	control variance and, hence, control risk. However, a consequence of our 
-	analysis is that the more diversified a portfolio, the less chance that one 
-	will make a great deal of money (i.e.\ deviate far from the mean).  
-\end{example}
-\subsection{Assets}
-We now give a brief overview of some of the most common assets.
+	and similarly
+	\begin{align*}
+		f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+	\end{align*}
+	We will heretofore suppress the distinction between $\prob_{\filter \times
+	\filter}$ and $\prob_{\filter}$, for the sake of clarity.
 
-\subsubsection{Stocks}
-Most shares traded on the market are from \emph{limited liability} companies.
-What this means is that if the company goes bankrupt, the investor loses their 
-investment, but can't be sued if the company is sued. The investor makes money 
-from the stock via both dividends paid out, and by the price of the share on 
-the market.
+	Observe that in
+	the continuous case, we have some difficulties,
+	since we are not allowed to condition on null events. However, we may consider
+	\begin{align*}
+		\prob(Y \le y , x \le X \le x + h)
+		& = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
+	\end{align*}
+	which we can rewrite, using Taylor series, as
+	\begin{align*}
+		\prob(Y \le y | x \le X \le x + h)
+		& = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
+		\\
+		& = \frac{hf_{(X,Y)}(x,y) + O(h^2)}{hf_X(x) + O(h^2)}
+		\\
+		& = \frac{f_{(X,Y)}(x,y) + O(h)}{f_X(x) + O(h)}
+	\end{align*}
+	Letting $h \to 0$, we obtain
+	\begin{align*}
+		f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+	\end{align*}
+	Similarly, 
+	\begin{align*}
+		f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}.
+	\end{align*}
+	Thus, the formulas for conditional distributions
+	functions in both the discrete and continuous cases are identical.
 
-\subsubsection{Bonds} 
-The most typical is a $30$ year bond, with coupons (i.e.\ interest payments) 
-issued every year. The principal is returned at the end of the $30$ years.
-They are  not entirely riskless---interest rates may change, diminishing the 
-value of the bond on the open market. This is reflected by the \emph{yield} of 
-the bond, where we define \begin{equation*}
-	\text{yield} = \frac{\text{interest payment}}{\text{price of bond}}.
-\end{equation*}
-Since bonds from stable governments are close to riskless, their yield is 
-typically low (around $3\%$). Bonds from unstable governments are very risky 
-(good luck getting General Sibanda to return your principal once he takes over 
-Zimbabwe), and so have high yields.
-\subsubsection{Corporate Bonds}
-These are loans to a company, and their riskiness varies, depending on the 
-stability of the company. 
-\subsubsection{Derivatives}
-These are any instrument whose value is determined by the value of another 
-asset, commonly called the \emph{underlying}. At their core, derivatives are 
-instruments that allow us to offset the risk of an asset by adopting the 
-``opposite'' risk.
-\begin{example}
-	Suppose a firm will be paid in yen one year into the future,and will want 
-	to exchange the yen into dollars immediately upon payment.
-	If the exchange rate dips in one year, the firm will lose money. To lessen 
-	the risk of this occurring, the firm can purchase a \emph{forward 
-	contract}. That is, it can agree today to a fixed exchange rate for a fixed 
-	amount of yen one year into the future. Observe that if the exchange rate 
-	is greater one year from now than that fixed in the contract, the firm 
-	loses potential profits. However, if the exchange rate is less one year 
-	from now than that in the contract, the firm has guarded itself from great 
-	losses. 
-\end{example}
-If the amount of yen paid at the end of the year will be highly variable, the 
-firm can enter into an \emph{option}, which is a contract to exchange 
-\emph{any} quantity of yen at a fixed interest rate, in the future. However, 
-unlike forwards, options are \emph{not-binding}. That is, the firm would have 
-the option to not exercise the contract if it is not variable to a year from 
-now.
-\begin{definition}
-	A \emph{call option} is a contract whose purchaser has the option to buy an 
-	asset at an agreed upon rate in the future. A \emph{put option} is the a 
-	contract whose purchaser has the option to sell an asset at an agreed upon 
-	rate in the future. A \emph{vanilla option} is either an \emph{American 
-	option} or \emph{European option}---an American option can be exercised any 
-	day before an agreed upon day in the future, while a European option can 
-	only be exercised on one agreed upon day in the future.
-\end{definition}
-The pricing of options is a difficult problem, which we shall tackle in future 
-lectures.\section{Arbitrage}
-We motivate our discussion of \emph{arbitrage} via an example. 
-\begin{example}
-	Suppose $1$ British pound is worth $1.5$ dollars,  $1$ dollar is worth 
-	$100$ yen, 
-	and $1$ pound is worth $149$ yen.
-	We now construct a strategy to make a profit \emph{without risk of losses} 
-	as follows: 
-	We borrow $149$ yen, immediately exchange it for $1$ pound, which we 
-	exchange for $1.5$ dollars. Then we exchange our $1.5$ dollars for $150$ 
-	yen, which we use to pay back our debt of $149$ yen. All these trades are 
-	executed instantaneously, allowing us to avoid interest costs. Therefore, 
-	our 
-	our net profit is $150 - 149 = 1$. This type of investment opportunity is 
-	known as an
-	\emph{arbitrage opportunity}.
-\end{example}
-We remark that arbitrage opportunities do exist in the market, but they don't 
-exist for long, due to their extreme desirability. That is, once enough people 
-find out about the opportunity in the example, it raises the number of people 
-demanding to exchange yen for pounds, lowering the value of yen relative to 
-pounds until a $150:1$ yen to pound ratio is reached, upon which the arbitrage 
-opportunity disappears.  
+	Since $Y|X =x$ is a random variable, we can write $\psi(x) = \ex(Y | X =x)$.
+	Then $\psi(X)$ is a random variable, which we call the expectation of $Y$ given
+	$X$, also written as $\ex(Y|X)$.
+	\begin{theorem}
+		For any two random variable $X,Y: \Omega \to \rr^n$,
+		\begin{align*}
+			\ex(\ex(Y | X)) = \ex(Y)
+		\end{align*}
+		\begin{proof}
+			For the discrete case, we have
+			\begin{align*}
+				\ex(\psi(X)) 
+				& = \sum_{x} \psi(x) f_x(x)
+				\\
+				& = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
+				\\
+				& = \sum_{x,y} y f_{(x,y)}
+				\\
+				& = \sum_y y f_Y(y)
+				\\
+				& = \ex(Y).
+			\end{align*}
+			The proof for the continuous case is analogous. 
+		\end{proof}
+	\end{theorem}
+	\begin{theorem}
+		Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
+		$\ex(g(X))< \infty$. Then
+		\begin{align*}
+			\ex(\ex(Y|X)g(X)) = \ex(Yg(X)).
+		\end{align*}
+	\end{theorem}
+	\begin{proof}
+		It is almost identical to that of the preceding theorem.
+	\end{proof}
+	The two theorems above are immensely useful in solving a wide variety of
+	discrete and non-discrete problems. Heuristically, they allow us to divide a
+	difficult probability problem into several simpler problems.
+	\begin{example}
+		Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ 
+		points to
+		heads. We play a game where we flip a coin repeatedly until we obtain
+		$-1$ points, or $2$ points. What is the expected number of flips before the
+		game terminates? 
+	\end{example}
+	Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
+	to terminate if we begin with $i$ points. Then we have
+	\begin{align*}
+		\ex(X_0) & = \ex(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
+		\ex(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
+		\\
+		& = (\ex(X_1) + 1) \frac{1}{2} + (\ex(X_{-1}) + 1) \frac{1}{2}
+		\\
+		& = \frac{1}{2}(\ex(X_1) + \ex(X_{-1})) + 1
+		\\
+		& = \frac{1}{2}\ex(X_1) + 1
+		\\
+		& = \frac{1}{2}[\ex(X_1 | \text{flip heads}) \frac{1}{2} + \ex(X_1 | \text{flip
+		tails}) \frac{1}{2}] + 1
+		\\
+		& = \frac{1}{4}[\ex(X_1 | \text{flip heads}) + \ex(X_1 | \text{flip
+		tails})] + 1
+		\\
+		& = \frac{1}{4} [ \ex(X_2) + 1  + \ex(X_0) + 1] + 1
+		\\
+		& = \frac{1}{4}[ \ex(X_0) + 2] + 1
+	\end{align*}
+	which gives $\ex(X_0) = 2$.
+	\begin{example}
+		A hen lays $N$ eggs, where $N$ has a Poisson distribution with parameter
+		$\lambda$. An egg hatches with probability $p$, independently  of the other
+		eggs. Let $K$ be the number of chicks. Compute $\ex(K|N)$, $\ex(K)$, and $\ex(N | 
+		K)$.
+	\end{example}
+	To compute $\ex(K|N)$, we must first recall the Poisson distribution
+	\begin{align*}
+		f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
+	\end{align*}
+	Given $N$ eggs, the probability that $K$ out of $N$ eggs hatch obeys a 
+	Bernoulli distribution, and so 
+	\begin{align*}
+		f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
+	\end{align*}
+	Now, $\ex(K | N = n) = pn$, and so $\ex(K | N) = pN$. Furthermore, $\ex(K) = \ex(\ex(K
+	| N	)) = \ex(pN) = p \lambda$.
+	To compute $\ex(N | K)$, we apply Bayes Theorem to obtain
+	\begin{align*}
+		f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
+		\\
+		& = \begin{cases}
+			\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
+			e^{-\lambda}/n!/\sum_{m \ge k}
+			\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!
+			, \quad & n \ge k
+			\\
+			0, \quad & n<k
+		\end{cases}
+	\end{align*}
+	where we obtained the denominator via the observation
+	\begin{align*}
+		\prob(K = k) & = \prob(K = k \cap N \ge k) 
+		\\
+		& = \sum_{m \ge k} \prob(K =
+		k \cap N = m) 
+		\\
+		& = \sum_{m \ge k} \prob(K = k | N = m) \prob(N = m)
+		\\
+		& = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
+		\\
+		& = \sum_{m \ge k}
+		\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!.
+	\end{align*}
+	Simplifying, we obtain
+	\begin{align*}
+		f_{N|K}(n|k) = 
+		\begin{cases}
+			{(q\lambda)}^{n-k} e^{-q\lambda}/(n-k)!, \quad & n \ge k
+			\\
+			0, \quad & n<k
+		\end{cases}
+	\end{align*}
+	and so 
+	\begin{align*}
+		\ex(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
+		\\
+		& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
+		\\
+		& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 
+		0}
+		n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
+		\\
+		& = k + q\lambda.
+	\end{align*}
+	Hence, $\ex(N|K) = K + q \lambda$.
+	\chapter{Characteristic Functions}
+	If $f = f(x)$ is integrable (that is, $\int_{\rr}| f | \ dx < \infty$), we define its \emph{Fourier transform} by
+	\begin{equation*}
+		\begin{split}
+			\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{-i x \xi} f(x) \ dx.
+		\end{split}
+	\end{equation*}
+	If $ \hat{f}(\xi)$ is integrable as well, then we have the
+	following.
+	\begin{theorem}\label{thm:fourier-inversion}
+		If $f, \hat{f}$ are integrable, then
+		\begin{equation*}
+			\begin{split}
+				f(x) = \int_{-\infty}^{\infty} e^{i x \xi} \hat{f}(\xi) \ d \xi.
+			\end{split}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		See Stein and Shakarchi \cite{zbMATH02171466}.
+	\end{proof}
+	\begin{proposition}\label{prop:fourier-props}
+		The Fourier transform has the following properties.
+		\begin{enumerate}[(i)]
+			\item	$\wh{f(x+h)}(\xi) = \wh{f(\xi) e^{i h \xi}}$
+			\item $\wh{f(x) e^{-i x h}}(\xi) = \wh{f}(\xi + h)$	
+			\item $\wh{\frac{d}{dx} f(x)}(\xi) = i \xi$
+			\item $\wh{-ix f(x)}(\xi) = \frac{d}{d \xi}\wh{f}(\xi)$
+			\item $\hat{\hat{f}}(x) = f(-x)$
+			\item $\int_{\rr} \wh{f}(x) g(x) \ dx = \int_{\rr} f(x) \wh{g}(x) \ dx$
+			\item $\wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi)$.
+		\end{enumerate}
+	\end{proposition}
+	\begin{proof}
+		The proofs are a straightforward
+		application of $u$-substitution, and interchanging order of integration.
+		See Stein and Shakarchi \cite{zbMATH02171466}. 
+	\end{proof}
+	\begin{definition}
+		The characteristic function of a random variable $X$ is given by
+		\begin{equation*}
+			\begin{split}
+				\phi_{X} = \ex(e^{-itX}).
+			\end{split}
+		\end{equation*}
+	\end{definition}
+	Observe that if $X$ has a density $f$, then
+	\begin{equation*}
+		\begin{split}
+			\phi(t) = \int_{\rr} e^{-itx} f(x) \ dx
+		\end{split}
+	\end{equation*}
+	This is just the Fourier transform of the density.\footnote{ 
+		Some texts set $\phi_{X}(t) = \ex(e^{-itX})$,
+		which is equivalent to our definition
+	of the characteristic function, evaluated at $-t$.} 
+	\begin{lemma}\label{lem:indep}
+		If $X, Y$ are independent, then
+		\begin{equation*}
+			\begin{split}
+				\phi_{X + Y}(t) = \phi_{X}(t) \phi_{Y}(t).
+			\end{split}
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+		If $X$ and $Y$ are independent, then $e^{-itX}$ and $e^{-itY}$ are independent.
+		Therefore
+		\begin{equation*}
+			\begin{split}
+				\phi_{X + Y}(t) = \ex(e^{-itX - itY}) = \ex(e^{-itX} e^{-itY})
+				= \ex(e^{-itX}) \ex (e^{-itY}) = \phi_{X}(t) \phi_{Y}(t)
+			\end{split}
+		\end{equation*}
+		which completes the proof.\footnote{
+			Observe that if $X$ and $Y$ both have densities and are independent, then 
+			the density of $X + Y$ is $f \star g$, and so 
+			$\phi_{X + Y}(t) = \wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi) =
+			\phi_{X}(t) \phi_{Y}(t).$ Hence, the power of characteristic functions
+			manifests itself when we are summing random variables: convolutions of
+			functions are difficult to deal with, while products of functions, in general,
+		are not.}
+	\end{proof}
+	\begin{definition}
+		The joint characteristic function of $X$ and $Y$ is given by
+		\begin{equation*}
+			\begin{split}
+				\phi_{X,Y}(s,t) = \ex(e^{-isX} e^{-itY}).
+			\end{split}
+		\end{equation*}
+	\end{definition}
+	Observe that if $(X, Y)$ has the joint density function $f(x, y)$, then
+	letting $F(x, y) = e^{-isx} e^{-ity}$, we obtain
+	\begin{equation*}
+		\begin{split}
+			\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY})
+			\\
+			& = \ex(F(X, Y))
+			\\
+			& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} F(x, y) f(x, y) \ dx  dy
+			\\
+			& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity}
+			f(x, y) \ dx  dy
+		\end{split}
+	\end{equation*}
+	which is just the Fourier transform of the joint density in the $x$ and $y$
+	variables.
+	\begin{lemma}\label{lem:char-ind}
+		Two random variables $X$ and $Y$ are independent if and only if
+		\begin{equation*}
+			\begin{split}
+				\phi_{X, Y}(s, t)= \phi_{X}(s) \phi_{Y}(t), \quad \forall s, t
+			\end{split}
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+		We prove this result for the case where $X$ and $Y$ have densities.
+		To establish necessity, assume independence. Then
+		$e^{-isX}$ and $e^{-itY}$ are independent for all $s, t$, and so
+		\begin{equation*}
+			\begin{split}
+				\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY}) = \ex(e^{-isX}) \ex(e^{-itY})
+				= \phi_{X}(s) \phi_{Y}(t).
+			\end{split}
+		\end{equation*}
+		To establish the sufficiency, we prove the contrapositive. Assume there exist $s, t$ such that
+		\begin{equation*}
+			\begin{split}
+				\ex(e^{-isX} e^{-itY}) \neq \ex(e^{-isX}) \ex(e^{-itY}).
+			\end{split}
+		\end{equation*}
+		Then this is equivalent to saying
+		\begin{equation*}
+			\begin{split}
+				\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
+				e^{-ity} h(y) \ dy
+				\neq 
+				\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx
+				dy.
+			\end{split}
+		\end{equation*}
+		If $X$ and $Y$ are independent, then $f(x, y) = g(x) h(y)$, which implies
+		\begin{equation*}
+			\begin{split}
+				\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
+				e^{-ity} h(y) \ dy
+				= 
+				\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx dy
+			\end{split}
+		\end{equation*}
+		which is a contradiction.
+%Taking partial derivatives with respect
+%to $s$ and $t$ on the left and right hand sides,
+%and evaluating at $s=t=0$, we obtain
+%\begin{equation*}
+%\begin{split}
+%E(XY) = E(X) E(Y)
+%\end{split}
+%\end{equation*}
+	\end{proof}
+	\section{Examples of Characteristic Functions}
+	\begin{enumerate}
+		\item Bernoulli distribution for one trial with parameter $p$. That is,
+			the Bernoulli random variable outputs $1$ with probability $p$,
+			and $0$ with probability $1-p$.
+			\begin{equation*}
+				\begin{split}
+					\phi(t) = \ex(e^{-itX}) = e^{-it0}(1-p) + e^{-it}p = 1-p + pe^{-it}
+				\end{split}
+			\end{equation*}
+		\item Bernoulli distribution with $n$ independent trials and parameter
+			$p$. Letting $X = X_{1} + \cdots + X_{n}$, where the $X_i$ denote
+			the trials, we have
+			\begin{equation*}
+				\begin{split}
+					\phi_{X}(t) = \phi_{X_{1} + \ldots + X_{n}}(t)
+					= \prod_{1 \le i \le n} \phi_{X_{i}}(t)
+					= \left[ 1-p + pe^{-it} \right]^{n}.
+				\end{split}
+			\end{equation*}
+		\item Normal Distribution. If $X$ is $N(0,1)$, then
+			\begin{equation*}
+				\begin{split}
+					\phi(t) = \ex(e^{-itX})
+					& = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-itx}
+					e^{-x^{2}/2} \ dx
+					\\
+					& = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2 \pi}} e^{-(x^{2} -2itx)/2} \
+					dx
+					\\
+					& = \int_{-\infty}^{\infty} e^{-(x-it)^{2}/2 - t^{2}/2} \ dx
+					\\
+					& = e^{-t^{2}/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}}
+					e^{-(x - it)^{2}/2} \ dx
+					\\
+					& = e^{-t^{2}/2}
+				\end{split}
+			\end{equation*}
+			where the last step follows from complex integration.	
+			We now compute the characteristic function of $Y \overset{\text{d}}{=}N(\mu,
+			\sigma^{2})$ by observing that $Y \overset{\text{d}}{=} \sigma X + \mu$,
+			which gives
+			\begin{equation*}
+				\begin{split}
+					\phi_{Y}(t) = \phi_{\sigma X + \mu}
+					& =  \phi_{\sigma X}(t) \phi_{\mu}(t)
+					\\
+					& = e^{it\mu} \int_{-\infty}^{\infty} e^{i t \sigma x} e^{-x^{2}/2} \ dx
+					\\
+					& = e^{it \mu} \phi_{X}(\sigma t)
+					\\
+					& = e^{it \mu} e^{-( \sigma t)^{2}/2}
+					\\
+					& = e^{it \mu - (\sigma t)^{2}/2}
+				\end{split}
+			\end{equation*}
+	\end{enumerate}
+	\section{Convergence in Distribution Using Characteristic Functions}
+%\begin{definition}
+	%We say that a sequence $F_{1}, \ldots, F_{n}: \rr \to \rr$
+	%of distribution functions
+	%converge to $F: \rr \to \rr $ if they converge pointwise to $F$. 
+%\end{definition}
+	\begin{theorem}\label{thm:conv-char-dist}
+		Suppose $F_{1}, \cdots, F_{n}$ are a sequence of distributions
+		with corresponding characteristic functions
+		$\phi_{1}, \cdots, \phi_{n}$, respectively. 
+		\begin{enumerate}[(i)]
+			\item If $F_{n} \to F$ pointwise in $\rr$,
+				where $F$ has characteristic function
+				$\phi$, then $\phi_{n} \to \phi$ pointwise in $\rr$.
+			\item Conversely, if  $\phi_{n} \to \phi$ pointwise in $\rr$ and 
+				$\phi$ is continuous at $t = 0$, then $\phi$ is the characteristic
+				function of some distribution $F$, and $F_{n} \to F$ pointwise
+				in $\rr$
+		\end{enumerate}
+	\end{theorem}
+	\begin{corollary}
+		If $F_{1}, \cdots, F_{n}$ and $F$ are distribution functions with densities
+		and corresponding characteristic functions $\phi_{1}, \cdots, \phi_{n}$ and
+		$\phi$ respectively, then $F_{n} \to F$ pointwise in $\rr$ if and only if
+		$\phi_{n} \to \phi$ pointwise in $\rr$.
+	\end{corollary}
+	\section{The Weak Law of Large Numbers, and the Central Limit Theorem}
+	\begin{definition}
+		We say a sequence of random variables $\{X_{i}\}$
+		with corresponding distribution functions $\{F_{i}\}$
+		\emph{converges in distribution} to a random variable $X$ with corresponding
+		distribution function $F$, if $F_{n} \to F$ pointwise in $\rr$.
+		We denote this by $X_{n} \xrightarrow{\text{d}} X$.
+	\end{definition}
+	\begin{theorem}[Weak Law of Large Numbers]\label{thm:weak-law}
+		Let $\left\{ X_{i} \right\}$ be a sequence of independent, identically
+		distributed random variables with finite means $\mu$. Let
+		$S_{n} \doteq X_{1} + \cdots X_{n}$. Then
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n}}{n} \xrightarrow{\text{d}} \mu.
+			\end{split}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		By \cref{thm:conv-char-dist}, it suffices to show that
+		the characteristic function of $S_{n}/n$ converges
+		pointwise to  $e^{it \mu}$, the characteristic function of $\mu$ (and clearly
+		continuous at $t=0$). Observe that
+		\begin{equation*}
+			\begin{split}
+				\phi_{n}(t) = \phi_{X_{1}/n + \ldots + X_{n}/n}(t)
+				= \prod_{1 \le j \le n} \phi_{X_{j}/n}(t)
+				& = \left[ \phi_{X_{1}/n}(t) \right]^{n}
+				\\
+				& = \left[ \phi_{X_{1}}(t/n) \right]^{n}
+			\end{split}
+		\end{equation*}
+		where the two steps follow from the identical distribution of the $X_{i}$,
+		and the identity
+		\begin{equation*}
+			\begin{split}
+				\phi_{X_{1}/n}(t) = \ex(e^{i X_{1} t /n}) = \phi_{X_{1}}(t/n),
+			\end{split}
+		\end{equation*}
+		respectively. A Maclaurin series expansion gives
+		\begin{equation*}
+			\begin{split}
+				\phi_{X_{1}}(t/n) & = \phi_{X_{1}}(0) + \phi_{X_{1}}'(0)(t/n) + o(t/n)
+				\\
+				& = 1 + (i \mu t)/n + o(t/n)
+			\end{split}
+		\end{equation*}
+		and so
+		\begin{equation*}
+			\begin{split}
+				\lim_{n \to \infty} \left[ \phi_{X_{1}}(t/n) \right]^{n}
+				= \lim_{n \to \infty} \left[ 1 + (i \mu t)/n \right]^{n} = e^{i \mu t}
+			\end{split}
+		\end{equation*}
+		completing the proof.
+	\end{proof}
+	\begin{theorem}[Central Limit Theorem]\label{thm:central-limit}
+		Let $ \left\{ X_{i} \right\}$ be independent, identically
+		distributed random variables with means $\mu$ and nonzero
+		variance $\sigma^{2}$. Let $S_{n} \doteq X_{1} + \cdots + X_{n}.$ Then
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}} \xrightarrow{\text{d}} N(0,1).
+			\end{split}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		By \cref{thm:conv-char-dist}, it suffices to show that
+		the characteristic function of $S_{n}/\sqrt{n \sigma^{2}}$ converges
+		pointwise to  $e^{-t^{2}/2}$, the characteristic function of 
+		a standard normal random variable (and clearly
+		continuous at $t=0$). Let
+		$Y_{i} = (X_{i} - \mu)/n$. Then the $Y_{i}$ have mean $0$ and
+		variance $1$. Furthermore, 
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
+				= \frac{X_{1} - \mu+ \cdots + X_{n} - \mu}{\sigma \sqrt{n}}
+				& = \frac{1}{\sqrt{n}}\left[ Y_{1} + \cdots + Y_{n} \right].
+			\end{split}
+		\end{equation*}
+		Then
+		\begin{equation*}
+			\begin{split}
+				\phi_{\frac{1}{\sqrt{n}}\sum Y_{i}}(t)
+				= \phi_{\sum Y_{i}} = \left[ \phi_{Y_{1}}\left( t/\sqrt{n} \right) \right]^{n}
+			\end{split}
+		\end{equation*}
+		where the last step follows from the fact that the $Y_{i}$ are identically
+		distributed. Next, observe that
+		\begin{equation*}
+			\begin{split}
+				& \phi_{Y_{1}}'(0) = \ex (-iY_{1} e^{-itY_{1}}) \vert_{t = 0} = -i
+				\ex(Y_{1}) = 0
+				\\
+				& \phi_{Y_{1}}''(0) = \ex(Y_{1}^{2} e^{-itY_{1}}) \vert_{t = 0} = 
+				\ex(Y_{1}^{2}) = \var(Y_{1}) = 1.
+			\end{split}
+		\end{equation*}
+		Hence, a Maclaurin expansion gives
+		\begin{equation*}
+			\begin{split}
+				\phi_{Y_{1}}(t) = 1 - t^{2}/2n + o(t^{2}/n)
+			\end{split}
+		\end{equation*}
+		and so
+		\begin{equation*}
+			\begin{split}
+				\lim_{n \to \infty} \phi_{\frac{1}{\sqrt{n}} \sum Y_{i}}
+				= \lim_{n \to \infty} \left[ 1 - t^{2}/2n \right]^{n}
+				= e^{-t^{2}/2}
+			\end{split}
+		\end{equation*}
+		which completes the proof.
+	\end{proof}
+	\part{Finance}
+	\chapter{Risk}
+	\begin{definition}
+		A \emph{riskless asset} is an asset whose future value can be precisely 
+		determined. If an asset is not riskless, we say it is a \emph{risky asset}.
+	\end{definition}
+	The idea of a riskless asset is a theoretical construction. No asset in the 
+	world is without some risk. However, the primary example of a (nearly) riskless 
+	asset is a bond of a stable government. Examples of risky assets include stock 
+	in a limited liability company (especially those on the NASDAQ or outside the 
+	Fortune 500),
+	and real estate.
 
-Since arbitrage opportunities are rare and vanish quickly, we will assume 
-absence of arbitrage in our models. Furthermore, we shall adopt all the 
-following
-assumptions when building models of the financial market:
+	\begin{definition}[Axioms of Market Efficiency]
+		In an efficient market, we have the following: 
+		\begin{enumerate}[(i)]
+			\item 
+				All available information about an asset is 
+				contained in its price. In other words, the price of an asset 
+				reflects its risk.
+			\item 
+				The past price of a stock has no influence on its present price. 
+				More precisely,
+				stock movement is a martingale.
+		\end{enumerate}
+	\end{definition}
+	We will assume these axioms throughout the course, and add to them
+	as we develop more complex models. Of course, the two axioms above are not true 
+	in general, otherwise there would be no bargains in the market, and investors 
+	like Warren Buffett would not have had nearly as much success as they have had. 
+	However, they do hold for the average investor in general. More 
+	precisely, by the time the average investor hears about a deal, the deal 
+	vanishes (that is, quicker, savvier investors like Buffett swoop in before 
+	them), which in turn makes a deal less of a bargain (demand for it raises the 
+	price). 
 
-\begin{enumerate}[(i)]
-	\item No market moving. That is, one can buy and sell any amount of an asset
-		without affecting its price. Many prop shops attempt to violate this by 
-		artificially moving prices, thereby constructing an arbitrage 
-		opportunity. This has adverse effects for the economy and market 
-		efficiency.   
-	\item Liquidity---we can buy or sell any amount of an asset. Observe that 
-		Wall St.\  provides this. Indeed, any stable stock exchange does. 
-	\item We are allowed to short assets.
-	\item Fractional quantities of shares can be purchased. This is motivated 
-		by the idea that if there are $10^{6}$ shares of a particular stock 
-		available, then $1/10^6 \sim 0.5/10^{6}$.
-	\item No transaction costs, commonly known as the \emph{bid-offer spread}. 
-		This is of course false in the real world, but we assume it to simplify our 
-		models. Observe that our assumption introduces a negligible error if the 
-		transaction cost is small relative to the value of the asset being 
-		exchanged.
-\end{enumerate}
-\subsection{Mathematical Definition of Arbitrage, and its Corollaries}
-\begin{definition}
-	A portfolio is said to be an \emph{arbitrage portfolio} if today it is
-	of $x$ value, and in the future it has zero probability of being $<x$ in 
-	value,
-	and nonzero probability of being $>x$ in value. 
-\end{definition}
-\begin{theorem}[Monotonicity Theorem]
-	Consider two portfolios $A, B$ with values $A(t)$ and $B(t)$, respectively. 
-	If $A(T) \ge B(T)$ in every state of the world at time $T$, then
-	$A(t) \ge B(t)$ for every $t < T$. In addition, if we know that
-	$A(T) > B(T)$ in some states of the world at time $T$, then
-	$A(t) > B(t)$ for all $t < T$. 
-\end{theorem}
-\begin{proof}
-	Consider portfolio $C$ constructed by going long $A$, and short $B$. Then
-	$C(T) = A(T) - B(T) \ge 0$ in all states of the world at time $T$. 
-	By the no-arbitrage principle, we must have $C(t) \ge 0$. \qedhere
-\end{proof}
-\begin{corollary}
-	A vanilla call option or put option is always of positive value before 
-	expiry.
-\end{corollary}
-\begin{proof}
-	Let $A$ be a portfolio that is long a call option, and $B$ be an empty
-	portfolio.  Then $B$ has zero value for all time, while $A(T) = {(S_{T}
-- K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
-B(T)$ in all states, and hence $A(t) \ge B(t)$ by monotonicity.
+	Rephrased differently, our competition with each other allows stock prices to
+	stabilize. Observe further that the riskiness of a stock is related to how
+	high its price is.  The more expensive a stock, the more you have to lose if
+	you a purchase a share and the company goes under. 
+
+	Since the two axioms hold for the overwhelming majority of investors, of what
+	use is finance to them? 
+	\begin{remark}
+		The purpose of finance is not so much to beat the market,
+		but to relate the prices of assets to each other, in order to reduce our 
+		exposure to risk. This is known as \emph{hedging}, and will be discussed in 
+		detail in the upcoming lectures.  
+	\end{remark}
+	\begin{example}
+		Generally, when the price of pork goes up, the price of beef goes down, 
+		since
+		they are goods that can be substituted for one another. If I have a 
+		portfolio
+		consisting of pork, I am in danger of losing a considerable amount of money
+		if the price of pork goes down. To hedge against this, I also purchase beef.
+		Now, if the price of pork goes down, my gains from my beef investment will
+		offset them. However, if the price of pork goes up, I will lose money on my
+		beef investment. What is of note is that the potential ``swing'', or
+		variance, around my expected gains from my portfolio has been diminished by
+		\emph{hedging} our pork purchase with a beef purchase.
+	\end{example}
+	\section{Introduction to Hedging and Risk Diversification}
+	Suppose there is a contract on the market, which guarantees $100$ is we flip 
+	heads with a fair coin, and $0$ otherwise. We would like to find what the fair 
+	price is for the contract. 
+
+	Our expected winnings is $50$ dollars. However, people are naturally \emph{risk 
+	averse}, especially when large sums of money are involved. Hence, we are 
+	willing to pay $\le \$50$. Now suppose another contract exists that pays out 
+	$100$ if we flip tails, and $0$ otherwise. Since both contracts above exist on 
+	the market, we can buy both and be guaranteed $100$. Hence, each contract must 
+	be worth $50$ dollars \emph{when the other is available}.  The ability to hedge 
+	has eliminated the effects of our natural risk aversion!. 
+
+	A closely related idea is \emph{diversification}. 
+	\begin{example}
+		Suppose now that there are $N$ independent coin flips $X_i$, each paying 
+		$100/N$ for heads, and $0$ for tails. Let $X \doteq X_1 + X_2 + \cdots + 
+		X_n$. Then $\ex(X) = 50$, as in the single coin example above. However
+		\begin{align*}
+			\var(X)
+			& = \ex({[X - 50]}^2)
+			\\
+			& = \ex(X^2) - 2500
+			\\
+			& = \sum_{i,j: i \neq j} \ex(X_i)\ex(X_j) + \sum_{i=1}^N \ex(X_i^2) - 2500 
+			\\
+			& = \sum_{i,j: i \neq j} 2500/N^2 + \sum_{i=1}^{N} 5000/N^2 - 2500
+			\\
+			& = (N^{2} - N)(2500/N^2) + 5000/N - 2500
+			\\
+			& = 2500/N 
+		\end{align*}
+		and so
+		\begin{align*}
+			\sigma(X) = 50/\sqrt{N} \to 0.
+		\end{align*}
+		Observe, that for the single coin case, $N = 1$ and $\sigma(X) = 50$.
+		Hence, spreading one's investments around, or \emph{diversifying} allows 
+		them to
+		control variance and, hence, control risk. However, a consequence of our 
+		analysis is that the more diversified a portfolio, the less chance that one 
+		will make a great deal of money (i.e.\ deviate far from the mean).  
+	\end{example}
+	\section{Assets}
+	We now give a brief overview of some of the most common assets.
+
+	\subsection*{Stocks}
+	Most shares traded on the market are from \emph{limited liability} companies.
+	What this means is that if the company goes bankrupt, the investor loses their 
+	investment, but can't be sued if the company is sued. That is, limited
+	liability stocks can never have negative value.
+
+	The investor makes money 
+	from the stock via both dividends paid out, and by the price of the share on 
+	the market.
+
+	\subsection*{Bonds} 
+	The most typical is a $30$ year bond, with coupons (i.e.\ interest payments) 
+	issued every year. The principal is returned at the end of the $30$ years.
+	They are  not entirely riskless---interest rates may change, diminishing the 
+	value of the bond on the open market. This is reflected by the \emph{yield} of 
+	the bond, where we define
+	\begin{equation*}
+		\text{yield} = \frac{\text{interest payment}}{\text{price of bond}}.
+	\end{equation*}
+	
+	Since bonds from stable governments are close to riskless, their yield is 
+	typically low (around $3\%$). Bonds from unstable governments are very risky 
+	(good luck getting General Sibanda to return your principal once he takes over 
+	Zimbabwe), and so have high yields.
+	\subsection*{Corporate Bonds}
+	These are loans to a company, and their riskiness varies, depending on the 
+	stability of the company. 
+	\subsection*{Derivatives}
+	These are any instrument whose value is determined by the value of another 
+	asset, commonly called the \emph{underlying}. At their core, derivatives are 
+	instruments that allow us to offset the risk of an asset by adopting the 
+	``opposite'' risk.
+	\begin{example}
+		Suppose a firm will be paid in yen one year into the future,and will want 
+		to exchange the yen into dollars immediately upon payment.
+		If the exchange rate dips in one year, the firm will lose money. To lessen 
+		the risk of this occurring, the firm can purchase a \emph{forward 
+		contract}. That is, it can agree today to a fixed exchange rate for a fixed 
+		amount of yen one year into the future. Observe that if the exchange rate 
+		is greater one year from now than that fixed in the contract, the firm 
+		loses potential profits. However, if the exchange rate is less one year 
+		from now than that in the contract, the firm has guarded itself from great 
+		losses. 
+	\end{example}
+	If the amount of yen paid at the end of the year will be highly variable, the 
+	firm can enter into an \emph{option}, which is a contract to exchange 
+	\emph{any} quantity of yen at a fixed interest rate, in the future. However, 
+	unlike forwards, options are \emph{not-binding}. That is, the firm would have 
+	the option to not exercise the contract if it is not variable to a year from 
+	now.
+	\begin{definition}
+		A \emph{call option} is a contract whose purchaser has the option to buy an 
+		asset at an agreed upon rate in the future. A \emph{put option} is the a 
+		contract whose purchaser has the option to sell an asset at an agreed upon 
+		rate in the future. A \emph{vanilla option} is either an \emph{American 
+		option} or \emph{European option}---an American option can be exercised any 
+		day before an agreed upon day in the future, while a European option can 
+		only be exercised on one agreed upon day in the future.
+	\end{definition}
+	The pricing of options is a difficult problem, which we shall tackle in future 
+	lectures.\chapter{Arbitrage}
+	We motivate our discussion of \emph{arbitrage} via an example. 
+	\begin{example}
+		Suppose $1$ British pound is worth $1.5$ dollars,  $1$ dollar is worth 
+		$100$ yen, 
+		and $1$ pound is worth $149$ yen.
+		We now construct a strategy to make a profit \emph{without risk of losses} 
+		as follows: 
+		We borrow $149$ yen, immediately exchange it for $1$ pound, which we 
+		exchange for $1.5$ dollars. Then we exchange our $1.5$ dollars for $150$ 
+		yen, which we use to pay back our debt of $149$ yen. All these trades are 
+		executed instantaneously, allowing us to avoid interest costs. Therefore, 
+		our 
+		our net profit is $150 - 149 = 1$. This type of investment opportunity is 
+		known as an
+		\emph{arbitrage opportunity}.
+	\end{example}
+	We remark that arbitrage opportunities do exist in the market, but they don't 
+	exist for long, due to their extreme desirability. That is, once enough people 
+	find out about the opportunity in the example, it raises the number of people 
+	demanding to exchange yen for pounds, lowering the value of yen relative to 
+	pounds until a $150:1$ yen to pound ratio is reached, upon which the arbitrage 
+	opportunity disappears.  
+
+	Since arbitrage opportunities are rare and vanish quickly, we will assume 
+	absence of arbitrage in our models. We shall also adopt a number of others
+	axioms, extending our previous framework.
+	\begin{definition}[Axioms of Market Efficiency, Updated]
+		In an efficient market, we have the following: 
+	\begin{enumerate}[(i)]
+		\item 
+				All available information about an asset is 
+				contained in its price. In other words, the price of an asset 
+				reflects its risk.
+			\item 
+				The past price of a stock has no influence on its present price. 
+				More precisely,
+				stock movement is a martingale.
+		\item No market moving. That is, one can buy and sell any amount of an asset
+			without affecting its price. Many prop shops attempt to violate this by 
+			artificially moving prices, thereby constructing an arbitrage 
+			opportunity. This has adverse effects for the economy and market 
+			efficiency.   
+		\item Liquidity. That is,
+			we can buy or sell any amount of an asset. Observe that 
+			Wall St.\  provides this. Indeed, any stable stock exchange does. 
+		\item We are allowed to short assets.
+		\item Fractional quantities of shares can be purchased. This is motivated 
+			by the idea that if there are $10^{6}$ shares of a particular stock 
+			available, then $1/10^6 \sim 0.5/10^{6}$.
+		\item No transaction costs, commonly known as the \emph{bid-offer spread}. 
+			This is of course false in the real world, but we assume it to simplify our 
+			models. Observe that our assumption introduces a negligible error if the 
+			transaction cost is small relative to the value of the asset being 
+			exchanged.
+	\end{enumerate}
+	\end{definition}
+	\section{Mathematical Definition of Arbitrage, and its Corollaries}
+	\begin{definition}
+		A portfolio is said to be an \emph{arbitrage portfolio} if today it is
+		of $x$ value, and in the future it has zero probability of being $<x$ in 
+		value,
+		and nonzero probability of being $>x$ in value. 
+	\end{definition}
+	\begin{theorem}[Monotonicity Theorem]
+		Consider two portfolios $A, B$ with values $A(t)$ and $B(t)$, respectively. 
+		If $A(T) \ge B(T)$ in every state of the world at time $T$, then
+		$A(t) \ge B(t)$ for every $t < T$. In addition, if we know that
+		$A(T) > B(T)$ in some states of the world at time $T$, then
+		$A(t) > B(t)$ for all $t < T$. 
+	\end{theorem}
+	\begin{proof}
+		Consider portfolio $C$ constructed by going long $A$, and short $B$. Then
+		$C(T) = A(T) - B(T) \ge 0$ in all states of the world at time $T$. 
+		By the no-arbitrage principle, we must have $C(t) \ge 0$. \qedhere
+	\end{proof}
+	\begin{corollary}
+		A vanilla call option or put option is always of positive value before 
+		expiry.
+	\end{corollary}
+	\begin{proof}
+		Let $A$ be a portfolio that is long a call option, and $B$ be an empty
+		portfolio.  Then $B$ has zero value for all time, while $A(T) = {(S_{T}
+	- K)}_{+} \ge 0$ in all states of the market at time $T$. Hence, $A(T) \ge
+	B(T)$ in all states, and hence $A(t) \ge B(t)$ by monotonicity.
 \end{proof}
 \begin{corollary}[Weighted Symmetry of Randomness]
 	If two portfolios $P$ and $Q$ are equal at some $t < T$ and $P(T) > Q(T)$
@@ -1328,8 +1696,8 @@ B(T)$ in all states, and hence $A(t) \ge B(t)$ by monotonicity.
 	monotonicity,
 	$P(t) > Q(t)$, which is a contradiction.
 \end{proof}
-\subsection{Introduction to Arbitrage-Free Pricing}
-\subsubsection{Forward Exchange Rates}
+\section{Introduction to Arbitrage-Free Pricing}
+\subsection{Forward Exchange Rates}
 Suppose a firm wants to enter a contract to exchange up to $1$
 dollar for yen a year from now at an exchange rate $K'$. We
 wish to compute a non-arbitrage inducing exchange rate $K'$ for the
@@ -1387,7 +1755,7 @@ Hence, we have shown that going long a forward contract is equivalent
 to the bond shorting strategy we have outlined above. The strategy of pricing 
 an asset by decomposing it into instruments whose price can be computed is 
 known as \emph{replication}.
-\subsubsection{Options}
+\subsection{Options}
 Recall that a European call option grants the owner the right, but not the 
 obligation, to purchase an asset at price $K$ at some point in the future, but 
 not before. 
@@ -1616,7 +1984,7 @@ in time which we evaluate it. As an example, in terms of price it makes no diffe
 \begin{proof}[Proof of \cref{itm:third}]
 	Let $T_{1} < T_{2}$, fix $t \le T_{1}$, and
 	adopt the notation
-	$C_{1} = C(K, T_{1}, S(t), t)$, $C_{2} = C(K, T_{2}, S(t), t)$.  
+	\\ $C_{1} = C(K, T_{1}, S(t), t)$, $C_{2} = C(K, T_{2}, S(t), t)$.  
 	By \cref{cor:am-eu-equiv}, $C_{1}$ and $C_{2}$ are each equal in value to
 	an American option with the same underlying, strike, and expiry. Hence,
 	without loss of generality we
@@ -1694,373 +2062,7 @@ in time which we evaluate it. As an example, in terms of price it makes no diffe
 	%high interest rate will result in a fall of stock price. This is one of the
 	%main reasons why the Federal Reserve manipulates interest rates.
 %\end{remark}
-\section{Characteristic Functions}
-If $f = f(x)$ is integrable (that is, $\int_{\rr}| f | \ dx < \infty$), we define its \emph{Fourier transform} by
-\begin{equation*}
-	\begin{split}
-		\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{-i x \xi} f(x) \ dx.
-	\end{split}
-\end{equation*}
-If $ \hat{f}(\xi)$ is integrable as well, then we have the
-following.
-\begin{theorem}\label{thm:fourier-inversion}
-	If $f, \hat{f}$ are integrable, then
-	\begin{equation*}
-		\begin{split}
-			f(x) = \int_{-\infty}^{\infty} e^{i x \xi} \hat{f}(\xi) \ d \xi.
-		\end{split}
-	\end{equation*}
-\end{theorem}
-\begin{proof}
-	See Stein and Shakarchi \cite{zbMATH02171466}.
-\end{proof}
-\begin{proposition}\label{prop:}
-	The Fourier transform has the following properties.
-	\begin{enumerate}[(i)]
-		\item	$\wh{f(x+h)}(\xi) = \wh{f(\xi) e^{i h \xi}}$
-		\item $\wh{f(x) e^{-i x h}}(\xi) = \wh{f}(\xi + h)$	
-		\item $\wh{\frac{d}{dx} f(x)}(\xi) = i \xi$
-		\item $\wh{-ix f(x)}(\xi) = \frac{d}{d \xi}\wh{f}(\xi)$
-		\item $\hat{\hat{f}}(x) = f(-x)$
-		\item $\int_{\rr} \wh{f}(x) g(x) \ dx = \int_{\rr} f(x) \wh{g}(x) \ dx$
-		\item $\wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi)$.
-	\end{enumerate}
-\end{proposition}
-\begin{proof}
-	The proofs are a straightforward
-	application of $u$-substitution, and interchanging order of integration.
-	See Stein and Shakarchi \cite{zbMATH02171466}. 
-\end{proof}
-\begin{definition}
-	The characteristic function of a random variable $X$ is given by
-	\begin{equation*}
-		\begin{split}
-			\phi_{X} = \ex(e^{-itX}).
-		\end{split}
-	\end{equation*}
-\end{definition}
-Observe that if $X$ has a density $f$, then
-\begin{equation*}
-	\begin{split}
-		\phi(t) = \int_{\rr} e^{-itx} f(x) \ dx
-	\end{split}
-\end{equation*}
-This is just the Fourier transform of the density. 
-\begin{framed}
-	\begin{remark}
-		Some texts set
-		\[\phi_{X}(t) = \ex(e^{-itX})\]
-		which is equivalent to our definition
-		of the characteristic function, evaluated at $-t$. 
-	\end{remark}
-\end{framed}
-\begin{lemma}\label{lem:indep}
-	If $X, Y$ are independent, then
-	\begin{equation*}
-		\begin{split}
-			\phi_{X + Y}(t) = \phi_{X}(t) \phi_{Y}(t).
-		\end{split}
-	\end{equation*}
-\end{lemma}
-\begin{proof}
-	If $X$ and $Y$ are independent, then $e^{-itX}$ and $e^{-itY}$ are independent.
-	Therefore
-	\begin{equation*}
-		\begin{split}
-			\phi_{X + Y}(t) = \ex(e^{-itX - itY}) = \ex(e^{-itX} e^{-itY})
-			= \ex(e^{-itX}) \ex (e^{-itY}) = \phi_{X}(t) \phi_{Y}(t)
-		\end{split}
-	\end{equation*}
-	which completes the proof.
-\end{proof}
-\begin{framed}
-	\begin{remark}
-		Observe that if $X$ and $Y$ both have densities and are independent, then 
-		the density of $X + Y$ is $f \star g$, and so 
-		\[\phi_{X + Y}(t) = \wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi) =
-		\phi_{X}(t) \phi_{Y}(t).\]
-		Hence, the power of characteristic functions manifests itself when
-		we are summing random variables: convolutions of functions are difficult to deal
-		with, while products of functions, in general, are not. 
-	\end{remark}
-\end{framed}
-\begin{definition}
-	The joint characteristic function of $X$ and $Y$ is given by
-	\begin{equation*}
-		\begin{split}
-			\phi_{X,Y}(s,t) = \ex(e^{-isX} e^{-itY}).
-		\end{split}
-	\end{equation*}
-\end{definition}
-Observe that if $(X, Y)$ has the joint density function $f(x, y)$, then
-letting $F(x, y) = e^{-isx} e^{-ity}$, we obtain
-\begin{equation*}
-	\begin{split}
-		\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY})
-		\\
-		& = \ex(F(X, Y))
-		\\
-		& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} F(x, y) f(x, y) \ dx  dy
-		\\
-		& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity}
-		f(x, y) \ dx  dy
-	\end{split}
-\end{equation*}
-which is just the Fourier transform of the joint density in the $x$ and $y$
-variables.
-\begin{lemma}\label{lem:char-ind}
-	Two random variables $X$ and $Y$ are independent if and only if
-	\begin{equation*}
-		\begin{split}
-			\phi_{X, Y}(s, t)= \phi_{X}(s) \phi_{Y}(t), \quad \forall s, t
-		\end{split}
-	\end{equation*}
-\end{lemma}
-\begin{proof}
-	We prove this result for the case where $X$ and $Y$ have densities.
-	To establish necessity, assume independence. Then
-	$e^{-isX}$ and $e^{-itY}$ are independent for all $s, t$, and so
-	\begin{equation*}
-		\begin{split}
-			\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY}) = \ex(e^{-isX}) \ex(e^{-itY})
-			= \phi_{X}(s) \phi_{Y}(t).
-		\end{split}
-	\end{equation*}
-To establish the sufficiency, we prove the contrapositive. Assume there exist $s, t$ such that
-\begin{equation*}
-\begin{split}
-\ex(e^{-isX} e^{-itY}) \neq \ex(e^{-isX}) \ex(e^{-itY}).
-\end{split}
-\end{equation*}
-Then this is equivalent to saying
-\begin{equation*}
-\begin{split}
-	\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
-	e^{-ity} h(y) \ dy
-	\neq 
-\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx
-dy.
-\end{split}
-\end{equation*}
-If $X$ and $Y$ are independent, then $f(x, y) = g(x) h(y)$, which implies
-\begin{equation*}
-\begin{split}
-	\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
-	e^{-ity} h(y) \ dy
-	= 
-\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx dy
-\end{split}
-\end{equation*}
-which is a contradiction.
-%Taking partial derivatives with respect
-%to $s$ and $t$ on the left and right hand sides,
-%and evaluating at $s=t=0$, we obtain
-%\begin{equation*}
-%\begin{split}
-%E(XY) = E(X) E(Y)
-%\end{split}
-%\end{equation*}
-\end{proof}
-\subsection{Examples of Characteristic Functions}
-\begin{enumerate}
-	\item Bernoulli distribution for one trial with parameter $p$. That is,
-		the Bernoulli random variable outputs $1$ with probability $p$,
-		and $0$ with probability $1-p$.
-		\begin{equation*}
-			\begin{split}
-				\phi(t) = \ex(e^{-itX}) = e^{-it0}(1-p) + e^{-it}p = 1-p + pe^{-it}
-			\end{split}
-		\end{equation*}
-	\item Bernoulli distribution with $n$ independent trials and parameter
-		$p$. Letting $X = X_{1} + \cdots + X_{n}$, where the $X_i$ denote
-		the trials, we have
-		\begin{equation*}
-			\begin{split}
-				\phi_{X}(t) = \phi_{X_{1} + \ldots + X_{n}}(t)
-				 = \prod_{1 \le i \le n} \phi_{X_{i}}(t)
-				 = \left[ 1-p + pe^{-it} \right]^{n}.
-			\end{split}
-		\end{equation*}
-	\item Normal Distribution. If $X$ is $N(0,1)$, then
-		\begin{equation*}
-			\begin{split}
-				\phi(t) = \ex(e^{-itX})
-				& = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-itx}
-				e^{-x^{2}/2} \ dx
-				\\
-				& = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2 \pi}} e^{-(x^{2} -2itx)/2} \
-				dx
-				\\
-				& = \int_{-\infty}^{\infty} e^{-(x-it)^{2}/2 - t^{2}/2} \ dx
-				\\
-				& = e^{-t^{2}/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}}
-				e^{-(x - it)^{2}/2} \ dx
-				\\
-				& = e^{-t^{2}/2}
-			\end{split}
-		\end{equation*}
-		where the last step follows from complex integration.	
-		We now compute the characteristic function of $Y \overset{\text{d}}{=}N(\mu,
-		\sigma^{2})$ by observing that $Y \overset{\text{d}}{=} \sigma X + \mu$,
-		which gives
-		\begin{equation*}
-			\begin{split}
-				\phi_{Y}(t) = \phi_{\sigma X + \mu}
-				& =  \phi_{\sigma X}(t) \phi_{\mu}(t)
-				\\
-				& = e^{it\mu} \int_{-\infty}^{\infty} e^{i t \sigma x} e^{-x^{2}/2} \ dx
-				\\
-				& = e^{it \mu} \phi_{X}(\sigma t)
-				\\
-				& = e^{it \mu} e^{-( \sigma t)^{2}/2}
-				\\
-				& = e^{it \mu - (\sigma t)^{2}/2}
-			\end{split}
-		\end{equation*}
-\end{enumerate}
-\subsection{Convergence in Distribution Using Characteristic Functions}
-%\begin{definition}
-	%We say that a sequence $F_{1}, \ldots, F_{n}: \rr \to \rr$
-	%of distribution functions
-	%converge to $F: \rr \to \rr $ if they converge pointwise to $F$. 
-%\end{definition}
-\begin{theorem}\label{thm:conv-char-dist}
-	Suppose $F_{1}, \cdots, F_{n}$ are a sequence of distributions
-	with corresponding characteristic functions
-	$\phi_{1}, \cdots, \phi_{n}$, respectively. 
-	\begin{enumerate}[(i)]
-		\item If $F_{n} \to F$ pointwise in $\rr$,
-			where $F$ has characteristic function
-			$\phi$, then $\phi_{n} \to \phi$ pointwise in $\rr$.
-		\item Conversely, if  $\phi_{n} \to \phi$ pointwise in $\rr$ and 
-			$\phi$ is continuous at $t = 0$, then $\phi$ is the characteristic
-			function of some distribution $F$, and $F_{n} \to F$ pointwise
-			in $\rr$
-	\end{enumerate}
-\end{theorem}
-\begin{corollary}
-	If $F_{1}, \cdots, F_{n}$ and $F$ are distribution functions with densities
-	and corresponding characteristic functions $\phi_{1}, \cdots, \phi_{n}$ and
-	$\phi$ respectively, then $F_{n} \to F$ pointwise in $\rr$ if and only if
-	$\phi_{n} \to \phi$ pointwise in $\rr$.
-\end{corollary}
-\subsection{The Weak Law of Large Numbers, and the Central Limit Theorem}
-\begin{definition}
-	We say a sequence of random variables $\{X_{i}\}$
-	with corresponding distribution functions $\{F_{i}\}$
-	\emph{converges in distribution} to a random variable $X$ with corresponding
-	distribution function $F$, if $F_{n} \to F$ pointwise in $\rr$.
-	We denote this by $X_{n} \xrightarrow{\text{d}} X$.
-\end{definition}
-\begin{theorem}[Weak Law of Large Numbers]\label{thm:weak-law}
-	Let $\left\{ X_{i} \right\}$ be a sequence of independent, identically
-	distributed random variables with finite means $\mu$. Let
-	$S_{n} \doteq X_{1} + \cdots X_{n}$. Then
-	\begin{equation*}
-		\begin{split}
-			\frac{S_{n}}{n} \xrightarrow{\text{d}} \mu.
-		\end{split}
-	\end{equation*}
-\end{theorem}
-\begin{proof}
-	By \cref{thm:conv-char-dist}, it suffices to show that
-	the characteristic function of $S_{n}/n$ converges
-	pointwise to  $e^{it \mu}$, the characteristic function of $\mu$ (and clearly
-	continuous at $t=0$). Observe that
-	\begin{equation*}
-		\begin{split}
-			\phi_{n}(t) = \phi_{X_{1}/n + \ldots + X_{n}/n}(t)
-			= \prod_{1 \le j \le n} \phi_{X_{j}/n}(t)
-			& = \left[ \phi_{X_{1}/n}(t) \right]^{n}
-			\\
-			& = \left[ \phi_{X_{1}}(t/n) \right]^{n}
-		\end{split}
-	\end{equation*}
-	where the two steps follow from the identical distribution of the $X_{i}$,
-	and the identity
-	\begin{equation*}
-		\begin{split}
-			\phi_{X_{1}/n}(t) = \ex(e^{i X_{1} t /n}) = \phi_{X_{1}}(t/n),
-		\end{split}
-	\end{equation*}
-	respectively. A Maclaurin series expansion gives
-	\begin{equation*}
-		\begin{split}
-			\phi_{X_{1}}(t/n) & = \phi_{X_{1}}(0) + \phi_{X_{1}}'(0)(t/n) + o(t/n)
-			\\
-			& = 1 + (i \mu t)/n + o(t/n)
-		\end{split}
-	\end{equation*}
-	and so
-	\begin{equation*}
-		\begin{split}
-			\lim_{n \to \infty} \left[ \phi_{X_{1}}(t/n) \right]^{n}
-			= \lim_{n \to \infty} \left[ 1 + (i \mu t)/n \right]^{n} = e^{i \mu t}
-		\end{split}
-	\end{equation*}
-	completing the proof.
-\end{proof}
-\begin{theorem}\label{thm:central-limit}
-	Let $ \left\{ X_{i} \right\}$ be independent, identically
-	distributed random variables with means $\mu$ and nonzero
-	variance $\sigma^{2}$. Let $S_{n} \doteq X_{1} + \cdots + X_{n}.$ Then
-	\begin{equation*}
-		\begin{split}
-			\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}} \xrightarrow{\text{d}} N(0,1).
-		\end{split}
-	\end{equation*}
-\end{theorem}
-\begin{proof}
-	By \cref{thm:conv-char-dist}, it suffices to show that
-	the characteristic function of $S_{n}/\sqrt{n \sigma^{2}}$ converges
-	pointwise to  $e^{-t^{2}/2}$, the characteristic function of 
-	a standard normal random variable (and clearly
-	continuous at $t=0$). Let
-	$Y_{i} = (X_{i} - \mu)/n$. Then the $Y_{i}$ have mean $0$ and
-	variance $1$. Furthermore, 
-	\begin{equation*}
-		\begin{split}
-			\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
-			= \frac{X_{1} - \mu+ \cdots + X_{n} - \mu}{\sigma \sqrt{n}}
-			& = \frac{1}{\sqrt{n}}\left[ Y_{1} + \cdots + Y_{n} \right].
-		\end{split}
-	\end{equation*}
-	Then
-	\begin{equation*}
-		\begin{split}
-			\phi_{\frac{1}{\sqrt{n}}\sum Y_{i}}(t)
-			= \phi_{\sum Y_{i}} = \left[ \phi_{Y_{1}}\left( t/\sqrt{n} \right) \right]^{n}
-		\end{split}
-	\end{equation*}
-	where the last step follows from the fact that the $Y_{i}$ are identically
-	distributed. Next, observe that
-	\begin{equation*}
-		\begin{split}
-			& \phi_{Y_{1}}'(0) = \ex (-iY_{1} e^{-itY_{1}}) \vert_{t = 0} = -i
-			\ex(Y_{1}) = 0
-			\\
-			& \phi_{Y_{1}}''(0) = \ex(Y_{1}^{2} e^{-itY_{1}}) \vert_{t = 0} = 
-			\ex(Y_{1}^{2}) = \var(Y_{1}) = 1.
-		\end{split}
-	\end{equation*}
-	Hence, a Maclaurin expansion gives
-	\begin{equation*}
-		\begin{split}
-			\phi_{Y_{1}}(t) = 1 - t^{2}/2n + o(t^{2}/n)
-		\end{split}
-	\end{equation*}
-	and so
-	\begin{equation*}
-		\begin{split}
-			\lim_{n \to \infty} \phi_{\frac{1}{\sqrt{n}} \sum Y_{i}}
-			= \lim_{n \to \infty} \left[ 1 - t^{2}/2n \right]^{n}
-			= e^{-t^{2}/2}
-		\end{split}
-	\end{equation*}
-	which completes the proof.
-\end{proof}
-
-\section{Pricing the Multi-step, two State, zero interest Option}
+\chapter{Pricing the Multi-step, two State, zero interest Option}
 In order to accurately price an option, our model must take into account the
 infinitely many states the future can take. To simplify our discussion, we shall
 first restrict our model to futures with finitely many states, and
@@ -2075,7 +2077,7 @@ tomorrow with probability $1-p$, where $p \neq 0,1$.
 	we can go short $100$ worth in bonds, purchase the stock at $100$, which then will increase to $110$, after which we can pay back our bond debt and be left with 
 	a profit of $10$, risk free. A similar arbitrage exists for the case when $p=0$.
 \end{remark}
-\subsection{The Arbitrage-free Approach}
+\section{The Arbitrage-free Approach}
 Consider a portfolio $P$
 that is long $\delta$ shares of the underlying, and short the option.
 Then
@@ -2108,7 +2110,7 @@ allowed us to price an option. Observe furthermore that we were able
 to price the option independently of the probability $0 < p < 1$. 
 Hence, it is reasonable to ask whether we can choose a probability
 $0 < p' < 1$ that somehow simplifies our computations.
-\subsection{The Risk Neutral Approach}
+\section{The Risk Neutral Approach}
 From our arbitrage considerations, we see that, for suitably chosen
 $\delta$, we had $P(0) = P(T)$. Then of course, for this $\delta$, we must
 have $\ex(P(0)) = \ex(P(T))$. Let us weaken our assumptions a little by allowing
@@ -2182,14 +2184,10 @@ Does such a probability exist in the general case?
 		\end{split}
 	\end{equation}
 	which gives $C_{0} = 1/2(\alpha + \beta)$ for $u = d$, completing the proof.
+	\footnote{Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
+		by setting the right-hand-side of~\eqref{rn-drift} equal to 
+	$p' \alpha + (1-p')\beta$ and solving for $p'$.} 
 \end{proof}
-\begin{framed}
-\begin{remark}
-	Observe that if $u \neq d$, we can obtain still obtain a risk-neutral $p'$
-	by setting the right-hand-side of~\eqref{rn-drift} equal to 
-	\[p' \alpha + (1-p')\beta \] and solving for $p'$. 
-\end{remark}
-\end{framed}
 We now generalize our arguments. 
 As before, we assume zero-interest. Let an underlying $S$ be worth
 $100$ today ($t=0$), with up and down states of $\pm 5$ tomorrow ($t=1$), respectively.  We let each of these states, in turn, have up and down states of
@@ -2259,9 +2257,8 @@ or, written more concisely,
 \end{equation}
 where the $\left\{ X_{i} \right\}$ are symmetric, independent random 
 variables taking the values $\pm 1$.
-
-\section{The Continuous Time Black-Scholes in the Absence of Interest,
-With Possibly Negative Stock Prices}
+\chapter{The Continuous Time Black-Scholes Formula}
+\section{Introduction}
 We now seek to price options in continuous time 
 by taking $N \to \infty$ in the right-hand-side of \eqref{binom-sum}.
 
@@ -2340,26 +2337,7 @@ Then for an option that pays $f(S(T))$ at time $T$, we have
 		= \ex[f(S_{0} + \sigma_{k} \sum_{i=1}^{k} X_{i})].
 	\end{split}
 \end{equation*}
-We now would like to let $k \to \infty$, in order to get the best interest-free
-approximation of call-option prices in the real-world.
-\begin{theorem}[Central Limit Theorem]\label{thm:central-lim-thm}
-	Let $X_{1}, X_{2}, \ldots$ be a sequence of independent, identically
-	distributed random variables with finite means $\mu$ and finite, nonzero
-	variances $\sigma^{2}$. Let
-	\begin{equation*}
-		\begin{split}
-			S_{n} \doteq X_{1} + X_{2} + \cdots + X_{n}.
-		\end{split}
-	\end{equation*}
-	Then the cumulative distribution of 
-	\begin{equation*}
-		\begin{split}
-			\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
-		\end{split}
-	\end{equation*}
-	converges pointwise to the standard normal distribution.
-\end{theorem}
-Hence,
+By \cref{thm:central-limit}, 
 \begin{equation*}
 	\begin{split}
 		S_{0} + \sigma_{k} \sum_{i = 1}^{k} X_{i}
@@ -2382,8 +2360,7 @@ and so our option price is given by
 \end{equation*}
 Unfortunately, our model is too simplistic, as it allows for stock prices to
 be negative, and has assumed interest to be zero. 
-\section{The Continuous Time Black-Scholes With Interest and Non-Negative
-Stock Prices}
+\section{Distribution of Stock Price With Zero Interest}
 Our one step, two state model before involved a stock price $S_{0}$ today
 increasing or decreasing to $S_{0} \pm u$, respectively. In the multi-step
 extension, this has the drawback of allowing for negative stock prices. 
@@ -2459,14 +2436,14 @@ Hence,
 We say that $S_{T}$ is \emph{log-normally distributed}, since its
 logarithm is normally distributed. Furthermore, observe that
 $S_{T}(\omega) \not < 0$ for all $\omega \in \Omega$.
-\subsection{One Timestep, Two States}
+\section{Distribution of Stock Price with Positive Interest}
 We first restrict our attention to the one step, two state model, with
 initial stock price $S_{0}$ and future states $S_{\pm}$. Observe that
 the assumption of no-arbitrage implies $S_{-} \le S_{0}e^{r \Delta t} < S_{+}$.
 We shall now attempt to price a call option $C$ with underlying $S$ at time
 $t=0$. 
 
-\subsubsection{The No-Arbitrage Pricing Approach}
+\subsection{The No-Arbitrage Pricing Approach}
 Consider a portfolio $P$ that is long $\delta$
 shares of the underlying, and short the option. Then
 \begin{equation*}
@@ -2557,7 +2534,7 @@ and so
 \end{equation}
 Note that since~\eqref{no-arb} holds, no arbitrage using bonds is
 possible. Contrast this with our previous, failed models. 
-\subsubsection{The Risk Neutral Approach}
+\subsection{The Risk Neutral Approach}
 Observe that for the no-arbitrage approach, we were able to find a risk-free
 $\delta$ by setting $P(T) = P(0)$ and solving.
 
@@ -2622,9 +2599,8 @@ or
 %\end{equation}
 %where we remark that $S_{0}(j \Delta t)$ is a random variable: there are
 %$2^{j} -1$ possible nodes $S_{0}$ after $j$ timesteps of size $\Delta t$. 
-\subsection{Multiple Timesteps}
-Assume now, starting from $t=0$,
-we have $N$ symmetric timesteps of length $\Delta t$, where
+
+We now generalize the risk-neutral approach to multiple timesteps. Suppose, starting from $t=0$, we have $N$ symmetric timesteps of length $\Delta t$, where
 $N \Delta t  = T$. Using the risk-neutral option pricing
 results in the previous section, and running an induction,
 it follows that 
@@ -2692,7 +2668,7 @@ Cancelling $S_{j-1}$, we see that
 		\end{split}
 	\end{equation*}
 	Hence, we rewrite our symmetric, multi-step model as the
-	\emph{risk-neutral}, multi-step model
+	equivalent \emph{risk-neutral}, multi-step model
 	\begin{equation*}
 		\begin{split}
 			\log S_{j} = \log S_{j-1} + \sigma \sqrt{T/N} Z_{j}
@@ -2724,7 +2700,7 @@ Cancelling $S_{j-1}$, we see that
 			\\
 			& = 1 - {\left( \frac{r - \frac{1}{2} \sigma^{2}}{\sigma}
 		\right)}^{2}
-		\Delta t  + O[{(\Delta t)}^{3/2}].
+		\Delta t  + O[{(\Delta t)}^{3/2}]
 	\end{split}
 \end{equation*}
 and so
@@ -2750,8 +2726,7 @@ Hence,
 	\var (\sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j}) =
 	\sigma^{2}T + O(N^{-1}).
 \end{gather*}
-Subtracting the $O(N^{-1/2})$  and $O(N^{-1})$ terms, and equally distributing
-them into each $Z_{j}$, we can apply the central limit theorem to obtain
+Applyng the central limit theorem, we obtain
 \begin{equation*}
 	\begin{split}
 		\sigma \sqrt{T/N} \sum_{j=1}^{N} Z_{j} 
@@ -2775,27 +2750,18 @@ we conclude that
 		+ \sigma \sqrt{t} N(0,1)
 	\end{split}
 \end{equation*}
-from which we obtain
+from which we obtain\footnote{A simple computation shows that
+	$\ex_{p}(S_{T}) = S_{0}e^{rT}.$
+	That is, under the risk neutral probability $p$, our stock grows, on average,
+	at the bond market rate. This is consonant with our model's built-in
+no-arbitrage assumptions.}
 \begin{equation*}
 	\begin{split}
 		S_{T} \overset{\text{d}}{=} 
 		S_{0} e^{\left( r - \frac{1}{2} \sigma^{2} \right)T + \sigma
-		\sqrt{t}N(0,1)}
+		\sqrt{t}N(0,1)}.
 	\end{split}
 \end{equation*}
-\begin{framed}
-	\begin{remark}
-		A simple computation shows that
-		\begin{equation*}
-			\begin{split}
-				\ex_{p}(S_{T}) = S_{0}e^{rT}.
-			\end{split}
-		\end{equation*}
-		That is, under the risk neutral probability $p$, our stock grows, on average,
-		at the bond market rate. This is consonant with our model's built-in
-		no-arbitrage assumptions.
-	\end{remark}
-\end{framed}
 From~\eqref{ui}, it follows that, for a call option $C$ with strike
 price $K$
 \begin{equation*}
@@ -2803,119 +2769,118 @@ price $K$
 		C_{0} & =  e^{-rT} \ex \left [{\left( S_{T} - K \right)}_{+} \right ].
 	\end{split}
 \end{equation*}
-It turns out the expectation can be computed explicitly.
-First, observe that
+\section{The Explicit Formula}
+It turns out the expectation in the previous section can be computed explicitly
+for our symmetric, risk-neutral model. First, observe that
 \begin{equation*}
-\begin{split}
-	\prob(S_{T} \le s)
-	& = \prob(e^{\sigma \sqrt{T}N(0,1)} \le
-	\frac{s}{S_{0}e^{(r- \frac{1}{2} \sigma^{2})T}})
-	\\
-	& = \prob \left [N(0,1) \le \frac{1}{\sigma \sqrt{T}} \log\left(
-	\frac{s}{S_{0} e^{(r - \frac{1}{2}\sigma^{2})T}} \right) \right ]
-	\\
-	& = \frac{1}{\sqrt{2 \pi}}  \int_{-\infty}^{ \ell}
-	e^{- x^{2}/2} \ dx
-\end{split}
+	\begin{split}
+		\prob(S_{T} \le s)
+		& = \prob \left (e^{\sigma \sqrt{T}N(0,1)} \le
+		\frac{s}{S_{0}e^{(r- \frac{1}{2} \sigma^{2})T}} \right )
+		\\
+		& = \prob \left [N(0,1) \le \frac{1}{\sigma \sqrt{T}} \log\left(
+		\frac{s}{S_{0} e^{(r - \frac{1}{2}\sigma^{2})T}} \right) \right ]
+		\\
+		& = \frac{1}{\sqrt{2 \pi}}  \int_{-\infty}^{ \ell}
+		e^{- x^{2}/2} \ dx
+	\end{split}
 \end{equation*}
 where
 \begin{equation*}
-\begin{split}
-\ell = \frac{1}{\sigma \sqrt{T}}
-	\left [ \log s - \log S_{0} - (r - \frac{1}{2} \sigma^{2})T \right ].
-\end{split}
+	\begin{split}
+		\ell = \frac{1}{\sigma \sqrt{T}}
+		\left [ \log s - \log S_{0} - (r - \frac{1}{2} \sigma^{2})T \right ].
+	\end{split}
 \end{equation*}
-Hence, the density function of $S_{T}$ is given by
+Hence, the density function of $S_{T}$ is given by\footnote{Observe that $g_{S_{T}}(s)$ is integrable in a neighborhood of $0$, due
+to exponential decay near $0$ dominating the polynomial growth near $0$
+of the $1/s$ term. To see this explicitly, use L'H{\^o}pital's rule.} 
 \begin{equation*}
-\begin{split}
-	g_{S_{T}}(s) = \frac{d}{ds} \prob (S_{T} \le s)
-	= \frac{1}{\sigma s \sqrt{2 \pi T}}
-	e^{- \frac{1}{2 \sigma^{2} T} \left[ \log s - \log S_{0} - (r - \frac{1}{2}
-	\sigma^{2})T \right]}
-\end{split}
+	\begin{split}
+		g_{S_{T}}(s) = \frac{d}{ds} \prob (S_{T} \le s)
+		= \frac{1}{\sigma s \sqrt{2 \pi T}}
+		e^{- \left[ \log s - \log S_{0} - (r - \frac{1}{2}
+		\sigma^{2})T \right]^{2}/2 \sigma^{2} T}.
+	\end{split}
 \end{equation*}
-\begin{framed}
-\begin{remark}
-Observe that $g_{S_{T}}(s)$ is integrable in a neighborhood of $0$, due
-to exponential decay there dominating the $1/s$ term. 
-\end{remark}
-\end{framed}
 Therefore,
 \begin{equation*}
-\begin{split}
-	\ex_{p^{\star}}(f(S_{T})) = 
-	\frac{1}{\sigma \sqrt{2 \pi T}} \int_{-\infty}^{\infty}{(s- K)}_{+}
-	e^{- \frac{1}{2 \sigma^{2} T} \left[ \log s - \log S_{0} - (r - \frac{1}{2}
-	\sigma^{2})T \right]^{2}} \times \frac{1}{s}  \ ds
-\end{split}
+	\begin{split}
+		\ex_{p^{\star}}(f(S_{T})) = 
+		\frac{1}{\sigma \sqrt{2 \pi T}} \int_{-\infty}^{\infty}{(s- K)}_{+}
+		e^{- \left[ \log s - \log S_{0} - (r - \frac{1}{2}
+		\sigma^{2})T \right]^{2}/2 \sigma^{2} T}
+		\times \frac{1}{s}  \ ds.
+	\end{split}
 \end{equation*}
 Since ${(s-K)}_{+} = 0$ for $s < K$, the integral simplifies to
 \begin{equation*}
-\begin{split}
-\frac{1}{\sigma \sqrt{2 \pi T}} \int_{K}^{\infty}{(s- K)}
-	e^{- \frac{1}{2 \sigma^{2} T} \left[ \log s - \log S_{0} - (r - \frac{1}{2}
-	\sigma^{2})T \right]^{2}} \times \frac{1}{s}  \ ds
-\end{split}
+	\begin{split}
+		\frac{1}{\sigma \sqrt{2 \pi T}} \int_{K}^{\infty}{(s- K)}
+		e^{- \left[ \log s - \log S_{0} - (r - \frac{1}{2}
+		\sigma^{2})T \right]^{2}/2 \sigma^{2} T} \times \frac{1}{s}  \ ds.
+	\end{split}
 \end{equation*}
 Using the substitution $\mu = \left [ \log s - \log S_{0} - (r - \frac{1}{2}
 \sigma^{2})T \right ]/\sigma \sqrt{T}$, this becomes
 \begin{equation*}
-\begin{split}
-	& \frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
-\left [ S_{0}e^{(r - \frac{1}{2} \sigma^{2})T + s \sigma \sqrt{T}} - K
-\right ] e^{-s^{2}/2} \ ds
-\\
-& =
-\frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
-\left [ S_{0}e^{(r - \frac{1}{2} \sigma^{2})T + s \sigma \sqrt{T}}
-\right ] e^{-s^{2}/2} \ ds
-- 
-\frac{K}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty} e^{-s^{2}/2} \ ds
-\\
-& \doteq \text{I} - \text{II}
-\end{split}
+	\begin{split}
+		& \frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
+		\left [ S_{0}e^{(r - \frac{1}{2} \sigma^{2})T + s \sigma \sqrt{T}} - K
+		\right ] e^{-s^{2}/2} \ ds
+		\\
+		& =
+		\frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
+		\left [ S_{0}e^{(r - \frac{1}{2} \sigma^{2})T + s \sigma \sqrt{T}}
+		\right ] e^{-s^{2}/2} \ ds
+		- 
+		\frac{K}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty} e^{-s^{2}/2} \ ds
+		\\
+		& \doteq \text{I} - \text{II}
+	\end{split}
 \end{equation*}
 where $\ell_{K} = \ell(K)$.
-Since integral II is symmetric with respect to $\ell$, we have
+Since the Gaussian is symmetric, we have
 \begin{equation*}
-\begin{split}
-	\text{II} = K N(-\ell_{K})
-\end{split}
+	\begin{split}
+		\text{II} = K N(-\ell_{K}).
+	\end{split}
 \end{equation*}
 To evaluate integral I, we rewrite it and apply the change of 
 variable $\mu = s - \sigma \sqrt{T}$. Thus
 \begin{equation*}
-\begin{split}
-	\text{I} = 
-	& \frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
- S_{0}e^{rT}
- e^{-(s- \sigma \sqrt{T})^{2}/2} \ ds
-\\
-& = \frac{S_{0} e^{rT}}{\sqrt{2 \pi}} \int_{\ell_{K} - \sigma \sqrt{T}}^{\infty}
-e^{-s^{2}/2} \ ds
-\\
-& = S_{0}e^{rT} N(-\ell_{K} + \sigma \sqrt{T})
-\end{split}
+	\begin{split}
+		\text{I} = 
+		& \frac{1}{\sqrt{2 \pi}} \int_{\ell_{K}}^{\infty}
+		S_{0}e^{rT}
+		e^{-(s- \sigma \sqrt{T})^{2}/2} \ ds
+		\\
+		& = \frac{S_{0} e^{rT}}{\sqrt{2 \pi}} \int_{\ell_{K} - \sigma \sqrt{T}}^{\infty}
+		e^{-s^{2}/2} \ ds
+		\\
+		& = S_{0}e^{rT} N(-\ell_{K} + \sigma \sqrt{T})
+	\end{split}
 \end{equation*}
 where the last step follows from the symmetry of the Gaussian.
 Putting everything together, we obtain the \emph{Black-Scholes Formula}
 \begin{equation*}
-\begin{split}
-	C_{0} & =  e^{-rT} \ex \left [{\left( S_{T} - K \right)}_{+} \right ]
-	\\
-	& = S_{0}N(-\ell_{K}) - Ke^{-rT} N(-\ell_{K} + \sigma \sqrt{T})
-	\\
-	& = S_{0}N(d_{1}) - Ke^{rT} N(d_{2})
-\end{split}
+	\begin{split}
+		C_{0} & =  e^{-rT} \ex \left [{\left( S_{T} - K \right)}_{+} \right ]
+		\\
+		& = S_{0}N(-\ell_{K} + \sigma \sqrt{T}) - Ke^{-rT} N(-\ell_{K})
+		\\
+		& = S_{0}N(d_{1}) - Ke^{-rT} N(d_{2})
+	\end{split}
 \end{equation*}
-where
+where 
 \begin{equation*}
-\begin{split}
-	& d_{1} = \frac{\log(S_{0}/K) + (r + \sigma^{2}/2)T}{\sigma \sqrt{T}}
-	\\
-	 & d_{2} = \frac{\log(S_{0}/K) + (r - \sigma^{2}/2)T}{\sigma \sqrt{T}}.
-\end{split}
+	\begin{split}
+		& d_{1} = \frac{\log(S_{0}/K) + (r + \sigma^{2}/2)T}{\sigma \sqrt{T}}
+		\\
+		& d_{2} = \frac{\log(S_{0}/K) + (r - \sigma^{2}/2)T}{\sigma \sqrt{T}}.
+	\end{split}
 \end{equation*}
 \bibliographystyle{amsalpha}
 \bibliography{/Users/davidkarapetyan/Documents/math/bib/references.bib}
 \end{document}
+

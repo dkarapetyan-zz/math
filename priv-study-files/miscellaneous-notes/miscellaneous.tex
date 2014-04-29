@@ -228,15 +228,7 @@ which we rewrite as
   \frac{dS}{S(t)} = \alpha(t) dt + \sigma(t) dW(t).
 \end{split}
 \end{equation*}
-Observe that it is the random noise in this model that makes it difficult to solve(if $\sigma = 0$, then the resulting equation is an ODE and can be easily solved explicitly.) Hence, we first restrict our attention to
-\begin{equation}
-  \label{pure-noise}
-\begin{split}
-\frac{dS(t)}{S(t)} = \sigma(t) dW(t).
-\end{split}
-\end{equation}
-
-By the Ito Calculus,
+Observe that it is the random noise in this model that makes it difficult to solve(if $\sigma = 0$, then the resulting equation is an ODE and can be easily solved explicitly.) By the Ito Calculus,
 
 \begin{equation*}
 \begin{split}
@@ -247,22 +239,21 @@ d \log | S(t) |
 \\
 & = \frac{dS(t)}{S(t)} - \frac{1}{2} \sigma^{2}(t) dt
 \\
-& = \sigma(t) d W(t) - \frac{1}{2} \sigma^{2}(t) dt
+& = \alpha(t) dt + \sigma(t) d W(t) - \frac{1}{2} \sigma^{2}(t) dt
 \end{split}
 \end{equation*}
-where the last line follows by substituting relation \eqref{pure-noise}. Therefore,
+Therefore, 
 \begin{equation*}
 \begin{split}
-  \log | S(t) | - \log | S(0) | = \int_{0}^{t} \sigma(s) dW(s) -\frac{1}{2} \int_{0}^{t} \sigma^{2}(s) ds.
+  \log | S(t) | - \log | S(0) | = \int_{0}^{s} [\alpha(s) - \frac{1}{2}\sigma^{2}] ds + \int_{0}^{s} \sigma(s) dW(s). 
 \end{split}
 \end{equation*}
 We conclude that
 \begin{equation*}
 \begin{split}
-S(t) = S_{0} \exp[\int_{0}^{t} \sigma(s) dW(s) - \frac{1}{2} \int_{0}^{t} \sigma^{2}(s) ds].
+S(t) = S_{0} \exp \left \{\int_{0}^{s} [\alpha(s) - \frac{1}{2}\sigma^{2}] ds + \int_{0}^{t} \sigma(s) dW(s) \right \}.
 \end{split}
 \end{equation*}
-
 \begin{lemma}
 Consider the function $f(x) = 4x^3 - 3x$, and define $f_n$ to be
 the composition of $f$ $n$ times with itself. Show that
@@ -318,7 +309,8 @@ respectively, with difference
 \ee \sqrt{3}.
 \end{align*}
 which completes the proof. (For clarity, one can replace $\ee$ with
-$\eta/\sqrt{3}$ in the above computations). 
+$\eta/\sqrt{3}$ in the above computations).
+
 \end{proof}
         %\nocite{*}
         %\bibliography{/Users/davidkarapetyan/Documents/math/}
