@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Sun May 24 19:09:41 EDT 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=machine_learning.tex
+outputFile=machine_learning.pdf
+langSpell=en
+markDer=true
+srcDir=

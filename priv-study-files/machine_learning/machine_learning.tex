@@ -1,0 +1,1736 @@
+\documentclass[12pt]{amsbook}
+%\usepackage{amssymb} %for symbols like lesssim
+%\mathtoolsset{showonlyrefs}
+%\usepackage{cancel}  %for canceling terms explicitly on pdf
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	filecolor=blue,
+	urlcolor=blue
+	linkbordercolor=blue
+	citebordercolor=blue
+	filebordercolor=blue
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; 
+%uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly 
+%(conflicts with cref in particular)
+\usepackage{cleveref}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ci}{\mathbb{T}}
+\newcommand{\dollar}{\$}
+\newcommand{\wh}{\widehat}
+\newcommand{\vp}{\varphi}
+\newcommand{\wt}{\widetilde}
+\newcommand{\p}{\partial}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\filter}{\mathcal{F}}
+\newcommand{\borel}{\mathcal{B}}
+\newcommand{\e}{\mathrm{E}}
+\newcommand{\se}{\mathrm{se}}
+\newcommand{\mse}{\mathrm{MSE}}
+
+\DeclareMathOperator{\ex}{\mathbb{E}}
+\DeclareMathOperator{\prob}{\mathbb{P}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\covar}{\mathrm{Covar}}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\numberwithin{equation}{section}  %eliminate need for keeping track of counters
+\begin{document}
+\title{Notes on Machine Learning}
+\author{David Karapetyan}
+\date{}
+\maketitle
+\newpage
+\setcounter{tocdepth}{2}
+\tableofcontents
+\part{Basic Probability}
+\chapter{Outcomes, Events, and Likelihood}
+Throughout this course, we seek to rigorously describe the likelihood of
+outcomes of an experiment, or, more generally, combinations of outcomes of an 
+experiment.
+For example, we would like to know the likelihood of the Dodgers
+winning the pennant, or the likelihood that stock of a company will go up
+in a week. We have used words to describe these events---since we are doing
+mathematics, we would like to translate everything to numbers, without losing
+any of the meaning.
+\begin{example}
+	A fair coin is tossed. There are two possible outcomes: heads (denoted by 
+	$0$) 
+	and tails (denoted by $1$). We call $ \left\{ 0,1 \right\} $ the 
+	\emph{outcome
+	space} or \emph{sample space}. The \emph{event space} consists of
+	\begin{enumerate}[(i)]
+		\item Outcome is heads or tails
+		\item Outcome is heads and tails
+		\item Outcome is heads
+		\item Outcome is tails
+	\end{enumerate}
+	which we translate, via numbers, to the set $ \left\{ \left\{ 0 \right\} 
+	\cup
+	\left\{ 1 \right\}, \left\{ 0 \right\} \cap \left\{ 1 \right\} , \left\{ 0
+	\right\} , \left\{ 1 \right\} \right \}$.
+	Observe that the event ``Heads or tails'' is the union of the events
+	``Outcome is Heads'' and ``Outcome is tails'', and ``Heads and tails'' is
+	their intersection.
+\end{example}	
+
+\begin{example}
+	A die with six distinct faces is thrown. The outcome space is
+	$ \left\{ 1, 2, 3, 4, 5, 6 \right\} $. Some possible events are
+	\begin{enumerate}[(i)]
+		\item The outcome is even
+		\item The outcome is odd
+		\item The outcome is greater than $2$
+		\item The outcome is less than $2$.
+	\end{enumerate}
+	These events, respectively, are expressed via the sets
+	$ \left\{ 2, 4, 6 \right\} , \left\{ 1,3,5 \right\} , \left\{ 3, 4, 5, 6
+	\right\}$, and $\left\{ 1 \right\}$.
+	Observe that there are many other possible outcomes.
+\end{example}
+Observe that the larger the outcome space, the more complex
+our event space may become. Also observe that the event
+``The outcome is even'' is the \emph{complement} (with respect to the
+outcome space) of
+the event ``The outcome is odd''. That is,
+${\left\{ 2,4,6 \right\}}^c
+= \left\{ 1,3,5 \right\}$.
+
+Motivated by these two examples, we seek to generalize our notion of
+event space such that it completely models all possible events
+that can arise from a given outcome space. We have the following.
+\begin{definition}
+	Let $\Omega$ be an outcome space. Then a \emph{$\sigma$-algebra}
+	or \emph{filter} on $\Omega$, denoted by $\filter(\Omega)$ is defined to be 
+	a
+	set of subsets of $\Omega$ that is closed under countable
+	unions and complements.
+	More precisely
+	\begin{enumerate}[(i)]
+		\item $ A_i \in  \sigma \implies \cup_i A_i \in \sigma$
+		\item $A_i \in \sigma \implies A_i^c \in \sigma$
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	Suppose we are tossing a fair coin repeatedly until the first tail shoes up,
+	and wish to know the number of tosses we must use. Then our outcome space
+	is \\ $ \left\{ \left\{ 0 \right\} , \left\{ 0,1 \right\} , \left\{ 0,0,1
+	\right\},\ldots \right\}$. This is an infinite outcome space.
+\end{example}
+\begin{example} The following are all filters of $\Omega$:
+	\begin{enumerate}[(i)]
+		\item $\left\{ \emptyset, \Omega \right\}$
+		\item $\left\{ \emptyset, A, A^c, \Omega \right\}$
+		\item The power set of $\Omega$
+	\end{enumerate}
+\end{example}Observe that a natural outcome space to use is the real line, or subsets
+t and to build appropriate filters on top of it. We will return
+to this idea later.
+\chapter{Discrete Probability}
+\section{Unconditional Probability}
+Suppose we roll a $6$-sided die $N$ times. Let $N(A)$ denote the number of $4's$
+rolled in $N$ tries. One can observe that
+\begin{align*}
+	\lim_{N \to \infty} N(A)/N = 1/6.
+\end{align*}
+A similar phenomenon holds for many other real-world events.
+
+\begin{definition}
+	Let $N(A)$ denote the number of ``successes'' $S$ in $N$ trials. If the
+	limit
+	
+	
+ $N(A)/N \doteq P$ exists, we say $S$ occurs with probability $P$.
+\end{definition}
+Observe that $ 0 \le P \le 1$, by definition.
+Next, let $A$ and $B$ be two disjoint events. Then
+it is easy to check that
+\begin{align*}
+	N(A \cup B) = N(A) + N(B)
+\end{align*}
+and that, in general (i.e.\ for possibly disjoint $A$, $B$),
+\begin{align*}
+	N(A \cup B) = N(A) + N(B) - N(A \cap B).
+\end{align*}
+Furthermore, since $\Omega = A \cup A^c$, it follows immediately
+that $N(\Omega) = N$. A similar argument shows $N(\emptyset) = 0$.
+This discussion motivates the following.
+\begin{definition}
+	A \emph{probability measure} on $(\Omega, \filter)$ is a continuous function
+	$\prob: \filter \to [0,1]$ which satisfies
+	\begin{enumerate}[(i)]
+		\item
+			$\prob(\Omega) = 1$, $\prob(\emptyset) = 0$
+		\item
+			For disjoint $A_i$, $\prob(\cup_i^n A_i) = \sum_{i = 1}^n 
+			\prob(A_i)$.
+	\end{enumerate}
+\end{definition}
+Observe that our construction immediately rules out silly probability
+measures such as $P \equiv 0$ or $P \equiv 1$. Furthermore,
+we can show the following, whose proof we leave to the reader.
+\begin{lemma}
+	Let $\prob$ be a probability measure on $(\Omega, \filter)$
+	\begin{enumerate}[(i)]
+		\item $\prob(A^c) = 1 - \prob(A)$
+		\item $\prob(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+		\item If $B \subset A$, then $P(A) \ge P(B)$.
+		\item \emph{(Set Continuity)}.
+			If $\cup_i^\infty A_i = A$ and
+			$\cap B_i^\infty = B$, with $A_i \subset A_j$ and $B_j \subset B_i$ 
+			for $j > i$,
+			then
+			\begin{align*}
+				& \lim \prob(A_i) = \prob(\lim \cup_i^n A_i) = \prob(A) \\
+				& \lim \prob(B_i) = \prob(\lim \cap_i^n B_i) = \prob(B) \\
+			\end{align*}
+	\end{enumerate}
+\end{lemma}
+A last technical distinction: the empty-set denotes the event ``nothing
+occurs'' and has probability $0$, by definition. However, there are many
+events in a given sigma-algebra that have probability $0$ but that are not the
+empty set.
+
+\begin{example}What is the probability that, using a fair coin, one
+	flips only heads in infinitely many tries? 
+\end{example}
+Letting $H_N$ denote the event
+$N$ heads in the first $N$ tries, set continuity yields
+continuity,
+\begin{align*}
+	P(N_\infty) = \lim_{N \to \infty} \prob(N_H) = \lim_{N \to \infty} 2^{-N} = 
+	0.
+\end{align*}
+\section{Conditional Probability}
+We now wish to tackle statement that often occur in practice,
+such as ``What is the probability that it will snow today, \emph{given}
+that the sky is grey today'', or ``What is the probability that a mystery word
+is `zebra', \emph{given} that the first three letters are
+`z', `e', `b'.''
+Observe that when we are given information, it allows us to adjust the
+probability of the event we are interested in. We wish to express this
+mathematically. Motivated by the ``zebra'' example, we have the following.
+\begin{definition}
+	Let $\Omega, \filter$ be a filter, and $A, B \in \filter$ be events, where
+	$\prob(B) > 0$. Then $\prob(A | B)$ is defined to be the probability of 
+	$A$, given that $A \in \filter_B$, where $\filter_B
+	\doteq \left\{ U \in \filter: B \cap U \neq \emptyset \right\}$.
+\end{definition}
+Imagine that we roll a die, and wish to know the probability that
+we have rolled a $4$.
+To compute this, we let $A$ denote the event that we roll a $4$. Then in the 
+last section we saw
+that
+\begin{align*}
+	\prob(A) = \lim_{N \to \infty} N(A)/N.
+\end{align*}
+Suppose now that we are given the event $B$, which is the event that we haven't
+rolled a $6$.
+What's the probability now that we have rolled a $4$?
+Stated a bit differently, how can we modify our ratio above to reflect the
+new value? We simply discard all trials whose rolls gave a $6$, as this is 
+clearly
+impossible with the new die. Of course, we must also discard the number of times
+we rolled a $6$. Putting this all together, we obtain
+\begin{align*}
+	\prob(A | B) & = \lim_{N \to \infty} N(A \cap B)/(N -
+	\text{number of occurrences of $6$})
+	\\
+	& = \lim_{N \to \infty} \frac{N(A \cap B)}{N}
+	\times \frac{1}{1 - (\text{number of occurrences of $6$})/N}
+	\\
+	& = \frac{\prob(A \cap B)}{(1 - \prob(B^c))}
+	\\
+	& = \frac{\prob(A \cap B)}{\prob(B)}.
+\end{align*}
+Motivated by this, we have the following definition.
+\begin{definition}
+	Let $A, B$ be events, and suppose $B$ occurs. Then
+	\begin{align*}
+		\prob(A | B) \doteq \frac{\prob(A \cap B)}{\prob(B)}
+	\end{align*}
+\end{definition}
+Observe that it is implicit in the definition that $\prob(B) > 0$, otherwise
+$B$ does not occur.
+\begin{example}
+	A family has two children. What is the probability that both are boys,
+	given that at least one of them is a boy?
+\end{example}
+\begin{example}
+	A family has two children. What is the probability that both are boys,
+	given that the youngest is a boy?
+\end{example}
+Observe that if no information is given, the probability of two boys is $1/4$.
+Hence, the conditions given in the example above improve the probability.
+Sometimes, given information may reduce the probability of an event.
+If the given information has no effect on the probability of an event,
+we say that the event and the information are \emph{independent}. We will
+discuss this more in the upcoming lectures.
+
+Often, when information is given, it makes computing probabilities easier.
+Consequently, the following result is extremely useful.
+\begin{lemma}
+	Let $ {\left\{ B_i \right\}}_{i=1}^n$ be a
+	partition of $\Omega$. Then
+	for any $A \in \filter$
+	\begin{align*}
+		\prob(A) = \sum_{i = 1}^n \prob(A | B_i) \prob(B_i).
+	\end{align*}
+\end{lemma}
+the above lemma has the limitation that sometimes $\prob(A |
+B)$ is difficult to compute as well. In such situations, 
+it is often easier to compute $\prob(B | A)$. Fortunately, we have the
+following.
+\begin{lemma}[Bayes' Theorem] For events $A, B$, we have
+	\begin{align*}
+		\prob(A | B) = \frac{\prob(B | A) \prob (A)}{\prob(B)}
+	\end{align*}
+\end{lemma}
+\begin{example}
+	We are given two urns, each containing an assortment of colored balls.
+	Urn $I$ contains two white and three blue balls, and urn $II$ contains
+	three white and four blue balls. A ball is drawn at random from urn $I$
+	and put into urn $II$, and then a ball is picked at random from urn $II$.
+	What is the probability that it is blue?
+\end{example}
+\begin{example}
+	You are on ``Let's Make a Deal''. There are three doors, with a new 
+	convertible
+	behind one, and a goat behind each of the others. You pick door number $I$.
+	To tease you, Monty opens door number $II$, revealing a goat, then offers 
+	to let
+	you switch your choice to door number $III$. Should you?
+\end{example}
+\begin{example}[Symmetric Random Walk]
+	Las Vegas has decided to offer a new game, with $50/50$ odds
+	of winning or losing in each iteration. The player begins with $\dollar k$
+	and the house begins with $ \dollar N$, where $N \gg k$. If the player wins 
+	in
+	a round, he wins a dollar; otherwise, he loses a dollar. The player adopts 
+	the strategy
+	to continue playing until either he or the casino is bankrupted.
+	What the probability that the player goes bankrupt?
+\end{example}
+\begin{proof}[Solution]
+	Let $A$ denote the event that the player is eventually bankrupted,
+	and let $B$ denote victory for the player in the first trial.
+	Then
+	\begin{align*}
+		\prob_k(A)
+		& = \prob_k(A | B) \prob(B) + \prob_k(A | B^c) \prob(B^c)
+		\\
+		& \approx \frac{p_{k+1}}{2} + \frac{p_{k-1}}{2}
+	\end{align*}
+	We have the boundary conditions $p_0 = 1$ and $p_N = 0$, which we combine 
+	with
+	the above \emph{difference equation} to obtain
+	\begin{align*}
+		\prob_k(A) = 1 - k/N.
+	\end{align*}
+\end{proof}
+Observe that if we start off with $k \approx N$, the player stands a chance to
+bankrupt the casino! This is one of the reasons all games in Vegas have odds
+favoring the house. Also, the above example motivates casinos to have a lot of
+cash on hand, so that the amount you have at any given time is dwarfed by
+comparison. If you are a high roller with a bankroll rivaling the casino's,
+the casino will try to get you to play a game that give you terrible odds over
+the long run (for example, craps). If you decide to play blackjack (the game
+offering the best odds), the casino will try to distract you with drinks,
+entertainment, women/men, etc. It usually works.
+\begin{example}[False Positives]
+	A rare disease affects one person in $10^5$. A test for the disease
+	is wrong with probability $1/100$; that is, it is positive with probability
+	$1/100$ for someone who is in fact healthy, and negative
+	with probability $1/100$ for someone who is in fact ill. What is the 
+	probability
+	that you have the disease given that you took the test and it is positive?
+\end{example}
+\begin{proof}[Solution]
+	Let $A$ be the event that we have the disease, and $B$ be the event
+	that the test if positive. Then we apply
+	Bayes' Theorem to obtain
+	\begin{align*}
+		\prob(A | B) & = \frac{\prob(B | A) \prob(A)}{\prob(B)}
+		\\
+		& = \frac{\prob(B | A) \prob(A)}{\prob(B|A) \prob(A) + \prob(B | A^c)
+		\prob(A^c)}
+		\\
+		& = \frac{99/100 \times 1/10^5}{99/100 \times 1/10^5 + 1/100 \times 
+			(10^5 -
+		1)/10^5}
+		\\
+		& \approx 1/1000.
+	\end{align*}
+\end{proof}
+Moral: don't freak out if your doctor says you \emph{might} have
+cancer. Take the test again.
+\section{Independence}
+\begin{definition}
+	We say two events $A, B$, $\prob(B) > 0$ are \emph{independent} if 
+	\[\prob(A |
+	B) = \prob(A),\] or, equivalently, that \[\prob(A \cap B) = \prob(A) 
+	\prob(B).\] More generally,
+	a family $ {\left\{ A_i \right\}}_{i = 1}^n $ is
+	\emph{independent} if 
+	\[ \prob(\cap_{i = 1}^n A_i) = \prod_{i = 1}^n \prob(A_i).\]
+\end{definition}
+\begin{example}
+	What is the probability that Connie's first child will be a masculine child,
+	given that a neighboring mobster recently had a boy?
+\end{example}
+\begin{example}
+	What is the probability of flipping heads with a fair coin on the $10th$ 
+	trial,
+	given that heads is flipped on all previous trials?
+\end{example}
+\chapter{Translating Outcomes to Numbers}
+As we have seen, the sample space $\Omega$, equipped with an associated filter
+$\filter$ and probability measure $\prob: \filter \to [0,1]$ 
+are the linchpins of our theory of probability. However, in practice,
+abstract outcomes $\omega \in \Omega$ and sets $E \in \filter$ are
+cumbersome to work with. We would like to ``translate'' our analysis
+on $(\Omega, \filter, \prob)$ to $(\rr, \borel_{\rr}, dx)$,
+where $\borel_{\rr}$ denotes the Borel filter on $\rr$ (the smallest 
+filter containing all the open sets in $\rr$), and $dx$ is
+Lebesgue measure. This translation will be given by continuous functions from
+$\Omega$, equipped with its filter structure, to $\rr$,
+equipped with the Borel filter. We will call such functions 
+\emph{random variables}.
+\section{Random Variables} 
+\begin{definition}
+	A \emph{random variable} is a function $X: \Omega \to \rr$ with the property
+	that $X^{-1}(U) \in \filter$ for every open $U \in \rr$. If the range of $X$
+	is a countable subset of $\rr$, we say $X$
+	is a \emph{discrete random variable}. If $\Omega$ is countable, we say that 
+	$\left\{ \Omega, \filter, \prob \right\}$ is a \emph{discrete probability 
+	space}.
+\end{definition}
+As shorthand, we shall often denote $\{\omega: X(\omega) \in B\}$ by
+$\{X \in B$\}.
+\begin{remark}
+	Observe that, for a discrete random variable $X: \Omega \to [\alpha_1,
+	\ldots, \alpha_n]$,  $n \le \infty$, 
+	\begin{align*}
+		\prob(\Omega) = \sum_{i =1}^n \prob(X = x_i).
+	\end{align*}
+\end{remark}
+Lastly, we say two random variables $X$, $Y$ are \emph{independent} if
+$\{X \in B_1\}$ and $\{Y \in B_2\}$ are independent for all Borel sets
+$B_1, B_2$. 
+\begin{example}
+	Suppose we are interested in studying a single flip of a fair coin.
+	Let
+	$\Omega = \{H, T\}$ be the outcomes of a coin flip, and
+	$\filter = \{\emptyset, \Omega, H, T \}$. Then $X: \Omega \to \rr$, given by
+	$X(H) = 0$, $X(T) = 1$ is a discrete random variable.
+\end{example}
+\begin{example}
+	A traveler is lost in the woods, and starts walking aimlessly, but never
+	west. 
+	We can assign numbers to the directions he takes. 
+	Then $\Omega$ is the set of all possible directions (North, South, East
+	and the \emph{continuum} of values in between these). Then
+	$X: \Omega \to \rr$ given by $X(North) = 1$, $X(South) = -1$, $X(East) = 0$
+	and $F_{X} \doteq \left\{ X^{-1}(U): U \in \rr \right\}$ is a continuous 
+	random
+	variable.
+\end{example}
+\begin{definition}
+	For a space $\left\{ \Omega, \filter \right\}$, we say that a measure $u$ is
+	\emph{absolutely continuous} respect to a measure $v$, denoted $u \ll v$, if
+	$v(E) = 0$ implies $u(E) = 0$ for every $E \in \filter$.
+\end{definition}
+\begin{theorem}[Radon-Nikodym]
+	Let $u,v: \Omega \to \rr^n$ be measures on $\filter_{\Omega}$, with $u \ll 
+	v$.
+	Then there exists a positive $f: \Omega \to \rr^n$ such that
+	\begin{align*}
+		u(E) = \int_{E} f(\omega) dv(\omega)
+	\end{align*}
+	for every $E \in \filter$.
+\end{theorem}
+The proof of this theorem lies outside the scope of this course, but can be
+found in almost every graduate textbook on analysis. 
+
+We now apply the Radon-Nikodym theorem to define continuous random variables.
+\begin{definition}
+	Let $X$ be a random variable on a probability space $(\Omega, \filter, 
+	\prob)$. 
+	The \emph{distribution measure} of $X$ is the probability measure $\mu_X:
+	\borel_X \to [0,1]$ given by $\mu_X(B) = \prob(\{\omega\}: X(\omega) \in 
+	B)$.
+\end{definition}
+\begin{definition}
+	A random variable $X$ is discrete if and only if it takes values in a 
+	countable
+	subset of $\rr$, and continuous if and only if $\mu_X \ll dm$, where $dm$
+	denotes Lebesgue measure on $\rr^n$. By Radon-Nikodym, its 
+	\emph{distribution
+	function} $F(x) \doteq \prob(X \le x)$ is given by
+	\begin{align*}
+		F(x) = \int_{-\infty}^x f(z) \,dz.
+	\end{align*}
+	for some unique, positive $f(z)$, which we call \emph{probability density}
+	function of $X$.
+	If $X$ is discrete, we call
+	$f(x) \doteq \prob(X = x)$ its \emph{mass function}.
+\end{definition}
+Lastly, we remark that there exist random variables which are neither
+discrete nor continuous, but rather a mixture of the two.
+\begin{example}[A Random Variable that is Neither Discrete Nor Continuous]
+	A coin is tossed. We assign the event ``lands heads'' the number $-1$, and 
+	if it lands tails, we toss a rod, and assign ``lands tails'' how far the 
+	rod has
+	landed from us. In this case, our random variable $X$ is neither continuous 
+	nor
+	discrete: it has a point mass at $X = H$, but is continuous otherwise.
+	Observe that $X | \text{lands tails}$ and $X | \text{lands heads}$ are
+	continuous and discrete, respectively.
+\end{example}
+\section{Common Discrete Distributions}
+\subsection{Bernoulli Distribution}
+We begin with the most basic distribution, from which
+we are able to derive a multitude of others.
+\begin{definition}
+	Let $X$ be the random variable denoting the number of successes
+	in $n$ independent trials, where $p$ is the probability of success in
+	an individual trial. Then
+	\begin{equation*}
+		b(k, n, p) \doteq \mathbb{P}(X = k) = \binom{n}{k} p^k {(1 - p)}^{n-k}
+	\end{equation*}
+	is called the \emph{Bernoulli distribution} of $k$ successes
+	in $n$ independent trials, where $p$ is the probability of success on an
+	individual trial. The special case
+	$p = 1/2$ is called a \emph{binomial distribution}.
+\end{definition}
+\begin{example}
+	Let $X$ denote the number of heads one obtains from $n$ flips of a
+	two-sided, non-weighted coin. Then $X$ is binomially distributed.
+	If the coin is weighted, then $X$ follows a Bernoulli distribution.
+\end{example}
+\subsection{Poisson Distribution}
+We wish now to study events that are distributed sparsely in time.
+Suppose we have a large number $n$ of independent trials, with
+success in each individual trial unlikely. In order to have a sparse
+distribution of events that is nontrivial (i.e.\ we have no successes),
+we need to assume that there is a positive
+probability that we achieve at least one success in $n$ trials. Hence, we 
+assume the expected number of
+successes $\lambda \doteq np$ to be nonzero.
+
+Observe that with the above assumptions, we obtain
+\begin{equation*}
+	\binom{n}{k} = \frac{n!}{(n-k)! k!} \approx \frac{n^k}{k!}
+\end{equation*}
+and so
+\begin{align*}
+	P(X = k)
+	& = \binom{n}{k} p^k {(1 - p)}^{n-k} \\
+	& \approx \frac{n^k p^k q^{n-k}}{k!} \\
+	& = \frac{\lambda^k q^{n-k}}{k!} \\
+	& = \frac{\lambda^k {(1-p)}^{n-k}}{k!} \\
+	& = \frac{\lambda^k {(1-\lambda/n)}^{n-k}}{k!} \\
+	& \approx \frac{\lambda^k {(1-\lambda/n)}^{n}}{k!} , \quad n >> 1\\
+	& \approx \frac{\lambda^k e^{-\lambda}}{k!}
+\end{align*}
+\begin{definition}
+	We call
+	\begin{align*}
+		p(k, \lambda) \doteq \frac{\lambda^k e^{-\lambda}}{k!}
+	\end{align*}
+	the \emph{Poisson distribution} of $k$ successes in a large number
+	of trials, where, on average, we expect $\lambda$ successes,
+	where $\lambda$ is much less than the number of trials.
+	That is, the trials have the feature that successes are
+	sparsely distributed.
+\end{definition}
+We will now extend this result. Assume that in the interval $[0,1]$,
+we have $n$ equally spaced points, representing trials. Split this interval 
+into two pieces,
+$[0,t]$ and $[t, 1]$. Then we have $nt$ trials in interval $[0,t]$ and
+$n - nt$ trials in interval $[t,1]$. Then the average number of successes
+in $[0,t]$ is given by $\lambda_t \doteq n t p = \lambda t$. Repeating
+our preceding computation, but with $\lambda$ replaced by $\lambda_t$
+and $n$ by $nt$, we obtain the following.
+\begin{theorem}
+	Let $\lambda$ be the average number of successes in the interval $[0,1]$.
+	The probability of finding exactly $k$ successes  in the subinterval 
+	$[0,t]$,
+	$t \le 1$, is given by
+	\begin{align*}
+		p(k, \lambda t) = \frac{{(\lambda t)}^{k} e^{-\lambda t}}{k!}
+	\end{align*}
+	with average $\lambda t$.
+\end{theorem}
+\begin{exercise}
+	Generalize this result to intervals of arbitrary length.
+\end{exercise}
+\subsection{Negative Binomial Distribution}
+For an experiment, it is often important to know just how many trials
+one needs to achieve a certain number of successes. To tackle this problem,
+we ask a simpler question: out of a total of $n$ independent trials with
+either success or failure as the outcome, what is the probability
+that the $r'th$ success occurs at the $v'th$ trial, where $r \le v \le n$?
+We reason this out as follows: there is a total of $\binom{v-1}{r-1}$ ways to
+arrange $r-1$ successes out of $v-1$ trials, each with associated probability
+$p^{r-1}{(1 - p)}^{(v-1) - (r-1)} = p^{r-1}q^{v-r}$. Right after the $v-1$ 
+trial, we would like to
+have the $r'th$ success. This success has associated probability $p$. Putting
+everything together, we obtain the following.
+\begin{theorem}
+	Let $X$ denote the number of successes achieved after $v$ independent 
+	trials of an experiment,
+	where we assume a success occurs at trial $v$, and where the probability
+	of success if $p$. Then the probability that $X=r$, where $r \le v$, is 
+	given by
+	\begin{equation*}
+		p(r, v, p) \doteq \mathbb{P}(X = r) = \binom{v-1}{r-1} p^{r} q^{v-r}
+	\end{equation*}
+	\begin{definition}
+		We call $X$ a random variable with a \emph{negative binomial 
+		distribution}.
+	\end{definition}
+\end{theorem}
+\section{Common Continuous Distributions}
+\subsection{Uniform Distribution}
+\begin{definition}
+	Let $X$ be a continuous random variable on a probability space $\Omega, 
+	\filter,
+	\prob$ such that the minimum and maximum values of $X$ are $a,b \in \rr$,
+	respectively, and $\prob(c \le X \le d ) = \prob(c + t \le X \le d + t)$
+	for all $c, d$ in $[a,b]$  and $t \in \rr$ such that $c+t, d+t \in [a,b]$.
+	Then we say $X$ is \emph{uniformly distributed} in $[a,b]$. It is easy to 
+	check
+	that $X$ has density  
+	\begin{align*}
+		f(x) = \begin{cases}
+			x/(b-a), \quad & x \in [a,b] \\
+			0 \quad &\text{otherwise}
+		\end{cases}
+	\end{align*}
+\end{definition}
+\subsection{Normal Distribution}
+\begin{definition}
+	Let $X$ be a continuous random variable on a probability space $\Omega, 
+	\filter,
+	\prob$. We say $X$ is \emph{normally distributed} with standard deviation 
+	$\sigma$ and
+	mean $\mu$ if $X$ has density
+	\begin{align*}
+		f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{{(x - \mu)}^2}{2 
+		\sigma^2}}.
+	\end{align*}
+	If $\mu = 0$ and $\sigma =1$, we say $X$ is \emph{standard normally
+	distributed}.
+\end{definition}
+\chapter{Joint Distributions}
+Up to now, we have considered random variables taking values in $\rr$.
+It is easy to extend this theory to random variables taking values in $\rr^n$:
+our distribution of $X$ is then given by $\mu_X(B) =
+\prob(X^{-1}(B))$ for every Borel set $B \in
+\rr^2$. Using our intuition, we ask if our distribution function should be of
+\begin{align*}
+	F(x) = \int_{-\infty}^{x} f(s) \, ds
+\end{align*}
+where now $ds$ denotes Lebesgue measure on $\rr^2$ and $x = (x_1, x_2) \in
+\rr^2$. However, what do we mean when we say $x \le y$ for $x, y \in \rr^2$? 
+
+First, observe that if ${X}: \Omega \to \rr^n$, then $X = (X_1, X_2,
+\ldots, X_n)$, where $X_i: \Omega \to \rr$. Hence, our study of $X$ will be
+simplified if we can study it component-wise. Motivated by this, we define
+$x \le y$ if and only if $x_i \le y_i$. 
+\begin{definition}
+	Let ${X} = (X_1, X_2, \ldots, X_n)$. Then the \emph{joint distribution}
+	$F_X: \rr^n \to \rr$
+	is defined as $F_X(x) = \prob({X} \le x)$.
+	\begin{lemma}
+		Let $F_X$ be a joint distribution. Then
+		\begin{enumerate}[(i)]
+			\item
+				$\lim_{x \to \infty} F_X(x) = 1$ and $\lim_{x \to -\infty}
+				F_X(x) = 0$
+			\item
+				If $x \le y$, then $F_X(x) \le F_X(y)$.
+			\item
+				$F(x)$ is continuous from above.
+		\end{enumerate}
+	\end{lemma}
+	If all the $X_i$ are discrete, we say $X$ has a \emph{joint discrete
+	distribution}. If all the $X_i$ are continuous, we say $X$ has a 
+	\emph{joint continuous distribution}. If the distribution is jointly 
+	discrete,
+	then for $x = (x_1, x_2, \ldots, x_n)$,
+	$f(x) = \prob(X_1 = x_1, X_2, = x_2,
+	\ldots, X_n = x_n)$. If the distribution is jointly continuous, then by
+	Radon-Nikodym
+	\begin{align*}
+		F(x) = \int_{-\infty}^x f(s) \, ds = \int_{-\infty}^{x_1} \ldots
+		\int_{-\infty}^{x_n} f(x_1, x_2, \ldots x_n) \, ds_1 \, ds_2 \ldots \, 
+		ds_n.
+	\end{align*}
+
+	One of the primary applications of joint distributions is in finding the
+	distributions and associated density functions of sums and products of 
+	random
+	variables.
+	\begin{example}
+		Let $X$ and $Y$ be continuous random variables, with associated 
+		densities
+		$f_X(x)$ and $f_Y(y)$, respectively. What are the density functions of
+		$Z = X+Y$ and $Z = XY$? What if $X$ and $Y$ are independent?
+	\end{example}
+	Recall that a continuous random variable $X: \Omega \to \rr^n$
+	is defined to be a random variable whose distribution
+	\begin{align*}
+		u_X(B) \doteq \prob(X \in B)
+	\end{align*}
+	is absolutely continuous with respect to Lebesgue measure on $\rr^n$. 
+	Hence, by
+	the Radon-Nikodym theorem
+	\begin{align*}
+		F_Z(z) = \prob(Z \le z) = \prob((X,Y) \in B_z) 
+		& = \int_{B_z} f \, dm
+		\\
+		& = \int_{B_y} \int_{B_x} f(x,y) \, dx dy
+	\end{align*}
+	Applying the observation that $B_z
+	= \{(x,y):
+	-\infty < x < \infty, y \le z-x \}$, we obtain the distribution function 
+	\begin{align*}
+		F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f_{(X,Y)}(x,y) dy 
+		dx.
+	\end{align*}
+	Differentiating with respect to $z$, we arrive
+	at the density
+	\begin{align*}
+		f_Z(z) = \int_{-\infty}^{\infty} f_{(X,Y)}(x,z-x) dx.
+	\end{align*}
+	If $X$ and $Y$ are independent, then $f_{(X,Y)}(x, y) = f_X(x) f_Y(y)$, 
+	giving
+	\begin{align*}
+		f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z-x) dx = f_X * f_Y(z).
+	\end{align*}
+	Similarly, for $Z = XY$,  the distribution
+	function is given by
+	\begin{align*}
+		F_Z(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z/x} f_{(X,Y)}(x,y) dy 
+		dx
+	\end{align*}
+	with density
+	\begin{align*}
+		f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_{(X,Y)}(x,z/x) dx.
+	\end{align*}
+	If $X$ and $Y$ are independent, this density becomes
+	\begin{align*}
+		f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{x} f_X(x) f_Y(z/x) dx.
+	\end{align*}
+	\chapter{Expectation}
+	Let $X: \Omega \to [\alpha_1, \ldots, \alpha_k]$, $k < \infty$ be a random
+	variable denoting the outcome of some experiment, and let $X_1, \ldots, 
+	X_n$ be independent trials
+	of the same experiment, where \\ $X_i:
+	\Omega \to [\alpha_1, \ldots, \alpha_k]$. Then we 
+	call
+	\begin{align*}
+		\ex(X) \doteq \lim_{n \to \infty} \frac{1}{n} \sum_{i =1}^n X_i \doteq 
+		\mu 
+	\end{align*}
+	the \emph{expectation}, or \emph{mean}, or $X$. If the limit does not exist,
+	or $\mu = \pm \infty$, we say that the expectation does not exist.
+\end{definition}
+\begin{example}
+	Let $X$ be a discrete random variable with mass function\footnote{
+		Observe that for $f$ to be a mass function, $A$ must be chosen such that
+		$\sum_{k = 1}^{\infty} k^{-2} = 1$.}
+		\begin{align*}
+			f(k) = \begin{cases}
+				A k^{-2},  \quad &k\in \zz^{+} 
+				\\
+				0, \quad & \text{otherwise}
+			\end{cases}
+		\end{align*}
+		Then it is easy to check that
+		\begin{align*}
+			\ex(X) = \sum_{k=1}^{\infty} k A k^{-2} = A \sum_{k=1}^{\infty} k^{-1} = 
+			\infty.
+		\end{align*}
+	\end{example}
+	Observe that we can write
+	\begin{align*}
+		\frac{1}{n} \sum_{i = 1}^n X_i
+		& = \frac{\alpha_i (\#\alpha_i) + \cdots +
+		\alpha_n (\#\alpha_n)}{n}
+		\to \alpha_1 \prob(\alpha_1) + \cdots + \alpha_n \prob(\alpha_n).
+	\end{align*}
+	This motivates the following.
+	\begin{definition}
+		The \emph{expectation} of a random variable $X$ with mass function $f$ is
+		\begin{align*}
+			\ex(X) = \sum_{x \in \rr: f(x) > 0} x f(x), \quad \text{provided} \quad
+			\sum_{x \in \rr: f(x) > 0} |x
+			f(x) | <
+			\infty
+		\end{align*}
+		If $X$ is continuous with density $f(x)$, then
+		\begin{align*}
+			\ex(X) = \int_{-\infty}^{\infty} x f(x) \, dx, \quad \text{provided} \quad
+			\int_{-\infty}^{\infty} |x f(x)| \, dx < \infty.
+		\end{align*}
+	\end{definition}
+	\begin{lemma}
+		If $g: \rr \to \rr$ is continuous, then
+		\begin{align*}
+			\ex(g(X)) = \sum_{x \in \rr: f(x) > 0} g(x) f(x) \longleftrightarrow
+			\int_{-\infty}^{\infty} g(x) f(x) \, dx
+		\end{align*}
+	\end{lemma}
+	\begin{theorem}[Properties of Expectation]
+		Let $X$ be a random variable. Then
+		\begin{enumerate}[(i)]
+			\item $\ex(a X + b Y) = a X(X) + b \ex(Y)$.
+			\item E (1) = 1
+			\item If $X,Y$ are independent, then $\ex(XY) = \ex(X)\ex(Y)$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		We shall only do the discrete case; the proof for the continuous case is
+		analogous.
+		\begin{enumerate}[(i)]
+			\item This follows immediately from the linearity of sums and integrals.
+			\item
+				We have $\ex(1) = \sum x f(x) = \sum_{x = 1} x f(x) = 1$.
+			\item
+				Let $Z = XY$. Then
+				\[\ex(Z) = \sum_{z} z f_Z(z) = \sum_{x,y} x y f_{(X,Y)}(x,y) = \sum_x 
+					x f_X(x)
+				\sum_y y f_Y(y) = \ex(X) \ex(Y).\]
+		\end{enumerate}
+	\end{proof}
+	Having defined expectation, we can use it to define the
+	\emph{variance} of a random variable $X$
+	\begin{align*}
+		\ex({[X - \ex(X)]}^2),
+	\end{align*}
+	the \emph{standard deviation}
+	\begin{align*}
+		\sigma_X \doteq \sqrt{\var(X)}
+	\end{align*}
+	and \emph{covariance} of random variables $X, Y$
+	\begin{align*}
+		\covar(X,Y) \doteq \ex([X - \ex(X)][Y - \ex(Y)])
+	\end{align*}
+	The standard deviation of a random variable $X$ is the average spread of the
+	trials of an experiment away from the mean, and is always positive. 
+
+	In practice, we consider the normalized covariance of two random variables,
+	commonly called the \emph{correlation coefficient}
+	\begin{align*}
+		\rho(X,Y) = \frac{\covar(X,Y)}{\sigma_X \sigma_Y}
+	\end{align*}
+	The correlation coefficient has the following important property.
+	\begin{theorem}
+		For random variables $X, Y$, $|\rho(x,y)| \le 1$, where $|\rho(x,y)| = 1$ 
+		if and
+		only if $aX + bY = 1$ almost surely, for some $a,b \in \rr$. 
+	\end{theorem}
+	\begin{proof}
+		It is a standard application of Cauchy-Schwarz.
+	\end{proof}
+	From this theorem, we see that the correlation index of two random variables is
+	a measure of the linear dependence of one random variable on another. If the
+	index is negative, a rise in one random variables implies a fall in the other,
+	and vice verse. If the coefficient is positive, then the variables rise or fall
+	together.
+	\begin{definition}
+		We say two random variables $X$ and $Y$ are \emph{correlated} 
+		if \[\ex(XY) = \ex(X)\ex(Y).\]
+	\end{definition}
+	Observe that independent random variables are uncorrelated. However,
+	lack of correlation does not, in general, imply independence. Heuristically, 
+	this is
+	because correlation is only a measure of the degree of linear dependence
+	between variables, and does not capture higher order (for example, quadratic)
+	types of dependence. 
+	\begin{example}
+		Let $X$ be a continuous random variable with the standard normal 
+		distribution,
+		and let $Y = X^2$. Clearly $X$ and $Y$ are dependent. However,
+		\begin{align*}
+			\ex(X^3) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{\infty} x^3 e^{-x^2/2} 
+			\, dx = 0
+		\end{align*}
+		by anti-symmetry, and so
+		\begin{align*}
+			\ex(XY) = \ex(X^3) = 0 = \ex(X) \ex(Y).
+		\end{align*}
+		which implies $X, Y$ are uncorrelated.
+	\end{example}
+	\chapter{Conditional Expectation}
+	\begin{definition}
+		The \emph{conditional distribution function} of $Y$ given $X = x$,
+		written $F_{Y|X}(\cdot | x)$ is defined by
+		\begin{align*}
+			F_{Y|X}(y|x) = \prob (Y \le y | X = x).
+		\end{align*}
+		In the discrete case, the \emph{conditional mass function}
+		is given by
+		\begin{align*}
+			f_{Y|X}(y|x) = \prob(Y = y | X = x).
+		\end{align*}
+	\end{definition}
+	Observe that, in the discrete case
+	\begin{align*}
+		f_{(X,Y)}(x,y)
+		& = \prob_{\filter \times \filter}(X \le x, Y \le y)
+		\\
+		& = \prob_{\filter} (X \le x \cap Y \le y)
+		\\
+		& = \prob_{\filter}(X \le x | Y \le y) \prob_{\filter}(Y \le y)
+		\\
+		& = f_{X|Y}	(x,y) f_y(y)	
+	\end{align*}
+	and so
+	\begin{align*}
+		f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}
+	\end{align*}
+	and similarly
+	\begin{align*}
+		f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+	\end{align*}
+	We will heretofore suppress the distinction between $\prob_{\filter \times
+	\filter}$ and $\prob_{\filter}$, for the sake of clarity.
+
+	Observe that in
+	the continuous case, we have some difficulties,
+	since we are not allowed to condition on null events. However, we may consider
+	\begin{align*}
+		\prob(Y \le y , x \le X \le x + h)
+		& = \prob(Y \le y | x \le X \le x +h) \prob(x \le X \le x + h)
+	\end{align*}
+	which we can rewrite, using Taylor series, as
+	\begin{align*}
+		\prob(Y \le y | x \le X \le x + h)
+		& = \frac{F_{(X,Y)}(x+h,y ) - F_{(X,Y)}(x,y )}{F_X(x+h) - F_X(x)}
+		\\
+		& = \frac{hf_{(X,Y)}(x,y) + O(h^2)}{hf_X(x) + O(h^2)}
+		\\
+		& = \frac{f_{(X,Y)}(x,y) + O(h)}{f_X(x) + O(h)}
+	\end{align*}
+	Letting $h \to 0$, we obtain
+	\begin{align*}
+		f_{Y|X}(y|x) = \frac{f_{(X,Y)}(x,y)}{f_X(x)}.
+	\end{align*}
+	Similarly, 
+	\begin{align*}
+		f_{X|Y}(x|y) = \frac{f_{(X,Y)}(x,y)}{f_Y(y)}.
+	\end{align*}
+	Thus, the formulas for conditional distributions
+	functions in both the discrete and continuous cases are identical.
+
+	Since $Y|X =x$ is a random variable, we can write $\psi(x) = \ex(Y | X =x)$.
+	Then $\psi(X)$ is a random variable, which we call the expectation of $Y$ given
+	$X$, also written as $\ex(Y|X)$.
+	\begin{theorem}
+		For any two random variable $X,Y: \Omega \to \rr^n$,
+		\begin{align*}
+			\ex(\ex(Y | X)) = \ex(Y)
+		\end{align*}
+		\begin{proof}
+			For the discrete case, we have
+			\begin{align*}
+				\ex(\psi(X)) 
+				& = \sum_{x} \psi(x) f_x(x)
+				\\
+				& = \sum_{x,y} y f_{Y|X}(y|x) f_X(x)
+				\\
+				& = \sum_{x,y} y f_{(x,y)}
+				\\
+				& = \sum_y y f_Y(y)
+				\\
+				& = \ex(Y).
+			\end{align*}
+			The proof for the continuous case is analogous. 
+		\end{proof}
+	\end{theorem}
+	\begin{theorem}
+		Let $X,Y$ be random variables as before, and $g(x)$ be a function such that
+		$\ex(g(X))< \infty$. Then
+		\begin{align*}
+			\ex(\ex(Y|X)g(X)) = \ex(Yg(X)).
+		\end{align*}
+	\end{theorem}
+	\begin{proof}
+		It is almost identical to that of the preceding theorem.
+	\end{proof}
+	The two theorems above are immensely useful in solving a wide variety of
+	discrete and non-discrete problems. Heuristically, they allow us to divide a
+	difficult probability problem into several simpler problems.
+	\begin{example}
+		Suppose we flip a fair coin, and assign $-1$ points to tails, and $+1$ 
+		points to
+		heads. We play a game where we flip a coin repeatedly until we obtain
+		$-1$ points, or $2$ points. What is the expected number of flips before the
+		game terminates? 
+	\end{example}
+	Let $X_i, -1 \le i \le 2$ denote the number of flips it will take for the game
+	to terminate if we begin with $i$ points. Then we have
+	\begin{align*}
+		\ex(X_0) & = \ex(X_0 | \text{first flip heads})\prob(\text{first flip heads}) +
+		\ex(X_0 | \text{first flip tails}) \prob(\text{first flip tails})
+		\\
+		& = (\ex(X_1) + 1) \frac{1}{2} + (\ex(X_{-1}) + 1) \frac{1}{2}
+		\\
+		& = \frac{1}{2}(\ex(X_1) + \ex(X_{-1})) + 1
+		\\
+		& = \frac{1}{2}\ex(X_1) + 1
+		\\
+		& = \frac{1}{2}[\ex(X_1 | \text{flip heads}) \frac{1}{2} + \ex(X_1 | \text{flip
+		tails}) \frac{1}{2}] + 1
+		\\
+		& = \frac{1}{4}[\ex(X_1 | \text{flip heads}) + \ex(X_1 | \text{flip
+		tails})] + 1
+		\\
+		& = \frac{1}{4} [ \ex(X_2) + 1  + \ex(X_0) + 1] + 1
+		\\
+		& = \frac{1}{4}[ \ex(X_0) + 2] + 1
+	\end{align*}
+	which gives $\ex(X_0) = 2$.
+	\begin{example}
+		A hen lays $N$ eggs, where $N$ has a Poisson distribution with parameter
+		$\lambda$. An egg hatches with probability $p$, independently  of the other
+		eggs. Let $K$ be the number of chicks. Compute $\ex(K|N)$, $\ex(K)$, and $\ex(N | 
+		K)$.
+	\end{example}
+	To compute $\ex(K|N)$, we must first recall the Poisson distribution
+	\begin{align*}
+		f_N(n) = \frac{\lambda^n e^{-\lambda}}{n!}
+	\end{align*}
+	Given $N$ eggs, the probability that $K$ out of $N$ eggs hatch obeys a 
+	Bernoulli distribution, and so 
+	\begin{align*}
+		f_{K|N}(k|n) = \binom{n}{k} p^k {(1-p)}^{n-k}
+	\end{align*}
+	Now, $\ex(K | N = n) = pn$, and so $\ex(K | N) = pN$. Furthermore, $\ex(K) = \ex(\ex(K
+	| N	)) = \ex(pN) = p \lambda$.
+	To compute $\ex(N | K)$, we apply Bayes Theorem to obtain
+	\begin{align*}
+		f_{N|K}(n|k) & = \frac{f_{K|N}(k|n)f_N(n)}{f_K(k)}
+		\\
+		& = \begin{cases}
+			\binom{n}{k}p^k {(1-p)}^{n-k} \lambda^n
+			e^{-\lambda}/n!/\sum_{m \ge k}
+			\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!
+			, \quad & n \ge k
+			\\
+			0, \quad & n<k
+		\end{cases}
+	\end{align*}
+	where we obtained the denominator via the observation
+	\begin{align*}
+		\prob(K = k) & = \prob(K = k \cap N \ge k) 
+		\\
+		& = \sum_{m \ge k} \prob(K =
+		k \cap N = m) 
+		\\
+		& = \sum_{m \ge k} \prob(K = k | N = m) \prob(N = m)
+		\\
+		& = \sum_{m \ge k} f_{K|N}(k, m) f_N(m)
+		\\
+		& = \sum_{m \ge k}
+		\binom{m}{k} p^k {(1 - p)}^{m-k} (\lambda^m e^{-\lambda})/m!.
+	\end{align*}
+	Simplifying, we obtain
+	\begin{align*}
+		f_{N|K}(n|k) = 
+		\begin{cases}
+			{(q\lambda)}^{n-k} e^{-q\lambda}/(n-k)!, \quad & n \ge k
+			\\
+			0, \quad & n<k
+		\end{cases}
+	\end{align*}
+	and so 
+	\begin{align*}
+		\ex(N | K = k) & = \sum_{n \ge k} n f_{N|K}(n | k)
+		\\
+		& = \sum_{n \ge 0} (n + k) \frac{{(q \lambda)}^n e^{-q\lambda}}{n!}
+		\\
+		& = k \sum_{n \ge 0} \frac{{(q \lambda)}^n e^{-q\lambda}}{n!} + \sum_{n \ge 
+		0}
+		n \frac{{(q\lambda)}^n e^{-q\lambda}}{n!} 
+		\\
+		& = k + q\lambda.
+	\end{align*}
+	Hence, $\ex(N|K) = K + q \lambda$.
+	\chapter{Characteristic Functions}
+	If $f = f(x)$ is integrable (that is, $\int_{\rr}| f | \ dx < \infty$), we define its \emph{Fourier transform} by
+	\begin{equation*}
+		\begin{split}
+			\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{-i x \xi} f(x) \ dx.
+		\end{split}
+	\end{equation*}
+	If $ \hat{f}(\xi)$ is integrable as well, then we have the
+	following.
+	\begin{theorem}\label{thm:fourier-inversion}
+		If $f, \hat{f}$ are integrable, then
+		\begin{equation*}
+			\begin{split}
+				f(x) = \int_{-\infty}^{\infty} e^{i x \xi} \hat{f}(\xi) \ d \xi.
+			\end{split}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		See Stein and Shakarchi \cite{zbMATH02171466}.
+	\end{proof}
+	\begin{proposition}\label{prop:fourier-props}
+		The Fourier transform has the following properties.
+		\begin{enumerate}[(i)]
+			\item	$\wh{f(x+h)}(\xi) = \wh{f(\xi) e^{i h \xi}}$
+			\item $\wh{f(x) e^{-i x h}}(\xi) = \wh{f}(\xi + h)$	
+			\item $\wh{\frac{d}{dx} f(x)}(\xi) = i \xi$
+			\item $\wh{-ix f(x)}(\xi) = \frac{d}{d \xi}\wh{f}(\xi)$
+			\item $\hat{\hat{f}}(x) = f(-x)$
+			\item $\int_{\rr} \wh{f}(x) g(x) \ dx = \int_{\rr} f(x) \wh{g}(x) \ dx$
+			\item $\wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi)$.
+		\end{enumerate}
+	\end{proposition}
+	\begin{proof}
+		The proofs are a straightforward
+		application of $u$-substitution, and interchanging order of integration.
+		See Stein and Shakarchi \cite{zbMATH02171466}. 
+	\end{proof}
+	\begin{definition}
+		The characteristic function of a random variable $X$ is given by
+		\begin{equation*}
+			\begin{split}
+				\phi_{X} = \ex(e^{-itX}).
+			\end{split}
+		\end{equation*}
+	\end{definition}
+	Observe that if $X$ has a density $f$, then
+	\begin{equation*}
+		\begin{split}
+			\phi(t) = \int_{\rr} e^{-itx} f(x) \ dx
+		\end{split}
+	\end{equation*}
+	This is just the Fourier transform of the density.\footnote{ 
+		Some texts set $\phi_{X}(t) = \ex(e^{-itX})$,
+		which is equivalent to our definition
+	of the characteristic function, evaluated at $-t$.} 
+	\begin{lemma}\label{lem:indep}
+		If $X, Y$ are independent, then
+		\begin{equation*}
+			\begin{split}
+				\phi_{X + Y}(t) = \phi_{X}(t) \phi_{Y}(t).
+			\end{split}
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+		If $X$ and $Y$ are independent, then $e^{-itX}$ and $e^{-itY}$ are independent.
+		Therefore
+		\begin{equation*}
+			\begin{split}
+				\phi_{X + Y}(t) = \ex(e^{-itX - itY}) = \ex(e^{-itX} e^{-itY})
+				= \ex(e^{-itX}) \ex (e^{-itY}) = \phi_{X}(t) \phi_{Y}(t)
+			\end{split}
+		\end{equation*}
+		which completes the proof.\footnote{
+			Observe that if $X$ and $Y$ both have densities and are independent, then 
+			the density of $X + Y$ is $f \star g$, and so 
+			$\phi_{X + Y}(t) = \wh{f \star g}(\xi) = \wh{f}(\xi) \wh{g}(\xi) =
+			\phi_{X}(t) \phi_{Y}(t).$ Hence, the power of characteristic functions
+			manifests itself when we are summing random variables: convolutions of
+			functions are difficult to deal with, while products of functions, in general,
+		are not.}
+	\end{proof}
+	\begin{definition}
+		The joint characteristic function of $X$ and $Y$ is given by
+		\begin{equation*}
+			\begin{split}
+				\phi_{X,Y}(s,t) = \ex(e^{-isX} e^{-itY}).
+			\end{split}
+		\end{equation*}
+	\end{definition}
+	Observe that if $(X, Y)$ has the joint density function $f(x, y)$, then
+	letting $F(x, y) = e^{-isx} e^{-ity}$, we obtain
+	\begin{equation*}
+		\begin{split}
+			\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY})
+			\\
+			& = \ex(F(X, Y))
+			\\
+			& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} F(x, y) f(x, y) \ dx  dy
+			\\
+			& = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity}
+			f(x, y) \ dx  dy
+		\end{split}
+	\end{equation*}
+	which is just the Fourier transform of the joint density in the $x$ and $y$
+	variables.
+	\begin{lemma}\label{lem:char-ind}
+		Two random variables $X$ and $Y$ are independent if and only if
+		\begin{equation*}
+			\begin{split}
+				\phi_{X, Y}(s, t)= \phi_{X}(s) \phi_{Y}(t), \quad \forall s, t
+			\end{split}
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+		We prove this result for the case where $X$ and $Y$ have densities.
+		To establish necessity, assume independence. Then
+		$e^{-isX}$ and $e^{-itY}$ are independent for all $s, t$, and so
+		\begin{equation*}
+			\begin{split}
+				\phi_{X,Y}(s,t) & = \ex(e^{-isX} e^{-itY}) = \ex(e^{-isX}) \ex(e^{-itY})
+				= \phi_{X}(s) \phi_{Y}(t).
+			\end{split}
+		\end{equation*}
+		To establish the sufficiency, we prove the contrapositive. Assume there exist $s, t$ such that
+		\begin{equation*}
+			\begin{split}
+				\ex(e^{-isX} e^{-itY}) \neq \ex(e^{-isX}) \ex(e^{-itY}).
+			\end{split}
+		\end{equation*}
+		Then this is equivalent to saying
+		\begin{equation*}
+			\begin{split}
+				\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
+				e^{-ity} h(y) \ dy
+				\neq 
+				\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx
+				dy.
+			\end{split}
+		\end{equation*}
+		If $X$ and $Y$ are independent, then $f(x, y) = g(x) h(y)$, which implies
+		\begin{equation*}
+			\begin{split}
+				\int_{-\infty}^{\infty} e^{-isx} g(x) \ dx \int_{-\infty}^{\infty}
+				e^{-ity} h(y) \ dy
+				= 
+				\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-isx} e^{-ity} f(x, y) \ dx dy
+			\end{split}
+		\end{equation*}
+		which is a contradiction.
+%Taking partial derivatives with respect
+%to $s$ and $t$ on the left and right hand sides,
+%and evaluating at $s=t=0$, we obtain
+%\begin{equation*}
+%\begin{split}
+%E(XY) = E(X) E(Y)
+%\end{split}
+%\end{equation*}
+	\end{proof}
+	\section{Examples of Characteristic Functions}
+	\begin{enumerate}
+		\item Bernoulli distribution for one trial with parameter $p$. That is,
+			the Bernoulli random variable outputs $1$ with probability $p$,
+			and $0$ with probability $1-p$.
+			\begin{equation*}
+				\begin{split}
+					\phi(t) = \ex(e^{-itX}) = e^{-it0}(1-p) + e^{-it}p = 1-p + pe^{-it}
+				\end{split}
+			\end{equation*}
+		\item Bernoulli distribution with $n$ independent trials and parameter
+			$p$. Letting $X = X_{1} + \cdots + X_{n}$, where the $X_i$ denote
+			the trials, we have
+			\begin{equation*}
+				\begin{split}
+					\phi_{X}(t) = \phi_{X_{1} + \ldots + X_{n}}(t)
+					= \prod_{1 \le i \le n} \phi_{X_{i}}(t)
+					= \left[ 1-p + pe^{-it} \right]^{n}.
+				\end{split}
+			\end{equation*}
+		\item Normal Distribution. If $X$ is $N(0,1)$, then
+			\begin{equation*}
+				\begin{split}
+					\phi(t) = \ex(e^{-itX})
+					& = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-itx}
+					e^{-x^{2}/2} \ dx
+					\\
+					& = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2 \pi}} e^{-(x^{2} -2itx)/2} \
+					dx
+					\\
+					& = \int_{-\infty}^{\infty} e^{-(x-it)^{2}/2 - t^{2}/2} \ dx
+					\\
+					& = e^{-t^{2}/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}}
+					e^{-(x - it)^{2}/2} \ dx
+					\\
+					& = e^{-t^{2}/2}
+				\end{split}
+			\end{equation*}
+			where the last step follows from complex integration.	
+			We now compute the characteristic function of $Y \overset{\text{d}}{=}N(\mu,
+			\sigma^{2})$ by observing that $Y \overset{\text{d}}{=} \sigma X + \mu$,
+			which gives
+			\begin{equation*}
+				\begin{split}
+					\phi_{Y}(t) = \phi_{\sigma X + \mu}
+					& =  \phi_{\sigma X}(t) \phi_{\mu}(t)
+					\\
+					& = e^{it\mu} \int_{-\infty}^{\infty} e^{i t \sigma x} e^{-x^{2}/2} \ dx
+					\\
+					& = e^{it \mu} \phi_{X}(\sigma t)
+					\\
+					& = e^{it \mu} e^{-( \sigma t)^{2}/2}
+					\\
+					& = e^{it \mu - (\sigma t)^{2}/2}
+				\end{split}
+			\end{equation*}
+	\end{enumerate}
+	\section{Convergence in Distribution Using Characteristic Functions}
+%\begin{definition}
+	%We say that a sequence $F_{1}, \ldots, F_{n}: \rr \to \rr$
+	%of distribution functions
+	%converge to $F: \rr \to \rr $ if they converge pointwise to $F$. 
+%\end{definition}
+	\begin{theorem}\label{thm:conv-char-dist}
+		Suppose $F_{1}, \cdots, F_{n}$ are a sequence of distributions
+		with corresponding characteristic functions
+		$\phi_{1}, \cdots, \phi_{n}$, respectively. 
+		\begin{enumerate}[(i)]
+			\item If $F_{n} \to F$ pointwise in $\rr$,
+				where $F$ has characteristic function
+				$\phi$, then $\phi_{n} \to \phi$ pointwise in $\rr$.
+			\item Conversely, if  $\phi_{n} \to \phi$ pointwise in $\rr$ and 
+				$\phi$ is continuous at $t = 0$, then $\phi$ is the characteristic
+				function of some distribution $F$, and $F_{n} \to F$ pointwise
+				in $\rr$
+		\end{enumerate}
+	\end{theorem}
+	\begin{corollary}
+		If $F_{1}, \cdots, F_{n}$ and $F$ are distribution functions with densities
+		and corresponding characteristic functions $\phi_{1}, \cdots, \phi_{n}$ and
+		$\phi$ respectively, then $F_{n} \to F$ pointwise in $\rr$ if and only if
+		$\phi_{n} \to \phi$ pointwise in $\rr$.
+	\end{corollary}
+	\section{The Weak Law of Large Numbers, and the Central Limit Theorem}
+	\begin{definition}
+		We say a sequence of random variables $\{X_{i}\}$
+		with corresponding distribution functions $\{F_{i}\}$
+		\emph{converges in distribution} to a random variable $X$ with corresponding
+		distribution function $F$, if $F_{n} \to F$ pointwise in $\rr$.
+		We denote this by $X_{n} \xrightarrow{\text{d}} X$.
+	\end{definition}
+	\begin{theorem}[Weak Law of Large Numbers]\label{thm:weak-law}
+		Let $\left\{ X_{i} \right\}$ be a sequence of independent, identically
+		distributed random variables with finite means $\mu$. Let
+		$S_{n} \doteq X_{1} + \cdots X_{n}$. Then
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n}}{n} \xrightarrow{\text{d}} \mu.
+			\end{split}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		By \cref{thm:conv-char-dist}, it suffices to show that
+		the characteristic function of $S_{n}/n$ converges
+		pointwise to  $e^{it \mu}$, the characteristic function of $\mu$ (and clearly
+		continuous at $t=0$). Observe that
+		\begin{equation*}
+			\begin{split}
+				\phi_{n}(t) = \phi_{X_{1}/n + \ldots + X_{n}/n}(t)
+				= \prod_{1 \le j \le n} \phi_{X_{j}/n}(t)
+				& = \left[ \phi_{X_{1}/n}(t) \right]^{n}
+				\\
+				& = \left[ \phi_{X_{1}}(t/n) \right]^{n}
+			\end{split}
+		\end{equation*}
+		where the two steps follow from the identical distribution of the $X_{i}$,
+		and the identity
+		\begin{equation*}
+			\begin{split}
+				\phi_{X_{1}/n}(t) = \ex(e^{i X_{1} t /n}) = \phi_{X_{1}}(t/n),
+			\end{split}
+		\end{equation*}
+		respectively. A Maclaurin series expansion gives
+		\begin{equation*}
+			\begin{split}
+				\phi_{X_{1}}(t/n) & = \phi_{X_{1}}(0) + \phi_{X_{1}}'(0)(t/n) + o(t/n)
+				\\
+				& = 1 + (i \mu t)/n + o(t/n)
+			\end{split}
+		\end{equation*}
+		and so
+		\begin{equation*}
+			\begin{split}
+				\lim_{n \to \infty} \left[ \phi_{X_{1}}(t/n) \right]^{n}
+				= \lim_{n \to \infty} \left[ 1 + (i \mu t)/n \right]^{n} = e^{i \mu t}
+			\end{split}
+		\end{equation*}
+		completing the proof.
+	\end{proof}
+	\begin{theorem}[Central Limit Theorem]\label{thm:central-limit}
+		Let $ \left\{ X_{i} \right\}$ be independent, identically
+		distributed random variables with means $\mu$ and nonzero
+		variance $\sigma^{2}$. Let $S_{n} \doteq X_{1} + \cdots + X_{n}.$ Then
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}} \xrightarrow{\text{d}} N(0,1).
+			\end{split}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		By \cref{thm:conv-char-dist}, it suffices to show that
+		the characteristic function of $S_{n}/\sqrt{n \sigma^{2}}$ converges
+		pointwise to  $e^{-t^{2}/2}$, the characteristic function of 
+		a standard normal random variable (and clearly
+		continuous at $t=0$). Let
+		$Y_{i} = (X_{i} - \mu)/n$. Then the $Y_{i}$ have mean $0$ and
+		variance $1$. Furthermore, 
+		\begin{equation*}
+			\begin{split}
+				\frac{S_{n} - n \mu}{\sqrt{n \sigma^{2}}}
+				= \frac{X_{1} - \mu+ \cdots + X_{n} - \mu}{\sigma \sqrt{n}}
+				& = \frac{1}{\sqrt{n}}\left[ Y_{1} + \cdots + Y_{n} \right].
+			\end{split}
+		\end{equation*}
+		Then
+		\begin{equation*}
+			\begin{split}
+				\phi_{\frac{1}{\sqrt{n}}\sum Y_{i}}(t)
+				= \phi_{\sum Y_{i}} = \left[ \phi_{Y_{1}}\left( t/\sqrt{n} \right) \right]^{n}
+			\end{split}
+		\end{equation*}
+		where the last step follows from the fact that the $Y_{i}$ are identically
+		distributed. Next, observe that
+		\begin{equation*}
+			\begin{split}
+				& \phi_{Y_{1}}'(0) = \ex (-iY_{1} e^{-itY_{1}}) \vert_{t = 0} = -i
+				\ex(Y_{1}) = 0
+				\\
+				& \phi_{Y_{1}}''(0) = \ex(Y_{1}^{2} e^{-itY_{1}}) \vert_{t = 0} = 
+				\ex(Y_{1}^{2}) = \var(Y_{1}) = 1.
+			\end{split}
+		\end{equation*}
+		Hence, a Maclaurin expansion gives
+		\begin{equation*}
+			\begin{split}
+				\phi_{Y_{1}}(t) = 1 - t^{2}/2n + o(t^{2}/n)
+			\end{split}
+		\end{equation*}
+		and so
+		\begin{equation*}
+			\begin{split}
+				\lim_{n \to \infty} \phi_{\frac{1}{\sqrt{n}} \sum Y_{i}}
+				= \lim_{n \to \infty} \left[ 1 - t^{2}/2n \right]^{n}
+				= e^{-t^{2}/2}
+			\end{split}
+		\end{equation*}
+		which completes the proof.
+	\end{proof}
+
+
+\newpage
+\part{Machine Learning}
+\chapter{Gradient Descent}
+
+Let $f: \rr^{n} \to R$. We wish to devise an algorithm for finding the point at
+which $f$ achieves its minimum. Consider
+\begin{equation*}
+\begin{split}
+	\phi(t) = f(x_{1} + \vec{u}t), \quad \| u \| = 1.
+\end{split}
+\end{equation*}
+We think of $x_{1}$ as our initial guess for where $f$ achieves its minimum.
+Assuming the minimum is not achieved at $x_{1}$, in what direction away from
+$x_{1}$ does the value of $f$ decrease most quickly? That is, we wish to
+minimize $\phi'(0)$:
+\begin{equation}
+	\label{dir}
+	\begin{split}
+	\phi '(0) & = \frac{\partial f}{\partial x_{1}} \frac{\partial
+		x_{1}}{\partial t} +\cdots + \frac{\partial f}{\partial x_{n}} \frac{\partial
+		x_{n}}{\partial t} \\
+		& = \Delta f(x_{1}) \cdot \vec{u} \\
+		& = \| \Delta f (x_{1}) \| \cos \theta.
+	\end{split}
+\end{equation}
+Hence, $\phi '(0)$ is minimized if
+\begin{equation*}
+	\vec{u} = -\Delta f(x_{1}) / \| \Delta f (x_{1}) \|.
+\end{equation*}
+
+How long can we milk this decrease for? Consider
+\begin{equation*}
+	\phi(t) = f(x_{1} - \vec{u} t)
+\end{equation*}
+where $\vec{u}$ is given by \eqref{dir}. The decrease of $f$ in the direction of
+$\vec{u}$ ends at $t_{0} > 0$, where
+\begin{equation*}
+	0 = \phi'(t_{0}) = \Delta f(x_{1} - \vec{u}t_{0}) \cdot \vec{u}.
+\end{equation*}
+That is,
+\begin{equation*}
+	\Delta f(x_{1} - \vec{u} t_{0}) = \pm u_{\perp} \| \Delta f(x_{1} -
+	\vec{u}t_{)}) \|.
+\end{equation*}
+At this point, we must move in a direction perpendicular to $\vec{u}$. 
+We repeat our procedure from before by setting $x_{2} = x_{1} - t_{0}
+\vec{u}$ and looking for $\vec{v}$ such that
+\begin{equation*}
+	\phi(t) = f(x_{2} - t \vec{v})
+\end{equation*}
+is minimized. 
+
+If $f$ is convex and $C^{1}(\rr^{n})$, then the $x_{i}$ will eventually converge
+to a limit $x$. This will, by construction and convexity, be the unique point at
+which $f$ achieves its minimum.
+
+\section{Applications to Regression Cost Functions}
+
+Recall (in the continuous case) that for $m$ iterations of an experiment
+yielding $n$ observations $\{x_{k} \}_{k=1}^{n}$, we constructed the hypothesis function
+\begin{equation*}
+	h_{\theta}(x^{i}) = \theta_{0} + \theta_{1}x_{1} + \cdots +
+	\theta_{n} x_{n}
+\end{equation*}
+and cost function
+\begin{equation*}
+	J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left (h_{\theta}(x^{i}) - y^{i}
+	\right )^{2}.
+\end{equation*}
+Let $\phi(t) = J(\theta + \vec{u} t)$. Applying steepest descent, we obtain 
+
+\begin{equation*}
+	\theta_{k} = \theta_{k-1} - \frac{t_{k-1} \Delta J(\theta_{k-1})}{ \| \Delta
+		J(\theta_{k-1}) \|}
+\end{equation*}
+Let $\theta_{k}(j)$ and $x^{i}(j)$ denote the $(j+1)th$ entry of $\theta_{k}$
+and the $jth$ entry in the training set $x^{i}$, respectively, with
+$x^{i}(0) \doteq 1$. Then the above yields the system of equations
+\begin{equation*}
+	\theta_{k}(j) = \theta_{k-1}(j) - \frac{t_{k-1}}{m} \frac{\sum_{i=1}^{m}
+	\left( h_{\theta_{k-1}}(x^{i}) - y^{i} \right) x^{i}(j)}{ 
+	\|  \sum_{i=1}^{m}
+	\left( h_{\theta_{k-1}}(x^{i}) - y^{i} \right) x^{i}(j) \|}
+\end{equation*}
+
+\section{Applications to Regularization}
+Suppose we have a non-linear hypotheiss function
+\begin{equation*}
+	h_{\theta}(x) = \theta_{0} + \theta_{1} x_{1} + \theta_{2} x_{2}^{2} + \cdots
+	+ \theta_{n} x^{n}.
+\end{equation*}
+and wish to dampen some of the terms, in order to generate a smoother regression
+curve. To do so, we assign a magnified cost-penalty to these terms. That is, we
+consider a new cost function
+\begin{equation*}
+	J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_{\theta}(x^{i}) -
+	y^{i} \right)^{2} + \frac{1}{2m} \sum_{j \in S} \lambda_{j}
+	\theta_{j}^{2}
+\end{equation*}
+where $S \subset \left\{ 1, 2, \cdots, m \right\}$ and the $\lambda_{j}$ are
+scalars, commonly referred to as \emph{regularization parameters}.
+\chapter{Logistic Regression}
+We now suppose that our outputs are discrete. For simplicity, assume that, for
+each trial, our output $y$ takes values in the set \{0,1\}, i.e. ``failure''
+and ``success'', respectively.
+
+We would like to construct a hypothesis function that mirrors the probability of
+success, and the probability of failure. We let
+
+\begin{equation*} 
+h_{\theta}(\vec{x}) = g(\theta^{T}\vec{x})
+\end{equation*}
+where $g$ is the \emph{Sigmoid}, or \emph{Logistic} function
+\begin{equation*} 
+g(z) = \frac{1}{1+e^{-z}}
+\end{equation*}
+We assume that if $h_{\theta}(\vec{x}) \ge 0.5$, then $y=1$, and that otherwise 
+$y = 0$.
+
+First, observe that the form of the cost function $J(\theta)$ in the continuous
+case would be a poor choice in our discrete case,
+as it would not be a convex function of $\theta$, due to the non-convexity of
+the Sigmoid function $g(z)$. However, observe that $log(g(z))$ is convex, since
+\begin{equation*} 
+\begin{split}
+ \frac{d}{dz}(\log(g)) & = \frac{1}{e^{z}+1}\\
+ \frac{d^{2}}{dz^{2}}(\log(g)) & = \frac{-e^{z}}{(e^{z}+1)^{2}} < 0, \quad
+\forall z
+\end{split} 
+\end{equation*}
+If $y=1$, then our hypothesis function $h_{\theta}$ should be close to $1$, so
+it makes sense to define
+\begin{equation*} 
+\text{Cost}(h_{\theta}, y) = -\log(h_{\theta}(x)), \quad y=1.
+\end{equation*}
+If $y=0$, then $h_{\theta}$ should be close to $0$, so we define
+\begin{equation*} 
+\text{Cost}(h_{\theta}(x), y)= -\log(1 - h_{\theta}(x)), \quad y=0.
+\end{equation*}
+Combining both cases, we obtain the final cost function
+\begin{equation*}
+\begin{split}
+	\text{Cost}(h_{\theta}(x), y) = -y\log(h_{\theta}(x)) -
+	(1-y)\log(1-h_{\theta}(x)).
+\end{split}
+\end{equation*}
+\chapter{Linear Regression}
+Let $X = (X_{1}, X_{2}, \dots, X_{n})$ be a random variable with values in 
+$R^{n}$. Assume each random variable is associated with a single real
+outcome $y$. Given vector-real pairs $\left( x^{i}, y_{i} \right)_{i=1}^{k}$
+(i.e., $k$  
+\textit{samples}), write
+\begin{equation*}
+\begin{split}
+	\hat{y} \equiv f(x) & = \langle \beta, x \rangle, \qquad \beta =
+	(\beta_{0}, \beta_{1}, \dots, \beta_{k})^{T}, \quad x = (1, x_{1}, x_{2},
+	\dots, x_{k})  
+\end{split}
+\end{equation*}
+We wish to find $\beta$ minimizing the mean square error of $\hat{y}$ from $y$ over the range of our samples. We make the restricting assumption that the expected
+residual of our $\hat{y}$ from $y$ is zero. Hence, it follows that we seek 
+$\beta$ minimizing
+\begin{equation*}
+\begin{split}
+	\mse(y - \hat{y}) & \underset{1/k}{\sim} \sum_{i=1}^{k} | y_{i} - \langle \beta_{i}, x^{i} \rangle 
+	|^{2}
+	\\
+	& = \langle y - T(\beta), y - T(\beta) \rangle , \qquad T \doteq
+	T_{\{x^{i}\}_{i=1}^{k}} = \begin{bmatrix}
+	& x^{1} \\
+	& x^{2} \\
+	& \vdots \\
+	& x^{k}
+	\end{bmatrix}, \
+	y = \begin{bmatrix}
+		& y_{1} 
+		\\
+		& y_{2}
+		\\
+		& \vdots
+		\\
+		& y_{k}
+	\end{bmatrix}
+\end{split}
+\end{equation*}
+Then, letting $g(y) = \langle y,y \rangle $ and $h(\beta) = y - T(\beta)$, we
+use the chain rule for operators (see notes) to obtain
+\begin{equation*}
+\begin{split}
+	& \frac{\p V}{\p \beta}(\gamma)  = -2 \langle \cdot, y - T(\beta)
+	\rangle \circ T
+	= -2 \langle T(\cdot), y - T(\beta) \rangle 
+	\\
+	& \frac{\p^{2} V}{\p \beta^{2}} (\gamma) = 2 \langle T(\cdot), T(\cdot) \rangle 
+\end{split}
+\end{equation*}
+where the non-dependence on $\gamma$ for both follows from the bilinearity of the inner product. 
+
+Asume $T$ is positive semi-definite. Then $\p V/ \p \beta(\gamma)(z) > 0
+\ \forall z \in \rr^{n+1}$. It follows that any minimum of $V$ will be a
+\emph{global} minimum. We obtain our global minimum $\beta$ thus:
+\begin{equation*}
+\begin{split}
+& 0 = \frac{\p V}{ \p \beta}(\hat{\beta}) = -2 \langle T(\cdot), y - T(\hat{\beta}) \rangle 
+\\
+& \implies  \langle T^{\star}T, T^{\star}y - T^{\star}T(\hat{\beta}) \rangle  = 0
+\\
+& \implies T^{\star}T T^{\star} y = T^{\star} T T^{\star} T(\hat{\beta})
+\\
+& \implies \hat{\beta} = (T^{\star}T)^{-1} T^{\star} y 
+\end{split}
+\end{equation*}
+where the last step follows from the fact that $T^{\star}T$ is
+square, and is invertable since we have assumed $T$ is positive semidefinite.
+That is,
+\begin{equation*}
+\begin{split}
+	\langle z, T^{\star}T(z) \rangle = \langle T(z), T(z) \rangle > 0 \ \forall
+	z \in \rr^{n+1}  
+\end{split}
+\end{equation*}
+We have found our minimizer $\beta$ for the mean squared error. First,
+observe that our $\beta$ is mean zero. We assumed earlier that $y$ was
+mean zero; we make another simplifying assumption that the covariance matrix of
+$y$ is $\sigma^{2}I$. It follows that the variance of the minimizer is given by
+\begin{equation*}
+\begin{split}
+	\var(\hat{\beta}) & = \e (\hat{\beta} \hat{\beta}^{\star})
+	\\
+	& = \e \left( (T^{\star}T)^{-1}T^{\star}y y^{\star}(T^{\star}T)^{-1} \right)
+	\\
+	& = \left( (T^{\star}T)^{-1}T^{\star}\sigma^{2}I(T^{\star}T)^{-1} \right)
+	\\
+	& = \sigma^{2} (X^{\star}X)^{-1}
+\end{split}
+\end{equation*}
+
+At this minimizer, we have
+\begin{equation*}
+\begin{split}
+	\mse(y - \hat{y}) \underset{1/k}{\sim} \langle y - T(T^{\star}T)^{-1} T^{\star}y, y -
+	T(T^{\star}T)^{-1} T^{\star}y \rangle.
+\end{split}
+\end{equation*}
+\part{Appendix}
+\begin{lemma}
+	\label{lem:var_addition}
+If $X,Y$ are independent random variables, then
+\begin{equation*}
+\begin{split}
+	\var(X+Y) = \var(X) + \var(Y).
+\end{split}
+\end{equation*}
+\begin{proof}
+Without loss of generality, assume $X$ and $Y$ have mean $0$. Then
+\begin{equation*}
+\begin{split}
+	\var(X+Y) =  \e( (X + Y)^{2} ) & = \e(X^{2} + 2XY + Y^{2})
+	\\
+	& = \e(X^{2}) + 2 \e(X) \e(Y) + \e(Y^{2}) \quad \text{via independence}
+	\\
+	& = \e(X^{2}) + \e(Y^{2})
+	\\
+	& = \var(X) + \var(Y)
+\end{split}
+\end{equation*}
+
+\end{proof}
+
+\end{lemma}
+\begin{lemma}
+	If $X_{1}, \cdots, X_{n}$ and $Y_{1}, \cdots, Y_{n}$ are independent samples
+	generated by random variables $X, Y$,
+	then
+	\begin{equation*}
+	\begin{split}
+		\se_{\bar{X} + \bar{Y}} = \se_{\bar{X}}^{2} + \se_{\bar{Y}}^{2}	
+	\end{split}
+	\end{equation*}
+	
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+	\begin{split}
+	\se_{\bar{X} + \bar{Y}}^{2}
+	& = \frac{1}{n}\sum_{i=1}^{n} \var(x_{i} +
+	y_{i}) \\
+	& = \frac{1}{n}\sum_{i=1}^{n}\var(x_{i}) +
+	\frac{1}{n}\sum_{i=1}^{n}\var(y_{i}) \quad (\Cref{lem:var_addition})
+	\\
+	& = \se_{\bar{X}}^{2} + \se_{\bar{Y}}^{2}
+	\end{split}
+	\end{equation*}
+\end{proof}
+\bibliographystyle{amsalpha}
+\bibliography{/Users/davidkarapetyan/Documents/research/math/references.bib}
+\end{document}

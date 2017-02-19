@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri Apr 18 17:16:06 EDT 2014
+markTmpDer=true
+builderNum=2
+outputDir=priv-study-files/probability/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=priv-study-files/probability
+mainTexFile=probability.tex
+outputFile=probability.pdf
+langSpell=
+markDer=true
+srcDir=priv-study-files/probability/
