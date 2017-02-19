@@ -1253,6 +1253,63 @@ Fr\'echet spaces) by replacing norms with metrics in what follows.
     %
     Therefore, $D_{u}(f(u))(u_{0}) = 2u_{0}I$. 
 \end{framed}
+We now prove some useful corollaries on differentiating bilinear forms,
+which will also allow us to illustrate Banach differentiation in action.
+\begin{corollary}
+		 \label{cor:dif_bilin}
+	 Let
+	 \begin{equation*}
+	 \begin{split}
+		 & f: \rr^{n} \times \rr^{n} \to \rr
+		 \\
+		 & f(z) = \langle x, y \rangle, \quad z=(x,y).
+	 \end{split}
+	 \end{equation*}
+	Then 
+	\begin{equation*}
+	\begin{split}
+	Df(z) = \langle x, \cdot \rangle  + \langle \cdot, y \rangle 
+	\end{split}
+	\end{equation*}
+	 \end{corollary}
+\begin{proof}
+	\begin{equation*}
+	\begin{split}
+	f(z+h) - f(z) & = f(x+h, y+h) - f(x,y)
+	\\
+	& = \langle x+h, y+h \rangle - \langle x,y \rangle 
+	\\
+	& = \langle x+h, y \rangle  + \langle x+h, h \rangle  - \langle x,y \rangle 
+	\\
+	& = \langle x,y \rangle  + \langle h,y \rangle  + \langle x, h \rangle  +
+	\langle h,h \rangle - \langle x,y \rangle 
+	\\
+	& = \langle h,y \rangle  + \langle x,h \rangle + \text{O}(h^{2})
+	\\
+	& = L(z)(h) + \text{O}(h^{2}), \quad L(z) = \langle x, \cdot \rangle  + \langle \cdot, y \rangle
+	\end{split}
+	\end{equation*}
+\end{proof}
+	 \begin{corollary}
+	 Let
+	 \begin{equation*}
+	 \begin{split}
+		 & f: \rr^{n} \to \rr
+		 \\
+		 & f(x) = \langle x, x \rangle
+	 \end{split}
+	 \end{equation*}
+	Then 
+	\begin{equation*}
+	\begin{split}
+	Df(z) = 2 \langle \cdot, x \rangle
+	\end{split}
+	\end{equation*}
+	 \end{corollary}
+\begin{proof}
+	Repeat the proof for \cref{cor:dif_bilin}, with $x \doteq y$.
+\end{proof}
+
 Recall that if $F$ is continuously differentiable in $U$, then $DF : U \to L(U,
 X)$ is a continuous map. Since $X$ is Banach, it follows that $L(U, X)$ is also
 Banach under the operator norm, hence it makes sense to talk about derivatives
@@ -1443,6 +1500,9 @@ Lastly, we include the following.
         \end{equation*}
 			 completing the proof. 
    \end{proof}
+
+	 
+	 
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -40,7 +40,6 @@ urlcolor=blue,
 %
 %
 %
-%
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -89,10 +88,10 @@ urlcolor=blue,
         %
         \section{}
         \label{sec:ll}
-        
+
 \begin{lemma}
 Let $X$ be Banach, and $L(X)$ be the space of continuous linear functionals on
-$X$, equipped with the operator norm. Suppose 
+$X$, equipped with the operator norm. Suppose
 %
 %
 \begin{gather*}
@@ -100,6 +99,7 @@ $X$, equipped with the operator norm. Suppose
   \\
   T_{k} \xrightarrow{L(X)} T.
 \end{gather*}
+
 %
 %
 Then
@@ -115,7 +115,7 @@ Then
   Since $x_{k} \xrightarrow{X} x$, there exists $N > 0$ such that for $k > N$,
   we have $\|x -x_{k} \|_{X} \le 1$. Furthermore, if we denote $B_{X}(R) \doteq
   \left\{ x \in X: \| x \|_{X} \le 1 \right\}$, then $T_{k}
-  \xrightarrow{L(X)} T$ is by definition equivalent to 
+  \xrightarrow{L(X)} T$ is by definition equivalent to
   %
   %
   \begin{equation*}
@@ -125,7 +125,7 @@ Then
   \end{equation*}
   %
   %
-  Hence, for $k > N$, 
+  Hence, for $k > N$,
   %
   %
   \begin{equation*}
@@ -148,7 +148,6 @@ Then
 
 \begin{lemma}
 If $E(X_{n}) \to a$ and $Var(X_{n}) \to 0$, then $X_{n} \xrightarrow{L^{2}(\Omega)}a$. That is, \\ $E[(X_{n} -a)^{2}] \to 0$.
-\label{lem:}
 \end{lemma}
 
 \begin{proof}
@@ -159,7 +158,7 @@ Observe that $E[(X_{n}- a )^{2}] = E(X_{n}^{2}) - 2aE(X_{n}) + a^{2}$. Assume th
   \\
   & = (EX_{n})^{2} - 2a E(X_{n}) + a^{2}
   \\
-  & \to a^{2} - 2a +  a^{2} = 0 
+  & \to a^{2} - 2a +  a^{2} = 0
 \end{split}
 \end{equation*}
 which completes the proof.
@@ -167,14 +166,13 @@ which completes the proof.
 
 \begin{lemma}
 If $\Delta_{n}(t) \xrightarrow{L^{2}(\Omega)} \Delta$, then for any continuous $f: \rr \to \rr$, there exists a subsequence $\{ \Delta_{n_{k}} \}$ such that $f(\Delta_{n_{k}}) \xrightarrow{L^{2}(\Omega)} f(\Delta(t))$.
-\label{lem:}
 \end{lemma}
 \begin{proof}
 Since $\Delta_{n}(t) \xrightarrow{L^{2}(\Omega)} \Delta(t)$, there exists a subsequence $\left \{ \Delta_{n_{k}} \right \}$ such that $\Delta_{n_{k}}(t) \xrightarrow{a.e.} \Delta(t)$. In fact, we can say more: $| \Delta(t) | \le C$. Hence, for $k$ sufficiently large, $| \Delta_{n_{k}}(t) | \le 2c$. Reindexing, we see that we must have $f(\Delta_{n_{k}}(t)) \xrightarrow{L^{\infty}(\Omega) f(\Delta)}$. But this implies $f(\Delta_{n_{k}}(t)) \xrightarrow{L^{2}(\Omega)}$, since our probability measure $\mathbb{P}$ is sigma-finite. That is,
 
 \begin{equation*}
 \begin{split}
-  \int_{\Omega} [f(\Delta(t)) - f(\Delta_{n_{k}}(t))]^{2} d \mathbb{P} 
+  \int_{\Omega} [f(\Delta(t)) - f(\Delta_{n_{k}}(t))]^{2} d \mathbb{P}
   & \le \| f(\Delta(t)) - f(\Delta_{n_{k}}(t)) \|^{2}_{L^{\infty}} \int_{\Omega} d \mathbb{P}
   \\
   & =  \| f(\Delta(t)) - f(\Delta_{n_{k}}(t)) \|^{2}_{L^{\infty}}
@@ -187,7 +185,6 @@ completing the proof.
 
 \begin{lemma}
 Let $X(t), Y(t)$ be two random variables. Suppose $X(t)$ has quadratic variation $a=a(t)$ from $0$ to $t$, and $Y(t)$ has zero quadratic variation from $0$ to $t$. Then $Z(t) = X(t) + Y(t)$ has quadratic variation $a = a(t)$.
-\label{lem:}
 \end{lemma}
 
 \begin{proof}
@@ -204,22 +201,22 @@ But
   \\
   & = \sum_{k=1}^{n} [X(t_{k+1}) - X(t_{k}) + Y(t_{k+1}) - Y(t_{k})]^{2}
   \\
-  & = \sum_{k=1}^{n}[X(t_{k+1}) - X(t_{k})]^{2} + 
+  & = \sum_{k=1}^{n}[X(t_{k+1}) - X(t_{k})]^{2} +
   \sum_{k=1}^{n}[Y(t_{k+1}) - Y(t_{k})]^{2} + 2 \sum_{k=1}^{n} [X(t_{k+1}) - X(t_{k})] [Y(t_{k+1}) - Y(t_{k})]
   \\
  & \to a(t) + 2 \lim_{\| II \| \to 0} \sum_{k=1}^{n} [X(t_{k+1}) - X(t_{k})][Y(t_{k+1}) - Y(t_{k})]
  \\
-& \to a(t) \ \ \text{by Cauchy Schwartz} 
+& \to a(t) \ \ \text{by Cauchy Schwartz}
 \end{split}
 \end{equation*}
 completing the proof.
 \end{proof}
 
-Let us now show how one can use the Ito Calculus to solve SDEs. 
+Let us now show how one can use the Ito Calculus to solve SDEs.
 Let us return to the SDE for geometric Brownian motion
 \begin{equation*}
 \begin{split}
-dS = S(t) \alpha(t) dt + S(t) \sigma(t) dW(t) 
+dS = S(t) \alpha(t) dt + S(t) \sigma(t) dW(t)
 \end{split}
 \end{equation*}
 which we rewrite as
@@ -242,10 +239,10 @@ d \log | S(t) |
 & = \alpha(t) dt + \sigma(t) d W(t) - \frac{1}{2} \sigma^{2}(t) dt
 \end{split}
 \end{equation*}
-Therefore, 
+Therefore,
 \begin{equation*}
 \begin{split}
-  \log | S(t) | - \log | S(0) | = \int_{0}^{s} [\alpha(s) - \frac{1}{2}\sigma^{2}] ds + \int_{0}^{s} \sigma(s) dW(s). 
+  \log | S(t) | - \log | S(0) | = \int_{0}^{s} [\alpha(s) - \frac{1}{2}\sigma^{2}] ds + \int_{0}^{s} \sigma(s) dW(s).
 \end{split}
 \end{equation*}
 We conclude that
@@ -263,7 +260,7 @@ such that $f_n(a)$ converges but $f_n(b)$ diverges
 \begin{proof}
 We first compute $f'(x) = 12x^2 - 3$. Setting this equal first
 to $1$, then $1- 12\ee$, we obtain candidates $c = \sqrt{1/3}$ and $d =
-\sqrt{1/3 - \ee}$, respectively, with difference 
+\sqrt{1/3 - \ee}$, respectively, with difference
 \begin{align*}
 \sqrt{1/3} - \sqrt{1/3 - \ee} = \frac{\ee}{\sqrt{1/3} + \sqrt{1/3 - \ee}} \le
 \ee \sqrt{3}.
@@ -274,7 +271,7 @@ Next, by chain rule
 f_{n+1}'(x) = f_n'(f(x)) f'(x), \quad f_0 \equiv 1
 \end{align*}
 for all integers $n \ge 0$.
-From this relation, a simple induction 
+From this relation, a simple induction
 using the observation that $f(1) = 1$ and $f'(1) = 9 > 1$
 gives
 \begin{align*}
@@ -283,7 +280,7 @@ f_{n+1}'(1) \ge 1, \quad \forall n\ge0.
 Running another induction using this fact gives
 \begin{enumerate}
 \item
-$f'(x)$ is an increasing function for $x \ge (1/4)^{1/3}$ 
+$f'(x)$ is an increasing function for $x \ge (1/4)^{1/3}$
 \item
 $f'(c)=1$ and $f'(d) = 1 - 12 \ee$
 \item
@@ -295,23 +292,24 @@ shows that for our choice of $c$ and $d$ above
 & f_{n}'(c) \ge 1 \\
 & | f_{n}'(d) |  < 1
 \end{align*}
-for all $n \ge 0$. 
+for all $n \ge 0$.
 It immediately follows that $f_n(c)$ diverges and $f_n(d)$ converges
-as $n \to \infty$. Hence, the proof reduces to finding $c$ and $d$ 
+as $n \to \infty$. Hence, the proof reduces to finding $c$ and $d$
 that are at most $\ee$ apart.
 
 
 To do so, we compute $f'(x) = 12x^3 - 3$. Setting this equal first
 to $1$, then $1- 12\ee$, we obtain $c = \pm \sqrt{1/3}$ and $d = 1/3 - \ee$,
-respectively, with difference 
+respectively, with difference
 \begin{align*}
 \sqrt{1/3} - \sqrt{1/3 - \ee} = \frac{\ee}{\sqrt{1/3} + \sqrt{1/3 - \ee}} \le
 \ee \sqrt{3}.
 \end{align*}
-which completes the proof. (For clarity, one can replace $\ee$ with
+which complete the proof. (For clarity, one can replace $\ee$ with
 $\eta/\sqrt{3}$ in the above computations).
 
 \end{proof}
+
         %\nocite{*}
         %\bibliography{/Users/davidkarapetyan/Documents/math/}
 
