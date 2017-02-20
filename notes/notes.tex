@@ -1,14 +1,32 @@
 \documentclass{amsbook}
-\usepackage{amsfonts}
 %
 %
 %\usepackage[notcite, notref]{showkeys}
 %\usepackage[T1]{fontenc} %otherwise have font issues
 %\usepackage[utf8x]{inputenc}
 %\usepackage{lmodern} %this with above font packages give us all possible diacritics
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\synctex=1
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+pdfauthor={David Karapetyan}
+}
+\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage{cleveref} %must be last loaded package to work properly
+
 %\usepackage[margin=1.5cm]{geometry}  %page layout
-%\setcounter{tocdepth}{1} %must come before secnumdepth--else, pain
-%\setcounter{secnumdepth}{2} %number only sections, not subsections
+\setcounter{tocdepth}{4} %must come before secnumdepth--else, pain
+\setcounter{secnumdepth}{6} %number only sections, not subsections
 %\usepackage[pdftex]{graphicx} %for importing pictures into latex--pdf compilation
 \numberwithin{section}{chapter} 
 \numberwithin{equation}{chapter}  %eliminate need for keeping track of counters
@@ -57,7 +75,7 @@
 %numeral--not needed for memoir
 \renewcommand{\cref}{\Cref} %capitalize option for cleveref doesn't work on all
 %computers
-%\includeonly{basic_pdes/basic_pdes}
+\includeonly{mkdv/mkdv}
 \makeindex
 \begin{document}
 \frontmatter
@@ -97,16 +115,15 @@ To Cynthia -- loyal and fierce and loving until the end.
 \tableofcontents
 
 
+\mainmatter
 %    Include unnumbered chapters (preface, acknowledgments, etc.) here.
 \include{preface/preface}
 \include{ack/ack}
-
-\mainmatter
 \part{Strongly Dispersive Equations}
 \include{mnls/mnls}
 \include{knls/knls}
 \include{dnls/dnls}
-\include{nls-gevrey/nls-gevrey}
+%\include{nls-gevrey/nls-gevrey}
 \include{kdv/kdv}
 \include{mkdv/mkdv}
 \part{Weakly Dispersive Equations}
@@ -116,9 +133,11 @@ To Cynthia -- loyal and fierce and loving until the end.
 \part{Four Important PDEs}
 \include{basic_pdes/basic_pdes}
 
-\part{Appendix}
-\appendix
 
+
+\part{Appendix}
+
+\appendix
 \include{ode-thm/ode-thm}
 \include{interpolation/interpolation}
 %
