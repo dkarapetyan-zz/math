@@ -70,13 +70,16 @@ pdfauthor={David Karapetyan}
 %
 %
 %
-%\renewcommand{\qed}{\qquad \qedsymbol} %for proof env qed symbol
-%\renewcommand \thepart{\Roman{part}} %change part labeling to Roman
-%numeral--not needed for memoir
-\renewcommand{\cref}{\Cref} %capitalize option for cleveref doesn't work on all
-%computers
+\renewcommand{\cref}{\Cref} 
 \includeonly{mkdv/mkdv}
 \makeindex
+
+\pdfstringdefDisableCommands{%
+  \let\enspace\empty  % this causes the warning for \kern
+  \let\noindent\empty % this causes the warning for \indent
+}
+
+
 \begin{document}
 \frontmatter
 \title{Well-posedness and Ill-posedness for Strongly and Weakly Dispersive Equations}
@@ -123,7 +126,7 @@ To Cynthia -- loyal and fierce and loving until the end.
 \include{mnls/mnls}
 \include{knls/knls}
 \include{dnls/dnls}
-%\include{nls-gevrey/nls-gevrey}
+\include{nls-gevrey/nls-gevrey}
 \include{kdv/kdv}
 \include{mkdv/mkdv}
 \part{Weakly Dispersive Equations}
