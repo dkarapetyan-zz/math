@@ -67,7 +67,7 @@ where
 \begin{gather*}
   u_k \doteq \p_x^k u, \quad \vp_k \doteq \p_x^k \vp, \quad \text{and}
   \quad B_k = B_{k}(u,u) =
-  \lambda \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i} u_{k-j} u_{j-i}
+	\lambda \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j}\binom{j}{i} u_{k-j} u_{j-i}
   \bar{u_i}
   \label{peqn:system-notat}
 \end{gather*}
@@ -316,7 +316,7 @@ to show that $T_k$ is a contraction on $\mathcal{A}(Y^s)$. A Picard iteration
 will then complete the proof. 
 %
 %
-\subsection{Estimate for \eqref{pmain-int-expression-1}.}
+\subsection{Estimate for \ref{pmain-int-expression-1}.}
 Letting $f_k(x,t) = \psi(t) \sum_{n \in \zz} e^{i(xn + tn^{2})} 
 \wh{\vp_k}(n)$, we have $\wh{f_k}(n,t) = \psi(t) \wh{\vp_k}(n) e^{itn^{2}}$,
 from which we obtain
@@ -355,7 +355,7 @@ Since $\wh{\psi}(\xi)$ is Schwartz for $|\xi| \ge T$, we see that
 %
 %
 %
-\subsection{Estimate for \eqref{pmain-int-expression-2}.}
+\subsection{Estimate for \ref{pmain-int-expression-2}.}
 We now need the following lemma, whose proof is provided in the appendix.
 %
 %
@@ -422,7 +422,7 @@ Hence,
     \right)^{1/2}
     \\
     & \lesssim 
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+		\sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom{j}{i}
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}
   \end{split}
@@ -465,13 +465,13 @@ and the following trilinear estimate, whose proof we leave for later.
      \ d \tau 
     \right)^{1/2}
     \\
-    & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
-    \|f_{k-j}\|_{X^s} \| g_{j-i}\|_{X^s}
+		& \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
+		\|f_{k-j}\|_{X^s} \| g_{j-i}\|_{X^s}
     \| h_i \|_{X^s}
   \end{split}
   \end{equation}
-  where $$B_k(f,g,h)(x,t) = \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose
-  i} f_{k-j} g_{j-i} \bar{h_i}.$$
+  where $$B_k(f,g,h)(x,t) = \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
+ f_{k-j} g_{j-i} \bar{h_i}.$$
 %
 %
 %
@@ -497,7 +497,7 @@ Furthermore,
     \int_{\rr}\frac{1 - \psi(\tau - n^{2})}{\tau - n^{2}} \wh{{B_k}}(n, \tau) d
     \tau \right)^{2} \right]^{1/2}
     \\
-    & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}
   \end{split}
@@ -529,7 +529,7 @@ estimate.
     \frac{|\wh{{B_k}(f,g,h)}(n, \tau) |}{1 + | \tau - n^{2} |}
      \ d\tau \right)^2  \right)^{1/2} 
      \\
-     & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+     & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|f_{k-j}\|_{X^s} \| g_{j-i}\|_{X^s}
     \| h_i \|_{X^s}.
   \end{split}
@@ -547,14 +547,14 @@ Combining \eqref{pmain-int2-est-X-s-part} and
   \label{pmain-int2-est}
   \begin{split}
     \|\eqref{pmain-int-expression-2}\|_{Y^s} \le c_{\psi}
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}.
   \end{split}
 \end{equation}
 %
 %
-\subsection{Estimate for \eqref{pmain-int-expression-3}.}
+\subsection{Estimate for \ref{pmain-int-expression-3}.}
 Letting $$f_k(x,t) = \psi(t) \sum_{n \in \zz} e^{i\left( xn + tn^{2} \right)} 
 \int_\rr \frac{1 - \psi\left( \lambda - n^{2} \right)}{\lambda - n^{2}} 
 \wh{{B_k}} \left( n, \lambda \right) \ d \lambda,$$ we have
@@ -624,7 +624,7 @@ Applying estimate \eqref{pone-plus-ineq} then gives
     \frac{|\wh{{B_k}}(n, \lambda)| }{1 + |\lambda - n^{2}|}
      \ d\lambda \right )^2 \right)^{1/2}
      \\
-    & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    & \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}
   \end{split}
@@ -655,7 +655,7 @@ Furthermore,
     \right)^{2}\right]^{1/2}
     \\
     & \lesssim 
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}
   \end{split}
@@ -672,7 +672,7 @@ conclude that
   \label{pmain-int3-est}
   \begin{split}
     \|\eqref{pmain-int-expression-3}\|_{Y^s} 
-    \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \lesssim \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}.
   \end{split}
@@ -680,7 +680,7 @@ conclude that
 %
 %
 %
-\subsection{Estimate for \eqref{pmain-int-expression-4}.}
+\subsection{Estimate for \ref{pmain-int-expression-4}.}
 Note that
 %
 %
@@ -872,7 +872,7 @@ implies
     \frac{|\wh{{B_k}}(n, \tau)|}{1 + | \tau - n^{2} |}  \ d \tau  \right)^2
     \right)^{1/2} \\
     & \lesssim 
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}.
   \end{split}
@@ -903,7 +903,7 @@ we have
     |)^{2s} | h_{k}(n) |^2 \right]^{1/2}
     \\
     & \lesssim 
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}
   \end{split}
@@ -920,7 +920,7 @@ have
 \label{pmain-int4-est}
   \begin{split}
     \|\eqref{pmain-int-expression-4}\|_{Y^s} \lesssim 
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{X^s} \| u_{j-i}\|_{X^s}
     \| u_i \|_{X^s}.
   \end{split}
@@ -931,7 +931,8 @@ Collecting estimates \eqref{pmain-int1-est}, \eqref{pmain-int2-est},
 \eqref{pmain-int3-est}, and \eqref{pmain-int4-est}, and recalling 
 \eqref{pmain-int-expression-1}-\eqref{pmain-int-expression-4}, we see that
 $$\|T_k(u_0, u_1, \cdots, u_k)\|_{Y^s} \le c_\psi \left( \|\vp_k \|_{H^s(\ci)} + 
-\sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i} \|u_{k-j}\|_{X^s} \|
+\sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
+ \|u_{k-j}\|_{X^s} \|
 u_{j-i}\|_{X^s} \| u_i \|_{X^s}  \right )$$ 
 which by the inequality $\|u\|_{X^s} \le \|u\|_{Y^s}$ yields the following.
 %%
@@ -952,7 +953,7 @@ which by the inequality $\|u\|_{X^s} \le \|u\|_{Y^s}$ yields the following.
   \begin{split}
     \|T_k(u_0, u_1, \cdots, u_k)\|_{Y^s} \le c_\psi  \left( \|\vp_k
     \|_{H^s(\ci)} +
-    \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose j}{j \choose i}
+    \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j}\|_{Y^s} \| u_{j-i}\|_{Y^s}
     \| u_i \|_{Y^s}\right).
   \end{split}
@@ -986,12 +987,12 @@ Applying \cref{pprop:contraction}, we have the estimate
   \|_{Y^s}
   \\
   & \le c_{\psi} \sum_{k=0}^{\infty} \frac{C_0^k}{k!}\left[ \| \vp_{k}
-  \|_{H^s(\ci)} + \sum_{j=0}^{k} \sum_{j=0}^{i} {k \choose j } {j \choose i }
+  \|_{H^s(\ci)} + \sum_{j=0}^{k} \sum_{j=0}^{i} \binom{k}{j} \binom {j}{i} 
   \|u_{k-j}\|_{Y^s} \| u_{j-1}\|_{Y^s} \|u_{i} \|_{Y^s} \| \right]
   \\
   & = c_{\psi}\left( | | | \left\{ \vp_{k} \right\} | | |_{s} +
   \sum_{k=0}^{\infty} \sum_{j=0}^{k}
-  \sum_{j=0}^{i} {k \choose j } {j \choose i }
+  \sum_{j=0}^{i} \binom{k}{j} \binom {j}{i} 
   \|u_{k-j}\|_{Y^s} \| u_{j-1}\|_{Y^s} \| u_{i} \|_{Y^s}\right).
 \end{split}
 \label{peqn:map-onto-ball}
@@ -1003,7 +1004,8 @@ We now rewrite the second term
 %
 \begin{equation*}
 \begin{split}
-  & \sum_{k=0}^{\infty} \sum_{j=0}^{k}  \sum_{j=0}^{i} {k \choose j } {j \choose i } \|u_{k-j}\|_{Y^s}
+  & \sum_{k=0}^{\infty} \sum_{j=0}^{k}  \sum_{j=0}^{i} \binom{k}{j} \binom {j}{i} 
+ \|u_{k-j}\|_{Y^s}
 \| u_{j-1}\|_{Y^s} \| u_{i} \|_{Y^s} 
   \\
   & = \sum_{k=0}^{\infty} \sum_{j=0}^{k}  \sum_{j=0}^{i} \frac{k!}{\cancel{j!}(k-j)!}
@@ -1022,7 +1024,8 @@ which implies
 %
 \begin{equation}
 \begin{split}
-  & \sum_{k=0}^{\infty} \frac{C_0^k}{k!} \sum_{j=0}^{k}  \sum_{j=0}^{i} {k \choose j } {j \choose i } \|u_{k-j}\|_{Y^s}
+  & \sum_{k=0}^{\infty} \frac{C_0^k}{k!} \sum_{j=0}^{k}  \sum_{j=0}^{i} \binom{k}{j} \binom {j}{i} 
+ \|u_{k-j}\|_{Y^s}
 \| u_{j-1}\|_{Y^s} \| u_{i} \|_{Y^s} 
 \\
 & = \sum_{k=0}^{\infty} \sum_{j=0}^{k}  \sum_{j=0}^{i} C_{0}^{k} \frac{\|
@@ -1157,8 +1160,8 @@ Repeating the arguments used to estimate
 %%
 \begin{equation*}
   \begin{split}
-    & \|L_k(f, g, h)\|_{Y^s} \le c_\psi \sum_{j=0}^{k} \sum_{i=0}^{j} {k \choose
-    j}{j \choose i} \|f_{k-j}\|_{Y^s} \| g_{j-i}\|_{Y^s} \| h_i \|_{Y^s}.
+    & \|L_k(f, g, h)\|_{Y^s} \le c_\psi \sum_{j=0}^{k} \sum_{i=0}^{j} \binom{k}{j} \binom {j}{i} 
+ \|f_{k-j}\|_{Y^s} \| g_{j-i}\|_{Y^s} \| h_i \|_{Y^s}.
 \end{split}
 \end{equation*}
 %
@@ -1181,7 +1184,7 @@ which implies
     \|L_k(v, v, u-v) \|_{Y^s}\right)
     \\
     & \lesssim_{\psi} \sum_{k=0}^{\infty} \sum_{j=0}^{k}
-    \sum_{i=0}^{j}\frac{C_{0}^{k}}{k!} {k \choose j } {j \choose i}
+    \sum_{i=0}^{j}\frac{C_{0}^{k}}{k!} \binom{k}{j} \binom {j}{i} 
     \|u_{k-j} -v_{k-j} \|_{Y^s}
     \\
     & \times \left( \|u_{j-i}\|_{Y^s} \|u_{i}\|_{Y^s} +
