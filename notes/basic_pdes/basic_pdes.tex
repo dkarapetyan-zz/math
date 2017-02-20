@@ -3,7 +3,9 @@
 The general form of the transport equation is given by
 \begin{equation*}
 \begin{split}
-	u_{t}  + b\Delta u = 0,
+	& u_{t}  + b\Delta u = 0
+	\\
+	& u(x,0) = f(x)
 \end{split}
 \end{equation*}
 with $u = u(x,t)$, constant $b \in \rr^n$, $x \in \rr^{n}$, $t \in \rr$.
@@ -30,5 +32,17 @@ $(0,c)$. Since $(1,-2) \perp (2,1)$, we want
 \end{equation*}
 Observe that $u$ is constant for $c$ satisfying the above, by
 \eqref{constant-behav}. Since $c$ was arbitrary, we can vary it over all $\rr$,
-and so $u$ is constant on all lines $\{ c = -(x-2t)/2\}_{c \in \rr}$. The above holds for any fixedHence, for any given $c$, there exis Shifting our perspective, it follows 
+and hence $u$ is a solution to the transport equation if and only if it is
+constant on each line $\{ c = x-2t\}_{c \in \rr}$. 
+On each of these lines, $u(x,t)$ takes a particular value, determined entirely
+by the point $(0,c)$ at which this line (in the direction $(2,1)$ intersects the
+$t$-axis. That is, $u(x,t) = u(0, t-x/2) = f(t-x/2)$.
+
+Using similar logic as in this example, one can show that the generalized
+solution to the transport equation is
+\begin{equation*}
+\begin{split}
+	u(x,t) = f(x-bt).
+\end{split}
+\end{equation*}
 
