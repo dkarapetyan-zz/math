@@ -21,7 +21,7 @@ citecolor=blue,
 urlcolor=blue,
 pdfauthor={David Karapetyan}
 }
-\usepackage[shortalphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
+\usepackage[initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly (conflicts with cref in particular)
 \usepackage{cleveref} %must be last loaded package to work properly
 
 %\usepackage[margin=1.5cm]{geometry}  %page layout
@@ -71,7 +71,7 @@ pdfauthor={David Karapetyan}
 %
 %
 \renewcommand{\cref}{\Cref} 
-%\includeonly{knls/knls}
+\includeonly{basic_pdes/basic_pdes}
 \makeindex
 
 \pdfstringdefDisableCommands{%
@@ -146,7 +146,7 @@ To Cynthia -- loyal and fierce and loving until the end.
 %
 \backmatter %gets rid of chapter title for bib
 %
-\bibliographystyle{amsalpha}
+%\bibliographystyle{amsalpha}
 \bibliography{/Users/davidkarapetyan/Documents/research/math/references.bib}
 %
 %If want reference in normal size, do \begin{biblist}[\normalsize]

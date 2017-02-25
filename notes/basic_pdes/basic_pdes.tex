@@ -1,6 +1,7 @@
-\chapter{Four Important PDEs}
-\section{The Transport Equation}
-The general form of the transport equation is given by
+% !TeX root = ../notes.tex
+\chapter{The Transport Equation}
+\section{The Homogeneous Transport Equation}
+The general form of the homogenous transport equation is given by
 \begin{equation*}
 \begin{split}
 	& u_{t}  + b\Delta u = 0
@@ -8,7 +9,7 @@ The general form of the transport equation is given by
 	& u(x,0) = f(x)
 \end{split}
 \end{equation*}
-with $u = u(x,t)$, constant $b \in \rr^n$, $x \in \rr^{n}$, $t \in \rr$.
+with $u = u(x,t): \rr^{n} \times \rr \to \rr$, and constant $b \in \rr^n$.
 As an example for how to find a classical solution to this equation, we set
 $n = 1$ and $b=2$. That is
 \begin{equation}
@@ -17,6 +18,7 @@ $n = 1$ and $b=2$. That is
 	0 = u_{t} + 2 u _{x} = (2,1) \cdot (u_{x}, u_{t}).
 \end{split}
 \end{equation}
+
 Hence, the directional derivative of $u$ in the direction of vector $(2,1)$ is
 0; that is, $D_{(1,2)} = 0$. Hence, $u$ is constant on each line parallel to
 $(2,1)$, since they have the same direction as $(2,1)$. Since the lines parallel
@@ -30,10 +32,11 @@ $(0,c)$. Since $(1,-2) \perp (2,1)$, we want
 	\implies -\frac{1}{2}(x-2t) = c
 \end{split}
 \end{equation*}
+
 Observe that $u$ is constant for $c$ satisfying the above, by
 \eqref{constant-behav}. Since $c$ was arbitrary, we can vary it over all $\rr$,
 and hence $u$ is a solution to the transport equation if and only if it is
-constant on each line $\{ c = x-2t\}_{c \in \rr}$. 
+constant on each line $\{ c = x-2t\}_{c \in \rr}$.
 On each of these lines, $u(x,t)$ takes a particular value, determined entirely
 by the point $(0,c)$ at which this line (in the direction $(2,1)$ intersects the
 $t$-axis. That is, $u(x,t) = u(0, t-x/2) = f(t-x/2)$.
@@ -45,4 +48,459 @@ solution to the transport equation is
 	u(x,t) = f(x-bt).
 \end{split}
 \end{equation*}
+\section{The Inhomogenous Transport Equation}
+
+The general form of the inhomogenous transport equation is given by
+\begin{equation*}
+\begin{split}
+	& u_{t}  + b\Delta u = g(x)
+	\\
+	& u(x,0) = f(x)
+\end{split}
+\end{equation*}
+with $u = u(x,t)$, constant $b \in \rr^n$, $x \in \rr^{n}$, $t \in \rr$.
+As an example for how to find a classical solution to this equation, we set
+$n = 1$, $b=2$, and $g(x) = \cos(x+t)$. That is
+\begin{equation}
+\begin{split}
+	\cos(x + t) = u_{t} + 2 u _{x} = (2,1) \cdot (u_{x}, u_{t}).
+\end{split}
+\end{equation}
+with $u = u(x,t): \rr^{n} \times \rr \to \rr$, constant $b \in \rr^n$, and
+$g = g(x): \rr^{n} \to \rr$.
+
+Heuristically, what we would like to do is integrate both sides along an
+appropriate curve, and invoke the fundamental theorem of calculus to obtain our
+solution. To make this argument rigorous, we will define a parametrization of
+$u$, for fixed $x,t$, that is essentially the values of $u$ along the line
+containing $x, t$ and parallel to $(-1,2)$.
+
+Proceeding, we set $z(s) = u(x-s, t+2s)$. Then
+\begin{equation*}
+\begin{split}
+	z ' (s) & = (-1,2) \cdot
+(u_{x}(x-s, t+2s), u_{t}(x-s, t+2s))
+\\
+& =  \cos((x-s) + (t + 2s))
+\\
+& = \cos(x + s + t).
+\end{split}
+\end{equation*}
+Observe that $z(-t/2)$ = $f(x-s)$. Hence, integrating both sides, we obtain
+\begin{equation*}
+\begin{split}
+	\int_{-t/2}^{s} z'(q) dq  = \int_{-t/2}^{s} \cos(x + q + t) dq
+\end{split}
+\end{equation*}
+which implies
+\begin{equation*}
+\begin{split}
+	z(s) = f(x-s) + \sin(x + s + t) - \sin(x + t/2)
+\end{split}
+\end{equation*}
+Setting $s = 0$, we conclude that
+\begin{equation*}
+\begin{split}
+	u(x,t) = f(x) + \sin(x + t) - \sin(x + t/2).
+\end{split}
+\end{equation*}
+The general solution, given initial condition $u(x,0) = g(x)$, is given by
+\begin{equation*}
+\begin{split}
+	u(x,t) = g(x-tb) + \int_{0}^{t} f(x + (s-t)b, s)ds
+\end{split}
+\end{equation*}
+
+\chapter{The Laplace Equation}
+\section{The Homogeneous Laplace Equation}
+In $\rr$, the equation takes the form
+\begin{equation*}
+\begin{split}
+	u_{xx} = 0.
+\end{split}
+\end{equation*}
+To find the solution, we note that
+\begin{gather*}
+	\frac{\partial}{\partial_{x}}(u_{x}) = u_{xx} = 0
+	\\
+	\implies u_{x} = b
+	\\
+	\implies u = bx + c.
+\end{gather*}
+In $\rr^{2}$, the equation takes the form
+\begin{equation*}
+\begin{split}
+	u_{xx} + u_{yy} = 0.
+\end{split}
+\end{equation*}
+\begin{definition}
+	For $f: V \to W$, where $V$ and $W$ are vector spaces, let $\tau_{z}(f)(x) = f(x-z)$. Then $\tau_{z}$ is called a \emph{translation}
+	of $f$. It is said to translates $f$ forward by $z$ units. Similarly,
+	$\tau_{-z}$ is said to translate $f$ backward by $z$ units.
+\end{definition}
+
+\begin{definition}
+Let \begin{equation*}
+\begin{split}
+A = \begin{bmatrix}
+& \cos \theta & \sin \theta
+\\ & -\sin \theta & \cos \theta.
+\end{bmatrix}
+\end{split}
+\end{equation*}
+Then for $z = (x,y) \in \rr^{2}$, we say that $Az$ is a $\theta$-degree
+clockwise \emph{rotation}.
+\end{definition}
+
+\begin{lemma}
+	Solutions to the Laplace equation in $\rr^{2}$ are invariant under
+	translations and rotations
+\end{lemma}
+\begin{remark}
+One can generalize this result to arbitrary
+dimensions.
+\end{remark}
+
+\begin{proof}
+	To prove invariance under translation, we let $u(x,y)$ be a solution to
+	Laplace's equation, and consider $v(x+a, y+b) \doteq u(x,y)$. Then by the
+	chain rule, we obtain
+	\begin{equation*}
+	\begin{split}
+		0 = u_{xx} + u_{yy} = v_{xx}(x + a, y+b) + v_{yy}(x + a, y+b)
+		= \tau_{(a,b)}u_{xx} + \tau_{(a,b)}u_{yy}.
+	\end{split}
+	\end{equation*}
+	To prove invariance under rotations, we first observe that
+	\begin{equation}
+		\label{eq:rotation}
+	\begin{split}
+		A(x,y)^{T} = \begin{bmatrix}
+		& x \cos \theta + y \sin \theta
+		\\
+		& -x \sin \theta + y \cos \theta
+		\end{bmatrix}
+	\end{split}
+	\end{equation}
+	Define $v(x \cos \theta + y \sin \theta, -x \sin \theta + y \cos \theta)
+	\doteq u(x,y)$. It follows from \eqref{eq:rotation} that $v$ is a rotation of
+	solution $u(x,y)$ clockwise by angle $\theta$. Setting
+	$x' = x \cos \theta + y\sin \theta$ and $y' = -x \sin \theta + y \cos \theta$
+	and applying the chain rule, we obtain
+	\begin{equation*}
+	\begin{split}
+		& u_{x} = u_{x'} \cos \theta - u_{y'} \sin \theta
+		\\
+		& u_{y} = u_{x'} \sin \theta + u_{y'} \cos \theta
+	\end{split}
+	\end{equation*}
+and
+\begin{equation*}
+\begin{split}
+	& u_{xx} = (u_{x'} \cos \theta - u_{y'} \sin \theta)_{x'} \cos \theta -
+	(u_{x'} \cos \theta - u_{y'} \sin \theta)_{y'} \sin \theta
+	\\
+	& u_{yy} = (u_{x'} \sin \theta + u_{y'} \cos \theta)_{x'} \sin \theta
+	+ (u_{x'} \sin \theta + u_{y'} \cos \theta)_{y'} \cos \theta.
+\end{split}
+\end{equation*}
+Summing, we obtain
+\begin{equation*}
+\begin{split}
+	0 = u_{xx} + u_{yy} = \left( u_{x'x'} + u_{y'y'} \right)\left( \cos^{2} \theta
+		+ \sin^{2} \theta
+	\right) = u_{x'x'} + u_{y'y'}.
+\end{split}
+\end{equation*}
+\end{proof}
+
+\chapter{The Wave Equation}
+\section{The Homogeneous Wave Equation}
+The homogeneous wave equation is written
+\begin{equation*}
+\begin{split}
+	u_{tt} - u_{xx} = 0
+\end{split}
+\end{equation*}
+subject to initial and boundary conditions. Here we have $u\doteq u(x,t)$,
+where $x \in \rr$. $u(x,t)$ represents the amplitude of the wave at time $t$ and
+position $x$. We think of motion being induced in a string, and propogating
+through it, via a force $F(t)$ applied to the end of the string.
+
+Using this framework, we now derive the wave equation. First, we assume the
+absence of gravity. Note that
+\begin{equation*}
+\begin{split}
+	\frac{\partial^{2}}{\partial t^{2}} \int_{0}^{\infty} u \ dx =
+	\int_{0}^{\infty} u_{tt} \ dx.
+\end{split}
+\end{equation*}
+We must choose an orientation; it is natural to let ``upwards'' be our
+``positive direction''. Hence, the force used used to generate the wave is
+$-F(t)$. Taking the mass density of our string to be equal to $1$, we have
+$a = F$ be Newton's law, and hence
+\begin{equation*}
+\begin{split}
+	\int_{0}^{\infty} u_{tt} \ dx = -F.
+\end{split}
+\end{equation*}
+By the fundamental theorem of calculus, it follows that
+\begin{equation*}
+\begin{split}
+	u_{tt} = -F_{x}.
+\end{split}
+\end{equation*}
+In particular, $F$ is a function of velocity, and if $F$ is constant when our
+hand is at the uppermost and lowermost points, we can write
+$F = -a u_{x}$. Substituting, we obtain
+\begin{equation*}
+\begin{split}
+	u_{tt} - au_{xx} = 0.
+\end{split}
+\end{equation*}
+Without loss of generality, we can set $a = 1$ (otherwise, we simply scale
+appropriately in the $x$ variable), which gives us the wave equation.
+\subsection{Derivation of Solution}
+We can factor the wave equation as
+\begin{equation*}
+\begin{split}
+	0 = u_{tt} - u_{xx} = \left( \frac{\partial}{\partial t} +
+	\frac{\partial}{\partial x} \right)\left( \frac{\partial}{\partial t} -
+	\frac{\partial}{\partial x} \right) u.
+\end{split}
+\end{equation*}
+Let $v(x,t) \doteq \left( \frac{\partial}{\partial t} -
+\frac{\partial}{\partial x} \right) u $. Then the wave equation can be rewritten
+as
+\begin{equation*}
+\begin{split}
+	\left( \frac{\partial}{\partial t} + \frac{\partial}{\partial x} \right) v
+	= v_{t} + v_{x} = 0.
+\end{split}
+\end{equation*}
+But this is just the transport equation. Hence, it admits a traveling wave
+solution $v(x,t) = g(x-t)$, where $g$ is a function of one variable.
+We now work with an initial condition, to make things clearer.
+Set
+\begin{equation*}
+\begin{split}
+	u(x,0) = 0, \quad u_{t}(x,0) = \cos x.
+\end{split}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{split}
+	u_{t}(x,t) - u_{x}(x,t) = v(x,t) = g(x-t).
+\end{split}
+\end{equation*}
+If $t=0$, then
+\begin{equation*}
+\begin{split}
+	u_{t}(x,0) - u_{x}(x,0) = g(x).
+\end{split}
+\end{equation*}
+
+But $u_{x}(x,0) = 0$ and $u_{t}(x,0) = \cos x$ by assumption. Therefore,
+we must have $g(x) = \cos x$, and so we have reduced the problem of solving the
+wave equation to solving
+\begin{equation*}
+\begin{split}
+	u_{t}(x,t) - u_{x}(x,t) = \cos (x-t).
+\end{split}
+\end{equation*}
+But this is just a non-homogeneous transport equation, with solution
+\begin{equation*}
+\begin{split}
+\frac{1}{2c} \left[ \sin(x + ct) - \sin(x-ct) \right].
+\end{split}
+\end{equation*}
+In general,
+\begin{equation*}
+\begin{split}
+	u(x,t) = \frac{1}{2} \left[ u(x + ct, 0) + u(x-ct, 0) \right] +
+\frac{1}{2c} \int_{x-ct}^{x+ct} u_{t}(x,0) \ ds.
+\end{split}
+\end{equation*}
+This is called \emph{d'Alembert's Formula}.
+
+\chapter{The Heat Equation}
+\section{The Homogeneous Heat Equation}
+In $\rr$, the heat equation takes the form
+\begin{equation*}
+\begin{split}
+	u_{t} - u_{xx} = 0,
+\end{split}
+\end{equation*}
+subject to initial and boundary conditions. Note that $u \doteq u(x,t)$.
+\subsection{Derivation}
+Let $U$ be a closed surface (i.e. a rod). in $\rr$. If $u \doteq u(x,t)$ denotes
+temperature density at time $t$, the temperature of our rod at time $t$ is
+\begin{equation*}
+\begin{split}
+	\int_{V} u \ dx.
+\end{split}
+\end{equation*}
+The rate of change of the temperature within $V$ equals the negative of the
+rate that heat escapes from the ends of the rod (i.e. the net flux through
+$\partial V$). Hence,
+\begin{equation*}
+\begin{split}
+	\frac{d}{dt} \int_{V} u \ dx = -\left[ F \cdot  \right]_{a}^{b}
+\end{split}
+\end{equation*}
+where $F$ is the flux density, $a$ is the leftmost end of the rod, $b$ is the
+rightmost end, and $v$ is a unit vector parallel to the $x$-axis on which the
+rod lies. By the fundamental theorem of Calculus, we infer that
+\begin{equation*}
+\begin{split}
+	u_{t} = -\partial_{x} F = -\text{div}F.
+\end{split}
+\end{equation*}
+In many situations, $F$ is proportional to $\partial_{x} u$, but points in
+opposite direction (since heat spreads from regions of high concentration to
+regions with low concentration). Hence
+\begin{equation*}
+\begin{split}
+	F = -a \partial_{u}u, \quad (a > 0).
+\end{split}
+\end{equation*}
+Substituting, we get
+\begin{equation*}
+\begin{split}
+	u_{t} = a \partial_{x}(\partial_{x} u ) = a u_{xx}.
+\end{split}
+\end{equation*}
+Without loss of generality (we can always scaled in the $x$ variable), we set $a
+= 1$, obtaining the heat equation.
+\subsection{Derivation of the Fundamental Solution}
+A simple computation (i.e. ``plug and chug'') shows that if $u(x,t)$ is a solution to the heat equation, then
+so is $u(\lambda x, \lambda^{2} t)$.
+\begin{equation*}
+\begin{split}
+\end{split}
+\end{equation*}
+Using this information, we ask if there are \emph{traveling wave} solutions to
+the heat equation. That is, solutions of form
+\begin{equation*}
+\begin{split}
+	u(x,t) = g(x/\sqrt{t}),
+\end{split}
+\end{equation*}
+where $g$ is some function of one variable. We callLet $p doteq x / \sqrt{t}$.
+Note that
+\begin{equation*}
+\begin{split}
+	u_{t} = -\frac{1}{2t} \frac{x}{\sqrt{t}}g'(p), \quad u_{xx} =
+	\frac{1}{t}g'(p)
+\end{split}
+\end{equation*}
+and so
+\begin{equation*}
+\begin{split}
+	0 = u_{t} - u_{xx} = \frac{1}{t}\left( -\frac{1}{2}pg'(p) -
+	\frac{1}{4} g''(p) \right).
+\end{split}
+\end{equation*}
+Simplifying, we have
+\begin{equation*}
+\begin{split}
+	g'' + 2pg' = 0.
+\end{split}
+\end{equation*}
+The general solution to this ODE is
+\begin{equation*}
+\begin{split}
+	g(p) = c_{1} \int_{0}^{x / \sqrt{t}} e^{-p^{2}} \ dp + c_{2}.
+\end{split}
+\end{equation*}
+Specifying the initial condition
+\begin{equation*}
+\begin{split}
+	Q(x,0) = \begin{cases}
+		1, \quad x > 0 \\
+		0, \quad x < 0,
+	\end{cases}
+\end{split}
+\end{equation*}
+we obtain
+\begin{equation*}
+\begin{split}
+	0 & =  -c_{1} \frac{\sqrt{\pi}}{2} + c_{2}
+	\\
+	1 & = c_{1} \frac{\sqrt{\pi}}{2} + c_{2}
+\end{split}
+\end{equation*}
+and so $c_{1} = 1/\sqrt{\pi}$ and $c_{2} = 1/2$.
+Therefore,
+
+\begin{equation*}
+\begin{split}
+	u(x,t) = \frac{1}{2} + \frac{1}{\sqrt{\pi}} \int_{0}^{x / \sqrt{t}}
+	e^{-p^{2}} \ dp.
+\end{split}
+\end{equation*}
+Observe that if $u(x,t)$ is a solution to the heat equation, then so is
+$u_{x}$. Differentiating the above, we obtain
+\begin{equation*}
+\begin{split}
+u_{x}(x,t) = \frac{1}{\sqrt{\pi t}} e^{-x^{2}/t}
+\end{split}
+\end{equation*}
+which is called the \emph{fundamental solution } to the heat equation.
+
+\chapter{What are PDE's?}
+A partial differential equation (PDE) is any equation involving a function of 
+two or more variables and some of its partial derivaties. Some examples:
+\begin{example}
+Laplace's equation:
+\begin{equation*}
+\begin{split}
+	\Delta u = \sum_{i=1}^{n} u_{x_{i}} u _{x_{i}} = 0
+\end{split}
+\end{equation*}
+\end{example}
+\begin{example}
+	Linear equation equation:
+	\begin{equation*}
+	\begin{split}
+		u_{t} + \sum_{i=1}^{n}b^{i}u_{x_{i}} = 0.
+	\end{split}
+	\end{equation*}
+\end{example}
+\begin{definition}
+An expression of form
+\begin{equation*}
+\begin{split}
+	F(D^{k}u (x), D^{k-1}u(x), \dots, Du(x), u(x), x) = 0, \quad x \in U
+\end{split}
+\end{equation*}
+is called a \emph{kth order PDE}, where
+\begin{equation*}
+\begin{split}
+	F: \rr^{n^{k}} \times \rr^{n^{k-1}} \times \dots \times \rr^{n} \times \rr
+	\times U \to \rr
+\end{split}
+\end{equation*}
+is given, and $u: U \to \rr$ is the unknown.
+\end{definition}
+\begin{example}
+	Let $u\doteq u(m,t)$, where $m = (x,y,z) in \rr^{3}$. Then
+	\begin{equation*}
+	\begin{split}
+		u_{xx} + u_{y} = 0
+	\end{split}
+	\end{equation*}
+	is a second order PDE.
+\end{example}
+\begin{definition}
+A PDE is called \emph{linear} if it has form
+\begin{equation*}
+\begin{split}
+	\sum_{|alpha| \le k} a_{\alpha}(x) D^{\alpha} u = f(x)
+\end{split}
+\end{equation*}
+for given functions $a_{\alpha}, f$. The PDE is \emph{homogeneous} if $f \equiv
+0$.
+\end{definition}
+
 
