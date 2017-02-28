@@ -5,9 +5,10 @@
 Consider the following collection of objects
 \begin{equation*}
 \begin{split}
-	A & = \left\{ 1,2,3,\ldots \right\} \\
-	B &= \left\{ a, b, b, d \right\} \\
-	C & = \left\{ a,b,c,d,e \right\}.
+	A & = \left\{ 1,2,3,\ldots \right\}, \,
+	B = \left\{ a, b, b, d \right\}, \,  \\
+	C & = \left\{ a,b,c,d,e \right\}, \,
+  D = \left\{ x: x \text{ is an even integer} \right\}.
 \end{split}
 \end{equation*}
 Note that $A$ have infinitely many objects, while $B$ and $C$ have finitely
@@ -23,12 +24,6 @@ itself. Since $B$ is
 contained in $C$ and strictly smaller
 than $C$ (that is, not $C$ itself), we call $B$ a \emph{proper subset} of $C$, denoted $B \subsetneq C$.
 \end{definition}
-We can also specify sets as follows:
-\begin{equation*}
-\begin{split}
-	B = \left\{ x: x \text{ is an even integer} \right\}.
-\end{split}
-\end{equation*}
 \begin{notation}
 Using this notation, we define
 \begin{equation*}
@@ -38,6 +33,10 @@ Using this notation, we define
 	\bigcup_{A \in \Omega} A & = \left\{ x: x \in A \text{ for at least one A} \in \Omega
 	\right\} \\
 \bigcap_{A \in \Omega} A & = \left\{ x: x \in A \text{ for every A} \in \Omega \right\}
+\\
+ A \times B & = \left\{ (a,b): a \in A \text{ and } b \in B. \right\}
+\\
+A \times B \times C & = \left\{ (a,b,c): a \in A, b \in B,  \text{ and } c \in C. \right\}
 \end{split}
 \end{equation*}
 \end{notation}
@@ -50,11 +49,13 @@ Using this notation, we define
 	A \cap B & = \{5\} \\
 	C & = \{2,4,5\} \\
 	A \cap C & = \{\} \doteq \emptyset \\
-	A \setminus B & \doteq \{ x: x \in A \text{ and } x \not \in B\}
+	A \setminus B & \doteq \{ x: x \in A \text{ and } x \not \in B\} \\
+	\rr^{2} & = \rr \times \rr \\
+	\rr^{3} & = \rr \times \rr \times \rr
 \end{split}
 \end{equation*}
+\end{example}
 Observe that we don't have repeats in sets, and that order doesn't matter.
-
 It is left as an exercise to prove the following property of sets:
 \begin{lemma}
 \begin{equation*}
@@ -64,8 +65,6 @@ It is left as an exercise to prove the following property of sets:
 \end{split}
 \end{equation*}
 \end{lemma}
-
-\end{example}
 \section{Logic} 
 \begin{notation}
 	If a hypothesis $P$ implies a conlcusion $Q$, then we say $P \implies Q$.
@@ -74,18 +73,507 @@ It is left as an exercise to prove the following property of sets:
 	If $P \implies Q $ , then $ \text{not } Q \implies \text{not } P$. That is
 	\begin{equation*}
 	\begin{split}
-		( P \implies Q )  \implies \left( (\text{not } Q)  \implies \text{not }
+		( P \implies Q )  \implies \left( \text{not } Q  \implies \text{not }
 		P\right) 
 	\end{split}
 	\end{equation*}
 \end{lemma}
 \begin{corollary}
-	If $ (\text{ not } Q)  \implies (\text{not }  P ) $ , then
+	If $ \text{ not } Q  \implies \text{not }  P  $ , then
 	\begin{equation*}
 	\begin{split}
-		\left[  \text{not } Q   \implies \text{not }  P\right] \implies (P
+		\left(  \text{not } Q   \implies \text{not }  P\right) \implies (P
 		\implies Q) 
 	\end{split}
 	\end{equation*}
 \end{corollary}
+\begin{example} 
+	\begin{equation*}
+	\begin{split}
+		& a \text{ is an integer} \implies  \text{ is a real number} \\
+		& a \text{ is a real number } \not \implies  \text{ is an integer.}
+		\text{Counterexample:} a =4.5
+	\end{split}
+	\end{equation*}
+\end{example}
+\begin{notation}
+	If statements $P \implies Q$ and $Q \implies P$ are both true, then we 
+	write $P \iff Q$, and say that $P$ and $Q$ are \emph{equivalent}.
+\end{notation}
+\begin{example}
+	A statement $P \implies Q$ and its contrapositive are equivalent.
+\end{example}
+We now discuss logical negation. Observe that
+\begin{equation*}
+\begin{split}
+	& \text{not(For every $x \in A$, statement $p$ holds)} 
+	\\
+	& \iff \text{For at least one $x \in A$, statement $p$ does not hold.}
+\end{split}
+\end{equation*}
+\section{Functions}
+We define a function $f: A \to B$ to be a rule of assignment. That is,
+each point $a$ in the \emph{domain} $A$ is associated with a unique point in
+the \emph{range} $B$. We denote this unique point $f(a)$, and say that
+$a$ is \emph{mapped} to $b$. We define the \emph{image} of $f$ on $A$ to be
+$f(A) \doteq \left\{ b \in B: b = f(a) \text{ for at least one } a \in A
+\right\}$.
+\begin{example}
+	General notation is to first specify the domain and range $f$ associates with each
+	other, followed by the association rule itself. That is, as an example,
+	\begin{equation*}
+	\begin{split}
+	& f: \rr \to \rr, \quad \text{(specify this line first)}\\
+	& f(x) = x^{3}.
+	\end{split}
+	\end{equation*}
+\end{example}
+We say $f$ is \emph{surjective} from $A$ to $B$ if its image on $A$ is all of
+$B$. We say $f$ is \emph{injective} if $f(a) = f(b) \implies a = b$. That is,
+for each $b \in B$, there exists only one $a \in A$ such that $f(a) = b$.
+If $f$ is injective and surjective, we say that it is \emph{bijective}.
+If $f$ is bijective, then we can define its \emph{inverse} 
+\begin{equation*}
+\begin{split}
+	& f^{-1}: B \to A
+	\\
+	& f^{-1}(b) = a | f(a) = b
+\end{split}
+\end{equation*}
+Observe that the inverse of $f$ is well-defined, since $f$ is injective (i.e.
+there is one and only one $a \in A$ such that $f(a) = b$). It follows that
+an injective map $f$ from $A \to B$ may not be bijective; however, it is
+bijective from $A$ to its image $f(A)$. If $B_{0} \subset B$ and $f: A \to B$ is
+bijective, then its
+\emph{pre-image} is defined to be $f^{-1}(B_{0}) = \left\{ a \in A: f(a) \in
+B_{0} \right\}$.
+\section{Relations}
+\subsection{Introduction} 
+
+\begin{definition}
+	A \emph{relation} on a set $A$ is a subset $C \subset A \times A$.
+	If two elemebts $x, y \in A$ are related by $C$, then $(x,y) \in C$ and 
+	we say $x$ is related to $y$, or $xCy$.
+\end{definition}
+\begin{example}
+	$\left\{ (x,y) \in \rr \times \rr: x<y \right\}$ is a relation on $\rr$.
+	In fact, it is a special kind of relation, called the usual order relation.
+\end{example}
+
+\subsection{Order Relations} 
+\begin{definition}
+ A \emph{usual order relation } on a set $A$ is defined to have the following
+ properties:
+ \begin{enumerate}[(i)]
+	 \item{Comparability} For every $x,y \in A$ where $x \neq y$, either $xCy$ or $yCx$.
+	 \item{Non-reflexivity} For no $x \in A$ does the relation $xCx$ hold (non-reflexivity).
+		 \item{Transitivity} If $xCy$ and $yCz$, then $xCz$.
+ \end{enumerate}
+\end{definition}
+\begin{remark}\label{rem:}
+	Observe that equality is \emph{not} an ordering relation on $\rr$. Non-reflexivity
+	fails.
+\end{remark}
+\begin{example}
+	On $\rr \times \rr$, define $xCy$ if $x^{2} < y^{2}$. It's an ordering
+	relation on $\rr$ (with some bizarre results for negative numbers).
+\end{example}
+\begin{notation}
+	General notation for the usual order relation on $\rr$ is $<$.
+\end{notation}
+Observe that for any set $X$ equipped with an order relation $<$, we can
+construct subsets of $X$ using the order relation. Indeed, two special
+subsets are the \emph{open} and \emph{closed} intervals,
+$(a,b)\doteq \left\{ x \in X: a < x < b \right\}$ and $[a,b] \doteq \left\{ x
+	\in X: a \le x \le b
+\right\}$, respectively.
+
+Let $A_{0}  \subset A$. We say $b \in A_{0}$ is the \emph{largest element} of
+$A_{0}$ if $b \in A_{0}$ and $a \le b$ for all $a \in A_{0}$, and the 
+\emph{smallest element} if $a \ge b$ for all $a \in A_{0}$.
+
+We say $A_{0}$ is \emph{bounded above} if there exists $x \in A$ such that
+$a \le x$ for all $a \in A_{0}$, and \emph{bounded below} if there exists $y \in
+A$ such that $a \ge y$ for all $a \in A_{0}$. We call $x$ and $y$ an \emph{upper
+bound} and \emph{lower bound}, respectively. If a set of
+upper bounds has a least element, we call it the \emph{supremum}of $a_{0}$, and
+denote it $\sup A_{0}$. If a set of lower bounds has a greatest elment, we call
+it the \emph{infimum} of $a_{0}$, and denote it $\inf A_{0}$. Note that neither
+$\sup A_{0}$ nor $\inf A_{0}$ need belong to $A_{0}$.
+\begin{example}
+	$ \sup (a,b) = b \not \in (a,b), \quad \inf (a,b) = a \not \in (a,b)$
+\end{example}
+
+\begin{definition}[Least Upper Bound Property]
+An ordered set $A$ is said to have the \emph{least upper bound property} if for
+every $\emptyset \neq A_{0} \subset A$ that is bounded above in $A$ has its
+supremum in $A$. Similarly, it is said to have the \emph{greatest lower bound
+property} if each $\emptyset \neq A_{0} \subset A$ that is bounded below in $A$ has 
+its infimum in $A$.
+\end{definition}
+\begin{example}
+	$B = (-1,0) \cup (0,1)$ has neither the the least upper bound nor the
+	greatest lower bound property. To see
+	this, consider $B_{0} = \{ -1/2n: n \in Z_{+}\} \subset B$. Then
+	$\sup B_{0} = 0 \nin B$. Similarly, $\inf -B_{0} = 0 \nin B$.
+\end{example}
+
+\subsection{Equivalence Relations} 
+
+If order relations can be seen as a generalization of the typical order relation
+$\rr$ enjoys, then the analogue for equality on $\rr$ are \emph{equivalence
+classes}.
+\begin{definition}
+	An \emph{equivalence relation} on a set $A$ is defined to be a relation on $A$
+	with the following properties:
+	\begin{enumerate}[(i)]
+		\item{Reflexivity} $xCx$ for every $a \in A$.
+		\item{Symmetry} If $xCy$, then $yCx$.
+		\item{Transitivity} If $xCy$ and $yCz$, then $xCz$.
+	\end{enumerate}
+	If $a \in A$ and $C$ is an equivalence relation on $A$, then 
+	the subset $E_{x} \doteq \left\{ x \in A: xCa  \right\}$ is called
+	an \emph{equivalence class}.
+\end{definition}
+\begin{notation}
+	We typically denote equivalence relations by $\sim$.
+\end{notation}
+\begin{lemma}\label{lem:}
+	Two equivalence classes $E_{x}$ and $E_{y}$ on a set $A$ are 
+	either disjoint or equal.
+\end{lemma}
+\begin{proof}
+	Suppose $E_{x} \cap E_{y}$ is nonempty. Then there is some $z \in A$
+	such that $z \in E_{x} \cap E_{y}$. But then $z \in E_{x}$ and
+	$z \in E_{y}$. Hence, $x \sim z$ and $z \sim y$. By transitivity, it follows
+	that $x \sim y$. But this implies $E_{x} = E_{y}$ (Exercise).		
+\end{proof}
+\begin{example}
+	Let $A \doteq C(\rr)$, and let $sim$ be the equivalence relation 'differs at
+	only finitely many points'. Then $E_{f} = {g \in C(\rr): f=g \text{ except at
+	finitely many points}}$.
+\end{example}
+Observe that equivalence relations ``break apart'' sets into disjoint chunks. We call
+these chunks \emph{partitions}.
+\begin{definition}
+A \emph{partition} of a set $A$  is a collection of disjoint nonempty subsets of
+$A$ such that their union is $A$.
+\end{definition}
+Observe that $\bigcup_{x \in A}  E_{x}  = A$ for any equivalence relation on
+$A$. That is, equivalence relations are partitions. The converse is also true:
+Given any partition on $A$ , there is exactly one equivalence relation from
+which it is derived (Exercise: prove this).
+
+\section{Construction of the Real Numbers, and Integers from Real Numbers} 
+\begin{definition}[Construction of the Real Numbers]
+Assume there exists a set called $\rr$ with the binary operations $+: \rr \times
+\rr \to \rr$, $\cdot: \rr \times \rr \to \rr$, and order relation $<$
+such that the following properties hold for all $x,y,z \in \rr$:
+\begin{description}
+	\item[Algebraic Properties]\
+\begin{enumerate}[(i)]
+	\item{Associativity:} $(x + y) + z = x + (y+z), \quad (x \cdot y) \cdot z = x
+		\cdot (y \cdot z)$
+\item{Symmetry:} $x + y = y + x, \quad x \cdot y = y \cdot x$
+\item{Existence of Identity:} There exists an identity for $+$ (denoted $0$) and
+	an identity for $\cdot$ (denoted $1$). Recall that, by definition, $x \in U$
+	is an identity for a binary operator $f: U\times U \to V$ if $f(x,y) = y$ for
+	all $y \in U$.
+\item{Existence of Inverse:} There exists a unique inverse
+	with respect to $+$ for each $x \in \rr$, and a unique inverse, with respect
+	to $\cdot$, for reach $0 \neq x \in \rr$. Recall that, by definition,
+	$y \in U$ is an inverse for $x \in \rr$, with respect to a binary operator $f:
+	U \times U \to V$, if an identity I exists in $\rr$ and $f(x,y) = \mathrm{I}$.  
+\item{Distributativity:} $x \cdot (y+z) = (x \cdot y) + (x \cdot z)$.
+Observe that distributativity is the only property above that belongs
+exclusively to $\cdot$.
+\end{enumerate}
+\item[Order Properties]\
+	\begin{enumerate}[(vi)]
+\item{Continuity:}
+If $x<y$, then there exists an element $z$ such that $x <z < y$.
+\item{Closure Under Limits:} $<$ has the least upper bound property.
+\item{Preservation of Order Under Binary Operation:} If $x < y$, then $x + z < y
+	+ z$. If $x < y$ and $0 < z$, then $x \cdot z < y \cdot z$.
+\end{enumerate}
+\end{description}
+\end{definition}
+\begin{definition}[The Construction of the Integers]
+Let $S_{1} = \{1\}$,
+$S_{2} = \{1, 1+1\}, \cdots, S_{n} = \{1 + 1+1, 1+1+1, ..., 1+1+1...+1\}$
+be subsets of our newly constructed $\rr$. Then
+\begin{equation*}
+\begin{split}
+\zz_{+} \doteq \bigcup_{i=1}^{\infty} S_{i}.
+\end{split}
+\end{equation*}
+Let $\zz_{-1} \subset \rr$ be the set of inverses of $\zz$. Then
+\begin{equation*}
+\begin{split}
+	\zz \doteq \zz \cup \zz_{-1} \cup \{0\}.
+\end{split}
+\end{equation*}
+\end{definition}
+\begin{definition}[Induction]
+\end{definition}
+\section{Cartesian Products} 
+Let $\Omega$ be a collection of sets. We ask: how do we list its elements?
+If $\Omega$ is finitely large or ``countably large'', we can write
+$\Omega = \{ A_{1}, A_{2}, \cdots, A_{n}\}$, or
+$\Omega = \{ A_{1}, A_{2}, \cdots, A_{n}, \cdots\}$, respectively.
+Then we call $\{ 1,\cdots, n\}$ and $\{1, \cdots, n, \cdots\}$ \emph{indexing
+sets}.
+
+However, what if $\Omega$ is uncountable? In this case, we find a set $J$ with
+cardinality $|\Omega|$, and define, using the axiom of choice, a bijective \emph{indexing function} $f: J
+\to \Omega$ where $f(\alpha) = A_{\alpha}$. That is, $f$ maps each element of
+$J$ to a unique element of $\Omega$. Again invoking the axiom of choice,
+we define
+\begin{equation*}
+\begin{split}
+	& \bigcup_{\alpha \in J} A_{\alpha} = \{ x: \text{for at least one $\alpha \in
+J$, $x \in A_{\alpha}$}\} \\
+& \bigcap_{\alpha \in J} A_{\alpha} = \{ x: \text{for every $\alpha \in
+J$, $x \in A_{\alpha}$}\}
+\end{split}
+\end{equation*}
+If $\Omega$ is a finite set or an infinite ``countable set'', i.e., like $\zz$, 
+we can define the \emph{cartesian product} of its elements as
+\begin{equation*}
+\begin{split}
+	& \prod_{i=1}^{m} A_{i} \doteq A_{1} \times A_{2} \times \cdots \times A_{m} \\
+	& \prod_{i =1}^{\infty} A_{i} \doteq A_{1} \times A_{2} \times \cdots \times
+	A_{m} \times \cdots,
+\end{split}
+\end{equation*}
+respectively. The elements of the finite and countable products are known as
+$m$-tuples, and $\omega$-tuples, respectively.
+If $\Omega$ is uncountable, then for an indexing set $J$ with the same
+cardinality, we can define the cartesian product of the elements of $\Omega$
+as 
+\begin{equation*}
+\begin{split}
+	\prod_{\alpha \in J} A_{\alpha} = \left\{ f: J \to \bigcup_{\alpha} A_{\alpha} \mid
+	\forall \alpha \in J, \, f(\alpha) \in X_{\alpha}\right\}.
+\end{split}
+\end{equation*}
+Observe that for this definition, the functions $f$ are analogues of the
+$m$-tuples and $\omega$-tuples in the finite and countable cases.
+We also definte the projection operator
+\begin{equation*}
+\begin{split}
+	& \pi_{\alpha}: \prod_{\alpha \in J} A_{\alpha} \to \bigcup_{\alpha}
+	A_{\alpha} \\
+	& \pi_{\alpha}(f) = f(\alpha)
+\end{split}
+\end{equation*}
+In the finite and countable cases, this definition reduces to returning
+the $\alpha$-th coordinate of a tuple.
+\section{Finite Sets} 
+\begin{definition}
+	A set $A$ is called \emph{finite} is there exists a bijective
+	$f: A \to \{ 1, \cdots, n\}$ for some $n$. If $A$ does not contain any
+	elements, then we say $A$ is \emph{empty}, and write $A \doteq \emptyset$.
+\end{definition}
+Observe that a bijective map from a finite $A$ to $\{1, \cdots, n\}$ is not unique; in fact, there are $n!$ permutations of $\{1, \cdots, n\}$, and so $n!$ possible
+bjiective maps. 
+\begin{theorem}\label{thm:subset-bij}
+	Assume there exists a bijective $f: A \to \{1, \cdots, n\}$, where $n \in
+	\zz_{+}$. Let $B \subsetneqq A$. Then there does not exist a bijection $g: B
+	\to \{1, \cdots, n\}$, but provided $B \neq \emptyset$, there exists a
+	bijection $h: B \to \{1, \cdots, m\}$ for some $m < n$.	
+\end{theorem}
+\begin{proof}
+For the case $n=1$, we must have $B = \emptyset$, and so the theorem
+trivially holds. For $n>1$, we let $g = f |_{B}$. Then $g: B \to f(B)$ is bijective. But
+$f(B) = f(A) \setminus f(A \setminus B) = S \subsetneqq \{1, \cdots, n\}$.
+Hence, the elements of $S$ can be indexed: we give the first element the
+$1$ index, the second element the $2$ index, and so on, down to the last
+element, which we give the $m$ index, where $m < n$ is the size of $S$. 
+Then the function $h: S \to \{1, \cdots, m\}$ given by $h(s_{i}) = i$
+is a bijection. Then $h \circ g: B \to \{1, \cdots, m\}$ is bijective.
+\end{proof}
+\begin{corollary}
+	If $B \subsetneqq A$, then $|B| < |A| < \infty$.
+\end{corollary}
+\begin{corollary}
+	Finite unions and finite cartesian product of finite sets are finite.
+\end{corollary}
+\begin{corollary}
+	The cardinality of a finite set $A$ is uniquely determined by $A$. That is,
+	if $f: A \to \{1, \cdots, n\}$ is a bijection, there cannot exist a 
+	$g: A \to \{ 1, \cdots, m\}$, $m < n$, that is a bijection.
+\end{corollary}
+\section{Countable and Uncountable Sets} 
+\begin{definition}
+A set is called \emph{countably infinite} if there exists a bijective
+	$f: A \to \zz_{+}$. 
+\end{definition}
+
+\begin{claim}
+	$\zz$ is countable.
+\end{claim}
+To see this, we define 
+\begin{equation*}
+\begin{split}
+	& f: \zz \to \zz_{+}
+	\\
+	& f(n) = \begin{cases}
+	2n, \quad n > 0 \\
+	2n+1, \quad n \ge 0
+	\end{cases}
+\end{split}
+\end{equation*}
+This is a bijective function, with 
+\begin{equation*}
+\begin{split}
+	f^{-1}(k) = 
+	\begin{cases}
+		k/2, \quad k \text{ is even} \\
+		(1-k)/2, \quad k \text{ is odd}
+	\end{cases}
+\end{split}
+\end{equation*}
+\begin{claim}
+	$\zz_{+} \times \zz_{+}$ is countable.		 
+\end{claim}
+To see this, let $A = \left\{(x,y) \in \zz_{+} \times Z_{+}: y \le x\right\}$
+and define
+\begin{equation*}
+\begin{split}
+	& f: \zz_{+} \times \zz_{+} \to A, \quad g: A \to \zz_{+} \\
+	& f(x,y) = (x + y-1, y), \quad g(x,y) = \frac{1}{2}(x-1)x + y		
+\end{split}
+\end{equation*}
+It is easy to check that $f$ and $g$ are bijective. Since the composition of
+bijective functions is bijective, we conclude that $f \circ g: \zz_{+} \times
+\zz_{+} \to \zz_{+}$ is bijective.
+
+Observe that it has taken a lot of work to prove countability so far. 
+In order to simplify proofs of countability, we use the following theorem.
+\begin{theorem}\label{thm:proof-countability}
+	Let $B \neq \emptyset$. Then the following are equivalent:
+	\begin{enumerate}
+		\item \label{it:1} $B$ is countable
+		\item \label{it:2} There exists a surjective $f: \zz_{+} \to B$
+		\item \label{it:3} There exists an injective $g: B \to \zz_{+}$. 
+	\end{enumerate}
+\end{theorem}
+To prove this, we shall need the following lemma:
+
+\begin{lemma}\label{lem:subset_z_count}
+	If $A \subset \zz_{+}$, then $A$ is countable.
+\end{lemma}
+\begin{proof}[Proof of \cref{lem:subset_z_count}]
+	If $A$ is finite, the proof is trivial. Hence, assume that $A$ is infinite.
+	Our strategy will be to ``rewrite'' $A$ such that setting up a bijection
+	between it and $\zz_{+}$ will be easy.
+
+	Proceeding, set $a_1 = \mathrm{inf} A$, $a_{2} = \mathrm{inf} \{A \setminus {a_{1}}\}$,
+	$a_{3} = \mathrm{inf} \left\{ A \setminus \left\{ a_{1}, a_{2} \right\} \right\}$,
+	and recursively define $a_{n} = \mathrm{inf} \left\{ A \setminus \left\{
+		a_{1}, \dots,
+a_{n-1} \right\}\right\}$. We claim that $\bigcup_{n} a_{n} = A$. By
+construction, it is clear that $\bigcup_{n} a_{n} \subset A$. It remains to show
+that $A \subset \bigcup_{n} a_{n} \doteq h(n)$. Pick $a \in A$. Since
+$h(n)$ is a strictly increasing function, there exists a smallest $n$ such that
+$h(n) > a$. It follows that
+$a \not \in A \setminus\left\{ a_{1}, \dots, a_{n-1} \right\}$. It follows that
+$a \in \left\{ a_{1}, \dots, a_{n-1} \right\}$, and so
+$\bigcup_{n} a_{n} = A$. 
+
+It is clear that $f: B \to
+\zz_{+}$ given by $f(a_{i}) = i$ is a bijection.
+	
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:proof-countability}]
+	We use a standard idea when proving equivalences. It is enough to show
+	that \eqref{it:1} $\implies$ \eqref{it:2} $implies$ \eqref{it:3} $implies$
+	\eqref{it:1}.
+
+	To prove that \eqref{it:1} $\implies$ \eqref{it:2}, we observe that by
+	definition, if $B$ is countably infinite, there exists a bijective
+	(and, hence, surjective) map  $f: \zz_{+} \to B$. 
+	If $B$ is finite, then by definition there exists a bijective map
+	$f: \left\{ 1, \dots, n \right\} \to B$. We extend this map to a surjective
+	map $\bar{f}: \zz_{+} \to B$ by definining $\bar{f} \equiv f$ on $B$,
+	and $\bar{f}(x) = 1$ for all $x \in \zz_{+} \setminus \left\{ 1, \dots, n
+	\right\}$.
+
+	To prove that \eqref{it:2} $\implies$ \eqref{it:3}, let
+	$f:\zz_{+} \to B$ be surjective. Define $g: B \to \zz_{+}$
+	where $g(b) = \mathrm{inf} \{f^{-1}(b) \}$. Observe that the infimum is always
+	realized at some $c \in \zz_{+}$. Since $f$ is a well-defined
+	function, it follows that $g$ must be injective.
+
+	Lastly, to prove that \eqref{it:3} $\implies$ \eqref{it:1}, we first note that
+	if $B$ is finite, we are done. We assume that $B$ is infinite. Since $g$ is
+	injective, $g(B) \subset \zz_{+}$ is infinite. Applying
+	\cref{lem:subset_z_count} concludes the proof.
+
+\end{proof}
+
+\begin{corollary}
+	The subset of a countable set is countable.	
+\end{corollary}
+
+To see how useful \cref{thm:proof-countability} is, we note that it implies that
+$\zz_{+} \times \zz_{+}$ is countably infinite, via the injectiveness of $f:
+\zz_{+} \times \zz_{+} \to \zz$ given by $f(n,m) = 2^{n} 3^{m}$. Note that this
+map is \emph{not} surjective, but that this is inconsequential, thanks to 
+\cref{thm:proof-countability}.
+
+Similarly, $\mathbb{Q}_{+}$ is countably infinite, via the injectiveness
+of $f: \zz_{+} \to \zz_{+}$ given by $g(n,m) = n/m$.
+\begin{theorem}\label{thm:cantor}
+	The set $\left\{ 0,1 \right\}^{\omega} \doteq \left\{ 0,1 \right\} \times
+	\left\{ 0,1 \right\} \times \dots$ is uncountable.
+\end{theorem}
+\begin{proof}
+	Our proof utilizes Cantor's famous diagonalization argument. 
+	Suppose $g: Z_{+} \to \left\{ 0,1 \right\}^{\omega}$. We want to show that
+	$g$ can't be surjective. 
+
+	Observe that $g(\zz_{+}) = \left\{ g(1), g(2), \dots, g(k), \dots \right\}$.
+	Let $g(k)_{k}$ denote the $kth$ coordinate of $g(k)$, and define
+	$y = (y_{1}, y_{2}, \dots, y_{n}, \dots) \in \left\{ 0,1 \right\}^{\omega}$,
+	where
+	\begin{equation*}
+	\begin{split}
+		y_{i} = g(i)_{i}^{\mathsf{c}}.
+	\end{split}
+	\end{equation*}
+	Intuitively, if we view $g(\zz_{+})$ as an infinite sized matrix with rows
+	$g(i)$, then $y$ is the bitwise complement of its diagonal. It follows that
+	$y \neq g(i)$, for any $i$, since it differs from $g(i)$ in at least one
+	coordinate (namely, its coordinate on the diagonal of the matrix
+		$g(\zz_{+})$. 
+\end{proof}
+\begin{corollary}
+	For any infinite set $A$, its power set $\mathrm{P}(A)$ is uncountable.
+\end{corollary}
+\begin{proof}
+	Without loss of generality, we can assume $A$ is countable. That is, if $A$
+	were uncountable, then using the axiom of choice we could construct a
+	countable subset $\left\{ a_{i} \right\}_{i=1}^{\infty}$. Since 
+	$P(\left\{ a_{i} \right\}_{i=1}^{\infty}) \subset P(A)$, proving the theorem
+	would reduce to the case where $A$ was countable.
+
+	Proceeding, we assume $A = \left\{ a_{i} \right\}_{i}^{\infty}$.
+	Then there exists a bijective map $f: P(A) \to \left\{ 0,1 \right\}^{\omega}$,
+	where 
+	\begin{equation*}
+	\begin{split}
+		\pi_{i}(f(S)) = \begin{cases}
+			1 \text{ if } a_{i} \in S \\
+			0 \text{ if } a_{i} \not \in S.
+		\end{cases}
+	\end{split}
+	\end{equation*}
+	Assume $P(A)$ is countable. Then there exists a bijection $g: P(A) :
+	\zz_{+}$. But then $g\circ f^{-1}: \left\{ 0,1 \right\}^{\omega} \to
+	\zz_{+}$ is bijective, contradicting \cref{thm:cantor}.
+	We conclude that $P(A)$ is uncountable.
+\end{proof}
 
