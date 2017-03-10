@@ -21,8 +21,7 @@ many.
 	itself. Since $B$ is
 	contained in $C$ and strictly smaller
 	than $C$ (that is, not $C$ itself), we call $B$ a \emph{proper subset} of $C$, denoted $B \subsetneq C$.
-\end{definition}
-\begin{notation}
+
 	Using this notation, we define
 	\begin{equation*}
 		\begin{split}
@@ -37,22 +36,18 @@ many.
 			A \times B \times C & = \left\{ (a,b,c): a \in A, b \in B,  \ \text{and} \ c \in C. \right\}
 		\end{split}
 	\end{equation*}
-\end{notation}
-\begin{example}
-	\begin{equation*}
-		\begin{split}
-			A & = \{1,3,5\} \\
-			B & = \{2,4,5,6\} \\
-			A \cup B &= \{1,2,3,4,5,6\} \\
-			A \cap B & = \{5\} \\
-			C & = \{2,4,5\} \\
-			A \cap C & = \{\} \doteq \emptyset \\
-			A \setminus B & \doteq \{ x: x \in A \ \text{and} \ x \not \in B\} \\
-			\rr^{2} & = \rr \times \rr \\
-			\rr^{3} & = \rr \times \rr \times \rr
-		\end{split}
-	\end{equation*}
-\end{example}
+\end{definition}
+\begin{examples}
+	With $A = \{1,3,5\}$, $B  = \{2,4,5,6\}$, 
+	and $C = \{2,4,5\}$, we have:
+	\begin{enumerate}	
+		\item $A \cup B = \{1,2,3,4,5,6\}$
+		\item	$A \cap B = \{5\}$
+		\item	$A \cap C  = \{\} \doteq \emptyset$
+		\item $A \setminus B  \doteq
+			\{ x: x \in A \ \text{and} \ x \not \in B\} $
+	\end{enumerate}
+\end{examples}
 Observe that we don't have repeats in sets, and that order doesn't matter.
 It is left as an exercise to prove the following property of sets:
 \begin{lemma}
@@ -64,51 +59,33 @@ It is left as an exercise to prove the following property of sets:
 	\end{equation*}
 \end{lemma}
 \section{Logic} 
-\begin{notation}
+\begin{definition}
 	If a hypothesis $P$ implies a conlcusion $Q$, then we say $P \implies Q$.
-\end{notation}
+	If statements $P \implies Q$ and $Q \implies P$ are both true, then we 
+	write $P \iff Q$, and say that $P$ and $Q$ are \emph{equivalent}.
+	Furthermore, $P$ is true if and only if the logical complement $\neg P$ of $P$ is
+	false.
+\end{definition}
 \begin{lemma}[Contrapositive]\label{lem:contrapositive}
-	If $P \implies Q $, then $\text{not} \ Q \implies \text{not} \ P$. That is
+	If $P \implies Q $, then $\neg Q \implies \neg P$. That is
 	\begin{equation*}
 		\begin{split}
-			( P \implies Q )  \implies \left( \text{not } Q  \implies \text{not }
-			P\right) 
+			( P \implies Q )  \implies \left( \neg Q  \implies \neg P\right) 
 		\end{split}
 	\end{equation*}
 \end{lemma}
+\begin{examples} $ $
+	\begin{enumerate}		
+		\item \text{$a$ is an integer $\implies a$ is a
+			real number} 
+		\item \text{$a$ is a real number $\not \implies a$ is an
+			integer. Counterexample: $a =4.5$}
+	\item A statement $P \implies Q$ and its contrapositive are equivalent.\end{enumerate}
+\end{examples}
 \begin{corollary}
-	If $\text{not} \ Q  \implies \text{not} \ P $, then
-	\begin{equation*}
-		\begin{split}
-			\left(  \text{not} \ Q   \implies \text{not} \ P\right) \implies (P
-			\implies Q) 
-		\end{split}
-	\end{equation*}
+	$\neg$ (For every $x \in A$, statement $p$ holds)
+	$\iff$ For at least one $x \in A$, statement $p$ does not hold.
 \end{corollary}
-\begin{example} 
-	\begin{equation*}
-		\begin{split}
-			& a \ \text{is an integer} \implies  \ \text{is a real number} \\
-			& a \ \text{is a real number} \ \not \implies \ \text{is an integer.}
-			\text{Counterexample:} a =4.5
-		\end{split}
-	\end{equation*}
-\end{example}
-\begin{notation}
-	If statements $P \implies Q$ and $Q \implies P$ are both true, then we 
-	write $P \iff Q$, and say that $P$ and $Q$ are \emph{equivalent}.
-\end{notation}
-\begin{example}
-	A statement $P \implies Q$ and its contrapositive are equivalent.
-\end{example}
-We now discuss logical negation. Observe that
-\begin{equation*}
-	\begin{split}
-		& \text{not (For every $x \in A$, statement $p$ holds)} 
-		\\
-		& \iff \text{For at least one $x \in A$, statement $p$ does not hold.}
-	\end{split}
-\end{equation*}
 \section{Functions}
 We define a function $f: A \to B$ to be a rule of assignment. That is,
 each point $a$ in the \emph{domain} $A$ is associated with a unique point in
@@ -118,7 +95,7 @@ $f(A) \doteq \left\{ b \in B: b = f(a) \text{ for at least one } a \in A
 \right\}$.
 \begin{example}
 	General notation is to first specify the domain and range $f$ associates with each
-	other, followed by the association rule itself. That is, as an example,
+	other, followed by the association rule itself. For example,
 	\begin{equation*}
 		\begin{split}
 			& f: \rr \to \rr, \quad \text{(specify this line first)}\\
@@ -167,6 +144,7 @@ B_{0} \right\}$.
 		\item{Non-reflexivity} For no $x \in A$ does the relation $xCx$ hold (non-reflexivity).
 		\item{Transitivity} If $xCy$ and $yCz$, then $xCz$.
 	\end{enumerate}
+	General notation for the usual order relation on $\rr$ is $<$.
 \end{definition}
 \begin{remark}\label{rem:}
 	Observe that equality is \emph{not} an ordering relation on $\rr$. Non-reflexivity
@@ -176,9 +154,6 @@ B_{0} \right\}$.
 	On $\rr \times \rr$, define $xCy$ if $x^{2} < y^{2}$. It's an ordering
 	relation on $\rr$ (with some bizarre results for negative numbers).
 \end{example}
-\begin{notation}
-	General notation for the usual order relation on $\rr$ is $<$.
-\end{notation}
 Observe that for any set $X$ equipped with an order relation $<$, we can
 construct subsets of $X$ using the order relation. Indeed, two special
 subsets are the \emph{open} and \emph{closed} intervals,
@@ -232,10 +207,9 @@ classes}.
 	If $a \in A$ and $C$ is an equivalence relation on $A$, then 
 	the subset $E_{x} \doteq \left\{ x \in A: xCa  \right\}$ is called
 	an \emph{equivalence class}.
-\end{definition}
-\begin{notation}
+
 	We typically denote equivalence relations by $\sim$.
-\end{notation}
+\end{definition}
 \begin{lemma}\label{lem:}
 	Two equivalence classes $E_{x}$ and $E_{y}$ on a set $A$ are 
 	either disjoint or equal.
@@ -583,7 +557,7 @@ of $f: \zz_{+} \to \zz_{+}$ given by $g(n,m) = n/m$.
 		\item\label{it:bij-prop} There exists a bijection of $A$ with a proper subset of itself.
 		\item\label{it:inf} $A$ is infinite
 	\end{enumerate}
-\label{thm:inj-mapping}
+	\label{thm:inj-mapping}
 \end{theorem}
 \begin{proof}
 	To prove \cref{it:inj} $\implies$ \cref{it:bij-prop}, we assume there exists an injective $f: \zz_{+} \to A$, where $f(n) =
@@ -629,7 +603,7 @@ of $f: \zz_{+} \to \zz_{+}$ given by $g(n,m) = n/m$.
 \begin{definition}
 	A set $A$ equipped with an order relation $<$ is \emph{well-ordered}
 	if every non-empty subset of $A$ has a smallest element.
-\label{def:well-ordered}
+	\label{def:well-ordered}
 \end{definition} 
 
 \begin{example}
@@ -705,7 +679,7 @@ preparation.
 More important is Zorn's lemma, which is equivalent to both the maximum
 principle and the axiom of choice.
 \begin{definition}
-\label{def:zorn-def}
+	\label{def:zorn-def}
 	Let $A$ be a set equipped with a strict partial order $<$. If $B \subset A$,
 	we we say $c \in A$ is an \emph{upper bound} on $B$ if for every $b \in B$,
 	either $b = c$ or $b < c$. The \emph{maximal element} of $A$ is an element

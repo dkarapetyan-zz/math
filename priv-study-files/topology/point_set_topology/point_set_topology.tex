@@ -1,0 +1,65 @@
+\chapter{Point-Set Topology}
+\section{Topological Spaces}
+\begin{definition}
+	\label{def:top}
+	A \emph{topology} $\mathcal{T}$ on $X$ is a collection of subsets of $X$,
+	including $X$ and $\emptyset$ that is closed under unions and finite
+	intersections.
+
+	We call $X$ equipped with a topology $\mathcal{T}$ a \emph{topological space},
+	denoted by $(X, \mathcal{T})$. If $U \in \mathcal{T}$, we say $U$ is an \emph{open} set.
+
+	Let $\mathcal{T}, \mathcal{T'}$ be topologies on $X$. If $\mathcal{T} \subset
+	\mathcal{T'}$, then we say $\mathcal{T}$ and $\mathcal{T'}$ are
+	\emph{comparable topologies}, and that $\mathcal{T'}$ is a \emph{finer} (or
+	\emph{weaker}) topology and
+	$\mathcal{T}$ is a \emph{coarser} (or \emph{stronger}) topology. 
+
+\end{definition}
+\begin{examples} $ $
+	\begin{enumerate}	
+		\item $X = \left\{ a,b,c \right\}, \ \mathcal{T} = \left\{
+				\left\{
+				a,b,c \right\}, \left\{
+			b \right\}, \left\{ b,c \right\}\right\}$.
+		\item $\left( X, \left\{ X, \emptyset \right\} \right)$. This is
+			known as the 
+			\emph{trivial topology}.
+		\item $\left( X, \mathrm{P}(X) \right)$, known as the \emph{discrete
+			topology}.
+	\end{enumerate}
+\end{examples}
+\section{Basis for a Topology}
+\begin{definition}
+	\label{def:basis}
+	A basis for a topology $\mathcal{T}$ is a collection $\mathcal{B}$ of subsets of 
+	$\mathcal{T}$ such that
+	\begin{enumerate}
+		\item For each $x \in X$, there exists a basis element $B$ containing
+			$x$. 
+		\item If $x \in B_{1} \cap B_{2}$, then there exists a basis element
+			$B_{3}$ such that $x \in B_{3}$ and $B_{3} \subset B_{1} \cap
+			B_{2}$.
+	\end{enumerate}
+\end{definition}
+Intuitively, a basis is a subset of our topology that is closed under
+intersections, but not necessarily unions. However, the set of all possible
+unions of members of our basis generates our topology!
+Hence, a basis can be thought of as the ``skeleton'' of a topology.
+We now make this rigorous.
+\begin{theorem}
+	\label{thm:basis-gen-topology}
+	Let $\mathcal{B}$ be a basis for a set $X$. Then the collection $\mathcal{T}$ generated
+	by collecting all possible unions of elements of $\mathcal{B}$ is a topology
+	on $X$
+\end{theorem}
+\begin{proof}
+	Proving closure under unions follows by construction of $\mathcal{T}$.
+
+\end{proof}
+<++>
+\begin{example}
+	If $X$ is any set, the collection of all one-point subsets of $X$
+	is a basis for the discrete topology on $X$.
+\end{example}
+
