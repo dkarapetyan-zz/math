@@ -1,0 +1,59 @@
+\documentclass[12pt,reqno]{amsbook}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\synctex=1
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[margin=2.5cm]{geometry}  %page layout
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue,
+}
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly 
+%(conflicts with cref in particular)
+\usepackage[capitalise]{cleveref} 
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}  %eliminate need for keeping track of counters
+
+\newcommand{\dd}{\mathop{}\,\mathrm{d}}
+%\includeonly{machine_learning/machine_learning}
+\pdfstringdefDisableCommands{\let\enspace\empty% this causes the warning for \kern
+\let\noindent\empty% this causes the warning for \indent
+}
+\begin{document}
+\title{Notes on Machine Learning}
+\author{David Karapetyan}
+\date{}
+\maketitle
+%\setcounter{tocdepth}{2}
+\frontmatter
+\tableofcontents
+
+\mainmatter\part{Basic Probability}
+\include{basic_probability/basic_probability}
+\part{Machine Learning}
+\include{machine_learning/machine_learning}
+
+\backmatter\part{Appendix}
+\include{appendix/appendix}
+\bibliographystyle{amsalpha }
+\end{document}

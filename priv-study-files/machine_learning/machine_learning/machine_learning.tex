@@ -1,0 +1,241 @@
+\chapter{Gradient Descent}
+Let $f: \mathbb{R}^{n} \to R$. We wish to devise an algorithm for finding the point at
+which $f$ achieves its minimum. Consider
+\begin{equation*}
+	\begin{split}
+		\phi(t) = f(x_{1} + \vec{u}t), \quad \| u \| = 1.
+	\end{split}
+\end{equation*}
+We think of $x_{1}$ as our initial guess for where $f$ achieves its minimum.
+Assuming the minimum is not achieved at $x_{1}$, in what direction away from
+$x_{1}$ does the value of $f$ decrease most quickly? That is, we wish to
+minimize $\phi'(0)$:
+\begin{equation}
+	\label{dir}
+	\begin{split}
+		\phi '(0) & = \frac{\partial f}{\partial x_{1}} \frac{\partial
+		x_{1}}{\partial t} +\cdots + \frac{\partial f}{\partial x_{n}} \frac{\partial
+		x_{n}}{\partial t} \\
+		& = \Delta f(x_{1}) \cdot \vec{u} \\
+		& = \| \Delta f (x_{1}) \| \cos \theta.
+	\end{split}
+\end{equation}
+Hence, $\phi '(0)$ is minimized if
+\begin{equation*}
+	\vec{u} = -\Delta f(x_{1}) / \| \Delta f (x_{1}) \|.
+\end{equation*}
+
+How long can we milk this decrease for? Consider
+\begin{equation*}
+	\phi(t) = f(x_{1} - \vec{u} t)
+\end{equation*}
+where $\vec{u}$ is given by~\eqref{dir}. The decrease of $f$ in the direction of
+$\vec{u}$ ends at $t_{0} > 0$, where
+\begin{equation*}
+	0 = \phi'(t_{0}) = \Delta f(x_{1} - \vec{u}t_{0}) \cdot \vec{u}.
+\end{equation*}
+That is,
+\begin{equation*}
+	\Delta f(x_{1} - \vec{u} t_{0}) = \pm u_{\perp} \| \Delta f(x_{1} -
+\vec{u}t_{0}) \|.
+\end{equation*}
+At this point, we must move in a direction perpendicular to $\vec{u}$. 
+We repeat our procedure from before by setting $x_{2} = x_{1} - t_{0}
+\vec{u}$ and looking for $\vec{v}$ such that
+\begin{equation*}
+	\phi(t) = f(x_{2} - t \vec{v})
+\end{equation*}
+is minimized. 
+
+If $f$ is convex and $C^{1}(\mathbb{R}^{n})$, then the $x_{i}$ will eventually converge
+to a limit $x$. This will, by construction and convexity, be the unique point at
+which $f$ achieves its minimum.
+
+\section{Applications to Regression Cost Functions}
+
+Recall (in the continuous case) that for $m$ iterations of an experiment
+yielding $n$ observations $\{x_{k} \}_{k=1}^{n}$, we constructed the hypothesis function
+\begin{equation*}
+	h_{\theta}(x^{i}) = \theta_{0} + \theta_{1}x_{1} + \cdots +
+	\theta_{n} x_{n}
+\end{equation*}
+and cost function
+\begin{equation*}
+	J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left (h_{\theta}(x^{i}) - y^{i}
+	\right )^{2}.
+\end{equation*}
+Let $\phi(t) = J(\theta + \vec{u} t)$. Applying steepest descent, we obtain 
+
+\begin{equation*}
+	\theta_{k} = \theta_{k-1} - \frac{t_{k-1} \Delta J(\theta_{k-1})}{\| \Delta
+	J(\theta_{k-1}) \|}
+\end{equation*}
+Let $\theta_{k}(j)$ and $x^{i}(j)$ denote the $(j+1)th$ entry of $\theta_{k}$
+and the $jth$ entry in the training set $x^{i}$, respectively, with
+$x^{i}(0) \doteq 1$. Then the above yields the system of equations
+\begin{equation*}
+	\theta_{k}(j) = \theta_{k-1}(j) - \frac{t_{k-1}}{m} \frac{\sum_{i=1}^{m}
+	\left( h_{\theta_{k-1}}(x^{i}) - y^{i} \right) x^{i}(j)}{\|  \sum_{i=1}^{m}
+	\left( h_{\theta_{k-1}}(x^{i}) - y^{i} \right) x^{i}(j) \|}
+\end{equation*}
+
+\section{Applications to Regularization}
+Suppose we have a non-linear hypotheiss function
+\begin{equation*}
+	h_{\theta}(x) = \theta_{0} + \theta_{1} x_{1} + \theta_{2} x_{2}^{2} + \cdots
+	+ \theta_{n} x^{n}.
+\end{equation*}
+and wish to dampen some of the terms, in order to generate a smoother regression
+curve. To do so, we assign a magnified cost-penalty to these terms. That is, we
+consider a new cost function
+\begin{equation*}
+	J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_{\theta}(x^{i}) -
+	y^{i} \right)^{2} + \frac{1}{2m} \sum_{j \in S} \lambda_{j}
+	\theta_{j}^{2}
+\end{equation*}
+where $S \subset \left\{ 1, 2, \cdots, m \right\}$ and the $\lambda_{j}$ are
+scalars, commonly referred to as \emph{regularization parameters}.
+\chapter{Logistic Regression}
+We now suppose that our outputs are discrete. For simplicity, assume that, for
+each trial, our output $y$ takes values in the set \{0,1\}, i.e. ``failure''
+and ``success'', respectively.
+
+We would like to construct a hypothesis function that mirrors the probability of
+success, and the probability of failure. We let
+
+\begin{equation*} 
+	h_{\theta}(\vec{x}) = g(\theta^{T}\vec{x})
+\end{equation*}
+where $g$ is the \emph{Sigmoid}, or \emph{Logistic} function
+\begin{equation*} 
+	g(z) = \frac{1}{1+e^{-z}}
+\end{equation*}
+We assume that if $h_{\theta}(\vec{x}) \ge 0.5$, then $y=1$, and that otherwise 
+$y = 0$.
+
+First, observe that the form of the cost function $J(\theta)$ in the continuous
+case would be a poor choice in our discrete case,
+as it would not be a convex function of $\theta$, due to the non-convexity of
+the Sigmoid function $g(z)$. However, observe that $\log(g(z))$ is convex, since
+\begin{equation*} 
+	\begin{split}
+		\frac{d}{dz}(\log(g)) & = \frac{1}{e^{z}+1}\\
+		\frac{d^{2}}{dz^{2}}(\log(g)) & = \frac{-e^{z}}{(e^{z}+1)^{2}} < 0, \quad
+		\forall z
+	\end{split} 
+\end{equation*}
+If $y=1$, then our hypothesis function $h_{\theta}$ should be close to $1$, so
+it makes sense to define
+\begin{equation*} 
+	\text{Cost}(h_{\theta}, y) = -\log(h_{\theta}(x)), \quad y=1.
+\end{equation*}
+If $y=0$, then $h_{\theta}$ should be close to $0$, so we define
+\begin{equation*} 
+	\text{Cost}(h_{\theta}(x), y)= -\log(1 - h_{\theta}(x)), \quad y=0.
+\end{equation*}
+Combining both cases, we obtain the final cost function
+\begin{equation*}
+	\begin{split}
+		\text{Cost}(h_{\theta}(x), y) = -y\log(h_{\theta}(x)) -
+		(1-y)\log(1-h_{\theta}(x)).
+	\end{split}
+\end{equation*}
+\chapter{Linear Regression}
+Let $X = (X_{1}, X_{2}, \dots, X_{n})$ be a random variable with values in 
+$R^{n}$. Assume each random variable is associated with a single real
+outcome $y$. Given vector-real pairs $\left( x^{i}, y_{i} \right)_{i=1}^{k}$
+(i.e., $k$  
+\textit{samples}), write
+\begin{equation*}
+	\begin{split}
+		\hat{y} \equiv f(x) & = \langle \beta, x \rangle, \qquad \beta =
+		(\beta_{0}, \beta_{1}, \dots, \beta_{k})^{T}, \quad x = (1, x_{1}, x_{2},
+		\dots, x_{k})  
+	\end{split}
+\end{equation*}
+We wish to find $\beta$ minimizing the mean square error of $\hat{y}$ from $y$ over the range of our samples. We make the restricting assumption that the expected
+residual of our $\hat{y}$ from $y$ is zero. Hence, it follows that we seek 
+$\beta$ minimizing
+\begin{equation*}
+	\begin{split}
+		\mathrm{MSE}(y - \hat{y}) & \underset{1/k}{\sim} \sum_{i=1}^{k} | y_{i} - \langle \beta_{i}, x^{i} \rangle 
+		|^{2}
+		\\
+		& = \langle y - T(\beta), y - T(\beta) \rangle , \qquad T \doteq
+		T_{\{x^{i}\}_{i=1}^{k}} = \begin{bmatrix}
+			& x^{1} \\
+			& x^{2} \\
+			& \vdots \\
+			& x^{k}
+		\end{bmatrix}, \
+		y = \begin{bmatrix}
+			& y_{1} 
+			\\
+			& y_{2}
+			\\
+			& \vdots
+			\\
+			& y_{k}
+		\end{bmatrix}
+	\end{split}
+\end{equation*}
+Then, letting $g(y) = \langle y,y \rangle $ and $h(\beta) = y - T(\beta)$, we
+use the chain rule for operators (see notes) to obtain
+\begin{equation*}
+	\begin{split}
+		& \frac{\partial V}{\partial \beta}(\gamma)  = -2 \langle \cdot, y - T(\beta)
+		\rangle \circ T
+		= -2 \langle T(\cdot), y - T(\beta) \rangle 
+		\\
+		& \frac{\partial^{2} V}{\partial \beta^{2}} (\gamma) = 2 \langle T(\cdot), T(\cdot) \rangle 
+	\end{split}
+\end{equation*}
+where the non-dependence on $\gamma$ for both follows from the bilinearity of the inner product. 
+
+Asume $T$ is positive semi-definite. Then $\partial V/ \partial \beta(\gamma)(z) > 0
+\ \forall z \in \mathbb{R}^{n+1}$. It follows that any minimum of $V$ will be a
+\emph{global} minimum. We obtain our global minimum $\beta$ thus:
+\begin{equation*}
+	\begin{split}
+		& 0 = \frac{\partial V}{\partial \beta}(\hat{\beta}) = -2 \langle T(\cdot), y - T(\hat{\beta}) \rangle 
+		\\
+		& \implies  \langle T^{\star}T, T^{\star}y - T^{\star}T(\hat{\beta}) \rangle  = 0
+		\\
+		& \implies T^{\star}T T^{\star} y = T^{\star} T T^{\star} T(\hat{\beta})
+		\\
+		& \implies \hat{\beta} = (T^{\star}T)^{-1} T^{\star} y 
+	\end{split}
+\end{equation*}
+where the last step follows from the fact that $T^{\star}T$ is
+square, and is invertable since we have assumed $T$ is positive semidefinite.
+That is,
+\begin{equation*}
+	\begin{split}
+		\langle z, T^{\star}T(z) \rangle = \langle T(z), T(z) \rangle > 0 \ \forall
+		z \in \mathbb{R}^{n+1}  
+	\end{split}
+\end{equation*}
+We have found our minimizer $\beta$ for the mean squared error. First,
+observe that our $\beta$ is mean zero. We assumed earlier that $y$ was
+mean zero; we make another simplifying assumption that the covariance matrix of
+$y$ is $\sigma^{2}I$. It follows that the variance of the minimizer is given by
+\begin{equation*}
+	\begin{split}
+		\mathrm{Var}(\hat{\beta}) & = \mathrm{Var}epsilon (\hat{\beta} \hat{\beta}^{\star})
+		\\
+		& = \mathrm{Var}epsilon \left( (T^{\star}T)^{-1}T^{\star}y y^{\star}(T^{\star}T)^{-1} \right)
+		\\
+		& = \left( (T^{\star}T)^{-1}T^{\star}\sigma^{2}I(T^{\star}T)^{-1} \right)
+		\\
+		& = \sigma^{2} (X^{\star}X)^{-1}
+	\end{split}
+\end{equation*}
+
+At this minimizer, we have
+\begin{equation*}
+	\begin{split}
+		\mathrm{MSE}(y - \hat{y}) \underset{1/k}{\sim} \langle y - T(T^{\star}T)^{-1} T^{\star}y, y -
+		T(T^{\star}T)^{-1} T^{\star}y \rangle.
+	\end{split}
+\end{equation*}
+

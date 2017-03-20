@@ -1,24 +1,26 @@
 \documentclass[12pt,reqno]{amsbook}
-\usepackage[T1]{fontenc} %otherwise have font issues
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage[showonlyrefs=true]{mathtools} %amsmath extension package
-\usepackage{cancel}  %for cancelling terms explicity on pdf
-\usepackage{yhmath}   %makes fourier transform look nicer, among other things
-\usepackage{framed}  %for framing remarks, theorems, etc.
-\synctex=1
-\usepackage{enumerate} %to change enumerate symbols
-\usepackage[margin=2.5cm]{geometry}  %page layout
-
+%essential to put all packages between hyperref and
+%cleveref in order to avoid conflicts with cref
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
 linkcolor=blue,
 citecolor=blue,
-urlcolor=blue,
+urlcolor=blue
 }
-\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly 
+\usepackage{bookmark}
+\usepackage{nag}
+\usepackage[margin=2.5cm]{geometry}  %page layout
+\usepackage[alphabetic, initials, msc-links]{amsrefs} %for the bibliography; uses cite pkg. Must be loaded after hyperref, otherwise doesn't work properly
+\usepackage{mathtools} %amsmath extension package
 %(conflicts with cref in particular)
-\usepackage[capitalise]{cleveref} 
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{cancel}  %for cancelling terms explicity on pdf
+\usepackage{yhmath}   %makes fourier transform look nicer, among other things
+\usepackage{framed}  %for framing remarks, theorems, etc.
+\usepackage{enumerate} %to change enumerate symbols
+\usepackage[capitalise]{cleveref}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -29,61 +31,25 @@ urlcolor=blue,
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
-\newtheorem{examples}[theorem]{Examples}
 \newtheorem{exercise}[theorem]{Exercise}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}  %eliminate need for keeping track of counters
 
-\newcommand{\ds}{\displaystyle}
-\newcommand{\ts}{\textstyle}
-\newcommand{\nin}{\not\in}
-\newcommand{\rr}{\mathbb{R}}
-\newcommand{\nn}{\mathbb{N}}
-\newcommand{\zz}{\mathbb{Z}}
-\newcommand{\cc}{\mathbb{C}}
-\newcommand{\ci}{\mathbb{T}}
-\newcommand{\zzdot}{\dot{\zz}}
-\newcommand{\wh}{\widehat}
-\newcommand{\p}{\partial}
-\newcommand{\ee}{\varepsilon}
-\newcommand{\vp}{\varphi}
-\newcommand{\wt}{\widetilde}
-\newcommand{\uol}{u^\omega_\lambda}
-\newcommand{\lbar}{\bar{l}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\RR}{\mathcal{R}}
-\newcommand{\al}{\alpha}
-\newcommand{\ve}{q}
-\newcommand{\tg}{{tan}}
-\newcommand{\m}{q}
-\newcommand{\N}{N}
-\newcommand{\ta}{{\tilde{a}}}
-\newcommand{\tb}{{\tilde{b}}}
-\newcommand{\tc}{{\tilde{c}}}
-\newcommand{\tS}{{\tilde{S}}}
-\newcommand{\tP}{{\tilde{P}}}
-\newcommand{\tu}{{\tilde{u}}}
-\newcommand{\tw}{{\tilde{w}}}
-\newcommand{\tA}{{\tilde{A}}}
-\newcommand{\tX}{{\tilde{X}}}
-\newcommand{\tphi}{{\tilde{\phi}}}
 \newcommand{\dd}{\mathop{}\,\mathrm{d}}
+\setcounter{tocdepth}{4}
 %\includeonly{point_set_topology/point_set_topology.tex}
 %must be last loaded package to work properly
-\begin{document}
 \title{Topology}
 \author{David Karapetyan}
 \date{}
-\maketitle
-%\thispagestyle{empty} don't want page number for book cover
-\frontmatter
-\tableofcontents
-\mainmatter{\include{set_theory/set_theory}
-\include{point_set_topology/point_set_topology}
-}
 
-\backmatter{\cite{Munkres:2000aa}
-\bibliography{/Users/davidkarapetyan/Documents/research/math/references.bib}}
+\begin{document}
+\frontmatter{\maketitle
+\tableofcontents
+}
+\mainmatter{\include{set_theory/set_theory}}
+\include{point_set_topology/point_set_topology}
+\backmatter{\bibliographystyle{amsalpha}}
 \end{document}
