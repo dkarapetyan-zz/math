@@ -1,4 +1,4 @@
-\documentclass[12pt,reqno]{amsbook}
+\documentclass[12pt,reqno]{book}
 %essential to put all packages between hyperref and
 %cleveref in order to avoid conflicts with cref
 \usepackage{hyperref}
@@ -21,6 +21,7 @@ urlcolor=blue
 \usepackage{framed}  %for framing remarks, theorems, etc.
 \usepackage{enumerate} %to change enumerate symbols
 \usepackage[capitalise]{cleveref}
+
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -34,11 +35,12 @@ urlcolor=blue
 \newtheorem{exercise}[theorem]{Exercise}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\numberwithin{section}{chapter}
-\numberwithin{equation}{chapter}  %eliminate need for keeping track of counters
 
 \newcommand{\dd}{\mathop{}\,\mathrm{d}}
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}  %eliminate need for keeping track of counters
 \setcounter{tocdepth}{4}
+
 %\includeonly{point_set_topology/point_set_topology.tex}
 %must be last loaded package to work properly
 \title{Topology}
