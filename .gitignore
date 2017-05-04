@@ -11,7 +11,7 @@
 *.nav
 *.snm
 *.aut
-*.synctex.gz
+**/**/*.synctex.gz
 *.aux
 *.blg
 *.fff
